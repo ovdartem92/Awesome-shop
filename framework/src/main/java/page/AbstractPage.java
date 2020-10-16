@@ -1,4 +1,4 @@
-package page.net.skyscanner;
+package page;
 
 import org.openqa.selenium.WebDriver;
 
