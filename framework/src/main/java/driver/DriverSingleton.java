@@ -1,5 +1,10 @@
 package driver;
 
-public class DriverSingleton {
+import org.openqa.selenium.WebDriver;
 
+public class DriverSingleton {
+    public static WebDriver getDriver(){
+        return null;
+    }
+    public static void closeDriver(){}
 }
