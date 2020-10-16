@@ -1,9 +1,9 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="Smoke" verbose="1" >
-    <test name="Open"   >
+    <test name="LogIn"   >
         <classes>
-            <class name="FirstTest" />
+            <class name="LogInTest" />
         </classes>
     </test>
 </suite>
