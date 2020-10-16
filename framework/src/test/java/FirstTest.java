@@ -8,10 +8,10 @@ public class FirstTest extends CommonConditions {
 
     @Test
     public void ourFirstTest() {
-        SkyScannerHomePage sky = new SkyScannerHomePage(driver)
+        new SkyScannerHomePage(driver)
                 .openPage();
 
-        softAssert.assertEquals(driver.getCurrentUrl(), sky.getHomepageUrl());
+        softAssert.assertEquals(driver.getCurrentUrl(), SkyScannerHomePage.getHomepageUrl());
     }
 
 }
