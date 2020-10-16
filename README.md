@@ -1,1 +1,3 @@
-Skyscanner lab
+SkyScanner lab2020
+Run from command line:
+mvn -Dbrowser=chrome -Dsurefire.suiteXmlFiles=framework\src\main\resources\testng-smoke.xml -Denvironment=environment_qa clean test
