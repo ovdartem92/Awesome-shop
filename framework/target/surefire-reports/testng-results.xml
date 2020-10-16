@@ -2,20 +2,20 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2020-10-16T12:56:33 MSK" name="FirstTest" finished-at="2020-10-16T12:56:39 MSK" duration-ms="6376">
+  <suite started-at="2020-10-16T13:07:42 MSK" name="FirstTest" finished-at="2020-10-16T13:07:49 MSK" duration-ms="6487">
     <groups>
     </groups>
-    <test started-at="2020-10-16T12:56:33 MSK" name="Command line test" finished-at="2020-10-16T12:56:39 MSK" duration-ms="6376">
+    <test started-at="2020-10-16T13:07:42 MSK" name="Command line test" finished-at="2020-10-16T13:07:49 MSK" duration-ms="6487">
       <class name="FirstTest">
-        <test-method is-config="true" signature="setUp()[pri:0, instance:FirstTest@15eb5ee5]" started-at="2020-10-16T12:56:33 MSK" name="setUp" finished-at="2020-10-16T12:56:38 MSK" duration-ms="5587" status="PASS">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:FirstTest@15eb5ee5]" started-at="2020-10-16T13:07:42 MSK" name="setUp" finished-at="2020-10-16T13:07:48 MSK" duration-ms="5575" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="ourFirstTest()[pri:0, instance:FirstTest@15eb5ee5]" started-at="2020-10-16T12:56:38 MSK" name="ourFirstTest" finished-at="2020-10-16T12:56:39 MSK" duration-ms="702" status="PASS">
+        <test-method signature="ourFirstTest()[pri:0, instance:FirstTest@15eb5ee5]" started-at="2020-10-16T13:07:48 MSK" name="ourFirstTest" finished-at="2020-10-16T13:07:49 MSK" duration-ms="829" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ourFirstTest -->
-        <test-method is-config="true" signature="stopBrowser()[pri:0, instance:FirstTest@15eb5ee5]" started-at="2020-10-16T12:56:39 MSK" name="stopBrowser" finished-at="2020-10-16T12:56:39 MSK" duration-ms="67" status="PASS">
+        <test-method is-config="true" signature="stopBrowser()[pri:0, instance:FirstTest@15eb5ee5]" started-at="2020-10-16T13:07:49 MSK" name="stopBrowser" finished-at="2020-10-16T13:07:49 MSK" duration-ms="65" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- stopBrowser -->

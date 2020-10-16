@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="1" failures="0" name="FirstTest" time="0.704" errors="0" skipped="0">
+<testsuite tests="1" failures="0" name="FirstTest" time="0.831" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="java.vm.version" value="11.0.8+10-LTS"/>
@@ -37,7 +37,7 @@
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="os.version" value="10.0"/>
     <property name="library.jansi.path" value="C:\Users\Artsem_Audziyenka\Desktop\tools\apache-maven-3.6.3\bin\..\lib\jansi-native"/>
-    <property name="surefire.suiteXmlFiles" value="src\test\resources\testng-smoke.xml"/>
+    <property name="surefire.suiteXmlFiles" value="framework\src\main\resources\testng-smoke.xml"/>
     <property name="user.home" value="C:\Users\Artsem_Audziyenka"/>
     <property name="user.timezone" value="Europe/Minsk"/>
     <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
@@ -47,7 +47,7 @@
     <property name="java.class.path" value="C:\Users\Artsem_Audziyenka\Desktop\tools\apache-maven-3.6.3\bin\..\boot\plexus-classworlds-2.6.0.jar"/>
     <property name="java.vm.specification.version" value="11"/>
     <property name="sun.arch.data.model" value="64"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -Dbrowser=chrome -Dsurefire.suiteXmlFiles=src\test\resources\testng-smoke.xml -Denvironment=dev clean test"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -Dbrowser=chrome -Dsurefire.suiteXmlFiles=framework\src\main\resources\testng-smoke.xml -Denvironment=dev clean test"/>
     <property name="java.home" value="C:\Program Files\Java\jdk-11.0.8"/>
     <property name="user.language" value="en"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
@@ -68,5 +68,5 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="FirstTest" name="ourFirstTest" time="0.704"/>
+  <testcase classname="FirstTest" name="ourFirstTest" time="0.831"/>
 </testsuite>
