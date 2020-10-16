@@ -1,3 +1,5 @@
 # Default ignored files
 /shelf/
 /workspace.xml
+framework/target
+framework/framework.iml
