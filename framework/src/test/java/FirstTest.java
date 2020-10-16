@@ -1,6 +1,5 @@
 import org.testng.annotations.Test;
 
-public class myFirstTest {
-
+public class FirstTest {
 
 }
