@@ -13,7 +13,6 @@ public class CheckYourEmailAfterLogInTest extends CommonConditions {
         new SkyScannerHomePage(driver)
                 .openPage()
                 .logIn(user)
-                .closeModal()
                 .openProfilePage()
                 .clickOnAccountField();
 
