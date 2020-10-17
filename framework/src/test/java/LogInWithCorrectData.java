@@ -9,14 +9,14 @@ import static util.Util.waitForElementLocatedBy;
 
 public class LogInWithCorrectData extends CommonConditions {
 
-    User user;
+    User user = UserBuilder.getUserWithValidPassword();
     SoftAssert softAssert = new SoftAssert();
 
     @Test
     public void logInWithCorrectData() {
         new SkyScannerHomePage(driver)
                 .openPage()
-                .logIn(user = UserBuilder.getUserWithValidPassword());
+                .logIn(user);
         softAssert.assertEquals(true, waitForElementLocatedBy(driver, By.xpath("//button[@data-testid='btn-marketing-consent-cta']")));
     }
 

@@ -9,14 +9,14 @@ import static util.Util.waitForElementLocatedBy;
 
 public class LogInTestWithInCorrectData extends CommonConditions {
 
-    User user;
+    User user = UserBuilder.getUserWithInvalidPassword();
     SoftAssert softAssert = new SoftAssert();
 
     @Test
     public void logInWithInCorrectData() {
         new SkyScannerHomePage(driver)
                 .openPage()
-                .logIn(user = UserBuilder.getUserWithInvalidPassword());
+                .logIn(user);
         softAssert.assertEquals(true, waitForElementLocatedBy(driver, By.xpath("//span[text()='Wrong email or password']")));
     }
 }
