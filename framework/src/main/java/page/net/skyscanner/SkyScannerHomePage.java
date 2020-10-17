@@ -69,6 +69,12 @@ public class SkyScannerHomePage extends AbstractPage {
         return this;
     }
 
+    // Click to tabs.
+    public SkyScannerPage clickToHostelsTab() {
+        waitForElementLocatedBy(driver, hostelTab).click();
+        return this;
+    }
+
     public SkyScannerHomePage clickOnLogIn() {
         element = driver.findElement(logInButton);
         element.click();
@@ -106,6 +112,73 @@ public class SkyScannerHomePage extends AbstractPage {
         element = driver.findElement(closeButton);
         element.click();
         return this;
+    }
+
+    // Methods for Hotel tab elements.
+    public SkyScannerPage addDestination(String destination) {
+        waitForElementLocatedBy(driver, destinationOrHostelNameInput).click();
+        waitForElementLocatedBy(driver, destinationOrHostelNameInput).sendKeys(destination);
+        return this;
+    }
+
+    public SkyScannerPage increaseRoom() {
+        waitForElementLocatedBy(driver, guestsAndRoomsInput).click();
+        waitForElementLocatedBy(driver, increaseRoomButton).click();
+        waitForElementLocatedBy(driver, doneButton).click();
+        return this;
+    }
+
+    public SkyScannerPage increaseRoom(int quantity) {
+        for (int i = 0; i < quantity; i++)
+            increaseRoom();
+        return this;
+    }
+
+    public SkyScannerPage increaseAdult() {
+        waitForElementLocatedBy(driver, guestsAndRoomsInput).click();
+        waitForElementLocatedBy(driver, increaseAdultButton).click();
+        waitForElementLocatedBy(driver, doneButton).click();
+        return this;
+    }
+
+    public SkyScannerPage increaseAdult(int quantity) {
+        for (int i = 0; i < quantity; i++)
+            increaseAdult();
+        return this;
+    }
+
+    public SkyScannerPage increaseChild() {
+        waitForElementLocatedBy(driver, guestsAndRoomsInput).click();
+        waitForElementLocatedBy(driver, increaseChildButton).click();
+        waitForElementLocatedBy(driver, doneButton).click();
+        return this;
+    }
+
+    public SkyScannerPage increaseChild(int quantity) {
+        for (int i = 0; i < quantity; i++)
+            increaseChild();
+        return this;
+    }
+
+    public String getQuantityRooms() {
+        waitForElementLocatedBy(driver, guestsAndRoomsInput).click();
+        String quantity = waitForElementLocatedBy(driver, quantityRoomsInput).getAttribute("value");
+        waitForElementLocatedBy(driver, doneButton).click();
+        return quantity;
+    }
+
+    public String getQuantityAdultPeople() {
+        waitForElementLocatedBy(driver, guestsAndRoomsInput).click();
+        String quantity = waitForElementLocatedBy(driver, quantityAdultPeopleInput).getAttribute("value");
+        waitForElementLocatedBy(driver, doneButton).click();
+        return quantity;
+    }
+
+    public String getQuantityChildren() {
+        waitForElementLocatedBy(driver, guestsAndRoomsInput).click();
+        String quantity = waitForElementLocatedBy(driver, quantityChildrenInput).getAttribute("value");
+        waitForElementLocatedBy(driver, doneButton).click();
+        return quantity;
     }
 
     public static String getHomepageUrl() {
