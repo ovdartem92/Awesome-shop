@@ -7,7 +7,7 @@ import service.UserBuilder;
 
 import static util.Util.waitForElementLocatedBy;
 
-public class LogInWithValidData extends CommonConditions {
+public class LogInTestWithValidData extends CommonConditions {
 
     User user = UserBuilder.getUserWithValidPassword();
     SoftAssert softAssert = new SoftAssert();
@@ -19,6 +19,4 @@ public class LogInWithValidData extends CommonConditions {
                 .logIn(user);
         softAssert.assertEquals(true, waitForElementLocatedBy(driver, By.xpath("//button[@data-testid='btn-marketing-consent-cta']")));
     }
-
-
 }
