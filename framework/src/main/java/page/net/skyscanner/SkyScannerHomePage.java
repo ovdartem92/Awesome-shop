@@ -78,14 +78,10 @@ public class SkyScannerHomePage extends AbstractPage {
         waitForElementLocatedBy(driver, NEXT_BUTTON);
         driver.findElement(CONTINUE_WITH_EMAIL_BUTTON).click();
         driver.findElement(EMAIL_FIELD).sendKeys(user.getEmail());
-        waitForElementLocatedBy(driver, ACCOUNT_DETECTED_BUTTON);
-        driver.findElement(ACCOUNT_DETECTED_BUTTON).click();
-        waitForElementLocatedBy(driver, PASSWORD_FIELD);
-        driver.findElement(PASSWORD_FIELD).sendKeys(user.getPassword());
-        waitForElementLocatedBy(driver, SECOND_LOG_IN_BUTTON);
-        driver.findElement(SECOND_LOG_IN_BUTTON).click();
-        waitForElementLocatedBy(driver, CLOSE_MODAL_LOGIN_WINDOW_BUTTON);
-        driver.findElement(CLOSE_MODAL_LOGIN_WINDOW_BUTTON).click();
+        waitForElementLocatedBy(driver, ACCOUNT_DETECTED_BUTTON).click();
+        waitForElementLocatedBy(driver, PASSWORD_FIELD).sendKeys(user.getPassword());
+        waitForElementLocatedBy(driver, SECOND_LOG_IN_BUTTON).click();
+        waitForElementLocatedBy(driver, CLOSE_MODAL_LOGIN_WINDOW_BUTTON).click();
         checkCaptchaOnPage();
         return this;
     }
