@@ -1,20 +1,20 @@
 package page.net.skyscanner;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import page.AbstractPage;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import static util.Util.waitForElementLocatedBy;
 
 public class SkyScannerHomePage extends AbstractPage {
 
     private static final String HOMEPAGE_URL = "https://www.skyscanner.net/";
-    private final Logger logger = LogManager.getRootLogger();
+    private final Logger LOGGER = LogManager.getRootLogger();
 
     private static final By captchaElement = By.xpath("//*[contains(text(), 'Are you a person or a robot?')]");
     private static final By logInButton = By.id("authentication-link");
@@ -59,7 +59,7 @@ public class SkyScannerHomePage extends AbstractPage {
     private void checkCaptchaOnPage() {
         boolean answer = new WebDriverWait(driver, 4).until(
                 ExpectedConditions.presenceOfElementLocated(captchaElement)).isDisplayed();
-        System.out.println("ANSWER: " + answer);
+        LOGGER.info("Is CAPTCHA element present on page: [" + answer + "]");
         if (answer)
             throw new RuntimeException("The page consists captcha element.");
     }
@@ -68,6 +68,12 @@ public class SkyScannerHomePage extends AbstractPage {
         driver.get(HOMEPAGE_URL);
         checkCaptchaOnPage();
         new WebDriverWait(driver, 10);
+        return this;
+    }
+
+    // Click to tabs.
+    public SkyScannerHomePage clickToHostelsTab() {
+        waitForElementLocatedBy(driver, hostelTab).click();
         return this;
     }
 
@@ -101,6 +107,73 @@ public class SkyScannerHomePage extends AbstractPage {
         waitForElementLocatedBy(driver, closeButton);
         driver.findElement(closeButton).click();
         return this;
+    }
+
+    // Methods for Hotel tab elements.
+    public SkyScannerHomePage addDestination(String destination) {
+        waitForElementLocatedBy(driver, destinationOrHostelNameInput).click();
+        waitForElementLocatedBy(driver, destinationOrHostelNameInput).sendKeys(destination);
+        return this;
+    }
+
+    public SkyScannerHomePage increaseRoom() {
+        waitForElementLocatedBy(driver, guestsAndRoomsInput).click();
+        waitForElementLocatedBy(driver, increaseRoomButton).click();
+        waitForElementLocatedBy(driver, doneButton).click();
+        return this;
+    }
+
+    public SkyScannerHomePage increaseRoom(int quantity) {
+        for (int i = 0; i < quantity; i++)
+            increaseRoom();
+        return this;
+    }
+
+    public SkyScannerHomePage increaseAdult() {
+        waitForElementLocatedBy(driver, guestsAndRoomsInput).click();
+        waitForElementLocatedBy(driver, increaseAdultButton).click();
+        waitForElementLocatedBy(driver, doneButton).click();
+        return this;
+    }
+
+    public SkyScannerHomePage increaseAdult(int quantity) {
+        for (int i = 0; i < quantity; i++)
+            increaseAdult();
+        return this;
+    }
+
+    public SkyScannerHomePage increaseChild() {
+        waitForElementLocatedBy(driver, guestsAndRoomsInput).click();
+        waitForElementLocatedBy(driver, increaseChildButton).click();
+        waitForElementLocatedBy(driver, doneButton).click();
+        return this;
+    }
+
+    public SkyScannerHomePage increaseChild(int quantity) {
+        for (int i = 0; i < quantity; i++)
+            increaseChild();
+        return this;
+    }
+
+    public String getQuantityRooms() {
+        waitForElementLocatedBy(driver, guestsAndRoomsInput).click();
+        String quantity = waitForElementLocatedBy(driver, quantityRoomsInput).getAttribute("value");
+        waitForElementLocatedBy(driver, doneButton).click();
+        return quantity;
+    }
+
+    public String getQuantityAdultPeople() {
+        waitForElementLocatedBy(driver, guestsAndRoomsInput).click();
+        String quantity = waitForElementLocatedBy(driver, quantityAdultPeopleInput).getAttribute("value");
+        waitForElementLocatedBy(driver, doneButton).click();
+        return quantity;
+    }
+
+    public String getQuantityChildren() {
+        waitForElementLocatedBy(driver, guestsAndRoomsInput).click();
+        String quantity = waitForElementLocatedBy(driver, quantityChildrenInput).getAttribute("value");
+        waitForElementLocatedBy(driver, doneButton).click();
+        return quantity;
     }
 
     public static String getHomepageUrl() {
