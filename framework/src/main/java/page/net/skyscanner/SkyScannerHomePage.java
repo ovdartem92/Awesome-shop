@@ -17,7 +17,8 @@ public class SkyScannerHomePage extends AbstractPage {
     private final Logger LOGGER = LogManager.getRootLogger();
 
     private static final By CAPTCHA_ELEMENT = By.xpath("//*[contains(text(), 'Are you a person or a robot?')]");
-    private static final By LOG_IN_BUTTON = By.id("authentication-link");
+    private static final By LOG_IN_BUTTON = By.xpath("//span[text()='Log in']");
+    private static final By ACCOUNT_BUTTON = By.xpath("//span[text()='Account']");
     private static final By EMAIL_FIELD = By.id("email");
     private static final By NEXT_BUTTON = By.id("login-modal");
     private static final By PASSWORD_FIELD = By.id("password");
@@ -192,6 +193,11 @@ public class SkyScannerHomePage extends AbstractPage {
         String quantity = waitForElementLocatedBy(driver, QUANTITY_CHILDREN_INPUT).getAttribute("value");
         waitForElementLocatedBy(driver, DONE_BUTTON).click();
         return quantity;
+    }
+
+    public SkyScannerProfilePage openProfilePage() {
+        waitForElementLocatedBy(driver, ACCOUNT_BUTTON).click();
+        return new SkyScannerProfilePage(driver);
     }
 
     public static String getHomepageUrl() {

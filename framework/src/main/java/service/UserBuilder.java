@@ -3,6 +3,7 @@ package service;
 import model.User;
 
 public class UserBuilder {
+
     private static User user = new User();
 
     public static User getUserWithValidPassword() {
