@@ -8,7 +8,7 @@ public class CheckingMaximumValuesForHotelBookingTest extends CommonConditions {
     private final static int MAX_CHILDREN_QUANTITY = 5;
 
     @Test
-    public void test() {
+    public void checkingMaximumValues() {
         String destination = "Turin";
         int clickQuantity  = 15;
         user = UserBuilder.getUserWithValidPassword();
