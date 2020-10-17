@@ -2,6 +2,7 @@ package page.net.skyscanner;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import page.AbstractPage;
@@ -63,6 +64,7 @@ public class SkyScannerHomePage extends AbstractPage {
         if (answer)
             throw new RuntimeException("The page consists captcha element.");
     }
+
 
     public SkyScannerHomePage openPage() {
         driver.get(HOMEPAGE_URL);
