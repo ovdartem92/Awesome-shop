@@ -12,6 +12,9 @@ public class SkyScannerHomePage extends AbstractPage {
 
     private static final String HOMEPAGE_URL = "https://www.skyscanner.net/";
     private WebElement element;
+    private final Logger logger = LogManager.getRootLogger();
+
+    private static final By captchaElement = By.xpath("//*[contains(text(), 'Are you a person or a robot?')]");
     private static final By logInButton = By.id("authentication-link");
     private static final By emailField = By.id("email");
     private static final By nextButton = By.id("login-modal");
@@ -50,8 +53,18 @@ public class SkyScannerHomePage extends AbstractPage {
         super(driver);
     }
 
+    // Check captcha on page.
+    private void checkCaptchaOnPage() {
+        boolean answer = new WebDriverWait(driver, 4).until(
+                ExpectedConditions.presenceOfElementLocated(captchaElement)).isDisplayed();
+        System.out.println("ANSWER: " + answer);
+        if (answer)
+            throw new RuntimeException("The page consists captcha element.");
+    }
+
     public SkyScannerHomePage openPage() {
         driver.get(HOMEPAGE_URL);
+        checkCaptchaOnPage();
         new WebDriverWait(driver, 10);
         return this;
     }
