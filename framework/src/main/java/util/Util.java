@@ -12,4 +12,5 @@ public interface Util {
         return new WebDriverWait(driver, 25)
                 .until(ExpectedConditions.presenceOfElementLocated(by));
     }
+
 }

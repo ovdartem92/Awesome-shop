@@ -9,4 +9,6 @@ public abstract class AbstractPage {
     protected AbstractPage(WebDriver driver) {
         this.driver = driver;
     }
+
+
 }
