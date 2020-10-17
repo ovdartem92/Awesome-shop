@@ -13,7 +13,7 @@ public class LogInTestWithInCorrectData extends CommonConditions {
     SoftAssert softAssert = new SoftAssert();
 
     @Test
-    public void logInWithInCorrectData() {
+    public void logInWithInValidData() {
         new SkyScannerHomePage(driver)
                 .openPage()
                 .logIn(user);

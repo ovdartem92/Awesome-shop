@@ -83,7 +83,6 @@ public class SkyScannerHomePage extends AbstractPage {
         waitForElementLocatedBy(driver, SECOND_LOG_IN_BUTTON);
         driver.findElement(SECOND_LOG_IN_BUTTON).click();
         return this;
-
     }
 
     // Click to tabs.
