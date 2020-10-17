@@ -1,8 +1,11 @@
 package page.net.skyscanner;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import page.AbstractPage;
 
@@ -11,7 +14,6 @@ import static util.Util.waitForElementLocatedBy;
 public class SkyScannerHomePage extends AbstractPage {
 
     private static final String HOMEPAGE_URL = "https://www.skyscanner.net/";
-    private WebElement element;
     private final Logger logger = LogManager.getRootLogger();
 
     private static final By captchaElement = By.xpath("//*[contains(text(), 'Are you a person or a robot?')]");
@@ -70,41 +72,34 @@ public class SkyScannerHomePage extends AbstractPage {
     }
 
     public SkyScannerHomePage clickOnLogIn() {
-        element = driver.findElement(logInButton);
-        element.click();
+        driver.findElement(logInButton).click();
         waitForElementLocatedBy(driver, nextButton);
         return this;
     }
 
     public SkyScannerHomePage clickOnContinueWithEmail() {
-        element = driver.findElement(continueWithEmailButton);
-        element.click();
+        driver.findElement(continueWithEmailButton).click();
         return this;
     }
 
     public SkyScannerHomePage enterEmail(String txt) {
-        element = driver.findElement(emailField);
-        element.sendKeys(txt);
+        driver.findElement(emailField).sendKeys(txt);
         waitForElementLocatedBy(driver, accountDetectionButton);
-        element = driver.findElement(accountDetectionButton);
-        element.click();
+        driver.findElement(accountDetectionButton).click();
         return this;
     }
 
     public SkyScannerHomePage enterPassword(String txt) {
         waitForElementLocatedBy(driver, passwordField);
-        element = driver.findElement(passwordField);
-        element.sendKeys(txt);
+        driver.findElement(passwordField).sendKeys(txt);
         waitForElementLocatedBy(driver, loginButton2);
-        element = driver.findElement(loginButton2);
-        element.click();
+        driver.findElement(loginButton2).click();
         return this;
     }
 
     public SkyScannerHomePage closeModal() {
         waitForElementLocatedBy(driver, closeButton);
-        element = driver.findElement(closeButton);
-        element.click();
+        driver.findElement(closeButton).click();
         return this;
     }
 
