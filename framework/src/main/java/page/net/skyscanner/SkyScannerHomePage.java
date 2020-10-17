@@ -2,7 +2,7 @@ package page.net.skyscanner;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import page.AbstractPage;
 import org.apache.logging.log4j.LogManager;
@@ -13,43 +13,43 @@ import static util.Util.waitForElementLocatedBy;
 public class SkyScannerHomePage extends AbstractPage {
 
     private static final String HOMEPAGE_URL = "https://www.skyscanner.net/";
-    private WebElement element;
     private final Logger LOGGER = LogManager.getRootLogger();
 
-    private static final By captchaElement = By.xpath("//*[contains(text(), 'Are you a person or a robot?')]");
-    private static final By logInButton = By.id("authentication-link");
-    private static final By emailField = By.id("email");
-    private static final By nextButton = By.id("login-modal");
-    private static final By passwordField = By.id("password");
-    private static final By continueWithEmailButton = By.xpath("//button[@data-testid='login-email-button']");
-    private static final By accountDetectionButton = By.xpath("//button[@data-testid='account-detection-button']");
+    private static final By CAPTCHA_ELEMENT = By.xpath("//*[contains(text(), 'Are you a person or a robot?')]");
+    private static final By LOG_IN_BUTTON = By.id("authentication-link");
+    private static final By EMAIL_FIELD = By.id("email");
+    private static final By NEXT_BUTTON = By.id("login-modal");
+    private static final By PASSWORD_FIELD = By.id("password");
+    private static final By CONTINUE_WITH_EMAIL_BUTTON = By.xpath("//button[@data-testid='login-email-button']");
+    private static final By ACCOUNT_DETECTION_BUTTON = By.xpath("//button[@data-testid='account-detection-button']");
     private static final By loginButton2 = By.xpath("//button[@data-testid='login-button']");
-    private static final By closeButton = By.xpath("//button[@data-testid='modal-close-button']");
-    private static final By wrongEmailOrPasswordTable = By.xpath("//span[text()='Wrong email or password']");
+    private static final By CLOSE_BUTTON = By.xpath("//button[@data-testid='modal-close-button']");
+    private static final By WRONG_EMAIL_OR_PASSWORD_TABLE = By.xpath("//span[text()='Wrong email or password']");
 
     // Tab WebElements.
-    private static final By flightsTab = By.xpath("//nav[@id='PrimaryNav']//span[contains(text(), 'Flights')]");
-    private static final By hostelTab = By.xpath("//nav[@id='PrimaryNav']//span[contains(text(), 'Hotels')]");
-    private static final By carHireTab = By.xpath("//nav[@id='PrimaryNav']//span[contains(text(), 'Car Hire')]");
-
+    private static final By FLIGHTS_TAB = By.xpath("//nav[@id='PrimaryNav']//span[contains(text(), 'Flights')]");
+    private static final By HOSTEL_TAB = By.xpath("//nav[@id='PrimaryNav']//span[contains(text(), 'Hotels')]");
+    private static final By CAR_HIRE_TAB = By.xpath("//nav[@id='PrimaryNav']//span[contains(text(), 'Car Hire')]");
+    private static final By LANGUAGE_SETUP_BUTTON = By.xpath("//li[@id='culture-info']//button");
+    
     // Hotels WebElements.
-    private static final By destinationOrHostelNameInput = By.xpath("//input[@name='destination-autosuggest']");
-    private static final By hostelCheckInInput = By.xpath("//input[@id='checkin']");
-    private static final By hostelCheckOutInput = By.xpath("//input[@id='checkout']");
-    private static final By guestsAndRoomsInput = By.xpath("//input[@id='guests-rooms']");
-    private static final By searchButton = By.xpath("//button[contains(text(), 'Search hotels')]");
+    private static final By DESTINATION_OR_HOSTEL_NAME_INPUT = By.xpath("//input[@name='destination-autosuggest']");
+    private static final By HOSTEL_CHECK_IN_INPUT = By.xpath("//input[@id='checkin']");
+    private static final By HOSTEL_CHECK_OUT_INPUT = By.xpath("//input[@id='checkout']");
+    private static final By GUESTS_AND_ROOMS_INPUT = By.xpath("//input[@id='guests-rooms']");
+    private static final By SEARCH_BUTTON = By.xpath("//button[contains(text(), 'Search hotels')]");
 
     // Hotels guests and rooms WebElements.
-    private static final By quantityRoomsInput = By.xpath("//input[@id='rooms']");
-    private static final By increaseRoomButton = By.xpath("//button[@aria-controls='rooms'][@title='Increase']");
-    private static final By decreaseRoomButton = By.xpath("//button[@aria-controls='rooms'][@title='Decrease']");
-    private static final By quantityAdultPeopleInput = By.xpath("//input[@id='adults']");
-    private static final By increaseAdultButton = By.xpath("//button[@aria-controls='adults'][@title='Increase']");
-    private static final By decreaseAdultButton = By.xpath("//button[@aria-controls='adults'][@title='Decrease']");
-    private static final By quantityChildrenInput = By.xpath("//input[@id='children']");
-    private static final By increaseChildButton = By.xpath("//button[@aria-controls='children'][@title='Increase']");
-    private static final By decreaseChildButton = By.xpath("//button[@aria-controls='children'][@title='Decrease']");
-    private static final By doneButton = By.xpath("//footer/button");
+    private static final By QUANTITY_ROOMS_INPUT = By.xpath("//input[@id='rooms']");
+    private static final By INCREASE_ROOM_BUTTON = By.xpath("//button[@aria-controls='rooms'][@title='Increase']");
+    private static final By DECREASE_ROOM_BUTTON = By.xpath("//button[@aria-controls='rooms'][@title='Decrease']");
+    private static final By QUANTITY_ADULT_PEOPLE_INPUT = By.xpath("//input[@id='adults']");
+    private static final By INCREASE_ADULT_BUTTON = By.xpath("//button[@aria-controls='adults'][@title='Increase']");
+    private static final By DECREASE_ADULT_BUTTON = By.xpath("//button[@aria-controls='adults'][@title='Decrease']");
+    private static final By QUANTITY_CHILDREN_INPUT = By.xpath("//input[@id='children']");
+    private static final By INCREASE_CHILD_BUTTON = By.xpath("//button[@aria-controls='children'][@title='Increase']");
+    private static final By DECREASE_CHILD_BUTTON = By.xpath("//button[@aria-controls='children'][@title='Decrease']");
+    private static final By DONE_BUTTON = By.xpath("//footer/button");
 
     public SkyScannerHomePage(WebDriver driver) {
         super(driver);
@@ -58,7 +58,7 @@ public class SkyScannerHomePage extends AbstractPage {
     // Check captcha on page.
     private void checkCaptchaOnPage() {
         boolean answer = new WebDriverWait(driver, 4).until(
-                ExpectedConditions.presenceOfElementLocated(captchaElement)).isDisplayed();
+                ExpectedConditions.presenceOfElementLocated(CAPTCHA_ELEMENT)).isDisplayed();
         LOGGER.info("Is CAPTCHA element present on page: [" + answer + "]");
         if (answer)
             throw new RuntimeException("The page consists captcha element.");
@@ -73,60 +73,53 @@ public class SkyScannerHomePage extends AbstractPage {
 
     // Click to tabs.
     public SkyScannerHomePage clickToHostelsTab() {
-        waitForElementLocatedBy(driver, hostelTab).click();
+        waitForElementLocatedBy(driver, HOSTEL_TAB).click();
         return this;
     }
 
     public SkyScannerHomePage clickOnLogIn() {
-        element = driver.findElement(logInButton);
-        element.click();
-        waitForElementLocatedBy(driver, nextButton);
+        driver.findElement(LOG_IN_BUTTON).click();
+        waitForElementLocatedBy(driver, NEXT_BUTTON);
         return this;
     }
 
     public SkyScannerHomePage clickOnContinueWithEmail() {
-        element = driver.findElement(continueWithEmailButton);
-        element.click();
+        driver.findElement(CONTINUE_WITH_EMAIL_BUTTON).click();
         return this;
     }
 
     public SkyScannerHomePage enterEmail(String txt) {
-        element = driver.findElement(emailField);
-        element.sendKeys(txt);
-        waitForElementLocatedBy(driver, accountDetectionButton);
-        element = driver.findElement(accountDetectionButton);
-        element.click();
+        driver.findElement(EMAIL_FIELD).sendKeys(txt);
+        waitForElementLocatedBy(driver, ACCOUNT_DETECTION_BUTTON);
+        driver.findElement(ACCOUNT_DETECTION_BUTTON).click();
         return this;
     }
 
     public SkyScannerHomePage enterPassword(String txt) {
-        waitForElementLocatedBy(driver, passwordField);
-        element = driver.findElement(passwordField);
-        element.sendKeys(txt);
+        waitForElementLocatedBy(driver, PASSWORD_FIELD);
+        driver.findElement(PASSWORD_FIELD).sendKeys(txt);
         waitForElementLocatedBy(driver, loginButton2);
-        element = driver.findElement(loginButton2);
-        element.click();
+        driver.findElement(loginButton2).click();
         return this;
     }
 
     public SkyScannerHomePage closeModal() {
-        waitForElementLocatedBy(driver, closeButton);
-        element = driver.findElement(closeButton);
-        element.click();
+        waitForElementLocatedBy(driver, CLOSE_BUTTON);
+        driver.findElement(CLOSE_BUTTON).click();
         return this;
     }
 
     // Methods for Hotel tab elements.
     public SkyScannerHomePage addDestination(String destination) {
-        waitForElementLocatedBy(driver, destinationOrHostelNameInput).click();
-        waitForElementLocatedBy(driver, destinationOrHostelNameInput).sendKeys(destination);
+        waitForElementLocatedBy(driver, DESTINATION_OR_HOSTEL_NAME_INPUT).click();
+        waitForElementLocatedBy(driver, DESTINATION_OR_HOSTEL_NAME_INPUT).sendKeys(destination);
         return this;
     }
 
     public SkyScannerHomePage increaseRoom() {
-        waitForElementLocatedBy(driver, guestsAndRoomsInput).click();
-        waitForElementLocatedBy(driver, increaseRoomButton).click();
-        waitForElementLocatedBy(driver, doneButton).click();
+        waitForElementLocatedBy(driver, GUESTS_AND_ROOMS_INPUT).click();
+        waitForElementLocatedBy(driver, INCREASE_ROOM_BUTTON).click();
+        waitForElementLocatedBy(driver, DONE_BUTTON).click();
         return this;
     }
 
@@ -137,9 +130,9 @@ public class SkyScannerHomePage extends AbstractPage {
     }
 
     public SkyScannerHomePage increaseAdult() {
-        waitForElementLocatedBy(driver, guestsAndRoomsInput).click();
-        waitForElementLocatedBy(driver, increaseAdultButton).click();
-        waitForElementLocatedBy(driver, doneButton).click();
+        waitForElementLocatedBy(driver, GUESTS_AND_ROOMS_INPUT).click();
+        waitForElementLocatedBy(driver, INCREASE_ADULT_BUTTON).click();
+        waitForElementLocatedBy(driver, DONE_BUTTON).click();
         return this;
     }
 
@@ -150,9 +143,9 @@ public class SkyScannerHomePage extends AbstractPage {
     }
 
     public SkyScannerHomePage increaseChild() {
-        waitForElementLocatedBy(driver, guestsAndRoomsInput).click();
-        waitForElementLocatedBy(driver, increaseChildButton).click();
-        waitForElementLocatedBy(driver, doneButton).click();
+        waitForElementLocatedBy(driver, GUESTS_AND_ROOMS_INPUT).click();
+        waitForElementLocatedBy(driver, INCREASE_CHILD_BUTTON).click();
+        waitForElementLocatedBy(driver, DONE_BUTTON).click();
         return this;
     }
 
@@ -163,23 +156,23 @@ public class SkyScannerHomePage extends AbstractPage {
     }
 
     public String getQuantityRooms() {
-        waitForElementLocatedBy(driver, guestsAndRoomsInput).click();
-        String quantity = waitForElementLocatedBy(driver, quantityRoomsInput).getAttribute("value");
-        waitForElementLocatedBy(driver, doneButton).click();
+        waitForElementLocatedBy(driver, GUESTS_AND_ROOMS_INPUT).click();
+        String quantity = waitForElementLocatedBy(driver, QUANTITY_ROOMS_INPUT).getAttribute("value");
+        waitForElementLocatedBy(driver, DONE_BUTTON).click();
         return quantity;
     }
 
     public String getQuantityAdultPeople() {
-        waitForElementLocatedBy(driver, guestsAndRoomsInput).click();
-        String quantity = waitForElementLocatedBy(driver, quantityAdultPeopleInput).getAttribute("value");
-        waitForElementLocatedBy(driver, doneButton).click();
+        waitForElementLocatedBy(driver, GUESTS_AND_ROOMS_INPUT).click();
+        String quantity = waitForElementLocatedBy(driver, QUANTITY_ADULT_PEOPLE_INPUT).getAttribute("value");
+        waitForElementLocatedBy(driver, DONE_BUTTON).click();
         return quantity;
     }
 
     public String getQuantityChildren() {
-        waitForElementLocatedBy(driver, guestsAndRoomsInput).click();
-        String quantity = waitForElementLocatedBy(driver, quantityChildrenInput).getAttribute("value");
-        waitForElementLocatedBy(driver, doneButton).click();
+        waitForElementLocatedBy(driver, GUESTS_AND_ROOMS_INPUT).click();
+        String quantity = waitForElementLocatedBy(driver, QUANTITY_CHILDREN_INPUT).getAttribute("value");
+        waitForElementLocatedBy(driver, DONE_BUTTON).click();
         return quantity;
     }
 
