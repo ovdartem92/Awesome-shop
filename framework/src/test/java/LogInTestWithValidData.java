@@ -10,7 +10,6 @@ import static util.Util.waitForElementLocatedBy;
 public class LogInTestWithValidData extends CommonConditions {
 
     User user = UserBuilder.getUserWithValidPassword();
-    SoftAssert softAssert = new SoftAssert();
 
     @Test
     public void logInWithValidData() {

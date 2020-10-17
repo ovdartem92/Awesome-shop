@@ -3,7 +3,8 @@
 <suite name="Smoke" verbose="1" >
     <test name="LogIn"   >
         <classes>
-            <class name="LogInTestWithInvalidData" />
+<!--            <class name="LogInTestWithInvalidData" />-->
+            <class name="LogInTestWithValidData" />
         </classes>
     </test>
 </suite>
