@@ -12,6 +12,6 @@ public class LogInWithInvalidDataTest extends CommonConditions {
         new SkyScannerHomePage(driver)
                 .openPage()
                 .logIn(user = UserBuilder.getUserWithInvalidPassword());
-        softAssert.assertEquals(true, waitForElementLocatedBy(driver, By.xpath("//span[text()='Wrong email or password']")));
+        softAssert.assertEquals(true, waitForElementLocatedBy(driver, By.xpath("//span[text()='Log in']")));
     }
 }

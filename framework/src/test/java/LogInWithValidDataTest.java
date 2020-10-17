@@ -12,6 +12,6 @@ public class LogInWithValidDataTest extends CommonConditions {
         new SkyScannerHomePage(driver)
                 .openPage()
                 .logIn(user = UserBuilder.getUserWithValidPassword());
-        softAssert.assertEquals(true, waitForElementLocatedBy(driver, By.xpath("//button[@data-testid='btn-marketing-consent-cta']")));
+        softAssert.assertEquals(true, waitForElementLocatedBy(driver, By.xpath("//span[text()='Account']")));
     }
 }
