@@ -14,4 +14,5 @@ public class LogInWithValidDataTest extends CommonConditions {
                 .logIn(user = UserBuilder.getUserWithValidPassword());
         softAssert.assertEquals(true, waitForElementLocatedBy(driver, By.xpath("//span[text()='Account']")));
     }
+
 }

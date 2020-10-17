@@ -91,8 +91,22 @@ public class SkyScannerHomePage extends AbstractPage {
     // Click to tabs.
     public SkyScannerHomePage clickToHostelsTab() {
         waitForElementLocatedBy(driver, HOSTEL_TAB).click();
+        LOGGER.info(("Clicked on HOSTEL_TAB"));
         return this;
     }
+
+    public SkyScannerHomePage clickToFlightsTab() {
+        waitForElementLocatedBy(driver, FLIGHTS_TAB).click();
+        LOGGER.info(("Clicked on FLIGHTS_TAB"));
+        return this;
+    }
+
+    public SkyScannerHomePage clickToCarHireTab() {
+        waitForElementLocatedBy(driver, CAR_HIRE_TAB).click();
+        LOGGER.info(("Clicked on CAR_HIRE_TAB"));
+        return this;
+    }
+
 
     public SkyScannerHomePage clickOnLogIn() {
         driver.findElement(LOG_IN_BUTTON).click();
