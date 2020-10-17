@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import page.AbstractPage;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import static util.Util.waitForElementLocatedBy;
 
@@ -12,7 +14,7 @@ public class SkyScannerHomePage extends AbstractPage {
 
     private static final String HOMEPAGE_URL = "https://www.skyscanner.net/";
     private WebElement element;
-    private final Logger logger = LogManager.getRootLogger();
+    private final Logger LOGGER = LogManager.getRootLogger();
 
     private static final By captchaElement = By.xpath("//*[contains(text(), 'Are you a person or a robot?')]");
     private static final By logInButton = By.id("authentication-link");
@@ -57,7 +59,7 @@ public class SkyScannerHomePage extends AbstractPage {
     private void checkCaptchaOnPage() {
         boolean answer = new WebDriverWait(driver, 4).until(
                 ExpectedConditions.presenceOfElementLocated(captchaElement)).isDisplayed();
-        System.out.println("ANSWER: " + answer);
+        LOGGER.info("Is CAPTCHA element present on page: [" + HOME_PAGE + "]");
         if (answer)
             throw new RuntimeException("The page consists captcha element.");
     }
