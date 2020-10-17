@@ -5,7 +5,7 @@ import model.User;
 public class UserBuilder {
     private static User user = new User();
 
-    public static User getUserWithProperties() {
+    public static User getUserWithValidPassword() {
         user.setEmail(TestDataReader.getTestData("testData.email"));
         user.setPassword(TestDataReader.getTestData("testData.password"));
         return user;

@@ -1,5 +1,6 @@
 package page.net.skyscanner;
 
+import model.User;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -68,6 +69,21 @@ public class SkyScannerHomePage extends AbstractPage {
         checkCaptchaOnPage();
         new WebDriverWait(driver, 10);
         return this;
+    }
+
+    public SkyScannerHomePage logIn(User user) {
+        driver.findElement(LOG_IN_BUTTON).click();
+        waitForElementLocatedBy(driver, NEXT_BUTTON);
+        driver.findElement(CONTINUE_WITH_EMAIL_BUTTON).click();
+        driver.findElement(EMAIL_FIELD).sendKeys(user.getEmail());
+        waitForElementLocatedBy(driver, ACCOUNT_DETECTED_BUTTON);
+        driver.findElement(ACCOUNT_DETECTED_BUTTON).click();
+        waitForElementLocatedBy(driver, PASSWORD_FIELD);
+        driver.findElement(PASSWORD_FIELD).sendKeys(user.getPassword());
+        waitForElementLocatedBy(driver, SECOND_LOG_IN_BUTTON);
+        driver.findElement(SECOND_LOG_IN_BUTTON).click();
+        return this;
+
     }
 
     // Click to tabs.

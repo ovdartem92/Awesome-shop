@@ -7,16 +7,13 @@ import service.UserBuilder;
 public class LogInTest extends CommonConditions {
 
     SoftAssert softAssert = new SoftAssert();
-    User user = UserBuilder.getUserWithInvalidPassword();
+    User user = UserBuilder.getUserWithValidPassword();
+    User userInValid = UserBuilder.getUserWithInvalidPassword();
 
     @Test
-    public void LogIn() {
+    public void LogInWithCorrectData() {
         new SkyScannerHomePage(driver)
                 .openPage()
-                .clickOnLogIn()
-                .clickOnContinueWithEmail()
-                .enterEmail(user.getEmail())
-                .enterPassword(user.getPassword())
-                .closeModal();
+                .logIn(user);
     }
 }
