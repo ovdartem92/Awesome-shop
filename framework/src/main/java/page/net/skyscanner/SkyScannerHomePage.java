@@ -27,6 +27,7 @@ public class SkyScannerHomePage extends AbstractPage {
     private static final By SECOND_LOG_IN_BUTTON = By.xpath("//button[@data-testid='login-button']");
     private static final By CLOSE_BUTTON = By.xpath("//button[@data-testid='modal-close-button']");
     private static final By WRONG_EMAIL_OR_PASSWORD_FIELD = By.xpath("//span[text()='Wrong email or password']");
+    private static final By CLOSE_MODAL_LOGIN_WINDOW_BUTTON = By.xpath("//button[@title='Close modal']");
 
     // Tab WebElements.
     private static final By FLIGHTS_TAB = By.xpath("//nav[@id='PrimaryNav']//span[contains(text(), 'Flights')]");
@@ -83,6 +84,9 @@ public class SkyScannerHomePage extends AbstractPage {
         driver.findElement(PASSWORD_FIELD).sendKeys(user.getPassword());
         waitForElementLocatedBy(driver, SECOND_LOG_IN_BUTTON);
         driver.findElement(SECOND_LOG_IN_BUTTON).click();
+        waitForElementLocatedBy(driver, CLOSE_MODAL_LOGIN_WINDOW_BUTTON);
+        driver.findElement(CLOSE_MODAL_LOGIN_WINDOW_BUTTON).click();
+        checkCaptchaOnPage();
         return this;
     }
 
