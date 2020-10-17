@@ -4,8 +4,6 @@ import page.net.skyscanner.SkyScannerHomePage;
 
 public class FirstTest extends CommonConditions {
 
-    SoftAssert softAssert = new SoftAssert();
-
     @Test
     public void ourFirstTest() {
         new SkyScannerHomePage(driver)
