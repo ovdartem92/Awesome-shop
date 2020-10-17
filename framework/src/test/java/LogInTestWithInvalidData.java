@@ -7,18 +7,16 @@ import service.UserBuilder;
 
 import static util.Util.waitForElementLocatedBy;
 
-public class LogInWithCorrectData extends CommonConditions {
+public class LogInTestWithInvalidData extends CommonConditions {
 
-    User user = UserBuilder.getUserWithValidPassword();
+    User user = UserBuilder.getUserWithInvalidPassword();
     SoftAssert softAssert = new SoftAssert();
 
     @Test
-    public void logInWithValidData() {
+    public void logInWithInvalidData() {
         new SkyScannerHomePage(driver)
                 .openPage()
                 .logIn(user);
-        softAssert.assertEquals(true, waitForElementLocatedBy(driver, By.xpath("//button[@data-testid='btn-marketing-consent-cta']")));
+        softAssert.assertEquals(true, waitForElementLocatedBy(driver, By.xpath("//span[text()='Wrong email or password']")));
     }
-
-
 }
