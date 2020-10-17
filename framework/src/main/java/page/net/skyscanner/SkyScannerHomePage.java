@@ -59,7 +59,7 @@ public class SkyScannerHomePage extends AbstractPage {
     private void checkCaptchaOnPage() {
         boolean answer = new WebDriverWait(driver, 4).until(
                 ExpectedConditions.presenceOfElementLocated(captchaElement)).isDisplayed();
-        LOGGER.info("Is CAPTCHA element present on page: [" + HOME_PAGE + "]");
+        LOGGER.info("Is CAPTCHA element present on page: [" + answer + "]");
         if (answer)
             throw new RuntimeException("The page consists captcha element.");
     }
