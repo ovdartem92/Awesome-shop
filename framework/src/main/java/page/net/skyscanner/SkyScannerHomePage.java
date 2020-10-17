@@ -52,6 +52,7 @@ public class SkyScannerHomePage extends AbstractPage {
     private static final By INCREASE_CHILD_BUTTON = By.xpath("//button[@aria-controls='children'][@title='Increase']");
     private static final By DECREASE_CHILD_BUTTON = By.xpath("//button[@aria-controls='children'][@title='Decrease']");
     private static final By DONE_BUTTON = By.xpath("//footer/button");
+    private static final By SEARCH_HOTELS_BUTTON = By.xpath("//form[@id='search-controls']//button");
 
     public SkyScannerHomePage(WebDriver driver) {
         super(driver);
@@ -189,6 +190,11 @@ public class SkyScannerHomePage extends AbstractPage {
         String quantity = waitForElementLocatedBy(driver, QUANTITY_CHILDREN_INPUT).getAttribute("value");
         waitForElementLocatedBy(driver, DONE_BUTTON).click();
         return quantity;
+    }
+
+    public SkyScannerHotelResultPage clickToSearchHotelsButton() {
+        waitForElementLocatedBy(driver, SEARCH_HOTELS_BUTTON).click();
+        return new SkyScannerHotelResultPage(driver);
     }
 
     public SkyScannerProfilePage openProfilePage() {
