@@ -70,7 +70,7 @@ public class SkyScannerHomePage extends AbstractPage {
     }
 
     // Click to tabs.
-    public SkyScannerPage clickToHostelsTab() {
+    public SkyScannerHomePage clickToHostelsTab() {
         waitForElementLocatedBy(driver, hostelTab).click();
         return this;
     }
@@ -115,46 +115,46 @@ public class SkyScannerHomePage extends AbstractPage {
     }
 
     // Methods for Hotel tab elements.
-    public SkyScannerPage addDestination(String destination) {
+    public SkyScannerHomePage addDestination(String destination) {
         waitForElementLocatedBy(driver, destinationOrHostelNameInput).click();
         waitForElementLocatedBy(driver, destinationOrHostelNameInput).sendKeys(destination);
         return this;
     }
 
-    public SkyScannerPage increaseRoom() {
+    public SkyScannerHomePage increaseRoom() {
         waitForElementLocatedBy(driver, guestsAndRoomsInput).click();
         waitForElementLocatedBy(driver, increaseRoomButton).click();
         waitForElementLocatedBy(driver, doneButton).click();
         return this;
     }
 
-    public SkyScannerPage increaseRoom(int quantity) {
+    public SkyScannerHomePage increaseRoom(int quantity) {
         for (int i = 0; i < quantity; i++)
             increaseRoom();
         return this;
     }
 
-    public SkyScannerPage increaseAdult() {
+    public SkyScannerHomePage increaseAdult() {
         waitForElementLocatedBy(driver, guestsAndRoomsInput).click();
         waitForElementLocatedBy(driver, increaseAdultButton).click();
         waitForElementLocatedBy(driver, doneButton).click();
         return this;
     }
 
-    public SkyScannerPage increaseAdult(int quantity) {
+    public SkyScannerHomePage increaseAdult(int quantity) {
         for (int i = 0; i < quantity; i++)
             increaseAdult();
         return this;
     }
 
-    public SkyScannerPage increaseChild() {
+    public SkyScannerHomePage increaseChild() {
         waitForElementLocatedBy(driver, guestsAndRoomsInput).click();
         waitForElementLocatedBy(driver, increaseChildButton).click();
         waitForElementLocatedBy(driver, doneButton).click();
         return this;
     }
 
-    public SkyScannerPage increaseChild(int quantity) {
+    public SkyScannerHomePage increaseChild(int quantity) {
         for (int i = 0; i < quantity; i++)
             increaseChild();
         return this;
