@@ -3,16 +3,14 @@ import org.testng.annotations.Test;
 import page.net.skyscanner.SkyScannerHomePage;
 import service.UserBuilder;
 
-import static util.Util.waitForElementLocatedBy;
+import static util.Waiter.waitForElementLocatedBy;
 
 public class CheckYourEmailAfterLogInTest extends CommonConditions {
 
     @Test
     public void checkYourEmail() {
         user = UserBuilder.getUserWithValidPassword();
-        new SkyScannerHomePage(driver)
-                .openPage()
-                .logIn(user)
+        new SkyScannerHomePage(driver).logIn(user)
                 .openProfilePage()
                 .clickOnAccountField();
 

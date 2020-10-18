@@ -5,6 +5,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.asserts.SoftAssert;
+import page.net.skyscanner.SkyScannerHomePage;
 import util.TestListener;
 
 @Listeners({TestListener.class})
@@ -17,6 +18,7 @@ public class CommonConditions {
     @BeforeMethod()
     public void setUp() {
         driver = DriverSingleton.getDriver();
+        new SkyScannerHomePage(driver).openPage();
     }
 
     @AfterMethod(alwaysRun = true)

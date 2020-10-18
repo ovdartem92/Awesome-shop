@@ -10,11 +10,10 @@ public class CheckingMaximumValuesForHotelBookingTest extends CommonConditions {
     @Test
     public void checkingMaximumValues() {
         String destination = "Turin";
-        int clickQuantity  = 15;
+        int clickQuantity = 15;
         user = UserBuilder.getUserWithValidPassword();
 
         SkyScannerHomePage homePage = new SkyScannerHomePage(driver)
-                .openPage()
                 .logIn(user)
                 .clickToHostelsTab()
                 .addDestination(destination)

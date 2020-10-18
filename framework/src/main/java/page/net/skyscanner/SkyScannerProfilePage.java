@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import page.AbstractPage;
 
-import static util.Util.waitForElementLocatedBy;
+import static util.Waiter.waitForElementLocatedBy;
 
 public class SkyScannerProfilePage extends AbstractPage {
 
