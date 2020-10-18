@@ -5,10 +5,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import page.AbstractPage;
+import static util.CaptchaMethod.*;
+import static util.Waiter.*;
 
-import static util.CaptchaMethod.checkCaptchaOnPage;
-import static util.Waiter.waitForElementLocatedBy;
-import static util.Waiter.waitForElementToBeClickable;
 
 public class SkyScannerHomePage extends AbstractPage {
 

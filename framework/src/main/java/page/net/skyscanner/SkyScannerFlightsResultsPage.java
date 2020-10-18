@@ -6,11 +6,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import page.AbstractPage;
 import service.TestDataReader;
-
 import java.util.List;
+import static util.Waiter.*;
 
-import static util.Waiter.waitForAllElementsLocatedBy;
-import static util.Waiter.waitForElementLocatedBy;
 
 public class SkyScannerFlightsResultsPage extends AbstractPage {
 
