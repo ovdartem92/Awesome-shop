@@ -40,9 +40,12 @@ public class SkyScannerHomePage extends AbstractPage {
     private static final By HOSTEL_CHECK_OUT_INPUT = By.xpath("//input[@id='checkout']");
     private static final By GUESTS_AND_ROOM_INPUT = By.xpath("//input[@id='guests-rooms']");
     private static final By SEARCH_HOTEL_BUTTON = By.xpath("//button[contains(text(), 'Search hotels')]");
-    private static final By CURRENCY_SETUP_BUTTON = By.xpath("//li[@id='culture-info']//button");
-    private static final By CURRENCY_SELECT = By.id("//select[@id='culture-selector-currency']");
-    private static final By SAVE_CURRENCY_SETUP_BUTTON = By.xpath("//button[@id='culture-selector-save']");
+
+    public SkyScannerFlightsResultsPage startFlightsSearch() {
+        new WebDriverWait(driver, 10).until(ExpectedConditions.elementToBeClickable(SEARCH_FLIGHTS_BUTTON));
+        driver.findElement(SEARCH_FLIGHTS_BUTTON).click();
+        return new SkyScannerFlightsResultsPage(driver);
+    }
 
     // Hotels guests and rooms WebElements.
     private static final By QUANTITY_ROOMS_INPUT = By.xpath("//input[@id='rooms']");
