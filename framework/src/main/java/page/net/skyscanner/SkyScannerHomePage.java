@@ -13,8 +13,6 @@ import static util.Waiter.waitForElementToBeClickable;
 public class SkyScannerHomePage extends AbstractPage {
 
     private static final String HOMEPAGE_URL = "https://www.skyscanner.net/";
-
-    private static final By CAPTCHA_ELEMENT = By.xpath("//*[contains(text(), 'Are you a person or a robot?')]");
     private static final By LOG_IN_BUTTON = By.xpath("//span[text()='Log in']");
     private static final By ACCOUNT_BUTTON = By.xpath("//span[text()='Account']");
     private static final By EMAIL_FIELD = By.id("email");
@@ -37,7 +35,6 @@ public class SkyScannerHomePage extends AbstractPage {
 
     public SkyScannerHomePage openPage() {
         driver.get(HOMEPAGE_URL);
-        checkCaptchaOnPage(driver, LOGGER, CAPTCHA_ELEMENT);
         new WebDriverWait(driver, 10);
         return this;
     }
@@ -51,7 +48,7 @@ public class SkyScannerHomePage extends AbstractPage {
         waitForElementLocatedBy(driver, PASSWORD_FIELD).sendKeys(user.getPassword());
         waitForElementLocatedBy(driver, SECOND_LOG_IN_BUTTON).click();
         waitForElementLocatedBy(driver, CLOSE_MODAL_LOGIN_WINDOW_BUTTON).click();
-        checkCaptchaOnPage(driver, LOGGER, CAPTCHA_ELEMENT);
+        checkCaptchaOnPage(driver);
         return this;
     }
 
