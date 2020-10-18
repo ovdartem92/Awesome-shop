@@ -5,17 +5,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import page.AbstractPage;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
-import static util.Utils.checkCaptchaOnPage;
-import static util.Utils.waitForElementLocatedBy;
+import static util.CaptchaMethod.checkCaptchaOnPage;
+import static util.Waiter.waitForElementLocatedBy;
 import static util.Waiter.waitForElementToBeClickable;
 
 public class SkyScannerHomePage extends AbstractPage {
 
     private static final String HOMEPAGE_URL = "https://www.skyscanner.net/";
-    private final Logger LOGGER = LogManager.getRootLogger();
 
     private static final By CAPTCHA_ELEMENT = By.xpath("//*[contains(text(), 'Are you a person or a robot?')]");
     private static final By LOG_IN_BUTTON = By.xpath("//span[text()='Log in']");
@@ -32,7 +29,6 @@ public class SkyScannerHomePage extends AbstractPage {
     private static final By FLIGHTS_TAB = By.xpath("//nav[@id='PrimaryNav']//span[contains(text(), 'Flights')]");
     private static final By HOTEL_TAB = By.xpath("//nav[@id='PrimaryNav']//span[contains(text(), 'Hotels')]");
     private static final By CAR_HIRE_TAB = By.xpath("//a[@id='carhi']");
-    private static final By CAR_HEADER = By.xpath("//div[@class='SearchControls_search-controls-title__27T3N']");
     private static final By SEARCH_FLIGHTS_BUTTON = By.xpath("//button[text()='Search flights']");
 
     public SkyScannerHomePage(WebDriver driver) {
@@ -72,10 +68,10 @@ public class SkyScannerHomePage extends AbstractPage {
         return this;
     }
 
-    public SkyScannerHomePage clickToCarHireTab() {
+    public SkyScannerCarSearchPage clickToCarHireTab() {
         waitForElementLocatedBy(driver, CAR_HIRE_TAB).click();
         LOGGER.info(("Clicked on CAR_HIRE_TAB"));
-        return this;
+        return new SkyScannerCarSearchPage(driver);
     }
 
     public SkyScannerFlightsResultsPage startFlightsSearch() {
@@ -91,10 +87,6 @@ public class SkyScannerHomePage extends AbstractPage {
 
     public String getTextFromFlightsButton() {
         return waitForElementLocatedBy(driver, SEARCH_FLIGHTS_BUTTON).getText();
-    }
-
-    public String getTextFromCarHeader() {
-        return waitForElementLocatedBy(driver, CAR_HEADER).getText();
     }
 
     public static String getHomepageUrl() {

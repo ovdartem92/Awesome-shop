@@ -4,12 +4,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import page.AbstractPage;
 
-import static util.Utils.waitForElementLocatedBy;
+import static util.Waiter.waitForElementLocatedBy;
 
 public class SkyScannerSearchHotelPage extends AbstractPage {
-    protected SkyScannerSearchHotelPage(WebDriver driver) {
+    public SkyScannerSearchHotelPage(WebDriver driver) {
         super(driver);
     }
+
     private static final By DESTINATION_OR_HOSTEL_NAME_INPUT = By.xpath("//input[@name='destination-autosuggest']");
     private static final By HOSTEL_CHECK_IN_INPUT = By.xpath("//input[@id='checkin']");
     private static final By HOSTEL_CHECK_OUT_INPUT = By.xpath("//input[@id='checkout']");
@@ -26,6 +27,7 @@ public class SkyScannerSearchHotelPage extends AbstractPage {
     private static final By DECREASE_CHILD_BUTTON = By.xpath("//button[@aria-controls='children'][@title='Decrease']");
     private static final By DONE_BUTTON = By.xpath("//footer/button");
     private static final By SEARCH_HOTELS_BUTTON = By.xpath("//form[@id='search-controls']//button");
+    private static final By CAR_HIRE_TAB = By.xpath("//a[@id='carhi']");
 
     public SkyScannerSearchHotelPage addDestination(String destination) {
         waitForElementLocatedBy(driver, DESTINATION_OR_HOSTEL_NAME_INPUT).click();
@@ -38,6 +40,13 @@ public class SkyScannerSearchHotelPage extends AbstractPage {
         waitForElementLocatedBy(driver, INCREASE_ROOM_BUTTON).click();
         waitForElementLocatedBy(driver, DONE_BUTTON).click();
         return this;
+    }
+
+    public SkyScannerCarSearchPage clickToCarHireTab() {
+        waitForElementLocatedBy(driver, CAR_HIRE_TAB);
+        driver.findElement(CAR_HIRE_TAB).click();
+        LOGGER.info(("Clicked on CAR_HIRE_TAB"));
+        return new SkyScannerCarSearchPage(driver);
     }
 
     public SkyScannerSearchHotelPage increaseRoom(int quantity) {
