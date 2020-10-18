@@ -25,8 +25,6 @@ public class SkyScannerHomePage extends AbstractPage {
     private static final By CONTINUE_WITH_EMAIL_BUTTON = By.xpath("//button[@data-testid='login-email-button']");
     private static final By ACCOUNT_DETECTED_BUTTON = By.xpath("//button[@data-testid='account-detection-button']");
     private static final By SECOND_LOG_IN_BUTTON = By.xpath("//button[@data-testid='login-button']");
-    private static final By CLOSE_BUTTON = By.xpath("//button[@data-testid='modal-close-button']");
-    private static final By WRONG_EMAIL_OR_PASSWORD_FIELD = By.xpath("//span[text()='Wrong email or password']");
     private static final By CLOSE_MODAL_LOGIN_WINDOW_BUTTON = By.xpath("//button[@title='Close modal']");
 
     // Tab WebElements.
@@ -109,38 +107,6 @@ public class SkyScannerHomePage extends AbstractPage {
     public SkyScannerHomePage clickToCarHireTab() {
         waitForElementLocatedBy(driver, CAR_HIRE_TAB).click();
         LOGGER.info(("Clicked on CAR_HIRE_TAB"));
-        return this;
-    }
-
-    public SkyScannerHomePage clickOnLogIn() {
-        driver.findElement(LOG_IN_BUTTON).click();
-        waitForElementLocatedBy(driver, NEXT_BUTTON);
-        return this;
-    }
-
-    public SkyScannerHomePage clickOnContinueWithEmail() {
-        driver.findElement(CONTINUE_WITH_EMAIL_BUTTON).click();
-        return this;
-    }
-
-    public SkyScannerHomePage enterEmail(String txt) {
-        driver.findElement(EMAIL_FIELD).sendKeys(txt);
-        waitForElementLocatedBy(driver, ACCOUNT_DETECTED_BUTTON);
-        driver.findElement(ACCOUNT_DETECTED_BUTTON).click();
-        return this;
-    }
-
-    public SkyScannerHomePage enterPassword(String txt) {
-        waitForElementLocatedBy(driver, PASSWORD_FIELD);
-        driver.findElement(PASSWORD_FIELD).sendKeys(txt);
-        waitForElementLocatedBy(driver, SECOND_LOG_IN_BUTTON);
-        driver.findElement(SECOND_LOG_IN_BUTTON).click();
-        return this;
-    }
-
-    public SkyScannerHomePage closeModal() {
-        waitForElementLocatedBy(driver, CLOSE_BUTTON);
-        driver.findElement(CLOSE_BUTTON).click();
         return this;
     }
 

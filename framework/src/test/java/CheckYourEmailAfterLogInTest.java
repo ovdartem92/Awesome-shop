@@ -14,6 +14,6 @@ public class CheckYourEmailAfterLogInTest extends CommonConditions {
                 .openProfilePage()
                 .clickOnAccountField();
 
-        softAssert.assertEquals(user.getPassword(), waitForElementLocatedBy(driver, By.xpath("//span[@class=\"BpkText_bpk-text__Pt0NU BpkText_bpk-text--xl__3cUZL SectionItem_SectionItem__text__1utHx\"]")));
+        softAssert.assertEquals(user.getPassword(), waitForElementLocatedBy(driver, By.xpath("//span[@class='BpkText_bpk-text__Pt0NU BpkText_bpk-text--xl__3cUZL SectionItem_SectionItem__text__1utHx']")));
     }
 }
