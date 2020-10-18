@@ -10,6 +10,7 @@ import org.apache.logging.log4j.Logger;
 
 import static util.Utils.checkCaptchaOnPage;
 import static util.Utils.waitForElementLocatedBy;
+import static util.Waiter.waitForElementToBeClickable;
 
 public class SkyScannerHomePage extends AbstractPage {
 
@@ -42,7 +43,7 @@ public class SkyScannerHomePage extends AbstractPage {
     private static final By SEARCH_HOTEL_BUTTON = By.xpath("//button[contains(text(), 'Search hotels')]");
 
     public SkyScannerFlightsResultsPage startFlightsSearch() {
-        new WebDriverWait(driver, 10).until(ExpectedConditions.elementToBeClickable(SEARCH_FLIGHTS_BUTTON));
+        waitForElementToBeClickable(driver, SEARCH_FLIGHTS_BUTTON);
         driver.findElement(SEARCH_FLIGHTS_BUTTON).click();
         return new SkyScannerFlightsResultsPage(driver);
     }
