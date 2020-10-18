@@ -62,19 +62,9 @@ public class SkyScannerHomePage extends AbstractPage {
         super(driver);
     }
 
-//    // Check captcha on page.
-//    private void checkCaptchaOnPage() {
-//        boolean answer = new WebDriverWait(driver, 4).until(
-//                ExpectedConditions.presenceOfElementLocated(CAPTCHA_ELEMENT)).isDisplayed();
-//        if (answer) {
-//            LOGGER.info("Is CAPTCHA element present on page: [" + HOMEPAGE_URL + "]");
-//            throw new RuntimeException("The page consists captcha element.");
-//        }
-//    }
-
     public SkyScannerHomePage openPage() {
         driver.get(HOMEPAGE_URL);
-        checkCaptchaOnPage(driver, LOGGER);
+        checkCaptchaOnPage(driver, LOGGER, CAPTCHA_ELEMENT);
         new WebDriverWait(driver, 10);
         return this;
     }
@@ -88,7 +78,7 @@ public class SkyScannerHomePage extends AbstractPage {
         waitForElementLocatedBy(driver, PASSWORD_FIELD).sendKeys(user.getPassword());
         waitForElementLocatedBy(driver, SECOND_LOG_IN_BUTTON).click();
         waitForElementLocatedBy(driver, CLOSE_MODAL_LOGIN_WINDOW_BUTTON).click();
-        checkCaptchaOnPage(driver, LOGGER);
+        checkCaptchaOnPage(driver, LOGGER, CAPTCHA_ELEMENT);
         return this;
     }
 

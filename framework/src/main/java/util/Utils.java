@@ -14,9 +14,9 @@ public interface Utils {
                 .until(ExpectedConditions.presenceOfElementLocated(by));
     }
 
-    static void checkCaptchaOnPage(WebDriver driver, Logger logger) {
+    static void checkCaptchaOnPage(WebDriver driver, Logger logger, By by) {
         boolean answer = new WebDriverWait(driver, 4).until(
-                ExpectedConditions.presenceOfElementLocated(By.xpath("//*[contains(text(), 'Are you a person or a robot?')]"))).isDisplayed();
+                ExpectedConditions.presenceOfElementLocated(by)).isDisplayed();
         if (answer) {
             logger.info("Is CAPTCHA element present on page: [" + driver.getCurrentUrl() + "]");
             throw new RuntimeException("The page consists captcha element.");
