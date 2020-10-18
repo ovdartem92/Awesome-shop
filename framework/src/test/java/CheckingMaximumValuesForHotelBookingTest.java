@@ -1,5 +1,6 @@
 import org.testng.annotations.Test;
 import page.net.skyscanner.SkyScannerHomePage;
+import page.net.skyscanner.SkyScannerSearchHotelPage;
 import service.UserBuilder;
 
 public class CheckingMaximumValuesForHotelBookingTest extends CommonConditions {
@@ -13,7 +14,7 @@ public class CheckingMaximumValuesForHotelBookingTest extends CommonConditions {
         int clickQuantity = 15;
         user = UserBuilder.getUserWithValidPassword();
 
-        SkyScannerHomePage homePage = new SkyScannerHomePage(driver)
+        SkyScannerSearchHotelPage homePage = new SkyScannerHomePage(driver)
                 .logIn(user)
                 .clickToHostelsTab()
                 .addDestination(destination)
