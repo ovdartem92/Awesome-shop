@@ -3,7 +3,7 @@ import org.testng.annotations.Test;
 import page.net.skyscanner.SkyScannerHomePage;
 import service.UserBuilder;
 
-import static util.Waiter.waitForElementLocatedBy;
+import static util.Utils.waitForElementLocatedBy;
 
 public class LogInWithValidDataTest extends CommonConditions {
 
