@@ -6,11 +6,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public interface Util {
+public interface Waiter {
 
     static WebElement waitForElementLocatedBy(WebDriver driver, By by) {
-        return new WebDriverWait(driver, 25)
+        return new WebDriverWait(driver, 500)
                 .until(ExpectedConditions.presenceOfElementLocated(by));
     }
-
 }

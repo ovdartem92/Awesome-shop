@@ -9,7 +9,7 @@ import page.AbstractPage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import static util.Util.waitForElementLocatedBy;
+import static util.Waiter.waitForElementLocatedBy;
 
 public class SkyScannerHomePage extends AbstractPage {
 
@@ -32,14 +32,19 @@ public class SkyScannerHomePage extends AbstractPage {
     // Tab WebElements.
     private static final By FLIGHTS_TAB = By.xpath("//nav[@id='PrimaryNav']//span[contains(text(), 'Flights')]");
     private static final By HOSTEL_TAB = By.xpath("//nav[@id='PrimaryNav']//span[contains(text(), 'Hotels')]");
-    private static final By CAR_HIRE_TAB = By.xpath("//nav[@id='PrimaryNav']//span[contains(text(), 'Car Hire')]");
+    private static final By CAR_HIRE_TAB = By.xpath("//a[@id='carhi']");
+    private static final By CAR_HEADER = By.xpath("//div[@class='SearchControls_search-controls-title__27T3N']");
+    private static final By SEARCH_FLIGHTS_BUTTON = By.xpath("//button[text()='Search flights']");
 
     // Hotels WebElements.
     private static final By DESTINATION_OR_HOSTEL_NAME_INPUT = By.xpath("//input[@name='destination-autosuggest']");
     private static final By HOSTEL_CHECK_IN_INPUT = By.xpath("//input[@id='checkin']");
     private static final By HOSTEL_CHECK_OUT_INPUT = By.xpath("//input[@id='checkout']");
     private static final By GUESTS_AND_ROOM_INPUT = By.xpath("//input[@id='guests-rooms']");
-    private static final By SEARCH_BUTTON = By.xpath("//button[contains(text(), 'Search hotels')]");
+    private static final By SEARCH_HOTEL_BUTTON = By.xpath("//button[contains(text(), 'Search hotels')]");
+    private static final By CURRENCY_SETUP_BUTTON = By.xpath("//li[@id='culture-info']//button");
+    private static final By CURRENCY_SELECT = By.id("//select[@id='culture-selector-currency']");
+    private static final By SAVE_CURRENCY_SETUP_BUTTON = By.xpath("//button[@id='culture-selector-save']");
 
     // Hotels guests and rooms WebElements.
     private static final By QUANTITY_ROOMS_INPUT = By.xpath("//input[@id='rooms']");
@@ -106,7 +111,6 @@ public class SkyScannerHomePage extends AbstractPage {
         LOGGER.info(("Clicked on CAR_HIRE_TAB"));
         return this;
     }
-
 
     public SkyScannerHomePage clickOnLogIn() {
         driver.findElement(LOG_IN_BUTTON).click();
@@ -215,6 +219,18 @@ public class SkyScannerHomePage extends AbstractPage {
     public SkyScannerProfilePage openProfilePage() {
         waitForElementLocatedBy(driver, ACCOUNT_BUTTON).click();
         return new SkyScannerProfilePage(driver);
+    }
+
+    public String getTextFromFlightsButton() {
+        return waitForElementLocatedBy(driver, SEARCH_FLIGHTS_BUTTON).getText();
+    }
+
+    public String getTextFromHotelButton() {
+        return waitForElementLocatedBy(driver, SEARCH_HOTEL_BUTTON).getText();
+    }
+
+    public String getTextFromCarHeader() {
+        return waitForElementLocatedBy(driver, CAR_HEADER).getText();
     }
 
     public static String getHomepageUrl() {
