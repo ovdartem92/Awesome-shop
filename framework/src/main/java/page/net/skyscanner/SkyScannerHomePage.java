@@ -30,7 +30,7 @@ public class SkyScannerHomePage extends AbstractPage {
     private static final By SEARCH_FLIGHTS_BUTTON = By.xpath("//button[text()='Search flights']");
 
     public SkyScannerHomePage openPage() {
-        driver.get(HOMEPAGE_URL);
+        Browser.getDriver().get(HOMEPAGE_URL);
         return this;
     }
 
