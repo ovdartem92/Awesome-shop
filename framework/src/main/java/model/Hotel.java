@@ -3,6 +3,7 @@ package model;
 import java.util.Objects;
 
 public class Hotel {
+
     private String name;
     private double rating;
     private int price;
