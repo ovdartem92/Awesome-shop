@@ -12,7 +12,7 @@
 //public class ChangeCurrencyTest extends CommonConditions {
 //    @Test
 //    public void checkCurrencyChangeTest() {
-//        ArrayList<WebElement> prices = (ArrayList<WebElement>) new SkyScannerHomePage(driver).startFlightsSearch().selectCurrency().getCurrencies();
+//        ArrayList<WebElement> prices = (ArrayList<WebElement>) new SkyScannerHomePage().startFlightsSearch().selectCurrency().getCurrencies();
 //        for (WebElement price : prices) {
 //            Assert.assertTrue(price.getText().contains(TestDataReader.getTestData("testData.currency").replaceAll(".*[a-zA-Z]\\s\\-\\s", "")),
 //                    "Not all prices are in selected currency");
