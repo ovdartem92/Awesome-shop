@@ -84,7 +84,7 @@ public class SkyScannerHotelResultPage extends AbstractPage {
             int price = getHotelPriceByHotelName(name);
 
             hotels.add(new Hotel(name, rating, price));
-            System.out.println(name + " - " + getHotelRatingsByHotelName(name) + " - " + getHotelPriceByHotelName(name));
+            logger.info(name + " - " + getHotelRatingsByHotelName(name) + " - " + getHotelPriceByHotelName(name));
         }
         return hotels;
     }

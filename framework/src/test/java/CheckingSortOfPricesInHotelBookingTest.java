@@ -10,13 +10,13 @@ public class CheckingSortOfPricesInHotelBookingTest extends CommonConditions {
         String destination = "Turin";
         user = UserBuilder.getUserWithValidPassword();
 
-        SkyScannerHotelResultPage resultPage  =
-                new SkyScannerHomePage()
+        SkyScannerHotelResultPage resultPage  = new SkyScannerHomePage()
                 .openPage()
+                .switchToEnglish()
                 .logIn(user)
                 .clickToHostelsTab()
-                        .addDestination(destination)
-                        .clickToSearchHotelsButton()
+                    .addDestination(destination)
+                    .clickToSearchHotelsButton()
                         .clickToPriceSortButton();
 
         softAssert.assertEquals(resultPage.isHotelsSortedByPrice(), true);

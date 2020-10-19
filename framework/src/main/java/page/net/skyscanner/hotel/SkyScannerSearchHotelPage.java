@@ -23,7 +23,7 @@ public class SkyScannerSearchHotelPage extends AbstractPage {
     private static final By INCREASE_CHILD_BUTTON_LOCATOR = By.xpath("//button[@aria-controls='children'][@title='Increase']");
     private static final By DECREASE_CHILD_BUTTON_LOCATOR = By.xpath("//button[@aria-controls='children'][@title='Decrease']");
     private static final By DONE_BUTTON_LOCATOR = By.xpath("//footer/button");
-    private static final By SEARCH_HOTELS_BUTTON_LOCATOR = By.xpath("//form[@id='search-controls']//button");
+    private static final By SEARCH_HOTELS_BUTTON_LOCATOR = By.xpath("//button[@data-test-id='search-button']");
     private static final By CAR_HIRE_TAB_LOCATOR = By.xpath("//a[@id='carhi']");
 
     public SkyScannerSearchHotelPage addDestination(String destination) {

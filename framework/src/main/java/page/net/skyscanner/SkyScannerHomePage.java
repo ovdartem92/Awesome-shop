@@ -14,6 +14,10 @@ public class SkyScannerHomePage extends AbstractPage {
     private static final String HOMEPAGE_URL = "https://www.skyscanner.net/";
     private static final By LOG_IN_BUTTON_LOCATOR = By.xpath("//span[text()='Log in']");
     private static final By ACCOUNT_BUTTON_LOCATOR = By.xpath("//span[text()='Account']");
+    private static final By LANGUAGE_LOCATOR = By.xpath("//li[@id='culture-info']//div/span");
+    private static final By LANGUAGES_SELECT_LOCATOR = By.xpath("//select[@name='locale']");
+    private static final By ENGLISH_LANGUAGE_OPTION_LOCATOR = By.xpath("//select[@name='locale']//option[@value='en-US']");
+    private static final By CULTURE_SAVE_BUTTON_LOCATOR = By.xpath("//button[@id='culture-selector-save']");
     private static final By EMAIL_FIELD_LOCATOR = By.id("email");
     private static final By NEXT_BUTTON_LOCATOR = By.id("login-modal");
     private static final By PASSWORD_FIELD_LOCATOR = By.id("password");
@@ -77,6 +81,18 @@ public class SkyScannerHomePage extends AbstractPage {
 
     public String getTextFromFlightsButton() {
         return getTextOnElementBy(SEARCH_FLIGHTS_BUTTON_LOCATOR);
+    }
+
+    public SkyScannerHomePage switchToEnglish() {
+        String language = getTextOnElementBy(LANGUAGE_LOCATOR);
+
+        if(!language.equals("English (UK)")) {
+            clickOnElementBy(LANGUAGE_LOCATOR);
+            clickOnElementBy(LANGUAGES_SELECT_LOCATOR);
+            clickOnElementBy(ENGLISH_LANGUAGE_OPTION_LOCATOR);
+            clickOnElementBy(CULTURE_SAVE_BUTTON_LOCATOR);
+        }
+        return this;
     }
 
     public static String getHomepageUrl() {

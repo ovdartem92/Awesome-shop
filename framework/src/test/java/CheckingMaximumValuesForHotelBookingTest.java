@@ -16,13 +16,14 @@ public class CheckingMaximumValuesForHotelBookingTest extends CommonConditions {
         user = UserBuilder.getUserWithValidPassword();
 
         SkyScannerSearchHotelPage searchHotelPage = new SkyScannerHomePage()
+                .openPage()
+                .switchToEnglish()
                 .logIn(user)
-                .clickToHostelsTab();
-
-        searchHotelPage.addDestination(destination)
-                .increaseRoom(clickQuantity)
-                .increaseAdult(clickQuantity)
-                .increaseChild(clickQuantity);
+                .clickToHostelsTab()
+                    .addDestination(destination)
+                    .increaseRoom(clickQuantity)
+                    .increaseAdult(clickQuantity)
+                    .increaseChild(clickQuantity);
 
         softAssert.assertEquals(searchHotelPage.getQuantityRooms(), MAX_ROOMS_QUANTITY);
         softAssert.assertEquals(searchHotelPage.getQuantityAdultPeople(), MAX_ADULT_PEOPLE_QUANTITY);
