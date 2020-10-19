@@ -6,8 +6,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 
-import static service.ActionManager.clickOnElementBy;
-import static service.ActionManager.typeTextToElementBy;
+import static service.ActionManager.*;
 import static util.CaptchaMethod.*;
 
 
@@ -79,10 +78,10 @@ public class SkyScannerHomePage {
         clickOnElementBy(ACCOUNT_BUTTON_LOCATOR);
         return new SkyScannerProfilePage();
     }
-//
-//    public String getTextFromFlightsButton() {
-//        return waitForElementLocatedBy(driver, SEARCH_FLIGHTS_BUTTON).getText();
-//    }
+
+    public String getTextFromFlightsButton() {
+        return getElementBy(SEARCH_FLIGHTS_BUTTON).getText();
+    }
 
     public static String getHomepageUrl() {
         return HOMEPAGE_URL;

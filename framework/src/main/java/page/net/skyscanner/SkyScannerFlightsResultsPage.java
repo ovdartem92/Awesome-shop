@@ -1,20 +1,14 @@
 //package page.net.skyscanner;
 //
 //import org.openqa.selenium.By;
-//import org.openqa.selenium.WebDriver;
 //import org.openqa.selenium.WebElement;
 //import org.openqa.selenium.support.ui.Select;
-//import page.AbstractPage;
 //import service.TestDataReader;
 //import java.util.List;
-//import static util.Waiter.*;
 //
 //
-//public class SkyScannerFlightsResultsPage extends AbstractPage {
 //
-//    protected SkyScannerFlightsResultsPage(WebDriver driver) {
-//        super(driver);
-//    }
+//public class SkyScannerFlightsResultsPage  {
 //
 //    private static final By CURRENCY_SETUP_BUTTON = By.xpath("//li[@id='culture-info']//button");
 //    private static final By CURRENCY_SELECT = By.xpath("//select[@id='culture-selector-currency']");

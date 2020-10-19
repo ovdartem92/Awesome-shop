@@ -39,7 +39,6 @@ public class Browser {
                     break;
                 }
             }
-            driver.manage().window().maximize();
         }
         return driver;
     }
