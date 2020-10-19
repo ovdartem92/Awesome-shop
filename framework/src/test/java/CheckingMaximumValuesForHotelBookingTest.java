@@ -11,19 +11,20 @@ public class CheckingMaximumValuesForHotelBookingTest extends CommonConditions {
     @Test
     public void checkingMaximumValues() {
         String destination = "Turin";
-        int clickQuantity = 15;
+        int clickQuantity = 12;
         user = UserBuilder.getUserWithValidPassword();
 
-        SkyScannerSearchHotelPage homePage = new SkyScannerHomePage(driver)
+        SkyScannerSearchHotelPage searchHotelPage = new SkyScannerHomePage(driver)
                 .logIn(user)
-                .clickToHostelsTab()
-                .addDestination(destination)
+                .clickToHostelsTab();
+
+        searchHotelPage.addDestination(destination)
                 .increaseRoom(clickQuantity)
                 .increaseAdult(clickQuantity)
                 .increaseChild(clickQuantity);
 
-        softAssert.assertEquals(homePage.getQuantityRooms(), MAX_ROOMS_QUANTITY);
-        softAssert.assertEquals(homePage.getQuantityAdultPeople(), MAX_ADULT_PEOPLE_QUANTITY);
-        softAssert.assertEquals(homePage.getQuantityChildren(), MAX_CHILDREN_QUANTITY);
+        softAssert.assertEquals(searchHotelPage.getQuantityRooms(), MAX_ROOMS_QUANTITY);
+        softAssert.assertEquals(searchHotelPage.getQuantityAdultPeople(), MAX_ADULT_PEOPLE_QUANTITY);
+        softAssert.assertEquals(searchHotelPage.getQuantityChildren(), MAX_CHILDREN_QUANTITY);
     }
 }
