@@ -1,9 +1,9 @@
 package page.net.skyscanner;
 
-import driver.Browser;
 import model.User;
 import org.openqa.selenium.By;
 import page.AbstractPage;
+import page.net.skyscanner.hotel.SkyScannerSearchHotelPage;
 
 import static service.ActionManager.*;
 import static util.CaptchaMethod.*;

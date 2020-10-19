@@ -1,9 +1,7 @@
-package page.net.skyscanner;
+package page.net.skyscanner.hotel;
 
 import org.openqa.selenium.By;
 import page.AbstractPage;
-
-import static util.Waiter.*;
 
 public class SkyScannerSearchHotelPage extends AbstractPage {
 
