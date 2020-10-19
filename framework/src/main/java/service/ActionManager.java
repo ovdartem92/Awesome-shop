@@ -11,9 +11,15 @@ public interface ActionManager {
     }
 
     static void clickOnElementBy(By locator) {
-        if (WaitManager.isElementVisibleBy(locator)) {
+        if (WaitManager.isElementVisibleBy(locator))
             getElementBy(locator).click();
-        }
+    }
+
+    static String getTextOnElementBy(By locator) {
+        String text = "";
+        if (WaitManager.isElementVisibleBy(locator))
+            text = getElementBy(locator).getText();
+        return text;
     }
 
     static void typeTextToElementBy(By locator, String text) {
