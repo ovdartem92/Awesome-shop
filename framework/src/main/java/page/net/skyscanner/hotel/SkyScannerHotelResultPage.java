@@ -1,13 +1,10 @@
-package page.net.skyscanner;
+package page.net.skyscanner.hotel;
 
 import model.Hotel;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import page.AbstractPage;
 
 import java.util.List;
-
-import static util.Waiter.waitForElementLocatedBy;
 
 public class SkyScannerHotelResultPage extends AbstractPage {
 
