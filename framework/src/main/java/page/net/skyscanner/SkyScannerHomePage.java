@@ -6,11 +6,12 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 
-import static service.ActionManager.*;
+import static service.ActionManager.clickOnElementBy;
+import static service.ActionManager.typeTextToElementBy;
 import static util.CaptchaMethod.*;
 
 
-public class SkyScannerHomePage {
+public class SkyScannerHomePage extends AbstractPage {
 
     private static final String HOMEPAGE_URL = "https://www.skyscanner.net/";
     private final Logger LOGGER = LogManager.getRootLogger();
@@ -32,7 +33,7 @@ public class SkyScannerHomePage {
     private static final By SEARCH_FLIGHTS_BUTTON = By.xpath("//button[text()='Search flights']");
 
     public SkyScannerHomePage openPage() {
-        Browser.getDriver().get(HOMEPAGE_URL);
+        driver.get(HOMEPAGE_URL);
         return this;
     }
 
@@ -48,16 +49,6 @@ public class SkyScannerHomePage {
         checkCaptchaOnPage(LOGGER);
         return this;
     }
-
-    public SkyScannerProfilePage openProfilePage() {
-        clickOnElementBy(ACCOUNT_BUTTON_LOCATOR);
-        return new SkyScannerProfilePage();
-    }
-
-    public String getTextFromFlightsButton() {
-        return getElementBy(SEARCH_FLIGHTS_BUTTON).getText();
-    }
-
 
 //    // Click to tabs.
 //    public SkyScannerSearchHotelPage clickToHostelsTab() {
@@ -84,4 +75,16 @@ public class SkyScannerHomePage {
 //        return new SkyScannerFlightsResultsPage(driver);
 //    }
 //
+    public SkyScannerProfilePage openProfilePage() {
+        clickOnElementBy(ACCOUNT_BUTTON_LOCATOR);
+        return new SkyScannerProfilePage();
+    }
+//
+//    public String getTextFromFlightsButton() {
+//        return waitForElementLocatedBy(driver, SEARCH_FLIGHTS_BUTTON).getText();
+//    }
+
+    public static String getHomepageUrl() {
+        return HOMEPAGE_URL;
+    }
 }

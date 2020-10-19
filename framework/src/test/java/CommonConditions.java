@@ -24,11 +24,11 @@ public class CommonConditions {
     @BeforeMethod()
     public void setUp() {
         driver = Browser.getDriver();
-//        new SkyScannerHomePage().openPage();
-//        if(checkCaptchaOnPage(LOGGER)) {
-//            LOGGER.info("Test was skipped, because captcha has appeared");
-//            throw new SkipException("Test" + "" + "was skipped, because captcha has appeared");
-//        }
+        new SkyScannerHomePage().openPage();
+        if(checkCaptchaOnPage(LOGGER)) {
+            LOGGER.info("Test was skipped, because captcha has appeared");
+            throw new SkipException("Test" + "" + "was skipped, because captcha has appeared");
+        }
     }
 
     @AfterMethod(alwaysRun = true)
