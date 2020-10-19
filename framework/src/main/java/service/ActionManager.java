@@ -22,6 +22,13 @@ public interface ActionManager {
         return text;
     }
 
+    static String getAttributeValueOnElementBy(By locator, String attribute) {
+        String text = "";
+        if (WaitManager.isElementVisibleBy(locator))
+            text = getElementBy(locator).getAttribute(attribute);
+        return text;
+    }
+
     static void typeTextToElementBy(By locator, String text) {
         if (WaitManager.isElementVisibleBy(locator)) {
             WebElement element = getElementBy(locator);
