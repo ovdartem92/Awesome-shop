@@ -5,8 +5,7 @@ import model.User;
 import org.openqa.selenium.By;
 import page.AbstractPage;
 
-import static service.ActionManager.clickOnElementBy;
-import static service.ActionManager.typeTextToElementBy;
+import static service.ActionManager.*;
 import static util.CaptchaMethod.*;
 
 
@@ -47,39 +46,38 @@ public class SkyScannerHomePage extends AbstractPage {
         return this;
     }
 
-//    // Click to tabs.
-//    public SkyScannerSearchHotelPage clickToHostelsTab() {
-//        waitForElementLocatedBy(HOTEL_TAB).click();
-//        LOGGER.info(("Clicked on HOSTEL_TAB"));
-//        return new SkyScannerSearchHotelPage(driver);
-//    }
-//
-//    public SkyScannerHomePage clickToFlightsTab() {
-//        waitForElementLocatedBy(driver, FLIGHTS_TAB).click();
-//        LOGGER.info(("Clicked on FLIGHTS_TAB"));
-//        return this;
-//    }
-//
-//    public SkyScannerCarSearchPage clickToCarHireTab() {
-//        waitForElementLocatedBy(driver, CAR_HIRE_TAB).click();
-//        LOGGER.info(("Clicked on CAR_HIRE_TAB"));
-//        return new SkyScannerCarSearchPage(driver);
-//    }
-//
-//    public SkyScannerFlightsResultsPage startFlightsSearch() {
-//        waitForElementToBeClickable(driver, SEARCH_FLIGHTS_BUTTON);
-//        driver.findElement(SEARCH_FLIGHTS_BUTTON).click();
-//        return new SkyScannerFlightsResultsPage(driver);
-//    }
-//
+    // Click to tabs.
+    public SkyScannerSearchHotelPage clickToHostelsTab() {
+        clickOnElementBy(HOTEL_TAB);
+        logger.info(("Clicked on HOSTEL_TAB"));
+        return new SkyScannerSearchHotelPage();
+    }
+
+    public SkyScannerHomePage clickToFlightsTab() {
+        clickOnElementBy(FLIGHTS_TAB);
+        logger.info(("Clicked on FLIGHTS_TAB"));
+        return this;
+    }
+
+    public SkyScannerCarSearchPage clickToCarHireTab() {
+        clickOnElementBy(CAR_HIRE_TAB);
+        logger.info(("Clicked on CAR_HIRE_TAB"));
+        return new SkyScannerCarSearchPage();
+    }
+
+    public SkyScannerFlightsResultsPage startFlightsSearch() {
+        clickOnElementBy(SEARCH_FLIGHTS_BUTTON);
+        return new SkyScannerFlightsResultsPage();
+    }
+
     public SkyScannerProfilePage openProfilePage() {
         clickOnElementBy(ACCOUNT_BUTTON_LOCATOR);
         return new SkyScannerProfilePage();
     }
-//
-//    public String getTextFromFlightsButton() {
-//        return waitForElementLocatedBy(driver, SEARCH_FLIGHTS_BUTTON).getText();
-//    }
+
+    public String getTextFromFlightsButton() {
+        return getTextOnElementBy(SEARCH_FLIGHTS_BUTTON);
+    }
 
     public static String getHomepageUrl() {
         return HOMEPAGE_URL;
