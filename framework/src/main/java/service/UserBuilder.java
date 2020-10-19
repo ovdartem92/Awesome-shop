@@ -2,19 +2,18 @@ package service;
 
 import model.User;
 
-public class UserBuilder {
+import static util.RandomString.getRandomString;
 
-    private static User user = new User();
+public class UserBuilder {
+    private static final String EMAIL = TestDataReader.getTestData("testData.email");
+    private static final String PASSWORD = TestDataReader.getTestData("testData.password");
+    private static final String INVALID_PASSWORD = getRandomString();
 
     public static User getUserWithValidPassword() {
-        user.setEmail(TestDataReader.getTestData("testData.email"));
-        user.setPassword(TestDataReader.getTestData("testData.password"));
-        return user;
+        return new User(EMAIL, PASSWORD);
     }
 
     public static User getUserWithInvalidPassword() {
-        user.setEmail(TestDataReader.getTestData("testData.email"));
-        user.setPassword(TestDataReader.getTestData("testData.invalidPassword"));
-        return user;
+        return new User(EMAIL, INVALID_PASSWORD);
     }
 }
