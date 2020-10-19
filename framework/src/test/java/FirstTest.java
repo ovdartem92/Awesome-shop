@@ -23,5 +23,4 @@ public class FirstTest extends CommonConditions {
                 .openPage().clickToCarHireTab();
         softAssert.assertEquals(driver.getCurrentUrl(), SkyScannerHomePage.getHomepageUrl());
     }
-
 }

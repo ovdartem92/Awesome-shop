@@ -5,18 +5,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import page.AbstractPage;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import static util.CaptchaMethod.*;
+import static util.Waiter.*;
 
-import static util.Utils.checkCaptchaOnPage;
-import static util.Utils.waitForElementLocatedBy;
 
 public class SkyScannerHomePage extends AbstractPage {
 
     private static final String HOMEPAGE_URL = "https://www.skyscanner.net/";
-    private final Logger LOGGER = LogManager.getRootLogger();
-
-    private static final By CAPTCHA_ELEMENT = By.xpath("//*[contains(text(), 'Are you a person or a robot?')]");
     private static final By LOG_IN_BUTTON = By.xpath("//span[text()='Log in']");
     private static final By ACCOUNT_BUTTON = By.xpath("//span[text()='Account']");
     private static final By EMAIL_FIELD = By.id("email");
@@ -29,33 +24,9 @@ public class SkyScannerHomePage extends AbstractPage {
 
     // Tab WebElements.
     private static final By FLIGHTS_TAB = By.xpath("//nav[@id='PrimaryNav']//span[contains(text(), 'Flights')]");
-    private static final By HOSTEL_TAB = By.xpath("//nav[@id='PrimaryNav']//span[contains(text(), 'Hotels')]");
+    private static final By HOTEL_TAB = By.xpath("//nav[@id='PrimaryNav']//span[contains(text(), 'Hotels')]");
     private static final By CAR_HIRE_TAB = By.xpath("//a[@id='carhi']");
-    private static final By CAR_HEADER = By.xpath("//div[@class='SearchControls_search-controls-title__27T3N']");
     private static final By SEARCH_FLIGHTS_BUTTON = By.xpath("//button[text()='Search flights']");
-
-    // Hotels WebElements.
-    private static final By DESTINATION_OR_HOSTEL_NAME_INPUT = By.xpath("//input[@name='destination-autosuggest']");
-    private static final By HOSTEL_CHECK_IN_INPUT = By.xpath("//input[@id='checkin']");
-    private static final By HOSTEL_CHECK_OUT_INPUT = By.xpath("//input[@id='checkout']");
-    private static final By GUESTS_AND_ROOM_INPUT = By.xpath("//input[@id='guests-rooms']");
-    private static final By SEARCH_HOTEL_BUTTON = By.xpath("//button[contains(text(), 'Search hotels')]");
-    private static final By CURRENCY_SETUP_BUTTON = By.xpath("//li[@id='culture-info']//button");
-    private static final By CURRENCY_SELECT = By.id("//select[@id='culture-selector-currency']");
-    private static final By SAVE_CURRENCY_SETUP_BUTTON = By.xpath("//button[@id='culture-selector-save']");
-
-    // Hotels guests and rooms WebElements.
-    private static final By QUANTITY_ROOMS_INPUT = By.xpath("//input[@id='rooms']");
-    private static final By INCREASE_ROOM_BUTTON = By.xpath("//button[@aria-controls='rooms'][@title='Increase']");
-    private static final By DECREASE_ROOM_BUTTON = By.xpath("//button[@aria-controls='rooms'][@title='Decrease']");
-    private static final By QUANTITY_ADULT_PEOPLE_INPUT = By.xpath("//input[@id='adults']");
-    private static final By INCREASE_ADULT_BUTTON = By.xpath("//button[@aria-controls='adults'][@title='Increase']");
-    private static final By DECREASE_ADULT_BUTTON = By.xpath("//button[@aria-controls='adults'][@title='Decrease']");
-    private static final By QUANTITY_CHILDREN_INPUT = By.xpath("//input[@id='children']");
-    private static final By INCREASE_CHILD_BUTTON = By.xpath("//button[@aria-controls='children'][@title='Increase']");
-    private static final By DECREASE_CHILD_BUTTON = By.xpath("//button[@aria-controls='children'][@title='Decrease']");
-    private static final By DONE_BUTTON = By.xpath("//footer/button");
-    private static final By SEARCH_HOTELS_BUTTON = By.xpath("//form[@id='search-controls']//button");
 
     public SkyScannerHomePage(WebDriver driver) {
         super(driver);
@@ -63,7 +34,6 @@ public class SkyScannerHomePage extends AbstractPage {
 
     public SkyScannerHomePage openPage() {
         driver.get(HOMEPAGE_URL);
-        checkCaptchaOnPage(driver, LOGGER, CAPTCHA_ELEMENT);
         new WebDriverWait(driver, 10);
         return this;
     }
@@ -77,15 +47,15 @@ public class SkyScannerHomePage extends AbstractPage {
         waitForElementLocatedBy(driver, PASSWORD_FIELD).sendKeys(user.getPassword());
         waitForElementLocatedBy(driver, SECOND_LOG_IN_BUTTON).click();
         waitForElementLocatedBy(driver, CLOSE_MODAL_LOGIN_WINDOW_BUTTON).click();
-        checkCaptchaOnPage(driver, LOGGER, CAPTCHA_ELEMENT);
+        checkCaptchaOnPage(driver);
         return this;
     }
 
     // Click to tabs.
-    public SkyScannerHomePage clickToHostelsTab() {
-        waitForElementLocatedBy(driver, HOSTEL_TAB).click();
+    public SkyScannerSearchHotelPage clickToHostelsTab() {
+        waitForElementLocatedBy(driver, HOTEL_TAB).click();
         LOGGER.info(("Clicked on HOSTEL_TAB"));
-        return this;
+        return new SkyScannerSearchHotelPage(driver);
     }
 
     public SkyScannerHomePage clickToFlightsTab() {
@@ -94,82 +64,16 @@ public class SkyScannerHomePage extends AbstractPage {
         return this;
     }
 
-    public SkyScannerHomePage clickToCarHireTab() {
+    public SkyScannerCarSearchPage clickToCarHireTab() {
         waitForElementLocatedBy(driver, CAR_HIRE_TAB).click();
         LOGGER.info(("Clicked on CAR_HIRE_TAB"));
-        return this;
+        return new SkyScannerCarSearchPage(driver);
     }
 
-    // Methods for Hotel tab elements.
-    public SkyScannerHomePage addDestination(String destination) {
-        waitForElementLocatedBy(driver, DESTINATION_OR_HOSTEL_NAME_INPUT).click();
-        waitForElementLocatedBy(driver, DESTINATION_OR_HOSTEL_NAME_INPUT).sendKeys(destination);
-        return this;
-    }
-
-    public SkyScannerHomePage increaseRoom() {
-        waitForElementLocatedBy(driver, GUESTS_AND_ROOM_INPUT).click();
-        waitForElementLocatedBy(driver, INCREASE_ROOM_BUTTON).click();
-        waitForElementLocatedBy(driver, DONE_BUTTON).click();
-        return this;
-    }
-
-    public SkyScannerHomePage increaseRoom(int quantity) {
-        for (int i = 0; i < quantity; i++)
-            increaseRoom();
-        return this;
-    }
-
-    public SkyScannerHomePage increaseAdult() {
-        waitForElementLocatedBy(driver, GUESTS_AND_ROOM_INPUT).click();
-        waitForElementLocatedBy(driver, INCREASE_ADULT_BUTTON).click();
-        waitForElementLocatedBy(driver, DONE_BUTTON).click();
-        return this;
-    }
-
-    public SkyScannerHomePage increaseAdult(int quantity) {
-        for (int i = 0; i < quantity; i++)
-            increaseAdult();
-        return this;
-    }
-
-    public SkyScannerHomePage increaseChild() {
-        waitForElementLocatedBy(driver, GUESTS_AND_ROOM_INPUT).click();
-        waitForElementLocatedBy(driver, INCREASE_CHILD_BUTTON).click();
-        waitForElementLocatedBy(driver, DONE_BUTTON).click();
-        return this;
-    }
-
-    public SkyScannerHomePage increaseChild(int quantity) {
-        for (int i = 0; i < quantity; i++)
-            increaseChild();
-        return this;
-    }
-
-    public String getQuantityRooms() {
-        waitForElementLocatedBy(driver, GUESTS_AND_ROOM_INPUT).click();
-        String quantity = waitForElementLocatedBy(driver, QUANTITY_ROOMS_INPUT).getAttribute("value");
-        waitForElementLocatedBy(driver, DONE_BUTTON).click();
-        return quantity;
-    }
-
-    public String getQuantityAdultPeople() {
-        waitForElementLocatedBy(driver, GUESTS_AND_ROOM_INPUT).click();
-        String quantity = waitForElementLocatedBy(driver, QUANTITY_ADULT_PEOPLE_INPUT).getAttribute("value");
-        waitForElementLocatedBy(driver, DONE_BUTTON).click();
-        return quantity;
-    }
-
-    public String getQuantityChildren() {
-        waitForElementLocatedBy(driver, GUESTS_AND_ROOM_INPUT).click();
-        String quantity = waitForElementLocatedBy(driver, QUANTITY_CHILDREN_INPUT).getAttribute("value");
-        waitForElementLocatedBy(driver, DONE_BUTTON).click();
-        return quantity;
-    }
-
-    public SkyScannerHotelResultPage clickToSearchHotelsButton() {
-        waitForElementLocatedBy(driver, SEARCH_HOTELS_BUTTON).click();
-        return new SkyScannerHotelResultPage(driver);
+    public SkyScannerFlightsResultsPage startFlightsSearch() {
+        waitForElementToBeClickable(driver, SEARCH_FLIGHTS_BUTTON);
+        driver.findElement(SEARCH_FLIGHTS_BUTTON).click();
+        return new SkyScannerFlightsResultsPage(driver);
     }
 
     public SkyScannerProfilePage openProfilePage() {
@@ -179,14 +83,6 @@ public class SkyScannerHomePage extends AbstractPage {
 
     public String getTextFromFlightsButton() {
         return waitForElementLocatedBy(driver, SEARCH_FLIGHTS_BUTTON).getText();
-    }
-
-    public String getTextFromHotelButton() {
-        return waitForElementLocatedBy(driver, SEARCH_HOTEL_BUTTON).getText();
-    }
-
-    public String getTextFromCarHeader() {
-        return waitForElementLocatedBy(driver, CAR_HEADER).getText();
     }
 
     public static String getHomepageUrl() {

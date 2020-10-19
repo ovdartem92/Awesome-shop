@@ -3,8 +3,7 @@ package page.net.skyscanner;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import page.AbstractPage;
-
-import static util.Utils.waitForElementLocatedBy;
+import static util.Waiter.*;
 
 public class SkyScannerProfilePage extends AbstractPage {
 
