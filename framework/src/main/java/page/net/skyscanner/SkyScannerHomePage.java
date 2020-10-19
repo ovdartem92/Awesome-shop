@@ -2,19 +2,16 @@ package page.net.skyscanner;
 
 import driver.Browser;
 import model.User;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
+import page.AbstractPage;
 
 import static service.ActionManager.*;
 import static util.CaptchaMethod.*;
 
 
-public class SkyScannerHomePage {
+public class SkyScannerHomePage extends AbstractPage {
 
     private static final String HOMEPAGE_URL = "https://www.skyscanner.net/";
-    private final Logger LOGGER = LogManager.getRootLogger();
-
     private static final By LOG_IN_BUTTON_LOCATOR = By.xpath("//span[text()='Log in']");
     private static final By ACCOUNT_BUTTON_LOCATOR = By.xpath("//span[text()='Account']");
     private static final By EMAIL_FIELD_LOCATOR = By.id("email");
@@ -45,7 +42,7 @@ public class SkyScannerHomePage {
         typeTextToElementBy(PASSWORD_FIELD_LOCATOR, user.getPassword());
         clickOnElementBy(SECOND_LOG_IN_BUTTON_LOCATOR);
         clickOnElementBy(CLOSE_MODAL_LOGIN_WINDOW_BUTTON_LOCATOR);
-        checkCaptchaOnPage(LOGGER);
+        checkCaptchaOnPage(logger);
         return this;
     }
 
