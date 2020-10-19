@@ -1,46 +1,44 @@
 package page.net.skyscanner.hotel;
 
-import org.openqa.selenium.By;
 import page.AbstractPage;
 import page.net.skyscanner.SkyScannerCarSearchPage;
-
 import static service.ActionManager.*;
 
 public class SkyScannerSearchHotelPage extends AbstractPage {
 
-    private static final By DESTINATION_OR_HOSTEL_NAME_INPUT_LOCATOR = By.xpath("//input[@name='destination-autosuggest']");
-    private static final By HOSTEL_CHECK_IN_INPUT_LOCATOR = By.xpath("//input[@id='checkin']");
-    private static final By HOSTEL_CHECK_OUT_INPUT_LOCATOR = By.xpath("//input[@id='checkout']");
-    private static final By GUESTS_AND_ROOM_INPUT_LOCATOR = By.xpath("//input[@id='guests-rooms']");
-    private static final By SEARCH_HOTEL_BUTTON_LOCATOR = By.xpath("//button[contains(text(), 'Search hotels')]");
-    private static final By QUANTITY_ROOMS_INPUT_LOCATOR = By.xpath("//input[@id='rooms']");
-    private static final By INCREASE_ROOM_BUTTON_LOCATOR = By.xpath("//button[@aria-controls='rooms'][@title='Increase']");
-    private static final By DECREASE_ROOM_BUTTON_LOCATOR = By.xpath("//button[@aria-controls='rooms'][@title='Decrease']");
-    private static final By QUANTITY_ADULT_PEOPLE_INPUT_LOCATOR = By.xpath("//input[@id='adults']");
-    private static final By INCREASE_ADULT_BUTTON_LOCATOR = By.xpath("//button[@aria-controls='adults'][@title='Increase']");
-    private static final By DECREASE_ADULT_BUTTON_LOCATOR = By.xpath("//button[@aria-controls='adults'][@title='Decrease']");
-    private static final By QUANTITY_CHILDREN_INPUT_LOCATOR = By.xpath("//input[@id='children']");
-    private static final By INCREASE_CHILD_BUTTON_LOCATOR = By.xpath("//button[@aria-controls='children'][@title='Increase']");
-    private static final By DECREASE_CHILD_BUTTON_LOCATOR = By.xpath("//button[@aria-controls='children'][@title='Decrease']");
-    private static final By DONE_BUTTON_LOCATOR = By.xpath("//footer/button");
-    private static final By SEARCH_HOTELS_BUTTON_LOCATOR = By.xpath("//button[@data-test-id='search-button']");
-    private static final By CAR_HIRE_TAB_LOCATOR = By.xpath("//a[@id='carhi']");
+    private static final String DESTINATION_OR_HOSTEL_NAME_INPUT_PATH = "//input[@name='destination-autosuggest']";
+    private static final String HOSTEL_CHECK_IN_INPUT_PATH = "//input[@id='checkin']";
+    private static final String HOSTEL_CHECK_OUT_INPUT_PATH = "//input[@id='checkout']";
+    private static final String GUESTS_AND_ROOM_INPUT_PATH = "//input[@id='guests-rooms']";
+    private static final String SEARCH_HOTEL_BUTTON_PATH = "//button[contains(text(), 'Search hotels')]";
+    private static final String QUANTITY_ROOMS_INPUT_PATH = "//input[@id='rooms']";
+    private static final String INCREASE_ROOM_BUTTON_PATH = "//button[@aria-controls='rooms'][@title='Increase']";
+    private static final String DECREASE_ROOM_BUTTON_PATH = "//button[@aria-controls='rooms'][@title='Decrease']";
+    private static final String QUANTITY_ADULT_PEOPLE_INPUT_PATH = "//input[@id='adults']";
+    private static final String INCREASE_ADULT_BUTTON_PATH = "//button[@aria-controls='adults'][@title='Increase']";
+    private static final String DECREASE_ADULT_BUTTON_PATH = "//button[@aria-controls='adults'][@title='Decrease']";
+    private static final String QUANTITY_CHILDREN_INPUT_PATH = "//input[@id='children']";
+    private static final String INCREASE_CHILD_BUTTON_PATH = "//button[@aria-controls='children'][@title='Increase']";
+    private static final String DECREASE_CHILD_BUTTON_PATH = "//button[@aria-controls='children'][@title='Decrease']";
+    private static final String DONE_BUTTON_PATH = "//footer/button";
+    private static final String SEARCH_HOTELS_BUTTON_PATH = "//button[@data-test-id='search-button']";
+    private static final String CAR_HIRE_TAB_PATH = "//a[@id='carhi']";
 
     public SkyScannerSearchHotelPage addDestination(String destination) {
-        clickOnElementBy(DESTINATION_OR_HOSTEL_NAME_INPUT_LOCATOR);
-        typeTextToElementBy(DESTINATION_OR_HOSTEL_NAME_INPUT_LOCATOR, destination);
+        clickOnElementBy(DESTINATION_OR_HOSTEL_NAME_INPUT_PATH);
+        typeTextToElementBy(DESTINATION_OR_HOSTEL_NAME_INPUT_PATH, destination);
         return this;
     }
 
     public SkyScannerSearchHotelPage increaseRoom() {
-        clickOnElementBy(GUESTS_AND_ROOM_INPUT_LOCATOR);
-        clickOnElementBy(INCREASE_ROOM_BUTTON_LOCATOR);
-        clickOnElementBy(DONE_BUTTON_LOCATOR);
+        clickOnElementBy(GUESTS_AND_ROOM_INPUT_PATH);
+        clickOnElementBy(INCREASE_ROOM_BUTTON_PATH);
+        clickOnElementBy(DONE_BUTTON_PATH);
         return this;
     }
 
     public SkyScannerCarSearchPage clickToCarHireTab() {
-        clickOnElementBy(CAR_HIRE_TAB_LOCATOR);
+        clickOnElementBy(CAR_HIRE_TAB_PATH);
         logger.info(("Clicked on CAR_HIRE_TAB"));
         return new SkyScannerCarSearchPage();
     }
@@ -52,9 +50,9 @@ public class SkyScannerSearchHotelPage extends AbstractPage {
     }
 
     public SkyScannerSearchHotelPage increaseAdult() {
-        clickOnElementBy(GUESTS_AND_ROOM_INPUT_LOCATOR);
-        clickOnElementBy(INCREASE_ADULT_BUTTON_LOCATOR);
-        clickOnElementBy(DONE_BUTTON_LOCATOR);
+        clickOnElementBy(GUESTS_AND_ROOM_INPUT_PATH);
+        clickOnElementBy(INCREASE_ADULT_BUTTON_PATH);
+        clickOnElementBy(DONE_BUTTON_PATH);
         return this;
     }
 
@@ -65,9 +63,9 @@ public class SkyScannerSearchHotelPage extends AbstractPage {
     }
 
     public SkyScannerSearchHotelPage increaseChild() {
-        clickOnElementBy(GUESTS_AND_ROOM_INPUT_LOCATOR);
-        clickOnElementBy(INCREASE_CHILD_BUTTON_LOCATOR);
-        clickOnElementBy(DONE_BUTTON_LOCATOR);
+        clickOnElementBy(GUESTS_AND_ROOM_INPUT_PATH);
+        clickOnElementBy(INCREASE_CHILD_BUTTON_PATH);
+        clickOnElementBy(DONE_BUTTON_PATH);
         return this;
     }
 
@@ -78,33 +76,33 @@ public class SkyScannerSearchHotelPage extends AbstractPage {
     }
 
     public String getQuantityRooms() {
-        clickOnElementBy(GUESTS_AND_ROOM_INPUT_LOCATOR);
-        String quantity = getAttributeValueOnElementBy(QUANTITY_ROOMS_INPUT_LOCATOR, "value");
-        clickOnElementBy(DONE_BUTTON_LOCATOR);
+        clickOnElementBy(GUESTS_AND_ROOM_INPUT_PATH);
+        String quantity = getAttributeValueOnElementBy(QUANTITY_ROOMS_INPUT_PATH, "value");
+        clickOnElementBy(DONE_BUTTON_PATH);
         return quantity;
     }
 
     public String getQuantityAdultPeople() {
-        clickOnElementBy(GUESTS_AND_ROOM_INPUT_LOCATOR);
-        String quantity = getAttributeValueOnElementBy(QUANTITY_ADULT_PEOPLE_INPUT_LOCATOR, "value");
-        clickOnElementBy(DONE_BUTTON_LOCATOR);
+        clickOnElementBy(GUESTS_AND_ROOM_INPUT_PATH);
+        String quantity = getAttributeValueOnElementBy(QUANTITY_ADULT_PEOPLE_INPUT_PATH, "value");
+        clickOnElementBy(DONE_BUTTON_PATH);
         return quantity;
     }
 
     public String getQuantityChildren() {
-        clickOnElementBy(GUESTS_AND_ROOM_INPUT_LOCATOR);
-        String quantity = getAttributeValueOnElementBy(QUANTITY_CHILDREN_INPUT_LOCATOR, "value");
-        clickOnElementBy(DONE_BUTTON_LOCATOR);
+        clickOnElementBy(GUESTS_AND_ROOM_INPUT_PATH);
+        String quantity = getAttributeValueOnElementBy(QUANTITY_CHILDREN_INPUT_PATH, "value");
+        clickOnElementBy(DONE_BUTTON_PATH);
         return quantity;
     }
 
     public SkyScannerHotelResultPage clickToSearchHotelsButton() {
-        clickOnElementBy(SEARCH_HOTELS_BUTTON_LOCATOR);
+        clickOnElementBy(SEARCH_HOTELS_BUTTON_PATH);
         logger.info("Clicked on SEARCH_HOTELS_BUTTON");
         return new SkyScannerHotelResultPage();
     }
 
     public String getTextFromHotelButton() {
-        return getTextOnElementBy(SEARCH_HOTEL_BUTTON_LOCATOR);
+        return getTextOnElementBy(SEARCH_HOTEL_BUTTON_PATH);
     }
 }

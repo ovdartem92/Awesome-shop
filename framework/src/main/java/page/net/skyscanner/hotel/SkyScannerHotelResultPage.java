@@ -4,21 +4,19 @@ import model.Hotel;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import page.AbstractPage;
-
 import java.util.List;
-
 import static service.ActionManager.clickOnElementBy;
 import static service.ActionManager.getTextOnElementBy;
 import static service.WaitManager.waitForElementLocatedBy;
 
 public class SkyScannerHotelResultPage extends AbstractPage {
 
-    private final static By SEARCH_SUMMARY_LOCATOR = By.xpath("//p[@data-test-id='search-summary']"); //
-    private final static By GUEST_RATING_SORT_BUTTON_LOCATOR = By.xpath("//button/span[contains(text(), 'Guest rating')]"); //
-    private final static By PRICE_SORT_BUTTON_LOCATOR = By.xpath("//button/span[contains(text(), 'Price')]"); //
-    private final static By FOUND_HOTEL_NAME_LOCATOR = By.xpath("//span[@data-test-id='hotel-name']");
-    private final static By FOUND_HOTEL_RATING = By.xpath("//div[@class='HotelCard_HotelCard__reviewSummary__1Rqp3']/span");
-    private final static By FOUND_HOTEL_PRICE = By.xpath("//div[@class='HotelCard_HotelCard__priceVariant__3dC83']");
+    private final static String SEARCH_SUMMARY_PATH = "//p[@data-test-id='search-summary']";
+    private final static String GUEST_RATING_SORT_BUTTON_PATH = "//button/span[contains(text(), 'Guest rating')]";
+    private final static String PRICE_SORT_BUTTON_PATH = "//button/span[contains(text(), 'Price')]";
+    private final static String FOUND_HOTEL_NAME_PATH = "//span[@data-test-id='hotel-name']";
+    private final static String FOUND_HOTEL_PATH = "//div[@class='HotelCard_HotelCard__reviewSummary__1Rqp3']/span";
+    //private final static String FOUND_HOTEL_PATH = "//div[@class='HotelCard_HotelCard__priceVariant__3dC83']";
 
     private static String FOUND_HOTEL_RATING_WITH_HOTEL_NAME_PATH = "//span[@data-test-id='hotel-name'][contains(text(), '%s')]" +
             "/../following-sibling::div[@class='HotelCard_HotelCard__reviewSummary__1Rqp3']/span";
@@ -27,17 +25,17 @@ public class SkyScannerHotelResultPage extends AbstractPage {
     private List<Hotel> hotels;
 
     public int getFoundHotelsQuantity() {
-        String searchSummaryLine = getTextOnElementBy(SEARCH_SUMMARY_LOCATOR);
+        String searchSummaryLine = getTextOnElementBy(SEARCH_SUMMARY_PATH);
         return Integer.parseInt(searchSummaryLine.split(" ")[0]);
     }
 
     public SkyScannerHotelResultPage clickToGuestRattingSortButton() {
-        clickOnElementBy(GUEST_RATING_SORT_BUTTON_LOCATOR);
+        clickOnElementBy(GUEST_RATING_SORT_BUTTON_PATH);
         return this;
     }
 
     public SkyScannerHotelResultPage clickToPriceSortButton() {
-        clickOnElementBy(PRICE_SORT_BUTTON_LOCATOR);
+        clickOnElementBy(PRICE_SORT_BUTTON_PATH);
         return this;
     }
 
@@ -76,7 +74,7 @@ public class SkyScannerHotelResultPage extends AbstractPage {
     }
 
     private List<Hotel> getHotelsList() {
-        List<WebElement> names = getElementsByLocator(FOUND_HOTEL_NAME_LOCATOR);
+        List<WebElement> names = getElementsByLocator(FOUND_HOTEL_NAME_PATH);
 
         for (int i = 0; i < names.size(); i++) {
             String name = names.get(i).getText();
@@ -107,14 +105,14 @@ public class SkyScannerHotelResultPage extends AbstractPage {
         }
     }
 
-    public List<WebElement> getElementsByLocator(By by) {
-        waitForElementLocatedBy(by);
-        return driver.findElements(by);
+    public List<WebElement> getElementsByLocator(String string) {
+        waitForElementLocatedBy(string);
+        return driver.findElements(By.xpath(string));
     }
 
-    public int getQuantityOfWebElementsOnPage(By by) {
-        waitForElementLocatedBy(by);
-        List<WebElement> elements = driver.findElements(by);
+    public int getQuantityOfWebElementsOnPage(String string) {
+        waitForElementLocatedBy(string);
+        List<WebElement> elements = driver.findElements(By.xpath(string));
         return elements.size();
     }
 
