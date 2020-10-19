@@ -11,7 +11,7 @@ public class CheckYourEmailAfterLogInTest extends CommonConditions {
     public void checkYourEmail() {
         user = UserBuilder.getUserWithValidPassword();
         new SkyScannerHomePage()
-                .openPage()
+//                .openPage()
                 .logIn(user)
                 .openProfilePage()
                 .clickOnAccountField();

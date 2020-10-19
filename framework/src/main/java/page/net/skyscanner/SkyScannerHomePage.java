@@ -23,13 +23,13 @@ public class SkyScannerHomePage extends AbstractPage {
     private static final By CLOSE_MODAL_LOGIN_WINDOW_BUTTON_LOCATOR = By.xpath("//button[@title='Close modal']");
 
     // Tab WebElements.
-    private static final By FLIGHTS_TAB = By.xpath("//nav[@id='PrimaryNav']//span[contains(text(), 'Flights')]");
-    private static final By HOTEL_TAB = By.xpath("//nav[@id='PrimaryNav']//span[contains(text(), 'Hotels')]");
-    private static final By CAR_HIRE_TAB = By.xpath("//a[@id='carhi']");
-    private static final By SEARCH_FLIGHTS_BUTTON = By.xpath("//button[text()='Search flights']");
+    private static final By FLIGHTS_TAB_LOCATOR = By.xpath("//nav[@id='PrimaryNav']//span[contains(text(), 'Flights')]");
+    private static final By HOTEL_TAB_LOCATOR = By.xpath("//nav[@id='PrimaryNav']//span[contains(text(), 'Hotels')]");
+    private static final By CAR_HIRE_TAB_LOCATOR = By.xpath("//a[@id='carhi']");
+    private static final By SEARCH_FLIGHTS_BUTTON_LOCATOR = By.xpath("//button[text()='Search flights']");
 
     public SkyScannerHomePage openPage() {
-        Browser.getDriver().get(HOMEPAGE_URL);
+        driver.get(HOMEPAGE_URL);
         return this;
     }
 
@@ -48,25 +48,25 @@ public class SkyScannerHomePage extends AbstractPage {
 
     // Click to tabs.
     public SkyScannerSearchHotelPage clickToHostelsTab() {
-        clickOnElementBy(HOTEL_TAB);
+        clickOnElementBy(HOTEL_TAB_LOCATOR);
         logger.info(("Clicked on HOSTEL_TAB"));
         return new SkyScannerSearchHotelPage();
     }
 
     public SkyScannerHomePage clickToFlightsTab() {
-        clickOnElementBy(FLIGHTS_TAB);
+        clickOnElementBy(FLIGHTS_TAB_LOCATOR);
         logger.info(("Clicked on FLIGHTS_TAB"));
         return this;
     }
 
     public SkyScannerCarSearchPage clickToCarHireTab() {
-        clickOnElementBy(CAR_HIRE_TAB);
+        clickOnElementBy(CAR_HIRE_TAB_LOCATOR);
         logger.info(("Clicked on CAR_HIRE_TAB"));
         return new SkyScannerCarSearchPage();
     }
 
     public SkyScannerFlightsResultsPage startFlightsSearch() {
-        clickOnElementBy(SEARCH_FLIGHTS_BUTTON);
+        clickOnElementBy(SEARCH_FLIGHTS_BUTTON_LOCATOR);
         return new SkyScannerFlightsResultsPage();
     }
 
@@ -76,7 +76,7 @@ public class SkyScannerHomePage extends AbstractPage {
     }
 
     public String getTextFromFlightsButton() {
-        return getTextOnElementBy(SEARCH_FLIGHTS_BUTTON);
+        return getTextOnElementBy(SEARCH_FLIGHTS_BUTTON_LOCATOR);
     }
 
     public static String getHomepageUrl() {
