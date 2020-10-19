@@ -49,6 +49,16 @@ public class SkyScannerHomePage {
         return this;
     }
 
+    public SkyScannerProfilePage openProfilePage() {
+        clickOnElementBy(ACCOUNT_BUTTON_LOCATOR);
+        return new SkyScannerProfilePage();
+    }
+
+    public String getTextFromFlightsButton() {
+        return getElementBy(SEARCH_FLIGHTS_BUTTON).getText();
+    }
+
+
 //    // Click to tabs.
 //    public SkyScannerSearchHotelPage clickToHostelsTab() {
 //        waitForElementLocatedBy(HOTEL_TAB).click();
@@ -74,16 +84,4 @@ public class SkyScannerHomePage {
 //        return new SkyScannerFlightsResultsPage(driver);
 //    }
 //
-    public SkyScannerProfilePage openProfilePage() {
-        clickOnElementBy(ACCOUNT_BUTTON_LOCATOR);
-        return new SkyScannerProfilePage();
-    }
-
-    public String getTextFromFlightsButton() {
-        return getElementBy(SEARCH_FLIGHTS_BUTTON).getText();
-    }
-
-    public static String getHomepageUrl() {
-        return HOMEPAGE_URL;
-    }
 }
