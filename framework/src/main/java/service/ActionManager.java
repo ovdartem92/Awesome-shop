@@ -16,17 +16,11 @@ public interface ActionManager {
     }
 
     static String getTextOnElementBy(By locator) {
-        String text = "";
-        if (WaitManager.isElementVisibleBy(locator))
-            text = getElementBy(locator).getText();
-        return text;
+        return WaitManager.isElementVisibleBy(locator) ? getElementBy(locator).getText() : null;
     }
 
     static String getAttributeValueOnElementBy(By locator, String attribute) {
-        String text = "";
-        if (WaitManager.isElementVisibleBy(locator))
-            text = getElementBy(locator).getAttribute(attribute);
-        return text;
+        return WaitManager.isElementVisibleBy(locator) ? getElementBy(locator).getAttribute(attribute) : null;
     }
 
     static void typeTextToElementBy(By locator, String text) {

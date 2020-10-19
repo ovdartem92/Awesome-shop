@@ -8,7 +8,6 @@ import page.net.skyscanner.hotel.SkyScannerSearchHotelPage;
 import static service.ActionManager.*;
 import static util.CaptchaMethod.*;
 
-
 public class SkyScannerHomePage extends AbstractPage {
 
     private static final String HOMEPAGE_URL = "https://www.skyscanner.net/";
@@ -86,7 +85,7 @@ public class SkyScannerHomePage extends AbstractPage {
     public SkyScannerHomePage switchToEnglish() {
         String language = getTextOnElementBy(LANGUAGE_LOCATOR);
 
-        if(!language.equals("English (UK)")) {
+        if (!language.equals("English (UK)")) {
             clickOnElementBy(LANGUAGE_LOCATOR);
             clickOnElementBy(LANGUAGES_SELECT_LOCATOR);
             clickOnElementBy(ENGLISH_LANGUAGE_OPTION_LOCATOR);
