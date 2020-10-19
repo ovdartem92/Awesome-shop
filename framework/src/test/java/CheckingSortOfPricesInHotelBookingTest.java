@@ -13,7 +13,7 @@ public class CheckingSortOfPricesInHotelBookingTest extends CommonConditions {
         SkyScannerHotelResultPage resultPage  = new SkyScannerHomePage()
                 .openPage()
                 .switchToEnglish()
-                .logIn(user)
+                //.logIn(user)
                 .clickToHostelsTab()
                     .addDestination(destination)
                     .clickToSearchHotelsButton()
