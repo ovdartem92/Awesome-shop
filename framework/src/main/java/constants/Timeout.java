@@ -1,8 +1,10 @@
 package constants;
 
+import service.TimeoutDataReader;
+
 public interface Timeout {
 
-    int SHORT_TIMEOUT_MILLIS = 500;
-    int LONG_TIMEOUT_SECONDS = 15;
-    int DEFAULT_TIMEOUT_SECONDS = 5;
+    int SHORT_TIMEOUT_MILLIS = Integer.parseInt(TimeoutDataReader.getTimeoutData("timeout.short"));
+    int LONG_TIMEOUT_SECONDS = Integer.parseInt(TimeoutDataReader.getTimeoutData("timeout.long"));
+    int DEFAULT_TIMEOUT_SECONDS = Integer.parseInt(TimeoutDataReader.getTimeoutData("timeout.default"));
 }
