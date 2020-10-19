@@ -5,7 +5,8 @@ import model.User;
 import org.openqa.selenium.By;
 import page.AbstractPage;
 
-import static service.ActionManager.*;
+import static service.ActionManager.clickOnElementBy;
+import static service.ActionManager.typeTextToElementBy;
 import static util.CaptchaMethod.*;
 
 
@@ -29,7 +30,7 @@ public class SkyScannerHomePage extends AbstractPage {
     private static final By SEARCH_FLIGHTS_BUTTON = By.xpath("//button[text()='Search flights']");
 
     public SkyScannerHomePage openPage() {
-        Browser.getDriver().get(HOMEPAGE_URL);
+        driver.get(HOMEPAGE_URL);
         return this;
     }
 
@@ -45,16 +46,6 @@ public class SkyScannerHomePage extends AbstractPage {
         checkCaptchaOnPage(logger);
         return this;
     }
-
-    public SkyScannerProfilePage openProfilePage() {
-        clickOnElementBy(ACCOUNT_BUTTON_LOCATOR);
-        return new SkyScannerProfilePage();
-    }
-
-    public String getTextFromFlightsButton() {
-        return getElementBy(SEARCH_FLIGHTS_BUTTON).getText();
-    }
-
 
 //    // Click to tabs.
 //    public SkyScannerSearchHotelPage clickToHostelsTab() {
@@ -81,4 +72,16 @@ public class SkyScannerHomePage extends AbstractPage {
 //        return new SkyScannerFlightsResultsPage(driver);
 //    }
 //
+    public SkyScannerProfilePage openProfilePage() {
+        clickOnElementBy(ACCOUNT_BUTTON_LOCATOR);
+        return new SkyScannerProfilePage();
+    }
+//
+//    public String getTextFromFlightsButton() {
+//        return waitForElementLocatedBy(driver, SEARCH_FLIGHTS_BUTTON).getText();
+//    }
+
+    public static String getHomepageUrl() {
+        return HOMEPAGE_URL;
+    }
 }

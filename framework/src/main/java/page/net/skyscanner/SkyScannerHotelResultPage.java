@@ -2,15 +2,13 @@
 //
 //import model.Hotel;
 //import org.openqa.selenium.By;
-//import org.openqa.selenium.WebDriver;
 //import org.openqa.selenium.WebElement;
-//import page.AbstractPage;
 //
 //import java.util.List;
 //
 //import static util.Waiter.waitForElementLocatedBy;
 //
-//public class SkyScannerHotelResultPage extends AbstractPage {
+//public class SkyScannerHotelResultPage {
 //
 //    private final static By SEARCH_SUMMARY = By.xpath("//p[@data-test-id='search-summary']"); //
 //    private final static By GUEST_RATING_SORT_BUTTON = By.xpath("//button/span[contains(text(), 'Guest rating')]"); //
@@ -24,10 +22,6 @@
 //    private static String FOUND_HOTEL_PRICE_WITH_HOTEL_NAME_PATH = "//span[@data-test-id='hotel-name'][contains(text(), '%s')]" +
 //            "/../../../../following-sibling::div//div[@class='HotelCard_HotelCard__priceVariant__3dC83']";
 //    private List<Hotel> hotels;
-//
-//    protected SkyScannerHotelResultPage(WebDriver driver) {
-//        super(driver);
-//    }
 //
 //    public int getFoundHotelsQuantity() {
 //        String searchSummaryLine = waitForElementLocatedBy(driver, SEARCH_SUMMARY).getText();
