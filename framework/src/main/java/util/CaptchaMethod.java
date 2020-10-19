@@ -14,7 +14,7 @@ public interface CaptchaMethod {
         boolean answer = new WebDriverWait(Browser.getDriver(), 4).until(
                 ExpectedConditions.presenceOfElementLocated(CAPTCHA_ELEMENT)).isDisplayed();
         if (answer) {
-            logger.info("Is CAPTCHA element present on page: [" + Browser.getDriver().getCurrentUrl() + "]");
+            logger.info("CAPTCHA element present on page: [" + Browser.getDriver().getCurrentUrl() + "]");
             throw new RuntimeException("The page consists captcha element.");
         }
         return answer;

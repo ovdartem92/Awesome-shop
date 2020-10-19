@@ -13,10 +13,10 @@ import static util.Waiter.waitForElementLocatedBy;
 
 public class SkyScannerHotelResultPage extends AbstractPage {
 
-    private final static By SEARCH_SUMMARY = By.xpath("//p[@data-test-id='search-summary']"); //
-    private final static By GUEST_RATING_SORT_BUTTON = By.xpath("//button/span[contains(text(), 'Guest rating')]"); //
-    private final static By PRICE_SORT_BUTTON = By.xpath("//button/span[contains(text(), 'Price')]"); //
-    private final static By FOUND_HOTEL_NAME = By.xpath("//span[@data-test-id='hotel-name']");
+    private final static By SEARCH_SUMMARY_LOCATOR = By.xpath("//p[@data-test-id='search-summary']"); //
+    private final static By GUEST_RATING_SORT_BUTTON_LOCATOR = By.xpath("//button/span[contains(text(), 'Guest rating')]"); //
+    private final static By PRICE_SORT_BUTTON_LOCATOR = By.xpath("//button/span[contains(text(), 'Price')]"); //
+    private final static By FOUND_HOTEL_NAME_LOCATOR = By.xpath("//span[@data-test-id='hotel-name']");
     private final static By FOUND_HOTEL_RATING = By.xpath("//div[@class='HotelCard_HotelCard__reviewSummary__1Rqp3']/span");
     private final static By FOUND_HOTEL_PRICE = By.xpath("//div[@class='HotelCard_HotelCard__priceVariant__3dC83']");
 
@@ -27,17 +27,17 @@ public class SkyScannerHotelResultPage extends AbstractPage {
     private List<Hotel> hotels;
 
     public int getFoundHotelsQuantity() {
-        String searchSummaryLine = getTextOnElementBy(SEARCH_SUMMARY);
+        String searchSummaryLine = getTextOnElementBy(SEARCH_SUMMARY_LOCATOR);
         return Integer.parseInt(searchSummaryLine.split(" ")[0]);
     }
 
     public SkyScannerHotelResultPage clickToGuestRattingSortButton() {
-        clickOnElementBy(GUEST_RATING_SORT_BUTTON);
+        clickOnElementBy(GUEST_RATING_SORT_BUTTON_LOCATOR);
         return this;
     }
 
     public SkyScannerHotelResultPage clickToPriceSortButton() {
-        clickOnElementBy(PRICE_SORT_BUTTON);
+        clickOnElementBy(PRICE_SORT_BUTTON_LOCATOR);
         return this;
     }
 
@@ -76,7 +76,7 @@ public class SkyScannerHotelResultPage extends AbstractPage {
     }
 
     private List<Hotel> getHotelsList() {
-        List<WebElement> names = getElementsByLocator(FOUND_HOTEL_NAME);
+        List<WebElement> names = getElementsByLocator(FOUND_HOTEL_NAME_LOCATOR);
 
         for (int i = 0; i < names.size(); i++) {
             String name = names.get(i).getText();

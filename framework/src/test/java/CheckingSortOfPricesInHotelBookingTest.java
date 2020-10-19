@@ -1,7 +1,6 @@
 import org.testng.annotations.Test;
 import page.net.skyscanner.SkyScannerHomePage;
 import page.net.skyscanner.hotel.SkyScannerHotelResultPage;
-import page.net.skyscanner.hotel.SkyScannerSearchHotelPage;
 import service.UserBuilder;
 
 public class CheckingSortOfPricesInHotelBookingTest extends CommonConditions {
@@ -11,15 +10,14 @@ public class CheckingSortOfPricesInHotelBookingTest extends CommonConditions {
         String destination = "Turin";
         user = UserBuilder.getUserWithValidPassword();
 
-        SkyScannerSearchHotelPage searchHotelPage =
+        SkyScannerHotelResultPage resultPage  =
                 new SkyScannerHomePage()
                 .openPage()
                 .logIn(user)
-                .clickToHostelsTab();
-
-        SkyScannerHotelResultPage resultPage = searchHotelPage.addDestination(destination)
-                                                              .clickToSearchHotelsButton()
-                                                              .clickToPriceSortButton();
+                .clickToHostelsTab()
+                        .addDestination(destination)
+                        .clickToSearchHotelsButton()
+                        .clickToPriceSortButton();
 
         softAssert.assertEquals(resultPage.isHotelsSortedByPrice(), true);
     }
