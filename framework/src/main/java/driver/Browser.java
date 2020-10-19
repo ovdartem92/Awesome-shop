@@ -1,14 +1,15 @@
 package driver;
 
+import enums.BrowserType;
 import constants.Timeout;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-
+import org.openqa.selenium.opera.OperaDriver;
 import java.util.concurrent.TimeUnit;
-
 import static io.github.bonigarcia.wdm.WebDriverManager.*;
+
 
 public class Browser {
 
@@ -18,17 +19,24 @@ public class Browser {
     }
 
     public static WebDriver getDriver() {
+        BrowserType type = BrowserType.valueOf(System.getProperty("browser").toUpperCase());
         if (null == driver) {
-            switch (System.getProperty("browser")) {
-                case "firefox": {
+            switch (type) {
+                case FIREFOX: {
                     firefoxdriver().setup();
                     driver = new FirefoxDriver();
                     configureDriver(driver);
                     break;
                 }
-                case "edge": {
+                case EDGE: {
                     edgedriver().setup();
                     driver = new EdgeDriver();
+                    configureDriver(driver);
+                    break;
+                }
+                case OPERA: {
+                    operadriver().setup();
+                    driver = new OperaDriver();
                     configureDriver(driver);
                     break;
                 }
