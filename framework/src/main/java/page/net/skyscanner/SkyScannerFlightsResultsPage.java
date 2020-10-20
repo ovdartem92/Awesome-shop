@@ -3,9 +3,7 @@ package page.net.skyscanner;
 import constants.Currency;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
 import page.AbstractPage;
-import service.TestDataReader;
 
 import java.util.List;
 
@@ -18,7 +16,7 @@ public class SkyScannerFlightsResultsPage extends AbstractPage {
     private static final String CURRENCY_SELECT = "//select[@id='culture-selector-currency']";
     private static final String SAVE_CURRENCY_SETUP_BUTTON = "//button[@id='culture-selector-save']";
     private static final String FLIGHTS_SEARCH_RESULTS = "//p[@class='route-price']//span[text()='from ']";
-    private static final String FLIGHTS_PRISES_SPAN =String.format("//span[text()='from ']/parent::p[contains(text(),'%s')]", Currency.DOLLAR_SIGN);
+    private static final String FLIGHTS_PRISES_SPAN = String.format("//span[text()='from ']/parent::p[contains(text(),'%s')]", Currency.DOLLAR_SIGN);
     private static final String CURRENCY_OPTION = String.format("//option[text()='%s']", Currency.USD);
 
     public SkyScannerFlightsResultsPage selectCurrency() {
