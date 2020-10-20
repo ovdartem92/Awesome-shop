@@ -20,7 +20,7 @@ public class Browser {
 
     public static WebDriver getDriver() {
         BrowserType type;
-        if (null == driver) {
+        if (driver == null) {
             if (System.getProperty("browser") != null)
                 type = BrowserType.valueOf(System.getProperty("browser").toUpperCase());
             else type = BrowserType.CHROME;
