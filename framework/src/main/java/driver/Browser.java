@@ -1,13 +1,14 @@
 package driver;
 
-import enums.BrowserType;
 import constants.Timeout;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.opera.OperaDriver;
+
 import java.util.concurrent.TimeUnit;
+
 import static io.github.bonigarcia.wdm.WebDriverManager.*;
 
 
@@ -66,3 +67,17 @@ public class Browser {
     }
 }
 
+enum BrowserType {
+    CHROME("chrome"), FIREFOX("firefox"),
+    EDGE("edge"), OPERA("opera");
+
+    private String name;
+
+    BrowserType(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+}
