@@ -25,7 +25,7 @@ public class CommonConditions {
     public void setUp() {
         driver = Browser.getDriver();
         new SkyScannerHomePage().openPage();
-        if(checkCaptchaOnPage(LOGGER)) {
+        if (checkCaptchaOnPage(LOGGER)) {
             LOGGER.info("Test was skipped, because captcha has appeared");
             throw new SkipException("Test" + "" + "was skipped, because captcha has appeared");
         }

@@ -20,10 +20,10 @@ public class CheckingMaximumValuesForHotelBookingTest extends CommonConditions {
                 .switchToEnglish()
                 .logIn(user)
                 .clickToHostelsTab()
-                    .addDestination(destination)
-                    .increaseRoom(clickQuantity)
-                    .increaseAdult(clickQuantity)
-                    .increaseChild(clickQuantity);
+                .addDestination(destination)
+                .increaseRoom(clickQuantity)
+                .increaseAdult(clickQuantity)
+                .increaseChild(clickQuantity);
 
         softAssert.assertEquals(searchHotelPage.getQuantityRooms(), MAX_ROOMS_QUANTITY);
         softAssert.assertEquals(searchHotelPage.getQuantityAdultPeople(), MAX_ADULT_PEOPLE_QUANTITY);
