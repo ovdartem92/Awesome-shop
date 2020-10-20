@@ -33,4 +33,9 @@ public interface WaitManager {
         Wait<WebDriver> wait = getDefaultWaitConfig();
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locatorPath)));
     }
+
+    static void waitForAllElementsLocatedBy(String locatorPath) {
+        Wait<WebDriver> wait = getDefaultWaitConfig();
+        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath(locatorPath)));
+    }
 }
