@@ -4,7 +4,7 @@ import page.net.skyscanner.SkyScannerHomePage;
 import service.TestDataReader;
 import service.UserBuilder;
 
-public class CheckingPickupAndDropOffLocationsForCarHireSearchResultPage extends  CommonConditions {
+public class CheckingPickupAndDropOffLocationsForCarHireSearchResultPageTest extends  CommonConditions {
 
     @Test
     public void checkingPickupAndDropOffLocations() {
