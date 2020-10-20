@@ -19,17 +19,17 @@ public class TimeoutDataReader {
     public static int getTimeoutValue(DefaultTimeoutValues value) {
         switch (value) {
             case SHORT_TIMEOUT_MILLIS: {
-                if (System.getProperty("timeout").isEmpty())
+                if (System.getProperty("timeout") == null)
                     return SHORT_TIMEOUT_MILLIS.getValue();
                 return Integer.parseInt(TimeoutDataReader.getTimeoutData("timeout.short"));
             }
             case LONG_TIMEOUT_SECONDS: {
-                if (System.getProperty("timeout").isEmpty())
+                if (System.getProperty("timeout") == null)
                     return LONG_TIMEOUT_SECONDS.getValue();
                 return Integer.parseInt(TimeoutDataReader.getTimeoutData("timeout.long"));
             }
             case DEFAULT_TIMEOUT_SECONDS: {
-                if (System.getProperty("timeout").isEmpty())
+                if (System.getProperty("timeout") == null)
                     return DEFAULT_TIMEOUT_SECONDS.getValue();
                 return Integer.parseInt(TimeoutDataReader.getTimeoutData("timeout.default"));
             }

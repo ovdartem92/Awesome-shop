@@ -9,6 +9,7 @@ import lombok.Data;
 @AllArgsConstructor(access = AccessLevel.PUBLIC)
 @Builder(toBuilder = true)
 public class User {
+
     private String email;
     private String password;
 }

@@ -9,6 +9,7 @@ public class LogInWithValidDataTest extends CommonConditions {
     @Test
     public void logInWithValidData() {
         new SkyScannerHomePage()
+                .switchToEnglish()
                 .logIn(user = UserBuilder.getUserWithValidPassword());
         softAssert.assertEquals(true, isElementVisibleBy("//span[text()='Account']"));
     }
