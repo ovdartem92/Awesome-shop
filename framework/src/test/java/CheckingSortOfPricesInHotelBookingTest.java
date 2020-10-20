@@ -7,13 +7,13 @@ public class CheckingSortOfPricesInHotelBookingTest extends CommonConditions {
 
     @Test
     public void checkingMaximumValues() {
-        String destination = "Turin";
+        String destination = "Moscow";
         user = UserBuilder.getUserWithValidPassword();
 
         SkyScannerHotelResultPage resultPage  = new SkyScannerHomePage()
                 .openPage()
                 .switchToEnglish()
-                .logIn(user)
+                //.logIn(user)
                 .clickToHostelsTab()
                     .addDestination(destination)
                     .clickToSearchHotelsButton()

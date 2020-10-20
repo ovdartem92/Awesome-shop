@@ -7,8 +7,6 @@ import page.AbstractPage;
 import service.TestDataReader;
 import java.util.List;
 
-
-
 public class SkyScannerFlightsResultsPage extends AbstractPage {
 
     private static final By CURRENCY_SETUP_BUTTON = By.xpath("//li[@id='culture-info']//button");

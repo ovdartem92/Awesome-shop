@@ -6,34 +6,30 @@ import org.openqa.selenium.WebElement;
 
 public interface ActionManager {
 
-    static WebElement getElementBy(By locator) {
-        return Browser.getDriver().findElement(locator);
+    static WebElement getElementBy(String locatorPath) {
+        return Browser.getDriver().findElement(By.xpath(locatorPath));
     }
 
-    static void clickOnElementBy(By locator) {
-        if (WaitManager.isElementVisibleBy(locator))
-            getElementBy(locator).click();
+    static void clickOnElementBy(String locatorPath) {
+        if (WaitManager.isElementVisibleBy(locatorPath))
+            getElementBy(locatorPath).click();
     }
 
-    static String getTextOnElementBy(By locator) {
-        String text = "";
-        if (WaitManager.isElementVisibleBy(locator))
-            text = getElementBy(locator).getText();
-        return text;
+    static String getTextOnElementBy(String locatorPath) {
+        return WaitManager.isElementVisibleBy(locatorPath) ? getElementBy(locatorPath).getText() : null;
     }
 
-    static String getAttributeValueOnElementBy(By locator, String attribute) {
-        String text = "";
-        if (WaitManager.isElementVisibleBy(locator))
-            text = getElementBy(locator).getAttribute(attribute);
-        return text;
+    static String getAttributeValueOnElementBy(String locatorPath, String attribute) {
+        return WaitManager.isElementVisibleBy(locatorPath) ? getElementBy(locatorPath).getAttribute(attribute) : null;
     }
 
-    static void typeTextToElementBy(By locator, String text) {
-        if (WaitManager.isElementVisibleBy(locator)) {
-            WebElement element = getElementBy(locator);
+    static void typeTextToElementBy(String locatorPath, String text) {
+        if (WaitManager.isElementVisibleBy(locatorPath)) {
+            WebElement element = getElementBy(locatorPath);
             element.clear();
             element.sendKeys(text);
         }
     }
+
+
 }

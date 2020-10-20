@@ -19,18 +19,18 @@ public interface WaitManager {
                 .ignoring(StaleElementReferenceException.class);
     }
 
-    static boolean isElementVisibleBy(By locator) {
+    static boolean isElementVisibleBy(String locatorPath) {
         Wait<WebDriver> wait = getDefaultWaitConfig();
         try {
-            wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locatorPath)));
             return true;
         } catch (TimeoutException e) {
             return false;
         }
     }
 
-    static void waitForElementLocatedBy(By locator) {
+    static void waitForElementLocatedBy(String locatorPath) {
         Wait<WebDriver> wait = getDefaultWaitConfig();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locatorPath)));
     }
 }
