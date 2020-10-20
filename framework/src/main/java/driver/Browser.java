@@ -12,46 +12,45 @@ import java.util.concurrent.TimeUnit;
 import static io.github.bonigarcia.wdm.WebDriverManager.*;
 
 public class Browser {
-
-    private static WebDriver driver;
+    private static final ThreadLocal<WebDriver> DRIVER = new ThreadLocal<>();
 
     private Browser() {
     }
 
     public static WebDriver getDriver() {
         BrowserType type;
-        if (driver == null) {
+        if (DRIVER.get() == null) {
             if (System.getProperty("browser") != null)
                 type = BrowserType.valueOf(System.getProperty("browser").toUpperCase());
             else type = BrowserType.CHROME;
             switch (type) {
                 case FIREFOX: {
                     firefoxdriver().setup();
-                    driver = new FirefoxDriver();
-                    configureDriver(driver);
+                    DRIVER.set(new FirefoxDriver());
+                    configureDriver(DRIVER.get());
                     break;
                 }
                 case EDGE: {
                     edgedriver().setup();
-                    driver = new EdgeDriver();
-                    configureDriver(driver);
+                    DRIVER.set(new EdgeDriver());
+                    configureDriver(DRIVER.get());
                     break;
                 }
                 case OPERA: {
                     operadriver().setup();
-                    driver = new OperaDriver();
-                    configureDriver(driver);
+                    DRIVER.set(new OperaDriver());
+                    configureDriver(DRIVER.get());
                     break;
                 }
                 case CHROME: {
                     chromedriver().setup();
-                    driver = new ChromeDriver();
-                    configureDriver(driver);
+                    DRIVER.set(new ChromeDriver());
+                    configureDriver(DRIVER.get());
                     break;
                 }
             }
         }
-        return driver;
+        return DRIVER.get();
     }
 
     private static void configureDriver(WebDriver driver) {
@@ -61,11 +60,11 @@ public class Browser {
     }
 
     public static void closeDriver() {
-        for (String handle : driver.getWindowHandles()) {
-            driver.switchTo().window(handle);
-            driver.close();
+        for (String handle : DRIVER.get().getWindowHandles()) {
+            DRIVER.get().switchTo().window(handle);
+            DRIVER.get().close();
         }
-        driver = null;
+        DRIVER.set(null);
     }
 
     enum BrowserType {
