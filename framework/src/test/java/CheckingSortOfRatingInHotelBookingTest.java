@@ -10,14 +10,14 @@ public class CheckingSortOfRatingInHotelBookingTest extends CommonConditions {
         String destination = "Moscow";
         user = UserBuilder.getUserWithValidPassword();
 
-        SkyScannerHotelResultPage resultPage  = new SkyScannerHomePage()
+        SkyScannerHotelResultPage resultPage = new SkyScannerHomePage()
                 .openPage()
                 .switchToEnglish()
                 .logIn(user)
                 .clickToHostelsTab()
-                    .addDestination(destination)
-                    .clickToSearchHotelsButton()
-                        .clickToGuestRattingSortButton();
+                .addDestination(destination)
+                .clickToSearchHotelsButton()
+                .clickToGuestRattingSortButton();
 
         softAssert.assertEquals(resultPage.isHotelsSortedByRating(), true);
     }

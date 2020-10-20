@@ -1,4 +1,3 @@
-import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 import page.net.skyscanner.SkyScannerHomePage;
 import service.UserBuilder;
@@ -11,6 +10,6 @@ public class LogInWithValidDataTest extends CommonConditions {
     public void logInWithValidData() {
         new SkyScannerHomePage()
                 .logIn(user = UserBuilder.getUserWithValidPassword());
-        softAssert.assertEquals(true, isElementVisibleBy(By.xpath("//span[text()='Account']")));
+        softAssert.assertEquals(true, isElementVisibleBy("//span[text()='Account']"));
     }
 }

@@ -7,9 +7,10 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.opera.OperaDriver;
-import java.util.concurrent.TimeUnit;
-import static io.github.bonigarcia.wdm.WebDriverManager.*;
 
+import java.util.concurrent.TimeUnit;
+
+import static io.github.bonigarcia.wdm.WebDriverManager.*;
 
 public class Browser {
 
