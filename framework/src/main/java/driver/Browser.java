@@ -12,45 +12,43 @@ import java.util.concurrent.TimeUnit;
 import static io.github.bonigarcia.wdm.WebDriverManager.*;
 
 public class Browser {
+
     private static WebDriver driver;
 
     private Browser() {
     }
 
     public static WebDriver getDriver() {
+        BrowserType type;
         if (null == driver) {
-            if (System.getProperty("browser") != null) {
-                BrowserType type = BrowserType.valueOf(System.getProperty("browser").toUpperCase());
-                switch (type) {
-                    case FIREFOX: {
-                        firefoxdriver().setup();
-                        driver = new FirefoxDriver();
-                        configureDriver(driver);
-                        break;
-                    }
-                    case EDGE: {
-                        edgedriver().setup();
-                        driver = new EdgeDriver();
-                        configureDriver(driver);
-                        break;
-                    }
-                    case OPERA: {
-                        operadriver().setup();
-                        driver = new OperaDriver();
-                        configureDriver(driver);
-                        break;
-                    }
-                    case CHROME: {
-                        chromedriver().setup();
-                        driver = new ChromeDriver();
-                        configureDriver(driver);
-                        break;
-                    }
+            if (System.getProperty("browser") != null)
+                type = BrowserType.valueOf(System.getProperty("browser").toUpperCase());
+            else type = BrowserType.CHROME;
+            switch (type) {
+                case FIREFOX: {
+                    firefoxdriver().setup();
+                    driver = new FirefoxDriver();
+                    configureDriver(driver);
+                    break;
                 }
-            } else {
-                chromedriver().setup();
-                driver = new ChromeDriver();
-                configureDriver(driver);
+                case EDGE: {
+                    edgedriver().setup();
+                    driver = new EdgeDriver();
+                    configureDriver(driver);
+                    break;
+                }
+                case OPERA: {
+                    operadriver().setup();
+                    driver = new OperaDriver();
+                    configureDriver(driver);
+                    break;
+                }
+                case CHROME: {
+                    chromedriver().setup();
+                    driver = new ChromeDriver();
+                    configureDriver(driver);
+                    break;
+                }
             }
         }
         return driver;
@@ -69,18 +67,18 @@ public class Browser {
         }
         driver = null;
     }
-}
 
-enum BrowserType {
-    CHROME("chrome"), FIREFOX("firefox"),
-    EDGE("edge"), OPERA("opera");
-    private String name;
+    enum BrowserType {
+        CHROME("chrome"), FIREFOX("firefox"),
+        EDGE("edge"), OPERA("opera");
+        private String name;
 
-    BrowserType(String name) {
-        this.name = name;
-    }
+        BrowserType(String name) {
+            this.name = name;
+        }
 
-    public String getName() {
-        return name;
+        public String getName() {
+            return name;
+        }
     }
 }
