@@ -2,6 +2,7 @@ package page.net.skyscanner.hotel;
 
 import page.AbstractPage;
 import page.net.skyscanner.SkyScannerCarSearchPage;
+
 import static service.ActionManager.*;
 
 public class SkyScannerSearchHotelPage extends AbstractPage {

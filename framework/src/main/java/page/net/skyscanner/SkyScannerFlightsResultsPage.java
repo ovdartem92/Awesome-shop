@@ -4,9 +4,7 @@ import constants.Currency;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import page.AbstractPage;
-
 import java.util.List;
-
 import static service.ActionManager.*;
 import static service.WaitManager.*;
 
