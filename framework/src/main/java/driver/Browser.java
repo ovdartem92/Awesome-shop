@@ -18,33 +18,39 @@ public class Browser {
     }
 
     public static WebDriver getDriver() {
-        BrowserType type = BrowserType.valueOf(System.getProperty("browser").toUpperCase());
         if (null == driver) {
-            switch (type) {
-                case FIREFOX: {
-                    firefoxdriver().setup();
-                    driver = new FirefoxDriver();
-                    configureDriver(driver);
-                    break;
+            if (System.getProperty("browser") != null) {
+                BrowserType type = BrowserType.valueOf(System.getProperty("browser").toUpperCase());
+                switch (type) {
+                    case FIREFOX: {
+                        firefoxdriver().setup();
+                        driver = new FirefoxDriver();
+                        configureDriver(driver);
+                        break;
+                    }
+                    case EDGE: {
+                        edgedriver().setup();
+                        driver = new EdgeDriver();
+                        configureDriver(driver);
+                        break;
+                    }
+                    case OPERA: {
+                        operadriver().setup();
+                        driver = new OperaDriver();
+                        configureDriver(driver);
+                        break;
+                    }
+                    case CHROME: {
+                        chromedriver().setup();
+                        driver = new ChromeDriver();
+                        configureDriver(driver);
+                        break;
+                    }
                 }
-                case EDGE: {
-                    edgedriver().setup();
-                    driver = new EdgeDriver();
-                    configureDriver(driver);
-                    break;
-                }
-                case OPERA: {
-                    operadriver().setup();
-                    driver = new OperaDriver();
-                    configureDriver(driver);
-                    break;
-                }
-                default: {
-                    chromedriver().setup();
-                    driver = new ChromeDriver();
-                    configureDriver(driver);
-                    break;
-                }
+            } else {
+                chromedriver().setup();
+                driver = new ChromeDriver();
+                configureDriver(driver);
             }
         }
         return driver;
