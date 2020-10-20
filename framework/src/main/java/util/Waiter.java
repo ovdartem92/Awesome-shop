@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface Waiter {
 
-    static WebElement waitForElementLocatedBy(WebDriver driver, By by) {
+    static WebElement waitForElementLcatedBy(WebDriver driver, By by) {
         return new WebDriverWait(driver, 10)
                 .until(ExpectedConditions.presenceOfElementLocated(by));
     }

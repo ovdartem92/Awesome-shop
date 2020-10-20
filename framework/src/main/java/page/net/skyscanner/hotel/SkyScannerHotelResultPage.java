@@ -9,7 +9,7 @@ import java.util.List;
 
 import static service.ActionManager.clickOnElementBy;
 import static service.ActionManager.getTextOnElementBy;
-import static util.Waiter.waitForElementLocatedBy;
+import static util.Waiter.waitForElementLcatedBy;
 
 public class SkyScannerHotelResultPage extends AbstractPage {
 
@@ -108,12 +108,12 @@ public class SkyScannerHotelResultPage extends AbstractPage {
     }
 
     public List<WebElement> getElementsByLocator(By by) {
-        waitForElementLocatedBy(driver, by);
+        waitForElementLcatedBy(driver, by);
         return driver.findElements(by);
     }
 
     public int getQuantityOfWebElementsOnPage(By by) {
-        waitForElementLocatedBy(driver, by);
+        waitForElementLcatedBy(driver, by);
         List<WebElement> elements = driver.findElements(by);
         return elements.size();
     }
