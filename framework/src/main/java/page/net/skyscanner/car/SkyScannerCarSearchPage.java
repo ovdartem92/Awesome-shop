@@ -1,4 +1,4 @@
-package page.net.skyscanner;
+package page.net.skyscanner.car;
 
 import page.AbstractPage;
 import static service.ActionManager.*;

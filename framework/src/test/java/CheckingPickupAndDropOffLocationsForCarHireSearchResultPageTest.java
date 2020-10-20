@@ -1,5 +1,5 @@
 import org.testng.annotations.Test;
-import page.net.skyscanner.SkyScannerCarSearchResultPage;
+import page.net.skyscanner.car.SkyScannerCarSearchResultPage;
 import page.net.skyscanner.SkyScannerHomePage;
 import service.TestDataReader;
 import service.UserBuilder;

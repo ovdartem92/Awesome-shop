@@ -2,6 +2,7 @@ package page.net.skyscanner;
 
 import model.User;
 import page.AbstractPage;
+import page.net.skyscanner.car.SkyScannerCarSearchPage;
 import page.net.skyscanner.help.SkyScannerHelpPage;
 import page.net.skyscanner.hotel.SkyScannerSearchHotelPage;
 import static service.ActionManager.*;
