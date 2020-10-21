@@ -1,7 +1,7 @@
 package page.net.skyscanner.hotel;
 
 import page.AbstractPage;
-import page.net.skyscanner.SkyScannerCarSearchPage;
+import page.net.skyscanner.car.SkyScannerCarSearchPage;
 
 import static service.ActionManager.*;
 

@@ -2,6 +2,8 @@ package page.net.skyscanner;
 
 import model.User;
 import page.AbstractPage;
+import page.net.skyscanner.car.SkyScannerCarSearchPage;
+import page.net.skyscanner.help.SkyScannerHelpPage;
 import page.net.skyscanner.hotel.SkyScannerSearchHotelPage;
 import static service.ActionManager.*;
 import static util.CaptchaMethod.*;
@@ -22,6 +24,7 @@ public class SkyScannerHomePage extends AbstractPage {
     private static final String ACCOUNT_DETECTED_BUTTON_PATH = "//button[@data-testid='account-detection-button']";
     private static final String SECOND_LOG_IN_BUTTON_PATH = "//button[@data-testid='login-button']";
     private static final String CLOSE_MODAL_LOGIN_WINDOW_BUTTON_PATH = "//button[@title='Close modal']";
+    private static final String HELP_LINK_PATH = "//a[@id='ss-footer-links-faq']";
 
     // Tab WebElements.
     private static final String FLIGHTS_TAB_PATH = "//nav[@id='PrimaryNav']//span[contains(text(), 'Flights')]";
@@ -74,6 +77,11 @@ public class SkyScannerHomePage extends AbstractPage {
     public SkyScannerProfilePage openProfilePage() {
         clickOnElementBy(ACCOUNT_BUTTON_PATH);
         return new SkyScannerProfilePage();
+    }
+
+    public SkyScannerHelpPage clickToHelpLink() {
+        clickOnElementBy(HELP_LINK_PATH);
+        return new SkyScannerHelpPage();
     }
 
     public String getTextFromFlightsButton() {

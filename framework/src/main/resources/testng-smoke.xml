@@ -3,7 +3,7 @@
 <suite name="Smoke" verbose="1" >
     <test name="Smoke"   >
         <classes>
-            <class name="CheckingSortOfPricesInHotelBookingTest" />
+            <class name="ChangeCurrencyTest" />
         </classes>
     </test>
 </suite>

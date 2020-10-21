@@ -4,10 +4,16 @@ import driver.Browser;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import java.util.List;
+
 public interface ActionManager {
 
     static WebElement getElementBy(String locatorPath) {
         return Browser.getDriver().findElement(By.xpath(locatorPath));
+    }
+
+    static List<WebElement> getElementsBy(String locatorPath) {
+        return Browser.getDriver().findElements(By.xpath(locatorPath));
     }
 
     static void clickOnElementBy(String locatorPath) {
