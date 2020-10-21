@@ -14,4 +14,6 @@ public abstract class AbstractPage {
     }
 
     public static Logger logger = LogManager.getRootLogger();
+
+    public abstract AbstractPage openPage();
 }
