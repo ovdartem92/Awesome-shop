@@ -13,4 +13,9 @@ public class VipCarsReserveYourCarPage extends AbstractPage {
         waitForElementLocatedBy(TOTAL_RENTAL_PRICE);
         return getTextOnElementBy(TOTAL_RENTAL_PRICE);
     }
+
+    @Override
+    public AbstractPage openPage() {
+        return null;
+    }
 }

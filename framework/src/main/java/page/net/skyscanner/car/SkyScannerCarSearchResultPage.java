@@ -34,4 +34,9 @@ public class SkyScannerCarSearchResultPage extends AbstractPage {
         clickOnElementBy(CAR_HIRE_DEAL_BUTTON_PATH);
         return new VipCarsChooseYourCarPage();
     }
+
+    @Override
+    public AbstractPage openPage() {
+        return null;
+    }
 }

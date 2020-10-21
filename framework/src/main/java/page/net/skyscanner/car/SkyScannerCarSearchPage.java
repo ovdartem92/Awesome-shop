@@ -47,4 +47,9 @@ public class SkyScannerCarSearchPage extends AbstractPage {
     public String getTextFromCarHeader() {
         return getElementBy(CAR_HEADER_PATH).getText();
     }
+
+    @Override
+    public AbstractPage openPage() {
+        return null;
+    }
 }

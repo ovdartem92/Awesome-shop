@@ -22,4 +22,9 @@ public class SkyScannerHelpPage extends AbstractPage {
         clickOnElementBy(SEARCH_BUTTON_PATH);
         return new SkyScannerHelpSearchResultsPage();
     }
+
+    @Override
+    public AbstractPage openPage() {
+        return null;
+    }
 }
