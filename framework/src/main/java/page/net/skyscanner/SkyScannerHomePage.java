@@ -32,11 +32,6 @@ public class SkyScannerHomePage extends AbstractPage {
     private static final String CAR_HIRE_TAB_PATH = "//a[@id='carhi']";
     private static final String SEARCH_FLIGHTS_BUTTON_PATH = "//button[text()='Search flights']";
 
-    public SkyScannerHomePage openPage() {
-        driver.get(HOMEPAGE_URL);
-        return this;
-    }
-
     public SkyScannerHomePage logIn(User user) {
         clickOnElementBy(LOG_IN_BUTTON_PATH);
         clickOnElementBy(NEXT_BUTTON_PATH);
@@ -102,5 +97,11 @@ public class SkyScannerHomePage extends AbstractPage {
 
     public static String getHomepageUrl() {
         return HOMEPAGE_URL;
+    }
+
+    @Override
+    public SkyScannerHomePage openPage() {
+        driver.get(HOMEPAGE_URL);
+        return this;
     }
 }

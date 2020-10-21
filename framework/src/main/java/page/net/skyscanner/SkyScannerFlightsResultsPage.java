@@ -30,4 +30,9 @@ public class SkyScannerFlightsResultsPage extends AbstractPage {
         waitForAllElementsLocatedBy(FLIGHTS_PRISES_SPAN);
         return driver.findElements(By.xpath(FLIGHTS_PRISES_SPAN));
     }
+
+    @Override
+    public AbstractPage openPage() {
+        return null;
+    }
 }

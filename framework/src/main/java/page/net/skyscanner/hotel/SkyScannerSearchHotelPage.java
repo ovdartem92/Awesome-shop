@@ -1,5 +1,6 @@
 package page.net.skyscanner.hotel;
 
+import org.openqa.selenium.Keys;
 import page.AbstractPage;
 import page.net.skyscanner.car.SkyScannerCarSearchPage;
 
@@ -98,6 +99,8 @@ public class SkyScannerSearchHotelPage extends AbstractPage {
     }
 
     public SkyScannerHotelResultPage clickToSearchHotelsButton() {
+        typeKeysToElementBy(DESTINATION_OR_HOSTEL_NAME_INPUT_PATH, Keys.ENTER);
+        clickOnElementBy(DESTINATION_OR_HOSTEL_NAME_INPUT_PATH);
         clickOnElementBy(SEARCH_HOTELS_BUTTON_PATH);
         logger.info("Clicked on SEARCH_HOTELS_BUTTON");
         return new SkyScannerHotelResultPage();
@@ -105,5 +108,10 @@ public class SkyScannerSearchHotelPage extends AbstractPage {
 
     public String getTextFromHotelButton() {
         return getTextOnElementBy(SEARCH_HOTEL_BUTTON_PATH);
+    }
+
+    @Override
+    public AbstractPage openPage() {
+        return null;
     }
 }

@@ -11,4 +11,9 @@ public class SkyScannerProfilePage extends AbstractPage {
         clickOnElementBy(ACCOUNT_FIELD_PATH);
         return this;
     }
+
+    @Override
+    public AbstractPage openPage() {
+        return null;
+    }
 }
