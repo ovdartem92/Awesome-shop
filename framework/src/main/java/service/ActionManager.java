@@ -46,5 +46,4 @@ public interface ActionManager {
             }
         }
     }
-
 }

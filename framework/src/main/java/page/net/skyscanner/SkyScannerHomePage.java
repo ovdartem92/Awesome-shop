@@ -5,6 +5,7 @@ import page.AbstractPage;
 import page.net.skyscanner.car.SkyScannerCarSearchPage;
 import page.net.skyscanner.help.SkyScannerHelpPage;
 import page.net.skyscanner.hotel.SkyScannerSearchHotelPage;
+
 import static service.ActionManager.*;
 import static util.CaptchaMethod.*;
 
@@ -26,7 +27,6 @@ public class SkyScannerHomePage extends AbstractPage {
     private static final String CLOSE_MODAL_LOGIN_WINDOW_BUTTON_PATH = "//button[@title='Close modal']";
     private static final String HELP_LINK_PATH = "//a[@id='ss-footer-links-faq']";
 
-    // Tab WebElements.
     private static final String FLIGHTS_TAB_PATH = "//nav[@id='PrimaryNav']//span[contains(text(), 'Flights')]";
     private static final String HOTEL_TAB_PATH = "//nav[@id='PrimaryNav']//span[contains(text(), 'Hotels')]";
     private static final String CAR_HIRE_TAB_PATH = "//a[@id='carhi']";
@@ -45,7 +45,6 @@ public class SkyScannerHomePage extends AbstractPage {
         return this;
     }
 
-    // Click to tabs.
     public SkyScannerSearchHotelPage clickToHostelsTab() {
         clickOnElementBy(HOTEL_TAB_PATH);
         logger.info(("Clicked on HOSTEL_TAB"));

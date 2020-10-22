@@ -1,6 +1,7 @@
 package page.net.skyscanner;
 
 import page.AbstractPage;
+
 import static service.ActionManager.clickOnElementBy;
 
 public class SkyScannerProfilePage extends AbstractPage {
