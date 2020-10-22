@@ -24,13 +24,13 @@ public interface ActionManager {
     }
 
     static String getTextOnElementBy(String locatorPath) {
-        if(!WaitManager.isElementVisibleBy(locatorPath))
+        if (!WaitManager.isElementVisibleBy(locatorPath))
             throw new NoSuchElementException(String.format("There is no element with a locator %s on the page.", locatorPath));
         return getElementBy(locatorPath).getText();
     }
 
     static String getAttributeValueOnElementBy(String locatorPath, String attribute) {
-        if(!WaitManager.isElementVisibleBy(locatorPath))
+        if (!WaitManager.isElementVisibleBy(locatorPath))
             throw new NoSuchElementException(String.format("There is no element with a locator %s on the page.", locatorPath));
         return getElementBy(locatorPath).getAttribute(attribute);
     }

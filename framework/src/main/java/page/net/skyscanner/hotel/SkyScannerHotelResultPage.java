@@ -4,13 +4,14 @@ import model.Hotel;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import page.AbstractPage;
+
 import java.util.List;
+
 import static service.ActionManager.clickOnElementBy;
 import static service.ActionManager.getTextOnElementBy;
 import static service.WaitManager.waitForElementLocatedBy;
 
 public class SkyScannerHotelResultPage extends AbstractPage {
-
     private final static String SEARCH_SUMMARY_PATH = "//p[@data-test-id='search-summary']";
     private final static String GUEST_RATING_SORT_BUTTON_PATH = "//button/span[contains(text(), 'Guest rating')]";
     private final static String PRICE_SORT_BUTTON_PATH = "//button/span[contains(text(), 'Price')]";

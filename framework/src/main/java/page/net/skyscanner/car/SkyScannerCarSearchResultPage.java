@@ -9,7 +9,6 @@ import static service.ActionManager.*;
 import static service.WaitManager.*;
 
 public class SkyScannerCarSearchResultPage extends AbstractPage {
-
     private static final String CAR_SEARCH_SUMMARY_ROUTE_PATH = "//div[@id='carhire-search-summary-route']";
     private static final String CAR_HIRE_DEAL_BUTTON_PATH = "//button[@id='carhire-deal-button']";
     private static final String CAR_GROUP_PANEL = "//section[@id='car-group-panel']";

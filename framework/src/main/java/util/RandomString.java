@@ -3,7 +3,6 @@ package util;
 import java.security.SecureRandom;
 
 public interface RandomString {
-
     String CHAR_LOWER = "abcdefghijklmnopqrstuvwxyz1234567890";
     String CHAR_UPPER = CHAR_LOWER.toUpperCase();
     String DATA_FOR_NEW_STRING = CHAR_LOWER + CHAR_UPPER;

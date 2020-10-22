@@ -5,16 +5,16 @@ import page.net.skyscanner.SkyScannerProfilePage;
 import service.UserBuilder;
 
 public class CheckYourEmailAfterLogInTest extends BaseTest {
-    SoftAssert softAssert = new SoftAssert();
 
     @Test
     public void checkYourEmail() {
+        SoftAssert softAssert = new SoftAssert();
         new SkyScannerHomePage()
                 .logIn(user = UserBuilder.getUserWithValidPassword())
                 .openProfilePage();
-        SkyScannerProfilePage skyScannerProfilePage = new SkyScannerProfilePage()
+        new SkyScannerProfilePage()
                 .switchToEnglish()
                 .clickOnAccountField();
-        softAssert.assertEquals(user.getEmail(), skyScannerProfilePage.returnUserEmail(user));
+        softAssert.assertEquals(user.getEmail(), new SkyScannerProfilePage().returnUserEmail(user));
     }
 }

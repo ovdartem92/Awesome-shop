@@ -4,7 +4,7 @@ import page.net.skyscanner.SkyScannerHomePage;
 import page.net.skyscanner.hotel.SkyScannerHotelResultPage;
 import service.UserBuilder;
 
-public class CheckingSortOfRatingInHotelBookingTest extends BaseTest {
+public class CheckSortOfRatingInHotelBookingTest extends BaseTest {
 
     @Test
     public void checkingMaximumValues() {

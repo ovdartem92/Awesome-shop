@@ -12,8 +12,7 @@ import org.apache.logging.log4j.Logger;
 import static util.CaptchaMethod.checkCaptchaOnPage;
 
 @Listeners({TestListener.class})
-public class BaseTest {
-
+public abstract class BaseTest {
     protected WebDriver driver;
     protected User user;
     private Logger LOGGER = LogManager.getRootLogger();

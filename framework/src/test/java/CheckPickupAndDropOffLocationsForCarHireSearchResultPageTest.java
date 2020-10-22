@@ -5,7 +5,7 @@ import page.net.skyscanner.SkyScannerHomePage;
 import service.TestDataReader;
 import service.UserBuilder;
 
-public class CheckingPickupAndDropOffLocationsForCarHireSearchResultPageTest extends BaseTest {
+public class CheckPickupAndDropOffLocationsForCarHireSearchResultPageTest extends BaseTest {
 
     @Test
     public void checkingPickupAndDropOffLocations() {

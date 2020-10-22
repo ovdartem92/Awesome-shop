@@ -4,12 +4,12 @@ import page.net.skyscanner.SkyScannerHomePage;
 import service.UserBuilder;
 
 public class CheckLogInWithValidDataTest extends BaseTest {
-    SoftAssert softAssert = new SoftAssert();
 
     @Test
     public void logInWithValidData() {
-        SkyScannerHomePage skyScannerHomePage = new SkyScannerHomePage()
+        SoftAssert softAssert = new SoftAssert();
+        new SkyScannerHomePage()
                 .logIn(user = UserBuilder.getUserWithValidPassword());
-        softAssert.assertEquals(true, skyScannerHomePage.isAccountButtonActive());
+        softAssert.assertEquals(true, new SkyScannerHomePage().isAccountButtonActive());
     }
 }

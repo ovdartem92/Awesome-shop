@@ -7,7 +7,6 @@ import page.net.skyscanner.car.SkyScannerCarSearchPage;
 import static service.ActionManager.*;
 
 public class SkyScannerSearchHotelPage extends AbstractPage {
-
     private static final String DESTINATION_OR_HOSTEL_NAME_INPUT_PATH = "//input[@name='destination-autosuggest']";
     private static final String HOSTEL_CHECK_IN_INPUT_PATH = "//input[@id='checkin']";
     private static final String HOSTEL_CHECK_OUT_INPUT_PATH = "//input[@id='checkout']";

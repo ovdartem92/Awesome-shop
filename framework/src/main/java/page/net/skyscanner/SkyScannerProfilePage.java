@@ -4,10 +4,8 @@ import model.User;
 import page.AbstractPage;
 
 import static service.ActionManager.*;
-import static service.WaitManager.isElementVisibleBy;
 
 public class SkyScannerProfilePage extends AbstractPage {
-
     private static final String ACCOUNT_FIELD_PATH = "//span[contains(text(), 'Account')]";
     private static final String LANGUAGE_PATH = "//li[@id='culture-info']//div/span";
     private static final String LANGUAGES_SELECT_PATH = "//select[@name='locale']";
@@ -40,9 +38,8 @@ public class SkyScannerProfilePage extends AbstractPage {
     }
 
     public String returnUserEmail(User user) {
-        return getElementBy(String.format("//span[contains(text(), '%s')]", user.getEmail())).toString();
+        return getElementBy(String.format(ACCOUNT_FIELD_PATH, user.getEmail())).toString();
     }
-
 
     @Override
     public AbstractPage openPage() {

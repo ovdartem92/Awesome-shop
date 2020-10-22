@@ -8,7 +8,6 @@ import java.util.List;
 import static service.ActionManager.getElementsBy;
 
 public class VipCarsChooseYourCarPage extends AbstractPage {
-
     private static final String CAR_PRISE = "//span[@class='scv-new-amount']";
     private static final String SELECT_BUTTON = "//button[@class='scv-select']";
 

@@ -4,7 +4,6 @@ import org.testng.asserts.SoftAssert;
 import page.net.skyscanner.SkyScannerHomePage;
 
 public class CheckFirstTest extends BaseTest {
-    SoftAssert softAssert = new SoftAssert();
 
     @Test
     public void ourFirstTest() {

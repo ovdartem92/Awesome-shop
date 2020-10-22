@@ -11,7 +11,6 @@ import static service.ActionManager.*;
 import static service.WaitManager.*;
 
 public class SkyScannerFlightsResultsPage extends AbstractPage {
-
     private static final String CURRENCY_SETUP_BUTTON = "//li[@id='culture-info']//button";
     private static final String CURRENCY_SELECT = "//select[@id='culture-selector-currency']";
     private static final String SAVE_CURRENCY_SETUP_BUTTON = "//button[@id='culture-selector-save']";

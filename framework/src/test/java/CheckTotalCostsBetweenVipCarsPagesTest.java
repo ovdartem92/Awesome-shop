@@ -4,10 +4,10 @@ import page.net.skyscanner.SkyScannerHomePage;
 import page.net.skyscanner.car.VipCarsChooseYourCarPage;
 import page.net.skyscanner.car.VipCarsReserveYourCarPage;
 
-public class CheckingTotalCostsBetweenVipCarsPages extends BaseTest {
+public class CheckTotalCostsBetweenVipCarsPagesTest extends BaseTest {
 
     @Test
-    public void compareCostBetweenVipCarsChoosePageAndVipCarsReservePage (){
+    public void compareCostBetweenVipCarsChoosePageAndVipCarsReservePage() {
         String pickUpLocation = "Moscow Sheremetyevo (SVO)";
         int numberOfListsElement = 1;
 
@@ -28,7 +28,7 @@ public class CheckingTotalCostsBetweenVipCarsPages extends BaseTest {
                 .clickOnSelectButton()
                 .clickOnSelectButton(numberOfListsElement);
 
-        Assert.assertEquals(reserveYourCarPage.getTotalRentalPrice(), chooseYourCarPage.getCarPriseFromElementOfList(numberOfListsElement) );
+        Assert.assertEquals(reserveYourCarPage.getTotalRentalPrice(), chooseYourCarPage.getCarPriseFromElementOfList(numberOfListsElement));
 
     }
 }

@@ -6,7 +6,6 @@ import static service.ActionManager.*;
 import static service.WaitManager.*;
 
 public class SkyScannerHelpPage extends AbstractPage {
-
     private static final String SEARCH_AREA_FIELD_PATH = "//input[@id='query']";
     private static final String SEARCH_BUTTON_PATH = "//button[@value='Search']";
 

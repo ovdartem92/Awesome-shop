@@ -12,7 +12,6 @@ import static service.WaitManager.waitForElementLocatedBy;
 import static util.CaptchaMethod.*;
 
 public class SkyScannerHomePage extends AbstractPage {
-
     private static final String HOMEPAGE_URL = "https://www.skyscanner.net/";
     private static final String LOG_IN_BUTTON_PATH = "//span[text()='Log in']";
     private static final String ACCOUNT_BUTTON_PATH = "//*[@id='login-button-nav-item']/button";
