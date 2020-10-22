@@ -4,12 +4,11 @@ import service.UserBuilder;
 
 import static service.WaitManager.isElementVisibleBy;
 
-public class LogInWithValidDataTest extends CommonConditions {
+public class LogInWithValidDataTest extends BaseTest {
 
     @Test
     public void logInWithValidData() {
         new SkyScannerHomePage()
-                .switchToEnglish()
                 .logIn(user = UserBuilder.getUserWithValidPassword());
         softAssert.assertEquals(true, isElementVisibleBy("//span[text()='Account']"));
     }

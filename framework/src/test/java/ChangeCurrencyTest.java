@@ -6,7 +6,7 @@ import page.net.skyscanner.SkyScannerHomePage;
 
 import java.util.ArrayList;
 
-public class ChangeCurrencyTest extends CommonConditions {
+public class ChangeCurrencyTest extends BaseTest {
     @Test
     public void checkCurrencyChangeTest() {
         ArrayList<WebElement> prices = (ArrayList<WebElement>) new SkyScannerHomePage().startFlightsSearch().selectCurrency().getCurrencies();

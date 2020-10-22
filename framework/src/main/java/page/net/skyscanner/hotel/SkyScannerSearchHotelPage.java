@@ -41,7 +41,6 @@ public class SkyScannerSearchHotelPage extends AbstractPage {
 
     public SkyScannerCarSearchPage clickToCarHireTab() {
         clickOnElementBy(CAR_HIRE_TAB_PATH);
-        logger.info(("Clicked on CAR_HIRE_TAB"));
         return new SkyScannerCarSearchPage();
     }
 
@@ -102,7 +101,6 @@ public class SkyScannerSearchHotelPage extends AbstractPage {
         typeKeysToElementBy(DESTINATION_OR_HOSTEL_NAME_INPUT_PATH, Keys.ENTER);
         clickOnElementBy(DESTINATION_OR_HOSTEL_NAME_INPUT_PATH);
         clickOnElementBy(SEARCH_HOTELS_BUTTON_PATH);
-        logger.info("Clicked on SEARCH_HOTELS_BUTTON");
         return new SkyScannerHotelResultPage();
     }
 

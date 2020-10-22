@@ -3,7 +3,7 @@ import page.net.skyscanner.SkyScannerHomePage;
 import page.net.skyscanner.hotel.SkyScannerHotelResultPage;
 import service.UserBuilder;
 
-public class CheckingSortOfPricesInHotelBookingTest extends CommonConditions {
+public class CheckingSortOfPricesInHotelBookingTest extends BaseTest {
 
     @Test
     public void checkingMaximumValues() {

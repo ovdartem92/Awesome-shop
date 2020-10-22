@@ -14,7 +14,7 @@ public interface WaitManager {
     static Wait<WebDriver> getDefaultWaitConfig() {
         return new FluentWait<>(Browser.getDriver())
                 .withTimeout(Duration.ofSeconds(Timeout.DEFAULT_TIMEOUT_SECONDS))
-                .pollingEvery(Duration.ofMillis(Timeout.SHORT_TIMEOUT_MILLIS))
+                .pollingEvery(Duration.ofSeconds(Timeout.SHORT_TIMEOUT_SECONDS))
                 .ignoring(NoSuchElementException.class)
                 .ignoring(StaleElementReferenceException.class);
     }

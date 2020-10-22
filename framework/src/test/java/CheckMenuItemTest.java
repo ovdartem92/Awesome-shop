@@ -2,7 +2,7 @@ import org.testng.annotations.Test;
 import page.net.skyscanner.SkyScannerHomePage;
 import page.net.skyscanner.hotel.SkyScannerSearchHotelPage;
 
-public class CheckMenuItemTest extends CommonConditions {
+public class CheckMenuItemTest extends BaseTest {
 
     @Test
     public void checkMenuItems() {

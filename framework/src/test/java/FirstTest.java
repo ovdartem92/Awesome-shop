@@ -1,7 +1,7 @@
 import org.testng.annotations.Test;
 import page.net.skyscanner.SkyScannerHomePage;
 
-public class FirstTest extends CommonConditions {
+public class FirstTest extends BaseTest {
 
     @Test
     public void ourFirstTest() {

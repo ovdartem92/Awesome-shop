@@ -3,14 +3,39 @@ package page.net.skyscanner;
 import page.AbstractPage;
 
 import static service.ActionManager.clickOnElementBy;
+import static service.ActionManager.getTextOnElementBy;
 
 public class SkyScannerProfilePage extends AbstractPage {
 
-    private static final String ACCOUNT_FIELD_PATH = "//span[@class='BpkText_bpk-text__Pt0NU BpkText_bpk-text--xs__2OIqg Menu_MenuItem__subtitle__2dCg3']";
+    private static final String ACCOUNT_FIELD_PATH = "//span[contains(text(), 'Account')]";
+    private static final String LANGUAGE_PATH = "//li[@id='culture-info']//div/span";
+    private static final String LANGUAGES_SELECT_PATH = "//select[@name='locale']";
+    private static final String ENGLISH_LANGUAGE_OPTION_PATH = "//select[@name='locale']//option[@value='en-US']";
+    private static final String CULTURE_SAVE_BUTTON_PATH = "//button[@id='culture-selector-save']";
+    private static final String LOG_OUT_BUTTON_PATH = "//button[contains(text(), 'Log out')]";
+    private static final String SECOND_LOG_OUT_BUTTON_PATH = "//*[@id='delete-dialog']/div/button[2]";
 
     public SkyScannerProfilePage clickOnAccountField() {
         clickOnElementBy(ACCOUNT_FIELD_PATH);
         return this;
+    }
+
+    public SkyScannerProfilePage switchToEnglish() {
+        String language = getTextOnElementBy(LANGUAGE_PATH);
+
+        if (!language.equals("English (UK)")) {
+            clickOnElementBy(LANGUAGE_PATH);
+            clickOnElementBy(LANGUAGES_SELECT_PATH);
+            clickOnElementBy(ENGLISH_LANGUAGE_OPTION_PATH);
+            clickOnElementBy(CULTURE_SAVE_BUTTON_PATH);
+        }
+        return this;
+    }
+
+    public SkyScannerHomePage logOut() {
+        clickOnElementBy(LOG_OUT_BUTTON_PATH);
+        clickOnElementBy(SECOND_LOG_OUT_BUTTON_PATH);
+        return new SkyScannerHomePage();
     }
 
     @Override

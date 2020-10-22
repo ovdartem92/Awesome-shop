@@ -14,20 +14,19 @@ import org.apache.logging.log4j.Logger;
 import static util.CaptchaMethod.checkCaptchaOnPage;
 
 @Listeners({TestListener.class})
-public class CommonConditions {
+public class BaseTest {
 
     protected WebDriver driver;
     protected User user;
-    protected SoftAssert softAssert = new SoftAssert();
     private Logger LOGGER = LogManager.getRootLogger();
 
     @BeforeMethod()
     public void setUp() {
         driver = Browser.getDriver();
-        new SkyScannerHomePage().openPage();
+        new SkyScannerHomePage().openPage().switchToEnglish();
         if (checkCaptchaOnPage(LOGGER)) {
             LOGGER.info("Test was skipped, because captcha has appeared");
-            throw new SkipException("Test" + "" + "was skipped, because captcha has appeared");
+            throw new SkipException("Test was skipped, because captcha has appeared");
         }
     }
 

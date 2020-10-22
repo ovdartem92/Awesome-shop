@@ -12,7 +12,6 @@ import java.util.concurrent.TimeUnit;
 import static io.github.bonigarcia.wdm.WebDriverManager.*;
 
 public class Browser {
-
     private static final ThreadLocal<WebDriver> DRIVER = new ThreadLocal<>();
 
     private Browser() {

@@ -7,13 +7,15 @@ import page.net.skyscanner.help.SkyScannerHelpPage;
 import page.net.skyscanner.hotel.SkyScannerSearchHotelPage;
 
 import static service.ActionManager.*;
+import static service.WaitManager.waitForElementLocatedBy;
 import static util.CaptchaMethod.*;
 
 public class SkyScannerHomePage extends AbstractPage {
 
     private static final String HOMEPAGE_URL = "https://www.skyscanner.net/";
     private static final String LOG_IN_BUTTON_PATH = "//span[text()='Log in']";
-    private static final String ACCOUNT_BUTTON_PATH = "//span[text()='Account']";
+    private static final String ACCOUNT_BUTTON_PATH = "//*[@id='login-button-nav-item']/button";
+    private static final String MARKETING_CONSENT_BUTTON_PATH = "//button[@data-testid='btn-marketing-consent-cta']";
     private static final String LANGUAGE_PATH = "//li[@id='culture-info']//div/span";
     private static final String LANGUAGES_SELECT_PATH = "//select[@name='locale']";
     private static final String ENGLISH_LANGUAGE_OPTION_PATH = "//select[@name='locale']//option[@value='en-US']";
@@ -26,7 +28,6 @@ public class SkyScannerHomePage extends AbstractPage {
     private static final String SECOND_LOG_IN_BUTTON_PATH = "//button[@data-testid='login-button']";
     private static final String CLOSE_MODAL_LOGIN_WINDOW_BUTTON_PATH = "//button[@title='Close modal']";
     private static final String HELP_LINK_PATH = "//a[@id='ss-footer-links-faq']";
-
     private static final String FLIGHTS_TAB_PATH = "//nav[@id='PrimaryNav']//span[contains(text(), 'Flights')]";
     private static final String HOTEL_TAB_PATH = "//nav[@id='PrimaryNav']//span[contains(text(), 'Hotels')]";
     private static final String CAR_HIRE_TAB_PATH = "//a[@id='carhi']";
@@ -40,6 +41,7 @@ public class SkyScannerHomePage extends AbstractPage {
         clickOnElementBy(ACCOUNT_DETECTED_BUTTON_PATH);
         typeTextToElementBy(PASSWORD_FIELD_PATH, user.getPassword());
         clickOnElementBy(SECOND_LOG_IN_BUTTON_PATH);
+        waitForElementLocatedBy(MARKETING_CONSENT_BUTTON_PATH);
         clickOnElementBy(CLOSE_MODAL_LOGIN_WINDOW_BUTTON_PATH);
         checkCaptchaOnPage(logger);
         return this;
@@ -47,19 +49,16 @@ public class SkyScannerHomePage extends AbstractPage {
 
     public SkyScannerSearchHotelPage clickToHostelsTab() {
         clickOnElementBy(HOTEL_TAB_PATH);
-        logger.info(("Clicked on HOSTEL_TAB"));
         return new SkyScannerSearchHotelPage();
     }
 
     public SkyScannerHomePage clickToFlightsTab() {
         clickOnElementBy(FLIGHTS_TAB_PATH);
-        logger.info(("Clicked on FLIGHTS_TAB"));
         return this;
     }
 
     public SkyScannerCarSearchPage clickToCarHireTab() {
         clickOnElementBy(CAR_HIRE_TAB_PATH);
-        logger.info(("Clicked on CAR_HIRE_TAB"));
         return new SkyScannerCarSearchPage();
     }
 

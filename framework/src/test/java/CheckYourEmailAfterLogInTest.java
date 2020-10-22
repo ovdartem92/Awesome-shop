@@ -2,18 +2,17 @@ import org.testng.annotations.Test;
 import page.net.skyscanner.SkyScannerHomePage;
 import service.UserBuilder;
 
-import static service.WaitManager.isElementVisibleBy;
+import static service.ActionManager.getElementBy;
 
-public class CheckYourEmailAfterLogInTest extends CommonConditions {
+public class CheckYourEmailAfterLogInTest extends BaseTest {
 
     @Test
     public void checkYourEmail() {
-        user = UserBuilder.getUserWithValidPassword();
         new SkyScannerHomePage()
-                .switchToEnglish()
-                .logIn(user)
+                .logIn(user = UserBuilder.getUserWithValidPassword())
                 .openProfilePage()
+                .switchToEnglish()
                 .clickOnAccountField();
-        softAssert.assertEquals(user.getPassword(), isElementVisibleBy("//span[@class='BpkText_bpk-text__Pt0NU BpkText_bpk-text--xl__3cUZL SectionItem_SectionItem__text__1utHx']"));
+        softAssert.assertEquals(user.getEmail(), getElementBy(String.format("//span[contains(text(), '%s')]", user.getEmail())).toString());
     }
 }

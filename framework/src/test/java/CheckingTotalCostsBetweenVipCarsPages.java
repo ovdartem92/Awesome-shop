@@ -3,7 +3,7 @@ import page.net.skyscanner.SkyScannerHomePage;
 import page.net.skyscanner.car.VipCarsChooseYourCarPage;
 import page.net.skyscanner.car.VipCarsReserveYourCarPage;
 
-public class CheckingTotalCostsBetweenVipCarsPages extends CommonConditions{
+public class CheckingTotalCostsBetweenVipCarsPages extends BaseTest {
 
     @Test
     public void compareCostBetweenVipCarsChoosePageAndVipCarsReservePage (){
