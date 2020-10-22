@@ -1,3 +1,4 @@
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import page.net.skyscanner.SkyScannerHomePage;
 import page.net.skyscanner.hotel.SkyScannerSearchHotelPage;
@@ -25,8 +26,8 @@ public class CheckingMaximumValuesForHotelBookingTest extends BaseTest {
                 .increaseAdult(clickQuantity)
                 .increaseChild(clickQuantity);
 
-        softAssert.assertEquals(searchHotelPage.getQuantityRooms(), MAX_ROOMS_QUANTITY);
-        softAssert.assertEquals(searchHotelPage.getQuantityAdultPeople(), MAX_ADULT_PEOPLE_QUANTITY);
-        softAssert.assertEquals(searchHotelPage.getQuantityChildren(), MAX_CHILDREN_QUANTITY);
+        Assert.assertEquals(searchHotelPage.getQuantityRooms(), MAX_ROOMS_QUANTITY);
+        Assert.assertEquals(searchHotelPage.getQuantityAdultPeople(), MAX_ADULT_PEOPLE_QUANTITY);
+        Assert.assertEquals(searchHotelPage.getQuantityChildren(), MAX_CHILDREN_QUANTITY);
     }
 }

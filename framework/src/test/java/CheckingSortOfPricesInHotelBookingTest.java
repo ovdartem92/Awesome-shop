@@ -1,3 +1,4 @@
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import page.net.skyscanner.SkyScannerHomePage;
 import page.net.skyscanner.hotel.SkyScannerHotelResultPage;
@@ -19,6 +20,6 @@ public class CheckingSortOfPricesInHotelBookingTest extends BaseTest {
                 .clickToSearchHotelsButton()
                 .clickToPriceSortButton();
 
-        softAssert.assertEquals(resultPage.isHotelsSortedByPrice(), true);
+        Assert.assertEquals(resultPage.isHotelsSortedByPrice(), true);
     }
 }

@@ -1,3 +1,4 @@
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import page.net.skyscanner.car.SkyScannerCarSearchResultPage;
 import page.net.skyscanner.SkyScannerHomePage;
@@ -13,7 +14,6 @@ public class CheckingPickupAndDropOffLocationsForCarHireSearchResultPageTest ext
         user = UserBuilder.getUserWithValidPassword();
 
         SkyScannerCarSearchResultPage skyScannerCarSearchResultPage = new SkyScannerHomePage()
-                .openPage()
                 .switchToEnglish()
                 .logIn(user)
                 .clickToCarHireTab().setUpPickUpLocation(pickUpLocation)
@@ -21,7 +21,7 @@ public class CheckingPickupAndDropOffLocationsForCarHireSearchResultPageTest ext
                 .setUpDropOffLocation(TestDataReader.getTestData(dropOffLocation))
                 .clickSearchButton();
 
-        softAssert.assertEquals(dropOffLocation, skyScannerCarSearchResultPage.getInfoAboutDropOffLocationFromSummary());
-        softAssert.assertEquals(pickUpLocation, skyScannerCarSearchResultPage.getInfoAboutPickUpLocationFromSummary());
+        Assert.assertEquals(dropOffLocation, skyScannerCarSearchResultPage.getInfoAboutDropOffLocationFromSummary());
+        Assert.assertEquals(pickUpLocation, skyScannerCarSearchResultPage.getInfoAboutPickUpLocationFromSummary());
     }
 }

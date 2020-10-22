@@ -1,3 +1,4 @@
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import page.net.skyscanner.SkyScannerHomePage;
 import page.net.skyscanner.car.VipCarsChooseYourCarPage;
@@ -27,7 +28,7 @@ public class CheckingTotalCostsBetweenVipCarsPages extends BaseTest {
                 .clickOnSelectButton()
                 .clickOnSelectButton(numberOfListsElement);
 
-        softAssert.assertEquals(reserveYourCarPage.getTotalRentalPrice(), chooseYourCarPage.getCarPriseFromElementOfList(numberOfListsElement) );
+        Assert.assertEquals(reserveYourCarPage.getTotalRentalPrice(), chooseYourCarPage.getCarPriseFromElementOfList(numberOfListsElement) );
 
     }
 }

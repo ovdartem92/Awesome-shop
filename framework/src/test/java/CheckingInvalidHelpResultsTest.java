@@ -1,4 +1,5 @@
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import page.net.skyscanner.SkyScannerHomePage;
 import page.net.skyscanner.help.SkyScannerHelpSearchResultsPage;
@@ -14,6 +15,6 @@ public class CheckingInvalidHelpResultsTest extends BaseTest {
                 .sendTextToSearchArea(searchData)
                 .clickOnSearchButton();
 
-        softAssert.assertEquals(resultsPage.isSearchResultInvalid(), true);
+        Assert.assertEquals(resultsPage.isSearchResultInvalid(), true);
     }
 }

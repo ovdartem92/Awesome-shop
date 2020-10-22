@@ -1,3 +1,4 @@
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import page.net.skyscanner.SkyScannerHomePage;
 import service.UserBuilder;
@@ -10,6 +11,6 @@ public class LogInWithInvalidDataTest extends BaseTest {
     public void logInWithInvalidData() {
         new SkyScannerHomePage()
                 .logIn(user = UserBuilder.getUserWithInvalidPassword());
-        softAssert.assertEquals(true, isElementVisibleBy("//span[text()='Log in']"));
+        Assert.assertEquals(true, isElementVisibleBy("//span[text()='Log in']"));
     }
 }

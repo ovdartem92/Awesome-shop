@@ -1,3 +1,4 @@
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import page.net.skyscanner.SkyScannerHomePage;
 import service.UserBuilder;
@@ -13,6 +14,6 @@ public class CheckYourEmailAfterLogInTest extends BaseTest {
                 .openProfilePage()
                 .switchToEnglish()
                 .clickOnAccountField();
-        softAssert.assertEquals(user.getEmail(), getElementBy(String.format("//span[contains(text(), '%s')]", user.getEmail())).toString());
+        Assert.assertEquals(user.getEmail(), getElementBy(String.format("//span[contains(text(), '%s')]", user.getEmail())).toString());
     }
 }
