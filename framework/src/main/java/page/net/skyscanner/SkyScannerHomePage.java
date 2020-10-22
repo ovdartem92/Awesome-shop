@@ -54,9 +54,6 @@ public class SkyScannerHomePage extends AbstractPage {
     public boolean isAccountButtonActive() {
         return isElementVisibleBy(ACCOUNT_BUTTON_PATH);
     }
-    public boolean isWrongEmailFieldActive() {
-        return isElementVisibleBy(WRONG_EMAIL_OR_PASSWORD_PATH);
-    }
 
     public boolean isLogInButtonActive() {
         return isElementVisibleBy(LOG_IN_BUTTON_PATH);
