@@ -1,4 +1,4 @@
-#SkyScanner lab2020
+# SkyScanner lab2020
 ## Setup SkyScanner framework
 To run Framework project from command line:
 ```
@@ -10,7 +10,7 @@ Command line pattern:
 ```
 mvn -Dbrowser=${browser} -Dsurefire.suiteXmlFiles=${file.xml} -Denvironment=${environment} -Dtimeout=${timeout} clean test
 ```
-###Every first parameter in the list is the default parameter:
+### Every first parameter in the list is the default parameter:
 * browser
     - chrome 
     - firefox
@@ -25,7 +25,7 @@ mvn -Dbrowser=${browser} -Dsurefire.suiteXmlFiles=${file.xml} -Denvironment=${en
 * timeout
     - timeout 
     
-###Property file values:
+### Property file values:
 * Test data of mail and password for the page login [environment_qa]:
     - testData.email = kebikov1995@mail.ru
     - testData.password= 12344321Qwerty
