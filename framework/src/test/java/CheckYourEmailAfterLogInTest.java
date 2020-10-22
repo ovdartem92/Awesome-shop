@@ -1,19 +1,20 @@
-import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 import page.net.skyscanner.SkyScannerHomePage;
+import page.net.skyscanner.SkyScannerProfilePage;
 import service.UserBuilder;
 
-import static service.ActionManager.getElementBy;
-
 public class CheckYourEmailAfterLogInTest extends BaseTest {
+    SoftAssert softAssert = new SoftAssert();
 
     @Test
     public void checkYourEmail() {
         new SkyScannerHomePage()
                 .logIn(user = UserBuilder.getUserWithValidPassword())
-                .openProfilePage()
+                .openProfilePage();
+        SkyScannerProfilePage skyScannerProfilePage = new SkyScannerProfilePage()
                 .switchToEnglish()
                 .clickOnAccountField();
-        Assert.assertEquals(user.getEmail(), getElementBy(String.format("//span[contains(text(), '%s')]", user.getEmail())).toString());
+        softAssert.assertEquals(user.getEmail(), skyScannerProfilePage.returnUserEmail(user));
     }
 }
