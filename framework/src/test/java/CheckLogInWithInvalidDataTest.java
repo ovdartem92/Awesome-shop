@@ -3,13 +3,13 @@ import org.testng.asserts.SoftAssert;
 import page.net.skyscanner.SkyScannerHomePage;
 import service.UserBuilder;
 
-public class LogInWithValidDataTest extends BaseTest {
+public class CheckLogInWithInvalidDataTest extends BaseTest {
     SoftAssert softAssert = new SoftAssert();
 
     @Test
-    public void logInWithValidData() {
+    public void logInWithInvalidData() {
         SkyScannerHomePage skyScannerHomePage = new SkyScannerHomePage()
-                .logIn(user = UserBuilder.getUserWithValidPassword());
-        softAssert.assertEquals(true, skyScannerHomePage.isAccountButtonActive());
+                .logIn(user = UserBuilder.getUserWithInvalidPassword());
+        softAssert.assertEquals(true, skyScannerHomePage.isLogInButtonActive());
     }
 }

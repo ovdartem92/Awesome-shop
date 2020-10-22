@@ -4,7 +4,7 @@ import page.net.skyscanner.SkyScannerHomePage;
 import page.net.skyscanner.hotel.SkyScannerSearchHotelPage;
 import service.UserBuilder;
 
-public class CheckingMaximumValuesForHotelBookingTest extends BaseTest {
+public class CheckMaximumValuesForHotelBookingTest extends BaseTest {
 
     private final static int MAX_ROOMS_QUANTITY = 5;
     private final static int MAX_ADULT_PEOPLE_QUANTITY = 10;

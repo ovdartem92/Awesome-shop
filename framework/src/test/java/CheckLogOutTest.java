@@ -3,7 +3,7 @@ import org.testng.annotations.Test;
 import page.net.skyscanner.SkyScannerHomePage;
 import service.UserBuilder;
 
-public class LogOutTest extends BaseTest {
+public class CheckLogOutTest extends BaseTest {
 
     @Test
     public void logOut() {

@@ -5,7 +5,7 @@ import page.net.skyscanner.SkyScannerHomePage;
 import page.net.skyscanner.help.SkyScannerHelpSearchResultsPage;
 import static util.RandomString.getRandomString;
 
-public class CheckingInvalidHelpResultsTest extends BaseTest {
+public class CheckInvalidHelpResultsTest extends BaseTest {
 
     @Test
     public void checkInvalidResult (){
