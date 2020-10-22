@@ -1,16 +1,15 @@
-import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 import page.net.skyscanner.SkyScannerHomePage;
 import service.UserBuilder;
 
-import static service.WaitManager.isElementVisibleBy;
-
 public class LogInWithValidDataTest extends BaseTest {
+    SoftAssert softAssert = new SoftAssert();
 
     @Test
     public void logInWithValidData() {
-        new SkyScannerHomePage()
+        SkyScannerHomePage skyScannerHomePage = new SkyScannerHomePage()
                 .logIn(user = UserBuilder.getUserWithValidPassword());
-        Assert.assertEquals(true, isElementVisibleBy("//span[text()='Account']"));
+        softAssert.assertEquals(true, skyScannerHomePage.isAccountButtonActive());
     }
 }
