@@ -2,6 +2,7 @@ package service;
 
 import driver.Browser;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
@@ -37,5 +38,12 @@ public interface ActionManager {
         }
     }
 
-
+    static void typeKeysToElementBy(String locatorPath, Keys... keys) {
+        for (Keys key : keys) {
+            if (WaitManager.isElementVisibleBy(locatorPath)) {
+                WebElement element = getElementBy(locatorPath);
+                element.sendKeys(key);
+            }
+        }
+    }
 }

@@ -4,7 +4,9 @@ import constants.Currency;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import page.AbstractPage;
+
 import java.util.List;
+
 import static service.ActionManager.*;
 import static service.WaitManager.*;
 
@@ -29,5 +31,10 @@ public class SkyScannerFlightsResultsPage extends AbstractPage {
     public List<WebElement> getCurrencies() {
         waitForAllElementsLocatedBy(FLIGHTS_PRISES_SPAN);
         return driver.findElements(By.xpath(FLIGHTS_PRISES_SPAN));
+    }
+
+    @Override
+    public AbstractPage openPage() {
+        return null;
     }
 }

@@ -16,7 +16,6 @@ public class SkyScannerHotelResultPage extends AbstractPage {
     private final static String PRICE_SORT_BUTTON_PATH = "//button/span[contains(text(), 'Price')]";
     private final static String FOUND_HOTEL_NAME_PATH = "//span[@data-test-id='hotel-name']";
     private final static String FOUND_HOTEL_PATH = "//div[@class='HotelCard_HotelCard__reviewSummary__1Rqp3']/span";
-    //private final static String FOUND_HOTEL_PATH = "//div[@class='HotelCard_HotelCard__priceVariant__3dC83']";
 
     private static String FOUND_HOTEL_RATING_WITH_HOTEL_NAME_PATH = "//span[@data-test-id='hotel-name'][contains(text(), '%s')]" +
             "/../following-sibling::div[@class='HotelCard_HotelCard__reviewSummary__1Rqp3']/span";
@@ -73,7 +72,7 @@ public class SkyScannerHotelResultPage extends AbstractPage {
         return answer;
     }
 
-    private List<Hotel> getHotelsList() {
+    public List<Hotel> getHotelsList() {
         List<WebElement> names = getElementsByLocator(FOUND_HOTEL_NAME_PATH);
 
         for (int i = 0; i < names.size(); i++) {
@@ -118,5 +117,10 @@ public class SkyScannerHotelResultPage extends AbstractPage {
 
     public String getPathFromLocator(By by) {
         return by.toString().split(" ")[1].trim();
+    }
+
+    @Override
+    public AbstractPage openPage() {
+        return null;
     }
 }

@@ -1,6 +1,7 @@
 package page.net.skyscanner;
 
 import page.AbstractPage;
+
 import static service.ActionManager.clickOnElementBy;
 
 public class SkyScannerProfilePage extends AbstractPage {
@@ -10,5 +11,10 @@ public class SkyScannerProfilePage extends AbstractPage {
     public SkyScannerProfilePage clickOnAccountField() {
         clickOnElementBy(ACCOUNT_FIELD_PATH);
         return this;
+    }
+
+    @Override
+    public AbstractPage openPage() {
+        return null;
     }
 }
