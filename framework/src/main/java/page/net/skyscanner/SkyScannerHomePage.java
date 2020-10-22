@@ -16,6 +16,7 @@ public class SkyScannerHomePage extends AbstractPage {
     private static final String LOG_IN_BUTTON_PATH = "//span[text()='Log in']";
     private static final String ACCOUNT_BUTTON_PATH = "//*[@id='login-button-nav-item']/button";
     private static final String MARKETING_CONSENT_BUTTON_PATH = "//button[@data-testid='btn-marketing-consent-cta']";
+    private static final String WRONG_EMAIL_OR_PASSWORD_PATH = "//span[text()='Wrong email or password']";
     private static final String LANGUAGE_PATH = "//li[@id='culture-info']//div/span";
     private static final String LANGUAGES_SELECT_PATH = "//select[@name='locale']";
     private static final String ENGLISH_LANGUAGE_OPTION_PATH = "//select[@name='locale']//option[@value='en-US']";
@@ -41,7 +42,10 @@ public class SkyScannerHomePage extends AbstractPage {
         clickOnElementBy(ACCOUNT_DETECTED_BUTTON_PATH);
         typeTextToElementBy(PASSWORD_FIELD_PATH, user.getPassword());
         clickOnElementBy(SECOND_LOG_IN_BUTTON_PATH);
-        waitForElementLocatedBy(MARKETING_CONSENT_BUTTON_PATH);
+        if(!isElementVisibleBy(WRONG_EMAIL_OR_PASSWORD_PATH)){
+            waitForElementLocatedBy(MARKETING_CONSENT_BUTTON_PATH);
+            clickOnElementBy(CLOSE_MODAL_LOGIN_WINDOW_BUTTON_PATH);
+        }
         clickOnElementBy(CLOSE_MODAL_LOGIN_WINDOW_BUTTON_PATH);
         checkCaptchaOnPage(logger);
         return this;
@@ -49,6 +53,9 @@ public class SkyScannerHomePage extends AbstractPage {
 
     public boolean isAccountButtonActive() {
         return isElementVisibleBy(ACCOUNT_BUTTON_PATH);
+    }
+    public boolean isWrongEmailFieldActive() {
+        return isElementVisibleBy(WRONG_EMAIL_OR_PASSWORD_PATH);
     }
 
     public boolean isLogInButtonActive() {
