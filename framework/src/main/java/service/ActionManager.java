@@ -6,6 +6,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public interface ActionManager {
 
@@ -23,11 +24,15 @@ public interface ActionManager {
     }
 
     static String getTextOnElementBy(String locatorPath) {
-        return WaitManager.isElementVisibleBy(locatorPath) ? getElementBy(locatorPath).getText() : null;
+        if(!WaitManager.isElementVisibleBy(locatorPath))
+            throw new NoSuchElementException(String.format("There is no element with a locator %s on the page.", locatorPath));
+        return getElementBy(locatorPath).getText();
     }
 
     static String getAttributeValueOnElementBy(String locatorPath, String attribute) {
-        return WaitManager.isElementVisibleBy(locatorPath) ? getElementBy(locatorPath).getAttribute(attribute) : null;
+        if(!WaitManager.isElementVisibleBy(locatorPath))
+            throw new NoSuchElementException(String.format("There is no element with a locator %s on the page.", locatorPath));
+        return getElementBy(locatorPath).getAttribute(attribute);
     }
 
     static void typeTextToElementBy(String locatorPath, String text) {
