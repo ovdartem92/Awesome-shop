@@ -1,9 +1,10 @@
 package page.net.skyscanner;
 
+import model.User;
 import page.AbstractPage;
 
-import static service.ActionManager.clickOnElementBy;
-import static service.ActionManager.getTextOnElementBy;
+import static service.ActionManager.*;
+import static service.WaitManager.isElementVisibleBy;
 
 public class SkyScannerProfilePage extends AbstractPage {
 
@@ -37,6 +38,11 @@ public class SkyScannerProfilePage extends AbstractPage {
         clickOnElementBy(SECOND_LOG_OUT_BUTTON_PATH);
         return new SkyScannerHomePage();
     }
+
+    public String returnUserEmail(User user) {
+        return getElementBy(String.format("//span[contains(text(), '%s')]", user.getEmail())).toString();
+    }
+
 
     @Override
     public AbstractPage openPage() {

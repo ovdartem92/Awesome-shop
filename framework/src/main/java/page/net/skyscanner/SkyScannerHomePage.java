@@ -7,6 +7,7 @@ import page.net.skyscanner.help.SkyScannerHelpPage;
 import page.net.skyscanner.hotel.SkyScannerSearchHotelPage;
 
 import static service.ActionManager.*;
+import static service.WaitManager.isElementVisibleBy;
 import static service.WaitManager.waitForElementLocatedBy;
 import static util.CaptchaMethod.*;
 
@@ -45,6 +46,14 @@ public class SkyScannerHomePage extends AbstractPage {
         clickOnElementBy(CLOSE_MODAL_LOGIN_WINDOW_BUTTON_PATH);
         checkCaptchaOnPage(logger);
         return this;
+    }
+
+    public boolean isAccountButtonActive() {
+        return isElementVisibleBy(ACCOUNT_BUTTON_PATH);
+    }
+
+    public boolean isLogInButtonActive() {
+        return isElementVisibleBy(LOG_IN_BUTTON_PATH);
     }
 
     public SkyScannerSearchHotelPage clickToHostelsTab() {
