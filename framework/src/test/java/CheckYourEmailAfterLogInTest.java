@@ -9,6 +9,7 @@ public class CheckYourEmailAfterLogInTest extends BaseTest {
     @Test
     public void checkYourEmail() {
         new SkyScannerHomePage()
+                .getHeader()
                 .logIn(user = UserBuilder.getUserWithValidPassword())
                 .openProfilePage()
                 .switchToEnglish()

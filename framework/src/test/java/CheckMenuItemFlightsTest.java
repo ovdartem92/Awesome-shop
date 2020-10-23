@@ -7,6 +7,6 @@ public class CheckMenuItemFlightsTest extends BaseTest {
 
     @Test
     public void checkMenuItemsFlights() {
-        assertEquals(new SkyScannerHomePage().clickToFlightsTab().getTextFromFlightsButton(), "Search flights");
+        assertEquals(new SkyScannerHomePage().getHeader().clickToFlightsTab().getTextFromFlightsButton(), "Search flights");
     }
 }

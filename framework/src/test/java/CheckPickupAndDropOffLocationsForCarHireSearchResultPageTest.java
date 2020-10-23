@@ -13,8 +13,10 @@ public class CheckPickupAndDropOffLocationsForCarHireSearchResultPageTest extend
         user = UserBuilder.getUserWithValidPassword();
 
         SkyScannerCarSearchResultPage skyScannerCarSearchResultPage = new SkyScannerHomePage()
+                .getHeader()
                 .switchToEnglish()
                 .logIn(user)
+                .getHeader()
                 .clickToCarHireTab().setUpPickUpLocation(Constants.MOSCOW_SHEREMETYEVO_SVO)
                 .choiceReturnCarToADifferentLocation()
                 .setUpDropOffLocation(TestDataReader.getTestData(Constants.MOSCOW_VNUKOVO_VKO))

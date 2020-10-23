@@ -7,6 +7,6 @@ public class CheckMenuItemCarTest extends BaseTest {
 
     @Test
     public void checkMenuItemsHotel() {
-        assertEquals(new SkyScannerHomePage().clickToCarHireTab().getTextFromCarHeader(), "Find your ride");
+        assertEquals(new SkyScannerHomePage().getHeader().clickToCarHireTab().getTextFromCarHeader(), "Find your ride");
     }
 }

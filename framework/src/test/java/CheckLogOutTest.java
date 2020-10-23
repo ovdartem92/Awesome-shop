@@ -8,10 +8,12 @@ public class CheckLogOutTest extends BaseTest {
     @Test
     public void logOut() {
         new SkyScannerHomePage()
+                .getHeader()
                 .logIn(user = UserBuilder.getUserWithValidPassword())
+                .getHeader()
                 .openProfilePage()
                 .switchToEnglish()
                 .logOut();
-        Assert.assertTrue(new SkyScannerHomePage().isLogInButtonActive(), "Element not found, you are not logged out");
+        Assert.assertTrue(new SkyScannerHomePage().getHeader().isLogInButtonActive(), "Element not found, you are not logged out");
     }
 }
