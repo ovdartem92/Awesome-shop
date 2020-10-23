@@ -26,12 +26,12 @@ public class Header extends AbstractPage {
     private static final String SECOND_LOG_IN_BUTTON_PATH = "//button[@data-testid='login-button']";
     private static final String CLOSE_MODAL_LOGIN_WINDOW_BUTTON_PATH = "//button[@title='Close modal']";
     private static final String HELP_LINK_PATH = "//a[@id='ss-footer-links-faq']";
-    public static final String LANGUAGE_PATH = "//li[@id='culture-info']//div/span";
-    public static final String LANGUAGES_SELECT_PATH = "//select[@name='locale']";
-    public static final String ENGLISH_LANGUAGE_OPTION_PATH = "//select[@name='locale']//option[@value='en-US']";
-    public static final String HOTEL_TAB_PATH = "//nav[@id='PrimaryNav']//span[contains(text(), 'Hotels')]";
-    public static final String CAR_HIRE_TAB_PATH = "//a[@id='carhi']";
-    public static final String FLIGHTS_TAB_PATH = "//nav[@id='PrimaryNav']//span[contains(text(), 'Flights')]";
+    private static final String LANGUAGE_PATH = "//li[@id='culture-info']//div/span";
+    private static final String LANGUAGES_SELECT_PATH = "//select[@name='locale']";
+    private static final String ENGLISH_LANGUAGE_OPTION_PATH = "//select[@name='locale']//option[@value='en-US']";
+    private static final String HOTEL_TAB_PATH = "//nav[@id='PrimaryNav']//span[contains(text(), 'Hotels')]";
+    private static final String CAR_HIRE_TAB_PATH = "//a[@id='carhi']";
+    private static final String FLIGHTS_TAB_PATH = "//nav[@id='PrimaryNav']//span[contains(text(), 'Flights')]";
 
 
     public Header logIn(User user) {
