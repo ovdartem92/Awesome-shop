@@ -55,4 +55,18 @@ public interface ActionManager {
             throw new NoSuchElementException(String.format("There is no element with a locator %s on the page.", locatorPath));
         }
     }
+
+    static void typeInFieldWithDelay(String xpath, String value){
+        WebElement element = getElementBy(xpath);
+        String[] letters = value.split("");
+
+        for (String letter : letters) {
+            try {
+                element.sendKeys(letter);
+                Thread.sleep(200);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }
