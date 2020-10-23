@@ -4,9 +4,11 @@ import model.User;
 import page.AbstractPage;
 
 import static service.ActionManager.*;
+import static service.WaitManager.isElementVisibleBy;
 
 public class SkyScannerProfilePage extends AbstractPage {
     private static final String ACCOUNT_FIELD_PATH = "//span[contains(text(), 'Account')]";
+    private static final String EMAIL_FIELD_PATH = "//span[contains(text(), '%s')]";
     private static final String LANGUAGE_PATH = "//li[@id='culture-info']//div/span";
     private static final String LANGUAGES_SELECT_PATH = "//select[@name='locale']";
     private static final String ENGLISH_LANGUAGE_OPTION_PATH = "//select[@name='locale']//option[@value='en-US']";
@@ -37,7 +39,7 @@ public class SkyScannerProfilePage extends AbstractPage {
         return new SkyScannerHomePage();
     }
 
-    public String findAndGetUserEmail(User user) {
-        return getElementBy(String.format(ACCOUNT_FIELD_PATH, user.getEmail())).toString();
+    public Boolean findAndGetUserEmail(User user) {
+        return isElementVisibleBy(String.format(EMAIL_FIELD_PATH, user.getEmail()));
     }
 }
