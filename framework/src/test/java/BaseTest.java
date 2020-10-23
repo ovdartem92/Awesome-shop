@@ -20,8 +20,7 @@ public abstract class BaseTest {
     @BeforeMethod()
     public void setUp() {
         driver = Browser.getDriver();
-        new SkyScannerHomePage()
-                .openPage();
+        driver.get(SkyScannerHomePage.getHomepageUrl());
         checkCaptchaOnPage(LOGGER);
         new SkyScannerHomePage().switchToEnglish();
     }

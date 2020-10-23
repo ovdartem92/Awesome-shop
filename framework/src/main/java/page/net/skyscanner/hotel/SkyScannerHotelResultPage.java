@@ -1,5 +1,6 @@
 package page.net.skyscanner.hotel;
 
+import driver.Browser;
 import model.Hotel;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -89,8 +90,8 @@ public class SkyScannerHotelResultPage extends AbstractPage {
 
     private double getHotelRatingsByHotelName(String name) {
         By by = By.xpath(String.format(FOUND_HOTEL_RATING_WITH_HOTEL_NAME_PATH, name));
-        if (driver.findElements(by).size() > 0) {
-            return Double.parseDouble(driver.findElement(by).getText());
+        if (Browser.getDriver().findElements(by).size() > 0) {
+            return Double.parseDouble(Browser.getDriver().findElement(by).getText());
         } else {
             return -1d;
         }
@@ -98,8 +99,8 @@ public class SkyScannerHotelResultPage extends AbstractPage {
 
     private int getHotelPriceByHotelName(String name) {
         By by = By.xpath(String.format(FOUND_HOTEL_PRICE_WITH_HOTEL_NAME_PATH, name));
-        if (driver.findElements(by).size() > 0) {
-            return Integer.parseInt(driver.findElement(by).getText().split("[^0-9]+")[1]);
+        if (Browser.getDriver().findElements(by).size() > 0) {
+            return Integer.parseInt(Browser.getDriver().findElement(by).getText().split("[^0-9]+")[1]);
         } else {
             return -1;
         }
@@ -107,21 +108,16 @@ public class SkyScannerHotelResultPage extends AbstractPage {
 
     public List<WebElement> getElementsByLocator(String string) {
         waitForElementLocatedBy(string);
-        return driver.findElements(By.xpath(string));
+        return Browser.getDriver().findElements(By.xpath(string));
     }
 
     public int getQuantityOfWebElementsOnPage(String string) {
         waitForElementLocatedBy(string);
-        List<WebElement> elements = driver.findElements(By.xpath(string));
+        List<WebElement> elements = Browser.getDriver().findElements(By.xpath(string));
         return elements.size();
     }
 
     public String getPathFromLocator(By by) {
         return by.toString().split(" ")[1].trim();
-    }
-
-    @Override
-    public AbstractPage openPage() {
-        return null;
     }
 }

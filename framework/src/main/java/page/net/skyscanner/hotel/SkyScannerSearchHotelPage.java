@@ -106,9 +106,4 @@ public class SkyScannerSearchHotelPage extends AbstractPage {
     public String getTextFromHotelButton() {
         return getTextOnElementBy(SEARCH_HOTEL_BUTTON_PATH);
     }
-
-    @Override
-    public AbstractPage openPage() {
-        return null;
-    }
 }

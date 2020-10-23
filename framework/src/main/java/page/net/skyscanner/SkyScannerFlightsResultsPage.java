@@ -1,6 +1,7 @@
 package page.net.skyscanner;
 
 import constants.Currency;
+import driver.Browser;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import page.AbstractPage;
@@ -29,11 +30,6 @@ public class SkyScannerFlightsResultsPage extends AbstractPage {
 
     public List<WebElement> getCurrencies() {
         waitForAllElementsLocatedBy(FLIGHTS_PRISES_SPAN);
-        return driver.findElements(By.xpath(FLIGHTS_PRISES_SPAN));
-    }
-
-    @Override
-    public AbstractPage openPage() {
-        return null;
+        return Browser.getDriver().findElements(By.xpath(FLIGHTS_PRISES_SPAN));
     }
 }

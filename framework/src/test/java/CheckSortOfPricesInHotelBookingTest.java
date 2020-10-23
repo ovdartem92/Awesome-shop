@@ -12,7 +12,6 @@ public class CheckSortOfPricesInHotelBookingTest extends BaseTest {
         user = UserBuilder.getUserWithValidPassword();
 
         SkyScannerHotelResultPage resultPage = new SkyScannerHomePage()
-                .openPage()
                 .switchToEnglish()
                 //.logIn(user)
                 .clickToHostelsTab()

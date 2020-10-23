@@ -11,7 +11,6 @@ import page.net.skyscanner.hotel.SkyScannerSearchHotelPage;
 import static service.ActionManager.clickOnElementBy;
 
 public abstract class AbstractPage {
-    protected WebDriver driver;
     protected static final String LANGUAGE_PATH = "//li[@id='culture-info']//div/span";
     protected static final String LANGUAGES_SELECT_PATH = "//select[@name='locale']";
     protected static final String ENGLISH_LANGUAGE_OPTION_PATH = "//select[@name='locale']//option[@value='en-US']";
@@ -20,14 +19,7 @@ public abstract class AbstractPage {
     protected static final String CAR_HIRE_TAB_PATH = "//a[@id='carhi']";
     protected static final String SEARCH_FLIGHTS_BUTTON_PATH = "//button[text()='Search flights']";
     protected static final String FLIGHTS_TAB_PATH = "//nav[@id='PrimaryNav']//span[contains(text(), 'Flights')]";
-
-    public AbstractPage() {
-        this.driver = Browser.getDriver();
-    }
-
     public static Logger logger = LogManager.getRootLogger();
-
-    public abstract AbstractPage openPage();
 
     public SkyScannerSearchHotelPage clickToHostelsTab() {
         clickOnElementBy(HOTEL_TAB_PATH);

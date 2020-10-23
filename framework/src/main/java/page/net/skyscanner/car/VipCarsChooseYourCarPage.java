@@ -22,9 +22,4 @@ public class VipCarsChooseYourCarPage extends AbstractPage {
         buttonsList.get(numberOfButton).click();
         return new VipCarsReserveYourCarPage();
     }
-
-    @Override
-    public AbstractPage openPage() {
-        return null;
-    }
 }

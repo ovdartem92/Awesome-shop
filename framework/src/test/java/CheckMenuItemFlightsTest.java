@@ -3,7 +3,7 @@ import page.net.skyscanner.SkyScannerHomePage;
 
 import static org.testng.Assert.assertEquals;
 
-public class CheckMenuItemFlightsTest {
+public class CheckMenuItemFlightsTest extends BaseTest {
 
     @Test
     public void checkMenuItemsFlights() {

@@ -10,9 +10,4 @@ public class SkyScannerHelpSearchResultsPage extends AbstractPage {
     public boolean isSearchResultInvalid() {
         return isElementVisibleBy(SEARCH_NO_RESULTS_HEADER_PATH);
     }
-
-    @Override
-    public AbstractPage openPage() {
-        return null;
-    }
 }

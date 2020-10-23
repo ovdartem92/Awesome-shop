@@ -6,6 +6,7 @@ import static service.ActionManager.*;
 import static service.WaitManager.*;
 
 public class SkyScannerCarSearchPage extends AbstractPage {
+
     private static final String CAR_HEADER_PATH = "//div[@class='SearchControls_search-controls-title__27T3N']";
     private static final String PICKUP_LOCATION_PATH = "//input[@id='carhire-search-controls-location-pick-up']";
     private static final String DROP_OFF_LOCATION_PATH = "//input[@id='carhire-search-controls-location-drop-off']";
@@ -45,10 +46,5 @@ public class SkyScannerCarSearchPage extends AbstractPage {
 
     public String getTextFromCarHeader() {
         return getElementBy(CAR_HEADER_PATH).getText();
-    }
-
-    @Override
-    public AbstractPage openPage() {
-        return null;
     }
 }

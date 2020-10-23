@@ -42,7 +42,7 @@ public class SkyScannerHomePage extends AbstractPage {
         clickOnElementBy(ACCOUNT_DETECTED_BUTTON_PATH);
         typeTextToElementBy(PASSWORD_FIELD_PATH, user.getPassword());
         clickOnElementBy(SECOND_LOG_IN_BUTTON_PATH);
-        if(!isElementVisibleBy(WRONG_EMAIL_OR_PASSWORD_PATH)){
+        if (!isElementVisibleBy(WRONG_EMAIL_OR_PASSWORD_PATH)) {
             waitForElementLocatedBy(MARKETING_CONSENT_BUTTON_PATH);
             clickOnElementBy(CLOSE_MODAL_LOGIN_WINDOW_BUTTON_PATH);
         }
@@ -107,11 +107,5 @@ public class SkyScannerHomePage extends AbstractPage {
 
     public static String getHomepageUrl() {
         return HOMEPAGE_URL;
-    }
-
-    @Override
-    public SkyScannerHomePage openPage() {
-        driver.get(HOMEPAGE_URL);
-        return this;
     }
 }

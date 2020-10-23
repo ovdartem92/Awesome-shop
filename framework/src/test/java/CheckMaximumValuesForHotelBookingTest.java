@@ -16,7 +16,6 @@ public class CheckMaximumValuesForHotelBookingTest extends BaseTest {
         user = UserBuilder.getUserWithValidPassword();
 
         SkyScannerSearchHotelPage searchHotelPage = new SkyScannerHomePage()
-                .openPage()
                 .switchToEnglish()
                 .logIn(user)
                 .clickToHostelsTab()

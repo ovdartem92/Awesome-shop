@@ -9,6 +9,7 @@ public class CheckLogInWithInvalidDataTest extends BaseTest {
     @Test
     public void logInWithInvalidData() {
         new SkyScannerHomePage()
+                .switchToEnglish()
                 .logIn(user = UserBuilder.getUserWithInvalidPassword());
         Assert.assertTrue(new SkyScannerHomePage().isLogInButtonActive(), "Something wrong");
     }

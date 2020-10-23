@@ -12,7 +12,7 @@ public class CheckTotalCostsBetweenVipCarsPagesTest extends BaseTest {
         int numberOfListsElement = 1;
 
         VipCarsChooseYourCarPage chooseYourCarPage = new SkyScannerHomePage()
-                .openPage()
+//                .openPage()
                 .clickToCarHireTab()
                 .setUpPickUpLocation(pickUpLocation)
                 .clickSearchButton()
@@ -20,7 +20,7 @@ public class CheckTotalCostsBetweenVipCarsPagesTest extends BaseTest {
                 .clickOnSelectButton();
 
         VipCarsReserveYourCarPage reserveYourCarPage = new SkyScannerHomePage()
-                .openPage()
+//                .openPage()
                 .clickToCarHireTab()
                 .setUpPickUpLocation(pickUpLocation)
                 .clickSearchButton()
