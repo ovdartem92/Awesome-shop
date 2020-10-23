@@ -1,9 +1,6 @@
 package page;
-
-import driver.Browser;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.WebDriver;
 import page.net.skyscanner.SkyScannerHomePage;
 import page.net.skyscanner.car.SkyScannerCarSearchPage;
 import page.net.skyscanner.hotel.SkyScannerSearchHotelPage;

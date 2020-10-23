@@ -9,6 +9,7 @@ import page.net.skyscanner.SkyScannerHomePage;
 import util.TestListener;
 import org.apache.logging.log4j.Logger;
 
+import static driver.Browser.openPage;
 import static util.CaptchaMethod.checkCaptchaOnPage;
 
 @Listeners({TestListener.class})
@@ -20,7 +21,7 @@ public abstract class BaseTest {
     @BeforeMethod()
     public void setUp() {
         driver = Browser.getDriver();
-        driver.get(SkyScannerHomePage.getHomepageUrl());
+        openPage((SkyScannerHomePage.getHomepageUrl()));
         checkCaptchaOnPage(LOGGER);
         new SkyScannerHomePage().switchToEnglish();
     }

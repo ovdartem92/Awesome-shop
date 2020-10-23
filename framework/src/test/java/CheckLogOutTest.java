@@ -8,7 +8,6 @@ public class CheckLogOutTest extends BaseTest {
     @Test
     public void logOut() {
         new SkyScannerHomePage()
-                .switchToEnglish()
                 .logIn(user = UserBuilder.getUserWithValidPassword())
                 .openProfilePage()
                 .switchToEnglish()
