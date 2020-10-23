@@ -40,15 +40,19 @@ public interface ActionManager {
             WebElement element = getElementBy(locatorPath);
             element.clear();
             element.sendKeys(text);
+        } else {
+            throw new NoSuchElementException(String.format("There is no element with a locator %s on the page.", locatorPath));
         }
     }
 
     static void typeKeysToElementBy(String locatorPath, Keys... keys) {
-        for (Keys key : keys) {
-            if (WaitManager.isElementVisibleBy(locatorPath)) {
+        if (WaitManager.isElementVisibleBy(locatorPath)) {
+            for (Keys key : keys) {
                 WebElement element = getElementBy(locatorPath);
                 element.sendKeys(key);
             }
+        } else {
+            throw new NoSuchElementException(String.format("There is no element with a locator %s on the page.", locatorPath));
         }
     }
 }
