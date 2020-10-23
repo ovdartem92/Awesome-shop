@@ -1,4 +1,4 @@
-import constants.Location;
+import constants.Constants;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import page.net.skyscanner.SkyScannerHomePage;
@@ -15,7 +15,7 @@ public class CheckSortOfPricesInHotelBookingTest extends BaseTest {
                 .switchToEnglish()
                 //.logIn(user)
                 .clickToHostelsTab()
-                .addDestination(Location.TURIN)
+                .addDestination(Constants.TURIN)
                 .clickToSearchHotelsButton()
                 .clickToPriceSortButton();
 

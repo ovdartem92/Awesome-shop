@@ -1,6 +1,6 @@
 package page.net.skyscanner.flights;
 
-import constants.Currency;
+import constants.Constants;
 import driver.Browser;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -15,8 +15,8 @@ public class SkyScannerFlightsResultsPage extends AbstractPage {
     private static final String CURRENCY_SETUP_BUTTON = "//li[@id='culture-info']//button";
     private static final String CURRENCY_SELECT = "//select[@id='culture-selector-currency']";
     private static final String FLIGHTS_SEARCH_RESULTS = "//p[@class='route-price']//span[contains(text(),'from')]";
-    private static final String FLIGHTS_PRISES_SPAN = String.format("//span[text()='from ']/parent::p[contains(text(),'%s')]", Currency.EURO_SIGN);
-    private static final String CURRENCY_OPTION = String.format("//option[contains(text(), '%s')]", Currency.EURO_SIGN);
+    private static final String FLIGHTS_PRISES_SPAN = String.format("//span[text()='from ']/parent::p[contains(text(),'%s')]", Constants.EURO_SIGN);
+    private static final String CURRENCY_OPTION = String.format("//option[contains(text(), '%s')]", Constants.EURO_SIGN);
 
     public SkyScannerFlightsResultsPage selectCurrency() {
         waitForAllElementsLocatedBy(FLIGHTS_SEARCH_RESULTS);

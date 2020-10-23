@@ -1,6 +1,6 @@
 package driver;
 
-import constants.Timeout;
+import constants.Constants;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -54,8 +54,8 @@ public class Browser {
     }
 
     private static void configureDriver(WebDriver driver) {
-        driver.manage().timeouts().pageLoadTimeout(Timeout.LONG_TIMEOUT_SECONDS, TimeUnit.SECONDS);
-        driver.manage().timeouts().implicitlyWait(Timeout.DEFAULT_TIMEOUT_SECONDS, TimeUnit.SECONDS);
+        driver.manage().timeouts().pageLoadTimeout(Constants.LONG_TIMEOUT_SECONDS, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(Constants.DEFAULT_TIMEOUT_SECONDS, TimeUnit.SECONDS);
         driver.manage().window().maximize();
     }
 

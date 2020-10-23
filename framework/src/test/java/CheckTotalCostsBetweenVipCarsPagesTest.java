@@ -1,4 +1,4 @@
-import constants.Location;
+import constants.Constants;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import page.net.skyscanner.SkyScannerHomePage;
@@ -13,14 +13,14 @@ public class CheckTotalCostsBetweenVipCarsPagesTest extends BaseTest {
 
         VipCarsChooseYourCarPage chooseYourCarPage = new SkyScannerHomePage()
                 .clickToCarHireTab()
-                .setUpPickUpLocation(Location.MOSCOW_SHEREMETYEVO_SVO)
+                .setUpPickUpLocation(Constants.MOSCOW_SHEREMETYEVO_SVO)
                 .clickSearchButton()
                 .clickOnResultOfSearching(numberOfListsElement)
                 .clickOnSelectButton();
 
         VipCarsReserveYourCarPage reserveYourCarPage = new SkyScannerHomePage()
                 .clickToCarHireTab()
-                .setUpPickUpLocation(Location.MOSCOW_SHEREMETYEVO_SVO)
+                .setUpPickUpLocation(Constants.MOSCOW_SHEREMETYEVO_SVO)
                 .clickSearchButton()
                 .clickOnResultOfSearching(numberOfListsElement)
                 .clickOnSelectButton()

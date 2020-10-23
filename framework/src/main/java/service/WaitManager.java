@@ -1,6 +1,6 @@
 package service;
 
-import constants.Timeout;
+import constants.Constants;
 import driver.Browser;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -13,8 +13,8 @@ public interface WaitManager {
 
     static Wait<WebDriver> getDefaultWaitConfig() {
         return new FluentWait<>(Browser.getDriver())
-                .withTimeout(Duration.ofSeconds(Timeout.DEFAULT_TIMEOUT_SECONDS))
-                .pollingEvery(Duration.ofSeconds(Timeout.SHORT_TIMEOUT_SECONDS))
+                .withTimeout(Duration.ofSeconds(Constants.DEFAULT_TIMEOUT_SECONDS))
+                .pollingEvery(Duration.ofSeconds(Constants.SHORT_TIMEOUT_SECONDS))
                 .ignoring(NoSuchElementException.class)
                 .ignoring(StaleElementReferenceException.class);
     }

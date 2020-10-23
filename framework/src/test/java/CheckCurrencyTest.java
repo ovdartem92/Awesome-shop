@@ -1,4 +1,4 @@
-import constants.Currency;
+import constants.Constants;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -12,7 +12,7 @@ public class CheckCurrencyTest extends BaseTest {
     public void checkCurrencyChangeTest() {
         ArrayList<WebElement> prices = (ArrayList<WebElement>) new SkyScannerHomePage().startFlightsSearch().selectCurrency().getCurrencies();
         for (WebElement price : prices) {
-            Assert.assertTrue(price.getText().contains(Currency.EURO_SIGN),
+            Assert.assertTrue(price.getText().contains(Constants.EURO_SIGN),
                     "Not all prices are in selected currency");
         }
     }

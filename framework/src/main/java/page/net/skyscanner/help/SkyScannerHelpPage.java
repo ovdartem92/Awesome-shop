@@ -1,7 +1,6 @@
 package page.net.skyscanner.help;
 
 import page.AbstractPage;
-
 import static service.ActionManager.*;
 import static service.WaitManager.*;
 

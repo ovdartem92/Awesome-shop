@@ -1,4 +1,4 @@
-import constants.Location;
+import constants.Constants;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import page.net.skyscanner.SkyScannerHomePage;
@@ -19,7 +19,7 @@ public class CheckMaximumValuesForHotelBookingTest extends BaseTest {
                 .switchToEnglish()
                 .logIn(user)
                 .clickToHostelsTab()
-                .addDestination(Location.TURIN)
+                .addDestination(Constants.TURIN)
                 .increaseRoom(clickQuantity)
                 .increaseAdult(clickQuantity)
                 .increaseChild(clickQuantity);

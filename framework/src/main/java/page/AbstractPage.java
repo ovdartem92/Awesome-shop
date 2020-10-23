@@ -1,5 +1,5 @@
 package page;
-import constants.Timeout;
+import constants.Constants;
 import driver.Browser;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -40,7 +40,7 @@ public abstract class AbstractPage {
     }
 
     public void isWaitingModalViewOnPage() {
-        new WebDriverWait(Browser.getDriver(), Timeout.LONG_TIMEOUT_SECONDS).until(
+        new WebDriverWait(Browser.getDriver(), Constants.LONG_TIMEOUT_SECONDS).until(
                 ExpectedConditions.invisibilityOfElementLocated(By.xpath(WAITING_MODAL_VIEW)));
     }
 }
