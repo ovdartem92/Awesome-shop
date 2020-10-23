@@ -6,9 +6,6 @@ public class CheckMenuItemHotelTest extends BaseTest {
 
     @Test
     public void checkMenuItems() {
-        Assert.assertEquals(new SkyScannerHomePage()
-                .clickToHostelsTab()
-//                .switchToEnglish()
-                .getTextFromHotelButton(), "Search hotels ");
+        Assert.assertEquals(new SkyScannerHomePage().clickToHostelsTab().getTextFromHotelButton(), "Search hotels ");
     }
 }
