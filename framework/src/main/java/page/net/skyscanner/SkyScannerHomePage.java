@@ -2,9 +2,8 @@ package page.net.skyscanner;
 
 import model.User;
 import page.AbstractPage;
-import page.net.skyscanner.car.SkyScannerCarSearchPage;
+import page.net.skyscanner.flights.SkyScannerFlightsResultsPage;
 import page.net.skyscanner.help.SkyScannerHelpPage;
-import page.net.skyscanner.hotel.SkyScannerSearchHotelPage;
 
 import static service.ActionManager.*;
 import static service.WaitManager.isElementVisibleBy;
@@ -17,10 +16,6 @@ public class SkyScannerHomePage extends AbstractPage {
     private static final String ACCOUNT_BUTTON_PATH = "//*[@id='login-button-nav-item']/button";
     private static final String MARKETING_CONSENT_BUTTON_PATH = "//button[@data-testid='btn-marketing-consent-cta']";
     private static final String WRONG_EMAIL_OR_PASSWORD_PATH = "//span[text()='Wrong email or password']";
-    private static final String LANGUAGE_PATH = "//li[@id='culture-info']//div/span";
-    private static final String LANGUAGES_SELECT_PATH = "//select[@name='locale']";
-    private static final String ENGLISH_LANGUAGE_OPTION_PATH = "//select[@name='locale']//option[@value='en-US']";
-    private static final String CULTURE_SAVE_BUTTON_PATH = "//button[@id='culture-selector-save']";
     private static final String EMAIL_FIELD_PATH = "//input[@id='email']";
     private static final String NEXT_BUTTON_PATH = "//*[@id='login-modal']";
     private static final String PASSWORD_FIELD_PATH = "//input[@id='password']";
@@ -29,10 +24,6 @@ public class SkyScannerHomePage extends AbstractPage {
     private static final String SECOND_LOG_IN_BUTTON_PATH = "//button[@data-testid='login-button']";
     private static final String CLOSE_MODAL_LOGIN_WINDOW_BUTTON_PATH = "//button[@title='Close modal']";
     private static final String HELP_LINK_PATH = "//a[@id='ss-footer-links-faq']";
-    private static final String FLIGHTS_TAB_PATH = "//nav[@id='PrimaryNav']//span[contains(text(), 'Flights')]";
-    private static final String HOTEL_TAB_PATH = "//nav[@id='PrimaryNav']//span[contains(text(), 'Hotels')]";
-    private static final String CAR_HIRE_TAB_PATH = "//a[@id='carhi']";
-    private static final String SEARCH_FLIGHTS_BUTTON_PATH = "//button[text()='Search flights']";
 
     public SkyScannerHomePage logIn(User user) {
         clickOnElementBy(LOG_IN_BUTTON_PATH);
@@ -42,7 +33,7 @@ public class SkyScannerHomePage extends AbstractPage {
         clickOnElementBy(ACCOUNT_DETECTED_BUTTON_PATH);
         typeTextToElementBy(PASSWORD_FIELD_PATH, user.getPassword());
         clickOnElementBy(SECOND_LOG_IN_BUTTON_PATH);
-        if(!isElementVisibleBy(WRONG_EMAIL_OR_PASSWORD_PATH)){
+        if (!isElementVisibleBy(WRONG_EMAIL_OR_PASSWORD_PATH)) {
             waitForElementLocatedBy(MARKETING_CONSENT_BUTTON_PATH);
             clickOnElementBy(CLOSE_MODAL_LOGIN_WINDOW_BUTTON_PATH);
         }
@@ -57,21 +48,6 @@ public class SkyScannerHomePage extends AbstractPage {
 
     public boolean isLogInButtonActive() {
         return isElementVisibleBy(LOG_IN_BUTTON_PATH);
-    }
-
-    public SkyScannerSearchHotelPage clickToHostelsTab() {
-        clickOnElementBy(HOTEL_TAB_PATH);
-        return new SkyScannerSearchHotelPage();
-    }
-
-    public SkyScannerHomePage clickToFlightsTab() {
-        clickOnElementBy(FLIGHTS_TAB_PATH);
-        return this;
-    }
-
-    public SkyScannerCarSearchPage clickToCarHireTab() {
-        clickOnElementBy(CAR_HIRE_TAB_PATH);
-        return new SkyScannerCarSearchPage();
     }
 
     public SkyScannerFlightsResultsPage startFlightsSearch() {
