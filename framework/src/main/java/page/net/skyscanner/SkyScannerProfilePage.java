@@ -37,7 +37,7 @@ public class SkyScannerProfilePage extends AbstractPage {
         return new SkyScannerHomePage();
     }
 
-    public String returnUserEmail(User user) {
+    public String getUserEmail(User user) {
         return getElementBy(String.format(ACCOUNT_FIELD_PATH, user.getEmail())).toString();
     }
 
