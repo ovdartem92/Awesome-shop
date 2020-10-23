@@ -11,10 +11,9 @@ public class CheckYourEmailAfterLogInTest extends BaseTest {
         SoftAssert softAssert = new SoftAssert();
         new SkyScannerHomePage()
                 .logIn(user = UserBuilder.getUserWithValidPassword())
-                .openProfilePage();
-        new SkyScannerProfilePage()
+                .openProfilePage()
                 .switchToEnglish()
                 .clickOnAccountField();
-        softAssert.assertEquals(user.getEmail(), new SkyScannerProfilePage().getUserEmail(user));
+        softAssert.assertEquals(user.getEmail(), new SkyScannerProfilePage().findAndGetUserEmail(user));
     }
 }
