@@ -3,7 +3,6 @@ package page.net.skyscanner;
 import model.User;
 import page.AbstractPage;
 import page.net.skyscanner.flights.SkyScannerFlightsResultsPage;
-import page.net.skyscanner.help.SkyScannerHelpPage;
 
 import static service.ActionManager.*;
 import static service.WaitManager.isElementVisibleBy;
@@ -58,11 +57,6 @@ public class SkyScannerHomePage extends AbstractPage {
     public SkyScannerProfilePage openProfilePage() {
         clickOnElementBy(ACCOUNT_BUTTON_PATH);
         return new SkyScannerProfilePage();
-    }
-
-    public SkyScannerHelpPage clickToHelpLink() {
-        clickOnElementBy(HELP_LINK_PATH);
-        return new SkyScannerHelpPage();
     }
 
     public String getTextFromFlightsButton() {

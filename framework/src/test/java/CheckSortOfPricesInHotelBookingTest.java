@@ -1,3 +1,4 @@
+import constants.Location;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import page.net.skyscanner.SkyScannerHomePage;
@@ -8,14 +9,13 @@ public class CheckSortOfPricesInHotelBookingTest extends BaseTest {
 
     @Test
     public void checkingMaximumValues() {
-        String destination = "Moscow";
         user = UserBuilder.getUserWithValidPassword();
 
         SkyScannerHotelResultPage resultPage = new SkyScannerHomePage()
                 .switchToEnglish()
                 //.logIn(user)
                 .clickToHostelsTab()
-                .addDestination(destination)
+                .addDestination(Location.TURIN)
                 .clickToSearchHotelsButton()
                 .clickToPriceSortButton();
 

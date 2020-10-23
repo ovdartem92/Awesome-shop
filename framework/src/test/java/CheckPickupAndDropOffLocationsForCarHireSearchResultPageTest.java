@@ -1,3 +1,4 @@
+import constants.Location;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import page.net.skyscanner.car.SkyScannerCarSearchResultPage;
@@ -9,19 +10,17 @@ public class CheckPickupAndDropOffLocationsForCarHireSearchResultPageTest extend
 
     @Test
     public void checkingPickupAndDropOffLocations() {
-        String pickUpLocation = "Moscow Sheremetyevo (SVO)";
-        String dropOffLocation = "Moscow Vnukovo (VKO)";
         user = UserBuilder.getUserWithValidPassword();
 
         SkyScannerCarSearchResultPage skyScannerCarSearchResultPage = new SkyScannerHomePage()
                 .switchToEnglish()
                 .logIn(user)
-                .clickToCarHireTab().setUpPickUpLocation(pickUpLocation)
+                .clickToCarHireTab().setUpPickUpLocation(Location.MOSCOW_SHEREMETYEVO_SVO)
                 .choiceReturnCarToADifferentLocation()
-                .setUpDropOffLocation(TestDataReader.getTestData(dropOffLocation))
+                .setUpDropOffLocation(TestDataReader.getTestData(Location.MOSCOW_VNUKOVO_VKO))
                 .clickSearchButton();
 
-        Assert.assertEquals(dropOffLocation, skyScannerCarSearchResultPage.getInfoAboutDropOffLocationFromSummary());
-        Assert.assertEquals(pickUpLocation, skyScannerCarSearchResultPage.getInfoAboutPickUpLocationFromSummary());
+        Assert.assertEquals(Location.MOSCOW_VNUKOVO_VKO, skyScannerCarSearchResultPage.getInfoAboutDropOffLocationFromSummary());
+        Assert.assertEquals(Location.MOSCOW_SHEREMETYEVO_SVO, skyScannerCarSearchResultPage.getInfoAboutPickUpLocationFromSummary());
     }
 }

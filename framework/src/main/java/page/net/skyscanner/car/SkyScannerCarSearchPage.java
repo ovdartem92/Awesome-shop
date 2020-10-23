@@ -1,6 +1,9 @@
 package page.net.skyscanner.car;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import page.AbstractPage;
+import page.net.skyscanner.SkyScannerHomePage;
 
 import static service.ActionManager.*;
 import static service.WaitManager.*;
