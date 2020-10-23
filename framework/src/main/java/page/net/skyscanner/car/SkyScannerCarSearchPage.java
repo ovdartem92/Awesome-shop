@@ -1,15 +1,11 @@
 package page.net.skyscanner.car;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import page.AbstractPage;
-import page.net.skyscanner.SkyScannerHomePage;
 
 import static service.ActionManager.*;
 import static service.WaitManager.*;
 
 public class SkyScannerCarSearchPage extends AbstractPage {
-
     private static final String CAR_HEADER_PATH = "//div[contains(@class,'search-controls-title')]";
     private static final String PICKUP_LOCATION_PATH = "//input[@id='carhire-search-controls-location-pick-up']";
     private static final String DROP_OFF_LOCATION_PATH = "//input[@id='carhire-search-controls-location-drop-off']";

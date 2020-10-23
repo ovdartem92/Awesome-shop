@@ -1,17 +1,12 @@
-package page.net.skyscanner.hotel;
+package page.net.skyscanner.hotel.searchPage.structure;
 
-import org.openqa.selenium.Keys;
-import page.AbstractPage;
-import page.net.skyscanner.car.SkyScannerCarSearchPage;
+import static service.ActionManager.clickOnElementBy;
+import static service.ActionManager.getAttributeValueOnElementBy;
 
-import static service.ActionManager.*;
-
-public class SkyScannerSearchHotelPage extends AbstractPage {
-    private static final String DESTINATION_OR_HOSTEL_NAME_INPUT_PATH = "//input[@name='destination-autosuggest']";
+public class GuestsAndRoomsButtons {
     private static final String HOSTEL_CHECK_IN_INPUT_PATH = "//input[@id='checkin']";
     private static final String HOSTEL_CHECK_OUT_INPUT_PATH = "//input[@id='checkout']";
     private static final String GUESTS_AND_ROOM_INPUT_PATH = "//input[@id='guests-rooms']";
-    private static final String SEARCH_HOTEL_BUTTON_PATH = "//button[contains(text(), 'Search hotels')]";
     private static final String QUANTITY_ROOMS_INPUT_PATH = "//input[@id='rooms']";
     private static final String INCREASE_ROOM_BUTTON_PATH = "//button[@aria-controls='rooms'][@title='Increase']";
     private static final String DECREASE_ROOM_BUTTON_PATH = "//button[@aria-controls='rooms'][@title='Decrease']";
@@ -22,57 +17,38 @@ public class SkyScannerSearchHotelPage extends AbstractPage {
     private static final String INCREASE_CHILD_BUTTON_PATH = "//button[@aria-controls='children'][@title='Increase']";
     private static final String DECREASE_CHILD_BUTTON_PATH = "//button[@aria-controls='children'][@title='Decrease']";
     private static final String DONE_BUTTON_PATH = "//footer/button";
-    private static final String SEARCH_HOTELS_BUTTON_PATH = "//button[@data-test-id='search-button']";
-    private static final String CAR_HIRE_TAB_PATH = "//a[@id='carhi']";
 
-    public SkyScannerSearchHotelPage addDestination(String destination) {
-        clickOnElementBy(DESTINATION_OR_HOSTEL_NAME_INPUT_PATH);
-        typeTextToElementBy(DESTINATION_OR_HOSTEL_NAME_INPUT_PATH, destination);
-        return this;
-    }
-
-    public SkyScannerSearchHotelPage increaseRoom() {
+    public void increaseRoom() {
         clickOnElementBy(GUESTS_AND_ROOM_INPUT_PATH);
         clickOnElementBy(INCREASE_ROOM_BUTTON_PATH);
         clickOnElementBy(DONE_BUTTON_PATH);
-        return this;
     }
 
-    public SkyScannerCarSearchPage clickToCarHireTab() {
-        clickOnElementBy(CAR_HIRE_TAB_PATH);
-        return new SkyScannerCarSearchPage();
-    }
-
-    public SkyScannerSearchHotelPage increaseRoom(int quantity) {
+    public void increaseRoom(int quantity) {
         for (int i = 0; i < quantity; i++)
             increaseRoom();
-        return this;
     }
 
-    public SkyScannerSearchHotelPage increaseAdult() {
+    public void increaseAdult() {
         clickOnElementBy(GUESTS_AND_ROOM_INPUT_PATH);
         clickOnElementBy(INCREASE_ADULT_BUTTON_PATH);
         clickOnElementBy(DONE_BUTTON_PATH);
-        return this;
     }
 
-    public SkyScannerSearchHotelPage increaseAdult(int quantity) {
+    public void increaseAdult(int quantity) {
         for (int i = 0; i < quantity; i++)
             increaseAdult();
-        return this;
     }
 
-    public SkyScannerSearchHotelPage increaseChild() {
+    public void increaseChild() {
         clickOnElementBy(GUESTS_AND_ROOM_INPUT_PATH);
         clickOnElementBy(INCREASE_CHILD_BUTTON_PATH);
         clickOnElementBy(DONE_BUTTON_PATH);
-        return this;
     }
 
-    public SkyScannerSearchHotelPage increaseChild(int quantity) {
+    public void increaseChild(int quantity) {
         for (int i = 0; i < quantity; i++)
             increaseChild();
-        return this;
     }
 
     public int getQuantityRooms() {
@@ -94,16 +70,5 @@ public class SkyScannerSearchHotelPage extends AbstractPage {
         String quantity = getAttributeValueOnElementBy(QUANTITY_CHILDREN_INPUT_PATH, "value");
         clickOnElementBy(DONE_BUTTON_PATH);
         return Integer.parseInt(quantity);
-    }
-
-    public SkyScannerHotelResultPage clickToSearchHotelsButton() {
-        typeKeysToElementBy(DESTINATION_OR_HOSTEL_NAME_INPUT_PATH, Keys.ENTER);
-        clickOnElementBy(DESTINATION_OR_HOSTEL_NAME_INPUT_PATH);
-        clickOnElementBy(SEARCH_HOTELS_BUTTON_PATH);
-        return new SkyScannerHotelResultPage();
-    }
-
-    public String getTextFromHotelButton() {
-        return getTextOnElementBy(SEARCH_HOTEL_BUTTON_PATH);
     }
 }

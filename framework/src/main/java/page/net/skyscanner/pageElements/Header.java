@@ -5,7 +5,7 @@ import page.AbstractPage;
 import page.net.skyscanner.SkyScannerHomePage;
 import page.net.skyscanner.SkyScannerProfilePage;
 import page.net.skyscanner.car.SkyScannerCarSearchPage;
-import page.net.skyscanner.hotel.SkyScannerSearchHotelPage;
+import page.net.skyscanner.hotel.searchPage.SkyScannerHotelSearchPage;
 
 import static service.ActionManager.*;
 import static service.ActionManager.typeTextToElementBy;
@@ -32,7 +32,6 @@ public class Header extends AbstractPage {
     private static final String HOTEL_TAB_PATH = "//nav[@id='PrimaryNav']//span[contains(text(), 'Hotels')]";
     private static final String CAR_HIRE_TAB_PATH = "//a[@id='carhi']";
     private static final String FLIGHTS_TAB_PATH = "//nav[@id='PrimaryNav']//span[contains(text(), 'Flights')]";
-
 
     public Header logIn(User user) {
         clickOnElementBy(LOG_IN_BUTTON_PATH);
@@ -65,9 +64,9 @@ public class Header extends AbstractPage {
         return new SkyScannerProfilePage();
     }
 
-    public SkyScannerSearchHotelPage clickToHostelsTab() {
+    public SkyScannerHotelSearchPage clickToHostelsTab() {
         clickOnElementBy(HOTEL_TAB_PATH);
-        return new SkyScannerSearchHotelPage();
+        return new SkyScannerHotelSearchPage();
     }
 
     public SkyScannerHomePage clickToFlightsTab() {

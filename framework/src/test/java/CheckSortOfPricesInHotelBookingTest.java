@@ -1,10 +1,8 @@
 
 import constants.Constants;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import page.net.skyscanner.SkyScannerHomePage;
-import page.net.skyscanner.hotel.SkyScannerHotelResultPage;
-import page.net.skyscanner.pageElements.Header;
+import page.net.skyscanner.hotel.resultPage.SkyScannerHotelResultPage;
 import service.UserBuilder;
 
 public class CheckSortOfPricesInHotelBookingTest extends BaseTest {
@@ -18,7 +16,6 @@ public class CheckSortOfPricesInHotelBookingTest extends BaseTest {
                 .getHeader()
                 .switchToEnglish()
                 .logIn(user)
-                .getHeader()
                 .clickToHostelsTab()
                 .addDestination(Constants.TURIN)
                 .clickToSearchHotelsButton()

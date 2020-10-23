@@ -2,7 +2,7 @@ import constants.Constants;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import page.net.skyscanner.SkyScannerHomePage;
-import page.net.skyscanner.hotel.SkyScannerSearchHotelPage;
+import page.net.skyscanner.hotel.searchPage.SkyScannerHotelSearchPage;
 import service.UserBuilder;
 
 public class CheckMaximumValuesForHotelBookingTest extends BaseTest {
@@ -15,11 +15,10 @@ public class CheckMaximumValuesForHotelBookingTest extends BaseTest {
         int clickQuantity = 12;
         user = UserBuilder.getUserWithValidPassword();
 
-        SkyScannerSearchHotelPage searchHotelPage = new SkyScannerHomePage()
+        SkyScannerHotelSearchPage searchHotelPage = new SkyScannerHomePage()
                 .getHeader()
                 .switchToEnglish()
                 .logIn(user)
-                .getHeader()
                 .clickToHostelsTab()
                 .addDestination(Constants.TURIN)
                 .increaseRoom(clickQuantity)
