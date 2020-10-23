@@ -75,25 +75,25 @@ public class SkyScannerSearchHotelPage extends AbstractPage {
         return this;
     }
 
-    public String getQuantityRooms() {
+    public int getQuantityRooms() {
         clickOnElementBy(GUESTS_AND_ROOM_INPUT_PATH);
         String quantity = getAttributeValueOnElementBy(QUANTITY_ROOMS_INPUT_PATH, "value");
         clickOnElementBy(DONE_BUTTON_PATH);
-        return quantity;
+        return Integer.parseInt(quantity);
     }
 
-    public String getQuantityAdultPeople() {
+    public int getQuantityAdultPeople() {
         clickOnElementBy(GUESTS_AND_ROOM_INPUT_PATH);
         String quantity = getAttributeValueOnElementBy(QUANTITY_ADULT_PEOPLE_INPUT_PATH, "value");
         clickOnElementBy(DONE_BUTTON_PATH);
-        return quantity;
+        return Integer.parseInt(quantity);
     }
 
-    public String getQuantityChildren() {
+    public int getQuantityChildren() {
         clickOnElementBy(GUESTS_AND_ROOM_INPUT_PATH);
         String quantity = getAttributeValueOnElementBy(QUANTITY_CHILDREN_INPUT_PATH, "value");
         clickOnElementBy(DONE_BUTTON_PATH);
-        return quantity;
+        return Integer.parseInt(quantity);
     }
 
     public SkyScannerHotelResultPage clickToSearchHotelsButton() {
