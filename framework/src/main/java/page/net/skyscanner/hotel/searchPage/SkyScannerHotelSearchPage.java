@@ -59,11 +59,13 @@ public class SkyScannerHotelSearchPage extends AbstractPage {
         return guestButtons.getQuantityRooms();
     }
 
-    public int getQuantityAdultPeople() {
-        return guestButtons.getQuantityAdultPeople();
-    }
+    public int getQuantityAdultPeople() { return guestButtons.getQuantityAdultPeople(); }
 
     public int getQuantityChildren() {
         return guestButtons.getQuantityChildren();
+    }
+
+    public String getTextFromHotelButton() {
+        return getTextOnElementBy(SEARCH_HOTELS_BUTTON_PATH);
     }
 }
