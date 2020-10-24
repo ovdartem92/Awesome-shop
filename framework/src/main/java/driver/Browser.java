@@ -1,12 +1,14 @@
 package driver;
 
 import constants.Constants;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.opera.OperaDriver;
 
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 import static io.github.bonigarcia.wdm.WebDriverManager.*;
@@ -83,5 +85,15 @@ public class Browser {
 
     public static void openPage(String str) {
         DRIVER.get().get(str);
+    }
+
+    public static void createNewTab(){
+        JavascriptExecutor executor = (JavascriptExecutor)DRIVER.get();
+        executor.executeScript("window.open();");
+    }
+
+    public static void switchTabByIndex(int index){
+        ArrayList<String> tabs = new ArrayList<String> (Browser.getDriver().getWindowHandles());
+        Browser.getDriver().switchTo().window(tabs.get(index));
     }
 }

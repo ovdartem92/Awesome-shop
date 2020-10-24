@@ -4,6 +4,7 @@ import driver.Browser;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
@@ -70,5 +71,10 @@ public interface ActionManager {
                 e.printStackTrace();
             }
         }
+    }
+
+    static void scrollToElement(String xpath){
+        JavascriptExecutor executor = (JavascriptExecutor) Browser.getDriver();
+        executor.executeScript("arguments[0].scrollIntoView();", getElementBy(xpath));
     }
 }
