@@ -58,7 +58,7 @@ public interface ActionManager {
         }
     }
 
-    static void typeInFieldWithDelay(String xpath, String value){
+    static void typeInFieldWithDelay(String xpath, String value) {
         WebElement element = getElementBy(xpath);
         String[] letters = value.split("");
 
