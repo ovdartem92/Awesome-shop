@@ -7,14 +7,14 @@ import static util.RandomString.getRandomString;
 
 public class CheckInvalidHelpResultsTest extends BaseTest {
 
-//    @Test
-//    public void checkInvalidResult (){
-//        String searchData = getRandomString();
-//        SkyScannerHelpSearchResultsPage resultsPage = new SkyScannerHomePage()
-//                .clickToHelpLink()
-//                .sendTextToSearchArea(searchData)
-//                .clickOnSearchButton();
-//
-//        Assert.assertEquals(resultsPage.isSearchResultInvalid(), true);
-//    }
+    @Test
+    public void checkInvalidResult (){
+        String searchData = getRandomString();
+        SkyScannerHelpSearchResultsPage resultsPage = new SkyScannerHomePage()
+                .clickToHelpLink()
+                .sendTextToSearchArea(searchData)
+                .clickOnSearchButton();
+
+        Assert.assertTrue(resultsPage.isSearchResultInvalid());
+    }
 }
