@@ -14,7 +14,7 @@ public class CheckSortOfPricesInHotelBookingTest extends BaseTest {
 
         SkyScannerHotelResultPage resultPage = new SkyScannerHomePage()
                 .getHeader()
-                .switchToEnglish()
+                .changeLanguage(Constants.ENGLISH_LANGUAGE)
                 .logIn(user)
                 .clickToHostelsTab()
                 .addDestination(Constants.TURIN)

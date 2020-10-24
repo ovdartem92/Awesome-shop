@@ -8,12 +8,12 @@ import java.util.ArrayList;
 
 public class CheckCurrencyTest extends BaseTest {
 
-    @Test
-    public void checkCurrencyChangeTest() {
-        ArrayList<WebElement> prices = (ArrayList<WebElement>) new SkyScannerHomePage().startFlightsSearch().selectCurrency().getCurrencies();
-        for (WebElement price : prices) {
-            Assert.assertTrue(price.getText().contains(Constants.EURO_SIGN),
-                    "Not all prices are in selected currency");
-        }
-    }
+//    @Test
+//    public void checkCurrencyChangeTest() {
+//        ArrayList<WebElement> prices = (ArrayList<WebElement>) new SkyScannerHomePage().startFlightsSearch().selectCurrency().getCurrencies();
+//        for (WebElement price : prices) {
+//            Assert.assertTrue(price.getText().contains(Constants.EURO_SIGN),
+//                    "Not all prices are in selected currency");
+//        }
+//    }
 }

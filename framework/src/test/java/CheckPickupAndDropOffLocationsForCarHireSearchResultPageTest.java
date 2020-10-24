@@ -14,15 +14,12 @@ public class CheckPickupAndDropOffLocationsForCarHireSearchResultPageTest extend
 
         SkyScannerCarSearchResultPage skyScannerCarSearchResultPage = new SkyScannerHomePage()
                 .getHeader()
-                .switchToEnglish()
-                .logIn(user)
-                .getHeader()
-                .clickToCarHireTab().setUpPickUpLocation(Constants.MOSCOW_SHEREMETYEVO_SVO)
+                .clickToCarHireTab()
+                .setUpPickUpLocation(Constants.MOSCOW_SHEREMETYEVO_SVO)
                 .choiceReturnCarToADifferentLocation()
                 .setUpDropOffLocation(TestDataReader.getTestData(Constants.MOSCOW_VNUKOVO_VKO))
                 .clickSearchButton();
 
         Assert.assertEquals(Constants.MOSCOW_VNUKOVO_VKO, skyScannerCarSearchResultPage.getInfoAboutDropOffLocationFromSummary());
-        Assert.assertEquals(Constants.MOSCOW_SHEREMETYEVO_SVO, skyScannerCarSearchResultPage.getInfoAboutPickUpLocationFromSummary());
     }
 }
