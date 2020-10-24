@@ -26,9 +26,12 @@ public class Header extends AbstractPage {
     private static final String SECOND_LOG_IN_BUTTON_PATH = "//button[@data-testid='login-button']";
     private static final String CLOSE_MODAL_LOGIN_WINDOW_BUTTON_PATH = "//button[@title='Close modal']";
     private static final String HELP_LINK_PATH = "//a[@id='ss-footer-links-faq']";
+    private static final String CULTURE_SETTING_BUTTON = "//li[@id='culture-info']//button";
+    private static final String CURRENCY_SELECT = "//select[@id='culture-selector-currency']";
     private static final String LANGUAGE_PATH = "//li[@id='culture-info']//div/span";
     private static final String LANGUAGES_SELECT_PATH = "//select[@name='locale']";
-    private static final String ENGLISH_LANGUAGE_OPTION_PATH = "//select[@name='locale']//option[@value='en-US']";
+    private static final String LANGUAGE_OPTION_PATH = String.format("//select[@name='locale']//option[@value='%s']", "language");
+    private static final String CURRENCY_OPTION_PATH = String.format("//option[contains(text(), '%s')]", "currency");
     private static final String HOTEL_TAB_PATH = "//nav[@id='PrimaryNav']//span[contains(text(), 'Hotels')]";
     private static final String CAR_HIRE_TAB_PATH = "//a[@id='carhi']";
     private static final String FLIGHTS_TAB_PATH = "//nav[@id='PrimaryNav']//span[contains(text(), 'Flights')]";
@@ -79,15 +82,21 @@ public class Header extends AbstractPage {
         return new SkyScannerCarSearchPage();
     }
 
-    public Header switchToEnglish() {
-        String language = getTextOnElementBy(LANGUAGE_PATH);
+    public Header changeLanguage(String language) {
+        clickOnElementBy(CULTURE_SETTING_BUTTON);
+        clickOnElementBy(LANGUAGES_SELECT_PATH);
+        String languagePath = LANGUAGE_OPTION_PATH.replace("language", language);
+        clickOnElementBy(languagePath);
+        clickOnElementBy(CULTURE_SAVE_BUTTON_PATH);
+        return this;
+    }
 
-        if (!language.equals("English (UK)")) {
-            clickOnElementBy(LANGUAGE_PATH);
-            clickOnElementBy(LANGUAGES_SELECT_PATH);
-            clickOnElementBy(ENGLISH_LANGUAGE_OPTION_PATH);
-            clickOnElementBy(CULTURE_SAVE_BUTTON_PATH);
-        }
+    public Header changeCurrency(String currency) {
+        clickOnElementBy(CULTURE_SETTING_BUTTON);
+        clickOnElementBy(CURRENCY_SELECT);
+        String newCurrency = CURRENCY_OPTION_PATH.replace("currency", currency);
+        clickOnElementBy(newCurrency);
+        clickOnElementBy(CULTURE_SAVE_BUTTON_PATH);
         return this;
     }
 }
