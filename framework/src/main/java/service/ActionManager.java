@@ -17,6 +17,8 @@ public interface ActionManager {
     }
 
     static List<WebElement> getElementsBy(String locatorPath) {
+        if (!WaitManager.isElementVisibleBy(locatorPath))
+            throw new NoSuchElementException(String.format("There is no element with a locator %s on the page.", locatorPath));
         return Browser.getDriver().findElements(By.xpath(locatorPath));
     }
 
@@ -38,8 +40,6 @@ public interface ActionManager {
             WebElement element = getElementBy(locatorPath);
             element.clear();
             element.sendKeys(text);
-        } else {
-            throw new NoSuchElementException(String.format("There is no element with a locator %s on the page.", locatorPath));
         }
     }
 
@@ -49,8 +49,6 @@ public interface ActionManager {
                 WebElement element = getElementBy(locatorPath);
                 element.sendKeys(key);
             }
-        } else {
-            throw new NoSuchElementException(String.format("There is no element with a locator %s on the page.", locatorPath));
         }
     }
 
