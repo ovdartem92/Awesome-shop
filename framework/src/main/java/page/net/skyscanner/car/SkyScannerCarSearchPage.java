@@ -19,7 +19,7 @@ public class SkyScannerCarSearchPage extends AbstractPage {
     public SkyScannerCarSearchPage setUpPickUpLocation(String pickUpLocation) {
         waitForElementLocatedBy(PICKUP_LOCATION_PATH);
         clickOnElementBy(PICKUP_LOCATION_PATH);
-        typeTextToElementBy(PICKUP_LOCATION_PATH, pickUpLocation);
+        typeInFieldWithDelay(PICKUP_LOCATION_PATH, pickUpLocation);
         return this;
     }
 
@@ -32,7 +32,7 @@ public class SkyScannerCarSearchPage extends AbstractPage {
     public SkyScannerCarSearchPage setUpDropOffLocation(String dropOffLocationLocation) {
         waitForElementLocatedBy(DROP_OFF_LOCATION_PATH);
         clickOnElementBy(DROP_OFF_LOCATION_PATH);
-        typeTextToElementBy(DROP_OFF_LOCATION_PATH, dropOffLocationLocation);
+        typeInFieldWithDelay(DROP_OFF_LOCATION_PATH, dropOffLocationLocation);
         return this;
     }
 

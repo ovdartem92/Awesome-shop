@@ -1,4 +1,5 @@
 import constants.Constants;
+import driver.Browser;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import page.net.skyscanner.SkyScannerHomePage;
@@ -11,23 +12,26 @@ public class CheckTotalCostsBetweenVipCarsPagesTest extends BaseTest {
     public void compareCostBetweenVipCarsChoosePageAndVipCarsReservePage() {
         int numberOfListsElement = 1;
 
-        VipCarsChooseYourCarPage chooseYourCarPage = new SkyScannerHomePage()
+        String carPriseFromElementOfList = new SkyScannerHomePage()
                 .getHeader()
                 .clickToCarHireTab()
                 .setUpPickUpLocation(Constants.MOSCOW_SHEREMETYEVO_SVO)
                 .clickSearchButton()
                 .clickOnResultOfSearching(numberOfListsElement)
-                .clickOnSelectButton();
+                .clickOnSelectButton().getCarPriseFromElementOfList(numberOfListsElement);
 
-        VipCarsReserveYourCarPage reserveYourCarPage = new SkyScannerHomePage()
+        Browser.createNewTab();
+        Browser.switchTabByIndex(4);
+
+        String totalRentalPrice = new SkyScannerHomePage()
                 .getHeader()
                 .clickToCarHireTab()
                 .setUpPickUpLocation(Constants.MOSCOW_SHEREMETYEVO_SVO)
                 .clickSearchButton()
                 .clickOnResultOfSearching(numberOfListsElement)
                 .clickOnSelectButton()
-                .clickOnSelectButton(numberOfListsElement);
+                .clickOnSelectButton(numberOfListsElement).getTotalRentalPrice();
 
-        Assert.assertEquals(reserveYourCarPage.getTotalRentalPrice(), chooseYourCarPage.getCarPriseFromElementOfList(numberOfListsElement));
+        Assert.assertEquals(carPriseFromElementOfList, totalRentalPrice);
     }
 }

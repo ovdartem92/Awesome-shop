@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 public class CheckCurrencyTest extends BaseTest {
 
+
     @Test
     public void checkCurrencyChangeTest() {
         
