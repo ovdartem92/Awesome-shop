@@ -11,7 +11,7 @@ public class CheckCurrencyTest extends BaseTest {
 
     @Test
     public void checkCurrencyChangeTest() {
-
+        
          new SkyScannerHomePage().startFlightsSearch()
                 .getHeader().changeCurrency(Constants.EURO_SIGN);
         ArrayList<WebElement> prices = (ArrayList<WebElement>) new SkyScannerFlightsResultsPage().getCurrencies();
