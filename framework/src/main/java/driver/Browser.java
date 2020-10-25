@@ -1,6 +1,8 @@
 package driver;
 
 import constants.Constants;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -12,9 +14,11 @@ import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 import static io.github.bonigarcia.wdm.WebDriverManager.*;
+import static util.CaptchaMethod.checkCaptchaOnPage;
 
 public class Browser {
     private static final ThreadLocal<WebDriver> DRIVER = new ThreadLocal<>();
+    private static final Logger LOGGER = LogManager.getRootLogger();
 
     private Browser() {
     }
@@ -77,23 +81,20 @@ public class Browser {
         BrowserType(String name) {
             this.name = name;
         }
-
-        public String getName() {
-            return name;
-        }
     }
 
     public static void openPage(String str) {
         DRIVER.get().get(str);
+        checkCaptchaOnPage(LOGGER);
     }
 
-    public static void createNewTab(){
-        JavascriptExecutor executor = (JavascriptExecutor)DRIVER.get();
+    public static void createNewTab() {
+        JavascriptExecutor executor = (JavascriptExecutor) DRIVER.get();
         executor.executeScript("window.open();");
     }
 
-    public static void switchTabByIndex(int index){
-        ArrayList<String> tabs = new ArrayList<String> (Browser.getDriver().getWindowHandles());
+    public static void switchTabByIndex(int index) {
+        ArrayList<String> tabs = new ArrayList<String>(Browser.getDriver().getWindowHandles());
         Browser.getDriver().switchTo().window(tabs.get(index));
     }
 }
