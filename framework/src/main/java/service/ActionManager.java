@@ -17,9 +17,12 @@ public interface ActionManager {
     Logger logger = LogManager.getRootLogger();
 
     static WebElement getElementBy(String locatorPath) {
-        checkCaptchaOnPage(logger);
-        if (!WaitManager.isElementVisibleBy(locatorPath))
-            throw new NoSuchElementException(String.format("There is no element with a locator %s on the page.", locatorPath));
+        if (!WaitManager.isElementVisibleBy(locatorPath)) {
+            if (checkCaptchaOnPage(logger))
+                return null;
+            else
+                throw new NoSuchElementException(String.format("There is no element with a locator %s on the page.", locatorPath));
+        }
         return Browser.getDriver().findElement(By.xpath(locatorPath));
     }
 
@@ -73,7 +76,7 @@ public interface ActionManager {
         }
     }
 
-    static void scrollToElement(String xpath){
+    static void scrollToElement(String xpath) {
         JavascriptExecutor executor = (JavascriptExecutor) Browser.getDriver();
         executor.executeScript("arguments[0].scrollIntoView();", getElementBy(xpath));
     }

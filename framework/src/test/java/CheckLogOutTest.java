@@ -10,7 +10,6 @@ public class CheckLogOutTest extends BaseTest {
         new SkyScannerHomePage()
                 .getHeader()
                 .logIn(user = UserBuilder.getUserWithValidPassword())
-                .getHeader()
                 .openProfilePage()
                 .switchToEnglish()
                 .logOut();

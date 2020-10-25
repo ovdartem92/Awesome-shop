@@ -10,11 +10,12 @@ import org.testng.SkipException;
 public interface CaptchaMethod {
     By CAPTCHA_ELEMENT_LOCATOR = By.xpath("//*[contains(text(), 'Are you a person or a robot?')]");
 
-    static void checkCaptchaOnPage(Logger logger) {
+    static boolean checkCaptchaOnPage(Logger logger) {
         if (new WebDriverWait(Browser.getDriver(), 4).until(
                 ExpectedConditions.presenceOfElementLocated(CAPTCHA_ELEMENT_LOCATOR)).isDisplayed()) {
             logger.info(String.format("Captcha element is present on page: [ %s ]", Browser.getDriver().getCurrentUrl()));
             throw new SkipException("Test was skipped, because CAPTCHA has appeared");
         }
+        return false;
     }
 }
