@@ -35,6 +35,7 @@ public interface ActionManager {
     static void clickOnElementBy(String locatorPath) {
         if (WaitManager.isElementVisibleBy(locatorPath))
             getElementBy(locatorPath).click();
+        else checkCaptchaOnPage(logger);
     }
 
     static String getTextOnElementBy(String locatorPath) {
