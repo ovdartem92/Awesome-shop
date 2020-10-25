@@ -18,9 +18,7 @@ public interface ActionManager {
 
     static WebElement getElementBy(String locatorPath) {
         if (!WaitManager.isElementVisibleBy(locatorPath)) {
-            if (checkCaptchaOnPage(logger))
-                return null;
-            else
+            if (!checkCaptchaOnPage(logger))
                 throw new NoSuchElementException(String.format("There is no element with a locator %s on the page.", locatorPath));
         }
         return Browser.getDriver().findElement(By.xpath(locatorPath));
