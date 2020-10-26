@@ -1,4 +1,4 @@
-import driver.Browser;
+import net.skyscanner.driver.Browser;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

@@ -1,8 +1,8 @@
-package service;
+package net.skyscanner.service;
 
-import model.User;
+import net.skyscanner.model.User;
 
-import static util.RandomString.getRandomString;
+import static net.skyscanner.util.RandomString.getRandomString;
 
 public class UserBuilder {
     private static final String EMAIL = TestDataReader.getTestData("testData.email");

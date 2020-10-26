@@ -1,4 +1,4 @@
-package model;
+package net.skyscanner.model;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

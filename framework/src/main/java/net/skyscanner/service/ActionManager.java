@@ -1,6 +1,6 @@
-package service;
+package net.skyscanner.service;
 
-import driver.Browser;
+import net.skyscanner.driver.Browser;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
@@ -11,7 +11,7 @@ import org.openqa.selenium.WebElement;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-import static util.CaptchaMethod.checkCaptchaOnPage;
+import static net.skyscanner.util.CaptchaMethod.checkCaptchaOnPage;
 
 public interface ActionManager {
     Logger logger = LogManager.getRootLogger();

@@ -1,6 +1,6 @@
-package driver;
+package net.skyscanner.driver;
 
-import Constants.Constants;
+import net.skyscanner.Constants;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
@@ -12,7 +12,7 @@ import org.openqa.selenium.opera.OperaDriver;
 import java.util.concurrent.TimeUnit;
 
 import static io.github.bonigarcia.wdm.WebDriverManager.*;
-import static util.CaptchaMethod.checkCaptchaOnPage;
+import static net.skyscanner.util.CaptchaMethod.checkCaptchaOnPage;
 
 public class Browser {
     private static final ThreadLocal<WebDriver> DRIVER = new ThreadLocal<>();

@@ -1,6 +1,6 @@
-package util;
+package net.skyscanner.util;
 
-import driver.Browser;
+import net.skyscanner.driver.Browser;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;

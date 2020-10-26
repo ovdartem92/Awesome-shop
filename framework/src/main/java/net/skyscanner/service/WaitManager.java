@@ -1,7 +1,7 @@
-package service;
+package net.skyscanner.service;
 
-import constants.Constants;
-import driver.Browser;
+import net.skyscanner.Constants;
+import net.skyscanner.driver.Browser;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;

@@ -1,6 +1,6 @@
-package util;
+package net.skyscanner.util;
 
-import driver.Browser;
+import net.skyscanner.driver.Browser;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
