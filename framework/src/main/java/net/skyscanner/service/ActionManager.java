@@ -4,7 +4,6 @@ import net.skyscanner.driver.Browser;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
@@ -32,18 +31,19 @@ public interface ActionManager {
         return Browser.getDriver().findElements(By.xpath(locatorPath));
     }
 
+
     static void clickOnElementBy(String locatorPath) {
-        if (WaitManager.isElementVisibleBy(locatorPath))
-            getElementBy(locatorPath).click();
-        else checkCaptchaOnPage(logger);
+        WaitManager.waitForElementToBeClickableBy(locatorPath).click();
+        checkCaptchaOnPage(logger);
+        logger.info("Click on element with next xpath: ["+locatorPath+"]");
     }
 
     static String getTextOnElementBy(String locatorPath) {
-        return getElementBy(locatorPath).getText();
+        return WaitManager.waitForElementLocatedBy(locatorPath).getText();
     }
 
     static String getAttributeValueOnElementBy(String locatorPath, String attribute) {
-        return getElementBy(locatorPath).getAttribute(attribute);
+        return WaitManager.waitForElementLocatedBy(locatorPath).getAttribute(attribute);
     }
 
     static void typeTextToElementBy(String locatorPath, String text) {
@@ -52,6 +52,7 @@ public interface ActionManager {
             element.clear();
             element.sendKeys(text);
         }
+        logger.info("Type text ["+text+"] to element with next xpath: ["+locatorPath+"]");
     }
 
     static void typeKeysToElementBy(String locatorPath, Keys... keys) {
@@ -61,11 +62,12 @@ public interface ActionManager {
                 element.sendKeys(key);
             }
         }
+        logger.info("Type keys ["+keys+"] to element with next xpath: ["+locatorPath+"]");
     }
 
-    static void typeInFieldWithDelay(String xpath, String value) {
-        WebElement element = getElementBy(xpath);
-        String[] letters = value.split("");
+    static void typeInFieldWithDelay(String locatorPath, String text) {
+        WebElement element = getElementBy(locatorPath);
+        String[] letters = text.split("");
 
         for (String letter : letters) {
             try {
@@ -75,10 +77,7 @@ public interface ActionManager {
                 e.printStackTrace();
             }
         }
+        logger.info("Type text with delay ["+text+"] to element with next xpath: ["+locatorPath+"]");
     }
 
-    static void scrollToElement(String xpath) {
-        JavascriptExecutor executor = (JavascriptExecutor) Browser.getDriver();
-        executor.executeScript("arguments[0].scrollIntoView();", getElementBy(xpath));
-    }
 }
