@@ -21,23 +21,23 @@ public class TestListener implements ITestListener {
 
     @Override
     public void onTestStart(ITestResult iTestResult) {
-        Reporter.log(String.format("Test [%s] started.\n", iTestResult.getName()));
+        logger.info(String.format("Test [%s] started.\n", iTestResult.getName()));
     }
 
     @Override
     public void onTestSuccess(ITestResult iTestResult) {
-        Reporter.log(String.format("Test [%s] PASSED.\n", iTestResult.getName()));
+        logger.info(String.format("Test [%s] PASSED.\n", iTestResult.getName()));
     }
 
     @Override
     public void onTestFailure(ITestResult iTestResult) {
-        Reporter.log(String.format("Test [%s] FAILED.\n", iTestResult.getName()));
+        logger.info(String.format("Test [%s] FAILED.\n", iTestResult.getName()));
         saveScreenshot();
     }
 
     @Override
     public void onTestSkipped(ITestResult iTestResult) {
-        Reporter.log(String.format("Test [%s] SKIPPED.\n", iTestResult.getName()));
+        logger.info(String.format("Test [%s] SKIPPED.\n", iTestResult.getName()));
         saveScreenshot();
     }
 

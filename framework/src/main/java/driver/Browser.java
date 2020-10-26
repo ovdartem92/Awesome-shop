@@ -77,23 +77,19 @@ public class Browser {
         BrowserType(String name) {
             this.name = name;
         }
-
-        public String getName() {
-            return name;
-        }
     }
 
-    public static void openPage(String str) {
-        DRIVER.get().get(str);
+    public static void openPage(String url) {
+        DRIVER.get().get(url);
     }
 
-    public static void createNewTab(){
-        JavascriptExecutor executor = (JavascriptExecutor)DRIVER.get();
+    public static void createNewTab() {
+        JavascriptExecutor executor = (JavascriptExecutor) DRIVER.get();
         executor.executeScript("window.open();");
     }
 
-    public static void switchTabByIndex(int index){
-        ArrayList<String> tabs = new ArrayList<String> (Browser.getDriver().getWindowHandles());
+    public static void switchTabByIndex(int index) {
+        ArrayList<String> tabs = new ArrayList<String>(Browser.getDriver().getWindowHandles());
         Browser.getDriver().switchTo().window(tabs.get(index));
     }
 }
