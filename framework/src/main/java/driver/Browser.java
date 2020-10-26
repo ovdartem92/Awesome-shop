@@ -1,16 +1,14 @@
 package driver;
 
-import constants.Constants;
+import Constants.Constants;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.opera.OperaDriver;
 
-import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 import static io.github.bonigarcia.wdm.WebDriverManager.*;
@@ -26,9 +24,7 @@ public class Browser {
     public static WebDriver getDriver() {
         BrowserType type;
         if (DRIVER.get() == null) {
-            if (System.getProperty("browser") != null)
-                type = BrowserType.valueOf(System.getProperty("browser").toUpperCase());
-            else type = BrowserType.CHROME;
+            type = BrowserType.valueOf(System.getProperty("browser", "chrome").toUpperCase());
             switch (type) {
                 case FIREFOX: {
                     firefoxdriver().setup();
@@ -86,15 +82,5 @@ public class Browser {
     public static void openPage(String str) {
         DRIVER.get().get(str);
         checkCaptchaOnPage(LOGGER);
-    }
-
-    public static void createNewTab() {
-        JavascriptExecutor executor = (JavascriptExecutor) DRIVER.get();
-        executor.executeScript("window.open();");
-    }
-
-    public static void switchTabByIndex(int index) {
-        ArrayList<String> tabs = new ArrayList<String>(Browser.getDriver().getWindowHandles());
-        Browser.getDriver().switchTo().window(tabs.get(index));
     }
 }
