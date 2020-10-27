@@ -8,6 +8,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import page.net.skyscanner.pageElements.Header;
+import service.TestDataReader;
 
 public abstract class AbstractPage {
     public static final String CULTURE_SAVE_BUTTON_PATH = "//button[@id='culture-selector-save']";
@@ -21,5 +22,9 @@ public abstract class AbstractPage {
     public void isWaitingModalViewOnPage() {
         new WebDriverWait(Browser.getDriver(), Constants.LONG_TIMEOUT_SECONDS).until(
                 ExpectedConditions.invisibilityOfElementLocated(By.xpath(WAITING_MODAL_VIEW)));
+    }
+
+    public static String getHomepageUrl() {
+        return TestDataReader.getTestData("testData.home.url");
     }
 }

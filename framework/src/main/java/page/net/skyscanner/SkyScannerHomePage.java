@@ -3,13 +3,13 @@ package page.net.skyscanner;
 import page.AbstractPage;
 import page.net.skyscanner.flights.SkyScannerFlightsResultsPage;
 import page.net.skyscanner.help.SkyScannerHelpPage;
+import service.TestDataReader;
 
 import static service.ActionManager.*;
 import static service.WaitManager.*;
 
 public class SkyScannerHomePage extends AbstractPage {
     public static final String SEARCH_FLIGHTS_BUTTON_PATH = "//button[text()='Search flights']";
-    private static final String HOMEPAGE_URL = "https://www.skyscanner.net/";
     private static final String HELP_LINK_PATH = "//a[(@id='ss-footer-links-faq')]";
 
     public SkyScannerFlightsResultsPage startFlightsSearch() {
@@ -19,10 +19,6 @@ public class SkyScannerHomePage extends AbstractPage {
 
     public String getTextFromFlightsButton() {
         return getTextOnElementBy(SEARCH_FLIGHTS_BUTTON_PATH);
-    }
-
-    public static String getHomepageUrl() {
-        return HOMEPAGE_URL;
     }
 
     public SkyScannerHelpPage clickToHelpLink(){
