@@ -12,6 +12,8 @@ import org.testng.ITestResult;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -60,9 +62,8 @@ public class TestListener implements ITestListener {
                 .getDriver())
                 .getScreenshotAs(OutputType.FILE);
         try {
-            FileUtils.copyFile(screenCapture, new File(".//target/screenshots/"
-                    + getCurrentTimeAsString()
-                    + ".png"));
+            Path path = Paths.get(String.format("./target/screenshots/%s.png", getCurrentTimeAsString()));
+            FileUtils.copyFile(screenCapture, new File(path.toString()));
         } catch (IOException e) {
             logger.error("Failed to save screenshots" + e.getLocalizedMessage());
         }
