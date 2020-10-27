@@ -3,22 +3,24 @@ package driver;
 import constants.Constants;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.opera.OperaDriver;
+import service.TestDataReader;
 
-import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 import static io.github.bonigarcia.wdm.WebDriverManager.*;
-import static util.CaptchaMethod.checkCaptchaOnPage;
+import static utils.CaptchaMethod.checkCaptchaOnPage;
 
 public class Browser {
     private static final ThreadLocal<WebDriver> DRIVER = new ThreadLocal<>();
     private static final Logger LOGGER = LogManager.getRootLogger();
+    public static final int SHORT_TIMEOUT_SECONDS = Integer.parseInt(TestDataReader.getTestData("timeout.short"));
+    public static final int LONG_TIMEOUT_SECONDS = Integer.parseInt(TestDataReader.getTestData("timeout.long"));
+    public static final int DEFAULT_TIMEOUT_SECONDS = Integer.parseInt(TestDataReader.getTestData("timeout.default"));
 
     private Browser() {
     }
@@ -60,8 +62,8 @@ public class Browser {
     }
 
     private static void configureDriver(WebDriver driver) {
-        driver.manage().timeouts().pageLoadTimeout(Constants.LONG_TIMEOUT_SECONDS, TimeUnit.SECONDS);
-        driver.manage().timeouts().implicitlyWait(Constants.DEFAULT_TIMEOUT_SECONDS, TimeUnit.SECONDS);
+        driver.manage().timeouts().pageLoadTimeout(LONG_TIMEOUT_SECONDS, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(DEFAULT_TIMEOUT_SECONDS, TimeUnit.SECONDS);
         driver.manage().window().maximize();
     }
 
@@ -86,15 +88,5 @@ public class Browser {
     public static void openPage(String str) {
         DRIVER.get().get(str);
         checkCaptchaOnPage(LOGGER);
-    }
-
-    public static void createNewTab() {
-        JavascriptExecutor executor = (JavascriptExecutor) DRIVER.get();
-        executor.executeScript("window.open();");
-    }
-
-    public static void switchTabByIndex(int index) {
-        ArrayList<String> tabs = new ArrayList<String>(Browser.getDriver().getWindowHandles());
-        Browser.getDriver().switchTo().window(tabs.get(index));
     }
 }

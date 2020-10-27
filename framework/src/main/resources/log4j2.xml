@@ -13,7 +13,7 @@
         </File>
         <RollingFile name="fileLogger" fileName="target/logs/autotest.html"
                      filePattern="app-info-%d{yyyy-MM-dd}.html">
-            <HTMLLayout charset="UTF-8" title="Howtodoinjava Info Logs" locationInfo="true"/>
+            <HTMLLayout charset="UTF-8" title="SkyScanner Info Logs" locationInfo="true"/>
             <Policies>
                 <TimeBasedTriggeringPolicy interval="10" modulate="true"/>
                 <SizeBasedTriggeringPolicy size="10 MB"/>

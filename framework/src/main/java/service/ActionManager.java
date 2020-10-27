@@ -9,26 +9,19 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 
-import static util.CaptchaMethod.checkCaptchaOnPage;
+import static utils.CaptchaMethod.checkCaptchaOnPage;
 
 public interface ActionManager {
     Logger logger = LogManager.getRootLogger();
 
     static WebElement getElementBy(String locatorPath) {
-        if (!WaitManager.isElementVisibleBy(locatorPath)) {
-            if (!checkCaptchaOnPage(logger))
-                throw new NoSuchElementException(String.format("There is no element with a locator %s on the page.", locatorPath));
-        }
+            checkCaptchaOnPage(logger);
         return Browser.getDriver().findElement(By.xpath(locatorPath));
     }
 
     static List<WebElement> getElementsBy(String locatorPath) {
-        if (!WaitManager.isElementVisibleBy(locatorPath)) {
-            if (!checkCaptchaOnPage(logger))
-                throw new NoSuchElementException(String.format("There are no elements with a locator %s on the page.", locatorPath));
-        }
+        checkCaptchaOnPage(logger);
         return Browser.getDriver().findElements(By.xpath(locatorPath));
     }
 

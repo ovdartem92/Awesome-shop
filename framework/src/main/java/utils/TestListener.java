@@ -1,4 +1,4 @@
-package util;
+package utils;
 
 import driver.Browser;
 import org.apache.commons.io.FileUtils;
