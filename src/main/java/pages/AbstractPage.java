@@ -43,8 +43,8 @@ public abstract class AbstractPage {
     }
 
     public static void clickOnElementBy(String locatorPath) {
-        WaitManager.waitForElementToBeClickableBy(locatorPath).click();
         checkCaptchaOnPage(logger);
+        WaitManager.waitForElementToBeClickableBy(locatorPath).click();
         logger.info(String.format("Click on element with next xpath: [%s]", locatorPath));
     }
 
