@@ -27,7 +27,7 @@ public class Browser {
     public static WebDriver getDriver() {
         BrowserType type;
         if (DRIVER.get() == null) {
-            type = BrowserType.valueOf(System.getProperty("browser", "chrome").toUpperCase());
+            type = BrowserType.valueOf(System.getProperty("browser", TestDataReader.getTestData("browser").toUpperCase()));
             switch (type) {
                 case FIREFOX: {
                     firefoxdriver().setup();
