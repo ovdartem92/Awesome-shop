@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 
 import java.time.Duration;
+import java.util.List;
 
 import static driver.Browser.DEFAULT_TIMEOUT_SECONDS;
 import static driver.Browser.SHORT_TIMEOUT_SECONDS;
@@ -31,13 +32,18 @@ public interface WaitManager {
         }
     }
 
-    static void waitForElementLocatedBy(String locatorPath) {
+    static WebElement waitForElementLocatedBy(String locatorPath) {
         Wait<WebDriver> wait = getDefaultWaitConfig();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locatorPath)));
+        return wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(locatorPath)));
     }
 
-    static void waitForAllElementsLocatedBy(String locatorPath) {
+    static List<WebElement> waitForAllElementsLocatedBy(String locatorPath) {
         Wait<WebDriver> wait = getDefaultWaitConfig();
-        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath(locatorPath)));
+        return wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath(locatorPath)));
+    }
+
+    static WebElement waitForElementToBeClickableBy(String locatorPath) {
+        Wait<WebDriver> wait = getDefaultWaitConfig();
+        return wait.until(ExpectedConditions.elementToBeClickable(By.xpath(locatorPath)));
     }
 }

@@ -24,7 +24,7 @@ mvn -Dbrowser=${browser} -Dsurefire.suiteXmlFiles=${file.xml} -Denvironment=${en
     - environment_qa 
     
 ### Property file values:
-* Test data of mail and password for the page login [environment_qa]:
+* Test data of mail and password for the pages.page login [environment_qa]:
     - testData.email = kebikov1995@mail.ru
     - testData.password= 12344321Qwerty
     - timeout.short = 1 [sec]

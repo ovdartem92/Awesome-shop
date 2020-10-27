@@ -1,6 +1,6 @@
 package driver;
 
-import constants.Constants;
+import service.TestDataReader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
@@ -8,7 +8,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.opera.OperaDriver;
-import service.TestDataReader;
 
 import java.util.concurrent.TimeUnit;
 
@@ -28,9 +27,7 @@ public class Browser {
     public static WebDriver getDriver() {
         BrowserType type;
         if (DRIVER.get() == null) {
-            if (System.getProperty("browser") != null)
-                type = BrowserType.valueOf(System.getProperty("browser").toUpperCase());
-            else type = BrowserType.CHROME;
+            type = BrowserType.valueOf(System.getProperty("browser", "chrome").toUpperCase());
             switch (type) {
                 case FIREFOX: {
                     firefoxdriver().setup();

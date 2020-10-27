@@ -15,7 +15,7 @@ public interface CaptchaMethod {
     static boolean checkCaptchaOnPage(Logger logger) {
         if (new WebDriverWait(Browser.getDriver(), SHORT_TIMEOUT_SECONDS).until(
                 ExpectedConditions.presenceOfElementLocated(CAPTCHA_ELEMENT_LOCATOR)).isDisplayed()) {
-            logger.info(String.format("Captcha element is present on page: [ %s ]", Browser.getDriver().getCurrentUrl()));
+            logger.info(String.format("Captcha element is present on pages.page: [ %s ]", Browser.getDriver().getCurrentUrl()));
             throw new SkipException("Test was skipped, because CAPTCHA has appeared");
         }
         return false;
