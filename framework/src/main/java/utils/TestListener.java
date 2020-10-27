@@ -1,6 +1,6 @@
-package utils;
+package net.skyscanner.util;
 
-import driver.Browser;
+import net.skyscanner.driver.Browser;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -64,7 +64,6 @@ public class TestListener implements ITestListener {
         try {
             Path path = Paths.get(String.format("./target/screenshots/%s.png", getCurrentTimeAsString()));
             FileUtils.copyFile(screenCapture, new File(path.toString()));
-
         } catch (IOException e) {
             logger.error("Failed to save screenshots" + e.getLocalizedMessage());
         }
