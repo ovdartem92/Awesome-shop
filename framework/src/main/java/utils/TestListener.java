@@ -1,6 +1,6 @@
-package net.skyscanner.util;
+package utils;
 
-import net.skyscanner.driver.Browser;
+import driver.Browser;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -14,8 +14,8 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
+
+import static utils.StringUtils.getCurrentTimeAsString;
 
 public class TestListener implements ITestListener {
     private Logger logger = LogManager.getRootLogger();
@@ -67,10 +67,5 @@ public class TestListener implements ITestListener {
         } catch (IOException e) {
             logger.error("Failed to save screenshots" + e.getLocalizedMessage());
         }
-    }
-
-    private String getCurrentTimeAsString() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd_HH-mm-ss");
-        return ZonedDateTime.now().format(formatter);
     }
 }

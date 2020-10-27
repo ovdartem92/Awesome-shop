@@ -2,7 +2,7 @@ package service;
 
 import model.User;
 
-import static utils.RandomString.getRandomString;
+import static utils.StringUtils.getRandomString;
 
 public class UserBuilder {
     private static final String EMAIL = TestDataReader.getTestData("testData.email");
