@@ -27,7 +27,7 @@ public class Browser {
     public static WebDriver getDriver() {
         BrowserType type;
         if (DRIVER.get() == null) {
-            type = BrowserType.valueOf(System.getProperty("browser", TestDataReader.getTestData("browser").toUpperCase()));
+            type = BrowserType.valueOf(System.getProperty("browser", TestDataReader.getTestData("browser")).toUpperCase());
             switch (type) {
                 case FIREFOX: {
                     firefoxdriver().setup();
@@ -60,7 +60,7 @@ public class Browser {
 
     private static void configureDriver(WebDriver driver) {
         driver.manage().timeouts().pageLoadTimeout(LONG_TIMEOUT_SECONDS, TimeUnit.SECONDS);
-        driver.manage().timeouts().implicitlyWait(DEFAULT_TIMEOUT_SECONDS, TimeUnit.SECONDS);
+      //  driver.manage().timeouts().implicitlyWait(DEFAULT_TIMEOUT_SECONDS, TimeUnit.SECONDS);
         driver.manage().window().maximize();
     }
 

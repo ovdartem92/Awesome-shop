@@ -14,8 +14,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.List;
 
 import static driver.Browser.LONG_TIMEOUT_SECONDS;
+import static service.WaitManager.waitForAllElementsLocatedBy;
+import static service.WaitManager.waitForElementLocatedBy;
 import static utils.CaptchaMethod.checkCaptchaOnPage;
-
 
 public abstract class AbstractPage {
     public static final String CULTURE_SAVE_BUTTON_PATH = "//button[@id='culture-selector-save']";
@@ -33,27 +34,26 @@ public abstract class AbstractPage {
 
     public static WebElement getElementBy(String locatorPath) {
         checkCaptchaOnPage(logger);
-        return Browser.getDriver().findElement(By.xpath(locatorPath));
+        return waitForElementLocatedBy(locatorPath);
     }
 
     public static List<WebElement> getElementsBy(String locatorPath) {
         checkCaptchaOnPage(logger);
-        return Browser.getDriver().findElements(By.xpath(locatorPath));
+        return waitForAllElementsLocatedBy(locatorPath);
     }
-
 
     public static void clickOnElementBy(String locatorPath) {
         WaitManager.waitForElementToBeClickableBy(locatorPath).click();
         checkCaptchaOnPage(logger);
-        logger.info("Click on element with next xpath: ["+locatorPath+"]");
+        logger.info(String.format("Click on element with next xpath: [%s]", locatorPath));
     }
 
     public static String getTextOnElementBy(String locatorPath) {
-        return WaitManager.waitForElementLocatedBy(locatorPath).getText();
+        return waitForElementLocatedBy(locatorPath).getText();
     }
 
     public static String getAttributeValueOnElementBy(String locatorPath, String attribute) {
-        return WaitManager.waitForElementLocatedBy(locatorPath).getAttribute(attribute);
+        return waitForElementLocatedBy(locatorPath).getAttribute(attribute);
     }
 
     public static void typeTextToElementBy(String locatorPath, String text) {
@@ -62,7 +62,7 @@ public abstract class AbstractPage {
             element.clear();
             element.sendKeys(text);
         }
-        logger.info("Type text ["+text+"] to element with next xpath: ["+locatorPath+"]");
+        logger.info(String.format("Type text [%s] to element with next xpath: [%s]", text, locatorPath));
     }
 
     public static void typeKeysToElementBy(String locatorPath, Keys... keys) {
@@ -72,7 +72,7 @@ public abstract class AbstractPage {
                 element.sendKeys(key);
             }
         }
-        logger.info("Type keys ["+keys+"] to element with next xpath: ["+locatorPath+"]");
+        logger.info(String.format("Type keys [%s] to element with next xpath [%s]", keys, locatorPath));
     }
 
     public static void typeInFieldWithDelay(String locatorPath, String text) {
@@ -87,6 +87,6 @@ public abstract class AbstractPage {
                 e.printStackTrace();
             }
         }
-        logger.info("Type text with delay ["+text+"] to element with next xpath: ["+locatorPath+"]");
+        logger.info(String.format("Type text with delay [%s] to element with next xpath: [%s]", text, locatorPath));
     }
 }
