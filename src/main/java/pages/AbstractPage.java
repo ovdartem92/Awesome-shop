@@ -12,7 +12,6 @@ import java.util.List;
 
 
 public abstract class AbstractPage {
-    public static final String CULTURE_SAVE_BUTTON_PATH = "//button[@id='culture-selector-save']";
     protected static final String WAITING_MODAL_VIEW = "//*[@class='WaitingModal_WaitingModal__container__2wluW']";
     public static Logger logger = LogManager.getRootLogger();
 
