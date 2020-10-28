@@ -39,7 +39,7 @@ public abstract class AbstractPage {
     public static void clickOnElementBy(String locatorPath) {
         checkCaptchaOnPage(logger);
         WaitManager.waitForElementToBeClickableBy(locatorPath).click();
-        logger.info(String.format("Click on element with next xpath: [%s]", locatorPath));
+        logger.info("Click on element with next xpath: {}", locatorPath);
     }
 
     public static String getTextOnElementBy(String locatorPath) {
@@ -56,7 +56,7 @@ public abstract class AbstractPage {
             element.clear();
             element.sendKeys(text);
         }
-        logger.info(String.format("Type text [%s] to element with next xpath: [%s]", text, locatorPath));
+        logger.info("Type text {} to element with next xpath: {}", text, locatorPath);
     }
 
     public static void typeInFieldWithDelay(String locatorPath, String text) {
@@ -71,6 +71,6 @@ public abstract class AbstractPage {
                 e.printStackTrace();
             }
         }
-        logger.info(String.format("Type text with delay [%s] to element with next xpath: [%s]", text, locatorPath));
+        logger.info("Type text with delay {} to element with next xpath: {}", text, locatorPath);
     }
 }

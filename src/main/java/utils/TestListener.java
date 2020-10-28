@@ -22,23 +22,23 @@ public class TestListener implements ITestListener {
 
     @Override
     public void onTestStart(ITestResult iTestResult) {
-        logger.info(String.format("Test [%s] started.\n", iTestResult.getName()));
+        logger.info("Test {} started.\n", iTestResult.getName());
     }
 
     @Override
     public void onTestSuccess(ITestResult iTestResult) {
-        logger.info(String.format("Test [%s] PASSED.\n", iTestResult.getName()));
+        logger.info("Test {} PASSED.\\n", iTestResult.getName());
     }
 
     @Override
     public void onTestFailure(ITestResult iTestResult) {
-        logger.info(String.format("Test [%s] FAILED.\n", iTestResult.getName()));
+        logger.info("Test {} FAILED.\n", iTestResult.getName());
         saveScreenshot();
     }
 
     @Override
     public void onTestSkipped(ITestResult iTestResult) {
-        logger.info(String.format("Test [%s] SKIPPED.\n", iTestResult.getName()));
+        logger.info("Test {} SKIPPED.\n", iTestResult.getName());
         saveScreenshot();
     }
 
@@ -65,7 +65,7 @@ public class TestListener implements ITestListener {
             Path path = Paths.get(String.format("./target/screenshots/%s.png", getCurrentTimeAsString()));
             FileUtils.copyFile(screenCapture, new File(path.toString()));
         } catch (IOException e) {
-            logger.error("Failed to save screenshots" + e.getLocalizedMessage());
+            logger.error("Failed to save screenshots {}", e.getLocalizedMessage());
         }
     }
 }
