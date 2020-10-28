@@ -9,10 +9,10 @@ import org.testng.SkipException;
 
 import static driver.Browser.SHORT_TIMEOUT_SECONDS;
 
-public interface CaptchaMethod {
-    By CAPTCHA_ELEMENT_LOCATOR = By.xpath("//*[contains(text(), 'Are you a person or a robot?')]");
+public final class CaptchaMethod {
+    private static final By CAPTCHA_ELEMENT_LOCATOR = By.xpath("//img[contains(@class,'BpkImage')]");
 
-    static boolean checkCaptchaOnPage(Logger logger) {
+    public static boolean checkCaptchaOnPage(Logger logger) {
         if (new WebDriverWait(Browser.initDriver(), SHORT_TIMEOUT_SECONDS).until(
                 ExpectedConditions.presenceOfElementLocated(CAPTCHA_ELEMENT_LOCATOR)).isDisplayed()) {
             logger.info("Captcha element is present on pages.page: {}", Browser.initDriver().getCurrentUrl());
