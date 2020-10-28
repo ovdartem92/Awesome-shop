@@ -1,5 +1,6 @@
 package driver;
 
+import service.PropertyReader;
 import service.TestDataReader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -17,9 +18,9 @@ import static utils.CaptchaMethod.checkCaptchaOnPage;
 public class Browser {
     private static final ThreadLocal<WebDriver> DRIVER = new ThreadLocal<>();
     private static final Logger LOGGER = LogManager.getRootLogger();
-    public static final int SHORT_TIMEOUT_SECONDS = Integer.parseInt(TestDataReader.getTestData("timeout.short"));
-    public static final int LONG_TIMEOUT_SECONDS = Integer.parseInt(TestDataReader.getTestData("timeout.long"));
-    public static final int DEFAULT_TIMEOUT_SECONDS = Integer.parseInt(TestDataReader.getTestData("timeout.default"));
+    public static final int SHORT_TIMEOUT_SECONDS = PropertyReader.getIntegerProperty("stage","timeout.short");
+    public static final int LONG_TIMEOUT_SECONDS = PropertyReader.getIntegerProperty("stage","timeout.long");
+    public static final int DEFAULT_TIMEOUT_SECONDS = PropertyReader.getIntegerProperty("stage","timeout.default");
 
     private Browser() {
     }
@@ -27,7 +28,7 @@ public class Browser {
     public static WebDriver initDriver() {
         BrowserType type;
         if (getDriver() == null) {
-            type = BrowserType.valueOf(System.getProperty("browser", TestDataReader.getTestData("browser")).toUpperCase());
+            type = BrowserType.valueOf(System.getProperty("browser", PropertyReader.getProperty("stage","browser")).toUpperCase());
             switch (type) {
                 case FIREFOX: {
                     firefoxdriver().setup();
