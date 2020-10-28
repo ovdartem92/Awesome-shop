@@ -18,8 +18,6 @@ mvn -Dbrowser=${browser} -Dsurefire.suiteXmlFiles=${file.xml} -Denvironment=${en
     - opera
 * surefire.suiteXmlFiles
     - src\main\resources\testng-smoke.xml 
-    - src\main\resources\testng-parallel.xml
-    - src\main\resources\testng-all.xml
 * environment
     - environment_qa 
     
@@ -27,6 +25,3 @@ mvn -Dbrowser=${browser} -Dsurefire.suiteXmlFiles=${file.xml} -Denvironment=${en
 * Test data of mail and password for the pages.page login [environment_qa]:
     - testData.email = kebikov1995@mail.ru
     - testData.password= 12344321Qwerty
-    - timeout.short = 1 [sec]
-    - timeout.long = 15 [sec]
-    - timeout.default = 5 [sec]
