@@ -4,17 +4,12 @@ import driver.Browser;
 import service.WaitManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+
+import utils.CaptchaMethod;
 
 import java.util.List;
 
-import static driver.Browser.LONG_TIMEOUT_SECONDS;
-import static service.WaitManager.waitForAllElementsLocatedBy;
-import static service.WaitManager.waitForElementLocatedBy;
-import static utils.CaptchaMethod.checkCaptchaOnPage;
 
 public abstract class AbstractPage {
     public static final String CULTURE_SAVE_BUTTON_PATH = "//button[@id='culture-selector-save']";
@@ -22,40 +17,37 @@ public abstract class AbstractPage {
     public static Logger logger = LogManager.getRootLogger();
 
     public void isWaitingModalViewOnPage() {
-        new WebDriverWait(Browser.initDriver(), LONG_TIMEOUT_SECONDS).until(
-                ExpectedConditions.invisibilityOfElementLocated(By.xpath(WAITING_MODAL_VIEW)));
+        WaitManager.waitForInvisibilityOfElementLocated(WAITING_MODAL_VIEW, Browser.LONG_TIMEOUT_SECONDS);
     }
 
     public static WebElement getElementBy(String locatorPath) {
-        checkCaptchaOnPage(logger);
-        return waitForElementLocatedBy(locatorPath);
+        CaptchaMethod.checkCaptchaOnPage(logger);
+        return WaitManager.waitForElementLocatedBy(locatorPath);
     }
 
     public static List<WebElement> getElementsBy(String locatorPath) {
-        checkCaptchaOnPage(logger);
-        return waitForAllElementsLocatedBy(locatorPath);
+        CaptchaMethod.checkCaptchaOnPage(logger);
+        return WaitManager.waitForAllElementsLocatedBy(locatorPath);
     }
 
     public static void clickOnElementBy(String locatorPath) {
-        checkCaptchaOnPage(logger);
+        CaptchaMethod.checkCaptchaOnPage(logger);
         WaitManager.waitForElementToBeClickableBy(locatorPath).click();
         logger.info("Click on element with next xpath: {}", locatorPath);
     }
 
     public static String getTextOnElementBy(String locatorPath) {
-        return waitForElementLocatedBy(locatorPath).getText();
+        return WaitManager.waitForElementLocatedBy(locatorPath).getText();
     }
 
     public static String getAttributeValueOnElementBy(String locatorPath, String attribute) {
-        return waitForElementLocatedBy(locatorPath).getAttribute(attribute);
+        return WaitManager.waitForElementLocatedBy(locatorPath).getAttribute(attribute);
     }
 
     public static void typeTextToElementBy(String locatorPath, String text) {
-        if (WaitManager.isElementVisibleBy(locatorPath)) {
-            WebElement element = getElementBy(locatorPath);
-            element.clear();
-            element.sendKeys(text);
-        }
+        WebElement element = getElementBy(locatorPath);
+        element.clear();
+        element.sendKeys(text);
         logger.info("Type text {} to element with next xpath: {}", text, locatorPath);
     }
 
