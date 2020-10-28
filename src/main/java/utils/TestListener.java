@@ -59,7 +59,7 @@ public class TestListener implements ITestListener {
 
     public void saveScreenshot() {
         File screenCapture = ((TakesScreenshot) Browser
-                .getDriver())
+                .initDriver())
                 .getScreenshotAs(OutputType.FILE);
         try {
             Path path = Paths.get(String.format("./target/screenshots/%s.png", getCurrentTimeAsString()));

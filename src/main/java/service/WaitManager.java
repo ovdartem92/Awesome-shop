@@ -9,20 +9,16 @@ import org.openqa.selenium.support.ui.Wait;
 import java.time.Duration;
 import java.util.List;
 
-import static driver.Browser.DEFAULT_TIMEOUT_SECONDS;
-import static driver.Browser.SHORT_TIMEOUT_SECONDS;
+public abstract class WaitManager {
 
-public interface WaitManager {
-
-    static Wait<WebDriver> getDefaultWaitConfig() {
-        return new FluentWait<>(Browser.getDriver())
-                .withTimeout(Duration.ofSeconds(DEFAULT_TIMEOUT_SECONDS))
-                .pollingEvery(Duration.ofSeconds(SHORT_TIMEOUT_SECONDS))
-                .ignoring(NoSuchElementException.class)
-                .ignoring(StaleElementReferenceException.class);
+    public static Wait<WebDriver> getDefaultWaitConfig() {
+        return new FluentWait<>(Browser.initDriver())
+                .withTimeout(Duration.ofSeconds(Browser.DEFAULT_TIMEOUT_SECONDS))
+                .pollingEvery(Duration.ofSeconds(Browser.SHORT_TIMEOUT_SECONDS))
+                .ignoring(NoSuchElementException.class, StaleElementReferenceException.class);
     }
 
-    static boolean isElementVisibleBy(String locatorPath) {
+    public static boolean isElementVisibleBy(String locatorPath) {
         Wait<WebDriver> wait = getDefaultWaitConfig();
         try {
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locatorPath)));
@@ -32,17 +28,17 @@ public interface WaitManager {
         }
     }
 
-    static WebElement waitForElementLocatedBy(String locatorPath) {
+    public static WebElement waitForElementLocatedBy(String locatorPath) {
         Wait<WebDriver> wait = getDefaultWaitConfig();
         return wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(locatorPath)));
     }
 
-    static List<WebElement> waitForAllElementsLocatedBy(String locatorPath) {
+    public static List<WebElement> waitForAllElementsLocatedBy(String locatorPath) {
         Wait<WebDriver> wait = getDefaultWaitConfig();
         return wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath(locatorPath)));
     }
 
-    static WebElement waitForElementToBeClickableBy(String locatorPath) {
+    public static WebElement waitForElementToBeClickableBy(String locatorPath) {
         Wait<WebDriver> wait = getDefaultWaitConfig();
         return wait.until(ExpectedConditions.elementToBeClickable(By.xpath(locatorPath)));
     }

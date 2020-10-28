@@ -1,12 +1,10 @@
 package pages;
 
 import driver.Browser;
-import service.TestDataReader;
 import service.WaitManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -24,12 +22,8 @@ public abstract class AbstractPage {
     public static Logger logger = LogManager.getRootLogger();
 
     public void isWaitingModalViewOnPage() {
-        new WebDriverWait(Browser.getDriver(), LONG_TIMEOUT_SECONDS).until(
+        new WebDriverWait(Browser.initDriver(), LONG_TIMEOUT_SECONDS).until(
                 ExpectedConditions.invisibilityOfElementLocated(By.xpath(WAITING_MODAL_VIEW)));
-    }
-
-    public static String getHomepageUrl() {
-        return TestDataReader.getTestData("testData.home.url");
     }
 
     public static WebElement getElementBy(String locatorPath) {
@@ -63,16 +57,6 @@ public abstract class AbstractPage {
             element.sendKeys(text);
         }
         logger.info(String.format("Type text [%s] to element with next xpath: [%s]", text, locatorPath));
-    }
-
-    public static void typeKeysToElementBy(String locatorPath, Keys... keys) {
-        if (WaitManager.isElementVisibleBy(locatorPath)) {
-            for (Keys key : keys) {
-                WebElement element = getElementBy(locatorPath);
-                element.sendKeys(key);
-            }
-        }
-        logger.info(String.format("Type keys [%s] to element with next xpath [%s]", keys, locatorPath));
     }
 
     public static void typeInFieldWithDelay(String locatorPath, String text) {

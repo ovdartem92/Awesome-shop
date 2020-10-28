@@ -3,17 +3,18 @@ import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
-import pages.AbstractPage;
+import service.TestDataReader;
 import utils.TestListener;
 
 @Listeners({TestListener.class})
 public abstract class BaseTest {
     protected WebDriver driver;
+    protected final String URL = TestDataReader.getTestData("testData.home.url");
 
     @BeforeMethod()
     public void setUp() {
-        driver = Browser.getDriver();
-        Browser.openPage(AbstractPage.getHomepageUrl());
+        driver = Browser.initDriver();
+        Browser.openPage(URL);
     }
 
     @AfterMethod(alwaysRun = true)

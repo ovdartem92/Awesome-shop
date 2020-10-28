@@ -13,9 +13,9 @@ public interface CaptchaMethod {
     By CAPTCHA_ELEMENT_LOCATOR = By.xpath("//*[contains(text(), 'Are you a person or a robot?')]");
 
     static boolean checkCaptchaOnPage(Logger logger) {
-        if (new WebDriverWait(Browser.getDriver(), SHORT_TIMEOUT_SECONDS).until(
+        if (new WebDriverWait(Browser.initDriver(), SHORT_TIMEOUT_SECONDS).until(
                 ExpectedConditions.presenceOfElementLocated(CAPTCHA_ELEMENT_LOCATOR)).isDisplayed()) {
-            logger.info(String.format("Captcha element is present on pages.page: [ %s ]", Browser.getDriver().getCurrentUrl()));
+            logger.info(String.format("Captcha element is present on pages.page: [ %s ]", Browser.initDriver().getCurrentUrl()));
             throw new SkipException("Test was skipped, because CAPTCHA has appeared");
         }
         return false;

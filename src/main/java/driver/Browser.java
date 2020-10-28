@@ -24,43 +24,43 @@ public class Browser {
     private Browser() {
     }
 
-    public static WebDriver getDriver() {
+    public static WebDriver initDriver() {
         BrowserType type;
-        if (DRIVER.get() == null) {
+        if (getDriver() == null) {
             type = BrowserType.valueOf(System.getProperty("browser", TestDataReader.getTestData("browser")).toUpperCase());
             switch (type) {
                 case FIREFOX: {
                     firefoxdriver().setup();
                     DRIVER.set(new FirefoxDriver());
-                    configureDriver(DRIVER.get());
                     break;
                 }
                 case EDGE: {
                     edgedriver().setup();
                     DRIVER.set(new EdgeDriver());
-                    configureDriver(DRIVER.get());
                     break;
                 }
                 case OPERA: {
                     operadriver().setup();
                     DRIVER.set(new OperaDriver());
-                    configureDriver(DRIVER.get());
                     break;
                 }
                 case CHROME: {
                     chromedriver().setup();
                     DRIVER.set(new ChromeDriver());
-                    configureDriver(DRIVER.get());
                     break;
                 }
             }
         }
+        configureDriver(getDriver());
+        return DRIVER.get();
+    }
+
+    public static WebDriver getDriver() {
         return DRIVER.get();
     }
 
     private static void configureDriver(WebDriver driver) {
         driver.manage().timeouts().pageLoadTimeout(LONG_TIMEOUT_SECONDS, TimeUnit.SECONDS);
-      //  driver.manage().timeouts().implicitlyWait(DEFAULT_TIMEOUT_SECONDS, TimeUnit.SECONDS);
         driver.manage().window().maximize();
     }
 
@@ -73,8 +73,10 @@ public class Browser {
     }
 
     enum BrowserType {
-        CHROME("chrome"), FIREFOX("firefox"),
-        EDGE("edge"), OPERA("opera");
+        CHROME("chrome"),
+        FIREFOX("firefox"),
+        EDGE("edge"),
+        OPERA("opera");
         private String name;
 
         BrowserType(String name) {
