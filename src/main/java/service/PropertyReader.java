@@ -19,6 +19,8 @@ public final class PropertyReader {
             FileInputStream fis = new FileInputStream(path.toFile());
             property.load(fis);
             value = property.getProperty(key);
+            if(value.isEmpty())
+                throw new NullPointerException(String.format("Key '%s' is null or empty.", key));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
