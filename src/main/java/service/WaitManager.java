@@ -10,17 +10,32 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.List;
 
+import static driver.Browser.SHORT_TIMEOUT_SECONDS;
+
 public abstract class WaitManager {
+    private static final long PULLING_EVERY_MILLIS_SECONDS = 10;
+    private static Wait<WebDriver> wait;
 
     public static Wait<WebDriver> getDefaultWaitConfig() {
         return new FluentWait<>(Browser.initDriver())
                 .withTimeout(Duration.ofSeconds(Browser.DEFAULT_TIMEOUT_SECONDS))
-                .pollingEvery(Duration.ofSeconds(Browser.SHORT_TIMEOUT_SECONDS))
+                .pollingEvery(Duration.ofMillis(PULLING_EVERY_MILLIS_SECONDS))
                 .ignoring(NoSuchElementException.class, StaleElementReferenceException.class);
     }
 
+    public static Wait<WebDriver> getWaitConfigForCaptcha() {
+        return new FluentWait<>(Browser.getDriver())
+                .withTimeout(Duration.ofSeconds(SHORT_TIMEOUT_SECONDS))
+                .ignoring(NoSuchElementException.class, StaleElementReferenceException.class).ignoring(TimeoutException.class);
+    }
+
+    public static boolean isCaptchaDisplayed(String locatorPath) {
+        wait = getWaitConfigForCaptcha();
+        return wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(locatorPath))).isDisplayed();
+    }
+
     public static boolean isElementVisible(String locatorPath) {
-        Wait<WebDriver> wait = getDefaultWaitConfig();
+        wait = getDefaultWaitConfig();
         try {
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locatorPath)));
             return true;
@@ -35,21 +50,21 @@ public abstract class WaitManager {
     }
 
     public static WebElement waitForElementLocated(String locatorPath) {
-        Wait<WebDriver> wait = getDefaultWaitConfig();
+        wait = getDefaultWaitConfig();
         return wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(locatorPath)));
     }
 
     public static List<WebElement> waitForAllElementsLocated(String locatorPath) {
-        Wait<WebDriver> wait = getDefaultWaitConfig();
+        wait = getDefaultWaitConfig();
         return wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath(locatorPath)));
     }
 
     public static WebElement waitForElementToBeClickable(String locatorPath) {
-        Wait<WebDriver> wait = getDefaultWaitConfig();
+        wait = getDefaultWaitConfig();
         return wait.until(ExpectedConditions.elementToBeClickable(By.xpath(locatorPath)));
     }
 
-    public static void waitForInvisibilityOfElementLocated(String locatorPath, int timeoutSeconds){
+    public static void waitForInvisibilityOfElementLocated(String locatorPath, int timeoutSeconds) {
         new WebDriverWait(Browser.initDriver(), timeoutSeconds).until(
                 ExpectedConditions.invisibilityOfElementLocated(By.xpath(locatorPath)));
     }
