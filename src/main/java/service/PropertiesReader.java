@@ -22,8 +22,6 @@ public final class PropertiesReader {
 
             if (value.isEmpty())
                 throw new NullPointerException(String.format("Key '%s' is null or empty.", key));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
