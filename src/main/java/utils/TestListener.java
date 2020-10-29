@@ -27,7 +27,7 @@ public class TestListener implements ITestListener {
 
     @Override
     public void onTestSuccess(ITestResult iTestResult) {
-        logger.info("Test {} PASSED.\\n", iTestResult.getName());
+        logger.info("Test {} PASSED.\n", iTestResult.getName());
     }
 
     @Override
