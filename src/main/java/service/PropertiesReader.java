@@ -7,7 +7,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Properties;
 
-public final class PropertyReader {
+public final class PropertiesReader {
     private static String PATH = "./src/main/resources/%s.properties";
 
     public static String getProperty(String propertyFileName, String key) {
@@ -19,7 +19,8 @@ public final class PropertyReader {
             FileInputStream fis = new FileInputStream(path.toFile());
             property.load(fis);
             value = property.getProperty(key);
-            if(value.isEmpty())
+
+            if (value.isEmpty())
                 throw new NullPointerException(String.format("Key '%s' is null or empty.", key));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
