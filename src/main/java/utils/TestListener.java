@@ -15,8 +15,6 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import static utils.StringUtils.getCurrentTimeAsString;
-
 public class TestListener implements ITestListener {
     private Logger logger = LogManager.getRootLogger();
 
@@ -62,7 +60,7 @@ public class TestListener implements ITestListener {
                 .initDriver())
                 .getScreenshotAs(OutputType.FILE);
         try {
-            Path path = Paths.get(String.format("./target/screenshots/%s.png", getCurrentTimeAsString()));
+            Path path = Paths.get(String.format("./target/screenshots/%s.png", StringUtils.getCurrentTimeAsString()));
             FileUtils.copyFile(screenCapture, new File(path.toString()));
         } catch (IOException e) {
             logger.error("Failed to save screenshots {}", e.getLocalizedMessage());

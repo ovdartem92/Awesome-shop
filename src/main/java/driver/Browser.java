@@ -1,5 +1,6 @@
 package driver;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import service.PropertiesReader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -8,11 +9,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.opera.OperaDriver;
+import utils.Captcha;
 
 import java.util.concurrent.TimeUnit;
-
-import static io.github.bonigarcia.wdm.WebDriverManager.*;
-import static utils.Captcha.checkCaptchaOnPage;
 
 public class Browser {
     private static final ThreadLocal<WebDriver> DRIVER = new ThreadLocal<>();
@@ -30,29 +29,29 @@ public class Browser {
             type = BrowserType.valueOf(System.getProperty("browser", PropertiesReader.getProperty("stage", "browser")).toUpperCase());
             switch (type) {
                 case FIREFOX: {
-                    firefoxdriver().setup();
+                    WebDriverManager.firefoxdriver().setup();
                     DRIVER.set(new FirefoxDriver());
                     break;
                 }
                 case EDGE: {
-                    edgedriver().setup();
+                    WebDriverManager.edgedriver().setup();
                     DRIVER.set(new EdgeDriver());
                     break;
                 }
                 case OPERA: {
-                    operadriver().setup();
+                    WebDriverManager.operadriver().setup();
                     DRIVER.set(new OperaDriver());
                     break;
                 }
                 case CHROME: {
-                    chromedriver().setup();
+                    WebDriverManager.chromedriver().setup();
                     DRIVER.set(new ChromeDriver());
                     break;
                 }
             }
         }
         configureDriver(getDriver());
-        return DRIVER.get();
+        return getDriver();
     }
 
     public static WebDriver getDriver() {
@@ -65,9 +64,9 @@ public class Browser {
     }
 
     public static void closeDriver() {
-        for (String handle : DRIVER.get().getWindowHandles()) {
-            DRIVER.get().switchTo().window(handle);
-            DRIVER.get().close();
+        for (String handle : getDriver().getWindowHandles()) {
+            getDriver().switchTo().window(handle);
+            getDriver().close();
         }
         DRIVER.set(null);
     }
@@ -84,8 +83,8 @@ public class Browser {
         }
     }
 
-    public static void openPage(String str) {
-        DRIVER.get().get(str);
-        checkCaptchaOnPage(LOGGER);
+    public static void openPage(String url) {
+        getDriver().get(url);
+        Captcha.checkCaptchaOnPage(LOGGER);
     }
 }

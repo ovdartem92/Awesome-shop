@@ -5,10 +5,9 @@ import service.WaitManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebElement;
+import utils.Captcha;
 
 import java.util.List;
-
-import static utils.Captcha.checkCaptchaOnPage;
 
 public abstract class AbstractPage {
     protected static final String WAITING_MODAL_VIEW = "//*[@class='WaitingModal_WaitingModal__container__2wluW']";
@@ -19,17 +18,17 @@ public abstract class AbstractPage {
     }
 
     public static WebElement getElement(String locatorPath) {
-        checkCaptchaOnPage(logger);
+        Captcha.checkCaptchaOnPage(logger);
         return WaitManager.waitForElementLocated(locatorPath);
     }
 
     public static List<WebElement> getElements(String locatorPath) {
-        checkCaptchaOnPage(logger);
+        Captcha.checkCaptchaOnPage(logger);
         return WaitManager.waitForAllElementsLocated(locatorPath);
     }
 
     public static void clickOnElement(String locatorPath) {
-        checkCaptchaOnPage(logger);
+        Captcha.checkCaptchaOnPage(logger);
         WaitManager.waitForElementToBeClickable(locatorPath).click();
         logger.info("Click on element with next xpath: {}", locatorPath);
     }
