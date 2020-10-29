@@ -6,7 +6,6 @@ public class FirstTest extends BaseTest {
 
     @Test
     public void firstTest() {
-        Browser.openPage(URL);
-//        Assert.assertEquals(Browser.initDriver().getCurrentUrl(), URL, "Url isn't correct");
+        Assert.assertEquals(Browser.initDriver().getCurrentUrl(), URL, "Url isn't correct");
     }
 }
