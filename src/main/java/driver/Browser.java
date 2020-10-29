@@ -1,7 +1,6 @@
 package driver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import service.PropertiesReader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
@@ -9,6 +8,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.opera.OperaDriver;
+import service.TestDataReader;
 import utils.Captcha;
 
 import java.util.concurrent.TimeUnit;
@@ -16,9 +16,9 @@ import java.util.concurrent.TimeUnit;
 public class Browser {
     private static final ThreadLocal<WebDriver> DRIVER = new ThreadLocal<>();
     private static final Logger LOGGER = LogManager.getRootLogger();
-    public static final int SHORT_TIMEOUT_SECONDS = PropertiesReader.getIntegerProperty("stage", "timeout.short");
-    public static final int LONG_TIMEOUT_SECONDS = PropertiesReader.getIntegerProperty("stage", "timeout.long");
-    public static final int DEFAULT_TIMEOUT_SECONDS = PropertiesReader.getIntegerProperty("stage", "timeout.default");
+    public static final int SHORT_TIMEOUT_SECONDS = TestDataReader.getIntegerStageData("timeout.short");
+    public static final int LONG_TIMEOUT_SECONDS = TestDataReader.getIntegerStageData("timeout.long");
+    public static final int DEFAULT_TIMEOUT_SECONDS = TestDataReader.getIntegerStageData("timeout.default");
 
     private Browser() {
     }
@@ -26,7 +26,7 @@ public class Browser {
     public static WebDriver initDriver() {
         BrowserType type;
         if (getDriver() == null) {
-            type = BrowserType.valueOf(System.getProperty("browser", PropertiesReader.getProperty("stage", "browser")).toUpperCase());
+            type = BrowserType.valueOf(System.getProperty("browser", TestDataReader.getStageData("browser")).toUpperCase());
             switch (type) {
                 case FIREFOX: {
                     WebDriverManager.firefoxdriver().setup();
