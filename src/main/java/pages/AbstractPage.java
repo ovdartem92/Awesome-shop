@@ -1,6 +1,5 @@
 package pages;
 
-import driver.Browser;
 import service.WaitManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
