@@ -5,8 +5,8 @@ import org.openqa.selenium.*;
 import org.testng.SkipException;
 import service.WaitManager;
 
-public final class Captcha {
-    static String CAPTCHA_ELEMENT_PATH = "//img[contains(@class,'BpkImage')]";
+public abstract class Captcha {
+    final static String CAPTCHA_ELEMENT_PATH = "//img[contains(@class,'BpkImage')]";
 
     public static void checkCaptchaOnPage(Logger logger) {
         try {

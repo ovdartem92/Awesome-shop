@@ -1,18 +1,17 @@
 package service;
 
 import java.io.FileInputStream;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 import java.util.ResourceBundle;
 
 public class TestDataReader {
-    private static ResourceBundle resourceBundle= ResourceBundle.getBundle(System.getProperty("environment"));
-    private static String STAGE_PATH = "./src/main/resources/stage.properties";
+    private final static ResourceBundle RESOURCE_BUNDLE = ResourceBundle.getBundle(System.getProperty("environment"));
+    private final static String STAGE_PATH = "./src/main/resources/stage.properties";
 
     public static String getTestData(String key) {
-        return resourceBundle.getString(key);
+        return RESOURCE_BUNDLE.getString(key);
     }
 
     public static String getStageData(String key) {
