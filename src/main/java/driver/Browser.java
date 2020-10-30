@@ -16,9 +16,9 @@ import java.util.concurrent.TimeUnit;
 public class Browser {
     private static final ThreadLocal<WebDriver> DRIVER = new ThreadLocal<>();
     private static final Logger LOGGER = LogManager.getRootLogger();
-    public static final int SHORT_TIMEOUT_SECONDS = TestDataReader.getIntegerStageData("timeout.short");
-    public static final int LONG_TIMEOUT_SECONDS = TestDataReader.getIntegerStageData("timeout.long");
-    public static final int DEFAULT_TIMEOUT_SECONDS = TestDataReader.getIntegerStageData("timeout.default");
+    public static final int SHORT_TIMEOUT_SECONDS = TestDataReader.getIntStageData("timeout.short");
+    public static final int LONG_TIMEOUT_SECONDS = TestDataReader.getIntStageData("timeout.long");
+    public static final int DEFAULT_TIMEOUT_SECONDS = TestDataReader.getIntStageData("timeout.default");
 
     private Browser() {
     }
