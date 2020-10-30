@@ -10,13 +10,8 @@ import utils.Captcha;
 import java.util.List;
 
 public abstract class AbstractPage {
-    protected static final String WAITING_MODAL_VIEW = "//*[@class='WaitingModal_WaitingModal__container__2wluW']";
     public static Logger logger = LogManager.getRootLogger();
-
-    public void isWaitingModalViewOnPage() {
-        WaitManager.waitForInvisibilityOfElementLocated(WAITING_MODAL_VIEW, Browser.LONG_TIMEOUT_SECONDS);
-    }
-
+    
     public static WebElement getElement(String locatorPath) {
         Captcha.checkCaptchaOnPage(logger);
         return WaitManager.waitForElementLocated(locatorPath);
