@@ -10,10 +10,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.List;
 
-import static driver.Browser.SHORT_TIMEOUT_SECONDS;
-
 public abstract class WaitManager {
-    private static final long PULLING_EVERY_MILLIS_SECONDS = 10;
+    private static final long PULLING_EVERY_MILLIS_SECONDS = 300;
     private static Wait<WebDriver> wait;
 
     public static Wait<WebDriver> getDefaultWaitConfig() {
@@ -25,7 +23,7 @@ public abstract class WaitManager {
 
     public static Wait<WebDriver> getWaitConfigForCaptcha() {
         return new FluentWait<>(Browser.getDriver())
-                .withTimeout(Duration.ofSeconds(SHORT_TIMEOUT_SECONDS))
+                .withTimeout(Duration.ofSeconds(Browser.SHORT_TIMEOUT_SECONDS))
                 .ignoring(NoSuchElementException.class, StaleElementReferenceException.class).ignoring(TimeoutException.class);
     }
 
