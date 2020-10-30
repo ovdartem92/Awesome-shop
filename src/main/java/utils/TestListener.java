@@ -60,7 +60,7 @@ public class TestListener implements ITestListener {
                 .initDriver())
                 .getScreenshotAs(OutputType.FILE);
         try {
-            Path path = Paths.get(String.format("./target/screenshots/%s.png", StringUtils.getCurrentTimeAsString()));
+            Path path = Paths.get(".", "target", "screenshots", String.format("%s.png", StringUtils.getCurrentTimeAsString()));
             FileUtils.copyFile(screenCapture, new File(path.toString()));
         } catch (IOException e) {
             logger.error("Failed to save screenshots {}", e.getLocalizedMessage());
