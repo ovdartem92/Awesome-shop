@@ -10,6 +10,7 @@ public abstract class Captcha {
 
     public static void checkCaptchaOnPage(Logger logger) {
         if (WaitManager.isElementVisible(Browser.SHORT_TIMEOUT_SECONDS, CAPTCHA_ELEMENT_LOCATOR))
+            logger.info("Test was skipped, because CAPTCHA has appeared");
             throw new SkipException("Captcha has appeared on this page");
     }
 }
