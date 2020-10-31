@@ -21,21 +21,19 @@ public abstract class WaitManager {
                 .ignoring(NoSuchElementException.class, StaleElementReferenceException.class);
     }
 
-    public static Wait<WebDriver> getWaitConfigForCaptcha() {
-        return new FluentWait<>(Browser.getDriver())
-                .withTimeout(Duration.ofSeconds(Browser.SHORT_TIMEOUT_SECONDS))
-                .ignoring(NoSuchElementException.class, StaleElementReferenceException.class).ignoring(TimeoutException.class);
-    }
-
-    public static boolean isCaptchaDisplayed(String locatorPath) {
-        wait = getWaitConfigForCaptcha();
-        return wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(locatorPath))).isDisplayed();
-    }
-
     public static boolean isElementVisible(String locatorPath) {
         wait = getDefaultWaitConfig();
         try {
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locatorPath)));
+            return true;
+        } catch (TimeoutException e) {
+            return false;
+        }
+    }
+
+    public static boolean isElementVisible(long timeout, String locatorPath) {
+        try {
+            new WebDriverWait(Browser.initDriver(), timeout).until(ExpectedConditions.presenceOfElementLocated(By.xpath(locatorPath)));
             return true;
         } catch (TimeoutException e) {
             return false;
