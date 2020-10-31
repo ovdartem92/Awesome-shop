@@ -9,8 +9,9 @@ public abstract class Captcha {
     final static String CAPTCHA_ELEMENT_LOCATOR = "//img[contains(@class,'BpkImage')]";
 
     public static void checkCaptchaOnPage(Logger logger) {
-        if (WaitManager.isElementVisible(Browser.SHORT_TIMEOUT_SECONDS, CAPTCHA_ELEMENT_LOCATOR))
-            logger.info("Test was skipped, because CAPTCHA has appeared");
+        if (WaitManager.isElementVisible(CAPTCHA_ELEMENT_LOCATOR, Browser.SHORT_TIMEOUT_SECONDS)) {
+            logger.error("Test was skipped, because CAPTCHA has appeared");
             throw new SkipException("Captcha has appeared on this page");
+        }
     }
 }

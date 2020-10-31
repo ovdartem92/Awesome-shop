@@ -31,7 +31,7 @@ public abstract class WaitManager {
         }
     }
 
-    public static boolean isElementVisible(long timeout, String locatorPath) {
+    public static boolean isElementVisible(String locatorPath, long timeout) {
         try {
             new WebDriverWait(Browser.initDriver(), timeout).until(ExpectedConditions.presenceOfElementLocated(By.xpath(locatorPath)));
             return true;
