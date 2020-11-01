@@ -85,6 +85,5 @@ public class Browser {
 
     public static void openPage(String url) {
         getDriver().get(url);
-        Captcha.checkCaptchaOnPage(LOGGER);
     }
 }
