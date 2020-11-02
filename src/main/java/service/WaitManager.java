@@ -21,19 +21,21 @@ public abstract class WaitManager {
                 .ignoring(NoSuchElementException.class, StaleElementReferenceException.class);
     }
 
+    private static Wait<WebDriver> getCustomWaitConfig(long timeout, long pooling) {
+        return new FluentWait<>(Browser.initDriver())
+                .withTimeout(Duration.ofSeconds(timeout))
+                .pollingEvery(Duration.ofMillis(pooling))
+                .ignoring(NoSuchElementException.class, StaleElementReferenceException.class);
+    }
+
     public static boolean isElementVisible(String locatorPath) {
-        wait = getDefaultWaitConfig();
-        try {
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locatorPath)));
-            return true;
-        } catch (TimeoutException e) {
-            return false;
-        }
+        return isElementVisible(locatorPath, Browser.DEFAULT_TIMEOUT_SECONDS);
     }
 
     public static boolean isElementVisible(String locatorPath, long timeout) {
+        wait = getCustomWaitConfig(timeout, PULLING_EVERY_MILLIS_SECONDS);
         try {
-            new WebDriverWait(Browser.initDriver(), timeout).until(ExpectedConditions.presenceOfElementLocated(By.xpath(locatorPath)));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locatorPath)));
             return true;
         } catch (TimeoutException e) {
             return false;
