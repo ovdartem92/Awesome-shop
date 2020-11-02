@@ -31,13 +31,13 @@ public class TestListener implements ITestListener {
     @Override
     public void onTestFailure(ITestResult iTestResult) {
         logger.info("Test {} FAILED.\n", iTestResult.getName());
-        saveScreenshot();
+        saveScreenshot(iTestResult);
     }
 
     @Override
     public void onTestSkipped(ITestResult iTestResult) {
         logger.info("Test {} SKIPPED.\n", iTestResult.getName());
-        saveScreenshot();
+        saveScreenshot(iTestResult);
     }
 
     @Override
@@ -55,12 +55,13 @@ public class TestListener implements ITestListener {
         // unused at the moment
     }
 
-    public void saveScreenshot() {
+    public void saveScreenshot(ITestResult iTestResult) {
         File screenCapture = ((TakesScreenshot) Browser
                 .initDriver())
                 .getScreenshotAs(OutputType.FILE);
         try {
-            Path path = Paths.get(".", "target", "screenshots", String.format("%s.png", StringUtils.getCurrentTimeAsString()));
+            Path path = Paths.get(".", "target", "screenshots", String.format("%s %s.png", iTestResult.getName(),
+                    StringUtils.getCurrentTimeAsString()));
             FileUtils.copyFile(screenCapture, new File(path.toString()));
         } catch (IOException e) {
             logger.error("Failed to save screenshots {}", e.getLocalizedMessage());
