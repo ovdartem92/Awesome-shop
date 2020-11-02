@@ -3,16 +3,15 @@ package service;
 import java.util.ResourceBundle;
 
 public class TestDataReader {
-    private static ResourceBundle resourceBundle;
+    private static final ResourceBundle RESOURCE_BUNDLE = ResourceBundle.getBundle(System.getProperty("environment"));
+    private static final ResourceBundle STAGE_BUNDLE = ResourceBundle.getBundle("stage");
 
     public static String getTestData(String key) {
-        resourceBundle = ResourceBundle.getBundle(System.getProperty("environment"));
-        return resourceBundle.getString(key);
+        return RESOURCE_BUNDLE.getString(key);
     }
 
     public static String getStageData(String key) {
-        resourceBundle = ResourceBundle.getBundle("stage");
-        return resourceBundle.getString(key);
+        return STAGE_BUNDLE.getString(key);
     }
 
     public static int getIntStageData(String key) {
