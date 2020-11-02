@@ -3,6 +3,7 @@ import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
+import pages.Captcha;
 import service.TestDataReader;
 import utils.TestListener;
 
@@ -15,6 +16,7 @@ public abstract class BaseTest {
     public void setUp() {
         driver = Browser.initDriver();
         Browser.openPage(URL);
+        Captcha.checkCaptchaOnPage();
     }
 
     @AfterMethod(alwaysRun = true)

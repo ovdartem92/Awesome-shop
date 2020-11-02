@@ -4,7 +4,6 @@ import service.WaitManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebElement;
-import utils.Captcha;
 
 import java.util.List;
 
@@ -12,17 +11,17 @@ public abstract class AbstractPage {
     public static Logger logger = LogManager.getRootLogger();
     
     public static WebElement getElement(String locatorPath) {
-        Captcha.checkCaptchaOnPage(logger);
+        Captcha.checkCaptchaOnPage();
         return WaitManager.waitForElementLocated(locatorPath);
     }
 
     public static List<WebElement> getElements(String locatorPath) {
-        Captcha.checkCaptchaOnPage(logger);
+        Captcha.checkCaptchaOnPage();
         return WaitManager.waitForAllElementsLocated(locatorPath);
     }
 
     public static void clickOnElement(String locatorPath) {
-        Captcha.checkCaptchaOnPage(logger);
+        Captcha.checkCaptchaOnPage();
         WaitManager.waitForElementToBeClickable(locatorPath).click();
         logger.info("Click on element with next xpath: {}", locatorPath);
     }
