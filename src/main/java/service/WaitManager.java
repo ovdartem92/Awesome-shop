@@ -15,10 +15,7 @@ public abstract class WaitManager {
     private static Wait<WebDriver> wait;
 
     public static Wait<WebDriver> getDefaultWaitConfig() {
-        return new FluentWait<>(Browser.initDriver())
-                .withTimeout(Duration.ofSeconds(Browser.DEFAULT_TIMEOUT_SECONDS))
-                .pollingEvery(Duration.ofMillis(PULLING_EVERY_MILLIS_SECONDS))
-                .ignoring(NoSuchElementException.class, StaleElementReferenceException.class);
+        return getCustomWaitConfig(Browser.DEFAULT_TIMEOUT_SECONDS, PULLING_EVERY_MILLIS_SECONDS);
     }
 
     private static Wait<WebDriver> getCustomWaitConfig(long timeout, long pooling) {
