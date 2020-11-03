@@ -1,7 +1,8 @@
-package pages;
+package pages.net.skyscanner.elements;
 
 import driver.Browser;
 import org.testng.SkipException;
+import pages.AbstractPage;
 import service.WaitManager;
 
 public abstract class Captcha extends AbstractPage {

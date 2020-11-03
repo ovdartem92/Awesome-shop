@@ -1,5 +1,6 @@
 package pages;
 
+import pages.net.skyscanner.elements.Captcha;
 import service.WaitManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
