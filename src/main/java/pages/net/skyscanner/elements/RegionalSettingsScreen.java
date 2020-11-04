@@ -1,6 +1,7 @@
 package pages.net.skyscanner.elements;
 
 import pages.AbstractPage;
+import pages.net.skyscanner.profilePage.ProfilePage;
 
 public class RegionalSettingsScreen extends AbstractPage {
     private static final String CURRENCY_SELECT_LOCATOR = "//select[@id='culture-selector-currency']";
@@ -32,5 +33,9 @@ public class RegionalSettingsScreen extends AbstractPage {
     public RegionalSettingsScreen clickCurrencyOptionButton(String currency) {
         clickOnElement(CURRENCY_OPTION_LOCATOR.replace("currency", currency));
         return this;
+    }
+
+    public ProfilePage profilePage() {
+        return new ProfilePage();
     }
 }
