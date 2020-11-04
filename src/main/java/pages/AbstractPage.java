@@ -1,8 +1,6 @@
 package pages;
 
 import pages.net.skyscanner.elements.Captcha;
-import pages.net.skyscanner.elements.HeaderScreen;
-import pages.net.skyscanner.elements.RegionalSettingsScreen;
 import service.WaitManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -57,9 +55,5 @@ public abstract class AbstractPage {
             }
         }
         logger.info("Type text with delay {} to element with next xpath: {}", text, locatorPath);
-    }
-
-    public static HeaderScreen getHeaderScreen() {
-        return new HeaderScreen();
     }
 }
