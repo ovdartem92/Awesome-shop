@@ -8,4 +8,5 @@ public final class Constants {
     public static final String MOSCOW_VNUKOVO_VKO = "Moscow Vnukovo (VKO)";
     public static final String MOSCOW = "Moscow";
     public static final String TURIN = "Turin";
+    public static final String HEADER_TAB_PATH = "//nav[@id='PrimaryNav']//span[contains(text()";
 }
