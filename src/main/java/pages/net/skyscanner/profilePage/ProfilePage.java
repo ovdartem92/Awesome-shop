@@ -15,10 +15,6 @@ public class ProfilePage extends AbstractScreen {
         return this;
     }
 
-    public HeaderScreen headerScreenGetInstance() {
-        return new HeaderScreen();
-    }
-
     public ProfilePage clickOnLogOutButton() {
         clickOnElement(LOG_OUT_BUTTON_PATH);
         return new ProfilePage();
@@ -27,6 +23,10 @@ public class ProfilePage extends AbstractScreen {
     public ProfilePage clickOnSecondLogOutButton() {
         clickOnElement(SECOND_LOG_OUT_BUTTON_PATH);
         return new ProfilePage();
+    }
+
+    public HeaderScreen headerScreenGetInstance() {
+        return new HeaderScreen();
     }
 
     public void logOut() {

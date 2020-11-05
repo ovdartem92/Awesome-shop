@@ -14,7 +14,7 @@ public class LogInService {
         AbstractScreen.typeTextToElement(LogInScreen.getPasswordFieldLocator(), user.getPassword());
         logInScreen.clickToLogInButton();
         if(!logInScreen.isWrongEmailOrPasswordMessageDisplayed()) {
-            logInScreen.marketingConsentButtonAvailable();
+            logInScreen.waitMarketingConsentButtonAvailable();
         }
         logInScreen.clickToCloseModal();
     }

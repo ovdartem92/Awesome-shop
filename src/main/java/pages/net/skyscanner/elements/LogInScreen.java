@@ -28,6 +28,11 @@ public class LogInScreen extends AbstractScreen {
         return this;
     }
 
+    public HeaderScreen logIn(User user) {
+        LogInService.LogIn(user);
+        return new HeaderScreen();
+    }
+
     public void clickToNextButton() {
         clickOnElement(ACCOUNT_DETECTED_BUTTON_LOCATOR);
     }
@@ -40,16 +45,11 @@ public class LogInScreen extends AbstractScreen {
         clickOnElement(CLOSE_MODAL_LOGIN_WINDOW_BUTTON_LOCATOR);
     }
 
-    public boolean isWrongEmailOrPasswordMessageDisplayed() {
-        return WaitManager.isElementVisible(WRONG_EMAIL_OR_PASSWORD_FIELD_LOCATOR);
-    }
-
-    public void marketingConsentButtonAvailable() {
+    public void waitMarketingConsentButtonAvailable() {
         WaitManager.waitForElementLocated(MARKETING_CONSENT_BUTTON_LOCATOR);
     }
 
-    public HeaderScreen logIn(User user) {
-        LogInService.LogIn(user);
-        return new HeaderScreen();
+    public boolean isWrongEmailOrPasswordMessageDisplayed() {
+        return WaitManager.isElementVisible(WRONG_EMAIL_OR_PASSWORD_FIELD_LOCATOR);
     }
 }
