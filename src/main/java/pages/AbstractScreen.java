@@ -4,12 +4,18 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import pages.net.skyscanner.elements.Captcha;
+import pages.net.skyscanner.elements.HeaderScreen;
+import pages.net.skyscanner.profilePage.ProfilePage;
+import service.CultureService;
 import service.WaitManager;
 
 import java.util.List;
 
 public abstract class AbstractScreen {
     public static final Logger LOGGER = LogManager.getRootLogger();
+    public static final HeaderScreen HEADER_SCREEN = new HeaderScreen();
+    public static final CultureService CULTURE_SERVICE = new CultureService();
+    public static final ProfilePage PROFILE_PAGE = new ProfilePage();
 
     public static WebElement getElement(String locatorPath) {
         Captcha.checkCaptchaOnPage();

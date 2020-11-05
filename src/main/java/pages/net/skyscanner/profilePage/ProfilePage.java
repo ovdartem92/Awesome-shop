@@ -1,7 +1,6 @@
 package pages.net.skyscanner.profilePage;
 
 import pages.AbstractScreen;
-import pages.net.skyscanner.elements.HeaderScreen;
 import service.CultureService;
 import service.LogInService;
 import utils.Constants;
@@ -23,10 +22,6 @@ public class ProfilePage extends AbstractScreen {
     public ProfilePage clickOnSecondLogOutButton() {
         clickOnElement(SECOND_LOG_OUT_BUTTON_PATH);
         return new ProfilePage();
-    }
-
-    public HeaderScreen headerScreenGetInstance() {
-        return new HeaderScreen();
     }
 
     public void logOut() {
