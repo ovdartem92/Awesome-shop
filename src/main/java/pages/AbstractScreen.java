@@ -1,17 +1,15 @@
 package pages;
 
-import pages.net.skyscanner.elements.Captcha;
-import pages.net.skyscanner.elements.HeaderScreen;
-import service.LogInService;
-import service.WaitManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebElement;
+import pages.net.skyscanner.elements.Captcha;
+import service.WaitManager;
 
 import java.util.List;
 
-public abstract class AbstractPage {
-    public static Logger logger = LogManager.getRootLogger();
+public abstract class AbstractScreen {
+    public static final Logger LOGGER = LogManager.getRootLogger();
 
     public static WebElement getElement(String locatorPath) {
         Captcha.checkCaptchaOnPage();
@@ -26,7 +24,7 @@ public abstract class AbstractPage {
     public static void clickOnElement(String locatorPath) {
         Captcha.checkCaptchaOnPage();
         WaitManager.waitForElementToBeClickable(locatorPath).click();
-        logger.info("Click on element with next xpath: {}", locatorPath);
+        LOGGER.info("Click on element with next xpath: {}", locatorPath);
     }
 
     public static String getTextOnElement(String locatorPath) {
@@ -41,7 +39,7 @@ public abstract class AbstractPage {
         WebElement element = getElement(locatorPath);
         element.clear();
         element.sendKeys(text);
-        logger.info("Type text {} to element with next xpath: {}", text, locatorPath);
+        LOGGER.info("Type text {} to element with next xpath: {}", text, locatorPath);
     }
 
     public static void typeInFieldWithDelay(String locatorPath, String text) {
@@ -56,10 +54,6 @@ public abstract class AbstractPage {
                 e.printStackTrace();
             }
         }
-        logger.info("Type text with delay {} to element with next xpath: {}", text, locatorPath);
-    }
-
-    public static HeaderScreen getHeaderScreen() {
-        return new HeaderScreen();
+        LOGGER.info("Type text with delay {} to element with next xpath: {}", text, locatorPath);
     }
 }

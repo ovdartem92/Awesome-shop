@@ -11,10 +11,10 @@ public class CheckLogOutTest extends BaseTest {
         new HeaderScreen()
                 .clickToLoginButton()
                 .logIn(user)
-                .openProfilePage()
-                .headerScreenInstance()
+                .clickToAccountButton()
+                .headerScreenGetInstance()
                 .clickRegionalSettingsButton()
-                .profilePageInstance()
+                .profilePageGetInstance()
                 .switchToEnglish()
                 .logOut();
     }

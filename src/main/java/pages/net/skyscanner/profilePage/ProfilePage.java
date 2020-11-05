@@ -1,28 +1,21 @@
 package pages.net.skyscanner.profilePage;
 
-import pages.AbstractPage;
+import pages.AbstractScreen;
 import pages.net.skyscanner.elements.HeaderScreen;
 import service.CultureService;
 import service.LogInService;
 import utils.Constants;
 
-public class ProfilePage extends AbstractPage {
-    private static final String ACCOUNT_FIELD_PATH = "//span[contains(text(), 'Account')]";
-    private static final String EMAIL_FIELD_PATH = "//span[contains(text(), '%s')]";
+public class ProfilePage extends AbstractScreen {
     private static final String LOG_OUT_BUTTON_PATH = "//button[contains(text(), 'Log out')]";
     private static final String SECOND_LOG_OUT_BUTTON_PATH = "//*[@id='delete-dialog']/div/button[2]";
-
-    public ProfilePage clickOnAccountField() {
-        clickOnElement(ACCOUNT_FIELD_PATH);
-        return this;
-    }
 
     public ProfilePage switchToEnglish() {
         CultureService.changeLanguage(Constants.ENGLISH_LANGUAGE);
         return this;
     }
 
-    public HeaderScreen headerScreenInstance() {
+    public HeaderScreen headerScreenGetInstance() {
         return new HeaderScreen();
     }
 
@@ -39,5 +32,4 @@ public class ProfilePage extends AbstractPage {
     public void logOut() {
         LogInService.LogOut();
     }
-
 }

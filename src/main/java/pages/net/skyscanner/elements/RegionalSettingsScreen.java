@@ -1,13 +1,13 @@
 package pages.net.skyscanner.elements;
 
-import pages.AbstractPage;
+import pages.AbstractScreen;
 import pages.net.skyscanner.profilePage.ProfilePage;
 
-public class RegionalSettingsScreen extends AbstractPage {
+public class RegionalSettingsScreen extends AbstractScreen {
     private static final String CURRENCY_SELECT_LOCATOR = "//select[@id='culture-selector-currency']";
     private static final String LANGUAGES_SELECT_LOCATOR = "//select[@name='locale']";
-    private static final String LANGUAGE_OPTION_LOCATOR = String.format("//select[@name='locale']//option[@value='%s']", "language");
-    private static final String CURRENCY_OPTION_LOCATOR = String.format("//option[contains(text(), '%s')]", "currency");
+    private static final String LANGUAGE_OPTION_LOCATOR = "//option[@value='%s']";
+    private static final String CURRENCY_OPTION_LOCATOR = "//option[contains(text(), '%s')]";
     private static final String CULTURE_SAVE_BUTTON_LOCATOR = "//button[@id='culture-selector-save']";
 
     public RegionalSettingsScreen clickLanguageSelectButton() {
@@ -16,13 +16,13 @@ public class RegionalSettingsScreen extends AbstractPage {
     }
 
     public RegionalSettingsScreen clickLanguageOptionButton(String language) {
-        clickOnElement(LANGUAGE_OPTION_LOCATOR.replace("language", language));
+        clickOnElement(String.format(LANGUAGE_OPTION_LOCATOR, language));
         return this;
     }
 
-    public RegionalSettingsScreen clickCultureSaveButton() {
+    public HeaderScreen clickCultureSaveButton() {
         clickOnElement(CULTURE_SAVE_BUTTON_LOCATOR);
-        return this;
+        return new HeaderScreen();
     }
 
     public RegionalSettingsScreen clickCurrencySelectButton() {
@@ -31,11 +31,11 @@ public class RegionalSettingsScreen extends AbstractPage {
     }
 
     public RegionalSettingsScreen clickCurrencyOptionButton(String currency) {
-        clickOnElement(CURRENCY_OPTION_LOCATOR.replace("currency", currency));
+        clickOnElement(String.format(CURRENCY_OPTION_LOCATOR, currency));
         return this;
     }
 
-    public ProfilePage profilePageInstance() {
+    public ProfilePage profilePageGetInstance() {
         return new ProfilePage();
     }
 }

@@ -1,7 +1,7 @@
 package service;
 
 import model.User;
-import pages.AbstractPage;
+import pages.AbstractScreen;
 import pages.net.skyscanner.elements.LogInScreen;
 import pages.net.skyscanner.profilePage.ProfilePage;
 
@@ -9,10 +9,14 @@ public class LogInService {
 
     public static void LogIn(User user) {
         LogInScreen logInScreen = new LogInScreen().clickToContinueWithEmail();
-        AbstractPage.typeTextToElement(LogInScreen.getEmailFieldLocator(), user.getEmail());
-        logInScreen.clickToNext();
-        AbstractPage.typeTextToElement(LogInScreen.getPasswordFieldLocator(), user.getPassword());
-        logInScreen.clickToLogIn().clickToCloseModal();
+        AbstractScreen.typeTextToElement(LogInScreen.getEmailFieldLocator(), user.getEmail());
+        logInScreen.clickToNextButton();
+        AbstractScreen.typeTextToElement(LogInScreen.getPasswordFieldLocator(), user.getPassword());
+        logInScreen.clickToLogInButton();
+        if(!logInScreen.isWrongEmailOrPasswordMessageDisplayed()) {
+            logInScreen.marketingConsentButtonAvailable();
+        }
+        logInScreen.clickToCloseModal();
     }
 
     public static void LogOut() {
