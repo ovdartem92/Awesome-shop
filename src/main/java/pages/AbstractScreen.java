@@ -4,6 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import pages.net.skyscanner.elements.Captcha;
+import pages.net.skyscanner.elements.HeaderScreen;
 import service.CultureService;
 import service.WaitManager;
 
@@ -11,7 +12,8 @@ import java.util.List;
 
 public abstract class AbstractScreen {
     public static Logger logger = LogManager.getRootLogger();
-    public static CultureService cultureService = new CultureService();
+    private static HeaderScreen header = new HeaderScreen();
+    public static CultureService cultureService = new CultureService(header);
 
     public static WebElement getElement(String locatorPath) {
         Captcha.checkCaptchaOnPage();

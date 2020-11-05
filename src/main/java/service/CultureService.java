@@ -3,7 +3,11 @@ package service;
 import pages.net.skyscanner.elements.HeaderScreen;
 
 public class CultureService {
-    public HeaderScreen header = new HeaderScreen();
+    private HeaderScreen header;
+
+    public CultureService(HeaderScreen header) {
+        this.header = header;
+    }
 
     public void changeLanguage(String language) {
         header.clickRegionalSettingsButton()
