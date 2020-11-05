@@ -5,21 +5,21 @@ import pages.AbstractScreen;
 import pages.net.skyscanner.elements.LogInScreen;
 import pages.net.skyscanner.profileScreen.ProfileScreen;
 
-public class LogInService {
+public abstract class LogInService {
 
-    public static void LogIn(User user) {
-        LogInScreen logInScreen = new LogInScreen().clickToContinueWithEmail();
+    public static void logIn(User user) {
+        LogInScreen logInScreen = new LogInScreen().clickToContinueWithEmailButton();
         AbstractScreen.typeTextToElement(LogInScreen.getEmailFieldLocator(), user.getEmail());
         logInScreen.clickToNextButton();
         AbstractScreen.typeTextToElement(LogInScreen.getPasswordFieldLocator(), user.getPassword());
         logInScreen.clickToLogInButton();
         if(!logInScreen.isWrongEmailOrPasswordMessageDisplayed()) {
-            logInScreen.waitMarketingConsentButtonAvailable();
+            logInScreen.waitToMarketingConsentButtonAvailable();
         }
         logInScreen.clickToCloseModal();
     }
 
-    public static void LogOut() {
+    public static void logOut() {
         new ProfileScreen()
                 .clickToLogOutButton()
                 .clickToSecondLogOutButton();

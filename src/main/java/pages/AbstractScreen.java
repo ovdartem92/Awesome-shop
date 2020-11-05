@@ -62,4 +62,12 @@ public abstract class AbstractScreen {
         }
         logger.info("Type text with delay {} to element with next xpath: {}", text, locatorPath);
     }
+
+    public static void changeLanguage(String language) {
+        cultureService.changeLanguage(language);
+    }
+
+    public static void changeCurrency(String currency) {
+        cultureService.changeCurrency(currency);
+    }
 }

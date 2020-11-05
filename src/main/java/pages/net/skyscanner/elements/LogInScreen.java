@@ -23,7 +23,7 @@ public class LogInScreen extends AbstractScreen {
         return PASSWORD_FIELD_LOCATOR;
     }
 
-    public LogInScreen clickToContinueWithEmail() {
+    public LogInScreen clickToContinueWithEmailButton() {
         clickOnElement(CONTINUE_WITH_EMAIL_BUTTON_LOCATOR);
         return this;
     }
@@ -39,15 +39,16 @@ public class LogInScreen extends AbstractScreen {
     }
 
     public HeaderScreen logIn(User user) {
-        LogInService.LogIn(user);
+        LogInService.logIn(user);
         return new HeaderScreen();
     }
 
-    public void clickToCloseModal() {
+    public HeaderScreen clickToCloseModal() {
         clickOnElement(CLOSE_MODAL_LOGIN_WINDOW_BUTTON_LOCATOR);
+        return new HeaderScreen();
     }
 
-    public void waitMarketingConsentButtonAvailable() {
+    public void waitToMarketingConsentButtonAvailable() {
         WaitManager.waitForElementLocated(MARKETING_CONSENT_BUTTON_LOCATOR);
     }
 
