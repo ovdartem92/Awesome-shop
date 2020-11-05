@@ -1,10 +1,11 @@
-package pages;
+package pages.net.skyscanner.elements;
 
 import driver.Browser;
 import org.testng.SkipException;
+import pages.AbstractScreen;
 import service.WaitManager;
 
-public abstract class Captcha extends AbstractPage {
+public abstract class Captcha extends AbstractScreen {
     private static final String CAPTCHA_ELEMENT_LOCATOR = "//img[contains(@class,'BpkImage')]";
 
     public static void checkCaptchaOnPage() {
