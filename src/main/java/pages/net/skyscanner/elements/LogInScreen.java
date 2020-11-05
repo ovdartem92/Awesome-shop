@@ -43,7 +43,7 @@ public class LogInScreen extends AbstractScreen {
         return new HeaderScreen();
     }
 
-    public HeaderScreen clickToCloseModal() {
+    public HeaderScreen clickToCloseModalButton() {
         clickOnElement(CLOSE_MODAL_LOGIN_WINDOW_BUTTON_LOCATOR);
         return new HeaderScreen();
     }

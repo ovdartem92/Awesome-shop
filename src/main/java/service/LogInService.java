@@ -16,7 +16,7 @@ public abstract class LogInService {
         if(!logInScreen.isWrongEmailOrPasswordMessageDisplayed()) {
             logInScreen.waitToMarketingConsentButtonAvailable();
         }
-        logInScreen.clickToCloseModal();
+        logInScreen.clickToCloseModalButton();
     }
 
     public static void logOut() {
