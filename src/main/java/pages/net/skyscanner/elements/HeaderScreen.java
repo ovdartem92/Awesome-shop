@@ -1,7 +1,7 @@
 package pages.net.skyscanner.elements;
 
 import pages.AbstractScreen;
-import pages.net.skyscanner.profilePage.ProfilePage;
+import pages.net.skyscanner.profileScreen.ProfileScreen;
 import service.WaitManager;
 
 public class HeaderScreen extends AbstractScreen {
@@ -14,9 +14,9 @@ public class HeaderScreen extends AbstractScreen {
         return new LogInScreen();
     }
 
-    public ProfilePage clickToAccountButton() {
+    public ProfileScreen clickToAccountButton() {
         clickOnElement(ACCOUNT_BUTTON_LOCATOR);
-        return new ProfilePage();
+        return new ProfileScreen();
     }
 
     public boolean isLoginButtonDisplayed() {

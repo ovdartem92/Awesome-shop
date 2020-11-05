@@ -1,27 +1,27 @@
-package pages.net.skyscanner.profilePage;
+package pages.net.skyscanner.profileScreen;
 
 import pages.AbstractScreen;
 import service.CultureService;
 import service.LogInService;
 import utils.Constants;
 
-public class ProfilePage extends AbstractScreen {
+public class ProfileScreen extends AbstractScreen {
     private static final String LOG_OUT_BUTTON_PATH = "//button[contains(text(), 'Log out')]";
     private static final String SECOND_LOG_OUT_BUTTON_PATH = "//*[@id='delete-dialog']/div/button[2]";
 
-    public ProfilePage switchToEnglish() {
+    public ProfileScreen switchToEnglish() {
         new CultureService().changeLanguage(Constants.ENGLISH_LANGUAGE);
         return this;
     }
 
-    public ProfilePage clickOnLogOutButton() {
+    public ProfileScreen clickToLogOutButton() {
         clickOnElement(LOG_OUT_BUTTON_PATH);
-        return new ProfilePage();
+        return new ProfileScreen();
     }
 
-    public ProfilePage clickOnSecondLogOutButton() {
+    public ProfileScreen clickToSecondLogOutButton() {
         clickOnElement(SECOND_LOG_OUT_BUTTON_PATH);
-        return new ProfilePage();
+        return new ProfileScreen();
     }
 
     public void logOut() {

@@ -5,18 +5,17 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import pages.net.skyscanner.elements.Captcha;
 import pages.net.skyscanner.elements.HeaderScreen;
-import pages.net.skyscanner.profilePage.ProfilePage;
+import pages.net.skyscanner.profileScreen.ProfileScreen;
 import service.CultureService;
 import service.WaitManager;
 
 import java.util.List;
 
 public abstract class AbstractScreen {
-    public static final Logger LOGGER = LogManager.getRootLogger();
-
-    public static final HeaderScreen HEADER_SCREEN = new HeaderScreen();
-    public static final CultureService CULTURE_SERVICE = new CultureService();
-    public static final ProfilePage PROFILE_PAGE = new ProfilePage();
+    public static Logger logger = LogManager.getRootLogger();
+    public static CultureService cultureService = new CultureService();
+    private static HeaderScreen header = new HeaderScreen();
+    private static ProfileScreen profilePage = new ProfileScreen();
 
     public static WebElement getElement(String locatorPath) {
         Captcha.checkCaptchaOnPage();
@@ -31,7 +30,7 @@ public abstract class AbstractScreen {
     public static void clickOnElement(String locatorPath) {
         Captcha.checkCaptchaOnPage();
         WaitManager.waitForElementToBeClickable(locatorPath).click();
-        LOGGER.info("Click on element with next xpath: {}", locatorPath);
+        logger.info("Click on element with next xpath: {}", locatorPath);
     }
 
     public static String getTextOnElement(String locatorPath) {
@@ -46,7 +45,7 @@ public abstract class AbstractScreen {
         WebElement element = getElement(locatorPath);
         element.clear();
         element.sendKeys(text);
-        LOGGER.info("Type text {} to element with next xpath: {}", text, locatorPath);
+        logger.info("Type text {} to element with next xpath: {}", text, locatorPath);
     }
 
     public static void typeInFieldWithDelay(String locatorPath, String text) {
@@ -61,6 +60,6 @@ public abstract class AbstractScreen {
                 e.printStackTrace();
             }
         }
-        LOGGER.info("Type text with delay {} to element with next xpath: {}", text, locatorPath);
+        logger.info("Type text with delay {} to element with next xpath: {}", text, locatorPath);
     }
 }

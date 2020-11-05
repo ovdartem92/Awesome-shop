@@ -3,7 +3,7 @@ package service;
 import model.User;
 import pages.AbstractScreen;
 import pages.net.skyscanner.elements.LogInScreen;
-import pages.net.skyscanner.profilePage.ProfilePage;
+import pages.net.skyscanner.profileScreen.ProfileScreen;
 
 public class LogInService {
 
@@ -20,8 +20,8 @@ public class LogInService {
     }
 
     public static void LogOut() {
-        new ProfilePage()
-                .clickOnLogOutButton()
-                .clickOnSecondLogOutButton();
+        new ProfileScreen()
+                .clickToLogOutButton()
+                .clickToSecondLogOutButton();
     }
 }

@@ -28,17 +28,19 @@ public class LogInScreen extends AbstractScreen {
         return this;
     }
 
+    public LogInScreen clickToNextButton() {
+        clickOnElement(ACCOUNT_DETECTED_BUTTON_LOCATOR);
+        return this;
+    }
+
+    public LogInScreen clickToLogInButton() {
+        clickOnElement(LOG_IN_BUTTON_LOCATOR);
+        return this;
+    }
+
     public HeaderScreen logIn(User user) {
         LogInService.LogIn(user);
         return new HeaderScreen();
-    }
-
-    public void clickToNextButton() {
-        clickOnElement(ACCOUNT_DETECTED_BUTTON_LOCATOR);
-    }
-
-    public void clickToLogInButton() {
-        clickOnElement(LOG_IN_BUTTON_LOCATOR);
     }
 
     public void clickToCloseModal() {
