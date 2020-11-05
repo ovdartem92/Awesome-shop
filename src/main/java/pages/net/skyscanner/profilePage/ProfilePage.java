@@ -1,9 +1,7 @@
 package pages.net.skyscanner.profilePage;
 
-import model.User;
 import pages.AbstractPage;
 import pages.net.skyscanner.elements.HeaderScreen;
-import pages.net.skyscanner.elements.RegionalSettingsScreen;
 import service.CultureService;
 import service.LogInService;
 import utils.Constants;
@@ -24,7 +22,7 @@ public class ProfilePage extends AbstractPage {
         return this;
     }
 
-    public HeaderScreen headerScreen() {
+    public HeaderScreen headerScreenInstance() {
         return new HeaderScreen();
     }
 

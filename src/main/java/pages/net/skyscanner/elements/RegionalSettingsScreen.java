@@ -35,7 +35,7 @@ public class RegionalSettingsScreen extends AbstractPage {
         return this;
     }
 
-    public ProfilePage profilePage() {
+    public ProfilePage profilePageInstance() {
         return new ProfilePage();
     }
 }

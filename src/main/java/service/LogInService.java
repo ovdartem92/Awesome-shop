@@ -16,6 +16,8 @@ public class LogInService {
     }
 
     public static void LogOut() {
-        new ProfilePage().clickOnLogOutButton().clickOnSecondLogOutButton();
+        new ProfilePage()
+                .clickOnLogOutButton()
+                .clickOnSecondLogOutButton();
     }
 }
