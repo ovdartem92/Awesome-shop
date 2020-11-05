@@ -1,18 +1,18 @@
 package service;
 
-import pages.net.skyscanner.elements.RegionalSettingsScreen;
+import pages.net.skyscanner.elements.HeaderScreen;
 
 public class CultureService {
 
     public void changeLanguage(String language) {
-        new RegionalSettingsScreen()
+        new HeaderScreen().clickRegionalSettingsButton()
                 .clickLanguageSelectButton()
                 .clickLanguageOptionButton(language)
                 .clickCultureSaveButton();
     }
 
     public void changeCurrency(String currency) {
-        new RegionalSettingsScreen()
+        new HeaderScreen().clickRegionalSettingsButton()
                 .clickCurrencySelectButton()
                 .clickCurrencyOptionButton(currency)
                 .clickCultureSaveButton();

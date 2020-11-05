@@ -8,7 +8,7 @@ import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
-public abstract class AbstractPage {
+public abstract class AbstractScreen {
     public static Logger logger = LogManager.getRootLogger();
 
     public static WebElement getElement(String locatorPath) {
