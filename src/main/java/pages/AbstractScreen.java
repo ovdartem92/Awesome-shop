@@ -1,15 +1,19 @@
 package pages;
 
-import pages.net.skyscanner.elements.Captcha;
-import service.WaitManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebElement;
+import pages.net.skyscanner.elements.Captcha;
+import pages.net.skyscanner.elements.HeaderScreen;
+import service.CultureService;
+import service.WaitManager;
 
 import java.util.List;
 
-public abstract class AbstractPage {
+public abstract class AbstractScreen {
     public static Logger logger = LogManager.getRootLogger();
+    private static HeaderScreen header = new HeaderScreen();
+    public static CultureService cultureService = new CultureService(header);
 
     public static WebElement getElement(String locatorPath) {
         Captcha.checkCaptchaOnPage();
@@ -55,5 +59,13 @@ public abstract class AbstractPage {
             }
         }
         logger.info("Type text with delay {} to element with next xpath: {}", text, locatorPath);
+    }
+
+    public static void changeLanguage(String language) {
+        cultureService.changeLanguage(language);
+    }
+
+    public static void changeCurrency(String currency) {
+        cultureService.changeCurrency(currency);
     }
 }
