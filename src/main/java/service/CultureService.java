@@ -1,21 +1,19 @@
 package service;
 
 import pages.net.skyscanner.elements.HeaderScreen;
-import pages.net.skyscanner.elements.RegionalSettingsScreen;
 
 public class CultureService {
-    public static final HeaderScreen HEADER_SCREEN = new HeaderScreen();
+    public HeaderScreen header = new HeaderScreen();
 
-    public static void changeLanguage(String language) {
-        HEADER_SCREEN.clickRegionalSettingsButton();
-        new RegionalSettingsScreen()
+    public void changeLanguage(String language) {
+        header.clickRegionalSettingsButton()
                 .clickLanguageSelectButton()
                 .clickLanguageOptionButton(language)
                 .clickCultureSaveButton();
     }
 
-    public static void changeCurrency(String currency) {
-        new RegionalSettingsScreen()
+    public void changeCurrency(String currency) {
+        header.clickRegionalSettingsButton()
                 .clickCurrencySelectButton()
                 .clickCurrencyOptionButton(currency)
                 .clickCultureSaveButton();

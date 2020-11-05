@@ -13,6 +13,7 @@ import java.util.List;
 
 public abstract class AbstractScreen {
     public static final Logger LOGGER = LogManager.getRootLogger();
+
     public static final HeaderScreen HEADER_SCREEN = new HeaderScreen();
     public static final CultureService CULTURE_SERVICE = new CultureService();
     public static final ProfilePage PROFILE_PAGE = new ProfilePage();

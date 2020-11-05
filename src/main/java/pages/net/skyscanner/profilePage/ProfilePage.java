@@ -10,7 +10,7 @@ public class ProfilePage extends AbstractScreen {
     private static final String SECOND_LOG_OUT_BUTTON_PATH = "//*[@id='delete-dialog']/div/button[2]";
 
     public ProfilePage switchToEnglish() {
-        CultureService.changeLanguage(Constants.ENGLISH_LANGUAGE);
+        new CultureService().changeLanguage(Constants.ENGLISH_LANGUAGE);
         return this;
     }
 

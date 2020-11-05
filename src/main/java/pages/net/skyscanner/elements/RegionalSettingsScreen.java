@@ -19,6 +19,11 @@ public class RegionalSettingsScreen extends AbstractScreen {
         return this;
     }
 
+    public HeaderScreen clickCultureSaveButton() {
+        clickOnElement(CULTURE_SAVE_BUTTON_LOCATOR);
+        return new HeaderScreen();
+    }
+
     public RegionalSettingsScreen clickCurrencySelectButton() {
         clickOnElement(CURRENCY_SELECT_LOCATOR);
         return this;
@@ -27,10 +32,5 @@ public class RegionalSettingsScreen extends AbstractScreen {
     public RegionalSettingsScreen clickCurrencyOptionButton(String currency) {
         clickOnElement(String.format(CURRENCY_OPTION_LOCATOR, currency));
         return this;
-    }
-
-    public HeaderScreen clickCultureSaveButton() {
-        clickOnElement(CULTURE_SAVE_BUTTON_LOCATOR);
-        return new HeaderScreen();
     }
 }
