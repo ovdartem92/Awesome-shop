@@ -53,7 +53,7 @@ public abstract class AbstractScreen {
         for (String letter : letters) {
             try {
                 element.sendKeys(letter);
-                Thread.sleep(200);
+                Thread.sleep(300);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

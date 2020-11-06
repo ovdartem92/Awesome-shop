@@ -6,7 +6,7 @@ import pages.AbstractScreen;
 import service.WaitManager;
 
 public abstract class Captcha extends AbstractScreen {
-    private static final String CAPTCHA_ELEMENT_LOCATOR = "//img[contains(@class,'BpkImage')]";
+    private static final String CAPTCHA_ELEMENT_LOCATOR = "//img[@alt='captcha page image']";
 
     public static void checkCaptchaOnPage() {
         if (WaitManager.isElementVisible(CAPTCHA_ELEMENT_LOCATOR, Browser.SHORT_TIMEOUT_SECONDS)) {
