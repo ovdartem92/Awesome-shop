@@ -3,7 +3,7 @@ package pages;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebElement;
-import pages.net.skyscanner.elements.Captcha;
+import pages.net.skyscanner.elements.CaptchaScreen;
 import pages.net.skyscanner.elements.HeaderScreen;
 import service.CultureService;
 import service.WaitManager;
@@ -16,17 +16,17 @@ public abstract class AbstractScreen {
     public static CultureService cultureService = new CultureService(header);
 
     public static WebElement getElement(String locatorPath) {
-        Captcha.checkCaptchaOnPage();
+        CaptchaScreen.checkCaptchaOnPage();
         return WaitManager.waitForElementLocated(locatorPath);
     }
 
     public static List<WebElement> getElements(String locatorPath) {
-        Captcha.checkCaptchaOnPage();
+        CaptchaScreen.checkCaptchaOnPage();
         return WaitManager.waitForAllElementsLocated(locatorPath);
     }
 
     public static void clickOnElement(String locatorPath) {
-        Captcha.checkCaptchaOnPage();
+        CaptchaScreen.checkCaptchaOnPage();
         WaitManager.waitForElementToBeClickable(locatorPath).click();
         logger.info("Click on element with next xpath: {}", locatorPath);
     }
