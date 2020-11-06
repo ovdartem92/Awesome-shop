@@ -1,6 +1,9 @@
 package pages.net.skyscanner.elements;
 
 import pages.AbstractScreen;
+import pages.net.skyscanner.cars.CarsSearchPage;
+import pages.net.skyscanner.flights.FlightsSearchPage;
+import pages.net.skyscanner.hotels.HotelsSearchPage;
 
 public class HeaderScreen extends AbstractScreen {
     private static final String FLIGHTS_TAB_TEXT = "Flights";

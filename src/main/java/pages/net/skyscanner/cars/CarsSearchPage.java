@@ -1,11 +1,12 @@
 package pages.net.skyscanner.cars;
 
-import pages.AbstractPage;
+import pages.AbstractScreen;
 
-public class CarsSearchPage extends AbstractPage {
-    private static final String CAR_HEADER_LOCATOR = "//div[contains(@class,'search-controls-title')]";
+public class CarsSearchPage extends AbstractScreen {
+    private static final String CAR_HEADLINE_LOCATOR = "//button[contains(@class,'Search')]";
 
-    public String getTextFromCarHeader() {
-        return getTextOnElement(CAR_HEADER_LOCATOR);
+    public String getTextFromCarHeadline() {
+        return getTextOnElement(CAR_HEADLINE_LOCATOR);
     }
 }
+

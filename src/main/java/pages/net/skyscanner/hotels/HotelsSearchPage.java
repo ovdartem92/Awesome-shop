@@ -1,8 +1,8 @@
 package pages.net.skyscanner.hotels;
 
-import pages.AbstractPage;
+import pages.AbstractScreen;
 
-public class HotelsSearchPage extends AbstractPage {
+public class HotelsSearchPage extends AbstractScreen {
     private static final String HOTELS_SEARCH_BUTTON_LOCATOR = "//button[@data-test-id='search-button']";
 
     public String getTextFromHotelsSearchButton() {
