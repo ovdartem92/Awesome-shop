@@ -18,7 +18,7 @@ public class FilterButtonsScreen {
     private static final String DECREASE_CHILD_BUTTON_LOCATOR = "//button[@aria-controls='children'][@title='Decrease']";
     private static final String DONE_BUTTON_LOCATOR = "//footer/button";
 
-    private void clickAddItem(String locatorPath) {
+    private void clickAddItemButton(String locatorPath) {
         clickOnElement(GUESTS_AND_ROOM_INPUT_LOCATOR);
         clickOnElement(locatorPath);
         clickOnElement(DONE_BUTTON_LOCATOR);
@@ -32,7 +32,7 @@ public class FilterButtonsScreen {
     }
 
     public void clickAddRoomButton() {
-        clickAddItem(INCREASE_ROOM_BUTTON_LOCATOR);
+        clickAddItemButton(INCREASE_ROOM_BUTTON_LOCATOR);
     }
 
     public void clickAddRoomButton(int quantity) {
@@ -41,7 +41,7 @@ public class FilterButtonsScreen {
     }
 
     public void clickAddAdultButton() {
-        clickAddItem(INCREASE_ADULT_BUTTON_LOCATOR);
+        clickAddItemButton(INCREASE_ADULT_BUTTON_LOCATOR);
     }
 
     public void clickAddAdultButton(int quantity) {
@@ -50,7 +50,7 @@ public class FilterButtonsScreen {
     }
 
     public void clickAddChildButton() {
-        clickAddItem(INCREASE_CHILD_BUTTON_LOCATOR);
+        clickAddItemButton(INCREASE_CHILD_BUTTON_LOCATOR);
     }
 
     public void clickAddChildButton(int quantity) {
