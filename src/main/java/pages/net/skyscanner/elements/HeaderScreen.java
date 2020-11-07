@@ -20,7 +20,7 @@ public class HeaderScreen extends AbstractScreen {
     }
 
     public boolean isLoginButtonDisplayed() {
-        return WaitManager.isElementVisible(LOG_IN_BUTTON_LOCATOR,2);
+        return WaitManager.isElementVisible(LOG_IN_BUTTON_LOCATOR, 2);
     }
 
     public RegionalSettingsScreen clickRegionalSettingsButton() {

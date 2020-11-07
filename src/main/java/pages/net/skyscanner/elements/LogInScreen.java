@@ -27,6 +27,11 @@ public class LogInScreen extends AbstractScreen {
         return this;
     }
 
+    public LogInScreen waitMarketingConsentButtonAvailable() {
+        WaitManager.isElementVisible(MARKETING_CONSENT_BUTTON_LOCATOR, 2);
+        return this;
+    }
+
     public HeaderScreen logIn(User user) {
         new AccountService().logIn(user);
         return new HeaderScreen();
@@ -35,9 +40,5 @@ public class LogInScreen extends AbstractScreen {
     public HeaderScreen clickCloseModalButton() {
         clickOnElement(CLOSE_MODAL_LOGIN_WINDOW_BUTTON_LOCATOR);
         return new HeaderScreen();
-    }
-
-    public void waitMarketingConsentButtonAvailable() {
-        WaitManager.isElementVisible(MARKETING_CONSENT_BUTTON_LOCATOR,2);
     }
 }
