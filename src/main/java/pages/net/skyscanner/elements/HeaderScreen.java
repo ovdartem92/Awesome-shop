@@ -6,7 +6,7 @@ import service.WaitManager;
 
 public class HeaderScreen extends AbstractScreen {
     private static final String CULTURE_SETTING_BUTTON_LOCATOR = "//li[@id='culture-info']//button";
-    private static final String LOG_IN_BUTTON_LOCATOR = "//span[text()='Log in']";
+    private static final String LOG_IN_BUTTON_LOCATOR = "//*[@id='authentication-link']";
     private static final String ACCOUNT_BUTTON_LOCATOR = "//*[@id='login-button-nav-item']/button";
 
     public LogInScreen clickLoginButton() {
@@ -21,6 +21,10 @@ public class HeaderScreen extends AbstractScreen {
 
     public boolean isLoginButtonDisplayed() {
         return WaitManager.isElementVisible(LOG_IN_BUTTON_LOCATOR, 2);
+    }
+
+    public boolean isAccountButtonDisplayed() {
+        return WaitManager.isElementVisible(ACCOUNT_BUTTON_LOCATOR, 2);
     }
 
     public RegionalSettingsScreen clickRegionalSettingsButton() {
