@@ -11,9 +11,9 @@ public class CheckLogOutTest extends BaseTest {
     @Test()
     public void logOutTest() {
         headerScreen
-                .clickToLoginButton()
+                .clickLoginButton()
                 .logIn(user)
-                .clickToAccountButton()
+                .clickAccountButton()
                 .logOut();
         Assert.assertTrue(headerScreen.isLoginButtonDisplayed(), "Oooops, something went wrong");
     }

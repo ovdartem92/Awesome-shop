@@ -9,12 +9,12 @@ public class HeaderScreen extends AbstractScreen {
     private static final String LOG_IN_BUTTON_LOCATOR = "//span[text()='Log in']";
     private static final String ACCOUNT_BUTTON_LOCATOR = "//*[@id='login-button-nav-item']/button";
 
-    public LogInScreen clickToLoginButton() {
+    public LogInScreen clickLoginButton() {
         clickOnElement(LOG_IN_BUTTON_LOCATOR);
         return new LogInScreen();
     }
 
-    public ProfileScreen clickToAccountButton() {
+    public ProfileScreen clickAccountButton() {
         clickOnElement(ACCOUNT_BUTTON_LOCATOR);
         return new ProfileScreen();
     }
