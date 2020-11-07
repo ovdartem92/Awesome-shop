@@ -18,55 +18,55 @@ public class FilterButtonsScreen {
     private static final String DECREASE_CHILD_BUTTON_LOCATOR = "//button[@aria-controls='children'][@title='Decrease']";
     private static final String DONE_BUTTON_LOCATOR = "//footer/button";
 
-    private void addItemClick(String locatorPath) {
+    private void clickAddItem(String locatorPath) {
         clickOnElement(GUESTS_AND_ROOM_INPUT_LOCATOR);
         clickOnElement(locatorPath);
         clickOnElement(DONE_BUTTON_LOCATOR);
     }
 
-    private int getQuantity(String locatorPath) {
+    private int getQuantityItemInput(String locatorPath) {
         clickOnElement(GUESTS_AND_ROOM_INPUT_LOCATOR);
         String quantity = getAttributeValueOnElement(locatorPath, "value");
         clickOnElement(DONE_BUTTON_LOCATOR);
         return Integer.parseInt(quantity);
     }
 
-    public void addRoomClick() {
-        addItemClick(INCREASE_ROOM_BUTTON_LOCATOR);
+    public void clickAddRoomButton() {
+        clickAddItem(INCREASE_ROOM_BUTTON_LOCATOR);
     }
 
-    public void addRoomClick(int quantity) {
+    public void clickAddRoomButton(int quantity) {
         for (int i = 0; i < quantity; i++)
-            addRoomClick();
+            clickAddRoomButton();
     }
 
-    public void addAdultClick() {
-        addItemClick(INCREASE_ADULT_BUTTON_LOCATOR);
+    public void clickAddAdultButton() {
+        clickAddItem(INCREASE_ADULT_BUTTON_LOCATOR);
     }
 
-    public void addAdultClick(int quantity) {
+    public void clickAddAdultButton(int quantity) {
         for (int i = 0; i < quantity; i++)
-            addAdultClick();
+            clickAddAdultButton();
     }
 
-    public void addChildClick() {
-        addItemClick(INCREASE_CHILD_BUTTON_LOCATOR);
+    public void clickAddChildButton() {
+        clickAddItem(INCREASE_CHILD_BUTTON_LOCATOR);
     }
 
-    public void addChildClick(int quantity) {
+    public void clickAddChildButton(int quantity) {
         for (int i = 0; i < quantity; i++)
-            addChildClick();
+            clickAddChildButton();
     }
 
-    public int getQuantityRooms() {
-        return getQuantity(QUANTITY_ROOMS_INPUT_LOCATOR);
+    public int getQuantityRoomsInput() {
+        return getQuantityItemInput(QUANTITY_ROOMS_INPUT_LOCATOR);
     }
 
-    public int getQuantityAdultPeople() {
-        return getQuantity(QUANTITY_ADULT_PEOPLE_INPUT_LOCATOR);
+    public int getQuantityAdultPeopleInput() {
+        return getQuantityItemInput(QUANTITY_ADULT_PEOPLE_INPUT_LOCATOR);
     }
 
-    public int getQuantityChildren() {
-        return getQuantity(QUANTITY_CHILDREN_INPUT_LOCATOR);
+    public int getQuantityChildrenInput() {
+        return getQuantityItemInput(QUANTITY_CHILDREN_INPUT_LOCATOR);
     }
 }
