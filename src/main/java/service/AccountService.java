@@ -8,9 +8,14 @@ import pages.net.skyscanner.profileScreen.ProfileScreen;
 public class AccountService {
     private static final String EMAIL_FIELD_LOCATOR = "//input[@id='email']";
     private static final String PASSWORD_FIELD_LOCATOR = "//input[@id='password']";
+    private static final String FIRST_NAME_FIELD_LOCATOR = "//*[@id='firstName']";
+    private static final String LAST_NAME_FIELD_LOCATOR = "//*[@id='lastName']";
+    private static final String PLACE_OF_BIRTH_FIELD_LOCATOR = "//*[@id='placeOfBirth']";
+    LogInScreen logInScreen = new LogInScreen();
+    ProfileScreen profileScreen = new ProfileScreen();
 
     public void logIn(User user) {
-        LogInScreen logInScreen = new LogInScreen().clickContinueWithEmailButton();
+        logInScreen.clickContinueWithEmailButton();
         AbstractScreen.typeTextToElement(EMAIL_FIELD_LOCATOR, user.getEmail());
         logInScreen.clickNextButton();
         AbstractScreen.typeTextToElement(PASSWORD_FIELD_LOCATOR, user.getPassword());
@@ -20,8 +25,22 @@ public class AccountService {
     }
 
     public void logOut() {
-        new ProfileScreen()
+        profileScreen
                 .clickLogOutButton()
-                .clickSecondLogOutButton();
+                .clickConfirmLogOutButton();
+    }
+
+    public void createTraveler() {
+        profileScreen.clickAddTravelerButton();
+        AbstractScreen.typeTextToElement(FIRST_NAME_FIELD_LOCATOR, "Artsem");
+        AbstractScreen.typeTextToElement(LAST_NAME_FIELD_LOCATOR, "Audziyenka");
+        AbstractScreen.typeTextToElement(PLACE_OF_BIRTH_FIELD_LOCATOR, "London");
+        profileScreen.clickSaveTravelerButton();
+    }
+
+    public void deleteTraveler() {
+        profileScreen
+                .clickDeleteTravelerButton()
+                .clickConfirmDeleteTravelerButton();
     }
 }
