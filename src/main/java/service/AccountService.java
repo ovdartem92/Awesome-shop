@@ -22,6 +22,6 @@ public class AccountService {
     public void logOut() {
         new ProfileScreen()
                 .clickLogOutButton()
-                .clickSecondLogOutButton();
+                .clickConfirmLogOutButton();
     }
 }
