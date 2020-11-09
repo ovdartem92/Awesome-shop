@@ -12,7 +12,7 @@ import java.util.List;
 
 public abstract class AbstractScreen {
     public static Logger logger = LogManager.getRootLogger();
-    private static HeaderScreen header = new HeaderScreen();
+    public static HeaderScreen header = new HeaderScreen();
     public static CultureService cultureService = new CultureService(header);
 
     public static WebElement getElement(String locatorPath) {
@@ -44,21 +44,6 @@ public abstract class AbstractScreen {
         element.clear();
         element.sendKeys(text);
         logger.info("Type text {} to element with next xpath: {}", text, locatorPath);
-    }
-
-    public static void typeInFieldWithDelay(String locatorPath, String text) {
-        WebElement element = getElement(locatorPath);
-        String[] letters = text.split("");
-
-        for (String letter : letters) {
-            try {
-                element.sendKeys(letter);
-                Thread.sleep(200);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-        logger.info("Type text with delay {} to element with next xpath: {}", text, locatorPath);
     }
 
     public static void changeLanguage(String language) {
