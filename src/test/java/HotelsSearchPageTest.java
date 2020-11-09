@@ -9,7 +9,7 @@ public class HotelsSearchPageTest extends BaseTest {
     private final int MAX_ADULT_PEOPLE_QUANTITY = 10;
     private final int MAX_CHILDREN_QUANTITY = 5;
 
-    @Test
+    @Test(description = "check maximum filter values for hotel booking")
     public void checkMaximumValuesOfFilterButtons() {
         int roomsQuantityClicks = 4;
         int childrenQuantityClicks = 5;
