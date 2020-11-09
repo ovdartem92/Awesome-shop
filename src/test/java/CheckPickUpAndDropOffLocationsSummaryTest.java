@@ -18,9 +18,9 @@ public class CheckPickUpAndDropOffLocationsSummaryTest extends BaseTest {
                 .clickSearchButton();
 
         Assert.assertEquals(pickUpLocation, carsSearchResultsScreen.getInfoAboutPickUpLocationFromSummary(),
-                "Input set up location are not equals summary set up location.");
+                "Input set up location is not equals summary set up location.");
         Assert.assertEquals(dropOffLocation, carsSearchResultsScreen.getInfoAboutDropOffLocationFromSummary(),
-                "Input drop off location are not equals summary drop off location.");
+                "Input drop off location is not equals summary drop off location.");
 
     }
 }
