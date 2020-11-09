@@ -7,7 +7,7 @@ import service.WaitManager;
 public class HeaderScreen extends AbstractScreen {
     private static final String CULTURE_SETTING_BUTTON_LOCATOR = "//li[@id='culture-info']//button";
     private static final String LOG_IN_BUTTON_LOCATOR = "//*[@id='authentication-link']";
-    private static final String ACCOUNT_BUTTON_LOCATOR = "//*[@id='login-button-nav-item']/button";
+    private static final String ACCOUNT_BUTTON_LOCATOR = "//*[@id='login-button-nav-item']";
 
     public LogInScreen clickLoginButton() {
         clickOnElement(LOG_IN_BUTTON_LOCATOR);
