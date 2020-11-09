@@ -8,7 +8,7 @@ public class CheckLogOutTest extends BaseTest {
     User user = UserBuilder.getUserWithValidPassword();
     HeaderScreen headerScreen = new HeaderScreen();
 
-    @Test()
+    @Test(description = "check the ability to make a logOut after logIn")
     public void logOutTest() {
         headerScreen
                 .clickLoginButton()
