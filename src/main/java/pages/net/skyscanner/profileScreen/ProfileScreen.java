@@ -20,6 +20,6 @@ public class ProfileScreen extends AbstractScreen {
 
     public HeaderScreen logOut() {
         new AccountService().logOut();
-        return new HeaderScreen();
+        return header;
     }
 }
