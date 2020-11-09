@@ -3,14 +3,12 @@ package pages.net.skyscanner.profileScreen;
 import pages.AbstractScreen;
 import pages.net.skyscanner.elements.HeaderScreen;
 import service.AccountService;
-import utils.Constants;
 
 public class ProfileScreen extends AbstractScreen {
     private static final String LOG_OUT_BUTTON_PATH = "//*[contains(@class,'DialogButton_OpenDialogButton')]";
     private static final String SECOND_LOG_OUT_BUTTON_PATH = "//*[contains(@class,'DialogButton_ActionButton')]";
 
     public ProfileScreen clickLogOutButton() {
-        AbstractScreen.changeLanguage(Constants.ENGLISH_LANGUAGE);
         clickOnElement(LOG_OUT_BUTTON_PATH);
         return this;
     }
