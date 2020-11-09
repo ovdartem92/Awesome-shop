@@ -34,11 +34,11 @@ public class LogInScreen extends AbstractScreen {
 
     public HeaderScreen logIn(User user) {
         new AccountService().logIn(user);
-        return new HeaderScreen();
+        return header;
     }
 
     public HeaderScreen clickCloseModalButton() {
         clickOnElement(CLOSE_MODAL_LOGIN_WINDOW_BUTTON_LOCATOR);
-        return new HeaderScreen();
+        return header;
     }
 }
