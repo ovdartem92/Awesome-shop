@@ -30,11 +30,11 @@ public class AccountService {
                 .clickConfirmLogOutButton();
     }
 
-    public void createTraveler() {
+    public void createTraveler(User user) {
         profileScreen.clickAddTravelerButton();
-        AbstractScreen.typeTextToElement(FIRST_NAME_FIELD_LOCATOR, "Artsem");
-        AbstractScreen.typeTextToElement(LAST_NAME_FIELD_LOCATOR, "Audziyenka");
-        AbstractScreen.typeTextToElement(PLACE_OF_BIRTH_FIELD_LOCATOR, "London");
+        AbstractScreen.typeTextToElement(FIRST_NAME_FIELD_LOCATOR, user.getName());
+        AbstractScreen.typeTextToElement(LAST_NAME_FIELD_LOCATOR, user.getLastName());
+        AbstractScreen.typeTextToElement(PLACE_OF_BIRTH_FIELD_LOCATOR, user.getCity());
         profileScreen.clickSaveTravelerButton();
     }
 

@@ -13,8 +13,7 @@ import java.util.List;
 public abstract class AbstractScreen {
     public static Logger logger = LogManager.getRootLogger();
     private static HeaderScreen header = new HeaderScreen();
-    public static CultureService cultureService = new CultureService(header);
-
+    private static CultureService cultureService = new CultureService(header);
 
     public static WebElement getElement(String locatorPath) {
         Captcha.checkCaptchaOnPage();

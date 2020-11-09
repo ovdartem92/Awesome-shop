@@ -1,5 +1,6 @@
 package pages.net.skyscanner.profileScreen;
 
+import model.User;
 import pages.AbstractScreen;
 import pages.net.skyscanner.elements.HeaderScreen;
 import service.AccountService;
@@ -9,7 +10,6 @@ public class ProfileScreen extends AbstractScreen {
     private static final String LOG_OUT_BUTTON_LOCATOR = "//*[contains(@class,'DialogButton_OpenDialogButton')]";
     private static final String CONFIRM_LOG_OUT_BUTTON_LOCATOR = "//*[contains(@class,'DialogButton_ActionButton')]";
     private static final String ADD_A_TRAVELER_BUTTON_LOCATOR = "//*[contains(@class,'single-line')]";
-    //    private static final String SAVE_TRAVELER_BUTTON_LOCATOR = "//*[@id='dialog-container']/form/div/button";
     private static final String TRAVELER_BUTTON_LOCATOR = "//div[contains(@class,'Traveller')]//button";
     private static final String CONFIRM_DELETE_BUTTON_LOCATOR = "//*[@id='delete-dialog']/div/button[2]";
     private static final String DELETE_MESSAGE_LOCATOR = "//*[@id='delete-dialog']/div/div/span[1]";
@@ -44,8 +44,8 @@ public class ProfileScreen extends AbstractScreen {
         return this;
     }
 
-    public ProfileScreen addTraveler() {
-        new AccountService().createTraveler();
+    public ProfileScreen addTraveler(User user) {
+        new AccountService().createTraveler(user);
         return this;
     }
 

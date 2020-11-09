@@ -17,8 +17,8 @@ public class CreateAndDeleteTravelerTest extends BaseTest {
                 .logIn(user)
                 .clickAccountButton()
                 .clickAddTravelerButton()
-                .addTraveler()
+                .addTraveler(user)
                 .deleteTraveler();
-        Assert.assertTrue(profileScreen.isDeleteMessageDisplayed(), "Something went wrong");
+        Assert.assertTrue(profileScreen.isDeleteMessageDisplayed(), "Something went wrong, you are not delete the traveler...");
     }
 }
