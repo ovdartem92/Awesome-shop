@@ -11,8 +11,8 @@ public class AccountService {
     private static final String FIRST_NAME_FIELD_LOCATOR = "//*[@id='firstName']";
     private static final String LAST_NAME_FIELD_LOCATOR = "//*[@id='lastName']";
     private static final String PLACE_OF_BIRTH_FIELD_LOCATOR = "//*[@id='placeOfBirth']";
-    LogInScreen logInScreen = new LogInScreen();
-    ProfileScreen profileScreen = new ProfileScreen();
+    private LogInScreen logInScreen = new LogInScreen();
+    private ProfileScreen profileScreen = new ProfileScreen();
 
     public void logIn(User user) {
         logInScreen.clickContinueWithEmailButton();
