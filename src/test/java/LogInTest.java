@@ -8,7 +8,7 @@ public class LogInTest extends BaseTest {
     User user;
     HeaderScreen headerScreen = new HeaderScreen();
 
-    @Test()
+    @Test(description = "check login with valid data")
     public void logInWithValidDataTest() {
         headerScreen
                 .clickLoginButton()
@@ -17,7 +17,7 @@ public class LogInTest extends BaseTest {
         Assert.assertTrue(headerScreen.isAccountButtonDisplayed(), "Oooops, something went wrong. You're not logIn");
     }
 
-    @Test()
+    @Test(description = "check login with invalid data")
     public void logInWithInValidDataTest() {
         headerScreen
                 .clickLoginButton()
