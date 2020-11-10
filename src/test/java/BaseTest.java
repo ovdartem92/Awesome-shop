@@ -10,7 +10,7 @@ import utils.TestListener;
 @Listeners({TestListener.class})
 public abstract class BaseTest {
     protected WebDriver driver;
-    protected final String URL = TestDataReader.getTestData("testData.home.url");
+    protected final String URL = TestDataReader.getTestData("testData.home.url", TestDataReader.getStageData("url"));
 
     @BeforeMethod()
     public void setUp() {
