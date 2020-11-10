@@ -46,21 +46,6 @@ public abstract class AbstractScreen {
         logger.info("Type text {} to element with next xpath: {}", text, locatorPath);
     }
 
-    public static void typeInFieldWithDelay(String locatorPath, String text) {
-        WebElement element = getElement(locatorPath);
-        String[] letters = text.split("");
-
-        for (String letter : letters) {
-            try {
-                element.sendKeys(letter);
-                Thread.sleep(300);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-        logger.info("Type text with delay {} to element with next xpath: {}", text, locatorPath);
-    }
-
     public static void changeLanguage(String language) {
         cultureService.changeLanguage(language);
     }
