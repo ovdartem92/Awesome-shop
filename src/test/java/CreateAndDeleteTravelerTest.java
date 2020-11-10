@@ -10,7 +10,7 @@ public class CreateAndDeleteTravelerTest extends BaseTest {
     User user = UserBuilder.getUserWithValidPassword();
     ProfileScreen profileScreen = new ProfileScreen();
 
-    @Test()
+    @Test(description = "check ability to create and delete a new traveler")
     public void createAndDeleteTravelerTest() {
         headerScreen
                 .clickLoginButton()
