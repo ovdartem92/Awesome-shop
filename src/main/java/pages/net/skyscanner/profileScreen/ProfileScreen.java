@@ -12,7 +12,7 @@ public class ProfileScreen extends AbstractScreen {
     private static final String ADD_A_TRAVELER_BUTTON_LOCATOR = "//*[contains(@class,'single-line')]";
     private static final String TRAVELER_BUTTON_LOCATOR = "//div[contains(@class,'Traveller')]//button";
     private static final String CONFIRM_DELETE_BUTTON_LOCATOR = "//*[@id='delete-dialog']/div/button[2]";
-    private static final String DELETE_MESSAGE_LOCATOR = "//*[@id='delete-dialog']/div/div/span[1]";
+    private static final String DELETE_MESSAGE_LOCATOR = "//*[contains(@class,'AsyncActionDialogButton')]";
 
     public ProfileScreen clickLogOutButton() {
         clickOnElement(LOG_OUT_BUTTON_LOCATOR);
