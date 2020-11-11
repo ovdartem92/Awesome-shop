@@ -8,7 +8,7 @@ import utils.Constants;
 public class CheckHotelsMenuButtonTest extends BaseTest {
     HotelsSearchScreen hotelsSearchScreen;
 
-    @BeforeMethod(description = "Change language, click to car button... ")
+    @BeforeMethod(description = "Change language, click on hotels button")
     public void navigateToHotelSearchPage() {
         hotelsSearchScreen = AbstractScreen.header.clickHotelButton();
     }

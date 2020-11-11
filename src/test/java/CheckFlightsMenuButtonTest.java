@@ -8,7 +8,7 @@ import utils.Constants;
 public class CheckFlightsMenuButtonTest extends BaseTest {
     FlightsSearchScreen flightsSearchScreen;
 
-    @BeforeMethod(description = "Change language, click to car button... ")
+    @BeforeMethod(description = "Change language, click on flights button")
     public void navigateToFlightsSearchPage() {
         flightsSearchScreen = AbstractScreen.header.clickFlightButton();
     }
