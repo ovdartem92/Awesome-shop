@@ -1,5 +1,5 @@
 import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pages.AbstractScreen;
 import pages.net.skyscanner.hotels.HotelsSearchScreen;
@@ -8,7 +8,7 @@ import utils.Constants;
 public class CheckHotelsMenuButtonTest extends BaseTest {
     HotelsSearchScreen hotelsSearchScreen;
 
-    @BeforeMethod(description = "Click on hotels button")
+    @BeforeClass(description = "Click on hotels button")
     public void navigateToHotelSearchPage() {
         hotelsSearchScreen = AbstractScreen.header.clickHotelButton();
     }
