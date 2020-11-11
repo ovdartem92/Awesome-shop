@@ -1,6 +1,9 @@
 package pages.net.skyscanner.elements;
 
 import pages.AbstractScreen;
+import pages.net.skyscanner.cars.CarsSearchScreen;
+import pages.net.skyscanner.flights.FlightsSearchScreen;
+import pages.net.skyscanner.hotels.HotelsSearchScreen;
 
 public class HeaderScreen extends AbstractScreen {
     private static final String FLIGHTS_TAB_TEXT = "Flights";
@@ -12,19 +15,19 @@ public class HeaderScreen extends AbstractScreen {
     private static final String HOTEL_TAB_BUTTON_LOCATOR = String.format(HEADER_TAB_LOCATOR, HOTELS_TAB_TEXT);
     private static final String CULTURE_SETTING_BUTTON_LOCATOR = "//li[@id='culture-info']//button";
 
-    public FlightsSearchPage clickFlightButton() {
+    public FlightsSearchScreen clickFlightButton() {
         clickOnElement(FLIGHTS_TAB_BUTTON_LOCATOR);
-        return new FlightsSearchPage();
+        return new FlightsSearchScreen();
     }
 
-    public HotelsSearchPage clickHotelButton() {
+    public HotelsSearchScreen clickHotelButton() {
         clickOnElement(HOTEL_TAB_BUTTON_LOCATOR);
-        return new HotelsSearchPage();
+        return new HotelsSearchScreen();
     }
 
-    public CarsSearchPage clickCarButton() {
+    public CarsSearchScreen clickCarButton() {
         clickOnElement(CAR_HIRE_TAB_BUTTON_LOCATOR);
-        return new CarsSearchPage();
+        return new CarsSearchScreen();
     }
 
     public RegionalSettingsScreen clickRegionalSettingsButton() {
