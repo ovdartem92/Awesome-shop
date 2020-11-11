@@ -10,7 +10,7 @@ import utils.Constants;
 public class CheckCarHireMenuButtonTest extends BaseTest {
     CarsSearchScreen carsSearchScreen;
 
-    @BeforeMethod(description = "Change language, click on car button")
+    @BeforeMethod(description = "Click on car button")
     public void navigateToCarSearchPage() {
         carsSearchScreen = AbstractScreen.header.clickCarButton();
     }
