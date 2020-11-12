@@ -1,10 +1,8 @@
 package pages.net.skyscanner.profileScreen;
 
-import model.User;
 import pages.AbstractScreen;
 import pages.net.skyscanner.elements.HeaderScreen;
 import service.AccountService;
-import service.WaitManager;
 
 public class ProfileScreen extends AbstractScreen {
     private static final String LOG_OUT_BUTTON_LOCATOR = "//*[contains(@class,'DialogButton_OpenDialogButton')]";
@@ -13,6 +11,8 @@ public class ProfileScreen extends AbstractScreen {
     private static final String TRAVELER_BUTTON_LOCATOR = "//div[contains(@class,'Traveller')]//button";
     private static final String CONFIRM_DELETE_BUTTON_LOCATOR = "//*[@id='delete-dialog']/div/button[2]";
     private static final String DELETE_MESSAGE_LOCATOR = "//*[contains(@class,'AsyncActionDialogButton')]";
+    private static final String LOG_OUT_BUTTON_LOCATOR = "//*[contains(@class,'DialogButton_OpenDialogButton')]";
+    private static final String CONFIRM_LOG_OUT_BUTTON_LOCATOR = "//*[contains(@class,'DialogButton_ActionButton')]";
 
     public ProfileScreen clickLogOutButton() {
         clickOnElement(LOG_OUT_BUTTON_LOCATOR);
@@ -36,11 +36,12 @@ public class ProfileScreen extends AbstractScreen {
 
     public ProfileScreen clickDeleteTravelerButton() {
         clickOnElement(TRAVELER_BUTTON_LOCATOR);
+        clickOnElement(LOG_OUT_BUTTON_LOCATOR);
         return this;
     }
 
-    public ProfileScreen clickConfirmDeleteTravelerButton() {
-        clickOnElement(CONFIRM_DELETE_BUTTON_LOCATOR);
+    public ProfileScreen clickConfirmLogOutButton() {
+        clickOnElement(CONFIRM_LOG_OUT_BUTTON_LOCATOR);
         return this;
     }
 
@@ -62,5 +63,4 @@ public class ProfileScreen extends AbstractScreen {
         new AccountService().logOut();
         return header;
     }
-
 }

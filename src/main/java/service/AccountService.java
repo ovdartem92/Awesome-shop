@@ -15,7 +15,7 @@ public class AccountService {
     private ProfileScreen profileScreen = new ProfileScreen();
 
     public void logIn(User user) {
-        logInScreen.clickContinueWithEmailButton();
+        LogInScreen logInScreen = new LogInScreen().clickContinueWithEmailButton();
         AbstractScreen.typeTextToElement(EMAIL_FIELD_LOCATOR, user.getEmail());
         logInScreen.clickNextButton();
         AbstractScreen.typeTextToElement(PASSWORD_FIELD_LOCATOR, user.getPassword());
@@ -25,7 +25,7 @@ public class AccountService {
     }
 
     public void logOut() {
-        profileScreen
+        new ProfileScreen()
                 .clickLogOutButton()
                 .clickConfirmLogOutButton();
     }
