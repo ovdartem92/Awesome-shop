@@ -5,15 +5,14 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import pages.net.skyscanner.elements.CaptchaScreen;
 import pages.net.skyscanner.elements.HeaderScreen;
-import service.CultureService;
 import service.WaitManager;
 
 import java.util.List;
 
 public abstract class AbstractScreen {
-    public static Logger logger = LogManager.getRootLogger();
+    private static final String FIRST_ELEMENT_OF_DROPDOWN_LOCATOR = "//input[@aria-activedescendant='react-autowhatever-1--item-0']";
+    protected static Logger logger = LogManager.getRootLogger();
     public static HeaderScreen header = new HeaderScreen();
-    public static CultureService cultureService = new CultureService(header);
 
     public static WebElement getElement(String locatorPath) {
         CaptchaScreen.checkCaptchaOnPage();
@@ -44,13 +43,5 @@ public abstract class AbstractScreen {
         element.clear();
         element.sendKeys(text);
         logger.info("Type text {} to element with next xpath: {}", text, locatorPath);
-    }
-
-    public static void changeLanguage(String language) {
-        cultureService.changeLanguage(language);
-    }
-
-    public static void changeCurrency(String currency) {
-        cultureService.changeCurrency(currency);
     }
 }

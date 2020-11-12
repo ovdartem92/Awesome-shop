@@ -4,6 +4,7 @@ import pages.AbstractScreen;
 import pages.net.skyscanner.hotels.source.FilterButtonsScreen;
 
 public class HotelsSearchScreen extends AbstractScreen {
+    private static final String HOTELS_SEARCH_BUTTON_LOCATOR = "//button[@data-test-id='search-button']";
     private static final String DESTINATION_OR_HOSTEL_NAME_INPUT_LOCATOR = "//input[@name='destination-autosuggest']";
     private static final String SEARCH_HOTELS_BUTTON_LOCATOR = "//button[@data-test-id='search-button']";
     private static final String FIRST_ELEMENT_OF_DROPDOWN_LOCATOR = "//input[@aria-activedescendant='react-autowhatever-1--item-0']";
@@ -11,6 +12,10 @@ public class HotelsSearchScreen extends AbstractScreen {
 
     public HotelsSearchScreen() {
         filterButtons = new FilterButtonsScreen();
+    }
+
+    public String getTextFromHotelsSearchButton() {
+        return getTextOnElement(HOTELS_SEARCH_BUTTON_LOCATOR);
     }
 
     public HotelsSearchScreen addDestination(String destination) {
