@@ -10,7 +10,7 @@ import service.WaitManager;
 import java.util.List;
 
 public abstract class AbstractScreen {
-    private static final String FIRST_ELEMENT_OF_DROPDOWN_LOCATOR = "//input[@aria-activedescendant='react-autowhatever-1--item-0']";
+    protected static final String FIRST_ELEMENT_OF_DROPDOWN_LOCATOR = "//input[@aria-activedescendant='react-autowhatever-1--item-0']";
     protected static Logger logger = LogManager.getRootLogger();
     public static HeaderScreen header = new HeaderScreen();
 
