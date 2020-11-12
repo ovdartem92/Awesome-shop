@@ -3,7 +3,6 @@ import org.testng.asserts.SoftAssert;
 import pages.net.skyscanner.elements.HeaderScreen;
 import pages.net.skyscanner.hotels.HotelsSearchScreen;
 import pages.net.skyscanner.hotels.source.FilterButtonsScreen;
-import utils.Constants;
 
 public class HotelsSearchPageTest extends BaseTest {
     private final int MAX_ROOMS_QUANTITY = 5;
@@ -16,11 +15,8 @@ public class HotelsSearchPageTest extends BaseTest {
         int childrenQuantityClicks = 5;
         int adultQuantityClicks = 5;
 
-        HeaderScreen.changeLanguage(Constants.ENGLISH_LANGUAGE);
         HotelsSearchScreen searchHotelScreen = new HeaderScreen().clickHotelButton();
         searchHotelScreen.filterButtons.clickButton(FilterButtonsScreen.Title.DECREASE, FilterButtonsScreen.Id.ADULTS, roomsQuantityClicks);
-//        searchHotelScreen.filterButtons.clickAddAdultButton(adultQuantityClicks);
-//        searchHotelScreen.filterButtons.clickAddChildButton(childrenQuantityClicks);
 
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(searchHotelScreen.filterButtons.getQuantityRoomsInput(), MAX_ROOMS_QUANTITY);
