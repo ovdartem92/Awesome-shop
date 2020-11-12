@@ -32,7 +32,7 @@ public abstract class StringUtils {
     public static List<String> getMatches(String text, String regEx) {
         List<String> stringList = new ArrayList<>();
         Matcher matcher = Pattern.compile(regEx)
-                .matcher(text);
+                                 .matcher(text);
         while(matcher.find())
             stringList.add(matcher.group());
         return stringList;
