@@ -5,7 +5,6 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import pages.net.skyscanner.elements.CaptchaScreen;
 import pages.net.skyscanner.elements.HeaderScreen;
-import service.CultureService;
 import service.WaitManager;
 
 import java.util.List;
