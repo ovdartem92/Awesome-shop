@@ -16,11 +16,13 @@ public class HotelsSearchPageTest extends BaseTest {
         int adultQuantityClicks = 5;
 
         HotelsSearchScreen searchHotelScreen = new HeaderScreen().clickHotelButton();
-        searchHotelScreen.filterButtons.clickButton(FilterButtonsScreen.Title.DECREASE, FilterButtonsScreen.Id.ADULTS, roomsQuantityClicks);
+        searchHotelScreen.filterButtons.clickButton(FilterButtonsScreen.Title.INCREASE, FilterButtonsScreen.Id.ROOMS, roomsQuantityClicks);
+        searchHotelScreen.filterButtons.clickButton(FilterButtonsScreen.Title.INCREASE, FilterButtonsScreen.Id.ADULTS, adultQuantityClicks);
+        searchHotelScreen.filterButtons.clickButton(FilterButtonsScreen.Title.INCREASE, FilterButtonsScreen.Id.CHILDREN, childrenQuantityClicks);
 
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertEquals(searchHotelScreen.filterButtons.getQuantityRoomsInput(), MAX_ROOMS_QUANTITY);
-        softAssert.assertEquals(searchHotelScreen.filterButtons.getQuantityAdultPeopleInput(), MAX_ADULT_PEOPLE_QUANTITY);
-        softAssert.assertEquals(searchHotelScreen.filterButtons.getQuantityChildrenInput(), MAX_CHILDREN_QUANTITY);
+        softAssert.assertEquals(searchHotelScreen.filterButtons.getQuantityInput(FilterButtonsScreen.Id.ROOMS), MAX_ROOMS_QUANTITY);
+        softAssert.assertEquals(searchHotelScreen.filterButtons.getQuantityInput(FilterButtonsScreen.Id.ADULTS), MAX_ADULT_PEOPLE_QUANTITY);
+        softAssert.assertEquals(searchHotelScreen.filterButtons.getQuantityInput(FilterButtonsScreen.Id.CHILDREN), MAX_CHILDREN_QUANTITY);
     }
 }
