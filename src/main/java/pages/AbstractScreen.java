@@ -10,7 +10,8 @@ import service.WaitManager;
 import java.util.List;
 
 public abstract class AbstractScreen {
-    public static Logger logger = LogManager.getRootLogger();
+    private static final String FIRST_ELEMENT_OF_DROPDOWN_LOCATOR = "//input[@aria-activedescendant='react-autowhatever-1--item-0']";
+    protected static Logger logger = LogManager.getRootLogger();
     public static HeaderScreen header = new HeaderScreen();
 
     public static WebElement getElement(String locatorPath) {
@@ -42,20 +43,5 @@ public abstract class AbstractScreen {
         element.clear();
         element.sendKeys(text);
         logger.info("Type text {} to element with next xpath: {}", text, locatorPath);
-    }
-
-    public static void typeInFieldWithDelay(String locatorPath, String text) {
-        WebElement element = getElement(locatorPath);
-        String[] letters = text.split("");
-
-        for (String letter : letters) {
-            try {
-                element.sendKeys(letter);
-                Thread.sleep(200);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-        logger.info("Type text with delay {} to element with next xpath: {}", text, locatorPath);
     }
 }
