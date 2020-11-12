@@ -1,7 +1,9 @@
 package pages.net.skyscanner.elements;
 
 import pages.AbstractScreen;
-import pages.net.skyscanner.profileScreen.ProfileScreen;
+import pages.net.skyscanner.cars.CarsSearchScreen;
+import pages.net.skyscanner.flights.FlightsSearchScreen;
+import pages.net.skyscanner.hotels.HotelsSearchScreen;
 import service.WaitManager;
 
 public class HeaderScreen extends AbstractScreen {
@@ -21,17 +23,27 @@ public class HeaderScreen extends AbstractScreen {
         return new LogInScreen();
     }
 
-    public ProfileScreen clickAccountButton() {
-        clickOnElement(ACCOUNT_BUTTON_LOCATOR);
-        return new ProfileScreen();
-    }
-
     public boolean isLoginButtonDisplayed() {
         return WaitManager.isElementVisible(LOG_IN_BUTTON_LOCATOR, 2);
     }
 
     public boolean isAccountButtonDisplayed() {
         return WaitManager.isElementVisible(ACCOUNT_BUTTON_LOCATOR, 2);
+    }
+
+    public FlightsSearchScreen clickFlightButton() {
+        clickOnElement(FLIGHTS_TAB_BUTTON_LOCATOR);
+        return new FlightsSearchScreen();
+    }
+
+    public HotelsSearchScreen clickHotelButton() {
+        clickOnElement(HOTEL_TAB_BUTTON_LOCATOR);
+        return new HotelsSearchScreen();
+    }
+
+    public CarsSearchScreen clickCarButton() {
+        clickOnElement(CAR_HIRE_TAB_BUTTON_LOCATOR);
+        return new CarsSearchScreen();
     }
 
     public RegionalSettingsScreen clickRegionalSettingsButton() {

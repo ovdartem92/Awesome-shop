@@ -3,15 +3,23 @@ package service;
 import java.util.ResourceBundle;
 
 public class TestDataReader {
-    private static final ResourceBundle RESOURCE_BUNDLE = ResourceBundle.getBundle(System.getProperty("environment"));
-    private static final ResourceBundle STAGE_BUNDLE = ResourceBundle.getBundle("stage");
 
     public static String getTestData(String key) {
-        return RESOURCE_BUNDLE.getString(key);
+        ResourceBundle resourceBundle = ResourceBundle.getBundle(System.getProperty("environment"));
+        return resourceBundle.getString(key);
+    }
+
+    public static String getTestData(String key, String defValue) {
+        try {
+            return getTestData(key);
+        } catch (NullPointerException e) {
+            return defValue;
+        }
     }
 
     public static String getStageData(String key) {
-        return STAGE_BUNDLE.getString(key);
+        ResourceBundle stageBundle = ResourceBundle.getBundle("stage");
+        return stageBundle.getString(key);
     }
 
     public static int getIntStageData(String key) {
