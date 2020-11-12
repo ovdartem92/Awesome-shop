@@ -4,6 +4,7 @@ import pages.AbstractScreen;
 import pages.net.skyscanner.cars.CarsSearchScreen;
 import pages.net.skyscanner.flights.FlightsSearchScreen;
 import pages.net.skyscanner.hotels.HotelsSearchScreen;
+import service.WaitManager;
 
 public class HeaderScreen extends AbstractScreen {
     private static final String FLIGHTS_TAB_TEXT = "Flights";
@@ -14,6 +15,21 @@ public class HeaderScreen extends AbstractScreen {
     private static final String FLIGHTS_TAB_BUTTON_LOCATOR = String.format(HEADER_TAB_LOCATOR, FLIGHTS_TAB_TEXT);
     private static final String HOTEL_TAB_BUTTON_LOCATOR = String.format(HEADER_TAB_LOCATOR, HOTELS_TAB_TEXT);
     private static final String CULTURE_SETTING_BUTTON_LOCATOR = "//li[@id='culture-info']//button";
+    private static final String LOG_IN_BUTTON_LOCATOR = "//*[@id='authentication-link']";
+    private static final String ACCOUNT_BUTTON_LOCATOR = "//*[@id='login-button-nav-item']/button";
+
+    public LogInScreen clickLoginButton() {
+        clickOnElement(LOG_IN_BUTTON_LOCATOR);
+        return new LogInScreen();
+    }
+
+    public boolean isLoginButtonDisplayed() {
+        return WaitManager.isElementVisible(LOG_IN_BUTTON_LOCATOR, 2);
+    }
+
+    public boolean isAccountButtonDisplayed() {
+        return WaitManager.isElementVisible(ACCOUNT_BUTTON_LOCATOR, 2);
+    }
 
     public FlightsSearchScreen clickFlightButton() {
         clickOnElement(FLIGHTS_TAB_BUTTON_LOCATOR);
