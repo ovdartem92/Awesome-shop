@@ -4,6 +4,7 @@ import pages.AbstractScreen;
 import pages.net.skyscanner.cars.CarsSearchScreen;
 import pages.net.skyscanner.flights.FlightsSearchScreen;
 import pages.net.skyscanner.hotels.HotelsSearchScreen;
+import pages.net.skyscanner.profileScreen.ProfileScreen;
 import service.WaitManager;
 
 public class HeaderScreen extends AbstractScreen {
@@ -21,6 +22,11 @@ public class HeaderScreen extends AbstractScreen {
     public LogInScreen clickLoginButton() {
         clickOnElement(LOG_IN_BUTTON_LOCATOR);
         return new LogInScreen();
+    }
+
+    public ProfileScreen clickAccountButton() {
+        clickOnElement(ACCOUNT_BUTTON_LOCATOR);
+        return new ProfileScreen();
     }
 
     public boolean isLoginButtonDisplayed() {
