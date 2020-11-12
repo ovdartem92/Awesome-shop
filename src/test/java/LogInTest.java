@@ -14,7 +14,7 @@ public class LogInTest extends BaseTest {
                 .clickLoginButton()
                 .logIn(user = UserBuilder.getUserWithValidPassword());
 
-        Assert.assertTrue(headerScreen.isAccountButtonDisplayed(), "Oooops, something went wrong. You're not logIn");
+        Assert.assertTrue(headerScreen.isAccountButtonDisplayed(), "Oops, something went wrong. You're not logIn");
     }
 
     @Test(description = "check login with invalid data")
@@ -23,6 +23,6 @@ public class LogInTest extends BaseTest {
                 .clickLoginButton()
                 .logIn(user = UserBuilder.getUserWithInvalidPassword());
 
-        Assert.assertTrue(headerScreen.isLoginButtonDisplayed(), "Oooops, something went wrong.");
+        Assert.assertTrue(headerScreen.isLoginButtonDisplayed(), "Oops, something went wrong.");
     }
 }
