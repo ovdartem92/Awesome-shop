@@ -3,6 +3,10 @@ package utils;
 import java.security.SecureRandom;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public abstract class StringUtils {
     private final static String CHAR_LOWER = "abcdefghijklmnopqrstuvwxyz1234567890";
@@ -23,5 +27,18 @@ public abstract class StringUtils {
             stringBuilder.append(randomChar);
         }
         return stringBuilder.toString();
+    }
+
+    public static List<String> getMatches(String text, String regEx) {
+        List<String> stringList = new ArrayList<>();
+        Matcher matcher = Pattern.compile(regEx)
+                                 .matcher(text);
+        while(matcher.find())
+            stringList.add(matcher.group());
+        return stringList;
+    }
+
+    public static String getMatcherByIndex(String text, String regEx, int index) {
+        return getMatches(text, regEx).get(index);
     }
 }
