@@ -10,14 +10,14 @@ import utils.TestListener;
 @Listeners({TestListener.class})
 public abstract class BaseTest {
     protected WebDriver driver;
-    protected final String URL = TestDataReader.getTestData("testData.home.url");
+    protected final String URL = TestDataReader.getTestData("testData.home.url", TestDataReader.getStageData("home.url"));
 
     @BeforeTest()
     public void setUp() {
         driver = Browser.initDriver();
         Browser.openPage(URL);
         CaptchaScreen.checkCaptchaOnPage();
-        new CultureService().changeLanguage(Constants.ENGLISH_LANGUAGE);
+//        new CultureService().changeLanguage(Constants.ENGLISH_LANGUAGE);
     }
 
     @AfterTest(alwaysRun = true)
