@@ -7,6 +7,7 @@ import pages.net.skyscanner.elements.CaptchaScreen;
 import pages.net.skyscanner.elements.HeaderScreen;
 import service.WaitManager;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class AbstractScreen {
@@ -57,5 +58,13 @@ public abstract class AbstractScreen {
             }
         }
         logger.info("Type text with delay {} to element with next xpath: {}", text, locatorPath);
+    }
+
+    public List<String> getTextFromElements(String locator) {
+        List<String> elementText = new ArrayList<>();
+        for (WebElement element : getElements(locator)) {
+            elementText.add(element.getText());
+        }
+        return elementText;
     }
 }
