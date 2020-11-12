@@ -1,6 +1,8 @@
 import driver.Browser;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Listeners;
 import pages.net.skyscanner.elements.CaptchaScreen;
 import service.CultureService;
 import service.TestDataReader;
@@ -10,7 +12,7 @@ import utils.TestListener;
 @Listeners({TestListener.class})
 public abstract class BaseTest {
     protected WebDriver driver;
-    protected final String URL = TestDataReader.getTestData("testData.home.url");
+    protected final String URL = TestDataReader.getTestData("testData.home.url", TestDataReader.getStageData("home.url"));
 
     @BeforeTest()
     public void setUp() {
