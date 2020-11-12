@@ -1,6 +1,8 @@
 import driver.Browser;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Listeners;
 import pages.net.skyscanner.elements.CaptchaScreen;
 import service.CultureService;
 import service.TestDataReader;
@@ -17,7 +19,7 @@ public abstract class BaseTest {
         driver = Browser.initDriver();
         Browser.openPage(URL);
         CaptchaScreen.checkCaptchaOnPage();
-//        new CultureService().changeLanguage(Constants.ENGLISH_LANGUAGE);
+        new CultureService().changeLanguage(Constants.ENGLISH_LANGUAGE);
     }
 
     @AfterTest(alwaysRun = true)
