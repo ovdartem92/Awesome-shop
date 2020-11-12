@@ -11,7 +11,6 @@ public class CheckPickUpAndDropOffLocationsSummaryTest extends BaseTest {
         SoftAssert softAssert = new SoftAssert();
         String pickUpLocation = Constants.MOSCOW_SHEREMETYEVO_SVO;
         String dropOffLocation = Constants.MOSCOW_VNUKOVO_VKO;
-        HeaderScreen.changeLanguage(Constants.ENGLISH_LANGUAGE);
         CarsSearchResultsScreen carsSearchResultsScreen = new HeaderScreen()
                 .clickCarButton()
                 .choiceReturnCarToADifferentLocation()
