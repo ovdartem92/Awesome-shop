@@ -34,7 +34,7 @@ public abstract class StringUtils {
         Matcher matcher = Pattern.compile(regEx)
                                  .matcher(text);
         while(matcher.find())
-            stringList.add(matcher.group());
+            stringList.add(matcher.group().trim());
         return stringList;
     }
 
