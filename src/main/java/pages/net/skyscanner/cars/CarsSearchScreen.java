@@ -4,9 +4,7 @@ import pages.AbstractScreen;
 import pages.net.skyscanner.cars.carService.CarSearchService;
 
 public class CarsSearchScreen extends AbstractScreen {
-
     CarSearchService carSearchService = new CarSearchService();
-
     private static final String CAR_HEADLINE_LOCATOR = "//div[contains(@class,'controls-title')]";
 
     public String getTextFromCarHeadline() {
