@@ -1,40 +1,23 @@
 package pages.net.skyscanner.cars;
 
-import driver.Browser;
-import org.openqa.selenium.By;
 import pages.AbstractScreen;
+import pages.net.skyscanner.cars.carService.CarSearchService;
 
 public class CarsSearchScreen extends AbstractScreen {
+
+    CarSearchService carSearchService = new CarSearchService();
+
     private static final String CAR_HEADLINE_LOCATOR = "//div[contains(@class,'controls-title')]";
-    private static final String PICKUP_LOCATION_LOCATOR = "//input[@id='carhire-search-controls-location-pick-up']";
-    private static final String DROP_OFF_LOCATION_LOCATOR = "//input[@id='carhire-search-controls-location-drop-off']";
-    private static final String RETURN_CAR_TO_A_DIFFERENT_LOCATION_CHECKBOX_LOCATOR = "//input[@id='carhire-search-controls-different-drop-off-docked']";
 
     public String getTextFromCarHeadline() {
         return getTextOnElement(CAR_HEADLINE_LOCATOR);
     }
 
-    public CarsSearchScreen setUpPickUpLocation(String pickUpLocation) {
-        clickOnElement(PICKUP_LOCATION_LOCATOR);
-        typeTextToElement(PICKUP_LOCATION_LOCATOR, pickUpLocation);
-        clickOnElement(FIRST_ELEMENT_OF_DROPDOWN_LOCATOR);
-        return this;
-    }
-
-    public CarsSearchScreen choiceReturnCarToADifferentLocation() {
-        clickOnElement(RETURN_CAR_TO_A_DIFFERENT_LOCATION_CHECKBOX_LOCATOR);
-        return this;
-    }
-
-    public CarsSearchScreen setUpDropOffLocation(String dropOffLocationLocation) {
-        clickOnElement(DROP_OFF_LOCATION_LOCATOR);
-        typeTextToElement(DROP_OFF_LOCATION_LOCATOR, dropOffLocationLocation);
-        clickOnElement(FIRST_ELEMENT_OF_DROPDOWN_LOCATOR);
-        return this;
-    }
-
-    public CarsSearchResultsScreen clickSearchButton() {
-        Browser.getDriver().findElement(By.xpath(CAR_HEADLINE_LOCATOR)).click();
+    public CarsSearchResultsScreen searchCarUsingLocationsData(String pickUpLock, String dropOffLock) {
+        carSearchService.choiceReturnCarToADifferentLocation();
+        carSearchService.setUpPickUpLocation(pickUpLock);
+        carSearchService.setUpDropOffLocation(dropOffLock);
+        carSearchService.clickSearchButton();
         return new CarsSearchResultsScreen();
     }
 }
