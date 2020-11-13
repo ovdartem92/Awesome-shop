@@ -9,7 +9,6 @@ import java.util.List;
 
 public class CheckChangeCurrencyTest extends BaseTest {
     private final String CURRENCY_VALUE = Constants.EURO_SIGN;
-    private SoftAssert softAssert = new SoftAssert();
     private List<String> currencySigns;
 
     @BeforeClass(description = "change currency, click flight search button, get text from prices")
@@ -20,6 +19,7 @@ public class CheckChangeCurrencyTest extends BaseTest {
 
     @Test(description = "check that after changing currency prices are in correct currency value")
     public void checkChangeCurrency() {
+        SoftAssert softAssert = new SoftAssert();
         for (String sign : currencySigns) {
             softAssert.assertTrue(sign.contains(CURRENCY_VALUE), "Prices are not displayed in the set currency value");
         }
