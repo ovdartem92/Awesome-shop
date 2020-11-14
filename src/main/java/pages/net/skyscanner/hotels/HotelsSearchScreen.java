@@ -2,7 +2,6 @@ package pages.net.skyscanner.hotels;
 
 import pages.AbstractScreen;
 import pages.net.skyscanner.hotels.source.GuestsAndRoomsFilterScreen;
-import service.HotelSearchService;
 
 public class HotelsSearchScreen extends AbstractScreen {
     private static final String DESTINATION_OR_HOSTEL_NAME_INPUT_LOCATOR = "//input[@name='destination-autosuggest']";
@@ -16,7 +15,8 @@ public class HotelsSearchScreen extends AbstractScreen {
     }
 
     public HotelsSearchScreen addDestinations(String destination) {
-        new HotelSearchService().addDestination(destination);
+        typeTextToDestinationInput(destination);
+        clickOnFirstDropdownInput();
         return this;
     }
 
