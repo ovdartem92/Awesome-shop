@@ -12,7 +12,8 @@ public class CheckPickUpAndDropOffLocationsSummaryTest extends BaseTest {
 
     @BeforeClass(description = "Click on car button")
     public void navigateToCarSearchPage() {
-        carsSearchResultsScreen = AbstractScreen.header.clickCarButton().searchCarUsingLocationsData(pickUpLocation, dropOffLocation);
+        carsSearchResultsScreen = AbstractScreen.header.clickCarButton()
+                .carSearchService.searchCarUsingLocationsData(pickUpLocation, dropOffLocation);
     }
 
     @Test(description = "check input values of locations are equals locations in search result page summary")
