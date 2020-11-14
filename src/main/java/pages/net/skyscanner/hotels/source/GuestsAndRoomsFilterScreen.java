@@ -2,7 +2,7 @@ package pages.net.skyscanner.hotels.source;
 
 import org.apache.commons.lang3.StringUtils;
 import pages.AbstractScreen;
-import service.HotelSearchService;
+import pages.net.skyscanner.hotels.hotelsService.HotelsSearchService;
 
 public class GuestsAndRoomsFilterScreen extends AbstractScreen {
     public enum Title {DECREASE, INCREASE}
@@ -17,26 +17,16 @@ public class GuestsAndRoomsFilterScreen extends AbstractScreen {
 
     public void maxClickButton(Id id) {
         String locator = getStringLocatorForFilterButton(Title.INCREASE, id);
-        new HotelSearchService().clickButtonUntilThenDisabled(locator);
+        new HotelsSearchService().clickButtonUntilThenDisabled(locator);
     }
 
     public void minClickButton(Id id) {
         String locator = getStringLocatorForFilterButton(Title.DECREASE, id);
-        new HotelSearchService().clickButtonUntilThenDisabled(locator);
-    }
-
-    public void clickButton(Title title, Id id) {
-        String locator = getStringLocatorForFilterButton(title, id);
-        new HotelSearchService().clickAddItemButton(locator);
-    }
-
-    public void clickButton(Title title, Id id, int quantity) {
-        for (int i = 0; i < quantity; i++)
-            clickButton(title, id);
+        new HotelsSearchService().clickButtonUntilThenDisabled(locator);
     }
 
     public int getQuantityInput(Id id) {
-        return new HotelSearchService().getQuantityItemInput(getStringLocatorForFilterInput(id));
+        return new HotelsSearchService().getQuantityItemInput(getStringLocatorForFilterInput(id));
     }
 
     private String getStringLocatorForFilterButton(Title title, Id id) {
