@@ -1,18 +1,13 @@
-package service;
+package pages.net.skyscanner.hotels.hotelsService;
 
 import org.testng.util.Strings;
 import pages.net.skyscanner.hotels.HotelsSearchScreen;
 
 import static pages.AbstractScreen.*;
 
-public class HotelSearchService {
+public class HotelsSearchService {
     private static final String DISABLED_PROPERTY = "disabled";
-    private HotelsSearchScreen hotelsSearchScreen = new HotelsSearchScreen();
-
-    public void addDestination(String destination) {
-        hotelsSearchScreen.typeTextToDestinationInput(destination);
-        hotelsSearchScreen.clickOnFirstDropdownInput();
-    }
+    HotelsSearchScreen hotelsSearchScreen = new HotelsSearchScreen();
 
     public void clickAddItemButton(String locator) {
         hotelsSearchScreen.clickOnGuestAndRoomsInput();
