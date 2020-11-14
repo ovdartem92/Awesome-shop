@@ -3,7 +3,7 @@ import org.testng.asserts.SoftAssert;
 import pages.net.skyscanner.elements.HeaderScreen;
 import pages.net.skyscanner.hotels.HotelsSearchScreen;
 
-import static pages.net.skyscanner.hotels.source.FilterButtonsScreen.Id;
+import static pages.net.skyscanner.hotels.source.GuestsAndRoomsFilterScreen.Id;
 
 public class HotelsSearchPageTest extends BaseTest {
     private final int MAX_ROOMS_QUANTITY = 5;
@@ -15,13 +15,13 @@ public class HotelsSearchPageTest extends BaseTest {
         SoftAssert softAssert = new SoftAssert();
         HotelsSearchScreen searchHotelScreen = new HeaderScreen().clickHotelButton();
         for (Id id : Id.values())
-            searchHotelScreen.filterButtons.maxClickButton(id);
+            searchHotelScreen.guestsAndRoomsFilterButtons.maxClickButton(id);
 
-        softAssert.assertEquals(searchHotelScreen.filterButtons.getQuantityInput(Id.ROOMS), MAX_ROOMS_QUANTITY,
+        softAssert.assertEquals(searchHotelScreen.guestsAndRoomsFilterButtons.getQuantityInput(Id.ROOMS), MAX_ROOMS_QUANTITY,
                 "The number of rooms does not match the specified value.");
-        softAssert.assertEquals(searchHotelScreen.filterButtons.getQuantityInput(Id.ADULTS), MAX_ADULT_PEOPLE_QUANTITY,
+        softAssert.assertEquals(searchHotelScreen.guestsAndRoomsFilterButtons.getQuantityInput(Id.ADULTS), MAX_ADULT_PEOPLE_QUANTITY,
                 "The number of adults does not match the specified value.");
-        softAssert.assertEquals(searchHotelScreen.filterButtons.getQuantityInput(Id.CHILDREN), MAX_CHILDREN_QUANTITY,
+        softAssert.assertEquals(searchHotelScreen.guestsAndRoomsFilterButtons.getQuantityInput(Id.CHILDREN), MAX_CHILDREN_QUANTITY,
                 "The number of children does not match the specified value.");
         softAssert.assertAll();
     }

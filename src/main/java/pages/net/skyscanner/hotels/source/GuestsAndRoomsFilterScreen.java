@@ -4,7 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 import pages.AbstractScreen;
 import service.HotelSearchService;
 
-public class FilterButtonsScreen extends AbstractScreen {
+public class GuestsAndRoomsFilterScreen extends AbstractScreen {
     public enum Title {DECREASE, INCREASE}
     public enum Id {ROOMS, ADULTS, CHILDREN}
     private static final String DONE_BUTTON_LOCATOR = "//footer/button";

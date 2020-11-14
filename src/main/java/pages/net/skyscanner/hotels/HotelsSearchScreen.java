@@ -1,7 +1,7 @@
 package pages.net.skyscanner.hotels;
 
 import pages.AbstractScreen;
-import pages.net.skyscanner.hotels.source.FilterButtonsScreen;
+import pages.net.skyscanner.hotels.source.GuestsAndRoomsFilterScreen;
 import service.HotelSearchService;
 
 public class HotelsSearchScreen extends AbstractScreen {
@@ -9,11 +9,7 @@ public class HotelsSearchScreen extends AbstractScreen {
     private static final String FIRST_ELEMENT_OF_DROPDOWN_LOCATOR = "//input[@aria-activedescendant='react-autowhatever-1--item-0']";
     private static final String GUESTS_AND_ROOMS_INPUT_LOCATOR = "//input[@id='guests-rooms']";
     private static final String HOTELS_SEARCH_BUTTON_LOCATOR = "//button[@data-test-id='search-button']";
-    public FilterButtonsScreen filterButtons;
-
-    public HotelsSearchScreen() {
-        filterButtons = new FilterButtonsScreen();
-    }
+    public GuestsAndRoomsFilterScreen guestsAndRoomsFilterButtons = new GuestsAndRoomsFilterScreen();
 
     public String getTextFromHotelsSearchButton() {
         return getTextOnElement(HOTELS_SEARCH_BUTTON_LOCATOR);
