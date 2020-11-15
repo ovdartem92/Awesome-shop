@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public abstract class StringUtils {
+public class StringUtils {
     private final static String CHAR_LOWER = "abcdefghijklmnopqrstuvwxyz1234567890";
     private final static String CHAR_UPPER = CHAR_LOWER.toUpperCase();
     private final static String DATA_FOR_NEW_STRING = CHAR_LOWER + CHAR_UPPER;
