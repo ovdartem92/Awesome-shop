@@ -12,7 +12,7 @@ public class HotelsSearchService {
     public void clickAddItemButton(String locator) {
         hotelsSearchScreen.clickOnGuestAndRoomsInput();
         clickOnElement(locator);
-        hotelsSearchScreen.guestsAndRoomsFilterButtons.clickOnDoneButton();
+        hotelsSearchScreen.clickOnDoneButton();
     }
 
     public void clickButtonUntilThenDisabled(String locator) {
@@ -20,13 +20,13 @@ public class HotelsSearchService {
         while (Strings.isNullOrEmpty(getElement(locator).getAttribute(DISABLED_PROPERTY))) {
             clickOnElement(locator);
         }
-        hotelsSearchScreen.guestsAndRoomsFilterButtons.clickOnDoneButton();
+        hotelsSearchScreen.clickOnDoneButton();
     }
 
     public int getQuantityItemInput(String locator) {
         hotelsSearchScreen.clickOnGuestAndRoomsInput();
         String quantity = getAttributeValueOnElement(locator, "value");
-        hotelsSearchScreen.guestsAndRoomsFilterButtons.clickOnDoneButton();
+        hotelsSearchScreen.clickOnDoneButton();
         return Integer.parseInt(quantity);
     }
 }
