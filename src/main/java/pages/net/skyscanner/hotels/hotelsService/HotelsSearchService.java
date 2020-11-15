@@ -6,8 +6,13 @@ import pages.net.skyscanner.hotels.HotelsSearchScreen;
 import static pages.AbstractScreen.*;
 
 public class HotelsSearchService {
-    private static final String DISABLED_PROPERTY = "disabled";
-    HotelsSearchScreen hotelsSearchScreen = new HotelsSearchScreen();
+    private HotelsSearchScreen hotelsSearchScreen;
+    private final String DISABLED_ATTRIBUTE = "disabled";
+    private final String VALUE_ATTRIBUTE = "value";
+
+    public HotelsSearchService(HotelsSearchScreen hotelsSearchScreen) {
+        this.hotelsSearchScreen = hotelsSearchScreen;
+    }
 
     public void clickAddItemButton(String locator) {
         hotelsSearchScreen.clickOnGuestAndRoomsInput();
@@ -17,7 +22,7 @@ public class HotelsSearchService {
 
     public void clickButtonUntilThenDisabled(String locator) {
         hotelsSearchScreen.clickOnGuestAndRoomsInput();
-        while (Strings.isNullOrEmpty(getElement(locator).getAttribute(DISABLED_PROPERTY))) {
+        while (Strings.isNullOrEmpty(getElement(locator).getAttribute(DISABLED_ATTRIBUTE))) {
             clickOnElement(locator);
         }
         hotelsSearchScreen.clickOnDoneButton();
@@ -25,7 +30,7 @@ public class HotelsSearchService {
 
     public int getQuantityItemInput(String locator) {
         hotelsSearchScreen.clickOnGuestAndRoomsInput();
-        String quantity = getAttributeValueOnElement(locator, "value");
+        String quantity = getAttributeValueOnElement(locator, VALUE_ATTRIBUTE);
         hotelsSearchScreen.clickOnDoneButton();
         return Integer.parseInt(quantity);
     }
