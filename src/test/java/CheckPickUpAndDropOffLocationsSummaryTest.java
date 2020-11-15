@@ -10,8 +10,8 @@ public class CheckPickUpAndDropOffLocationsSummaryTest extends BaseTest {
     String pickUpLocation = Constants.MOSCOW_SHEREMETYEVO_SVO;
     String dropOffLocation = Constants.MOSCOW_VNUKOVO_VKO;
 
-    @BeforeClass(description = "Click on car button")
-    public void navigateToCarSearchPage() {
+    @BeforeClass(description = "Click on car button, set up locations and click search")
+    public void navigateToCarSearchScreenAndFindCarUsingData() {
         carsSearchResultsScreen = AbstractScreen.header.clickCarButton()
                 .carSearchService.searchCarUsingLocationsData(pickUpLocation, dropOffLocation);
     }
