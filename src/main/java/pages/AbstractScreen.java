@@ -7,6 +7,7 @@ import pages.net.skyscanner.elements.CaptchaScreen;
 import pages.net.skyscanner.elements.HeaderScreen;
 import service.WaitManager;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class AbstractScreen {
@@ -43,5 +44,13 @@ public abstract class AbstractScreen {
         element.clear();
         element.sendKeys(text);
         logger.info("Type text {} to element with next xpath: {}", text, locatorPath);
+    }
+
+    public static List<String> getTextFromElements(String locatorPath) {
+        List<String> textFromElements = new ArrayList<>();
+        for (WebElement element : getElements(locatorPath)) {
+            textFromElements.add(element.getText());
+        }
+        return textFromElements;
     }
 }
