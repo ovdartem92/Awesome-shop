@@ -19,12 +19,12 @@ public class LogInTest extends BaseTest {
     @Test(description = "check login with valid data")
     public void logInWithValidDataTest() {
         ACCOUNT_SERVICE.logIn(user = UserBuilder.getUserWithValidPassword());
-        Assert.assertTrue(AbstractScreen.header.isAccountButtonDisplayed(), "Oops, something went wrong. You're not logIn");
+        Assert.assertTrue(AbstractScreen.header.isAccountButtonDisplayed(), "Verification failed and you are not logged in. Incorrect data may have been entered");
     }
 
     @Test(description = "check login with invalid data")
     public void logInWithInValidDataTest() {
         ACCOUNT_SERVICE.logIn(user = UserBuilder.getUserWithInvalidPassword());
-        Assert.assertTrue(AbstractScreen.header.isLoginButtonDisplayed(), "Oops, something went wrong.");
+        Assert.assertTrue(AbstractScreen.header.isLoginButtonDisplayed(), "Verification failed and you are not logged in.");
     }
 }
