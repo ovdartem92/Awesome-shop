@@ -3,7 +3,6 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.AbstractScreen;
-import pages.net.skyscanner.elements.HeaderScreen;
 import service.AccountService;
 import service.UserBuilder;
 
