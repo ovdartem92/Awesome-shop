@@ -3,10 +3,8 @@ package pages.net.skyscanner.cars;
 import driver.Browser;
 import org.openqa.selenium.By;
 import pages.AbstractScreen;
-import pages.net.skyscanner.cars.carService.CarSearchService;
 
 public class CarsSearchScreen extends AbstractScreen {
-    public static CarSearchService carSearchService = new CarSearchService();
     private static final String CAR_HEADLINE_LOCATOR = "//div[contains(@class,'controls-title')]";
     private static final String PICKUP_LOCATION_LOCATOR = "//input[@id='carhire-search-controls-location-pick-up']";
     private static final String DROP_OFF_LOCATION_LOCATOR = "//input[@id='carhire-search-controls-location-drop-off']";

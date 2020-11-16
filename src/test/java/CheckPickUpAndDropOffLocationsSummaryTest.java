@@ -1,8 +1,8 @@
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import pages.AbstractScreen;
 import pages.net.skyscanner.cars.CarsSearchResultsScreen;
+import pages.net.skyscanner.cars.carService.CarSearchService;
 import utils.Constants;
 
 public class CheckPickUpAndDropOffLocationsSummaryTest extends BaseTest {
@@ -12,8 +12,7 @@ public class CheckPickUpAndDropOffLocationsSummaryTest extends BaseTest {
 
     @BeforeClass(description = "Click on car button, set up locations and click search")
     public void navigateToCarSearchScreenAndFindCarUsingData() {
-        carsSearchResultsScreen = AbstractScreen.header.clickCarButton()
-                .carSearchService.searchCarUsingLocationsData(pickUpLocation, dropOffLocation);
+        carsSearchResultsScreen = new CarSearchService().searchCarUsingLocationsData(pickUpLocation, dropOffLocation);
     }
 
     @Test(description = "check input values of locations are equals locations in search result page summary")
