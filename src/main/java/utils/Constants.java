@@ -9,4 +9,7 @@ public final class Constants {
     public static final String MOSCOW = "Moscow";
     public static final String TURIN = "Turin";
     public static final String AGE_21 = "21";
+    public static final String TEXT_ON_CAR_SEARCH_PAGE = "Find your ride";
+    public static final String TEXT_ON_FLIGHTS_SEARCH_PAGE = "Search flights";
+    public static final String TEXT_ON_HOTEL_SEARCH_PAGE = "Search hotels";
 }
