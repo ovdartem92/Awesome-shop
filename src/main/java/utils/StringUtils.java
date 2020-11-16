@@ -31,7 +31,8 @@ public class StringUtils {
 
     public static List<String> getMatches(String text, String regEx) {
         List<String> stringList = new ArrayList<>();
-        Matcher matcher = Pattern.compile(regEx).matcher(text);
+        Matcher matcher = Pattern.compile(regEx)
+                                 .matcher(text);
         while(matcher.find())
             stringList.add(matcher.group().trim());
         return stringList;
