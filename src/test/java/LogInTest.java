@@ -25,6 +25,6 @@ public class LogInTest extends BaseTest {
     @Test(description = "check login with invalid data")
     public void logInWithInValidDataTest() {
         ACCOUNT_SERVICE.logIn(user = UserBuilder.getUserWithInvalidPassword());
-        Assert.assertTrue(AbstractScreen.header.isLoginButtonDisplayed(), "Verification failed and you are not logged in.");
+        Assert.assertTrue(AbstractScreen.header.isLoginButtonDisplayed(), "The login button is not active. You may have entered the correct data and logged in");
     }
 }
