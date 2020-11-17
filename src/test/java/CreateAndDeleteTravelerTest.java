@@ -1,24 +1,27 @@
 import model.User;
 import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import pages.net.skyscanner.elements.HeaderScreen;
+import pages.AbstractScreen;
 import pages.net.skyscanner.profileScreen.ProfileScreen;
+import service.AccountService;
 import service.UserBuilder;
 
 public class CreateAndDeleteTravelerTest extends BaseTest {
-    HeaderScreen headerScreen = new HeaderScreen();
-    User user = UserBuilder.getUserWithValidPassword();
-    ProfileScreen profileScreen = new ProfileScreen();
+    private final ProfileScreen PROFILE_SCREEN = new ProfileScreen();
+
+    @BeforeClass(description = "Click on login button, LogIn, create traveler and delete")
+    public void preparingForTheTest() {
+        AccountService accountService = new AccountService();
+        User user = UserBuilder.getUserWithValidPassword();
+        AbstractScreen.header.clickLoginButton();
+        accountService.logIn(user);
+        accountService.createTraveler(user);
+        accountService.deleteTraveler();
+    }
 
     @Test(description = "check ability to create and delete a new traveler")
-    public void createAndDeleteTravelerTest() {
-        headerScreen
-                .clickLoginButton()
-                .logIn(user)
-                .clickAccountButton()
-                .clickAddTravelerButton()
-                .addTraveler(user)
-                .deleteTraveler();
-        Assert.assertTrue(profileScreen.isDeleteMessageDisplayed(), "Something went wrong, you are not delete the traveler...");
+    public void checkDeleteTravelerTest() {
+        Assert.assertTrue(PROFILE_SCREEN.isDeleteMessageDisplayed(), "Delete message is not displayed, you are not delete the traveler...");
     }
 }
