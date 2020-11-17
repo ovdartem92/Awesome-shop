@@ -1,24 +1,32 @@
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import pages.net.skyscanner.elements.HeaderScreen;
+import pages.AbstractScreen;
 import pages.net.skyscanner.hotels.HotelsSearchScreen;
+import pages.net.skyscanner.hotels.HotelsSearchScreen.FilterButtonsId;
 
 public class HotelsSearchPageTest extends BaseTest {
+    HotelsSearchScreen hotelsSearchScreen;
+    int MAX_ROOMS_QUANTITY = 5;
+    int MAX_ADULT_PEOPLE_QUANTITY = 10;
+    int MAX_CHILDREN_QUANTITY = 5;
+
+    @BeforeClass(description = "click on hotels button")
+    public void navigateToHotelsSearchPage() {
+        hotelsSearchScreen = AbstractScreen.header.clickHotelButton();
+    }
+
     @Test(description = "check maximum filter values for hotel booking")
     public void checkMaximumValuesOfFilterButtons() {
-        int maxRoomsQuantity = 5;
-        int maxAdultPeopleQuantity = 10;
-        int maxChildrenQuantity = 5;
-        SoftAssert softAssert = new SoftAssert();
-        HotelsSearchScreen searchHotelScreen = new HeaderScreen().clickHotelButton();
-        for (HotelsSearchScreen.Id id : HotelsSearchScreen.Id.values())
-            searchHotelScreen.maxClickButton(id);
+        for (FilterButtonsId id : FilterButtonsId.values())
+            hotelsSearchScreen.clickMaxIncreaseFilterButton(id);
 
-        softAssert.assertEquals(searchHotelScreen.getQuantityInput(HotelsSearchScreen.Id.ROOMS), maxRoomsQuantity,
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertEquals(hotelsSearchScreen.getQuantityOfFilterInput(FilterButtonsId.ROOMS), MAX_ROOMS_QUANTITY,
                 "The number of rooms does not match the specified value");
-        softAssert.assertEquals(searchHotelScreen.getQuantityInput(HotelsSearchScreen.Id.ADULTS), maxAdultPeopleQuantity,
+        softAssert.assertEquals(hotelsSearchScreen.getQuantityOfFilterInput(FilterButtonsId.ADULTS), MAX_ADULT_PEOPLE_QUANTITY,
                 "The number of adults does not match the specified value");
-        softAssert.assertEquals(searchHotelScreen.getQuantityInput(HotelsSearchScreen.Id.CHILDREN), maxChildrenQuantity,
+        softAssert.assertEquals(hotelsSearchScreen.getQuantityOfFilterInput(FilterButtonsId.CHILDREN), MAX_CHILDREN_QUANTITY,
                 "The number of children does not match the specified value");
         softAssert.assertAll();
     }
