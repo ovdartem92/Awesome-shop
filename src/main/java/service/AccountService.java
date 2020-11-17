@@ -6,6 +6,8 @@ import pages.net.skyscanner.elements.LogInScreen;
 import pages.net.skyscanner.profileScreen.ProfileScreen;
 
 public class AccountService {
+    private LogInScreen logInScreen = new LogInScreen();
+    private ProfileScreen profileScreen = new ProfileScreen();
     private static final String EMAIL_FIELD_LOCATOR = "//input[@id='email']";
     private static final String PASSWORD_FIELD_LOCATOR = "//input[@id='password']";
     private static final String FIRST_NAME_FIELD_LOCATOR = "//*[@id='firstName']";
@@ -15,17 +17,18 @@ public class AccountService {
     private ProfileScreen profileScreen = new ProfileScreen();
 
     public void logIn(User user) {
-        logInScreen.clickContinueWithEmailButton();
-        AbstractScreen.typeTextToElement(EMAIL_FIELD_LOCATOR, user.getEmail());
-        logInScreen.clickNextButton();
-        AbstractScreen.typeTextToElement(PASSWORD_FIELD_LOCATOR, user.getPassword());
-        logInScreen.clickLogInButton();
-        logInScreen.waitMarketingConsentButtonAvailable();
-        logInScreen.clickCloseModalButton();
+        logInScreen
+                .clickContinueWithEmailButton()
+                .typeTextToEmailField(user.getEmail())
+                .clickNextButton()
+                .typeTextToPasswordField(user.getPassword())
+                .clickLogInButton()
+                .waitMarketingConsentButtonAvailable()
+                .clickCloseModalButton();
     }
 
     public void logOut() {
-        profileScreen
+        new ProfileScreen()
                 .clickLogOutButton()
                 .clickConfirmLogOutButton();
     }

@@ -1,10 +1,8 @@
 package pages.net.skyscanner.profileScreen;
 
-import model.User;
 import pages.AbstractScreen;
 import pages.net.skyscanner.elements.HeaderScreen;
 import service.AccountService;
-import service.WaitManager;
 
 public class ProfileScreen extends AbstractScreen {
     private static final String LOG_OUT_BUTTON_LOCATOR = "//*[contains(@class,'DialogButton_OpenDialogButton')]";
