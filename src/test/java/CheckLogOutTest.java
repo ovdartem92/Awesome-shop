@@ -1,20 +1,25 @@
 import model.User;
 import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import pages.net.skyscanner.elements.HeaderScreen;
+import pages.AbstractScreen;
+import service.AccountService;
 import service.UserBuilder;
 
 public class CheckLogOutTest extends BaseTest {
-    User user = UserBuilder.getUserWithValidPassword();
-    HeaderScreen headerScreen = new HeaderScreen();
 
-    @Test(description = "check the ability to make a logOut after logIn")
+    @BeforeClass(description = "Click on login button, LogIn and LogOut")
+    public void navigateToLoginScreenAndLogInAndLogOut() {
+        AccountService accountService = new AccountService();
+        User user = UserBuilder.getUserWithValidPassword();
+        AbstractScreen.header.clickLoginButton();
+        accountService.logIn(user);
+        AbstractScreen.header.clickAccountButton();
+        accountService.logOut();
+    }
+
+    @Test(description = "check the ability to make a logOut")
     public void logOutTest() {
-        headerScreen
-                .clickLoginButton()
-                .logIn(user)
-                .clickAccountButton()
-                .logOut();
-        Assert.assertTrue(headerScreen.isLoginButtonDisplayed(), "Oops, something went wrong. You are not logOut");
+        Assert.assertTrue(AbstractScreen.header.isLoginButtonDisplayed(), "The login button is not active. You are not logOut.");
     }
 }
