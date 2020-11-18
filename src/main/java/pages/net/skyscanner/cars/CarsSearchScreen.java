@@ -1,7 +1,5 @@
 package pages.net.skyscanner.cars;
 
-import driver.Browser;
-import org.openqa.selenium.By;
 import pages.AbstractScreen;
 
 public class CarsSearchScreen extends AbstractScreen {
@@ -34,8 +32,7 @@ public class CarsSearchScreen extends AbstractScreen {
         return this;
     }
 
-    public CarsSearchResultsScreen clickSearchButton() {
-        Browser.getDriver().findElement(By.xpath(SEARCH_BUTTON_LOCATOR)).click();
-        return new CarsSearchResultsScreen();
+    public void clickSearchButton() {
+        clickOnElement(SEARCH_BUTTON_LOCATOR);
     }
 }

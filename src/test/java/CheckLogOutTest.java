@@ -12,14 +12,14 @@ public class CheckLogOutTest extends BaseTest {
     public void navigateToLoginScreenAndLogInAndLogOut() {
         AccountService accountService = new AccountService();
         User user = UserBuilder.getUserWithValidPassword();
-        AbstractScreen.header.clickLoginButton();
+        AbstractScreen.HEADER_SCREEN.clickLoginButton();
         accountService.logIn(user);
-        AbstractScreen.header.clickAccountButton();
+        AbstractScreen.HEADER_SCREEN.clickAccountButton();
         accountService.logOut();
     }
 
     @Test(description = "check the ability to make a logOut")
     public void logOutTest() {
-        Assert.assertTrue(AbstractScreen.header.isLoginButtonDisplayed(), "The login button is not active. You are not logOut.");
+        Assert.assertTrue(AbstractScreen.HEADER_SCREEN.isLoginButtonDisplayed(), "The login button is not active. You are not logOut.");
     }
 }

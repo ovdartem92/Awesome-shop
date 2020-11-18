@@ -3,6 +3,9 @@ package service;
 import java.util.ResourceBundle;
 
 public class TestDataReader {
+    private TestDataReader() {
+    }
+
     public static String getTestData(String key) {
         ResourceBundle resourceBundle = ResourceBundle.getBundle(System.getProperty("environment"));
         return resourceBundle.getString(key);

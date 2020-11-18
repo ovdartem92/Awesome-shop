@@ -16,7 +16,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class TestListener implements ITestListener {
-    private Logger logger = LogManager.getRootLogger();
+    private final Logger logger = LogManager.getRootLogger();
 
     @Override
     public void onTestStart(ITestResult iTestResult) {

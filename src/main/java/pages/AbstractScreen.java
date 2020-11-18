@@ -12,8 +12,8 @@ import java.util.List;
 
 public abstract class AbstractScreen {
     protected static final String FIRST_ELEMENT_OF_DROPDOWN_LOCATOR = "//input[@aria-activedescendant='react-autowhatever-1--item-0']";
-    protected static Logger logger = LogManager.getRootLogger();
-    public static HeaderScreen header = new HeaderScreen();
+    protected static final Logger logger = LogManager.getRootLogger();
+    public static final HeaderScreen HEADER_SCREEN = new HeaderScreen();
 
     public static WebElement getElement(String locatorPath) {
         CaptchaScreen.checkCaptchaOnPage();
@@ -33,10 +33,6 @@ public abstract class AbstractScreen {
 
     public static String getTextOnElement(String locatorPath) {
         return WaitManager.waitForElementLocated(locatorPath).getText();
-    }
-
-    public static String getAttributeValueOnElement(String locatorPath, String attribute) {
-        return WaitManager.waitForElementLocated(locatorPath).getAttribute(attribute);
     }
 
     public static void typeTextToElement(String locatorPath, String text) {

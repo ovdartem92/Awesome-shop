@@ -2,13 +2,13 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pages.net.skyscanner.cars.CarsSearchResultsScreen;
-import pages.net.skyscanner.cars.carService.CarSearchService;
+import pages.net.skyscanner.cars.car_service.CarSearchService;
 import utils.Constants;
 
 public class CheckPickUpAndDropOffLocationsSummaryTest extends BaseTest {
-    CarsSearchResultsScreen carsSearchResultsScreen;
-    String pickUpLocation = Constants.MOSCOW_SHEREMETYEVO_SVO;
-    String dropOffLocation = Constants.MOSCOW_VNUKOVO_VKO;
+    private final String pickUpLocation = Constants.MOSCOW_SHEREMETYEVO_SVO;
+    private final String dropOffLocation = Constants.MOSCOW_VNUKOVO_VKO;
+    private CarsSearchResultsScreen carsSearchResultsScreen;
 
     @BeforeClass(description = "Click on car button, set up locations and click search")
     public void navigateToCarSearchScreenAndFindCarUsingData() {

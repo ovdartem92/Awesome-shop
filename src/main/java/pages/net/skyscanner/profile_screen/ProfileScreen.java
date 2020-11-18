@@ -1,4 +1,4 @@
-package pages.net.skyscanner.profileScreen;
+package pages.net.skyscanner.profile_screen;
 
 import pages.AbstractScreen;
 
@@ -11,8 +11,7 @@ public class ProfileScreen extends AbstractScreen {
         return this;
     }
 
-    public ProfileScreen clickConfirmLogOutButton() {
+    public void clickConfirmLogOutButton() {
         clickOnElement(CONFIRM_LOG_OUT_BUTTON_LOCATOR);
-        return this;
     }
 }

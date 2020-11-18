@@ -11,10 +11,10 @@ import service.TestDataReader;
 import java.util.concurrent.TimeUnit;
 
 public class Browser {
-    private static final ThreadLocal<WebDriver> DRIVER = new ThreadLocal<>();
     public static final int SHORT_TIMEOUT_SECONDS = TestDataReader.getIntStageData("timeout.short");
     public static final int LONG_TIMEOUT_SECONDS = TestDataReader.getIntStageData("timeout.long");
     public static final int DEFAULT_TIMEOUT_SECONDS = TestDataReader.getIntStageData("timeout.default");
+    private static final ThreadLocal<WebDriver> DRIVER = new ThreadLocal<>();
 
     private Browser() {
     }
@@ -64,22 +64,17 @@ public class Browser {
             getDriver().switchTo().window(handle);
             getDriver().close();
         }
-        DRIVER.set(null);
-    }
-
-    enum BrowserType {
-        CHROME("chrome"),
-        FIREFOX("firefox"),
-        EDGE("edge"),
-        OPERA("opera");
-        private String name;
-
-        BrowserType(String name) {
-            this.name = name;
-        }
+        DRIVER.remove();
     }
 
     public static void openPage(String url) {
         getDriver().get(url);
+    }
+
+    enum BrowserType {
+        CHROME(),
+        FIREFOX(),
+        EDGE(),
+        OPERA()
     }
 }

@@ -1,10 +1,10 @@
-package pages.net.skyscanner.cars.carService;
+package pages.net.skyscanner.cars.car_service;
 
 import pages.net.skyscanner.cars.CarsSearchResultsScreen;
 import pages.net.skyscanner.elements.HeaderScreen;
 
 public class CarSearchService {
-    HeaderScreen headerScreen = new HeaderScreen();
+    private final HeaderScreen headerScreen = new HeaderScreen();
 
     public CarsSearchResultsScreen searchCarUsingLocationsData(String pickUpLock, String dropOffLock) {
         headerScreen.clickCarButton()

@@ -10,7 +10,7 @@ public class CheckFlightsMenuButtonTest extends BaseTest {
 
     @BeforeClass(description = "Click on flights button")
     public void navigateToFlightsSearchPage() {
-        flightsSearchScreen = AbstractScreen.header.clickFlightButton();
+        flightsSearchScreen = AbstractScreen.HEADER_SCREEN.clickFlightButton();
     }
 
     @Test(description = "check that flights menu button leads to the flights search page")
