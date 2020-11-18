@@ -6,6 +6,7 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
+import pages.net.skyscanner.hotels.HotelsResultScreen;
 import pages.net.skyscanner.hotels.source.CompareHotelsByPrice;
 import pages.net.skyscanner.hotels.source.CompareHotelsByRating;
 import utils.StringUtils;
@@ -22,12 +23,17 @@ import static service.WaitManager.waitForInvisibilityOfElementLocated;
 public class HotelsResultService {
     public static Logger logger = LogManager.getRootLogger();
     private final String HOTEL_STRING = "HOTEL [name: '%s', rating: '%s', price: '%s']";
-    private static final String WAITING_MODAL_VIEW = "//div[starts-with(@class, 'WaitingModal_WaitingModal')]";
+    protected static final String WAITING_MODAL_VIEW = "//div[starts-with(@class, 'WaitingModal_WaitingModal')]";
     private final static String SEARCH_SUMMARY_LOCATOR = "//p[@data-test-id='search-summary']";
     private final static String HOTEL_BLOCK_LOCATOR = "//section//div[@role='button']";
     private final static String HOTEL_NAME_LOCATOR = ".//span[@data-test-id='hotel-name']";
     private final static String HOTEL_RATING_LOCATOR = ".//div[1]//div[3]/span";
     private final static String HOTEL_PRICE_LOCATOR = ".//div[3]//div[contains(@class, 'HotelCard_HotelCard__priceVariant')]";
+    private HotelsResultScreen hotelsResultScreen;
+
+    public HotelsResultService(HotelsResultScreen hotelsResultScreen) {
+        this.hotelsResultScreen = hotelsResultScreen;
+    }
 
     public static boolean isWaitingModalInvisible() {
         return waitForInvisibilityOfElementLocated(WAITING_MODAL_VIEW);
