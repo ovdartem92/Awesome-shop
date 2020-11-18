@@ -2,7 +2,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pages.net.skyscanner.cars.CarsSearchResultsScreen;
-import pages.net.skyscanner.cars.carService.CarSearchService;
+import service.CarSearchService;
 import utils.Constants;
 
 import java.util.List;
@@ -15,7 +15,7 @@ public class CheckCarClassAndTypeForSearchResultsTest extends BaseTest {
     String carType = Constants.FOUR_DOOR_TYPE_CAR;
     List<String> listResultsCarClassType;
 
-    @BeforeClass(description = "Click on car button, set up location, click search, click car and type checkboxes")
+    @BeforeClass(description = "click on car button, set up location, click search, click car and type checkboxes")
     public void navigateToCarSearchScreenAndFindCarUsingData() {
         carsSearchResultsScreen = carSearchService.searchCarUsingPickUpLocation(pickUpLocation);
         carSearchService.setCheckboxForCarClassAndType(carClass, carType);
@@ -26,7 +26,7 @@ public class CheckCarClassAndTypeForSearchResultsTest extends BaseTest {
     public void checkingPickupAndDropOffLocations() {
         SoftAssert softAssert = new SoftAssert();
         for (String value : listResultsCarClassType) {
-            softAssert.assertTrue(value.contains(carClass + "\n" + carType), "Set car Class/Type is not equals Car Class/Type info from earch result Group Panel");
+            softAssert.assertTrue(value.contains(carClass + "\n" + carType), "Set car Class/Type is not equals Car Class/Type info from Search result Group Panel");
         }
         softAssert.assertAll();
     }

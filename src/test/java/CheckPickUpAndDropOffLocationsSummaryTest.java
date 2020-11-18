@@ -2,7 +2,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pages.net.skyscanner.cars.CarsSearchResultsScreen;
-import pages.net.skyscanner.cars.carService.CarSearchService;
+import service.CarSearchService;
 import utils.Constants;
 
 public class CheckPickUpAndDropOffLocationsSummaryTest extends BaseTest {
@@ -10,7 +10,7 @@ public class CheckPickUpAndDropOffLocationsSummaryTest extends BaseTest {
     String pickUpLocation = Constants.MOSCOW_SHEREMETYEVO_SVO;
     String dropOffLocation = Constants.MOSCOW_VNUKOVO_VKO;
 
-    @BeforeClass(description = "Click on car button, set up locations and click search")
+    @BeforeClass(description = "click on car button, set up locations and click search")
     public void navigateToCarSearchScreenAndFindCarUsingData() {
         carsSearchResultsScreen = new CarSearchService().searchCarUsingLocationsData(pickUpLocation, dropOffLocation);
     }
