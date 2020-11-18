@@ -2,7 +2,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pages.net.skyscanner.cars.CarsSearchResultsScreen;
-import pages.net.skyscanner.cars.carService.CarSearchService;
+import service.CarSearchService;
 import utils.Constants;
 
 
