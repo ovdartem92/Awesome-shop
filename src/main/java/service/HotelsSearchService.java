@@ -1,14 +1,11 @@
 package service;
 
 import org.testng.util.Strings;
+import pages.AbstractScreen;
 import pages.net.skyscanner.hotels.HotelsSearchScreen;
 
-import static pages.AbstractScreen.*;
-
 public class HotelsSearchService {
-    private HotelsSearchScreen hotelsSearchScreen;
-    private final String DISABLED_ATTRIBUTE = "disabled";
-    private final String VALUE_ATTRIBUTE = "value";
+    private final HotelsSearchScreen hotelsSearchScreen;
 
     public HotelsSearchService(HotelsSearchScreen hotelsSearchScreen) {
         this.hotelsSearchScreen = hotelsSearchScreen;
@@ -16,14 +13,14 @@ public class HotelsSearchService {
 
     public void clickFilterButtonUntilDisabled(String locator) {
         hotelsSearchScreen.clickGuestAndRoomsInput();
-        while (Strings.isNullOrEmpty(getElement(locator).getAttribute(DISABLED_ATTRIBUTE)))
-            clickOnElement(locator);
+        while (Strings.isNullOrEmpty(AbstractScreen.getElement(locator).getAttribute("disabled")))
+            AbstractScreen.clickOnElement(locator);
         hotelsSearchScreen.clickDoneFilterButton();
     }
 
     public int getQuantityOfFilterInput(String locator) {
         hotelsSearchScreen.clickGuestAndRoomsInput();
-        String quantity = getAttributeValueOnElement(locator, VALUE_ATTRIBUTE);
+        String quantity = AbstractScreen.getAttributeValueOnElement(locator, "value");
         hotelsSearchScreen.clickDoneFilterButton();
         return Integer.parseInt(quantity);
     }

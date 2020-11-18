@@ -7,13 +7,13 @@ import pages.net.skyscanner.hotels.HotelsSearchScreen.FilterButtonsId;
 
 public class HotelsSearchPageTest extends BaseTest {
     HotelsSearchScreen hotelsSearchScreen;
-    int MAX_ROOMS_QUANTITY = 5;
-    int MAX_ADULT_PEOPLE_QUANTITY = 10;
-    int MAX_CHILDREN_QUANTITY = 5;
+    final int MAX_ROOMS_QUANTITY = 5;
+    final int MAX_ADULT_PEOPLE_QUANTITY = 10;
+    final int MAX_CHILDREN_QUANTITY = 5;
 
     @BeforeClass(description = "click on hotels button")
     public void navigateToHotelsSearchPage() {
-        hotelsSearchScreen = AbstractScreen.header.clickHotelButton();
+        hotelsSearchScreen = AbstractScreen.HEADER_SCREEN.clickHotelButton();
     }
 
     @Test(description = "check maximum filter values for hotel booking")

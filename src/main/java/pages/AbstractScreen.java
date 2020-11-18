@@ -12,13 +12,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class AbstractScreen {
+    public static final HeaderScreen HEADER_SCREEN = new HeaderScreen();
     protected static final String FIRST_ELEMENT_OF_DROPDOWN_LOCATOR = "//input[@aria-activedescendant='react-autowhatever-1--item-0']";
     protected static final Logger logger = LogManager.getRootLogger();
-    public static final HeaderScreen HEADER_SCREEN = new HeaderScreen();
 
     public static WebElement getElement(String locatorPath) {
         CaptchaScreen.checkCaptchaOnPage();
         return WaitManager.waitForElementLocated(locatorPath);
+    }
+
+    public static String getAttributeValueOnElement(String locatorPath, String attribute) {
+        return WaitManager.waitForElementLocated(locatorPath).getAttribute(attribute);
     }
 
     public static List<WebElement> getElements(String locatorPath) {
