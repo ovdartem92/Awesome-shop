@@ -22,10 +22,6 @@ public class HeaderScreen extends AbstractScreen {
         clickOnElement(LOG_IN_BUTTON_LOCATOR);
     }
 
-    public void clickAccountButton() {
-        clickOnElement(LOG_IN_BUTTON_LOCATOR);
-    }
-
     public boolean isLoginButtonDisplayed() {
         return WaitManager.isElementVisible(LOG_IN_BUTTON_LOCATOR, 2);
     }
