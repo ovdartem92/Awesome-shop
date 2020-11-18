@@ -1,14 +1,11 @@
 package service;
 
-import driver.Browser;
 import model.Hotel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.net.skyscanner.hotels.source.CompareHotelsByPrice;
 import pages.net.skyscanner.hotels.source.CompareHotelsByRating;
 import utils.StringUtils;
@@ -18,9 +15,9 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import static driver.Browser.LONG_TIMEOUT_SECONDS;
 import static pages.AbstractScreen.getElements;
 import static pages.AbstractScreen.getTextOnElement;
+import static service.WaitManager.waitForInvisibilityOfElementLocated;
 
 public class HotelsResultService {
     public static Logger logger = LogManager.getRootLogger();
@@ -33,8 +30,7 @@ public class HotelsResultService {
     private final static String HOTEL_PRICE_LOCATOR = ".//div[3]//div[contains(@class, 'HotelCard_HotelCard__priceVariant')]";
 
     public static boolean isWaitingModalInvisible() {
-        return new WebDriverWait(Browser.getDriver(), LONG_TIMEOUT_SECONDS)
-                .until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(WAITING_MODAL_VIEW)));
+        return waitForInvisibilityOfElementLocated(WAITING_MODAL_VIEW);
     }
 
     public List<Hotel> getHotels() {

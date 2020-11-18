@@ -10,6 +10,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.List;
 
+import static driver.Browser.LONG_TIMEOUT_SECONDS;
+
 public abstract class WaitManager {
     private static final long PULLING_EVERY_MILLIS_SECONDS = 300;
     private static Wait<WebDriver> wait;
@@ -59,8 +61,8 @@ public abstract class WaitManager {
         return wait.until(ExpectedConditions.elementToBeClickable(By.xpath(locatorPath)));
     }
 
-    public static void waitForInvisibilityOfElementLocated(String locatorPath, int timeoutSeconds) {
-        new WebDriverWait(Browser.initDriver(), timeoutSeconds).until(
-                ExpectedConditions.invisibilityOfElementLocated(By.xpath(locatorPath)));
+    public static boolean waitForInvisibilityOfElementLocated(String locatorPath) {
+        return new WebDriverWait(Browser.getDriver(), LONG_TIMEOUT_SECONDS)
+                .until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(locatorPath)));
     }
 }
