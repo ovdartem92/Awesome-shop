@@ -97,7 +97,7 @@ public class Browser {
     /**
      * This method lets us open the link in the browser.
      *
-     * @param url address of the page we would like to open
+     * @param url address of the page you would like to open
      */
     public static void openPage(String url) {
         getDriver().get(url);
