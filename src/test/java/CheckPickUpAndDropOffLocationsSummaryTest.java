@@ -2,7 +2,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pages.net.skyscanner.cars.CarsSearchResultsScreen;
-import pages.net.skyscanner.cars.car_service.CarSearchService;
+import service.CarSearchService;
 import utils.Constants;
 
 public class CheckPickUpAndDropOffLocationsSummaryTest extends BaseTest {

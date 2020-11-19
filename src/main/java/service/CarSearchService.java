@@ -1,4 +1,4 @@
-package pages.net.skyscanner.cars.car_service;
+package service;
 
 import pages.net.skyscanner.cars.CarsSearchResultsScreen;
 import pages.net.skyscanner.elements.HeaderScreen;
