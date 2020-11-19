@@ -4,7 +4,7 @@ import pages.AbstractScreen;
 import service.HotelsSearchService;
 
 /**
- * The class containing elements of the hotel search page.
+ * The class containing elements of the hotel search screen.
  * @see <a href="https://www.skyscanner.com/hotels">Hotels search screen</a>
  */
 public class HotelsSearchScreen extends AbstractScreen {
