@@ -3,6 +3,10 @@ package pages.net.skyscanner.hotels;
 import pages.AbstractScreen;
 import service.HotelsSearchService;
 
+/**
+ * The class containing elements of the hotel search page.
+ * @see <a href="https://www.skyscanner.com/hotels">Hotels search screen</a>
+ */
 public class HotelsSearchScreen extends AbstractScreen {
     private static final String HOTELS_SEARCH_BUTTON_LOCATOR = "//button[@data-test-id='search-button']";
     private static final String GUESTS_AND_ROOMS_INPUT_LOCATOR = "//input[@id='guests-rooms']";

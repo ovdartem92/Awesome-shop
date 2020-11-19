@@ -13,7 +13,7 @@ import java.util.List;
  * This is class that performs waiting web elements with different conditions, returns web element or elements after waiting,
  * checks visibility of element, gives customizable configuration for WebDriverWait object.
  */
-public abstract class WaitManager {
+public class WaitManager {
 
     private static final long PULLING_EVERY_MILLIS_SECONDS = 300;
     private static Wait<WebDriver> wait;

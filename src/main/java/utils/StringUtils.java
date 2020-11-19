@@ -36,7 +36,7 @@ public class StringUtils {
     /**
      * The method is needed to get a collection of substrings matching the regular expression from the text.
      *
-     * @param text contains the string to split into the given substrings
+     * @param text contains a string to split into the given substrings
      * @param regEx contains a regular expression
      * @return collection of substrings matching the regular expression
      */
@@ -52,7 +52,7 @@ public class StringUtils {
     /**
      * The method returns the string by index from the collection of substrings that match the regular expression.
      *
-     * @param text contains the string to split into the given substrings
+     * @param text contains a string to split into the given substrings
      * @param regEx contains a regular expression
      * @param index contains an index of the resulting string
      * @return collection item at the specified index
