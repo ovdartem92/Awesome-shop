@@ -1,6 +1,5 @@
 package pages.net.skyscanner.hotels;
 
-import org.apache.commons.lang3.StringUtils;
 import pages.AbstractScreen;
 import service.HotelsSearchService;
 
@@ -25,7 +24,7 @@ public class HotelsSearchScreen extends AbstractScreen {
     }
 
     public void clickMaxIncreaseFilterButton(FilterButtonsId id) {
-        String locator = getLocatorForFilterButton(FilterButtonsTitle.INCREASE, id);
+        String locator = String.format(BUTTON_LOCATOR, id.toString().toLowerCase(), "Increase");
         hotelsSearchService.clickFilterButtonUntilDisabled(locator);
     }
 
@@ -33,15 +32,9 @@ public class HotelsSearchScreen extends AbstractScreen {
         return hotelsSearchService.getQuantityOfFilterInput(getLocatorForFilterInput(id));
     }
 
-    private String getLocatorForFilterButton(FilterButtonsTitle title, FilterButtonsId id) {
-        return String.format(BUTTON_LOCATOR, id.toString().toLowerCase(), StringUtils.capitalize(title.toString().toLowerCase()));
-    }
-
     private String getLocatorForFilterInput(FilterButtonsId id) {
         return String.format(QUANTITY_INPUT_LOCATOR, id.toString().toLowerCase());
     }
-
-    public enum FilterButtonsTitle {INCREASE}
 
     public enum FilterButtonsId {ROOMS, ADULTS, CHILDREN}
 }
