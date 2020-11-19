@@ -5,14 +5,12 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import pages.net.skyscanner.elements.CaptchaScreen;
-import pages.net.skyscanner.elements.HeaderScreen;
 import service.WaitManager;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class AbstractScreen {
-    public static final HeaderScreen HEADER_SCREEN = new HeaderScreen();
     protected static final String FIRST_ELEMENT_OF_DROPDOWN_LOCATOR = "//input[@aria-activedescendant='react-autowhatever-1--item-0']";
     protected static final Logger logger = LogManager.getRootLogger();
 

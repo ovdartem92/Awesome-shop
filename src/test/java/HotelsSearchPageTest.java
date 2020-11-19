@@ -1,19 +1,19 @@
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import pages.AbstractScreen;
+import pages.net.skyscanner.elements.HeaderScreen;
 import pages.net.skyscanner.hotels.HotelsSearchScreen;
 import pages.net.skyscanner.hotels.HotelsSearchScreen.FilterButtonsId;
 
 public class HotelsSearchPageTest extends BaseTest {
-    HotelsSearchScreen hotelsSearchScreen;
     final int MAX_ROOMS_QUANTITY = 5;
     final int MAX_ADULT_PEOPLE_QUANTITY = 10;
     final int MAX_CHILDREN_QUANTITY = 5;
+    HotelsSearchScreen hotelsSearchScreen;
 
     @BeforeClass(description = "click on hotels button")
     public void navigateToHotelsSearchPage() {
-        hotelsSearchScreen = AbstractScreen.HEADER_SCREEN.clickHotelButton();
+        hotelsSearchScreen = HeaderScreen.header.clickHotelButton();
     }
 
     @Test(description = "check maximum filter values for hotel booking")
