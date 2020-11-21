@@ -8,10 +8,23 @@ import service.TestDataReader;
 import utils.Constants;
 import utils.TestListener;
 
+/**
+ * The class is a super class for all tests classes.
+ * The class provides the configuration of browser and preconditions for each tests.
+ */
 @Listeners({TestListener.class})
 public abstract class BaseTest {
-    private final String URL = TestDataReader.getTestData("testData.home.url", TestDataReader.getStageData("home.url"));
+    /**
+     * The variable is SkyScanner home page URL. It get value from stage.properties file.
+     * <a href="file:src/main/resources/stage.properties">/resources/stage.properties</a>
+     */
+    private final String URL = TestDataReader.getStageData("home.url");
 
+    /**
+     * The method executes before the first method of the current test class.
+     * The method provide configuration of browser, opening SkyScanner home page,
+     * checking that CAPTCHA doesn't appear on SkyScanner home page, setting language as English.
+     */
     @BeforeClass()
     public void setUp() {
         Browser.initDriver();
@@ -20,6 +33,9 @@ public abstract class BaseTest {
         new CultureService().changeLanguage(Constants.ENGLISH_LANGUAGE);
     }
 
+    /**
+     * The method executes after the last method of the current test class and allows to close current browser.
+     */
     @AfterClass(alwaysRun = true)
     public void stopBrowser() {
         Browser.closeDriver();
