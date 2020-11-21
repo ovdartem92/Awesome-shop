@@ -4,6 +4,10 @@ import org.testng.util.Strings;
 import pages.AbstractScreen;
 import pages.net.skyscanner.hotels.HotelsSearchScreen;
 
+/**
+ * The service class for hotel search screen
+ * @see <a href="https://www.skyscanner.com/hotels">Hotels search screen</a>.
+ */
 public class HotelsSearchService {
     private final HotelsSearchScreen hotelsSearchScreen;
 
@@ -11,6 +15,11 @@ public class HotelsSearchService {
         this.hotelsSearchScreen = hotelsSearchScreen;
     }
 
+    /**
+     * The method for pressing the add rooms, adults or children button in the filter buttons.
+     * The method will add the maximum number of items until the filter button becomes disabled.
+     * @param locator contains a xPath locator for the click button
+     */
     public void clickFilterButtonUntilDisabled(String locator) {
         hotelsSearchScreen.clickGuestAndRoomsInput();
         while (Strings.isNullOrEmpty(AbstractScreen.getElement(locator).getAttribute("disabled")))
@@ -18,6 +27,12 @@ public class HotelsSearchService {
         hotelsSearchScreen.clickDoneFilterButton();
     }
 
+    /**
+     * The method returns the quantity of rooms, adults or children items of filter inputs.
+     *
+     * @param locator contains a xPath locator to get the quantity of items
+     * @return quantity of rooms, adults or children items
+     */
     public int getQuantityOfFilterInput(String locator) {
         hotelsSearchScreen.clickGuestAndRoomsInput();
         String quantity = AbstractScreen.getAttributeValueOnElement(locator, "value");
