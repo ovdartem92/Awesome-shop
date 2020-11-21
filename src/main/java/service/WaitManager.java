@@ -10,11 +10,10 @@ import java.time.Duration;
 import java.util.List;
 
 /**
- * This is class that performs waiting web elements with different conditions, returns web element or elements after waiting,
+ * The class performs waiting web elements with different conditions, returns web element or elements after waiting,
  * checks visibility of element, gives customizable configuration for WebDriverWait object.
  */
 public class WaitManager {
-
     private static final long PULLING_EVERY_MILLIS_SECONDS = 300;
     private static Wait<WebDriver> wait;
 
@@ -33,7 +32,7 @@ public class WaitManager {
     }
 
     /**
-     * This method performs customize FluentWait - the implementation of the Wait interface that may have its timeout
+     * This method provides the customize FluentWait that may have its timeout
      * and polling interval configured on the fly.
      * @param timeout the number of seconds for waiting an element to be present on the page.
      * @param pooling the interval in milliseconds witch using for checking for element to be present.

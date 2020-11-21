@@ -4,7 +4,7 @@ import pages.net.skyscanner.cars.CarsSearchResultsScreen;
 import pages.net.skyscanner.elements.HeaderScreen;
 
 /**
- * This is a service class that performs actions to fill in the data for the cars search and performs the search itself.
+ * The service class that performs actions to fill in the data for the cars search and performs the search itself.
  */
 public class CarSearchService {
     private final HeaderScreen headerScreen = new HeaderScreen();

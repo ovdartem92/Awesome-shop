@@ -10,6 +10,10 @@ import service.WaitManager;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The class is a super class for all pages.
+ * The class contains general methods for interacting with web elements .
+ */
 public abstract class AbstractScreen {
 
     /**
@@ -47,7 +51,6 @@ public abstract class AbstractScreen {
         CaptchaScreen.checkCaptchaOnPage();
         return WaitManager.waitForAllElementsLocated(locatorPath);
     }
-
 
     /**
      * This method performs getting of needed web element, checks that element is clickable and click on it.
