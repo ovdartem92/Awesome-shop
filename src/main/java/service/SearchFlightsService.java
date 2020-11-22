@@ -5,10 +5,10 @@ import pages.net.skyscanner.flights.FlightsResultsScreen;
 import pages.net.skyscanner.flights.FlightsSearchScreen;
 
 public class SearchFlightsService {
-    private FlightsSearchScreen flightsSearchScreen = new FlightsSearchScreen();
-    private CalendarService calendarService = new CalendarService();
 
     public FlightsResultsScreen setFlightsSearchData(Flights flights) {
+        FlightsSearchScreen flightsSearchScreen = new FlightsSearchScreen();
+        CalendarService calendarService = new CalendarService();
         flightsSearchScreen.inputCityTo(flights.getCityTo()).inputCityFrom(flights.getCityFrom()).clickDepartDayButton();
         flights.setDepartDay(calendarService.getDateValue(flights.getDate()));
         flightsSearchScreen.clickReturnDayButton();
