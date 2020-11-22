@@ -6,7 +6,7 @@ import pages.net.skyscanner.flights.FlightsResultsScreen;
 import service.SearchFlightsService;
 import utils.Constants;
 
-public class CheckSearchDatаForFlights extends BaseTest {
+public class CheckSearchDatаForFlightsTest extends BaseTest {
     private Flights flights = new Flights(Constants.KIEV, Constants.RIGA, Constants.DAY);
     private String departDate;
     private String returnDate;
@@ -22,7 +22,8 @@ public class CheckSearchDatаForFlights extends BaseTest {
     @Test(description = "check that city from, city to, depart date, return date in result page are the same with search page")
     public void checkThatAllSearchDataSetCorrectly() {
        SoftAssert softAssert = new SoftAssert();
-        softAssert.assertEquals(flightsResultsScreen.getTextFromCitiesSpan(), String.format("%s - %s", flights.getCityFrom(), flights.getCityTo()), "cities was set incorrectly");
+        softAssert.assertTrue(flightsResultsScreen.getTextFromCitiesSpan().contains(flights.getCityFrom()), "city from was set incorrectly");
+        softAssert.assertTrue(flightsResultsScreen.getTextFromCitiesSpan().contains(flights.getCityTo()), "city to was set incorrectly");
         softAssert.assertEquals(flightsResultsScreen.getAriaLabelDepartDate(), departDate, "depart date was set incorrectly");
         softAssert.assertEquals(flightsResultsScreen.getAriaLabelReturnDate(), returnDate, "return date was set incorrectly");
         softAssert.assertAll();
