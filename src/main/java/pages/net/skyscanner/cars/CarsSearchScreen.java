@@ -32,7 +32,8 @@ public class CarsSearchScreen extends AbstractScreen {
         return this;
     }
 
-    public void clickSearchButton() {
+    public CarsSearchResultsScreen clickSearchButton() {
         clickOnElement(SEARCH_BUTTON_LOCATOR);
+        return new CarsSearchResultsScreen();
     }
 }
