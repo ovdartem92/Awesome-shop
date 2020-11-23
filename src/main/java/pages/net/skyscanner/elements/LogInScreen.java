@@ -42,7 +42,8 @@ public class LogInScreen extends AbstractScreen {
         return this;
     }
 
-    public void clickCloseModalButton() {
+    public LogInScreen clickCloseModalButton() {
         clickOnElement(CLOSE_MODAL_LOGIN_WINDOW_BUTTON_LOCATOR);
+        return this;
     }
 }

@@ -19,8 +19,9 @@ public class RegionalSettingsScreen extends AbstractScreen {
         return this;
     }
 
-    public void clickCultureSaveButton() {
+    public HeaderScreen clickCultureSaveButton() {
         clickOnElement(CULTURE_SAVE_BUTTON_LOCATOR);
+        return HeaderScreen.header;
     }
 
     public RegionalSettingsScreen clickCurrencySelectButton() {

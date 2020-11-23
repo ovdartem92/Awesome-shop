@@ -19,8 +19,9 @@ public class HeaderScreen extends AbstractScreen {
     private static final String LOG_IN_BUTTON_LOCATOR = "//*[@id='authentication-link']";
     private static final String ACCOUNT_BUTTON_LOCATOR = "//*[@id='login-button-nav-item']/button";
 
-    public void clickLoginButton() {
+    public LogInScreen clickLoginButton() {
         clickOnElement(LOG_IN_BUTTON_LOCATOR);
+        return new LogInScreen();
     }
 
     public boolean isLoginButtonDisplayed() {
