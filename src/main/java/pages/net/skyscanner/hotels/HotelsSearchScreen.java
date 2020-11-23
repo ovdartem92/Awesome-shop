@@ -19,17 +19,20 @@ public class HotelsSearchScreen extends AbstractScreen {
         return getTextOnElement(HOTELS_SEARCH_BUTTON_LOCATOR);
     }
 
-    public void clickGuestAndRoomsInput() {
+    public HotelsSearchScreen clickGuestAndRoomsInput() {
         clickOnElement(GUESTS_AND_ROOMS_INPUT_LOCATOR);
+        return this;
     }
 
-    public void clickDoneFilterButton() {
+    public HotelsSearchScreen clickDoneFilterButton() {
         clickOnElement(DONE_BUTTON_LOCATOR);
+        return this;
     }
 
-    public void clickMaxIncreaseFilterButton(FilterButtonsId id) {
+    public HotelsSearchScreen clickMaxIncreaseFilterButton(FilterButtonsId id) {
         String locator = String.format(BUTTON_LOCATOR, id.toString().toLowerCase(), "Increase");
         hotelsSearchService.clickFilterButtonUntilDisabled(locator);
+        return this;
     }
 
     public int getQuantityOfFilterInput(FilterButtonsId id) {
