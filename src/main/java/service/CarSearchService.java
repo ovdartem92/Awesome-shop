@@ -3,9 +3,10 @@ package service;
 import pages.net.skyscanner.cars.CarsSearchResultsScreen;
 import pages.net.skyscanner.elements.HeaderScreen;
 
+import java.util.List;
+
 public class CarSearchService {
-    HeaderScreen headerScreen = new HeaderScreen();
-    CarsSearchResultsScreen carsSearchResultsScreen = new CarsSearchResultsScreen();
+    private HeaderScreen headerScreen = new HeaderScreen();
 
     public CarsSearchResultsScreen searchCarUsingLocationsData(String pickUpLock, String dropOffLock) {
         headerScreen.clickCarButton()
@@ -16,14 +17,12 @@ public class CarSearchService {
         return new CarsSearchResultsScreen();
     }
 
-    public CarsSearchResultsScreen searchCarUsingPickUpLocation(String pickUpLock) {
-        headerScreen.clickCarButton()
+    public List<String> getCarClassTypeInfoFromSearchResults(String pickUpLock, String carClass, String carType) {
+        return headerScreen.clickCarButton()
                 .setUpPickUpLocation(pickUpLock)
-                .clickSearchButton();
-        return new CarsSearchResultsScreen();
-    }
-
-    public void setCheckboxForCarClassAndType(String carClass, String carType) {
-        carsSearchResultsScreen.setCarClass(carClass).setCarType(carType);
+                .clickSearchButton()
+                .setCarClass(carClass)
+                .setCarType(carType)
+                .getListCarClassTypeFromGroupPanel();
     }
 }
