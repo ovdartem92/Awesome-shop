@@ -14,7 +14,7 @@ import static java.lang.String.format;
 
 /**
  * This class uses the Singleton pattern.
- * It is needed to init driver or get driver and you have ability to chose browser and open some link.
+ * It is needed to init driver or get driver and you have ability to chose browser type and open some link.
  */
 public class Browser {
     /**
