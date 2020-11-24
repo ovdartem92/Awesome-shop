@@ -7,7 +7,6 @@ import pages.net.skyscanner.hotels.HotelsSearchScreen;
 import service.WaitManager;
 
 public class HeaderScreen extends AbstractScreen {
-    public static final HeaderScreen header = new HeaderScreen();
     private static final String FLIGHTS_TAB_TEXT = "Flights";
     private static final String HOTELS_TAB_TEXT = "Hotels";
     private static final String CAR_TAB_TEXT = "Car";

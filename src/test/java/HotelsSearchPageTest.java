@@ -13,7 +13,7 @@ public class HotelsSearchPageTest extends BaseTest {
 
     @BeforeClass(description = "click on hotels button")
     public void navigateToHotelsSearchPage() {
-        hotelsSearchScreen = HeaderScreen.header.clickHotelButton();
+        hotelsSearchScreen = new HeaderScreen().clickHotelButton();
     }
 
     @Test(description = "check maximum filter values for hotel booking")

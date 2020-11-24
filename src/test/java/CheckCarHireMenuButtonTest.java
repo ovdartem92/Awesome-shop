@@ -10,7 +10,7 @@ public class CheckCarHireMenuButtonTest extends BaseTest {
 
     @BeforeClass(description = "Click on car button")
     public void navigateToCarSearchPage() {
-        carsSearchScreen = HeaderScreen.header.clickCarButton();
+        carsSearchScreen = new HeaderScreen().clickCarButton();
     }
 
     @Test(description = "check that car hire menu button leads to the car search page")

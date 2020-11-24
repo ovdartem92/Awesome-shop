@@ -7,8 +7,6 @@ import pages.net.skyscanner.elements.HeaderScreen;
  * The service class that performs actions to fill in the data for the cars search and performs the search itself.
  */
 public class CarSearchService {
-    private final HeaderScreen headerScreen = new HeaderScreen();
-
     /**
      * This is a method that performs search cars using locations data.
      *
@@ -17,7 +15,7 @@ public class CarSearchService {
      * @return the screen with search results.
      */
     public CarsSearchResultsScreen searchCarUsingLocationsData(String pickUpLoc, String dropOffLoc) {
-        headerScreen.clickCarButton()
+        new HeaderScreen().clickCarButton()
                 .choiceReturnCarToADifferentLocation()
                 .setUpPickUpLocation(pickUpLoc)
                 .setUpDropOffLocation(dropOffLoc)
