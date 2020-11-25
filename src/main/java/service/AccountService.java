@@ -2,6 +2,7 @@ package service;
 
 import model.User;
 import pages.net.skyscanner.elements.LogInScreen;
+import pages.net.skyscanner.profile_screen.ProfileScreen;
 
 /**
  * This is a service class that performs logic during login and logout.
@@ -21,5 +22,14 @@ public class AccountService {
                 .clickLogInButton()
                 .waitMarketingConsentButtonAvailable()
                 .clickCloseModalButton();
+    }
+    /**
+     * This method performs actions for the LogOut from the system.
+     *
+     */
+    public void logOut() {
+        new ProfileScreen()
+                .clickLogOutButton()
+                .clickConfirmLogOutButton();
     }
 }
