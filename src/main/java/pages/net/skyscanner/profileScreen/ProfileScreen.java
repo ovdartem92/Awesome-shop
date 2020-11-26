@@ -14,6 +14,16 @@ public class ProfileScreen extends AbstractScreen {
     private static final String LAST_NAME_FIELD_LOCATOR = "//*[@id='lastName']";
     private static final String PLACE_OF_BIRTH_FIELD_LOCATOR = "//*[@id='placeOfBirth']";
 
+    public ProfileScreen clickLogOutButton() {
+        clickOnElement(LOG_OUT_BUTTON_LOCATOR);
+        return this;
+    }
+
+    public ProfileScreen clickConfirmLogOutButton() {
+        clickOnElement(CONFIRM_LOG_OUT_BUTTON_LOCATOR);
+        return this;
+    }
+
     public ProfileScreen typeTextToFirstNameField(String txt) {
         typeTextToElement(FIRST_NAME_FIELD_LOCATOR, txt);
         return this;
@@ -26,16 +36,6 @@ public class ProfileScreen extends AbstractScreen {
 
     public ProfileScreen typeTextToPlaceOfBirthField(String txt) {
         typeTextToElement(PLACE_OF_BIRTH_FIELD_LOCATOR, txt);
-        return this;
-    }
-
-    public ProfileScreen clickLogOutButton() {
-        clickOnElement(LOG_OUT_BUTTON_LOCATOR);
-        return this;
-    }
-
-    public ProfileScreen clickConfirmLogOutButton() {
-        clickOnElement(CONFIRM_LOG_OUT_BUTTON_LOCATOR);
         return this;
     }
 

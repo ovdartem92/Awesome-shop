@@ -8,7 +8,6 @@ import service.AccountService;
 import service.UserBuilder;
 
 public class CreateAndDeleteTravelerTest extends BaseTest {
-    private final ProfileScreen PROFILE_SCREEN = new ProfileScreen();
 
     @BeforeClass(description = "Click on login button, LogIn, create traveler and delete")
     public void preparingForTheTest() {
@@ -22,6 +21,6 @@ public class CreateAndDeleteTravelerTest extends BaseTest {
 
     @Test(description = "check ability to create and delete a new traveler")
     public void checkDeleteTravelerTest() {
-        Assert.assertTrue(PROFILE_SCREEN.isDeleteMessageDisplayed(), "Delete message is not displayed, you are not delete the traveler...");
+        Assert.assertTrue(new ProfileScreen().isDeleteMessageDisplayed(), "Delete message is not displayed, you are not delete the traveler...");
     }
 }
