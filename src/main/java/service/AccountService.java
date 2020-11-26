@@ -2,7 +2,7 @@ package service;
 
 import model.User;
 import pages.net.skyscanner.elements.LogInScreen;
-import pages.net.skyscanner.profileScreen.ProfileScreen;
+import pages.net.skyscanner.profile_screen.ProfileScreen;
 
 public class AccountService {
     private LogInScreen logInScreen = new LogInScreen();
@@ -31,12 +31,12 @@ public class AccountService {
                 .typeTextToFirstNameField(user.getName())
                 .typeTextToLastNameField(user.getLastName())
                 .typeTextToPlaceOfBirthField(user.getCity())
-                .clickSaveTravelerButton();
+                .clickDialogButton();
     }
 
     public void deleteTraveler() {
         profileScreen
-                .clickDeleteTravelerButton()
+                .clickDialogButton()
                 .clickConfirmDeleteTravelerButton();
     }
 }

@@ -4,7 +4,7 @@ import pages.AbstractScreen;
 import pages.net.skyscanner.cars.CarsSearchScreen;
 import pages.net.skyscanner.flights.FlightsSearchScreen;
 import pages.net.skyscanner.hotels.HotelsSearchScreen;
-import pages.net.skyscanner.profileScreen.ProfileScreen;
+import pages.net.skyscanner.profile_screen.ProfileScreen;
 import service.WaitManager;
 
 public class HeaderScreen extends AbstractScreen {
