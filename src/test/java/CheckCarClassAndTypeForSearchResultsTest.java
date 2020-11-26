@@ -21,8 +21,6 @@ public class CheckCarClassAndTypeForSearchResultsTest extends BaseTest {
         SoftAssert softAssert = new SoftAssert();
         for (String value : listResultsCarClassType) {
             softAssert.assertTrue(value.contains(carClass), "Set car Class is not equals car Class info from search result Group Panel");
-        }
-        for (String value : listResultsCarClassType) {
             softAssert.assertTrue(value.contains(carType), "Set car Type is not equals car Type info from search result Group Panel");
         }
         softAssert.assertAll();
