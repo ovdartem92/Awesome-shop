@@ -7,17 +7,14 @@ import utils.Constants;
 
 
 public class CheckAgeAlertTest extends BaseTest {
-    CarsSearchResultsScreen carsSearchResultsScreen;
-    String pickUpLocation = Constants.MOSCOW_SHEREMETYEVO_SVO;
-    String driversAge = Constants.AGE_21;
 
     @BeforeClass(description = "click on car button, set up location, clear checkbox age, set driver's age and click search")
     public void navigateToCarSearchScreenAndFindCarUsingData() {
-        carsSearchResultsScreen = new CarSearchService().searchCarUsingAgeAndPickUpLocation(pickUpLocation, driversAge);
+        new CarSearchService().searchCarUsingAgeAndPickUpLocation(Constants.MOSCOW_SHEREMETYEVO_SVO, Constants.AGE_21);
     }
 
     @Test(description = "check is age alert message appeared on search result page")
     public void checkingAppearanceAgeAlert() {
-        Assert.assertTrue(carsSearchResultsScreen.isAgeAlertVisible(), "Age Alert is not visible");
+        Assert.assertTrue(new CarsSearchResultsScreen().isAgeAlertVisible(), "Age Alert is not visible");
     }
 }

@@ -15,12 +15,11 @@ public class CarSearchService {
         return new CarsSearchResultsScreen();
     }
 
-    public CarsSearchResultsScreen searchCarUsingAgeAndPickUpLocation(String pickUpLock, String age) {
+    public void searchCarUsingAgeAndPickUpLocation(String pickUpLock, String age) {
         headerScreen.clickCarButton()
                 .unSetAgeCheckbox()
                 .setDriverAge(age)
                 .setUpPickUpLocation(pickUpLock)
                 .clickSearchButton();
-        return new CarsSearchResultsScreen();
     }
 }
