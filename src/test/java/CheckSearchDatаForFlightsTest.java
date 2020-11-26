@@ -8,24 +8,20 @@ import utils.Constants;
 
 public class CheckSearchDatаForFlightsTest extends BaseTest {
     private Flights flights = new Flights(Constants.KIEV, Constants.RIGA, Constants.DAY);
-    private String departDate;
-    private String returnDate;
-    private FlightsResultsScreen flightsResultsScreen;
 
     @BeforeClass(description = "input city from, input city to, set depart and return date, click search button")
     public void setUpSearchingData() {
-        flightsResultsScreen = new SearchFlightsService().setFlightsSearchData(flights);
-        departDate = flights.getDepartDay();
-        returnDate=flights.getReturnDay();
+        new SearchFlightsService().setFlightsSearchData(flights);
     }
 
     @Test(description = "check that city from, city to, depart date, return date in result page are the same with search page")
     public void checkThatAllSearchDataSetCorrectly() {
-       SoftAssert softAssert = new SoftAssert();
+        FlightsResultsScreen flightsResultsScreen = new FlightsResultsScreen();
+        SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(flightsResultsScreen.getTextFromCitiesSpan().contains(flights.getCityFrom()), "city from was set incorrectly");
         softAssert.assertTrue(flightsResultsScreen.getTextFromCitiesSpan().contains(flights.getCityTo()), "city to was set incorrectly");
-        softAssert.assertEquals(flightsResultsScreen.getAriaLabelDepartDate(), departDate, "depart date was set incorrectly");
-        softAssert.assertEquals(flightsResultsScreen.getAriaLabelReturnDate(), returnDate, "return date was set incorrectly");
+        softAssert.assertEquals(flightsResultsScreen.getAriaLabelDepartDate(), flights.getDepartDay(), "depart date was set incorrectly");
+        softAssert.assertEquals(flightsResultsScreen.getAriaLabelReturnDate(), flights.getReturnDay(), "return date was set incorrectly");
         softAssert.assertAll();
     }
 }
