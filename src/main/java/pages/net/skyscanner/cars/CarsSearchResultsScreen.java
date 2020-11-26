@@ -1,9 +1,8 @@
 package pages.net.skyscanner.cars;
 
 import pages.AbstractScreen;
+import service.WaitManager;
 import utils.StringUtils;
-
-import java.util.List;
 
 public class CarsSearchResultsScreen extends AbstractScreen {
     private static final String CLASS_TEXT = "class";
@@ -18,6 +17,10 @@ public class CarsSearchResultsScreen extends AbstractScreen {
 
     public String getInfoAboutDropOffLocationFromSummary() {
         return StringUtils.getMatcherByIndex(getTextOnElement(CAR_SEARCH_SUMMARY_ROUTE_LOCATOR), "[^\\-]+", 1);
+    }
+
+    public boolean isAgeAlertVisible() {
+        return WaitManager.isElementVisible(ALERT_AGE_MESSAGE);
     }
 
     public List<String> getListCarClassTypeFromGroupPanel() {

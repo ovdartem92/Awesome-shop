@@ -15,6 +15,14 @@ public class CarSearchService {
                 .clickSearchButton();
     }
 
+    public void searchCarUsingAgeAndPickUpLocation(String pickUpLock, String age) {
+        headerScreen.clickCarButton()
+                .unSetAgeCheckbox()
+                .setDriverAge(age)
+                .setUpPickUpLocation(pickUpLock)
+                .clickSearchButton();
+    }
+
     public List<String> getCarClassTypeInfoFromSearchResults(String pickUpLock, String carClass, String carType) {
         return headerScreen.clickCarButton()
                 .setUpPickUpLocation(pickUpLock)
