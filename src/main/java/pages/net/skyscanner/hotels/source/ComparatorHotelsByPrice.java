@@ -4,7 +4,7 @@ import model.Hotel;
 
 import java.util.Comparator;
 
-public class CompareHotelsByPrice implements Comparator<Hotel> {
+public class ComparatorHotelsByPrice implements Comparator<Hotel> {
 
     @Override
     public int compare(Hotel h1, Hotel h2) {
