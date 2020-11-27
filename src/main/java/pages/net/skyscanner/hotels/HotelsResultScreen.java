@@ -20,7 +20,7 @@ public class HotelsResultScreen extends AbstractScreen {
     private final static String HOTEL_BLOCK_LOCATOR = "//section//div[@role='button']";
     private final static String GUEST_RATING_SORT_BUTTON_LOCATOR = "//button[@data-test-id='search-sort-rating']";
     private final static String PRICE_SORT_BUTTON_LOCATOR = "//button[@data-test-id='search-sort-price']";
-    private HotelsResultService hotelsResultService = new HotelsResultService(this);
+    private final HotelsResultService hotelsResultService = new HotelsResultService(this);
 
     private static boolean isWaitingModalInvisible() {
         return isElementInvisible(WAITING_MODAL_VIEW, LONG_TIMEOUT_SECONDS);

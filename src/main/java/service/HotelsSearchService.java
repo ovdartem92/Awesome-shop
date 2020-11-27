@@ -13,9 +13,9 @@ public class HotelsSearchService {
     private final HotelsSearchScreen hotelsSearchScreen;
 
     /**
-     * The constructor initializing the hotel service entity.
+     * The constructor initializing the hotel search screen entity.
      *
-     * @param hotelsSearchScreen contains a hotel service entity
+     * @param hotelsSearchScreen contains a hotel screen entity
      */
     public HotelsSearchService(HotelsSearchScreen hotelsSearchScreen) {
         this.hotelsSearchScreen = hotelsSearchScreen;
