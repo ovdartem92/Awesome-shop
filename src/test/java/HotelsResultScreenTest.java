@@ -8,7 +8,6 @@ import utils.Constants;
 
 import java.util.List;
 
-
 public class HotelsResultScreenTest extends BaseTest {
     HotelsResultScreen hotelsResultScreen;
 

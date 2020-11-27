@@ -1,5 +1,6 @@
 package pages.net.skyscanner.hotels;
 
+import model.Hotel;
 import org.openqa.selenium.WebElement;
 import org.testng.util.Strings;
 import pages.AbstractScreen;

@@ -5,12 +5,18 @@ import pages.AbstractScreen;
 import pages.net.skyscanner.hotels.HotelsSearchScreen;
 
 /**
- * The service class for hotel search screen
+ * The service class for hotel search screen.
+ *
  * @see <a href="https://www.skyscanner.com/hotels">Hotels search screen</a>.
  */
 public class HotelsSearchService {
     private final HotelsSearchScreen hotelsSearchScreen;
 
+    /**
+     * The constructor initializing the hotel service entity.
+     *
+     * @param hotelsSearchScreen contains a hotel service entity
+     */
     public HotelsSearchService(HotelsSearchScreen hotelsSearchScreen) {
         this.hotelsSearchScreen = hotelsSearchScreen;
     }
@@ -18,6 +24,7 @@ public class HotelsSearchService {
     /**
      * The method for pressing the add rooms, adults or children button in the filter buttons.
      * The method will add the maximum number of items until the filter button becomes disabled.
+     *
      * @param locator contains a xPath locator for the click button
      */
     public void clickFilterButtonUntilDisabled(String locator) {
