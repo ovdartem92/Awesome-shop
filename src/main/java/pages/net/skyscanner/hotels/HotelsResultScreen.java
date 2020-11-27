@@ -2,6 +2,7 @@ package pages.net.skyscanner.hotels;
 
 import model.Hotel;
 import org.openqa.selenium.WebElement;
+import org.testng.util.Strings;
 import pages.AbstractScreen;
 import service.HotelsResultService;
 import utils.StringUtils;
@@ -37,8 +38,17 @@ public class HotelsResultScreen extends AbstractScreen {
         return hotelsResultService.isHotelSortedByRating(hotels);
     }
 
+    public boolean isHotelSortedByPrice(List<Hotel> hotels) {
+        return hotelsResultService.isHotelSortedByPrice(hotels);
+    }
+
     public HotelsResultScreen clickToGuestRattingSortButton() {
         clickOnElement(GUEST_RATING_SORT_BUTTON_LOCATOR);
+        return this;
+    }
+
+    public HotelsResultScreen clickToPriceSortButton() {
+        clickOnElement(PRICE_SORT_BUTTON_LOCATOR);
         return this;
     }
 
@@ -47,11 +57,17 @@ public class HotelsResultScreen extends AbstractScreen {
     }
 
     public double getHotelRating(WebElement hotelElement) {
-        return Double.parseDouble(hotelsResultService.getText(hotelElement, HOTEL_RATING_LOCATOR));
+        String rating = hotelsResultService.getText(hotelElement, HOTEL_RATING_LOCATOR);
+        if (Strings.isNullOrEmpty(rating))
+            rating = "-1";
+        return Double.parseDouble(rating);
     }
 
     public int getHotelPrice(WebElement hotelElement) {
-        return Integer.parseInt(StringUtils.getMatcherByIndex(hotelsResultService
-                .getText(hotelElement, HOTEL_PRICE_LOCATOR), "\\w+", 0));
+        String price = StringUtils.getMatcherByIndex(hotelsResultService
+                .getText(hotelElement, HOTEL_PRICE_LOCATOR), "\\w+", 0);
+        if (Strings.isNullOrEmpty(price))
+            price = "-1";
+        return Integer.parseInt(price);
     }
 }
