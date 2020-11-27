@@ -5,12 +5,10 @@ import pages.net.skyscanner.elements.LogInScreen;
 import pages.net.skyscanner.profile_screen.ProfileScreen;
 
 public class AccountService {
-    private LogInScreen logInScreen = new LogInScreen();
     private ProfileScreen profileScreen = new ProfileScreen();
 
     public void logIn(User user) {
-        logInScreen
-                .clickContinueWithEmailButton()
+        new LogInScreen()
                 .typeTextToEmailField(user.getEmail())
                 .clickNextButton()
                 .typeTextToPasswordField(user.getPassword())
