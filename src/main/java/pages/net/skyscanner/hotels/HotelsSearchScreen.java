@@ -58,6 +58,4 @@ public class HotelsSearchScreen extends AbstractScreen {
     private String getLocatorForFilterInput(FilterButtonsId id) {
         return String.format(QUANTITY_INPUT_LOCATOR, id.toString().toLowerCase());
     }
-
-    public enum FilterButtonsId {ROOMS, ADULTS, CHILDREN}
 }
