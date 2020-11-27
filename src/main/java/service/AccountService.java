@@ -2,15 +2,13 @@ package service;
 
 import model.User;
 import pages.net.skyscanner.elements.LogInScreen;
-import pages.net.skyscanner.profileScreen.ProfileScreen;
+import pages.net.skyscanner.profile_screen.ProfileScreen;
 
 public class AccountService {
-    private LogInScreen logInScreen = new LogInScreen();
     private ProfileScreen profileScreen = new ProfileScreen();
 
     public void logIn(User user) {
-        logInScreen
-                .clickContinueWithEmailButton()
+        new LogInScreen()
                 .typeTextToEmailField(user.getEmail())
                 .clickNextButton()
                 .typeTextToPasswordField(user.getPassword())
@@ -23,5 +21,20 @@ public class AccountService {
         profileScreen
                 .clickLogOutButton()
                 .clickConfirmLogOutButton();
+    }
+
+    public void createTraveler(User user) {
+        profileScreen
+                .clickAddTravelerButton()
+                .typeTextToFirstNameField(user.getFirstName())
+                .typeTextToLastNameField(user.getLastName())
+                .typeTextToPlaceOfBirthField(user.getCity())
+                .clickDialogButton();
+    }
+
+    public void deleteTraveler() {
+        profileScreen
+                .clickDialogButton()
+                .clickConfirmDeleteTravelerButton();
     }
 }

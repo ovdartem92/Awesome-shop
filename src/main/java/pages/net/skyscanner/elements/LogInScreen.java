@@ -1,5 +1,6 @@
 package pages.net.skyscanner.elements;
 
+import driver.Browser;
 import pages.AbstractScreen;
 import service.WaitManager;
 
@@ -38,7 +39,7 @@ public class LogInScreen extends AbstractScreen {
     }
 
     public LogInScreen waitMarketingConsentButtonAvailable() {
-        WaitManager.isElementVisible(MARKETING_CONSENT_BUTTON_LOCATOR, 2);
+        WaitManager.isElementVisible(MARKETING_CONSENT_BUTTON_LOCATOR, Browser.SHORT_TIMEOUT_SECONDS);
         return this;
     }
 
