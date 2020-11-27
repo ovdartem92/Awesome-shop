@@ -42,11 +42,6 @@ public class HotelsResultScreen extends AbstractScreen {
         return this;
     }
 
-    public HotelsResultScreen clickToPriceSortButton() {
-        clickOnElement(PRICE_SORT_BUTTON_LOCATOR);
-        return this;
-    }
-
     public String getHotelName(WebElement hotelElement) {
         return hotelsResultService.getText(hotelElement, HOTEL_NAME_LOCATOR);
     }
