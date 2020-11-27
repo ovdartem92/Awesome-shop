@@ -9,7 +9,7 @@ import lombok.Data;
 public class User {
     private String email;
     private String password;
-    private String name;
+    private String firstName;
     private String lastName;
     private String city;
 }

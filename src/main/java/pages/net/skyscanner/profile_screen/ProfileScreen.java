@@ -1,5 +1,6 @@
 package pages.net.skyscanner.profile_screen;
 
+import driver.Browser;
 import pages.AbstractScreen;
 import service.WaitManager;
 
@@ -55,6 +56,6 @@ public class ProfileScreen extends AbstractScreen {
     }
 
     public boolean isDeleteMessageDisplayed() {
-        return WaitManager.isElementVisible(DELETE_MESSAGE_LOCATOR, 2);
+        return WaitManager.isElementVisible(DELETE_MESSAGE_LOCATOR, Browser.SHORT_TIMEOUT_SECONDS);
     }
 }

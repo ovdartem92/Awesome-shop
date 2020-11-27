@@ -28,7 +28,7 @@ public class AccountService {
     public void createTraveler(User user) {
         profileScreen
                 .clickAddTravelerButton()
-                .typeTextToFirstNameField(user.getName())
+                .typeTextToFirstNameField(user.getFirstName())
                 .typeTextToLastNameField(user.getLastName())
                 .typeTextToPlaceOfBirthField(user.getCity())
                 .clickDialogButton();

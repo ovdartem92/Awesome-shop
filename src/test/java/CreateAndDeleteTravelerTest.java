@@ -15,12 +15,13 @@ public class CreateAndDeleteTravelerTest extends BaseTest {
         User user = UserBuilder.getUserWithValidPassword();
         AbstractScreen.header.clickLoginButton();
         accountService.logIn(user);
+        AbstractScreen.header.clickAccountButton();
         accountService.createTraveler(user);
         accountService.deleteTraveler();
     }
 
     @Test(description = "check ability to create and delete a new traveler")
     public void checkDeleteTravelerTest() {
-        Assert.assertTrue(new ProfileScreen().isDeleteMessageDisplayed(), "Delete message is not displayed, you are not delete the traveler...");
+        Assert.assertTrue(new ProfileScreen().isDeleteMessageDisplayed(), "Delete message is not displayed, you are not delete the traveler.");
     }
 }
