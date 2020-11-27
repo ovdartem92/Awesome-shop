@@ -1,4 +1,3 @@
-import model.Hotel;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -6,7 +5,6 @@ import pages.AbstractScreen;
 import pages.net.skyscanner.hotels.HotelsResultScreen;
 import utils.Constants;
 
-import java.util.List;
 
 public class HotelsResultScreenTest extends BaseTest {
     HotelsResultScreen hotelsResultScreen;
