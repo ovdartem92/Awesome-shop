@@ -25,4 +25,12 @@ public class HotelsResultScreenTest extends BaseTest {
         Assert.assertTrue(hotelsResultScreen.isHotelSortedByRating(hotels),
                 "the sorting of collection values by rating does not match");
     }
+
+    @Test(description = "checking hotel sorting by price")
+    public void checkPriceSort() {
+        hotelsResultScreen.clickToPriceSortButton();
+        List<Hotel> hotels = hotelsResultScreen.getHotels();
+        Assert.assertTrue(hotelsResultScreen.isHotelSortedByPrice(hotels),
+                "the sorting of collection values by price does not match");
+    }
 }
