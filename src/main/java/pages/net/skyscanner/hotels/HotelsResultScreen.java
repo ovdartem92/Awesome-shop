@@ -43,11 +43,13 @@ public class HotelsResultScreen extends AbstractScreen {
     }
 
     public HotelsResultScreen clickToGuestRattingSortButton() {
+        isWaitingModalInvisible();
         clickOnElement(GUEST_RATING_SORT_BUTTON_LOCATOR);
         return this;
     }
 
     public HotelsResultScreen clickToPriceSortButton() {
+        isWaitingModalInvisible();
         clickOnElement(PRICE_SORT_BUTTON_LOCATOR);
         return this;
     }

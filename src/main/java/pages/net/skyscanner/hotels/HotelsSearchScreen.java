@@ -33,7 +33,6 @@ public class HotelsSearchScreen extends AbstractScreen {
 
     public HotelsResultScreen clickSearchHotelsButton() {
         clickOnElement(HOTELS_SEARCH_BUTTON_LOCATOR);
-        HotelsResultScreen.isWaitingModalInvisible();
         return new HotelsResultScreen();
     }
 
