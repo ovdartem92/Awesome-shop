@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import pages.net.skyscanner.hotels.HotelsResultScreen;
+import pages.net.skyscanner.hotels.source.ComparatorHotelsByPrice;
 import pages.net.skyscanner.hotels.source.ComparatorHotelsByRating;
 
 import java.util.ArrayList;
@@ -55,5 +56,9 @@ public class HotelsResultService {
 
     public boolean isHotelSortedByRating(List<Hotel> hotels) {
         return isHotelSortedByValue(hotels, new ComparatorHotelsByRating());
+    }
+
+    public boolean isHotelSortedByPrice(List<Hotel> hotels) {
+        return isHotelSortedByValue(hotels, new ComparatorHotelsByPrice());
     }
 }
