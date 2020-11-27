@@ -22,18 +22,12 @@ public class HotelsSearchScreen extends AbstractScreen {
 
     public HotelsSearchScreen typeTextToDestinationInput(String destination) {
         typeTextToElement(DESTINATION_OR_HOSTEL_NAME_INPUT_LOCATOR, destination);
-        clickFirstDropdownInput();
-        return this;
-    }
-
-    public HotelsSearchScreen clickFirstDropdownInput() {
         clickOnElement(FIRST_ELEMENT_OF_DROPDOWN_LOCATOR);
         return this;
     }
 
     public HotelsResultScreen clickSearchHotelsButton() {
         clickOnElement(HOTELS_SEARCH_BUTTON_LOCATOR);
-        HotelsResultScreen.isWaitingModalInvisible();
         return new HotelsResultScreen();
     }
 
@@ -49,12 +43,6 @@ public class HotelsSearchScreen extends AbstractScreen {
 
     public HotelsSearchScreen clickMaxIncreaseFilterButton(FilterButtonsId id) {
         String locator = getLocatorForFilterButton(FilterButtonsTitle.INCREASE, id);
-        hotelsSearchService.clickFilterButtonUntilDisabled(locator);
-        return this;
-    }
-
-    public HotelsSearchScreen clickMaxDecreaseFilterButton(FilterButtonsId id) {
-        String locator = getLocatorForFilterButton(FilterButtonsTitle.DECREASE, id);
         hotelsSearchService.clickFilterButtonUntilDisabled(locator);
         return this;
     }
