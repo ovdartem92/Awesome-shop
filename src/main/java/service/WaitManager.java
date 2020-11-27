@@ -5,7 +5,6 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.List;
@@ -25,7 +24,7 @@ public class WaitManager {
     }
 
     /**
-     * This method performs default FluentWait,
+     * The method performs default FluentWait,
      * uses default timeout value from Browser class for timeout param and pulling timeout from this class for pulling param.
      */
     public static Wait<WebDriver> getDefaultWaitConfig() {
@@ -33,7 +32,7 @@ public class WaitManager {
     }
 
     /**
-     * This method provides the customize FluentWait that may have its timeout
+     * The method provides the customize FluentWait that may have its timeout
      * and polling interval configured on the fly.
      *
      * @param timeout the number of seconds for waiting an element to be present on the page.
@@ -49,7 +48,7 @@ public class WaitManager {
     }
 
     /**
-     * This method performs checking that an element is present on the DOM of a page and visible.
+     * The method performs checking that an element is present on the DOM of a page and visible.
      *
      * @param locatorPath the xpath of required web element.
      * @param timeout     the number of seconds for waiting an element to be present on the page.
@@ -67,7 +66,7 @@ public class WaitManager {
     }
 
     /**
-     * This method performs an expectation for checking that an element is present on the DOM of a page,
+     * The method performs an expectation for checking that an element is present on the DOM of a page,
      * uses default wait config.
      *
      * @param locatorPath the xpath of required web element.
@@ -79,7 +78,7 @@ public class WaitManager {
     }
 
     /**
-     * This method performs an expectation for checking that there is at least one element present on a web page,
+     * The method performs an expectation for checking that there is at least one element present on a web page,
      * uses default wait config.
      *
      * @param locatorPath the xpath of required web element.
@@ -91,7 +90,7 @@ public class WaitManager {
     }
 
     /**
-     * This method performs an expectation for checking an element is visible and enabled such that you can click it,
+     * The method performs an expectation for checking an element is visible and enabled such that you can click it,
      * uses default wait config.
      *
      * @param locatorPath the xpath of required web element.
@@ -102,8 +101,21 @@ public class WaitManager {
         return wait.until(ExpectedConditions.elementToBeClickable(By.xpath(locatorPath)));
     }
 
-    public static boolean waitForInvisibilityOfElementLocated(String locatorPath, int timeoutSeconds) {
-        return new WebDriverWait(Browser.getDriver(), timeoutSeconds)
-                .until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(locatorPath)));
+    /**
+     * The method performs checking that an element is either invisible or not present on the DOM.
+     *
+     * @param locatorPath the xpath of required web element.
+     * @param timeout     the number of seconds for waiting an element to be invisible on the page.
+     * @return true if the element is not displayed or the element doesn't exist.
+     * @catch TimeoutException cause we using custom wait config.
+     */
+    public static boolean isElementInvisible(String locatorPath, long timeout) {
+        wait = getCustomWaitConfig(timeout, PULLING_EVERY_MILLIS_SECONDS);
+        try {
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(locatorPath)));
+            return true;
+        } catch (TimeoutException e) {
+            return false;
+        }
     }
 }

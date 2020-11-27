@@ -23,10 +23,15 @@ public abstract class AbstractScreen {
     protected static final String FIRST_ELEMENT_OF_DROPDOWN_LOCATOR = "//input[@aria-activedescendant='react-autowhatever-1--item-0']";
     protected static final Logger logger = LogManager.getRootLogger();
 
-    protected AbstractScreen(){}
+    /**
+     * The private protected is needed because we can be called by subclasses or by classes in the same package.
+     */
+    protected AbstractScreen() {
+    }
 
     /**
      * This method performs getting of needed web element.
+     *
      * @param locatorPath the param according to witch we get web element.
      */
     public static WebElement getElement(String locatorPath) {
@@ -36,8 +41,9 @@ public abstract class AbstractScreen {
 
     /**
      * This method performs getting attribute value of needed web element.
+     *
      * @param locatorPath the param according to witch we get web element.
-     * @param attribute the value of needed attribute.
+     * @param attribute   the value of needed attribute.
      * @return attribute's text.
      */
     public static String getAttributeValueOnElement(String locatorPath, String attribute) {
@@ -46,6 +52,7 @@ public abstract class AbstractScreen {
 
     /**
      * This method performs getting of needed web elements list.
+     *
      * @param locatorPath the param according to witch we get web elements.
      */
     public static List<WebElement> getElements(String locatorPath) {
@@ -55,6 +62,7 @@ public abstract class AbstractScreen {
 
     /**
      * This method performs getting of needed web element, checks that element is clickable and click on it.
+     *
      * @param locatorPath the param according to witch we get web element.
      */
     public static void clickOnElement(String locatorPath) {
@@ -65,6 +73,7 @@ public abstract class AbstractScreen {
 
     /**
      * This method performs getting text value of needed web element.
+     *
      * @param locatorPath the param according to witch we get web element.
      */
     public static String getTextOnElement(String locatorPath) {
@@ -73,6 +82,7 @@ public abstract class AbstractScreen {
 
     /**
      * This method performs typing text to needed web element, previously clears input field.
+     *
      * @param locatorPath the param according to witch we get web element.
      */
     public static void typeTextToElement(String locatorPath, String text) {
@@ -84,8 +94,9 @@ public abstract class AbstractScreen {
 
     /**
      * This method performs getting text value of needed web elements list.
+     *
      * @param locatorPath the param according to witch we get web elements.
-     * @return the list of strings, which contains text from web elements.
+     * @return the list of strings, each string contains text from web elements.
      */
     public static List<String> getTextFromElements(String locatorPath) {
         List<String> textFromElements = new ArrayList<>();
