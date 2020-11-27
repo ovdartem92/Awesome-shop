@@ -24,9 +24,9 @@ public class AccountService {
                 .waitMarketingConsentButtonAvailable()
                 .clickCloseModalButton();
     }
+
     /**
      * This method performs actions for the LogOut from the system.
-     *
      */
     public void logOut() {
         profileScreen
