@@ -8,6 +8,8 @@ import pages.net.skyscanner.profile_screen.ProfileScreen;
  * This is a service class that performs logic during login and logout.
  */
 public class AccountService {
+    private ProfileScreen profileScreen = new ProfileScreen();
+
     /**
      * This method performs actions for the login to the system.
      *
@@ -15,7 +17,6 @@ public class AccountService {
      */
     public void logIn(User user) {
         new LogInScreen()
-                .clickContinueWithEmailButton()
                 .typeTextToEmailField(user.getEmail())
                 .clickNextButton()
                 .typeTextToPasswordField(user.getPassword())
@@ -28,8 +29,23 @@ public class AccountService {
      *
      */
     public void logOut() {
-        new ProfileScreen()
+        profileScreen
                 .clickLogOutButton()
                 .clickConfirmLogOutButton();
+    }
+
+    public void createTraveler(User user) {
+        profileScreen
+                .clickAddTravelerButton()
+                .typeTextToFirstNameField(user.getFirstName())
+                .typeTextToLastNameField(user.getLastName())
+                .typeTextToPlaceOfBirthField(user.getCity())
+                .clickDialogButton();
+    }
+
+    public void deleteTraveler() {
+        profileScreen
+                .clickDialogButton()
+                .clickConfirmDeleteTravelerButton();
     }
 }

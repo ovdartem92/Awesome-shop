@@ -6,18 +6,18 @@ import service.CarSearchService;
 import utils.Constants;
 
 public class CheckPickUpAndDropOffLocationsSummaryTest extends BaseTest {
-    private final String pickUpLocation = Constants.MOSCOW_SHEREMETYEVO_SVO;
-    private final String dropOffLocation = Constants.MOSCOW_VNUKOVO_VKO;
-    private CarsSearchResultsScreen carsSearchResultsScreen;
+    String pickUpLocation = Constants.MOSCOW_SHEREMETYEVO_SVO;
+    String dropOffLocation = Constants.MOSCOW_VNUKOVO_VKO;
 
-    @BeforeClass(description = "Click on car button, set up locations and click search")
+    @BeforeClass(description = "click on car button, set up locations and click search")
     public void navigateToCarSearchScreenAndFindCarUsingData() {
-        carsSearchResultsScreen = new CarSearchService().searchCarUsingLocationsData(pickUpLocation, dropOffLocation);
+        new CarSearchService().searchCarUsingLocationsData(pickUpLocation, dropOffLocation);
     }
 
     @Test(description = "check input values of locations are equals locations in search result page summary")
     public void checkingPickupAndDropOffLocations() {
         SoftAssert softAssert = new SoftAssert();
+        CarsSearchResultsScreen carsSearchResultsScreen = new CarsSearchResultsScreen();
         softAssert.assertEquals(pickUpLocation, carsSearchResultsScreen.getInfoAboutPickUpLocationFromSummary(),
                 "Input set up location is not equals summary set up location.");
         softAssert.assertEquals(dropOffLocation, carsSearchResultsScreen.getInfoAboutDropOffLocationFromSummary(),

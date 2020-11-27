@@ -1,6 +1,7 @@
 package service;
 
 import model.User;
+import utils.Constants;
 import utils.StringUtils;
 
 /**
@@ -16,6 +17,9 @@ public class UserBuilder {
      * This variable always get a random string.
      */
     private static final String INVALID_PASSWORD = StringUtils.getRandomString();
+    private static final String FIRST_NAME = Constants.FIRST_NAME;
+    private static final String LAST_NAME = Constants.LAST_NAME;
+    private static final String CITY = Constants.MOSCOW;
 
     /**
      * The private constructor is needed because we don't create any instance of this class.
@@ -29,7 +33,7 @@ public class UserBuilder {
      * @return new user with valid data
      */
     public static User getUserWithValidPassword() {
-        return new User(EMAIL, PASSWORD);
+        return new User(EMAIL, PASSWORD, FIRST_NAME, LAST_NAME, CITY);
     }
 
     /**
@@ -38,6 +42,6 @@ public class UserBuilder {
      * @return new user with invalid data
      */
     public static User getUserWithInvalidPassword() {
-        return new User(EMAIL, INVALID_PASSWORD);
+        return new User(EMAIL, INVALID_PASSWORD, FIRST_NAME, LAST_NAME, CITY);
     }
 }
