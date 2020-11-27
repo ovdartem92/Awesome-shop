@@ -1,9 +1,12 @@
+import model.Hotel;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import pages.AbstractScreen;
+import pages.net.skyscanner.elements.HeaderScreen;
 import pages.net.skyscanner.hotels.HotelsResultScreen;
 import utils.Constants;
+
+import java.util.List;
 
 
 public class HotelsResultScreenTest extends BaseTest {
@@ -11,7 +14,7 @@ public class HotelsResultScreenTest extends BaseTest {
 
     @BeforeClass(description = "click on hotel button, set up locations and click search")
     public void navigateToHotelsSearchPage() {
-        hotelsResultScreen = AbstractScreen.header.clickHotelButton()
+        hotelsResultScreen = new HeaderScreen().clickHotelButton()
                 .typeTextToDestinationInput(Constants.TURIN)
                 .clickSearchHotelsButton();
     }

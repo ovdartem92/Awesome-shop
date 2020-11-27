@@ -16,15 +16,16 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /**
- *  The class allows to customize the tests logs or report.
+ * The class allows to customize the tests logs or report.
  */
 public class TestListener implements ITestListener {
     private final Logger logger = LogManager.getRootLogger();
 
     /**
-     *  The method executes at the beginning of each tests and creates log with following text plus name
-     *  of the test class, which is running.
-     *  @param iTestResult describes result of the tests and is used for getting name of rhe running test class.
+     * The method executes at the beginning of each tests and creates log with following text plus name
+     * of the test class, which is running.
+     *
+     * @param iTestResult describes result of the tests and is used for getting name of rhe running test class.
      */
     @Override
     public void onTestStart(ITestResult iTestResult) {
@@ -32,9 +33,10 @@ public class TestListener implements ITestListener {
     }
 
     /**
-     *  The method executes, when test was successfully passed and creates log with following text plus name
-     *  of the test class, which was running.
-     *  @param iTestResult describes result of the tests and is used for getting name of rhe running test class.
+     * The method executes, when test was successfully passed and creates log with following text plus name
+     * of the test class, which was running.
+     *
+     * @param iTestResult describes result of the tests and is used for getting name of rhe running test class.
      */
     @Override
     public void onTestSuccess(ITestResult iTestResult) {
@@ -42,9 +44,10 @@ public class TestListener implements ITestListener {
     }
 
     /**
-     *  The method executes when running of the test was a failure. Create and save screenshot of
-     *  of current browser screen at the moment of test failed.{@link utils.TestListener#saveScreenshot(ITestResult)}
-     *  @param iTestResult describes result of the tests and is used for getting name of rhe running test class.
+     * The method executes when running of the test was a failure. Create and save screenshot of
+     * of current browser screen at the moment of test failed.{@link utils.TestListener#saveScreenshot(ITestResult)}
+     *
+     * @param iTestResult describes result of the tests and is used for getting name of rhe running test class.
      */
     @Override
     public void onTestFailure(ITestResult iTestResult) {
@@ -53,10 +56,11 @@ public class TestListener implements ITestListener {
     }
 
     /**
-     *  The method executes when running test was skipped. Create and save screenshot of
-     *  of current browser screen at the moment of skipping {@link utils.TestListener#saveScreenshot(ITestResult)}
-     *  This method helps to define moments whet CAPTCHA appears.
-     *  @param iTestResult describes result of the tests and is used for getting name of rhe running test class.
+     * The method executes when running test was skipped. Create and save screenshot of
+     * of current browser screen at the moment of skipping {@link utils.TestListener#saveScreenshot(ITestResult)}
+     * This method helps to define moments whet CAPTCHA appears.
+     *
+     * @param iTestResult describes result of the tests and is used for getting name of rhe running test class.
      */
     @Override
     public void onTestSkipped(ITestResult iTestResult) {
@@ -78,11 +82,13 @@ public class TestListener implements ITestListener {
     public void onFinish(ITestContext iTestContext) {
         // unused at the moment
     }
+
     /**
-     *  The method allows to create and save screenshot of current browser screen.
-     *  File will be save in target/screenshots folder and will have name consists of
-     *  name of running test and current date and time. Current date and time gets with method
-     *  {@link StringUtils#getCurrentTimeAsString()}
+     * The method allows to create and save screenshot of current browser screen.
+     * File will be save in target/screenshots folder and will have name consists of
+     * name of running test and current date and time. Current date and time gets with method
+     * {@link StringUtils#getCurrentTimeAsString()}
+     *
      * @param iTestResult describes result of the tests and is used for getting name of rhe running test class.
      */
     public void saveScreenshot(ITestResult iTestResult) {
