@@ -11,7 +11,7 @@ import java.util.List;
 public class HotelsResultScreenTest extends BaseTest {
     HotelsResultScreen hotelsResultScreen;
 
-    @BeforeClass(description = "click on hotels button")
+    @BeforeClass(description = "click on hotel button, set up locations and click search")
     public void navigateToHotelsSearchPage() {
         hotelsResultScreen = AbstractScreen.header.clickHotelButton()
                 .typeTextToDestinationInput(Constants.TURIN)
