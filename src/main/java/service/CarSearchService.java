@@ -2,8 +2,10 @@ package service;
 
 import pages.net.skyscanner.elements.HeaderScreen;
 
+import java.util.List;
+
 public class CarSearchService {
-    HeaderScreen headerScreen = new HeaderScreen();
+    private HeaderScreen headerScreen = new HeaderScreen();
 
     public void searchCarUsingLocationsData(String pickUpLock, String dropOffLock) {
         headerScreen.clickCarButton()
@@ -19,5 +21,14 @@ public class CarSearchService {
                 .setDriverAge(age)
                 .setUpPickUpLocation(pickUpLock)
                 .clickSearchButton();
+    }
+
+    public List<String> getCarClassTypeInfoFromSearchResults(String pickUpLock, String carClass, String carType) {
+        return headerScreen.clickCarButton()
+                .setUpPickUpLocation(pickUpLock)
+                .clickSearchButton()
+                .setCarClass(carClass)
+                .setCarType(carType)
+                .getListCarClassTypeFromGroupPanel();
     }
 }
