@@ -59,8 +59,8 @@ public abstract class WaitManager {
         return wait.until(ExpectedConditions.elementToBeClickable(By.xpath(locatorPath)));
     }
 
-    public static void waitForInvisibilityOfElementLocated(String locatorPath, int timeoutSeconds) {
-        new WebDriverWait(Browser.initDriver(), timeoutSeconds).until(
-                ExpectedConditions.invisibilityOfElementLocated(By.xpath(locatorPath)));
+    public static boolean waitForInvisibilityOfElementLocated(String locatorPath, int timeoutSeconds) {
+        return new WebDriverWait(Browser.getDriver(), timeoutSeconds)
+                .until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(locatorPath)));
     }
 }
