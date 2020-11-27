@@ -7,8 +7,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import pages.net.skyscanner.hotels.HotelsResultScreen;
-import pages.net.skyscanner.hotels.source.ComparatorHotelsByPrice;
-import pages.net.skyscanner.hotels.source.ComparatorHotelsByRating;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -47,6 +45,14 @@ public class HotelsResultService {
         }
     }
 
+    public boolean isHotelSortedByRating(List<Hotel> hotels) {
+        return isHotelSortedByValue(hotels, comparatorByRating);
+    }
+
+    public boolean isHotelSortedByPrice(List<Hotel> hotels) {
+        return isHotelSortedByValue(hotels, comparatorByPrice);
+    }
+
     private boolean isHotelSortedByValue(List<Hotel> hotels, Comparator<Hotel> comparator) {
         List<Hotel> sortedHotels = new ArrayList<>(hotels);
         Collections.sort(sortedHotels, comparator);
@@ -54,11 +60,15 @@ public class HotelsResultService {
         return hotels.equals(sortedHotels);
     }
 
-    public boolean isHotelSortedByRating(List<Hotel> hotels) {
-        return isHotelSortedByValue(hotels, new ComparatorHotelsByRating());
-    }
+    private Comparator<Hotel> comparatorByRating = (h1, h2) -> {
+        if (h1.getRating() > h2.getRating()) return -1;
+        else if (h1.getRating() < h2.getRating()) return 1;
+        else return 0;
+    };
 
-    public boolean isHotelSortedByPrice(List<Hotel> hotels) {
-        return isHotelSortedByValue(hotels, new ComparatorHotelsByPrice());
-    }
+    private Comparator<Hotel> comparatorByPrice = (h1, h2) -> {
+        if (h1.getPrice() > h2.getPrice()) return 1;
+        else if (h1.getPrice() < h2.getPrice()) return -1;
+        else return 0;
+    };
 }
