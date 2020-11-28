@@ -19,6 +19,22 @@ import java.util.List;
 public class HotelsResultService {
     private static Logger logger = LogManager.getRootLogger();
     private HotelsResultScreen hotelsResultScreen;
+    /**
+     * The comparator for sorting items by rating.
+     */
+    private Comparator<Hotel> comparatorByRating = (h1, h2) -> {
+        if (h1.getRating() > h2.getRating()) return -1;
+        else if (h1.getRating() < h2.getRating()) return 1;
+        else return 0;
+    };
+    /**
+     * The comparator for sorting items by price.
+     */
+    private Comparator<Hotel> comparatorByPrice = (h1, h2) -> {
+        if (h1.getPrice() > h2.getPrice()) return 1;
+        else if (h1.getPrice() < h2.getPrice()) return -1;
+        else return 0;
+    };
 
     /**
      * The constructor initializing the hotel result screen entity.
@@ -99,22 +115,4 @@ public class HotelsResultService {
         logger.info("Are hotel lists equal? {}", hotels.equals(sortedHotels));
         return hotels.equals(sortedHotels);
     }
-
-    /**
-     * The comparator for sorting items by rating.
-     */
-    private Comparator<Hotel> comparatorByRating = (h1, h2) -> {
-        if (h1.getRating() > h2.getRating()) return -1;
-        else if (h1.getRating() < h2.getRating()) return 1;
-        else return 0;
-    };
-
-    /**
-     * The comparator for sorting items by price.
-     */
-    private Comparator<Hotel> comparatorByPrice = (h1, h2) -> {
-        if (h1.getPrice() > h2.getPrice()) return 1;
-        else if (h1.getPrice() < h2.getPrice()) return -1;
-        else return 0;
-    };
 }

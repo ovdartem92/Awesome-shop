@@ -1,5 +1,9 @@
 package model;
-import lombok.*;
+
+import lombok.AccessLevel;
+import lombok.Data;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
 @Data
 @RequiredArgsConstructor(access = AccessLevel.PUBLIC)
