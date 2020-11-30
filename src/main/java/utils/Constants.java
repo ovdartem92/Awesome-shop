@@ -18,6 +18,9 @@ public final class Constants {
     public static final String LAST_NAME = "Smith";
     public static final String ECONOMY_CLASS_CAR = "Economy";
     public static final String FOUR_DOOR_TYPE_CAR = "4 door";
+    public static final String RIGA = "Riga (RIX)";
+    public static final String KIEV = "Kyiv (KBP)";
+    public static final String DAY = "16";
 
     /**
      * The private constructor is needed because we don't create any instance of this class.
