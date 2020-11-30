@@ -9,7 +9,6 @@ import org.openqa.selenium.WebElement;
 import pages.net.skyscanner.hotels.HotelsResultScreen;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -17,24 +16,16 @@ import java.util.List;
  * The service class for hotel result screen.
  */
 public class HotelsResultService {
-    private static Logger logger = LogManager.getRootLogger();
-    private HotelsResultScreen hotelsResultScreen;
+    private static final Logger logger = LogManager.getRootLogger();
+    private final HotelsResultScreen hotelsResultScreen;
     /**
      * The comparator for sorting items by rating.
      */
-    private Comparator<Hotel> comparatorByRating = (h1, h2) -> {
-        if (h1.getRating() > h2.getRating()) return -1;
-        else if (h1.getRating() < h2.getRating()) return 1;
-        else return 0;
-    };
+    private final Comparator<Hotel> comparatorByRating = Comparator.comparingDouble(Hotel::getRating).reversed();
     /**
      * The comparator for sorting items by price.
      */
-    private Comparator<Hotel> comparatorByPrice = (h1, h2) -> {
-        if (h1.getPrice() > h2.getPrice()) return 1;
-        else if (h1.getPrice() < h2.getPrice()) return -1;
-        else return 0;
-    };
+    private final Comparator<Hotel> comparatorByPrice = Comparator.comparingInt(Hotel::getPrice);
 
     /**
      * The constructor initializing the hotel result screen entity.
@@ -111,7 +102,7 @@ public class HotelsResultService {
      */
     private boolean isHotelSortedByValue(List<Hotel> hotels, Comparator<Hotel> comparator) {
         List<Hotel> sortedHotels = new ArrayList<>(hotels);
-        Collections.sort(sortedHotels, comparator);
+        sortedHotels.sort(comparator);
         logger.info("Are hotel lists equal? {}", hotels.equals(sortedHotels));
         return hotels.equals(sortedHotels);
     }
