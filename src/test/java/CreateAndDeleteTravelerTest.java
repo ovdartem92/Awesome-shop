@@ -21,7 +21,7 @@ public class CreateAndDeleteTravelerTest extends BaseTest {
         accountService.deleteTraveler();
     }
 
-    @Test(description = "check ability to create and delete a new traveler")
+    @Test(description = "Check ability to create and delete a new traveler")
     public void checkDeleteTravelerTest() {
         Assert.assertTrue(new ProfileScreen().isDeleteMessageDisplayed(), "Delete message is not displayed, you are not delete the traveler.");
     }
