@@ -19,7 +19,7 @@ public class CheckLogOutTest extends BaseTest {
         accountService.logOut();
     }
 
-    @Test(description = "check the ability to make a logOut")
+    @Test(description = "Check the ability to make a logOut")
     public void logOutTest() {
         Assert.assertTrue(HEADER_SCREEN.isLoginButtonDisplayed(), "The login button is not active. You are not logOut.");
     }
