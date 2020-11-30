@@ -1,5 +1,6 @@
 package pages.net.skyscanner.cars;
 
+import driver.Browser;
 import pages.AbstractScreen;
 import service.WaitManager;
 import utils.StringUtils;
@@ -23,7 +24,7 @@ public class CarsSearchResultsScreen extends AbstractScreen {
     }
 
     public boolean isAgeAlertVisible() {
-        return WaitManager.isElementVisible(ALERT_AGE_MESSAGE);
+        return WaitManager.isElementVisible(ALERT_AGE_MESSAGE, Browser.SHORT_TIMEOUT_SECONDS);
     }
 
     public List<String> getListCarClassTypeFromGroupPanel() {

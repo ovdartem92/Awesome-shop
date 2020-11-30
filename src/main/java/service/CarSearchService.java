@@ -9,12 +9,12 @@ import java.util.List;
  */
 public class CarSearchService {
     private HeaderScreen headerScreen = new HeaderScreen();
+
     /**
-     * This is a method that performs search cars using locations data.
+     * The method performs search cars using pick up and drop off locations data.
      *
-     * @param pickUpLoc  the necessary location for pick up car.
-     * @param dropOffLoc the necessary location for leave car.
-     * @return the screen with search results.
+     * @param pickUpLock  the necessary location for pick up car.
+     * @param dropOffLock the necessary location for leave car.
      */
     public void searchCarUsingLocationsData(String pickUpLock, String dropOffLock) {
         headerScreen.clickCarButton()
@@ -24,6 +24,12 @@ public class CarSearchService {
                 .clickSearchButton();
     }
 
+    /**
+     * The method performs search cars using pick up location and age of driver data.
+     *
+     * @param pickUpLock the necessary location for pick up car.
+     * @param age        the driver's age which selected from dropdown menu.
+     */
     public void searchCarUsingAgeAndPickUpLocation(String pickUpLock, String age) {
         headerScreen.clickCarButton()
                 .unSetAgeCheckbox()
@@ -32,6 +38,14 @@ public class CarSearchService {
                 .clickSearchButton();
     }
 
+    /**
+     * The method performs search cars using pick up location data, filters results by selected type and class of car.
+     *
+     * @param pickUpLock the necessary location for pick up car.
+     * @param carClass   the selected option of car's class.
+     * @param carType    the selected option of car's type.
+     * @return list of strings, each string contains info about set type and class.
+     */
     public List<String> getCarClassTypeInfoFromSearchResults(String pickUpLock, String carClass, String carType) {
         return headerScreen.clickCarButton()
                 .setUpPickUpLocation(pickUpLock)

@@ -10,7 +10,7 @@ import utils.StringUtils;
 import java.util.List;
 
 import static driver.Browser.LONG_TIMEOUT_SECONDS;
-import static service.WaitManager.waitForInvisibilityOfElementLocated;
+import static service.WaitManager.isElementInvisible;
 
 public class HotelsResultScreen extends AbstractScreen {
     private final static String HOTEL_NAME_LOCATOR = ".//span[@data-test-id='hotel-name']";
@@ -20,10 +20,10 @@ public class HotelsResultScreen extends AbstractScreen {
     private final static String HOTEL_BLOCK_LOCATOR = "//section//div[@role='button']";
     private final static String GUEST_RATING_SORT_BUTTON_LOCATOR = "//button[@data-test-id='search-sort-rating']";
     private final static String PRICE_SORT_BUTTON_LOCATOR = "//button[@data-test-id='search-sort-price']";
-    private HotelsResultService hotelsResultService = new HotelsResultService(this);
+    private final HotelsResultService hotelsResultService = new HotelsResultService(this);
 
     private static boolean isWaitingModalInvisible() {
-        return waitForInvisibilityOfElementLocated(WAITING_MODAL_VIEW, LONG_TIMEOUT_SECONDS);
+        return isElementInvisible(WAITING_MODAL_VIEW, LONG_TIMEOUT_SECONDS);
     }
 
     public List<WebElement> getElements() {

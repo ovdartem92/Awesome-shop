@@ -2,7 +2,7 @@ import model.User;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import pages.AbstractScreen;
+import pages.net.skyscanner.elements.HeaderScreen;
 import pages.net.skyscanner.profile_screen.ProfileScreen;
 import service.AccountService;
 import service.UserBuilder;
@@ -12,10 +12,11 @@ public class CreateAndDeleteTravelerTest extends BaseTest {
     @BeforeClass(description = "Click on login button, LogIn, create traveler and delete")
     public void preparingForTheTest() {
         AccountService accountService = new AccountService();
+        HeaderScreen headerScreen = new HeaderScreen();
         User user = UserBuilder.getUserWithValidPassword();
-        AbstractScreen.header.clickLoginButton();
+        headerScreen.clickLoginButton();
         accountService.logIn(user);
-        AbstractScreen.header.clickAccountButton();
+        headerScreen.clickAccountButton();
         accountService.createTraveler(user);
         accountService.deleteTraveler();
     }

@@ -24,7 +24,7 @@ public class TestDataReader {
      * The method is required to read a property from the properties file specified in the system environment variable.
      * If no properties are found by the specified key, then the method will return the default value.
      *
-     * @param key set the required property
+     * @param key      set the required property
      * @param defValue set the default property
      * @return value of the specified property or default value, if the property was not found
      */

@@ -17,6 +17,7 @@ public class AccountService {
      */
     public void logIn(User user) {
         new LogInScreen()
+                .clickContinueWithEmailButton()
                 .typeTextToEmailField(user.getEmail())
                 .clickNextButton()
                 .typeTextToPasswordField(user.getPassword())
@@ -24,9 +25,9 @@ public class AccountService {
                 .waitMarketingConsentButtonAvailable()
                 .clickCloseModalButton();
     }
+
     /**
      * This method performs actions for the LogOut from the system.
-     *
      */
     public void logOut() {
         profileScreen
@@ -34,6 +35,9 @@ public class AccountService {
                 .clickConfirmLogOutButton();
     }
 
+    /**
+     * This method creates a new traveler.
+     */
     public void createTraveler(User user) {
         profileScreen
                 .clickAddTravelerButton()
@@ -43,6 +47,9 @@ public class AccountService {
                 .clickDialogButton();
     }
 
+    /**
+     * This method delete the traveler.
+     */
     public void deleteTraveler() {
         profileScreen
                 .clickDialogButton()

@@ -10,6 +10,7 @@ public class CultureService {
 
     /**
      * This method performs actions for change language.
+     *
      * @param language is necessary for pick language value
      */
     public void changeLanguage(String language) {
@@ -21,6 +22,7 @@ public class CultureService {
 
     /**
      * This method performs actions for change currency.
+     *
      * @param currency is necessary for pick currency value
      */
     public void changeCurrency(String currency) {
