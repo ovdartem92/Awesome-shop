@@ -21,9 +21,7 @@ public class AccountService {
                 .typeTextToEmailField(user.getEmail())
                 .clickNextButton()
                 .typeTextToPasswordField(user.getPassword())
-                .clickLogInButton()
-                .waitMarketingConsentButtonAvailable()
-                .clickCloseModalButton();
+                .clickLogInButton();
     }
 
     /**
