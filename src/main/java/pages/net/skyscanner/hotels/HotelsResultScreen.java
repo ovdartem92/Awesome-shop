@@ -13,13 +13,13 @@ import static driver.Browser.LONG_TIMEOUT_SECONDS;
 import static service.WaitManager.isElementInvisible;
 
 public class HotelsResultScreen extends AbstractScreen {
-    private final static String HOTEL_NAME_LOCATOR = ".//span[@data-test-id='hotel-name']";
-    private final static String HOTEL_RATING_LOCATOR = ".//div[1]//div[3]/span";
-    private final static String HOTEL_PRICE_LOCATOR = ".//div[3]//div[contains(@class, 'HotelCard_HotelCard__priceVariant')]";
-    private final static String WAITING_MODAL_VIEW = "//div[starts-with(@class, 'WaitingModal_WaitingModal')]";
-    private final static String HOTEL_BLOCK_LOCATOR = "//section//div[@role='button']";
-    private final static String GUEST_RATING_SORT_BUTTON_LOCATOR = "//button[@data-test-id='search-sort-rating']";
-    private final static String PRICE_SORT_BUTTON_LOCATOR = "//button[@data-test-id='search-sort-price']";
+    private static final String HOTEL_NAME_LOCATOR = ".//span[@data-test-id='hotel-name']";
+    private static final String HOTEL_RATING_LOCATOR = ".//div[1]//div[3]/span";
+    private static final String HOTEL_PRICE_LOCATOR = ".//div[3]//div[contains(@class, 'HotelCard_HotelCard__priceVariant')]";
+    private static final String WAITING_MODAL_VIEW = "//div[starts-with(@class, 'WaitingModal_WaitingModal')]";
+    private static final String HOTEL_BLOCK_LOCATOR = "//section//div[@role='button']";
+    private static final String GUEST_RATING_SORT_BUTTON_LOCATOR = "//button[@data-test-id='search-sort-rating']";
+    private static final String PRICE_SORT_BUTTON_LOCATOR = "//button[@data-test-id='search-sort-price']";
     private final HotelsResultService hotelsResultService = new HotelsResultService(this);
 
     private static boolean isWaitingModalInvisible() {
