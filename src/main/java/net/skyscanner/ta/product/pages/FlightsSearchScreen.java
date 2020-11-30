@@ -14,9 +14,9 @@ public class FlightsSearchScreen extends AbstractScreen {
         return getTextOnElement(FLIGHTS_SEARCH_BUTTON_LOCATOR);
     }
 
-    public FlightsResultsScreen clickFlightsSearchButton() {
+    public FlightsResultsPage clickFlightsSearchButton() {
         clickOnElement(FLIGHTS_SEARCH_BUTTON_LOCATOR);
-        return new FlightsResultsScreen();
+        return new FlightsResultsPage();
     }
 
     public FlightsSearchScreen inputCityFrom(String city) {

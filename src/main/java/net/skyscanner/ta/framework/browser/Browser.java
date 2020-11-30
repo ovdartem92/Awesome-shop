@@ -1,4 +1,4 @@
 package net.skyscanner.ta.framework.browser;
 
-public class Browser {
+public enum Browser {
 }

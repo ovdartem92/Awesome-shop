@@ -7,7 +7,7 @@ import pages.net.skyscanner.hotels.HotelsSearchScreen;
 import pages.net.skyscanner.profile_screen.ProfileScreen;
 import service.WaitManager;
 
-public class HeaderScreen extends AbstractScreen {
+public class HeaderPage extends AbstractScreen {
     private static final String FLIGHTS_TAB_TEXT = "Flights";
     private static final String HOTELS_TAB_TEXT = "Hotels";
     private static final String CAR_TAB_TEXT = "Car";
@@ -19,9 +19,9 @@ public class HeaderScreen extends AbstractScreen {
     private static final String LOG_IN_BUTTON_LOCATOR = "//*[@id='authentication-link']";
     private static final String ACCOUNT_BUTTON_LOCATOR = "//*[@id='login-button-nav-item']/button";
 
-    public LogInScreen clickLoginButton() {
+    public LogInPage clickLoginButton() {
         clickOnElement(LOG_IN_BUTTON_LOCATOR);
-        return new LogInScreen();
+        return new LogInPage();
     }
 
     public ProfileScreen clickAccountButton() {
@@ -52,8 +52,8 @@ public class HeaderScreen extends AbstractScreen {
         return new CarsSearchScreen();
     }
 
-    public RegionalSettingsScreen clickRegionalSettingsButton() {
+    public RegionalSettingsPage clickRegionalSettingsButton() {
         clickOnElement(CULTURE_SETTING_BUTTON_LOCATOR);
-        return new RegionalSettingsScreen();
+        return new RegionalSettingsPage();
     }
 }

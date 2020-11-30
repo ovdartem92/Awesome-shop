@@ -7,7 +7,7 @@ import utils.StringUtils;
 
 import java.util.List;
 
-public class CarsSearchResultsScreen extends AbstractScreen {
+public class CarsSearchResultsPage extends AbstractScreen {
     private static final String CLASS_TEXT = "class";
     private static final String TYPE_TEXT = "type";
     private static final String AGE_MESSAGE_TEXT = "Driver aged under 25";
@@ -32,12 +32,12 @@ public class CarsSearchResultsScreen extends AbstractScreen {
         return getTextFromElements(CAR_GROUP_PANEL_INFO_SUMMARY_LOCATOR);
     }
 
-    public CarsSearchResultsScreen setCarClass(String carClass) {
+    public CarsSearchResultsPage setCarClass(String carClass) {
         clickOnElement(String.format(CAR_CHECKBOX_LOCATOR, CLASS_TEXT, carClass));
         return this;
     }
 
-    public CarsSearchResultsScreen setCarType(String carType) {
+    public CarsSearchResultsPage setCarType(String carType) {
         clickOnElement(String.format(CAR_CHECKBOX_LOCATOR, TYPE_TEXT, carType));
         return this;
     }

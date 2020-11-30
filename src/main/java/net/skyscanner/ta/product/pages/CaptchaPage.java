@@ -5,7 +5,7 @@ import org.testng.SkipException;
 import pages.AbstractScreen;
 import service.WaitManager;
 
-public class CaptchaScreen extends AbstractScreen {
+public class CaptchaPage extends AbstractScreen {
     private static final String CAPTCHA_ELEMENT_LOCATOR = "//img[@alt='captcha page image']";
 
     public static void checkCaptchaOnPage() {

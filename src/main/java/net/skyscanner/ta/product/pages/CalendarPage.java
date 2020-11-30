@@ -2,11 +2,11 @@ package net.skyscanner.ta.product.pages;
 
 import pages.AbstractScreen;
 
-public class CalendarScreen extends AbstractScreen {
+public class CalendarPage extends AbstractScreen {
     private static final String NEXT_MONTH_BUTTON_LOCATOR = "//button[contains(@id,'next')]";
     private static final String DAY_LOCATOR = "//button[contains(@aria-label,'%s')]";
 
-    public CalendarScreen clickNextMonthButton() {
+    public CalendarPage clickNextMonthButton() {
         clickOnElement(NEXT_MONTH_BUTTON_LOCATOR);
         return this;
     }

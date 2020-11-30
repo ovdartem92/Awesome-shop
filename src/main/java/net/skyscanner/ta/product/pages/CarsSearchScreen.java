@@ -41,9 +41,9 @@ public class CarsSearchScreen extends AbstractScreen {
         return this;
     }
 
-    public CarsSearchResultsScreen clickSearchButton() {
+    public CarsSearchResultsPage clickSearchButton() {
         Browser.getDriver().findElement(By.xpath(SEARCH_BUTTON_LOCATOR)).click();
-        return new CarsSearchResultsScreen();
+        return new CarsSearchResultsPage();
     }
 
     public CarsSearchScreen unSetAgeCheckbox() {
