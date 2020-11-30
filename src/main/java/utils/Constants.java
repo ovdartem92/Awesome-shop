@@ -1,7 +1,9 @@
 package utils;
 
+/**
+ * The class contains project constants.
+ */
 public final class Constants {
-    public static final String DOLLAR_SIGN = "$";
     public static final String EURO_SIGN = "€";
     public static final String ENGLISH_LANGUAGE = "en-US";
     public static final String MOSCOW_SHEREMETYEVO_SVO = "Moscow Sheremetyevo (SVO)";
@@ -16,5 +18,13 @@ public final class Constants {
     public static final String LAST_NAME = "Smith";
     public static final String ECONOMY_CLASS_CAR = "Economy";
     public static final String FOUR_DOOR_TYPE_CAR = "4 door";
+    public static final String RIGA = "Riga (RIX)";
+    public static final String KIEV = "Kyiv (KBP)";
+    public static final String DAY = "16";
 
+    /**
+     * The private constructor is needed because we don't create any instance of this class.
+     */
+    private Constants() {
+    }
 }

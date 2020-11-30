@@ -2,18 +2,31 @@ package service;
 
 import pages.net.skyscanner.elements.HeaderScreen;
 
+/**
+ * The service class helps to set language and currency value.
+ */
 public class CultureService {
-    private HeaderScreen header = new HeaderScreen();
+    private final HeaderScreen headerScreen = new HeaderScreen();
 
+    /**
+     * This method performs actions for change language.
+     *
+     * @param language is necessary for pick language value
+     */
     public void changeLanguage(String language) {
-        header.clickRegionalSettingsButton()
+        headerScreen.clickRegionalSettingsButton()
                 .clickLanguageSelectButton()
                 .clickLanguageOptionButton(language)
                 .clickCultureSaveButton();
     }
 
+    /**
+     * This method performs actions for change currency.
+     *
+     * @param currency is necessary for pick currency value
+     */
     public void changeCurrency(String currency) {
-        header.clickRegionalSettingsButton()
+        headerScreen.clickRegionalSettingsButton()
                 .clickCurrencySelectButton()
                 .clickCurrencyOptionButton(currency)
                 .clickCultureSaveButton();
