@@ -7,8 +7,8 @@ import service.UserBuilder;
 
 public class LogInWithValidDataTest extends BaseTest {
 
-    @BeforeClass(description = "Click on login button and logIn with valid data")
-    public void navigateToLoginScreen() {
+    @BeforeClass(description = "click on login button and logIn with valid data")
+    public void navigateToLoginScreenAndLogin() {
         new HeaderScreen().clickLoginButton();
         new AccountService().logIn(UserBuilder.getUserWithValidPassword());
     }

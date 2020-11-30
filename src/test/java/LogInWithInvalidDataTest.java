@@ -8,8 +8,8 @@ import service.UserBuilder;
 
 public class LogInWithInvalidDataTest extends BaseTest {
 
-    @BeforeClass(description = "Click on login button and logIn with invalid data")
-    public void navigateToLoginScreen() {
+    @BeforeClass(description = "click on login button and logIn with invalid data")
+    public void navigateToLoginScreenAndLogIn() {
         new HeaderScreen().clickLoginButton();
         new AccountService().logIn(UserBuilder.getUserWithInvalidPassword());
     }
