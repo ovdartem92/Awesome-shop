@@ -11,7 +11,6 @@ public class LogInScreen extends AbstractScreen {
     private static final String WRONG_EMAIL_MESSAGE_LOCATOR = "//span[contains(@class,'banner-alert__icon')]";
     private static final String EMAIL_FIELD_LOCATOR = "//input[@id='email']";
     private static final String PASSWORD_FIELD_LOCATOR = "//input[@id='password']";
-    private static final String CLOSE_MODAL_LOCATOR = "//button[@data-testid='modal-close-button']";
 
     public LogInScreen typeTextToEmailField(String txt) {
         typeTextToElement(EMAIL_FIELD_LOCATOR, txt);
@@ -35,11 +34,6 @@ public class LogInScreen extends AbstractScreen {
 
     public LogInScreen clickLogInButton() {
         clickOnElement(LOG_IN_BUTTON_LOCATOR);
-        return this;
-    }
-
-    public LogInScreen clickCloseModalButton() {
-        clickOnElement(CLOSE_MODAL_LOCATOR);
         return this;
     }
 
