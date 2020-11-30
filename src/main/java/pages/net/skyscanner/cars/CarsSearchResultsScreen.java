@@ -25,7 +25,7 @@ public class CarsSearchResultsScreen extends AbstractScreen {
     }
 
     public boolean isAgeAlertVisible() {
-        return WaitManager.isElementVisible(String.format(BANNER_ALERT_MESSAGE, AGE_MESSAGE), Browser.SHORT_TIMEOUT_SECONDS);
+        return WaitManager.isElementVisible(String.format(BANNER_ALERT_MESSAGE, AGE_MESSAGE), Browser.DEFAULT_TIMEOUT_SECONDS);
     }
 
     public List<String> getListCarClassTypeFromGroupPanel() {
