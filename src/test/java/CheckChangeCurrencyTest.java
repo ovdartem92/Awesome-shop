@@ -11,9 +11,10 @@ public class CheckChangeCurrencyTest extends BaseTest {
     private final String CURRENCY_VALUE = Constants.EURO_SIGN;
     private List<String> currencySigns;
 
-    @BeforeClass(description = "change currency, click flight search button, get text from prices")
+    @BeforeClass(description = "change currency, input city from click flight search button, get text from prices")
     public void setUpForCheckCurrency() {
         new CultureService().changeCurrency(CURRENCY_VALUE);
+        new FlightsSearchScreen().inputCityFrom(Constants.KIEV);
         currencySigns = new FlightsSearchScreen().clickFlightsSearchButton().getTextFromPrices();
     }
 
