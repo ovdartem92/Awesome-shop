@@ -8,6 +8,7 @@ public final class Constants {
     public static final String ENGLISH_LANGUAGE = "en-US";
     public static final String MOSCOW_SHEREMETYEVO_SVO = "Moscow Sheremetyevo (SVO)";
     public static final String MOSCOW_VNUKOVO_VKO = "Moscow Vnukovo (VKO)";
+    public static final String MINSK = "Minsk";
     public static final String MOSCOW = "Moscow";
     public static final String TURIN = "Turin";
     public static final String AGE_21 = "21";

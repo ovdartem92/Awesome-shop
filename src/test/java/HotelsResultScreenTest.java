@@ -14,7 +14,7 @@ public class HotelsResultScreenTest extends BaseTest {
     @BeforeClass(description = "click on hotel button, set up locations and click search")
     public void navigateToHotelsSearchPage() {
         hotelsResultScreen = new HeaderScreen().clickHotelButton()
-                .typeTextToDestinationInput(Constants.TURIN)
+                .typeTextToDestinationInput(Constants.MINSK)
                 .clickSearchHotelsButton();
     }
 

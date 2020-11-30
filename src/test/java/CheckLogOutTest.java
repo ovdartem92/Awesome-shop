@@ -9,7 +9,7 @@ import service.UserBuilder;
 public class CheckLogOutTest extends BaseTest {
     private final HeaderScreen HEADER_SCREEN = new HeaderScreen();
 
-    @BeforeClass(description = "Click on login button, LogIn and LogOut")
+    @BeforeClass(description = "Click on login button, logIn and logOut")
     public void navigateToLoginScreenAndLogInAndLogOut() {
         AccountService accountService = new AccountService();
         User user = UserBuilder.getUserWithValidPassword();
@@ -19,7 +19,7 @@ public class CheckLogOutTest extends BaseTest {
         accountService.logOut();
     }
 
-    @Test(description = "check the ability to make a logOut")
+    @Test(description = "Check the ability to make a logOut")
     public void logOutTest() {
         Assert.assertTrue(HEADER_SCREEN.isLoginButtonDisplayed(), "The login button is not active. You are not logOut.");
     }
