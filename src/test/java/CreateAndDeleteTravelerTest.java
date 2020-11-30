@@ -9,7 +9,7 @@ import service.UserBuilder;
 
 public class CreateAndDeleteTravelerTest extends BaseTest {
 
-    @BeforeClass(description = "Click on login button, LogIn, create traveler and delete")
+    @BeforeClass(description = "Click on login button, logIn, create traveler and delete")
     public void preparingForTheTest() {
         AccountService accountService = new AccountService();
         HeaderScreen headerScreen = new HeaderScreen();

@@ -9,7 +9,7 @@ import service.UserBuilder;
 public class CheckLogOutTest extends BaseTest {
     private final HeaderScreen HEADER_SCREEN = new HeaderScreen();
 
-    @BeforeClass(description = "Click on login button, LogIn and LogOut")
+    @BeforeClass(description = "Click on login button, logIn and logOut")
     public void navigateToLoginScreenAndLogInAndLogOut() {
         AccountService accountService = new AccountService();
         User user = UserBuilder.getUserWithValidPassword();
