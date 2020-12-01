@@ -16,14 +16,11 @@ public class CommonPageElement implements PageElement {
     private static final int POLLING_EVERY_MILLISECONDS = 500;
     private static final String LOCATOR_NOT_NULL_MESSAGE = "Locator cannot be null.";
     private static final Logger logger = LogManager.getRootLogger();
-    protected By locator;
+    protected final By locator;
 
     public CommonPageElement(By locator) {
         Objects.requireNonNull(locator, LOCATOR_NOT_NULL_MESSAGE);
         this.locator = locator;
-    }
-
-    public CommonPageElement() {
     }
 
     private static Wait<? extends WebDriver> getCustomWaitConfig() {
@@ -31,7 +28,7 @@ public class CommonPageElement implements PageElement {
     }
 
     private static Wait<? extends WebDriver> getCustomWaitConfig(int timeoutInSeconds) {
-        return new FluentWait<WebDriver>(Browser.getDriver())
+        return new FluentWait<>(Browser.getDriver())
                 .withTimeout(Duration.ofSeconds(timeoutInSeconds))
                 .pollingEvery(Duration.ofMillis(POLLING_EVERY_MILLISECONDS))
                 .ignoring(NoSuchElementException.class, StaleElementReferenceException.class);
