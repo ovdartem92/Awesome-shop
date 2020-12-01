@@ -11,7 +11,7 @@ import org.openqa.selenium.support.ui.Wait;
 import java.time.Duration;
 import java.util.Objects;
 
-public class CommonPageElement implements PageElement {
+public class CommonPageElement {
     private static final int TIMEOUT_IN_SECONDS = 10;
     private static final int POLLING_EVERY_MILLISECONDS = 500;
     private static final String LOCATOR_NOT_NULL_MESSAGE = "Locator cannot be null.";
@@ -115,7 +115,6 @@ public class CommonPageElement implements PageElement {
         }
     }
 
-    // Another methods.
     public static void waitForPageElementToBeClickable(By locator) {
         Objects.requireNonNull(locator, LOCATOR_NOT_NULL_MESSAGE);
         waitForPageElementToBeClickable(locator, TIMEOUT_IN_SECONDS);
@@ -129,53 +128,5 @@ public class CommonPageElement implements PageElement {
             e.printStackTrace();
             logger.warn(e.getMessage());
         }
-    }
-
-    @Override
-    public boolean isSelected() {
-        waitForPageElementVisibilityLocated(locator);
-        return Browser.getDriver().findElement(locator).isSelected();
-    }
-
-    @Override
-    public boolean isDisplay() {
-        waitForPageElementVisibilityLocated(locator);
-        return Browser.getDriver().findElement(locator).isDisplayed();
-    }
-
-    @Override
-    public boolean isEnabled() {
-        waitForPageElementVisibilityLocated(locator);
-        return Browser.getDriver().findElement(locator).isEnabled();
-    }
-
-    @Override
-    public String getText() {
-        waitForPageElementVisibilityLocated(locator);
-        return Browser.getDriver().findElement(locator).getText();
-    }
-
-    @Override
-    public void click() {
-        waitForPageElementToBeClickable(locator);
-        Browser.getDriver().findElement(locator).click();
-    }
-
-    @Override
-    public void sendKeys(CharSequence... keysToSend) {
-        waitForPageElementVisibilityLocated(locator);
-        Browser.getDriver().findElement(locator).sendKeys(keysToSend);
-    }
-
-    @Override
-    public void clear() {
-        waitForPageElementVisibilityLocated(locator);
-        Browser.getDriver().findElement(locator).clear();
-    }
-
-    @Override
-    public WebElement getWrappedElement() {
-        waitForPageElementVisibilityLocated(locator);
-        return Browser.getDriver().findElement(locator);
     }
 }
