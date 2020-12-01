@@ -1,12 +1,12 @@
 package net.skyscanner.ta.framework.browser;
 
 import net.skyscanner.ta.utils.DirectoryGenerator;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.Select;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,9 +59,15 @@ public enum Browser {
     }
 
     public File takeScreenshot() {
-        screenshotDirectoryPath = DirectoryGenerator.create("screenshots");
+        screenshotDirectoryPath = DirectoryGenerator.create("screenshots_2");
         String screenshotPath = String.format("%s/%s.png", screenshotDirectoryPath, System.nanoTime());
-        return new File(screenshotPath);
+        File screenshotFile = ((TakesScreenshot) getWrappedDriver()).getScreenshotAs(OutputType.FILE);
+        try {
+            FileUtils.copyFile(screenshotFile, new File(screenshotPath));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return screenshotFile;
     }
 
     public void openNewTab() {
@@ -70,7 +76,11 @@ public enum Browser {
     }
 
     public void switchTab(String windowHandle) {
-        //in progress
+        for (String tab : getWrappedDriver().getWindowHandles()) {
+            if (tab.equals(windowHandle)) {
+                getWrappedDriver().switchTo().window(tab);
+            }
+        }
     }
 
     public void switchTabByIndex(int index) {
@@ -79,6 +89,10 @@ public enum Browser {
     }
 
     public void closeTab(String windowHandle) {
-        //in progress
+        for (String tab : getWrappedDriver().getWindowHandles()) {
+            if (tab.equals(windowHandle)) {
+                Browser.INSTANCE.getWrappedDriver().close();
+            }
+        }
     }
 }
