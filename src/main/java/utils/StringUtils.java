@@ -75,4 +75,8 @@ public class StringUtils {
         }
         return stringBuilder.toString();
     }
+
+    public static String getMatherString(String text, int index, String regEx) {
+        return text.split(regEx)[index];
+    }
 }

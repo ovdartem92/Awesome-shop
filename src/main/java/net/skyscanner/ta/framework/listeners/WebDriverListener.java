@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.events.AbstractWebDriverEventListener;
+import utils.StringUtils;
 
 public class WebDriverListener extends AbstractWebDriverEventListener {
     private final Logger logger = LogManager.getRootLogger();
@@ -17,7 +18,7 @@ public class WebDriverListener extends AbstractWebDriverEventListener {
 
     @Override
     public void beforeNavigateTo(String url, WebDriver driver) {
-        logger.info("Before navigate to {}", url);
+        logger.info("Before navigate to |{}|", url);
     }
 
     @Override
@@ -27,11 +28,13 @@ public class WebDriverListener extends AbstractWebDriverEventListener {
 
     @Override
     public void beforeClickOn(WebElement element, WebDriver driver) {
-        logger.info("Before click on element {}", element);
+        String locator = StringUtils.getMatherString(element.toString(),2,":\s");
+        logger.info("Before click on element |{}|", locator);
     }
 
     @Override
     public void beforeChangeValueOf(WebElement element, WebDriver driver, CharSequence[] keysToSend) {
-        logger.info("Before change value of element {} to {}", element, keysToSend);
+        String locator = StringUtils.getMatherString(element.toString(),2,":\s");
+        logger.info("Before change value of element |{}| to |{}|", locator, keysToSend);
     }
 }
