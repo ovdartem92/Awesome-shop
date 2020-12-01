@@ -1,23 +1,23 @@
 package net.skyscanner.ta.framework.browser;
 
+import net.skyscanner.ta.utils.DirectoryGenerator;
 import org.openqa.selenium.By;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public enum Browser {
     INSTANCE;
 
+    private String screenshotDirectoryPath;
+
     public void stop() {
-        for (String handle : getWrappedDriver().getWindowHandles()) {
-            getWrappedDriver().switchTo().window(handle);
-            getWrappedDriver().close();
-        }
-        getWrappedDriver().close();
+        getWrappedDriver().quit();
     }
 
     public void navigate(String url) {
@@ -33,8 +33,7 @@ public enum Browser {
     }
 
     public boolean isSelected(By locator) {
-        //implement later
-        return true;
+        return getWrappedDriver().findElement(locator).isSelected();
     }
 
     public void select(By locator, String option) {
@@ -60,16 +59,26 @@ public enum Browser {
     }
 
     public File takeScreenshot() {
-        //extended realization will be later
-        File scrShot = ((TakesScreenshot) getWrappedDriver()).getScreenshotAs(OutputType.FILE);
-        return scrShot;
+        screenshotDirectoryPath = DirectoryGenerator.create("screenshots");
+        String screenshotPath = String.format("%s/%s.png", screenshotDirectoryPath, System.nanoTime());
+        return new File(screenshotPath);
+    }
+
+    public void openNewTab() {
+        JavascriptExecutor executor = (JavascriptExecutor) getWrappedDriver();
+        executor.executeScript("window.open();");
     }
 
     public void switchTab(String windowHandle) {
-        //implement later
+        //in progress
+    }
+
+    public void switchTabByIndex(int index) {
+        List<String> allTabs = new ArrayList<>(getWrappedDriver().getWindowHandles());
+        getWrappedDriver().switchTo().window(allTabs.get(index));
     }
 
     public void closeTab(String windowHandle) {
-        //implement later
+        //in progress
     }
 }
