@@ -19,7 +19,6 @@ public class CommonPageElement {
     protected final By locator;
 
     public CommonPageElement(By locator) {
-        Objects.requireNonNull(locator, LOCATOR_NOT_NULL_MESSAGE);
         this.locator = locator;
     }
 
