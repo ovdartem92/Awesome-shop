@@ -1,4 +1,4 @@
-package net.skyscanner.ta.product.bo;
+package net.skyscanner.ta.product.bo.hotel;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
