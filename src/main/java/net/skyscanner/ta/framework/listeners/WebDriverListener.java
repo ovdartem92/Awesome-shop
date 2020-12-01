@@ -28,13 +28,13 @@ public class WebDriverListener extends AbstractWebDriverEventListener {
 
     @Override
     public void beforeClickOn(WebElement element, WebDriver driver) {
-        String locator = StringUtils.getMatherString(element.toString(),2,":\s");
+        String locator = StringUtils.getMatherString(element.toString(), 2, ":\s");
         logger.info("Before click on element |{}|", locator);
     }
 
     @Override
     public void beforeChangeValueOf(WebElement element, WebDriver driver, CharSequence[] keysToSend) {
-        String locator = StringUtils.getMatherString(element.toString(),2,":\s");
+        String locator = StringUtils.getMatherString(element.toString(), 2, ":\s");
         logger.info("Before change value of element |{}| to |{}|", locator, keysToSend);
     }
 }
