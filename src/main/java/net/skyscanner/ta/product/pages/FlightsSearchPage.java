@@ -3,7 +3,7 @@ package net.skyscanner.ta.product.pages;
 import pages.AbstractScreen;
 import pages.net.skyscanner.elements.CalendarScreen;
 
-public class FlightsSearchScreen extends AbstractScreen {
+public class FlightsSearchPage extends AbstractScreen {
     private static final String FLIGHTS_SEARCH_BUTTON_LOCATOR = "//button[@type='submit']";
     private static final String CITY_FROM_INPUT_LOCATOR = "//input[@id='fsc-origin-search']";
     private static final String CITY_TO_INPUT_LOCATOR = "//input[@id='fsc-destination-search']";
@@ -19,12 +19,12 @@ public class FlightsSearchScreen extends AbstractScreen {
         return new FlightsResultsPage();
     }
 
-    public FlightsSearchScreen inputCityFrom(String city) {
+    public FlightsSearchPage inputCityFrom(String city) {
         typeTextToElement(CITY_FROM_INPUT_LOCATOR, city);
         return this;
     }
 
-    public FlightsSearchScreen inputCityTo(String city) {
+    public FlightsSearchPage inputCityTo(String city) {
         clickOnElement(CITY_TO_INPUT_LOCATOR);
         typeTextToElement(CITY_TO_INPUT_LOCATOR, city);
         return this;
