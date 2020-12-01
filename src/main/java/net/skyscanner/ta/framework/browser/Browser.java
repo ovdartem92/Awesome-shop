@@ -1,41 +1,51 @@
 package net.skyscanner.ta.framework.browser;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.Select;
 
 import java.io.File;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
+
 
 public enum Browser {
     INSTANCE;
 
-    public static void stop() {
+    public void stop() {
+        for (String handle : getWrappedDriver().getWindowHandles()) {
+            getWrappedDriver().switchTo().window(handle);
+            getWrappedDriver().close();
+        }
         WebDriverFactory.closeWebDriver();
     }
 
-    public static WebDriver getWrappedDriver() {
-        return WebDriverFactory.getWebDriver(BrowserType.valueOf(System.getProperty("browser")));
+    public void openPage(String url) {
+        getWrappedDriver().get(url);
     }
 
-    public static void click(By locator) {
-        getWrappedDriver().findElement(locator).click();
+    public WebDriver getWrappedDriver() {
+        return WebDriverFactory.getWebDriver(BrowserType.valueOf(System.getProperty("browser").toUpperCase()));
     }
 
-    public static boolean isSelected(By locator) {
+    public void click(By locator) {
+        getElement(locator).click();
+    }
+
+    public boolean isSelected(By locator) {
         //implement later
         return true;
     }
 
-    public static void select(By locator, String option) {
-        //implement later
+    public void select(By locator, String option) {
+        click(locator);
+        Select select = new Select(getElement(locator));
+        select.selectByVisibleText(option);
     }
 
-    public static void sendKeys(By locator, CharSequence... keysToSend) {
-        getWrappedDriver().findElement(locator).sendKeys(keysToSend);
+    public void sendKeys(By locator, CharSequence... keysToSend) {
+        getElement(locator).sendKeys(keysToSend);
     }
 
     public void clear(By locator) {
-        getWrappedDriver().findElement(locator).clear();
+        getElement(locator).clear();
     }
 
     public void reloadPage() {
@@ -43,43 +53,26 @@ public enum Browser {
     }
 
     public String getText(By locator) {
-        //implement later
-        return "";
+        return getElement(locator).getText();
     }
 
     public File takeScreenshot() {
-        File scrShot = ((TakesScreenshot) getWrappedDriver()).getScreenshotAs(OutputType.FILE);
-//        try {
-//            Path path = Paths.get(".", "target", "screenshots", String.format("%s %s.png", getWrappedDriver().getTitle(), getCurrentTimeAsString()));
-//            FileUtils.copyFile(scrShot, new File(path.toString()));
-//        } catch (IOException e) {
-//            System.out.println(String.format("Failed to save screenshots %s", e.getLocalizedMessage()));
-//        }
-        return scrShot;
+        return ((TakesScreenshot) getWrappedDriver()).getScreenshotAs(OutputType.FILE);
     }
 
-    //temp solution while class StringUtils isn't created
-
-    public static String getCurrentTimeAsString() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd_HH-mm-ss");
-        return ZonedDateTime.now().format(formatter);
-    }
-
-    public static WebElement getElement(By locator) {
+    public WebElement getElement(By locator) {
         return getWrappedDriver().findElement(locator);
     }
 
-    public static void openNewTab() {
-        sendKeys(By.tagName("Body"), Keys.CONTROL + "t");
-//        or
-//        ((JavascriptExecutor) getWrappedDriver()).executeScript("window.open();");
+    public void openNewTab() {
+        ((JavascriptExecutor) getWrappedDriver()).executeScript("window.open();");
     }
 
-    public static void switchTab(String windowHandle) {
+    public void switchTab(String windowHandle) {
         //implement later
     }
 
-    public static void closeTab(String windowHandle) {
+    public void closeTab(String windowHandle) {
         //implement later
     }
 }

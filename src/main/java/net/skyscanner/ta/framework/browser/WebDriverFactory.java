@@ -44,10 +44,6 @@ public final class WebDriverFactory {
     }
 
     public static void closeWebDriver() {
-        for (String handle : webDriverThreadLocal.get().getWindowHandles()) {
-            webDriverThreadLocal.get().switchTo().window(handle);
-            webDriverThreadLocal.get().close();
-        }
         webDriverThreadLocal.remove();
     }
 }
