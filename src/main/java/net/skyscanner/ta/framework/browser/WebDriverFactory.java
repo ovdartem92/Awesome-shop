@@ -4,46 +4,39 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-
-import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
 
 import static java.lang.String.format;
 
 public final class WebDriverFactory {
 
-    private static final ThreadLocal<WebDriver> webDriverThreadLocal = new ThreadLocal<>();
+    private static WebDriver webDriver;
 
     private WebDriverFactory() {
         throw new AssertionError(format("Creation of instance of %s is prohibited.", WebDriverFactory.class));
     }
 
     public static WebDriver getWebDriver(BrowserType type) {
-        if (webDriverThreadLocal.get() == null) {
+        if (webDriver == null) {
             switch (type) {
                 case FIREFOX: {
                     WebDriverManager.firefoxdriver().setup();
-                    webDriverThreadLocal.set(new FirefoxDriver());
+                    webDriver = new FirefoxDriver();
                     break;
                 }
                 case CHROME: {
                     WebDriverManager.chromedriver().setup();
-                    webDriverThreadLocal.set(new ChromeDriver());
+                    webDriver = new ChromeDriver();
                     break;
                 }
                 default:
                     throw new IllegalArgumentException(format("Unexpected browser type: %s", type));
             }
         }
-        configureWebDriver(webDriverThreadLocal.get());
-        return webDriverThreadLocal.get();
-    }
-
-    private static void configureWebDriver(WebDriver driver) {
-        driver.manage().timeouts().pageLoadTimeout(25, TimeUnit.SECONDS);
-        driver.manage().window().maximize();
-    }
-
-    public static void closeWebDriver() {
-        webDriverThreadLocal.remove();
+        EventFiringWebDriver eventFiringWebDriver = new EventFiringWebDriver(webDriver);
+        //will use after add WebDriverListener
+        // eventFiringWebDriver.register(new WebDriverListener());
+        eventFiringWebDriver.manage().window().maximize();
+        return eventFiringWebDriver;
     }
 }

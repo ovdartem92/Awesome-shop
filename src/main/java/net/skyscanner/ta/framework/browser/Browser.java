@@ -1,6 +1,9 @@
 package net.skyscanner.ta.framework.browser;
 
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 
 import java.io.File;
@@ -14,10 +17,10 @@ public enum Browser {
             getWrappedDriver().switchTo().window(handle);
             getWrappedDriver().close();
         }
-        WebDriverFactory.closeWebDriver();
+        getWrappedDriver().close();
     }
 
-    public void openPage(String url) {
+    public void navigate(String url) {
         getWrappedDriver().get(url);
     }
 
@@ -26,7 +29,7 @@ public enum Browser {
     }
 
     public void click(By locator) {
-        getElement(locator).click();
+        getWrappedDriver().findElement(locator).click();
     }
 
     public boolean isSelected(By locator) {
@@ -36,16 +39,16 @@ public enum Browser {
 
     public void select(By locator, String option) {
         click(locator);
-        Select select = new Select(getElement(locator));
+        Select select = new Select(getWrappedDriver().findElement(locator));
         select.selectByVisibleText(option);
     }
 
     public void sendKeys(By locator, CharSequence... keysToSend) {
-        getElement(locator).sendKeys(keysToSend);
+        getWrappedDriver().findElement(locator).sendKeys(keysToSend);
     }
 
     public void clear(By locator) {
-        getElement(locator).clear();
+        getWrappedDriver().findElement(locator).clear();
     }
 
     public void reloadPage() {
@@ -53,19 +56,13 @@ public enum Browser {
     }
 
     public String getText(By locator) {
-        return getElement(locator).getText();
+        return getWrappedDriver().findElement(locator).getText();
     }
 
     public File takeScreenshot() {
-        return ((TakesScreenshot) getWrappedDriver()).getScreenshotAs(OutputType.FILE);
-    }
-
-    public WebElement getElement(By locator) {
-        return getWrappedDriver().findElement(locator);
-    }
-
-    public void openNewTab() {
-        ((JavascriptExecutor) getWrappedDriver()).executeScript("window.open();");
+        //extended realization will be later
+        File scrShot = ((TakesScreenshot) getWrappedDriver()).getScreenshotAs(OutputType.FILE);
+        return scrShot;
     }
 
     public void switchTab(String windowHandle) {
