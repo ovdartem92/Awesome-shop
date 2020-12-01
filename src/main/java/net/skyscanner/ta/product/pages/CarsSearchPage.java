@@ -6,7 +6,7 @@ import org.openqa.selenium.support.ui.Select;
 import pages.AbstractScreen;
 import service.WaitManager;
 
-public class CarsSearchScreen extends AbstractScreen {
+public class CarsSearchPage extends AbstractScreen {
     private static final String PICK_UP = "pick-up";
     private static final String DROP_OFF = "drop-off";
     private static final String WHITE = "white";
@@ -22,19 +22,19 @@ public class CarsSearchScreen extends AbstractScreen {
         return getTextOnElement(CAR_HEADLINE_LOCATOR);
     }
 
-    public CarsSearchScreen setUpPickUpLocation(String pickUpLocation) {
+    public CarsSearchPage setUpPickUpLocation(String pickUpLocation) {
         clickOnElement(String.format(LOCATION_LOCATOR, PICK_UP));
         typeTextToElement(String.format(LOCATION_LOCATOR, PICK_UP), pickUpLocation);
         clickOnElement(FIRST_ELEMENT_OF_DROPDOWN_LOCATOR);
         return this;
     }
 
-    public CarsSearchScreen choiceReturnCarToADifferentLocation() {
+    public CarsSearchPage choiceReturnCarToADifferentLocation() {
         clickOnElement(RETURN_CAR_TO_A_DIFFERENT_LOCATION_CHECKBOX_LOCATOR);
         return this;
     }
 
-    public CarsSearchScreen setUpDropOffLocation(String dropOffLocationLocation) {
+    public CarsSearchPage setUpDropOffLocation(String dropOffLocationLocation) {
         clickOnElement(String.format(LOCATION_LOCATOR, DROP_OFF));
         typeTextToElement(String.format(LOCATION_LOCATOR, DROP_OFF), dropOffLocationLocation);
         clickOnElement(FIRST_ELEMENT_OF_DROPDOWN_LOCATOR);
@@ -46,7 +46,7 @@ public class CarsSearchScreen extends AbstractScreen {
         return new CarsSearchResultsPage();
     }
 
-    public CarsSearchScreen unSetAgeCheckbox() {
+    public CarsSearchPage unSetAgeCheckbox() {
         if (!WaitManager.isElementVisible(String.format(AGE_CHECKBOX_LOCATOR, CHECKMARK), Browser.SHORT_TIMEOUT_SECONDS)) {
             clickOnElement(String.format(AGE_CHECKBOX_LOCATOR, WHITE));
         }
@@ -54,7 +54,7 @@ public class CarsSearchScreen extends AbstractScreen {
         return this;
     }
 
-    public CarsSearchScreen setDriverAge(String age) {
+    public CarsSearchPage setDriverAge(String age) {
         clickOnElement(DRIVER_AGE_SELECT_LOCATOR);
         Select ages = new Select(getElement(DRIVER_AGE_SELECT_LOCATOR));
         ages.selectByVisibleText(age);
