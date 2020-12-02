@@ -16,17 +16,13 @@ public class CommonPageElement {
     private static final int POLLING_EVERY_MILLISECONDS = 500;
     private static final String LOCATOR_NOT_NULL_MESSAGE = "Locator cannot be null.";
     private static final Logger logger = LogManager.getRootLogger();
-    protected final By locator;
+    protected By locator;
 
-    public CommonPageElement(By locator) {
-        this.locator = locator;
+    private static Wait<? extends WebDriver> getCustomWait() {
+        return getCustomWait(TIMEOUT_IN_SECONDS);
     }
 
-    private static Wait<? extends WebDriver> getCustomWaitConfig() {
-        return getCustomWaitConfig(TIMEOUT_IN_SECONDS);
-    }
-
-    private static Wait<? extends WebDriver> getCustomWaitConfig(int timeoutInSeconds) {
+    private static Wait<? extends WebDriver> getCustomWait(int timeoutInSeconds) {
         return new FluentWait<>(Browser.getDriver())
                 .withTimeout(Duration.ofSeconds(timeoutInSeconds))
                 .pollingEvery(Duration.ofMillis(POLLING_EVERY_MILLISECONDS))
@@ -41,7 +37,7 @@ public class CommonPageElement {
     public String getAttribute(By locator, String attribute) {
         String attributeValue = "";
         try {
-            Wait<? extends WebDriver> wait = getCustomWaitConfig();
+            Wait<? extends WebDriver> wait = getCustomWait();
             wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).getAttribute(attribute);
         } catch (TimeoutException e) {
             e.printStackTrace();
@@ -57,7 +53,7 @@ public class CommonPageElement {
 
     public static void waitForPageElementVisibilityLocated(By locator, int timeoutInSeconds) {
         try {
-            Wait<? extends WebDriver> wait = getCustomWaitConfig(timeoutInSeconds);
+            Wait<? extends WebDriver> wait = getCustomWait(timeoutInSeconds);
             wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
         } catch (TimeoutException e) {
             e.printStackTrace();
@@ -72,7 +68,7 @@ public class CommonPageElement {
 
     public static void waitForPageElementInvisibilityLocated(By locator, int timeoutInSeconds) {
         try {
-            Wait<? extends WebDriver> wait = getCustomWaitConfig(timeoutInSeconds);
+            Wait<? extends WebDriver> wait = getCustomWait(timeoutInSeconds);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
         } catch (TimeoutException e) {
             e.printStackTrace();
@@ -91,7 +87,7 @@ public class CommonPageElement {
 
     public static void waitForPageElementPresenceLocated(By locator, int timeoutInSeconds) {
         try {
-            Wait<? extends WebDriver> wait = getCustomWaitConfig(timeoutInSeconds);
+            Wait<? extends WebDriver> wait = getCustomWait(timeoutInSeconds);
             wait.until(ExpectedConditions.presenceOfElementLocated(locator));
         } catch (TimeoutException e) {
             e.printStackTrace();
@@ -106,7 +102,7 @@ public class CommonPageElement {
 
     public static void waitForAllElementsPresenceLocated(By locator, int timeoutInSeconds) {
         try {
-            Wait<? extends WebDriver> wait = getCustomWaitConfig(timeoutInSeconds);
+            Wait<? extends WebDriver> wait = getCustomWait(timeoutInSeconds);
             wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(locator));
         } catch (TimeoutException e) {
             e.printStackTrace();
@@ -121,7 +117,7 @@ public class CommonPageElement {
 
     public static void waitForPageElementToBeClickable(By locator, int timeoutInSeconds) {
         try {
-            Wait<? extends WebDriver> wait = getCustomWaitConfig(timeoutInSeconds);
+            Wait<? extends WebDriver> wait = getCustomWait(timeoutInSeconds);
             wait.until(ExpectedConditions.elementToBeClickable(locator));
         } catch (TimeoutException e) {
             e.printStackTrace();
