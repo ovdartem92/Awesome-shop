@@ -14,7 +14,8 @@ import java.util.Objects;
 public enum Browser implements WrapsDriver {
     INSTANCE();
 
-    private final WebDriver wrappedDriver = WebDriverFactory.getWebDriver(BrowserType.valueOf(System.getProperty("browser").toUpperCase()));
+    private BrowserType browserType = BrowserType.valueOf(System.getProperty("browser").toUpperCase());
+    private final WebDriver wrappedDriver = WebDriverFactory.getWebDriver(browserType);
 
     Browser() {
     }
@@ -62,7 +63,7 @@ public enum Browser implements WrapsDriver {
     }
 
     public void reloadPage() {
-        wrappedDriver.get(wrappedDriver.getCurrentUrl());
+        navigate(wrappedDriver.getCurrentUrl());
     }
 
     public String getText(By locator) {
