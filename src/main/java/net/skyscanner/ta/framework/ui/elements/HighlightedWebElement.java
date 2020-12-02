@@ -12,10 +12,11 @@ public class HighlightedWebElement extends AbstractWebElementDecorator {
     private String border;
 
     public HighlightedWebElement(WebElement element, WebDriver driver) {
-        this.driver = driver;
-        this.element = element;
-        this.backgroundColor = "yellow";
-        this.border = "3px solid red";
+        this(element, driver, "yellow", "3px solid red");
+    }
+
+    public HighlightedWebElement(WebElement element, WebDriver driver, final String backgroundColor) {
+        this(element, driver, backgroundColor, "3px solid red");
     }
 
     public HighlightedWebElement(WebElement element, WebDriver driver, final String backgroundColor, final String border) {
