@@ -22,7 +22,6 @@ public class CommonPageElement {
 
     private static Wait<? extends WebDriver> getCustomWait(int timeoutInSeconds) {
         assert timeoutInSeconds < 0 : TIMEOUT_NOT_LESS_THAN_ZERO_MESSAGE;
-//        return new FluentWait<>(Browser.getInstance().getWrappedDriver())
         return new FluentWait<>(Browser.getDriver())
                 .withTimeout(Duration.ofSeconds(timeoutInSeconds))
                 .pollingEvery(Duration.ofMillis(POLLING_EVERY_MILLISECONDS))
@@ -38,7 +37,6 @@ public class CommonPageElement {
         assert locator != null : LOCATOR_NOT_NULL_MESSAGE;
         assert attribute != null : ATTRIBUTE_NOT_NULL_MESSAGE;
         waitForPageElementPresenceLocated(locator);
-//        WebDriver wrappedDriver = Browser.getInstance().getWrappedDriver();
         WebDriver wrappedDriver = Browser.getDriver();
         return wrappedDriver.findElement(locator).getAttribute(attribute).trim();
     }
