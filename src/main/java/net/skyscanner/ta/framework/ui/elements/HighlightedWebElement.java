@@ -9,15 +9,25 @@ public class HighlightedWebElement extends AbstractWebElementDecorator {
     private final WebElement element;
     private final int TIMEOUT_IN_MILLISECONDS = 1000;
     private final String EXECUTOR_STRING = "arguments[0].setAttribute('style', 'background: arguments[1]; border: arguments[2];');";
-    private String color;
+    private final String BACKGROUND;
+    private final String BORDER;
 
     public HighlightedWebElement(WebElement element, WebDriver driver) {
         this.driver = driver;
         this.element = element;
+        this.BACKGROUND = "yellow";
+        this.BORDER = "3px solid red";
+    }
+
+    public HighlightedWebElement(WebElement element, WebDriver driver, final String background, final String border) {
+        this.driver = driver;
+        this.element = element;
+        this.BACKGROUND = background;
+        this.BORDER = border;
     }
 
     private void highlight() {
-        highlight("yellow", "3px solid red");
+        highlight(BACKGROUND, BORDER);
     }
 
     private void highlight(final String background, final String border) {
