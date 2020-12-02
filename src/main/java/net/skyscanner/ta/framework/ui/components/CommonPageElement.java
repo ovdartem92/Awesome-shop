@@ -20,10 +20,6 @@ public class CommonPageElement {
     private static final Logger logger = LogManager.getRootLogger();
     protected By locator;
 
-    private static Wait<? extends WebDriver> getCustomWait() {
-        return getCustomWait(TIMEOUT_IN_SECONDS);
-    }
-
     private static Wait<? extends WebDriver> getCustomWait(int timeoutInSeconds) {
         assert timeoutInSeconds < 0 : TIMEOUT_NOT_LESS_THAN_ZERO_MESSAGE;
 //        return new FluentWait<>(Browser.getInstance().getWrappedDriver())
