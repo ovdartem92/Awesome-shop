@@ -1,6 +1,4 @@
 import driver.Browser;
-import net.skyscanner.ta.framework.listeners.SuiteListener;
-import net.skyscanner.ta.framework.listeners.TestListener;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
@@ -8,12 +6,13 @@ import pages.net.skyscanner.elements.CaptchaScreen;
 import service.CultureService;
 import service.TestDataReader;
 import utils.Constants;
+import utils.TestListener;
 
 /**
  * The class is a super class for all tests classes.
  * The class provides the configuration of browser and preconditions for each tests.
  */
-@Listeners({TestListener.class, SuiteListener.class})
+@Listeners({TestListener.class})
 public abstract class BaseTest {
     /**
      * The variable is SkyScanner home page URL. It get value from stage.properties file.
