@@ -3,153 +3,122 @@ package net.skyscanner.ta.framework.ui.elements;
 import org.openqa.selenium.*;
 
 import java.util.List;
+import java.util.Objects;
+
+import static java.lang.String.format;
 
 public class HighlightedWebElement extends AbstractWebElementDecorator {
     private final WebDriver driver;
     private final WebElement element;
-    private final String EXECUTOR_STRING = "arguments[0].setAttribute('style', 'background: arguments[1]; border: arguments[2];');";
     private final String backgroundColor;
-    private final String border;
 
-    public HighlightedWebElement(WebElement element, WebDriver driver) {
-        this(element, driver, "yellow", "3px solid red");
-    }
-
-    public HighlightedWebElement(WebElement element, WebDriver driver, final String backgroundColor) {
-        this(element, driver, backgroundColor, "3px solid red");
-    }
-
-    public HighlightedWebElement(WebElement element, WebDriver driver, final String backgroundColor, final String border) {
+    public HighlightedWebElement(WebDriver driver, WebElement element) {
+        Objects.requireNonNull(driver, "Driver cannot be null.");
+        Objects.requireNonNull(driver, "Element cannot be null.");
         this.driver = driver;
         this.element = element;
-        this.backgroundColor = backgroundColor;
-        this.border = border;
+        backgroundColor = "#FFBB00";
     }
 
-    private void highlight() {
-        highlight(backgroundColor, border);
-    }
-
-    private void highlight(final String backgroundColor, final String border) {
-        for (int i = 0; i < 5; i++) {
-            WrapsDriver wrappedElement = (WrapsDriver) driver;
-            JavascriptExecutor js = (JavascriptExecutor) wrappedElement.getWrappedDriver();
-            js.executeScript(EXECUTOR_STRING, element, backgroundColor, border);
-            js.executeScript(EXECUTOR_STRING, element, "", "");
-        }
-    }
-
-    // Alternative version using timeout.
-    private void highlight(final String backgroundColor, final String border, int timeout) {
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript(EXECUTOR_STRING, element, backgroundColor, border);
-        try {
-            Thread.sleep(timeout);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        js.executeScript(EXECUTOR_STRING, element, "", "");
+    private void highlight(final String color) {
+        assert color != null : "Color cannot be null";
+        JavascriptExecutor executor = (JavascriptExecutor) driver;
+        executor.executeScript(format("arguments[0].style.backgroundColor = '%s'", color), element);
     }
 
     @Override
     public void click() {
-        this.highlight();
+        highlight(backgroundColor);
         element.click();
     }
 
     @Override
     public void submit() {
-        this.highlight();
+        highlight(backgroundColor);
         element.submit();
     }
 
     @Override
     public void sendKeys(CharSequence... charSequences) {
-        this.highlight();
+        Objects.requireNonNull(charSequences, "Char sequences cannot be null.");
+        highlight(backgroundColor);
         element.sendKeys(charSequences);
     }
 
     @Override
     public void clear() {
-        this.highlight();
+        highlight(backgroundColor);
         element.clear();
     }
 
     @Override
     public String getTagName() {
-        this.highlight();
         return element.getTagName();
     }
 
     @Override
-    public String getAttribute(String s) {
-        this.highlight();
-        return element.getAttribute(s);
+    public String getAttribute(String attribute) {
+        Objects.requireNonNull(attribute, "Attribute cannot be null.");
+        highlight(backgroundColor);
+        return element.getAttribute(attribute);
     }
 
     @Override
     public boolean isSelected() {
-        this.highlight();
         return element.isSelected();
     }
 
     @Override
     public boolean isEnabled() {
-        this.highlight();
         return element.isEnabled();
     }
 
     @Override
     public String getText() {
-        this.highlight();
+        highlight(backgroundColor);
         return element.getText();
     }
 
     @Override
-    public List<WebElement> findElements(By by) {
-        this.highlight();
-        return element.findElements(by);
+    public List<WebElement> findElements(By locator) {
+        Objects.requireNonNull(locator, "Locator cannot be null.");
+        return element.findElements(locator);
     }
 
     @Override
-    public WebElement findElement(By by) {
-        this.highlight();
-        return element.findElement(by);
+    public WebElement findElement(By locator) {
+        Objects.requireNonNull(locator, "Locator cannot be null.");
+        return element.findElement(locator);
     }
 
     @Override
     public boolean isDisplayed() {
-        this.highlight();
         return element.isDisplayed();
     }
 
     @Override
     public Point getLocation() {
-        this.highlight();
         return element.getLocation();
     }
 
     @Override
     public Dimension getSize() {
-        this.highlight();
         return element.getSize();
     }
 
     @Override
     public Rectangle getRect() {
-        this.highlight();
         return element.getRect();
     }
 
     @Override
-    public String getCssValue(String s) {
-        this.highlight();
-        return element.getCssValue(s);
+    public String getCssValue(String value) {
+        Objects.requireNonNull(value, "Value cannot be null.");
+        return element.getAttribute(value);
     }
 
     @Override
     public <X> X getScreenshotAs(OutputType<X> outputType) throws WebDriverException {
-        this.highlight();
         return element.getScreenshotAs(outputType);
     }
 }
