@@ -6,139 +6,140 @@ import java.util.List;
 
 public class HighlightedWebElement extends AbstractWebElementDecorator {
     private final WebDriver driver;
-    private WebElement element;
+    private final WebElement element;
     private final int TIMEOUT_IN_MILLISECONDS = 1000;
-    private String executorString = "arguments[0].setAttribute('style', 'background: arguments[1]; border: arguments[2];');";
+    private final String EXECUTOR_STRING = "arguments[0].setAttribute('style', 'background: arguments[1]; border: arguments[2];');";
+    private String color;
 
     public HighlightedWebElement(WebElement element, WebDriver driver) {
         this.driver = driver;
         this.element = element;
     }
 
-    private void highlight(final String background) {
-        highlight(background, "3px solid red");
+    private void highlight() {
+        highlight("yellow", "3px solid red");
     }
 
     private void highlight(final String background, final String border) {
         for (int i = 0; i < 5; i++) {
             WrapsDriver wrappedElement = (WrapsDriver) element;
             JavascriptExecutor js = (JavascriptExecutor) wrappedElement.getWrappedDriver();
-            js.executeScript(executorString ,element, background, border);
-            js.executeScript(executorString, element, "", "");
+            js.executeScript(EXECUTOR_STRING, element, background, border);
+            js.executeScript(EXECUTOR_STRING, element, "", "");
         }
     }
 
     // Alternative version using timeout.
     private void highlight(final String background, final String border, int timeout) {
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript(executorString ,element, background, border);
+        js.executeScript(EXECUTOR_STRING, element, background, border);
         try {
             Thread.sleep(timeout);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        js.executeScript(executorString, element, "", "");
+        js.executeScript(EXECUTOR_STRING, element, "", "");
     }
 
     @Override
     public void click() {
-        this.highlight("yellow");
+        this.highlight();
         element.click();
     }
 
     @Override
     public void submit() {
-        this.highlight("yellow");
+        this.highlight();
         element.submit();
     }
 
     @Override
     public void sendKeys(CharSequence... charSequences) {
-        this.highlight("yellow");
+        this.highlight();
         element.sendKeys(charSequences);
     }
 
     @Override
     public void clear() {
-        this.highlight("yellow");
+        this.highlight();
         element.clear();
     }
 
     @Override
     public String getTagName() {
-        this.highlight("yellow");
+        this.highlight();
         return element.getTagName();
     }
 
     @Override
     public String getAttribute(String s) {
-        this.highlight("yellow");
+        this.highlight();
         return element.getAttribute(s);
     }
 
     @Override
     public boolean isSelected() {
-        this.highlight("yellow");
+        this.highlight();
         return element.isSelected();
     }
 
     @Override
     public boolean isEnabled() {
-        this.highlight("yellow");
+        this.highlight();
         return element.isEnabled();
     }
 
     @Override
     public String getText() {
-        this.highlight("yellow");
+        this.highlight();
         return element.getText();
     }
 
     @Override
     public List<WebElement> findElements(By by) {
-        this.highlight("yellow");
+        this.highlight();
         return element.findElements(by);
     }
 
     @Override
     public WebElement findElement(By by) {
-        this.highlight("yellow");
+        this.highlight();
         return element.findElement(by);
     }
 
     @Override
     public boolean isDisplayed() {
-        this.highlight("yellow");
+        this.highlight();
         return element.isDisplayed();
     }
 
     @Override
     public Point getLocation() {
-        this.highlight("yellow");
+        this.highlight();
         return element.getLocation();
     }
 
     @Override
     public Dimension getSize() {
-        this.highlight("yellow");
+        this.highlight();
         return element.getSize();
     }
 
     @Override
     public Rectangle getRect() {
-        this.highlight("yellow");
+        this.highlight();
         return element.getRect();
     }
 
     @Override
     public String getCssValue(String s) {
-        this.highlight("yellow");
+        this.highlight();
         return element.getCssValue(s);
     }
 
     @Override
     public <X> X getScreenshotAs(OutputType<X> outputType) throws WebDriverException {
-        this.highlight("yellow");
+        this.highlight();
         return element.getScreenshotAs(outputType);
     }
 }
