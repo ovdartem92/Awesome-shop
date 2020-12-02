@@ -22,23 +22,26 @@ public class TestListener implements ITestListener {
 
     @Override
     public void onTestStart(ITestResult iTestResult) {
-        logger.info("Test {} STARTED.\n", iTestResult.getName());
+        Objects.requireNonNull(iTestResult, "iTestResult cannot be null.");
+        logger.info("Test method {} STARTED.\n", iTestResult.getMethod().getDescription());
     }
 
     @Override
     public void onTestSuccess(ITestResult iTestResult) {
-        logger.info("Test {} PASSED.\n", iTestResult.getName());
+        Objects.requireNonNull(iTestResult, "iTestResult cannot be null.");
+        logger.info("Test method {} SUCCESSFULLY PASSED.\n", iTestResult.getMethod().getDescription());
     }
 
     @Override
     public void onTestFailure(ITestResult iTestResult) {
-        logger.info("Test {} FAILED.\n", iTestResult.getName());
+        logger.info("Test method {} FAILED.\n", iTestResult.getMethod().getDescription());
         saveScreenshot(iTestResult);
     }
 
     @Override
     public void onTestSkipped(ITestResult iTestResult) {
-        logger.info("Test {} SKIPPED.\n", iTestResult.getName());
+        Objects.requireNonNull(iTestResult, "iTestResult cannot be null.");
+        logger.info("Test method {} SKIPPED.\n", iTestResult.getMethod().getDescription());
         saveScreenshot(iTestResult);
     }
 
@@ -49,12 +52,14 @@ public class TestListener implements ITestListener {
 
     @Override
     public void onStart(ITestContext iTestContext) {
-        // unused at the moment
+        Objects.requireNonNull(iTestContext, "iTestContext cannot be null.");
+        logger.info("Test {} STARTED.\n", iTestContext.getName());
     }
 
     @Override
     public void onFinish(ITestContext iTestContext) {
-        // unused at the moment
+        Objects.requireNonNull(iTestContext, "iTestContext cannot be null.");
+        logger.info("Test {} FINISHED.\n", iTestContext.getName());
     }
 
     public void saveScreenshot(ITestResult iTestResult) {
