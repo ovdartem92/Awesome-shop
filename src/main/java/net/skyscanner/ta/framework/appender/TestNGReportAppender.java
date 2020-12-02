@@ -18,6 +18,6 @@ public class TestNGReportAppender extends AppenderSkeleton {
 
     @Override
     public boolean requiresLayout() {
-        return false;
+        return true;
     }
 }
