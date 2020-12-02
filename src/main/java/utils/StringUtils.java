@@ -5,6 +5,7 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -31,6 +32,12 @@ public class StringUtils {
     public static String getCurrentTimeAsString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd_HH-mm-ss");
         return ZonedDateTime.now().format(formatter);
+    }
+
+    public static String convertTime(long milliseconds) {
+        long minutes = (milliseconds / 1000) / 60;
+        long seconds = (milliseconds / 1000) % 60;
+        return String.format("%s min %s sec", minutes, seconds);
     }
 
     /**
@@ -74,9 +81,5 @@ public class StringUtils {
             stringBuilder.append(randomChar);
         }
         return stringBuilder.toString();
-    }
-
-    public static String getMatherString(String text, int index, String regEx) {
-        return text.split(regEx)[index];
     }
 }
