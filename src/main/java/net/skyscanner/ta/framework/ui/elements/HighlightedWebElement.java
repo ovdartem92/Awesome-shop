@@ -8,8 +8,8 @@ public class HighlightedWebElement extends AbstractWebElementDecorator {
     private final WebDriver driver;
     private final WebElement element;
     private final String EXECUTOR_STRING = "arguments[0].setAttribute('style', 'background: arguments[1]; border: arguments[2];');";
-    private String backgroundColor;
-    private String border;
+    private final String backgroundColor;
+    private final String border;
 
     public HighlightedWebElement(WebElement element, WebDriver driver) {
         this(element, driver, "yellow", "3px solid red");
@@ -23,22 +23,6 @@ public class HighlightedWebElement extends AbstractWebElementDecorator {
         this.driver = driver;
         this.element = element;
         this.backgroundColor = backgroundColor;
-        this.border = border;
-    }
-
-    public String getBackgroundColor() {
-        return backgroundColor;
-    }
-
-    public void setBackgroundColor(String backgroundColor) {
-        this.backgroundColor = backgroundColor;
-    }
-
-    public String getBorder() {
-        return border;
-    }
-
-    public void setBorder(String border) {
         this.border = border;
     }
 
