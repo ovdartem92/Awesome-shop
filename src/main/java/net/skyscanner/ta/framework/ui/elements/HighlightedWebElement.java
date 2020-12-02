@@ -7,42 +7,57 @@ import java.util.List;
 public class HighlightedWebElement extends AbstractWebElementDecorator {
     private final WebDriver driver;
     private final WebElement element;
-    private final int TIMEOUT_IN_MILLISECONDS = 1000;
     private final String EXECUTOR_STRING = "arguments[0].setAttribute('style', 'background: arguments[1]; border: arguments[2];');";
-    private final String BACKGROUND;
-    private final String BORDER;
+    private String backgroundColor;
+    private String border;
 
     public HighlightedWebElement(WebElement element, WebDriver driver) {
         this.driver = driver;
         this.element = element;
-        this.BACKGROUND = "yellow";
-        this.BORDER = "3px solid red";
+        this.backgroundColor = "yellow";
+        this.border = "3px solid red";
     }
 
-    public HighlightedWebElement(WebElement element, WebDriver driver, final String background, final String border) {
+    public HighlightedWebElement(WebElement element, WebDriver driver, final String backgroundColor, final String border) {
         this.driver = driver;
         this.element = element;
-        this.BACKGROUND = background;
-        this.BORDER = border;
+        this.backgroundColor = backgroundColor;
+        this.border = border;
+    }
+
+    public String getBackgroundColor() {
+        return backgroundColor;
+    }
+
+    public void setBackgroundColor(String backgroundColor) {
+        this.backgroundColor = backgroundColor;
+    }
+
+    public String getBorder() {
+        return border;
+    }
+
+    public void setBorder(String border) {
+        this.border = border;
     }
 
     private void highlight() {
-        highlight(BACKGROUND, BORDER);
+        highlight(backgroundColor, border);
     }
 
-    private void highlight(final String background, final String border) {
+    private void highlight(final String backgroundColor, final String border) {
         for (int i = 0; i < 5; i++) {
             WrapsDriver wrappedElement = (WrapsDriver) element;
             JavascriptExecutor js = (JavascriptExecutor) wrappedElement.getWrappedDriver();
-            js.executeScript(EXECUTOR_STRING, element, background, border);
+            js.executeScript(EXECUTOR_STRING, element, backgroundColor, border);
             js.executeScript(EXECUTOR_STRING, element, "", "");
         }
     }
 
     // Alternative version using timeout.
-    private void highlight(final String background, final String border, int timeout) {
+    private void highlight(final String backgroundColor, final String border, int timeout) {
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript(EXECUTOR_STRING, element, background, border);
+        js.executeScript(EXECUTOR_STRING, element, backgroundColor, border);
         try {
             Thread.sleep(timeout);
         } catch (InterruptedException e) {
