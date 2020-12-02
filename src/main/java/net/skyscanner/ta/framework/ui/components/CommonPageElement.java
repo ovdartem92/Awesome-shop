@@ -14,14 +14,11 @@ import java.util.Objects;
 public class CommonPageElement {
     private static final int TIMEOUT_IN_SECONDS = 10;
     private static final int POLLING_EVERY_MILLISECONDS = 500;
-    private static final String LOCATOR_NOT_NULL_MESSAGE = "Locator cannot be null.";
-    private static final String ATTRIBUTE_NOT_NULL_MESSAGE = "Locator cannot be null.";
-    private static final String TIMEOUT_NOT_LESS_THAN_ZERO_MESSAGE = "Timeout in seconds cannot be less than 0.";
     private static final Logger logger = LogManager.getRootLogger();
     protected By locator;
 
     private static Wait<? extends WebDriver> getCustomWait(int timeoutInSeconds) {
-        assert timeoutInSeconds < 0 : TIMEOUT_NOT_LESS_THAN_ZERO_MESSAGE;
+        assert timeoutInSeconds < 0 : "Timeout in seconds cannot be less than 0.";
         return new FluentWait<>(Browser.getDriver())
                 .withTimeout(Duration.ofSeconds(timeoutInSeconds))
                 .pollingEvery(Duration.ofMillis(POLLING_EVERY_MILLISECONDS))
@@ -29,41 +26,41 @@ public class CommonPageElement {
     }
 
     public String getAttribute(String attribute) {
-        Objects.requireNonNull(attribute, ATTRIBUTE_NOT_NULL_MESSAGE);
+        Objects.requireNonNull(attribute, "Locator cannot be null.");
         return getAttribute(locator, attribute);
     }
 
     private String getAttribute(By locator, String attribute) {
-        assert locator != null : LOCATOR_NOT_NULL_MESSAGE;
-        assert attribute != null : ATTRIBUTE_NOT_NULL_MESSAGE;
+        assert locator != null : "Locator cannot be null.";
+        assert attribute != null : "Locator cannot be null.";
         waitForPageElementPresenceLocated(locator);
         WebDriver wrappedDriver = Browser.getDriver();
         return wrappedDriver.findElement(locator).getAttribute(attribute).trim();
     }
 
     public static void waitForPageElementVisibilityLocated(By locator) {
-        Objects.requireNonNull(locator, LOCATOR_NOT_NULL_MESSAGE);
+        Objects.requireNonNull(locator, "Locator cannot be null.");
         waitForPageElementVisibilityLocated(locator, TIMEOUT_IN_SECONDS);
     }
 
     public static void waitForPageElementVisibilityLocated(By locator, int timeoutInSeconds) {
-        Objects.requireNonNull(locator, LOCATOR_NOT_NULL_MESSAGE);
+        Objects.requireNonNull(locator, "Locator cannot be null.");
         if (timeoutInSeconds < 0) {
-            throw new IllegalArgumentException(TIMEOUT_NOT_LESS_THAN_ZERO_MESSAGE);
+            throw new IllegalArgumentException("Timeout in seconds cannot be less than 0.");
         }
         Wait<? extends WebDriver> wait = getCustomWait(timeoutInSeconds);
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
     public static void waitForPageElementInvisibilityLocated(By locator) {
-        Objects.requireNonNull(locator, LOCATOR_NOT_NULL_MESSAGE);
+        Objects.requireNonNull(locator, "Locator cannot be null.");
         waitForPageElementInvisibilityLocated(locator, TIMEOUT_IN_SECONDS);
     }
 
     public static void waitForPageElementInvisibilityLocated(By locator, int timeoutInSeconds) {
-        Objects.requireNonNull(locator, LOCATOR_NOT_NULL_MESSAGE);
+        Objects.requireNonNull(locator, "Locator cannot be null.");
         if (timeoutInSeconds < 0) {
-            throw new IllegalArgumentException(TIMEOUT_NOT_LESS_THAN_ZERO_MESSAGE);
+            throw new IllegalArgumentException("Timeout in seconds cannot be less than 0.");
         }
         try {
             Wait<? extends WebDriver> wait = getCustomWait(timeoutInSeconds);
@@ -76,20 +73,20 @@ public class CommonPageElement {
 
     public void waitForPageElementInvisibility(int timeoutInSeconds) {
         if (timeoutInSeconds < 0) {
-            throw new IllegalArgumentException(TIMEOUT_NOT_LESS_THAN_ZERO_MESSAGE);
+            throw new IllegalArgumentException("Timeout in seconds cannot be less than 0.");
         }
         waitForPageElementInvisibilityLocated(this.locator, timeoutInSeconds);
     }
 
     public static void waitForPageElementPresenceLocated(By locator) {
-        Objects.requireNonNull(locator, LOCATOR_NOT_NULL_MESSAGE);
+        Objects.requireNonNull(locator, "Locator cannot be null.");
         waitForPageElementPresenceLocated(locator, TIMEOUT_IN_SECONDS);
     }
 
     public static void waitForPageElementPresenceLocated(By locator, int timeoutInSeconds) {
-        Objects.requireNonNull(locator, LOCATOR_NOT_NULL_MESSAGE);
+        Objects.requireNonNull(locator, "Locator cannot be null.");
         if (timeoutInSeconds < 0) {
-            throw new IllegalArgumentException(TIMEOUT_NOT_LESS_THAN_ZERO_MESSAGE);
+            throw new IllegalArgumentException("Timeout in seconds cannot be less than 0.");
         }
         try {
             Wait<? extends WebDriver> wait = getCustomWait(timeoutInSeconds);
@@ -101,14 +98,14 @@ public class CommonPageElement {
     }
 
     public static void waitForAllElementsPresenceLocated(By locator) {
-        Objects.requireNonNull(locator, LOCATOR_NOT_NULL_MESSAGE);
+        Objects.requireNonNull(locator, "Locator cannot be null.");
         waitForAllElementsPresenceLocated(locator, TIMEOUT_IN_SECONDS);
     }
 
     public static void waitForAllElementsPresenceLocated(By locator, int timeoutInSeconds) {
-        Objects.requireNonNull(locator, LOCATOR_NOT_NULL_MESSAGE);
+        Objects.requireNonNull(locator, "Locator cannot be null.");
         if (timeoutInSeconds < 0) {
-            throw new IllegalArgumentException(TIMEOUT_NOT_LESS_THAN_ZERO_MESSAGE);
+            throw new IllegalArgumentException("Timeout in seconds cannot be less than 0.");
         }
         try {
             Wait<? extends WebDriver> wait = getCustomWait(timeoutInSeconds);
@@ -120,14 +117,14 @@ public class CommonPageElement {
     }
 
     public static void waitForPageElementToBeClickable(By locator) {
-        Objects.requireNonNull(locator, LOCATOR_NOT_NULL_MESSAGE);
+        Objects.requireNonNull(locator, "Locator cannot be null.");
         waitForPageElementToBeClickable(locator, TIMEOUT_IN_SECONDS);
     }
 
     public static void waitForPageElementToBeClickable(By locator, int timeoutInSeconds) {
-        Objects.requireNonNull(locator, LOCATOR_NOT_NULL_MESSAGE);
+        Objects.requireNonNull(locator, "Locator cannot be null.");
         if (timeoutInSeconds < 0) {
-            throw new IllegalArgumentException(TIMEOUT_NOT_LESS_THAN_ZERO_MESSAGE);
+            throw new IllegalArgumentException("Timeout in seconds cannot be less than 0.");
         }
         try {
             Wait<? extends WebDriver> wait = getCustomWait(timeoutInSeconds);
