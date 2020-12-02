@@ -47,7 +47,7 @@ public class HighlightedWebElement extends AbstractWebElementDecorator {
 
     private void highlight(final String backgroundColor, final String border) {
         for (int i = 0; i < 5; i++) {
-            WrapsDriver wrappedElement = (WrapsDriver) element;
+            WrapsDriver wrappedElement = (WrapsDriver) driver;
             JavascriptExecutor js = (JavascriptExecutor) wrappedElement.getWrappedDriver();
             js.executeScript(EXECUTOR_STRING, element, backgroundColor, border);
             js.executeScript(EXECUTOR_STRING, element, "", "");
