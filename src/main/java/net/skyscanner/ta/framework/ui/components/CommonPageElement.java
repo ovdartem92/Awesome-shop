@@ -18,7 +18,7 @@ public class CommonPageElement {
     protected By locator;
 
     private static Wait<? extends WebDriver> getCustomWait(int timeoutInSeconds) {
-        assert timeoutInSeconds < 0 : "Timeout in seconds cannot be less than 0.";
+        assert (timeoutInSeconds < 0) : "Timeout in seconds cannot be less than 0.";
         return new FluentWait<>(Browser.getInstance().getWrappedDriver())
                 .withTimeout(Duration.ofSeconds(timeoutInSeconds))
                 .pollingEvery(Duration.ofMillis(POLLING_EVERY_MILLISECONDS))
