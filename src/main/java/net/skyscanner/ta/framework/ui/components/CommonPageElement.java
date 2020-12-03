@@ -1,9 +1,10 @@
 package net.skyscanner.ta.framework.ui.components;
 
 import net.skyscanner.ta.framework.browser.Browser;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
@@ -14,7 +15,6 @@ import java.util.Objects;
 public class CommonPageElement {
     private static final int TIMEOUT_IN_SECONDS = 10;
     private static final int POLLING_EVERY_MILLISECONDS = 500;
-    private static final Logger logger = LogManager.getRootLogger();
     protected By locator;
 
     private static Wait<? extends WebDriver> getCustomWait(int timeoutInSeconds) {
