@@ -6,7 +6,7 @@ import org.apache.logging.log4j.Logger;
 import java.io.File;
 import java.util.Objects;
 
-import static java.lang.String.format;
+import static com.google.inject.internal.Errors.format;
 
 public final class DirectoryGenerator {
 
