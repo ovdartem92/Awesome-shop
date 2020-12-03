@@ -1,6 +1,7 @@
-package net.skyscanner.ta.product.services;
+package net.skyscanner.ta.product.bo.user;
 
 import model.User;
+import net.skyscanner.ta.product.services.TestDataReader;
 import utils.Constants;
 import utils.StringUtils;
 
