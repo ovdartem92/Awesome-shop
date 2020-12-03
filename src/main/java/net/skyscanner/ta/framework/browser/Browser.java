@@ -16,7 +16,7 @@ public final class Browser implements WrapsDriver {
 
     private static Browser instance;
     private final WebDriver wrappedDriver;
-    private final String screenshotDirectoryPath;
+    private String screenshotDirectoryPath;
 
     private Browser() {
         BrowserType browserType = BrowserType.valueOf(System.getProperty("browser").toUpperCase());
@@ -113,13 +113,13 @@ public final class Browser implements WrapsDriver {
     }
 
     public File takeScreenshot() {
+        screenshotDirectoryPath = DirectoryGenerator.create("screenshots");
         String screenshotPath = String.format("%s/%s.png", screenshotDirectoryPath, System.nanoTime());
         File screenshotFile = ((TakesScreenshot) wrappedDriver).getScreenshotAs(OutputType.FILE);
         try {
-            byte[] screenshotBytes = ((TakesScreenshot) wrappedDriver).getScreenshotAs(OutputType.BYTES);
-            FileUtils.writeByteArrayToFile(screenshotFile, screenshotBytes);
+            FileUtils.copyFile(screenshotFile, new File(screenshotPath));
             //change to log later
-            System.out.println("Screenshot has been saved as file: " + screenshotFile.getAbsolutePath());
+            System.out.println("Screenshot has been saved as file: " + screenshotPath);
         } catch (IOException e) {
             e.printStackTrace();
         }
