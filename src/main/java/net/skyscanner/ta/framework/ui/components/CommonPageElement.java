@@ -1,6 +1,6 @@
 package net.skyscanner.ta.framework.ui.components;
 
-import driver.Browser;
+import net.skyscanner.ta.framework.browser.Browser;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
@@ -19,7 +19,7 @@ public class CommonPageElement {
 
     private static Wait<? extends WebDriver> getCustomWait(int timeoutInSeconds) {
         assert timeoutInSeconds < 0 : "Timeout in seconds cannot be less than 0.";
-        return new FluentWait<>(Browser.getDriver())
+        return new FluentWait<>(Browser.getInstance().getWrappedDriver())
                 .withTimeout(Duration.ofSeconds(timeoutInSeconds))
                 .pollingEvery(Duration.ofMillis(POLLING_EVERY_MILLISECONDS))
                 .ignoring(NoSuchElementException.class, StaleElementReferenceException.class);
@@ -34,7 +34,7 @@ public class CommonPageElement {
         assert locator != null : "Locator cannot be null.";
         assert attribute != null : "Attribute cannot be null.";
         waitForPageElementPresenceLocated(locator);
-        WebDriver wrappedDriver = Browser.getDriver();
+        WebDriver wrappedDriver = Browser.getInstance().getWrappedDriver();
         return wrappedDriver.findElement(locator).getAttribute(attribute).trim();
     }
 
