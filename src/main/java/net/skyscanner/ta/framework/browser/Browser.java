@@ -10,22 +10,49 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
-public enum Browser implements WrapsDriver {
-    INSTANCE();
+public final class Browser implements WrapsDriver {
 
-    private BrowserType browserType = BrowserType.valueOf(System.getProperty("browser").toUpperCase());
-    private final WebDriver wrappedDriver = WebDriverFactory.getWebDriver(browserType);
+    private static Browser instance;
+    private final WebDriver wrappedDriver;
+    private final String screenshotDirectoryPath;
 
-    Browser() {
+    private Browser() {
+        BrowserType browserType = BrowserType.valueOf(System.getProperty("browser").toUpperCase());
+        screenshotDirectoryPath = DirectoryGenerator.create("screenshots");
+        //change to log later
+        System.out.println("Creating instance of WebDriver for " + browserType);
+        wrappedDriver = WebDriverFactory.getWebDriver(browserType);
+        wrappedDriver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
     }
 
-    public Browser getInstance() {
-        return INSTANCE;
+    public static Browser getInstance() {
+        //change to log later
+        System.out.println("Getting instance of browser");
+        if (instance == null) {
+            instance = new Browser();
+        }
+        return instance;
     }
 
     public void stop() {
-        wrappedDriver.quit();
+        //change to log later
+        System.out.println("Stopping the browser");
+        try {
+            if (instance != null) {
+                wrappedDriver.quit();
+            }
+        } finally {
+            instance = null;
+        }
+    }
+
+    public WebDriver getWrappedDriver() {
+        //change to log later
+        System.out.println("Getting WebDriver");
+        return wrappedDriver;
+
     }
 
     public void navigate(String url) {
@@ -35,65 +62,82 @@ public enum Browser implements WrapsDriver {
 
     public void click(By locator) {
         Objects.requireNonNull(locator, "LOCATOR cannot be null.");
-        wrappedDriver.findElement(locator).click();
+        WebElement webElement = wrappedDriver.findElement(locator);
+        webElement.click();
     }
 
     public boolean isSelected(By locator) {
         Objects.requireNonNull(locator, "LOCATOR cannot be null.");
-        return wrappedDriver.findElement(locator).isSelected();
+        WebElement webElement = wrappedDriver.findElement(locator);
+        return webElement.isSelected();
     }
 
     public void select(By locator, String option) {
         Objects.requireNonNull(locator, "LOCATOR cannot be null.");
         Objects.requireNonNull(option, "OPTION cannot be null.");
         click(locator);
-        Select select = new Select(wrappedDriver.findElement(locator));
-        select.selectByVisibleText(option);
+        Select dropDownList = new Select(wrappedDriver.findElement(locator));
+        dropDownList.selectByVisibleText(option);
+    }
+
+    public String getFirstSelectedOption(By locator) {
+        Objects.requireNonNull(locator, "Locator cannot be null.");
+        Select dropDownList = new Select(wrappedDriver.findElement(locator));
+        String selectedOptionText = dropDownList.getFirstSelectedOption().getText();
+        return selectedOptionText.replaceAll(" ", "").replaceAll("\n", "");
     }
 
     public void sendKeys(By locator, CharSequence... keysToSend) {
         Objects.requireNonNull(locator, "LOCATOR cannot be null.");
         Objects.requireNonNull(keysToSend, "KEYS TO SEND cannot be null.");
-        wrappedDriver.findElement(locator).sendKeys(keysToSend);
+        WebElement webElement = wrappedDriver.findElement(locator);
+        webElement.sendKeys(keysToSend);
     }
 
     public void clear(By locator) {
         Objects.requireNonNull(locator, "LOCATOR cannot be null.");
-        wrappedDriver.findElement(locator).clear();
+        WebElement webElement = wrappedDriver.findElement(locator);
+        webElement.clear();
     }
 
     public void reloadPage() {
-        navigate(wrappedDriver.getCurrentUrl());
+        wrappedDriver.navigate().refresh();
     }
 
     public String getText(By locator) {
         Objects.requireNonNull(locator, "LOCATOR cannot be null.");
-        return wrappedDriver.findElement(locator).getText();
+        //change to log later
+        System.out.println(("Getting the text of WebElement located by " + locator));
+        WebElement webElement = wrappedDriver.findElement(locator);
+        return webElement.getText().trim();
     }
 
     public File takeScreenshot() {
-        String screenshotDirectoryPath = DirectoryGenerator.create("screenshots");
         String screenshotPath = String.format("%s/%s.png", screenshotDirectoryPath, System.nanoTime());
         File screenshotFile = ((TakesScreenshot) wrappedDriver).getScreenshotAs(OutputType.FILE);
         try {
-            FileUtils.copyFile(screenshotFile, new File(screenshotPath));
+            byte[] screenshotBytes = ((TakesScreenshot) wrappedDriver).getScreenshotAs(OutputType.BYTES);
+            FileUtils.writeByteArrayToFile(screenshotFile, screenshotBytes);
+            //change to log later
+            System.out.println("Screenshot has been saved as file: " + screenshotFile.getAbsolutePath());
         } catch (IOException e) {
             e.printStackTrace();
         }
         return screenshotFile;
     }
 
-    public void openNewTab() {
-        ((JavascriptExecutor) wrappedDriver).executeScript("window.open();");
+    public String openNewTab() {
+        ArrayList<String> oldTabs = new ArrayList<>(wrappedDriver.getWindowHandles());
+        JavascriptExecutor executor = (JavascriptExecutor) wrappedDriver;
+        executor.executeScript("window.open('','_blank');");
+        ArrayList<String> newTabs = new ArrayList<>(wrappedDriver.getWindowHandles());
+        newTabs.removeAll(oldTabs);
+        return newTabs.get(0);
     }
 
     public void switchTab(String windowHandle) {
-        Objects.requireNonNull(windowHandle, "WINDOW HANDLE cannot be null.");
-        for (String tab : wrappedDriver.getWindowHandles()) {
-            if (tab.equals(windowHandle)) {
-                wrappedDriver.switchTo().window(tab);
-            }
-        }
+        Objects.requireNonNull(windowHandle, "Window handle cannot be null.");
+        wrappedDriver.switchTo().window(windowHandle);
     }
 
     public void switchTabByIndex(int index) {
@@ -103,17 +147,8 @@ public enum Browser implements WrapsDriver {
     }
 
     public void closeTab(String windowHandle) {
-        Objects.requireNonNull(windowHandle, "WINDOW HANDLE cannot be null.");
-        for (String tab : wrappedDriver.getWindowHandles()) {
-            if (tab.equals(windowHandle)) {
-                wrappedDriver.close();
-            }
-        }
-    }
-
-    @Override
-    public WebDriver getWrappedDriver() {
-        System.out.println("Getting WebDriver");
-        return wrappedDriver;
+        Objects.requireNonNull(windowHandle, "Window handle cannot be null.");
+        switchTab(windowHandle);
+        wrappedDriver.close();
     }
 }
