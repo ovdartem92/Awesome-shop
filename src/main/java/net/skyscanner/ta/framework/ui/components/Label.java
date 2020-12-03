@@ -1,4 +1,24 @@
 package net.skyscanner.ta.framework.ui.components;
 
-public class Label {
+import net.skyscanner.ta.framework.browser.Browser;
+import org.openqa.selenium.By;
+
+import java.util.Objects;
+
+public class Label extends CommonPageElement {
+    public Label(By locator) {
+        Objects.requireNonNull(locator, "Locator can not be null");
+        this.locator = locator;
+    }
+
+    public String getText() {
+        waitForPageElementVisibilityLocated(locator);
+        return Browser.getInstance().getText(locator);
+    }
+
+    @Override
+    public String toString() {
+        String labelName = getText();
+        return String.format("Label \"%s\"", labelName);
+    }
 }
