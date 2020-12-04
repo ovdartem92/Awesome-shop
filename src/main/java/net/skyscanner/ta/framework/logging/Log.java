@@ -6,6 +6,7 @@ import org.apache.log4j.PropertyConfigurator;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Objects;
 
 import static java.lang.String.format;
 
@@ -24,34 +25,44 @@ public final class Log {
     }
 
     public static void addAppender(Appender appender) {
+        Objects.requireNonNull(appender, "Appender cannot be null.");
         LOGGER.addAppender(appender);
     }
 
     public static void removeAppender(Appender appender) {
+        Objects.requireNonNull(appender, "Appender cannot be null.");
         LOGGER.removeAppender(appender);
     }
 
     public static void trace(Object message) {
+        Objects.requireNonNull(message, "Message cannot be null.");
         LOGGER.trace(message);
     }
 
     public static void debug(Object message) {
+        Objects.requireNonNull(message, "Message cannot be null.");
         LOGGER.debug(message);
     }
 
     public static void info(Object message) {
+        Objects.requireNonNull(message, "Message cannot be null.");
         LOGGER.info(message);
     }
 
     public static void warn(Object message) {
+        Objects.requireNonNull(message, "Message cannot be null.");
         LOGGER.warn(message);
     }
 
     public static void error(Object message, Throwable exception) {
+        Objects.requireNonNull(message, "Message cannot be null.");
+        Objects.requireNonNull(exception, "Exception cannot be null.");
         LOGGER.error(message, exception);
     }
 
     public static void fatal(Object message, Throwable exception) {
+        Objects.requireNonNull(message, "Message cannot be null.");
+        Objects.requireNonNull(exception, "Exception cannot be null.");
         LOGGER.fatal(message, exception);
     }
 }
