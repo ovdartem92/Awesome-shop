@@ -17,6 +17,7 @@ public class TextField extends CommonPageElement {
     }
 
     public void type(CharSequence... textForType) {
+        Objects.requireNonNull(textForType, "Text can not be null");
         waitForPageElementPresenceLocated(locator);
         Browser.getInstance().sendKeys(locator, textForType);
     }
