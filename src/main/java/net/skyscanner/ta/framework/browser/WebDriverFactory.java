@@ -1,6 +1,7 @@
 package net.skyscanner.ta.framework.browser;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import net.skyscanner.ta.framework.listeners.WebDriverListener;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -31,8 +32,7 @@ public final class WebDriverFactory {
                 throw new IllegalArgumentException(format("Unexpected browser type: %s", type));
         }
         EventFiringWebDriver eventFiringWebDriver = new EventFiringWebDriver(webDriver);
-        //will use after add WebDriverListener
-        // eventFiringWebDriver.register(new WebDriverListener());
+        eventFiringWebDriver.register(new WebDriverListener());
         eventFiringWebDriver.manage().window().maximize();
         return eventFiringWebDriver;
     }
