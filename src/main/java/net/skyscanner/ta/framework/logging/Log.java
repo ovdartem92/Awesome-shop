@@ -4,8 +4,7 @@ import org.apache.log4j.Appender;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.net.URL;
 import java.util.Objects;
 
 import static java.lang.String.format;
@@ -15,13 +14,17 @@ public final class Log {
     private static final Logger LOGGER = Logger.getLogger("custom-logger");
 
     static {
-        Path pathToLogConfig = Paths.get("src/main/resources/log4j.properties");
-        String absolutePath = pathToLogConfig.toAbsolutePath().toString();
+        URL resource = Log.class.getClassLoader().getResource("log4j.properties");
+        String absolutePath = Objects.requireNonNull(resource).getPath();
         PropertyConfigurator.configureAndWatch(absolutePath);
     }
 
     private Log() {
         throw new AssertionError(format("Creation of instance of %s is prohibited.", Log.class));
+    }
+
+    public static void main(String[] args) {
+        Log.info("asd");
     }
 
     public static void addAppender(Appender appender) {
