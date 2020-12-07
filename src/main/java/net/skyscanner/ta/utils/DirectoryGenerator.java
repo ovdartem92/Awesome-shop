@@ -1,7 +1,6 @@
 package net.skyscanner.ta.utils;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import net.skyscanner.ta.framework.logging.Log;
 
 import java.io.File;
 import java.util.Objects;
@@ -9,8 +8,6 @@ import java.util.Objects;
 import static java.lang.String.format;
 
 public final class DirectoryGenerator {
-
-    private static final Logger LOGGER = LogManager.getLogger();
 
     private DirectoryGenerator() {
         throw new AssertionError(format("Creation of instance of %s is prohibited.", DirectoryGenerator.class));
@@ -21,7 +18,7 @@ public final class DirectoryGenerator {
         File folder = new File(pathToDirectory);
         boolean successFlag = folder.mkdirs();
         if (!successFlag) {
-            LOGGER.warn("Failed to create dirs using the following path: {}", pathToDirectory);
+            Log.warn("Failed to create dirs using the following path: " + pathToDirectory);
         }
         return folder.getAbsolutePath();
     }

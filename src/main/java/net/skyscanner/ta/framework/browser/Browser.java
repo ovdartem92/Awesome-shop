@@ -1,5 +1,7 @@
 package net.skyscanner.ta.framework.browser;
 
+import net.skyscanner.ta.framework.logging.Log;
+import net.skyscanner.ta.framework.ui.elements.HighlightedWebElement;
 import net.skyscanner.ta.utils.DirectoryGenerator;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
@@ -17,19 +19,18 @@ public final class Browser implements WrapsDriver {
     private static Browser instance;
     private final WebDriver wrappedDriver;
     private String screenshotDirectoryPath;
+    private HighlightedWebElement highlightedWebElement;
 
     private Browser() {
         BrowserType browserType = BrowserType.valueOf(System.getProperty("browser").toUpperCase());
         screenshotDirectoryPath = DirectoryGenerator.create("screenshots");
-        //change to log later
-        System.out.println("Creating instance of WebDriver for " + browserType);
+        Log.info("Creating instance of WebDriver for " + browserType);
         wrappedDriver = WebDriverFactory.getWebDriver(browserType);
         wrappedDriver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
     }
 
     public static Browser getInstance() {
-        //change to log later
-        System.out.println("Getting instance of browser");
+        Log.info("Getting instance of browser");
         if (instance == null) {
             instance = new Browser();
         }
@@ -37,8 +38,7 @@ public final class Browser implements WrapsDriver {
     }
 
     public void stop() {
-        //change to log later
-        System.out.println("Stopping the browser");
+        Log.info("Stopping the browser");
         try {
             if (instance != null) {
                 wrappedDriver.quit();
@@ -46,13 +46,6 @@ public final class Browser implements WrapsDriver {
         } finally {
             instance = null;
         }
-    }
-
-    public WebDriver getWrappedDriver() {
-        //change to log later
-        System.out.println("Getting WebDriver");
-        return wrappedDriver;
-
     }
 
     public void navigate(String url) {
@@ -63,7 +56,8 @@ public final class Browser implements WrapsDriver {
     public void click(By locator) {
         Objects.requireNonNull(locator, "LOCATOR cannot be null.");
         WebElement webElement = wrappedDriver.findElement(locator);
-        webElement.click();
+        highlightedWebElement = new HighlightedWebElement(wrappedDriver, webElement);
+        highlightedWebElement.click();
     }
 
     public boolean isSelected(By locator) {
@@ -76,13 +70,17 @@ public final class Browser implements WrapsDriver {
         Objects.requireNonNull(locator, "LOCATOR cannot be null.");
         Objects.requireNonNull(option, "OPTION cannot be null.");
         click(locator);
-        Select dropDownList = new Select(wrappedDriver.findElement(locator));
+        WebElement element = wrappedDriver.findElement(locator);
+        highlightedWebElement = new HighlightedWebElement(wrappedDriver, element);
+        Select dropDownList = new Select(highlightedWebElement);
         dropDownList.selectByVisibleText(option);
     }
 
     public String getFirstSelectedOption(By locator) {
         Objects.requireNonNull(locator, "Locator cannot be null.");
-        Select dropDownList = new Select(wrappedDriver.findElement(locator));
+        WebElement element = wrappedDriver.findElement(locator);
+        highlightedWebElement = new HighlightedWebElement(wrappedDriver, element);
+        Select dropDownList = new Select(highlightedWebElement);
         String selectedOptionText = dropDownList.getFirstSelectedOption().getText();
         return selectedOptionText.replaceAll(" ", "").replaceAll("\n", "");
     }
@@ -91,13 +89,15 @@ public final class Browser implements WrapsDriver {
         Objects.requireNonNull(locator, "LOCATOR cannot be null.");
         Objects.requireNonNull(keysToSend, "KEYS TO SEND cannot be null.");
         WebElement webElement = wrappedDriver.findElement(locator);
-        webElement.sendKeys(keysToSend);
+        highlightedWebElement = new HighlightedWebElement(wrappedDriver, webElement);
+        highlightedWebElement.sendKeys(keysToSend);
     }
 
     public void clear(By locator) {
         Objects.requireNonNull(locator, "LOCATOR cannot be null.");
         WebElement webElement = wrappedDriver.findElement(locator);
-        webElement.clear();
+        highlightedWebElement = new HighlightedWebElement(wrappedDriver, webElement);
+        highlightedWebElement.clear();
     }
 
     public void reloadPage() {
@@ -106,10 +106,10 @@ public final class Browser implements WrapsDriver {
 
     public String getText(By locator) {
         Objects.requireNonNull(locator, "LOCATOR cannot be null.");
-        //change to log later
-        System.out.println(("Getting the text of WebElement located by " + locator));
+        Log.info("Getting the text of WebElement located by " + locator);
         WebElement webElement = wrappedDriver.findElement(locator);
-        return webElement.getText().trim();
+        highlightedWebElement = new HighlightedWebElement(wrappedDriver, webElement);
+        return highlightedWebElement.getText().trim();
     }
 
     public File takeScreenshot() {
@@ -118,8 +118,7 @@ public final class Browser implements WrapsDriver {
         File screenshotFile = ((TakesScreenshot) wrappedDriver).getScreenshotAs(OutputType.FILE);
         try {
             FileUtils.copyFile(screenshotFile, new File(screenshotPath));
-            //change to log later
-            System.out.println("Screenshot has been saved as file: " + screenshotPath);
+            Log.info("Screenshot has been saved as file: " + screenshotPath);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -150,5 +149,11 @@ public final class Browser implements WrapsDriver {
         Objects.requireNonNull(windowHandle, "Window handle cannot be null.");
         switchTab(windowHandle);
         wrappedDriver.close();
+    }
+
+    @Override
+    public WebDriver getWrappedDriver() {
+        Log.info("Getting WebDriver");
+        return wrappedDriver;
     }
 }
