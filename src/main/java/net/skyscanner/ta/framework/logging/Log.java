@@ -23,10 +23,6 @@ public final class Log {
         throw new AssertionError(format("Creation of instance of %s is prohibited.", Log.class));
     }
 
-    public static void main(String[] args) {
-        Log.info("asd");
-    }
-
     public static void addAppender(Appender appender) {
         Objects.requireNonNull(appender, "Appender cannot be null.");
         LOGGER.addAppender(appender);
