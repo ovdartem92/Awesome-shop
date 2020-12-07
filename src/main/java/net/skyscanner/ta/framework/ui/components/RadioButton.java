@@ -5,7 +5,6 @@ import lombok.Setter;
 import net.skyscanner.ta.framework.browser.Browser;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import utils.StringUtils;
 
 import java.util.Objects;
 
