@@ -1,7 +1,6 @@
 package net.skyscanner.ta.framework.listeners;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import net.skyscanner.ta.framework.logging.Log;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriver;
@@ -9,11 +8,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.events.WebDriverEventListener;
 
 public class WebDriverListener implements WebDriverEventListener {
-    private final Logger logger = LogManager.getRootLogger();
 
     @Override
     public void beforeAlertAccept(WebDriver webDriver) {
-        logger.debug("Before alert acceptance");
+        Log.debug("Before alert acceptance");
     }
 
     @Override
@@ -38,7 +36,7 @@ public class WebDriverListener implements WebDriverEventListener {
 
     @Override
     public void afterNavigateTo(String s, WebDriver webDriver) {
-        logger.debug("WebDriver navigated to {}", s);
+        Log.debug(String.format("WebDriver navigated to %s", s));
     }
 
     @Override
@@ -73,7 +71,7 @@ public class WebDriverListener implements WebDriverEventListener {
 
     @Override
     public void beforeFindBy(By by, WebElement webElement, WebDriver webDriver) {
-        logger.debug("Before finding  web element with locator {}", by);
+        Log.debug(String.format("Before finding  web element with locator %s", by));
     }
 
     @Override
@@ -83,7 +81,7 @@ public class WebDriverListener implements WebDriverEventListener {
 
     @Override
     public void beforeClickOn(WebElement webElement, WebDriver webDriver) {
-        logger.debug("Before click on web element {}", webElement);
+        Log.info(String.format("Before click on web element %s", webElement));
     }
 
     @Override
@@ -99,7 +97,7 @@ public class WebDriverListener implements WebDriverEventListener {
                 sb.append(charSequence);
                 sb.append(" ");
             }
-            logger.debug("Before change of value of {} using {}", webElement, sb);
+            Log.info(String.format("Before change of value of %s using %s", webElement, sb));
         }
     }
 
