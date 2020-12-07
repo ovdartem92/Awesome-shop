@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 import net.skyscanner.ta.framework.browser.Browser;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import utils.StringUtils;
 
 import java.util.Objects;
 
@@ -28,8 +30,8 @@ public class RadioButton extends CommonPageElement {
     }
 
     public String getText() {
-        waitForPageElementVisibilityLocated(locator);
-        return Browser.getInstance().getText(locator);
+        WebElement radioButton = Browser.getInstance().getWrappedDriver().findElement(locator);
+        return radioButton.findElement(By.xpath("./parent::label")).getText();
     }
 
     @Override

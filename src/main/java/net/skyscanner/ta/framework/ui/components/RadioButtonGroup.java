@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-public class RadioButtonGroup extends CommonPageElement {
+public class RadioButtonGroup {
     @Getter
     private Set<RadioButton> radioButtons = new HashSet<>();
 
