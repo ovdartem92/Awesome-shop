@@ -13,10 +13,6 @@ public final class Log {
 
     private static final Logger LOGGER = Logger.getLogger("custom-logger");
 
-    public static void main(String[] args) {
-        Log.info("asd");
-    }
-
     static {
         URL resource = Log.class.getClassLoader().getResource("log4j.properties");
         String absolutePath = Objects.requireNonNull(resource).getPath();
