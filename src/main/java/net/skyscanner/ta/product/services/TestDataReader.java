@@ -5,7 +5,7 @@ import java.util.ResourceBundle;
 /**
  * This class is used to get values from properties files.
  */
-public class TestDataReader {
+public final class TestDataReader {
     private TestDataReader() {
     }
 

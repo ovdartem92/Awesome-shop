@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
 /**
  * This class is required to call custom methods for working with strings.
  */
-public class StringUtils {
+public final class StringUtils {
     private static final String CHAR_LOWER = "abcdefghijklmnopqrstuvwxyz1234567890";
     private static final String CHAR_UPPER = CHAR_LOWER.toUpperCase();
     private static final String DATA_FOR_NEW_STRING = CHAR_LOWER + CHAR_UPPER;
@@ -34,12 +34,6 @@ public class StringUtils {
         return ZonedDateTime.now().format(formatter);
     }
 
-    public static String convertTime(long milliseconds) {
-        long minutes = (milliseconds / 1000) / 60;
-        long seconds = (milliseconds / 1000) % 60;
-        return String.format("%s min %s sec", minutes, seconds);
-    }
-
     /**
      * The method is needed to get a collection of substrings matching the regular expression from the text.
      *
@@ -51,8 +45,9 @@ public class StringUtils {
         List<String> stringList = new ArrayList<>();
         Matcher matcher = Pattern.compile(regEx)
                 .matcher(text);
-        while (matcher.find())
+        while (matcher.find()) {
             stringList.add(matcher.group().trim());
+        }
         return stringList;
     }
 
@@ -74,8 +69,9 @@ public class StringUtils {
      * @return string of random letters
      */
     public static String getRandomString() {
+        int length = 8;
         StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < length; i++) {
             int randomIndex = RANDOM.nextInt(DATA_FOR_NEW_STRING.length());
             char randomChar = DATA_FOR_NEW_STRING.charAt(randomIndex);
             stringBuilder.append(randomChar);

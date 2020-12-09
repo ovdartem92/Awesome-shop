@@ -7,12 +7,14 @@ import utils.StringUtils;
 /**
  * This class is needed to create a user instance.
  */
-public class UserBuilder {
+public final class UserBuilder {
     /**
      * These variables get data from a property file.
      */
-    private static final String EMAIL = TestDataReader.getTestData("testData.email", TestDataReader.getStageData("email"));
-    private static final String PASSWORD = TestDataReader.getTestData("testData.password", TestDataReader.getStageData("password"));
+    private static final String EMAIL = TestDataReader
+            .getTestData("testData.email", TestDataReader.getStageData("email"));
+    private static final String PASSWORD = TestDataReader
+            .getTestData("testData.password", TestDataReader.getStageData("password"));
     /**
      * This variable always get a random string.
      */

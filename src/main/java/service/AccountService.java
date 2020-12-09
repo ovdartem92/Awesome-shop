@@ -2,7 +2,7 @@ package service;
 
 import model.User;
 import pages.net.skyscanner.elements.LogInScreen;
-import pages.net.skyscanner.profile_screen.ProfileScreen;
+import pages.net.skyscanner.profile.ProfileScreen;
 
 /**
  * This is a service class that performs logic during login and logout.

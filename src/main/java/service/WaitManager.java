@@ -13,7 +13,7 @@ import java.util.List;
  * The class performs waiting web elements with different conditions, returns web element or elements after waiting,
  * checks visibility of element, gives customizable configuration for WebDriverWait object.
  */
-public class WaitManager {
+public final class WaitManager {
     private static final long PULLING_EVERY_MILLIS_SECONDS = 300;
     private static Wait<WebDriver> wait;
 
@@ -25,7 +25,8 @@ public class WaitManager {
 
     /**
      * The method performs default FluentWait,
-     * uses default timeout value from Browser class for timeout param and pulling timeout from this class for pulling param.
+     * uses default timeout value from Browser class for timeout param and pulling timeout from this class for pulling
+     * param.
      */
     public static Wait<WebDriver> getDefaultWaitConfig() {
         return getCustomWaitConfig(Browser.DEFAULT_TIMEOUT_SECONDS, PULLING_EVERY_MILLIS_SECONDS);
