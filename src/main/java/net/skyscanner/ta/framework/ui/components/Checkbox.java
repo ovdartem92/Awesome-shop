@@ -13,9 +13,13 @@ public class Checkbox extends CommonPageElement {
 
     public void setSelected(boolean selected) {
         if (selected) {
-            if (!isSelected()) Browser.getInstance().click(locator);
+            if (!isSelected()) {
+                Browser.getInstance().click(locator);
+            }
         } else {
-            if (isSelected()) Browser.getInstance().click(locator);
+            if (isSelected()) {
+                Browser.getInstance().click(locator);
+            }
         }
     }
 
