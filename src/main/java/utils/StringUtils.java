@@ -17,6 +17,8 @@ public final class StringUtils {
     private static final String DATA_FOR_NEW_STRING = CHAR_LOWER + CHAR_UPPER;
     private static final SecureRandom RANDOM = new SecureRandom();
     private static final int LENGTH = 8;
+    private static final int THOUSAND = 1000;
+    private static final int MINUTE = 60;
 
     /**
      * The private constructor is needed because we don't create any instance of this class.
@@ -32,6 +34,12 @@ public final class StringUtils {
     public static String getCurrentTimeAsString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd_HH-mm-ss");
         return ZonedDateTime.now().format(formatter);
+    }
+
+    public static String convertTime(long milliseconds) {
+        long minutes = (milliseconds / THOUSAND) / MINUTE;
+        long seconds = (milliseconds / THOUSAND) % MINUTE;
+        return String.format("%s min %s sec", minutes, seconds);
     }
 
     /**
