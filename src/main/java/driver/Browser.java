@@ -46,26 +46,22 @@ public final class Browser {
             type = BrowserType.valueOf(System.getProperty("browser",
                     TestDataReader.getStageData("browser")).toUpperCase());
             switch (type) {
-                case FIREFOX: {
+                case FIREFOX:
                     WebDriverManager.firefoxdriver().setup();
                     DRIVER.set(new FirefoxDriver());
                     break;
-                }
-                case EDGE: {
+                case EDGE:
                     WebDriverManager.edgedriver().setup();
                     DRIVER.set(new EdgeDriver());
                     break;
-                }
-                case OPERA: {
+                case OPERA:
                     WebDriverManager.operadriver().setup();
                     DRIVER.set(new OperaDriver());
                     break;
-                }
-                case CHROME: {
+                case CHROME:
                     WebDriverManager.chromedriver().setup();
                     DRIVER.set(new ChromeDriver());
                     break;
-                }
                 default:
                     throw new IllegalArgumentException(format("Unexpected browser type: %s", type));
             }
