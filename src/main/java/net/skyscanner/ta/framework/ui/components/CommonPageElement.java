@@ -30,12 +30,12 @@ public class CommonPageElement {
         return getAttribute(locator, attribute);
     }
 
-    private String getAttribute(By locator, String attribute) {
-        assert locator != null : "Locator cannot be null.";
+    private String getAttribute(By locatorName, String attribute) {
+        assert locatorName != null : "Locator cannot be null.";
         assert attribute != null : "Attribute cannot be null.";
-        waitForPageElementPresenceLocated(locator);
+        waitForPageElementPresenceLocated(locatorName);
         WebDriver wrappedDriver = Browser.getInstance().getWrappedDriver();
-        return wrappedDriver.findElement(locator).getAttribute(attribute).trim();
+        return wrappedDriver.findElement(locatorName).getAttribute(attribute).trim();
     }
 
     public static void waitForPageElementVisibilityLocated(By locator) {

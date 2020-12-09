@@ -16,6 +16,7 @@ public final class StringUtils {
     private static final String CHAR_UPPER = CHAR_LOWER.toUpperCase();
     private static final String DATA_FOR_NEW_STRING = CHAR_LOWER + CHAR_UPPER;
     private static final SecureRandom RANDOM = new SecureRandom();
+    private static final int LENGTH = 8;
 
     /**
      * The private constructor is needed because we don't create any instance of this class.
@@ -68,9 +69,8 @@ public final class StringUtils {
      * @return string of random letters
      */
     public static String getRandomString() {
-        int length = 8;
         StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < length; i++) {
+        for (int i = 0; i < LENGTH; i++) {
             int randomIndex = RANDOM.nextInt(DATA_FOR_NEW_STRING.length());
             char randomChar = DATA_FOR_NEW_STRING.charAt(randomIndex);
             stringBuilder.append(randomChar);
