@@ -14,7 +14,7 @@ public class HighlightedWebElement extends AbstractWebElementDecorator {
 
     public HighlightedWebElement(WebDriver driver, WebElement element) {
         Objects.requireNonNull(driver, "Driver cannot be null.");
-        Objects.requireNonNull(driver, "Element cannot be null.");
+        Objects.requireNonNull(element, "Element cannot be null.");
         this.driver = driver;
         this.element = element;
         backgroundColor = "#FFBB00";
