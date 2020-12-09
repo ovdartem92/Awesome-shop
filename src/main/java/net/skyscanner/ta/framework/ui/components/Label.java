@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import java.util.Objects;
 
 public class Label extends CommonPageElement {
+
     public Label(By locator) {
         Objects.requireNonNull(locator, "Locator can not be null");
         this.locator = locator;

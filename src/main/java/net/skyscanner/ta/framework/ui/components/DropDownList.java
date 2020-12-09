@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import java.util.Objects;
 
 public class DropDownList extends CommonPageElement {
+
     public DropDownList(By locator) {
         Objects.requireNonNull(locator, "Locator cannot be null.");
         this.locator = locator;

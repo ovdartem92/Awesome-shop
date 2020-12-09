@@ -10,7 +10,6 @@ import java.util.Objects;
 import static java.lang.String.format;
 
 public final class Log {
-
     private static final Logger LOGGER = Logger.getLogger("custom-logger");
 
     static {
