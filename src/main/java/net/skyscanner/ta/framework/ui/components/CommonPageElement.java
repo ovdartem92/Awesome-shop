@@ -25,17 +25,12 @@ public class CommonPageElement {
                 .ignoring(NoSuchElementException.class, StaleElementReferenceException.class);
     }
 
-    public String getAttribute(String attribute) {
-        Objects.requireNonNull(attribute, "Attribute cannot be null.");
-        return getAttribute(locator, attribute);
-    }
-
-    private String getAttribute(By locatorName, String attribute) {
-        assert locatorName != null : "Locator cannot be null.";
+    public static String getAttribute(By locator, String attribute) {
+        assert locator != null : "Locator cannot be null.";
         assert attribute != null : "Attribute cannot be null.";
-        waitForPageElementPresenceLocated(locatorName);
+        waitForPageElementPresenceLocated(locator);
         WebDriver wrappedDriver = Browser.getInstance().getWrappedDriver();
-        return wrappedDriver.findElement(locatorName).getAttribute(attribute).trim();
+        return wrappedDriver.findElement(locator).getAttribute(attribute).trim();
     }
 
     public static void waitForPageElementVisibilityLocated(By locator) {
@@ -64,13 +59,6 @@ public class CommonPageElement {
         }
         Wait<? extends WebDriver> wait = getCustomWait(timeoutInSeconds);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
-    }
-
-    public void waitForPageElementInvisibility(int timeoutInSeconds) {
-        if (timeoutInSeconds < 0) {
-            throw new IllegalArgumentException("Timeout in seconds cannot be less than 0.");
-        }
-        waitForPageElementInvisibilityLocated(this.locator, timeoutInSeconds);
     }
 
     public static void waitForPageElementPresenceLocated(By locator) {
