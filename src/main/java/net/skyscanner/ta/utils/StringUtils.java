@@ -17,6 +17,8 @@ public final class StringUtils {
     private static final String DATA_FOR_NEW_STRING = CHAR_LOWER + CHAR_UPPER;
     private static final SecureRandom RANDOM = new SecureRandom();
     private static final int LENGTH = 8;
+    private static final int SECONDS_IN_MINUTE = 60;
+    private static final int MILLISECONDS_IN_SECOND = 1000;
 
     /**
      * The private constructor is needed because we don't create any instance of this class.
@@ -76,5 +78,11 @@ public final class StringUtils {
             stringBuilder.append(randomChar);
         }
         return stringBuilder.toString();
+    }
+
+    public static String convertTime(long milliseconds) {
+        long minutes = (milliseconds / MILLISECONDS_IN_SECOND) / SECONDS_IN_MINUTE;
+        long seconds = (milliseconds / MILLISECONDS_IN_SECOND) % SECONDS_IN_MINUTE;
+        return String.format("%s min %s sec", minutes, seconds);
     }
 }

@@ -6,7 +6,7 @@ import org.testng.ISuiteListener;
 
 import java.util.Objects;
 
-import static utils.StringUtils.convertTime;
+import static net.skyscanner.ta.utils.StringUtils.convertTime;
 
 public class SuiteListener implements ISuiteListener {
     private long startTimeOfSuite;
