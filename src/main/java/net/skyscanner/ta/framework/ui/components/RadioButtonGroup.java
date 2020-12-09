@@ -7,6 +7,7 @@ import java.util.Objects;
 import java.util.Set;
 
 public class RadioButtonGroup {
+
     @Getter
     private Set<RadioButton> radioButtons = new HashSet<>();
 

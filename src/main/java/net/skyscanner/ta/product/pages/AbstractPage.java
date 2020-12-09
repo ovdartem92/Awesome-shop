@@ -20,7 +20,7 @@ public abstract class AbstractPage {
      * It's first element of drop-down list, and this element contains needed value for input field.
      * It's common locator for all search pages.
      */
-    protected static final String FIRST_ELEMENT_OF_DROPDOWN_LOCATOR = "//input[@aria-activedescendant='react-autowhatever-1--item-0']";
+    protected static final String DROPDOWN_LOCATOR = "//input[@aria-activedescendant='react-autowhatever-1--item-0']";
     protected static final Logger logger = LogManager.getRootLogger();
 
     /**

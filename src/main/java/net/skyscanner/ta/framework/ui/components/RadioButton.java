@@ -9,6 +9,7 @@ import org.openqa.selenium.WebElement;
 import java.util.Objects;
 
 public class RadioButton extends CommonPageElement {
+
     @Getter
     @Setter
     private RadioButtonGroup group;

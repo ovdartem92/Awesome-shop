@@ -5,18 +5,20 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
  * This class is required to call custom methods for working with strings.
  */
-public class StringUtils {
+public final class StringUtils {
     private static final String CHAR_LOWER = "abcdefghijklmnopqrstuvwxyz1234567890";
     private static final String CHAR_UPPER = CHAR_LOWER.toUpperCase();
     private static final String DATA_FOR_NEW_STRING = CHAR_LOWER + CHAR_UPPER;
     private static final SecureRandom RANDOM = new SecureRandom();
+    private static final int LENGTH = 8;
+    private static final int THOUSAND = 1000;
+    private static final int MINUTE = 60;
 
     /**
      * The private constructor is needed because we don't create any instance of this class.
@@ -35,8 +37,8 @@ public class StringUtils {
     }
 
     public static String convertTime(long milliseconds) {
-        long minutes = (milliseconds / 1000) / 60;
-        long seconds = (milliseconds / 1000) % 60;
+        long minutes = (milliseconds / THOUSAND) / MINUTE;
+        long seconds = (milliseconds / THOUSAND) % MINUTE;
         return String.format("%s min %s sec", minutes, seconds);
     }
 
@@ -51,8 +53,9 @@ public class StringUtils {
         List<String> stringList = new ArrayList<>();
         Matcher matcher = Pattern.compile(regEx)
                 .matcher(text);
-        while (matcher.find())
+        while (matcher.find()) {
             stringList.add(matcher.group().trim());
+        }
         return stringList;
     }
 
@@ -75,7 +78,7 @@ public class StringUtils {
      */
     public static String getRandomString() {
         StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < LENGTH; i++) {
             int randomIndex = RANDOM.nextInt(DATA_FOR_NEW_STRING.length());
             char randomChar = DATA_FOR_NEW_STRING.charAt(randomIndex);
             stringBuilder.append(randomChar);

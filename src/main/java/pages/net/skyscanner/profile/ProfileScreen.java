@@ -1,4 +1,4 @@
-package pages.net.skyscanner.profile_screen;
+package pages.net.skyscanner.profile;
 
 import driver.Browser;
 import pages.AbstractScreen;

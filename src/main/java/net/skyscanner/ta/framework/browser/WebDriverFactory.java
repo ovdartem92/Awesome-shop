@@ -18,16 +18,14 @@ public final class WebDriverFactory {
     public static WebDriver getWebDriver(BrowserType type) {
         WebDriver webDriver;
         switch (type) {
-            case FIREFOX: {
+            case FIREFOX:
                 WebDriverManager.firefoxdriver().setup();
                 webDriver = new FirefoxDriver();
                 break;
-            }
-            case CHROME: {
+            case CHROME:
                 WebDriverManager.chromedriver().setup();
                 webDriver = new ChromeDriver();
                 break;
-            }
             default:
                 throw new IllegalArgumentException(format("Unexpected browser type: %s", type));
         }

@@ -16,7 +16,7 @@ import static java.lang.String.format;
  * This class uses the Singleton pattern.
  * It is needed to init driver or get driver and you have ability to chose browser type and open some link.
  */
-public class Browser {
+public final class Browser {
     /**
      * These variables get data from the property file, they need to set up timeouts.
      */
@@ -43,28 +43,25 @@ public class Browser {
     public static WebDriver initDriver() {
         BrowserType type;
         if (getDriver() == null) {
-            type = BrowserType.valueOf(System.getProperty("browser", TestDataReader.getStageData("browser")).toUpperCase());
+            type = BrowserType.valueOf(System.getProperty("browser",
+                    TestDataReader.getStageData("browser")).toUpperCase());
             switch (type) {
-                case FIREFOX: {
+                case FIREFOX:
                     WebDriverManager.firefoxdriver().setup();
                     DRIVER.set(new FirefoxDriver());
                     break;
-                }
-                case EDGE: {
+                case EDGE:
                     WebDriverManager.edgedriver().setup();
                     DRIVER.set(new EdgeDriver());
                     break;
-                }
-                case OPERA: {
+                case OPERA:
                     WebDriverManager.operadriver().setup();
                     DRIVER.set(new OperaDriver());
                     break;
-                }
-                case CHROME: {
+                case CHROME:
                     WebDriverManager.chromedriver().setup();
                     DRIVER.set(new ChromeDriver());
                     break;
-                }
                 default:
                     throw new IllegalArgumentException(format("Unexpected browser type: %s", type));
             }

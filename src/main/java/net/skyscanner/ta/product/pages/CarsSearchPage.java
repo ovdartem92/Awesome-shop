@@ -13,10 +13,12 @@ public class CarsSearchPage extends AbstractScreen {
     private static final String CHECKMARK = "checkmark";
     private static final String CAR_HEADLINE_LOCATOR = "//div[contains(@class,'controls-title')]";
     private static final String LOCATION_LOCATOR = "//input[@id='carhire-search-controls-location-%s']";
-    private static final String RETURN_CAR_TO_A_DIFFERENT_LOCATION_CHECKBOX_LOCATOR = "//input[@id='carhire-search-controls-different-drop-off-docked']";
+    private static final String RETURN_CAR_TO_A_DIFFERENT_LOCATION_CHECKBOX_LOCATOR =
+            "//input[@id='carhire-search-controls-different-drop-off-docked']";
     private static final String SEARCH_BUTTON_LOCATOR = "//button[@id='carhire-search-controls-search-button']";
     private static final String DRIVER_AGE_SELECT_LOCATOR = "//select[@id='carhire-search-controls-age-selector']";
-    private static final String AGE_CHECKBOX_LOCATOR = "//input[contains(@class, 'BpkCheckbox_bpk-checkbox__input-%s')][@name='age-between']";
+    private static final String AGE_CHECKBOX_LOCATOR =
+            "//input[contains(@class, 'BpkCheckbox_bpk-checkbox__input-%s')][@name='age-between']";
 
     public String getTextFromCarHeadline() {
         return getTextOnElement(CAR_HEADLINE_LOCATOR);
@@ -25,7 +27,7 @@ public class CarsSearchPage extends AbstractScreen {
     public CarsSearchPage setUpPickUpLocation(String pickUpLocation) {
         clickOnElement(String.format(LOCATION_LOCATOR, PICK_UP));
         typeTextToElement(String.format(LOCATION_LOCATOR, PICK_UP), pickUpLocation);
-        clickOnElement(FIRST_ELEMENT_OF_DROPDOWN_LOCATOR);
+        clickOnElement(DROPDOWN_LOCATOR);
         return this;
     }
 
@@ -37,7 +39,7 @@ public class CarsSearchPage extends AbstractScreen {
     public CarsSearchPage setUpDropOffLocation(String dropOffLocationLocation) {
         clickOnElement(String.format(LOCATION_LOCATOR, DROP_OFF));
         typeTextToElement(String.format(LOCATION_LOCATOR, DROP_OFF), dropOffLocationLocation);
-        clickOnElement(FIRST_ELEMENT_OF_DROPDOWN_LOCATOR);
+        clickOnElement(DROPDOWN_LOCATOR);
         return this;
     }
 
@@ -47,7 +49,8 @@ public class CarsSearchPage extends AbstractScreen {
     }
 
     public CarsSearchPage unSetAgeCheckbox() {
-        if (!WaitManager.isElementVisible(String.format(AGE_CHECKBOX_LOCATOR, CHECKMARK), Browser.SHORT_TIMEOUT_SECONDS)) {
+        if (!WaitManager.isElementVisible(String.format(AGE_CHECKBOX_LOCATOR, CHECKMARK),
+                Browser.SHORT_TIMEOUT_SECONDS)) {
             clickOnElement(String.format(AGE_CHECKBOX_LOCATOR, WHITE));
         }
         clickOnElement(String.format(AGE_CHECKBOX_LOCATOR, CHECKMARK));

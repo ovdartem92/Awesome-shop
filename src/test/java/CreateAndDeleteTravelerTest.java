@@ -3,7 +3,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pages.net.skyscanner.elements.HeaderScreen;
-import pages.net.skyscanner.profile_screen.ProfileScreen;
+import pages.net.skyscanner.profile.ProfileScreen;
 import service.AccountService;
 import service.UserBuilder;
 

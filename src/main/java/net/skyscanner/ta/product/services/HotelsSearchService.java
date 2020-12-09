@@ -29,8 +29,9 @@ public class HotelsSearchService {
      */
     public void clickFilterButtonUntilDisabled(String locator) {
         hotelsSearchScreen.clickGuestAndRoomsInput();
-        while (Strings.isNullOrEmpty(AbstractScreen.getElement(locator).getAttribute("disabled")))
+        while (Strings.isNullOrEmpty(AbstractScreen.getElement(locator).getAttribute("disabled"))) {
             AbstractScreen.clickOnElement(locator);
+        }
         hotelsSearchScreen.clickDoneFilterButton();
     }
 

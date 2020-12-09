@@ -15,7 +15,6 @@ import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 public final class Browser implements WrapsDriver {
-
     private static Browser instance;
     private final WebDriver wrappedDriver;
     private String screenshotDirectoryPath;
