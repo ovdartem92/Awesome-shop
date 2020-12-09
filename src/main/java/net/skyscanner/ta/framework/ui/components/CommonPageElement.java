@@ -18,7 +18,7 @@ public class CommonPageElement {
     protected By locator;
 
     private static Wait<? extends WebDriver> getCustomWait(int timeoutInSeconds) {
-        assert (timeoutInSeconds >= 0) : "Timeout in seconds cannot be less than 0.";
+        assert timeoutInSeconds >= 0 : "Timeout in seconds cannot be less than 0.";
         return new FluentWait<>(Browser.getInstance().getWrappedDriver())
                 .withTimeout(Duration.ofSeconds(timeoutInSeconds))
                 .pollingEvery(Duration.ofMillis(POLLING_EVERY_MILLISECONDS))
@@ -40,7 +40,9 @@ public class CommonPageElement {
 
     public static void waitForPageElementVisibilityLocated(By locator, int timeoutInSeconds) {
         Objects.requireNonNull(locator, "Locator cannot be null.");
-        if (timeoutInSeconds < 0) throw new IllegalArgumentException("Timeout in seconds cannot be less than 0.");
+        if (timeoutInSeconds < 0) {
+            throw new IllegalArgumentException("Timeout in seconds cannot be less than 0.");
+        }
         Wait<? extends WebDriver> wait = getCustomWait(timeoutInSeconds);
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
@@ -52,7 +54,9 @@ public class CommonPageElement {
 
     public static void waitForPageElementInvisibilityLocated(By locator, int timeoutInSeconds) {
         Objects.requireNonNull(locator, "Locator cannot be null.");
-        if (timeoutInSeconds < 0) throw new IllegalArgumentException("Timeout in seconds cannot be less than 0.");
+        if (timeoutInSeconds < 0) {
+            throw new IllegalArgumentException("Timeout in seconds cannot be less than 0.");
+        }
         Wait<? extends WebDriver> wait = getCustomWait(timeoutInSeconds);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
     }
@@ -64,7 +68,9 @@ public class CommonPageElement {
 
     public static void waitForPageElementPresenceLocated(By locator, int timeoutInSeconds) {
         Objects.requireNonNull(locator, "Locator cannot be null.");
-        if (timeoutInSeconds < 0) throw new IllegalArgumentException("Timeout in seconds cannot be less than 0.");
+        if (timeoutInSeconds < 0) {
+            throw new IllegalArgumentException("Timeout in seconds cannot be less than 0.");
+        }
         Wait<? extends WebDriver> wait = getCustomWait(timeoutInSeconds);
         wait.until(ExpectedConditions.presenceOfElementLocated(locator));
     }
@@ -76,7 +82,9 @@ public class CommonPageElement {
 
     public static void waitForAllElementsPresenceLocated(By locator, int timeoutInSeconds) {
         Objects.requireNonNull(locator, "Locator cannot be null.");
-        if (timeoutInSeconds < 0) throw new IllegalArgumentException("Timeout in seconds cannot be less than 0.");
+        if (timeoutInSeconds < 0) {
+            throw new IllegalArgumentException("Timeout in seconds cannot be less than 0.");
+        }
         Wait<? extends WebDriver> wait = getCustomWait(timeoutInSeconds);
         wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(locator));
     }
@@ -88,7 +96,9 @@ public class CommonPageElement {
 
     public static void waitForPageElementToBeClickable(By locator, int timeoutInSeconds) {
         Objects.requireNonNull(locator, "Locator cannot be null.");
-        if (timeoutInSeconds < 0) throw new IllegalArgumentException("Timeout in seconds cannot be less than 0.");
+        if (timeoutInSeconds < 0) {
+            throw new IllegalArgumentException("Timeout in seconds cannot be less than 0.");
+        }
         Wait<? extends WebDriver> wait = getCustomWait(timeoutInSeconds);
         wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
