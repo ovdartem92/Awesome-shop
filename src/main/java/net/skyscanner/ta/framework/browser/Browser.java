@@ -2,6 +2,7 @@ package net.skyscanner.ta.framework.browser;
 
 import net.skyscanner.ta.framework.logging.Log;
 import net.skyscanner.ta.framework.ui.elements.HighlightedWebElement;
+import net.skyscanner.ta.product.services.TestDataReader;
 import net.skyscanner.ta.utils.DirectoryGenerator;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
@@ -20,8 +21,9 @@ public final class Browser implements WrapsDriver {
     private String screenshotDirectoryPath;
 
     private Browser() {
-        BrowserType browserType = BrowserType.valueOf(System.getProperty("browser").toUpperCase());
-        screenshotDirectoryPath = DirectoryGenerator.create("screenshots");
+        BrowserType browserType = BrowserType.valueOf(System.getProperty("browser",
+                TestDataReader.getStageData("browser")).toUpperCase());
+        screenshotDirectoryPath = DirectoryGenerator.create("./target/screenshots");
         Log.debug("Creating instance of WebDriver for " + browserType);
         wrappedDriver = WebDriverFactory.getWebDriver(browserType);
         wrappedDriver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
@@ -118,7 +120,6 @@ public final class Browser implements WrapsDriver {
     }
 
     public File takeScreenshot() {
-        screenshotDirectoryPath = DirectoryGenerator.create("screenshots");
         String screenshotPath = String.format("%s/%s.png", screenshotDirectoryPath, System.nanoTime());
         File screenshotFile = ((TakesScreenshot) wrappedDriver).getScreenshotAs(OutputType.FILE);
         try {
