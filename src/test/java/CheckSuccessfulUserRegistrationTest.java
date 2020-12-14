@@ -7,7 +7,7 @@ import ru.awesome.shop.ta.utils.StringUtils;
 
 import static ru.awesome.shop.ta.product.pages.NavigatePanel.AccountLink.REGISTER;
 
-public class CheckSuccessfulUserRegistrationTest {
+public class CheckSuccessfulUserRegistrationTest extends BaseTest {
     private NavigatePanel navigatePanel;
     private AccountRegistrationScreen registrationScreen;
     private String text = StringUtils.getRandomString();
