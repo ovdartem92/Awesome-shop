@@ -2,8 +2,9 @@ package net.skyscanner.ta.framework.browser;
 
 import net.skyscanner.ta.framework.logging.Log;
 import net.skyscanner.ta.framework.ui.elements.HighlightedWebElement;
-import net.skyscanner.ta.product.services.TestDataReader;
+
 import net.skyscanner.ta.utils.DirectoryGenerator;
+import net.skyscanner.ta.utils.TestDataReader;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.Select;

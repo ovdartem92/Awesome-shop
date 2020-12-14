@@ -1,7 +1,7 @@
 import net.skyscanner.ta.framework.browser.Browser;
 import net.skyscanner.ta.framework.listeners.SuiteListener;
 import net.skyscanner.ta.framework.listeners.TestListener;
-import net.skyscanner.ta.product.services.TestDataReader;
+import net.skyscanner.ta.utils.TestDataReader;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;

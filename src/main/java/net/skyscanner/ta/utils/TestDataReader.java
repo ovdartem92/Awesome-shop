@@ -1,4 +1,4 @@
-package net.skyscanner.ta.product.services;
+package net.skyscanner.ta.utils;
 
 import java.util.ResourceBundle;
 
