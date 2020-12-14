@@ -3,6 +3,8 @@ package ru.awesome.shop.ta.product.pages.registration;
 import org.openqa.selenium.By;
 import ru.awesome.shop.ta.framework.ui.components.*;
 
+import static java.lang.String.format;
+
 public class AccountRegistrationScreen {
     private final By firstNameBy = By.id("input-firstname");
     private final By lastNameBy = By.id("input-lastname");
@@ -23,6 +25,8 @@ public class AccountRegistrationScreen {
     private final By privacyPolicyBy = By.xpath("//b[text()='Privacy Policy']/..");
     private final By agreeWithPrivacyPolicyBy = By.name("agree");
     private final By continueButtonBy = By.xpath("//input[@type='submit']");
+
+    private String emptyFieldWarningLocator = "//div[text()='%s must be between 1 and 32 characters!']";
 
     public AccountRegistrationScreen firstNameType(String text) {
         TextField firstName = new TextField(firstNameBy);
@@ -136,5 +140,30 @@ public class AccountRegistrationScreen {
         Button continueButton = new Button(continueButtonBy);
         continueButton.click();
         return new AccountRegistrationSuccessfullyScreen();
+    }
+
+    public String getFieldWarning(Field field) {
+        String fieldLocator = format(emptyFieldWarningLocator, field.getName());
+        By fieldBy = By.xpath(fieldLocator);
+        Label warningLabel = new Label(fieldBy);
+        return warningLabel.getText();
+    }
+
+    public enum Field {
+        FIRST_NAME("First Name"), LAST_NAME("Last Name"), EMAIL("E-Mail"),
+        TELEPHONE("Telephone"), FAX("Fax"), COMPANY("Company"),
+        ADDRESS_1("Address 1"), ADDRESS_2("Address 2"), CITY("City"),
+        POST_CODE("Post Code"), COUNTRY("Country"), REGION("Region / State"),
+        PASSWORD("Password"), PASSWORD_CONFIRM("Password Confirm");
+
+        private String name;
+
+        Field(String name) {
+            this.name = name;
+        }
+
+        public String getName() {
+            return name;
+        }
     }
 }
