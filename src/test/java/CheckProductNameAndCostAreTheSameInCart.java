@@ -17,8 +17,8 @@ public class CheckProductNameAndCostAreTheSameInCart extends BaseTest{
         CartPage cartPage = searchResultsPage
                 .clickCartButton()
                 .clickViewCartButton();
-        String nameProductInCart = cartPage.getNameOfFirstProductIntoCart();
-        String priceProductInCart = cartPage.getUnitPriceOfFirstProductIntoCart();
+        String nameProductInCart = cartPage.getProductNameIntoCart();
+        String priceProductInCart = cartPage.getProductUnitPriceIntoCart();
 
         Assert.assertEquals(nameProductInCart, nameFromThumb, "The names of product aren't equals!");
         Assert.assertEquals(priceProductInCart, costFromThumb, "The costs of product aren't equals!");

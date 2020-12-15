@@ -12,7 +12,7 @@ public class CheckItemIntoCartTest extends BaseTest {
                 .clickAddToCart()
                 .clickCartButton()
                 .clickViewCartButton()
-                .getNameOfFirstProductIntoCart();
+                .getProductNameIntoCart();
 
         Assert.assertEquals(MACBOOK, resultProduct, "The values of product aren't equal!");
     }

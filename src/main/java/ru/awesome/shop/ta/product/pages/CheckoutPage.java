@@ -2,7 +2,7 @@ package ru.awesome.shop.ta.product.pages;
 
 import org.openqa.selenium.WebDriver;
 
-public class CheckoutPage extends AbstractPage{
+public class CheckoutPage extends AbstractPage {
     public CheckoutPage(WebDriver driver) {
         super(driver);
         if (!"Checkout".equals(driver.getTitle())) {
@@ -11,7 +11,7 @@ public class CheckoutPage extends AbstractPage{
     }
 
     //общее
-    public String getPageTitle (){
+    public String getPageTitle() {
         return driver.getTitle();
     }
 }

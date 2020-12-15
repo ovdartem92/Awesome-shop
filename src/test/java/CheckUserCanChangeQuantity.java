@@ -6,7 +6,7 @@ public class CheckUserCanChangeQuantity extends BaseTest {
     @Test
     public void checkCantBuyZero() {
         String MACBOOK = "MacBook";
-        String QUANTITY = "56";
+        String QUANTITY = "2";
         String quantityFromCartButton = new HomePage(driver)
                 .clearAndTypeProductNameToSearchField(MACBOOK)
                 .clickSearchButton()
