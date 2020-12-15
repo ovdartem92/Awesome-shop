@@ -14,12 +14,17 @@ public class Label extends CommonPageElement {
 
     public String getText() {
         waitForPageElementVisibilityLocated(locator);
-        return Browser.getInstance().getText(locator);
+        return Browser.getInstance().getText(locator).trim();
     }
 
     @Override
     public String toString() {
         String labelName = getText();
         return String.format("Label \"%s\"", labelName);
+    }
+
+    public boolean isDisplayed() {
+        waitForPageElementVisibilityLocated(locator);
+        return Browser.getInstance().isDisplayed(locator);
     }
 }
