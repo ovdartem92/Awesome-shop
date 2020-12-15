@@ -25,6 +25,7 @@ public class AccountRegistrationScreen {
     private final By privacyPolicyBy = By.xpath("//b[text()='Privacy Policy']/..");
     private final By agreeWithPrivacyPolicyBy = By.name("agree");
     private final By continueButtonBy = By.xpath("//input[@type='submit']");
+    private final By dangerAlertBy = By.xpath("//div[contains(@class, 'alert-danger')]");
 
     public AccountRegistrationScreen firstNameType(String text) {
         TextField firstName = new TextField(firstNameBy);
@@ -138,6 +139,11 @@ public class AccountRegistrationScreen {
         Button continueButton = new Button(continueButtonBy);
         continueButton.click();
         return new AccountRegistrationSuccessfullyScreen();
+    }
+
+    public String getDangerAlertMessage() {
+        Label dangerAlert = new Label(dangerAlertBy);
+        return dangerAlert.getText();
     }
 
     public String getFieldWarning(Field field) {
