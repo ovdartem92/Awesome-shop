@@ -10,7 +10,7 @@ import static ru.awesome.shop.ta.product.pages.registration.AccountRegistrationS
 public class CheckAppearanceEmailInvalidWarningTest extends BaseTest {
     private NavigatePanel navigatePanel;
     private String text = StringUtils.getRandomString();
-    private String emailWithoutSymbol = text.concat("mail.ru");
+    private String emailWithoutSymbol = "";
     private String region = "Bristol";
 
     @Test
