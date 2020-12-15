@@ -14,7 +14,7 @@ public class Label extends CommonPageElement {
 
     public String getText() {
         waitForPageElementVisibilityLocated(locator);
-        return Browser.getInstance().getText(locator).trim();
+        return Browser.getInstance().getText(locator);
     }
 
     @Override
