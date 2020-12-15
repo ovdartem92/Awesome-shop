@@ -2,20 +2,21 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.awesome.shop.ta.product.pages.HomePage;
 
-public class CheckRemoveProductFromCart extends BaseTest {
+public class CheckUserCantBuyZeroItems extends BaseTest {
     @Test
-    public void removeProduct() {
+    public void checkCantBuyZero() {
         String MACBOOK = "MacBook";
+        String QUANTITY = "0";
         Boolean messageEmptyCartDisplayed = new HomePage(driver)
                 .clearAndTypeProductNameToSearchField(MACBOOK)
                 .clickSearchButton()
                 .clickAddToCart()
                 .clickCartButton()
                 .clickViewCartButton()
-                .clickRemoveProductButton()
+                .typeQuantity(QUANTITY)
+                .clickUpdateProductButton()
                 .isEmptyShoppingCartMessageDisplayed();
 
-        Assert.assertTrue(messageEmptyCartDisplayed, "Message isn't displayed after removing product from cart!");
+        Assert.assertTrue(messageEmptyCartDisplayed, "Message isn't displayed after update!");
     }
-
 }

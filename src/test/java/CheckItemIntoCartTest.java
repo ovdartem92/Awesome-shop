@@ -3,14 +3,11 @@ import org.testng.annotations.Test;
 import ru.awesome.shop.ta.product.pages.HomePage;
 
 public class CheckItemIntoCartTest extends BaseTest {
-
-    public static final String MACBOOK = "MacBook";
-
     @Test
     public void checkItemIntoCart() {
-
-        String resultProduct = new HomePage(browser.getWrappedDriver())
-                .typeProductNameToSearchField(MACBOOK)
+        String MACBOOK = "MacBook";
+        String resultProduct = new HomePage(driver)
+                .clearAndTypeProductNameToSearchField(MACBOOK)
                 .clickSearchButton()
                 .clickAddToCart()
                 .clickCartButton()

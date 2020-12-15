@@ -1,3 +1,4 @@
+import org.openqa.selenium.WebDriver;
 import ru.awesome.shop.ta.framework.browser.Browser;
 import ru.awesome.shop.ta.framework.listeners.SuiteListener;
 import ru.awesome.shop.ta.framework.listeners.TestListener;
@@ -13,6 +14,7 @@ import org.testng.annotations.Listeners;
 @Listeners({TestListener.class, SuiteListener.class})
 public abstract class BaseTest {
     protected final Browser browser = Browser.getInstance();
+    protected final WebDriver driver = Browser.getInstance().getWrappedDriver();
     protected final String URL = TestDataReader.getStageData("home.url");
 
     /**

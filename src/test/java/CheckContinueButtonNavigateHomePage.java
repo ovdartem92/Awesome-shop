@@ -2,20 +2,22 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.awesome.shop.ta.product.pages.HomePage;
 
-public class CheckRemoveProductFromCart extends BaseTest {
+public class CheckContinueButtonNavigateHomePage extends BaseTest {
     @Test
-    public void removeProduct() {
+    public void continueNavigateToHomePage() {
         String MACBOOK = "MacBook";
-        Boolean messageEmptyCartDisplayed = new HomePage(driver)
+        String homePageTitle = new HomePage(driver)
                 .clearAndTypeProductNameToSearchField(MACBOOK)
                 .clickSearchButton()
                 .clickAddToCart()
                 .clickCartButton()
                 .clickViewCartButton()
                 .clickRemoveProductButton()
-                .isEmptyShoppingCartMessageDisplayed();
+                .clickContinueButton()
+                .getPageTitle();
 
-        Assert.assertTrue(messageEmptyCartDisplayed, "Message isn't displayed after removing product from cart!");
+        System.out.println(homePageTitle);
+
+        Assert.assertEquals(homePageTitle, "Your Store", "There is no Home Page in the end!");
     }
-
 }
