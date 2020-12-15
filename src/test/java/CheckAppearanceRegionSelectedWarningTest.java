@@ -13,7 +13,7 @@ public class CheckAppearanceRegionSelectedWarningTest extends BaseTest {
     private String email = text.concat("@mail.ru");
 
     @Test
-    public void checkAppearanceFirstNameLengthWarning() {
+    public void checkAppearanceRegionSelectedWarning() {
         navigatePanel = new NavigatePanel();
         AccountRegistrationScreen registrationScreen = navigatePanel.openAccountLinkScreen(REGISTER)
                 .firstNameType(text)

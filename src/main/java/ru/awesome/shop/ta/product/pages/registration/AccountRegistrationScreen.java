@@ -26,8 +26,6 @@ public class AccountRegistrationScreen {
     private final By agreeWithPrivacyPolicyBy = By.name("agree");
     private final By continueButtonBy = By.xpath("//input[@type='submit']");
 
-    private String emptyFieldWarningLocator = "//div[text()='%s must be between 1 and 32 characters!']";
-
     public AccountRegistrationScreen firstNameType(String text) {
         TextField firstName = new TextField(firstNameBy);
         firstName.type(text);
@@ -143,17 +141,42 @@ public class AccountRegistrationScreen {
     }
 
     public String getFieldWarning(Field field) {
-        String fieldLocator = format(emptyFieldWarningLocator, field.getName());
+        String fieldLocator;
+        switch (field) {
+            case FIRST_NAME, LAST_NAME:
+                fieldLocator = format("//div[text()='%s must be between 1 and 32 characters!']", field.getName());
+                break;
+            case EMAIL:
+                fieldLocator = format("//div[text()='%s does not appear to be valid!']", field.getName());
+                break;
+            case TELEPHONE:
+                fieldLocator = format("//div[text()='%s must be between 3 and 32 characters!']", field.getName());
+                break;
+            case ADDRESS_1, ADDRESS_2:
+                fieldLocator = format("//div[text()='%s must be between 3 and 128 characters!']", field.getName());
+                break;
+            case POST_CODE:
+                fieldLocator = format("//div[text()='%s must be between 2 and 10 characters!']", field.getName());
+                break;
+            case REGION:
+                fieldLocator = format("//div[text()='Please select a %s!']", field.getName());
+                break;
+            case PASSWORD:
+                fieldLocator = format("//div[text()='%s must be between 4 and 20 characters!']", field.getName());
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + field);
+        }
         By fieldBy = By.xpath(fieldLocator);
         Label warningLabel = new Label(fieldBy);
         return warningLabel.getText();
     }
 
     public enum Field {
-        FIRST_NAME("First Name"), LAST_NAME("Last Name"), EMAIL("E-Mail"),
+        FIRST_NAME("First Name"), LAST_NAME("Last Name"), EMAIL("E-Mail Address"),
         TELEPHONE("Telephone"), FAX("Fax"), COMPANY("Company"),
         ADDRESS_1("Address 1"), ADDRESS_2("Address 2"), CITY("City"),
-        POST_CODE("Post Code"), COUNTRY("Country"), REGION("Region / State"),
+        POST_CODE("Postcode"), COUNTRY("Country"), REGION("region / state"),
         PASSWORD("Password"), PASSWORD_CONFIRM("Password Confirm");
 
         private String name;

@@ -7,7 +7,7 @@ import ru.awesome.shop.ta.utils.StringUtils;
 import static ru.awesome.shop.ta.product.pages.NavigatePanel.AccountLink.REGISTER;
 import static ru.awesome.shop.ta.product.pages.registration.AccountRegistrationScreen.Field.ADDRESS_1;
 
-public class CheckAppearanceFirstAddressLengthWarning extends BaseTest {
+public class CheckAppearanceFirstAddressLengthWarningTest extends BaseTest {
     private NavigatePanel navigatePanel;
     private String text = StringUtils.getRandomString();
     private String emptyFirstAddress = "";
@@ -15,7 +15,7 @@ public class CheckAppearanceFirstAddressLengthWarning extends BaseTest {
     private String region = "Bristol";
 
     @Test
-    public void checkAppearanceFirstNameLengthWarning() {
+    public void checkAppearanceFirstAddressLengthWarning() {
         navigatePanel = new NavigatePanel();
         AccountRegistrationScreen registrationScreen = navigatePanel.openAccountLinkScreen(REGISTER)
                 .firstNameType(text)

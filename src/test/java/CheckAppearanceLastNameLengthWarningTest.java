@@ -15,7 +15,7 @@ public class CheckAppearanceLastNameLengthWarningTest extends BaseTest {
     private String region = "Bristol";
 
     @Test
-    public void checkAppearanceFirstNameLengthWarning() {
+    public void checkAppearanceLastNameLengthWarning() {
         navigatePanel = new NavigatePanel();
         AccountRegistrationScreen registrationScreen = navigatePanel.openAccountLinkScreen(REGISTER)
                 .firstNameType(text)
