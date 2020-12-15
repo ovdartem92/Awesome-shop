@@ -147,9 +147,10 @@ public class AccountRegistrationScreen {
         return dangerAlert.getText();
     }
 
-    public String getPolicyTitle() {
+    public boolean isDisplayedPrivacyPolicyWindow() {
         Label policyLabel = new Label(policyTitleBy);
-        return policyLabel.getText();
+        String title = policyLabel.getText();
+        return title.equals("Privacy Policy");
     }
 
     public String getFieldWarning(Field field) {
