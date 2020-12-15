@@ -155,6 +155,9 @@ public class AccountRegistrationScreen {
             case ADDRESS_1, ADDRESS_2:
                 fieldLocator = format("//div[text()='%s must be between 3 and 128 characters!']", field.getName());
                 break;
+            case CITY:
+                fieldLocator = format("//div[text()='%s must be between 2 and 128 characters!']", field.getName());
+                break;
             case POST_CODE:
                 fieldLocator = format("//div[text()='%s must be between 2 and 10 characters!']", field.getName());
                 break;
@@ -163,6 +166,9 @@ public class AccountRegistrationScreen {
                 break;
             case PASSWORD:
                 fieldLocator = format("//div[text()='%s must be between 4 and 20 characters!']", field.getName());
+                break;
+            case PASSWORD_CONFIRM:
+                fieldLocator = "//div[text()='Password confirmation does not match password!']";
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + field);
