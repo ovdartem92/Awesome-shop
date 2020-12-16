@@ -5,9 +5,9 @@ import org.openqa.selenium.WebDriver;
 import ru.awesome.shop.ta.framework.ui.components.Button;
 import ru.awesome.shop.ta.framework.ui.components.TextField;
 
-public class SearchPanel extends AbstractPage{
-    private final static TextField searchField = new TextField(By.xpath("//input[@name='search']"));
-    private final static Button searchButton = new Button(By.xpath("//button[@class='btn btn-default btn-lg']"));
+public class SearchPanel extends AbstractPage {
+    private static final TextField searchField = new TextField(By.xpath("//input[@name='search']"));
+    private static final Button searchButton = new Button(By.xpath("//button[@class='btn btn-default btn-lg']"));
 
     public SearchPanel(WebDriver driver) {
         super(driver);

@@ -10,9 +10,4 @@ public class HomePage extends AbstractPage {
             throw new IllegalStateException("This is not the Home page");
         }
     }
-
-    //общее для всех
-    public String getPageTitle() {
-        return driver.getTitle();
-    }
 }

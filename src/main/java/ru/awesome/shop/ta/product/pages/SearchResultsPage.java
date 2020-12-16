@@ -13,9 +13,9 @@ public class SearchResultsPage extends AbstractPage {
     private static final String PRODUCT_COST_PATH = "//p[@class='price']";
 
     private static final String ADD_TO_CART_BUTTON_PATH = "//button[contains(@onclick,'cart.add')]";
-    private Link productNameLink = new Link(By.xpath(String.format("%s%s", PRODUCT_THUMB_PATH, PRODUCT_NAME_PATH)));
-    private Label productCostField = new Label(By.xpath(String.format("%s%s", PRODUCT_THUMB_PATH, PRODUCT_COST_PATH)));
-    private Button addToCartButton = new Button(By
+    private static final Link productNameLink = new Link(By.xpath(String.format("%s%s", PRODUCT_THUMB_PATH, PRODUCT_NAME_PATH)));
+    private static final Label productCostField = new Label(By.xpath(String.format("%s%s", PRODUCT_THUMB_PATH, PRODUCT_COST_PATH)));
+    private static final Button addToCartButton = new Button(By
             .xpath(String.format("%s%s", PRODUCT_THUMB_PATH, ADD_TO_CART_BUTTON_PATH)));
 
     public SearchResultsPage(WebDriver driver) {

@@ -9,9 +9,4 @@ public class CheckoutPage extends AbstractPage {
             throw new IllegalStateException("This is not the Checkout page");
         }
     }
-
-    //общее
-    public String getPageTitle() {
-        return driver.getTitle();
-    }
 }

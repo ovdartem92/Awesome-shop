@@ -70,17 +70,19 @@ public class CartPage extends AbstractPage {
         return this;
     }
 
-    public HomePage clickContinueButton(){
+    public HomePage clickContinueButton() {
         continueButton.click();
         return new HomePage(driver);
     }
-//valid case
-    public CheckoutPage clickCheckoutButtonNavigateCheckout(){
+
+    //valid case
+    public CheckoutPage clickCheckoutButtonNavigateCheckout() {
         checkoutLink.click();
         return new CheckoutPage(driver);
     }
-//not so valid case
-    public CartPage clickCheckOutButtonStayOnCart(){
+
+    //not so valid case
+    public CartPage clickCheckOutButtonStayOnCart() {
         checkoutLink.click();
         return this;
     }
@@ -97,7 +99,7 @@ public class CartPage extends AbstractPage {
     public boolean isCartContainsMoreThanOneProduct() {
         List<WebElement> productLinks = driver.findElements(By
                 .xpath(PRODUCT_TBODY_TR_PATH));
-            return productLinks.size() > 1;
+        return productLinks.size() > 1;
     }
 
     public boolean isQuantityWarningDisplayed() {
