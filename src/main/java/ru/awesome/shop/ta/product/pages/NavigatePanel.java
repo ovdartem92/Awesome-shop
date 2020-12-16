@@ -9,20 +9,19 @@ import ru.awesome.shop.ta.product.pages.registration.AccountRegistrationScreen;
 import static java.lang.String.format;
 
 public class NavigatePanel {
-    private final By currencySignBy = By.xpath("//button[contains(@class, 'dropdown-toggle')]/strong");
-    private final By changeCurrencyButtonBy = By.xpath("//span[contains(text(), 'Currency')]/..");
-    private final By contactUsBy = By.xpath("//i[contains(@class, 'fa-phone')]/..");
-    private final By myAccountBy = By.xpath("//span[contains(text(), 'My Account')]/..");
-    private final By wishListBy = By.xpath("//span[contains(text(), 'Wish List')]/..");
-    private final By shoppingCartBy = By.xpath("//span[contains(text(), 'Shopping Cart')]/..");
-    private final By checkoutBy = By.xpath("//span[contains(text(), 'Checkout')]/..");
+    private Label currencySignLabel = new Label(By.xpath("//button[contains(@class, 'dropdown-toggle')]/strong"));
+    private Button changeCurrencyButton = new Button(By.xpath("//span[contains(text(), 'Currency')]/.."));
+    private Link contactUsLink = new Link(By.xpath("//i[contains(@class, 'fa-phone')]/.."));
+    private Link myAccountLink = new Link(By.xpath("//span[contains(text(), 'My Account')]/.."));
+    private Link wishListLink = new Link(By.xpath("//span[contains(text(), 'Wish List')]/.."));
+    private Link shoppingCartLink = new Link(By.xpath("//span[contains(text(), 'Shopping Cart')]/.."));
+    private Link checkoutLink = new Link(By.xpath("//span[contains(text(), 'Checkout')]/.."));
 
     private final String accountLinkType = "//a[contains(text(), '%s')]";
     private final String currencyType = "//ul[@class='dropdown-menu']//button[@name='%s']";
 
     public String getCurrencySign() {
-        Label currencySign = new Label(currencySignBy);
-        return currencySign.getText();
+        return currencySignLabel.getText();
     }
 
     public AccountRegistrationScreen openAccountLinkScreen(AccountLink link) {
@@ -42,38 +41,32 @@ public class NavigatePanel {
     }
 
     public NavigatePanel changeCurrencyButtonClick() {
-        Button changeCurrencyButton = new Button(changeCurrencyButtonBy);
         changeCurrencyButton.click();
         return this;
     }
 
     public NavigatePanel contactUsClick() {
-        Link contactUs = new Link(contactUsBy);
-        contactUs.click();
+        contactUsLink.click();
         return this;
     }
 
     public NavigatePanel myAccountLinkClick() {
-        Link myAccount = new Link(myAccountBy);
-        myAccount.click();
+        myAccountLink.click();
         return this;
     }
 
     public NavigatePanel wishListLinkClick() {
-        Link wishList = new Link(wishListBy);
-        wishList.click();
+        wishListLink.click();
         return this;
     }
 
     public NavigatePanel shoppingCartLinkClick() {
-        Link shoppingCart = new Link(shoppingCartBy);
-        shoppingCart.click();
+        shoppingCartLink.click();
         return this;
     }
 
     public NavigatePanel checkoutLinkClick() {
-        Link checkout = new Link(checkoutBy);
-        checkout.click();
+        checkoutLink.click();
         return this;
     }
 
