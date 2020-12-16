@@ -1,41 +1,31 @@
 package ru.awesome.shop.ta.product.pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import ru.awesome.shop.ta.framework.ui.components.Button;
 import ru.awesome.shop.ta.framework.ui.components.Label;
 import ru.awesome.shop.ta.framework.ui.components.Link;
 
 
-public class SearchResultsPage extends AbstractPage {
-    private static final String PRODUCT_THUMB_PATH = "//div[@class='product-thumb']";
-    private static final String PRODUCT_NAME_PATH = "//h4//a";
-    private static final String PRODUCT_COST_PATH = "//p[@class='price']";
-
-    private static final String ADD_TO_CART_BUTTON_PATH = "//button[contains(@onclick,'cart.add')]";
-    private static final Link productNameLink = new Link(By.xpath(String.format("%s%s", PRODUCT_THUMB_PATH, PRODUCT_NAME_PATH)));
-    private static final Label productCostField = new Label(By.xpath(String.format("%s%s", PRODUCT_THUMB_PATH, PRODUCT_COST_PATH)));
-    private static final Button addToCartButton = new Button(By
-            .xpath(String.format("%s%s", PRODUCT_THUMB_PATH, ADD_TO_CART_BUTTON_PATH)));
-
-    public SearchResultsPage(WebDriver driver) {
-        super(driver);
-        if (!driver.getTitle().contains("Search")) {
-            throw new IllegalStateException("This is not the Search page");
-        }
-    }
-
-    public SearchResultsPage clickAddToCart() {
+public class SearchResultsPage {
+    public SearchResultsPage clickAddToCartButton() {
+        By addToCartButtonLocator = By.xpath("//button[contains(@onclick,'cart.add')]");
+        Button addToCartButton = new Button(addToCartButtonLocator);
         addToCartButton.click();
         return this;
     }
 
-    public String getProductNameFromThumb() {
+    public String getProductNameFromArea() {
+        By productNameLinkLocator = By.xpath("//h4//a");
+        Link productNameLink = new Link(productNameLinkLocator);
         return productNameLink.getText();
     }
 
-    public String getProductCostFromThumb() {
-        String[] array = productCostField.getText().split("\n");
+    public String getProductPriceFromArea() {
+        By productPriceFieldLocator = By.xpath("//p[@class='price']");
+        Label productPriseField = new Label(productPriceFieldLocator);
+
+        //куда-то вынести или че
+        String[] array = productPriseField.getText().split("\n");
         return array[0];
     }
 }

@@ -1,8 +1,8 @@
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.awesome.shop.ta.product.pages.CartPage;
-import ru.awesome.shop.ta.product.pages.CartPanel;
-import ru.awesome.shop.ta.product.pages.SearchPanel;
+import ru.awesome.shop.ta.product.pages.fragments.CartFragment;
+import ru.awesome.shop.ta.product.pages.fragments.SearchFragment;
 import ru.awesome.shop.ta.product.pages.SearchResultsPage;
 
 public class CheckUserCanChangeQuantityAndBuy extends BaseTest {
@@ -10,15 +10,15 @@ public class CheckUserCanChangeQuantityAndBuy extends BaseTest {
     public void checkCanBuyLess1000() {
         String MACBOOK = "MacBook";
         String QUANTITY = "500";
-        SearchPanel searchPanel = new SearchPanel(driver);
-        CartPanel cartPanel = new CartPanel(driver);
-        searchPanel.clearAndTypeProductNameToSearchField(MACBOOK);
+        SearchFragment searchPanel = new SearchFragment(driver);
+        CartFragment cartPanel = new CartFragment(driver);
+        searchPanel.typeProductName(MACBOOK);
         SearchResultsPage searchResultsPage = searchPanel.clickSearchButton();
-        searchResultsPage.clickAddToCart();
+        searchResultsPage.clickAddToCartButton();
         cartPanel.clickCartButton();
         CartPage cartPage = cartPanel.clickViewCartButton();
         cartPage.typeQuantity(QUANTITY);
-        String finishPageTitle = cartPage.clickCheckoutButtonNavigateCheckout()
+        String finishPageTitle = cartPage.clickCheckoutButton()
                 .getPageTitle();
 
         Assert.assertEquals(finishPageTitle, "Checkout", "There is no Checkout Page in the end!");

@@ -162,6 +162,10 @@ public final class Browser implements WrapsDriver {
         wrappedDriver.close();
     }
 
+    public String getPageTitle() {
+        return wrappedDriver.getTitle();
+    }
+
     @Override
     public WebDriver getWrappedDriver() {
         Log.debug("Getting WebDriver");
