@@ -5,26 +5,26 @@ import ru.awesome.shop.ta.product.pages.registration.AccountRegistrationScreen;
 import ru.awesome.shop.ta.utils.StringUtils;
 
 import static ru.awesome.shop.ta.product.pages.NavigatePanel.AccountLink.REGISTER;
-import static ru.awesome.shop.ta.product.pages.registration.AccountRegistrationScreen.Field.ADDRESS_1;
+import static ru.awesome.shop.ta.product.pages.registration.AccountRegistrationScreen.Field.FIRST_NAME;
 
-public class CheckAppearanceFirstAddressLengthWarningTest extends BaseTest {
+public class CheckAppearanceFirstNameInvalidWarningTest extends BaseTest {
     private NavigatePanel navigatePanel;
     private String text = StringUtils.getRandomString();
-    private String emptyFirstAddress = "";
+    private String invalidFirstName = text.concat("#");
     private String email = text.concat("@mail.ru");
     private String region = "Bristol";
 
     @Test
-    public void checkAppearanceFirstAddressLengthWarning() {
+    public void checkAppearanceFirstNameInvalidWarning() {
         navigatePanel = new NavigatePanel();
         AccountRegistrationScreen registrationScreen = navigatePanel.openAccountLinkScreen(REGISTER)
-                .firstNameType(text)
+                .firstNameType(invalidFirstName)
                 .lastNameType(text)
                 .emailType(email)
                 .telephoneType(text)
                 .faxType(text)
                 .companyType(text)
-                .firstAddressType(emptyFirstAddress)
+                .firstAddressType(text)
                 .secondAddressType(text)
                 .cityType(text)
                 .postcodeType(text)
@@ -34,6 +34,6 @@ public class CheckAppearanceFirstAddressLengthWarningTest extends BaseTest {
                 .agreeWithPrivacyPolicyClick();
         registrationScreen.continueButtonClick();
 
-        Assert.assertTrue(registrationScreen.isFieldLengthWarning(ADDRESS_1));
+        Assert.assertTrue(registrationScreen.isFieldInvalidWarning(FIRST_NAME));
     }
 }

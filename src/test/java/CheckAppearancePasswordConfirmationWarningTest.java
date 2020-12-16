@@ -34,7 +34,6 @@ public class CheckAppearancePasswordConfirmationWarningTest extends BaseTest {
                 .agreeWithPrivacyPolicyClick();
         registrationScreen.continueButtonClick();
 
-        Assert.assertEquals(registrationScreen.getFieldWarning(PASSWORD_CONFIRM),
-                "Password confirmation does not match password!");
+        Assert.assertTrue(registrationScreen.isFieldLengthWarning(PASSWORD_CONFIRM));
     }
 }

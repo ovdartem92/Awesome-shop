@@ -33,7 +33,6 @@ public class CheckAppearanceEmailInvalidWarningTest extends BaseTest {
                 .agreeWithPrivacyPolicyClick();
         registrationScreen.continueButtonClick();
 
-        Assert.assertEquals(registrationScreen.getFieldWarning(EMAIL),
-                "E-Mail Address does not appear to be valid!");
+        Assert.assertTrue(registrationScreen.isFieldInvalidWarning(EMAIL));
     }
 }

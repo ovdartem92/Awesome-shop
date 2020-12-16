@@ -34,7 +34,6 @@ public class CheckAppearanceCityLengthWarningTest extends BaseTest {
                 .agreeWithPrivacyPolicyClick();
         registrationScreen.continueButtonClick();
 
-        Assert.assertEquals(registrationScreen.getFieldWarning(CITY),
-                "City must be between 2 and 128 characters!");
+        Assert.assertTrue(registrationScreen.isFieldLengthWarning(CITY));
     }
 }

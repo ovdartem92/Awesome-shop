@@ -34,7 +34,6 @@ public class CheckAppearanceLastNameLengthWarningTest extends BaseTest {
                 .agreeWithPrivacyPolicyClick();
         registrationScreen.continueButtonClick();
 
-        Assert.assertEquals(registrationScreen.getFieldWarning(LAST_NAME),
-                "Last Name must be between 1 and 32 characters!");
+        Assert.assertTrue(registrationScreen.isFieldLengthWarning(LAST_NAME));
     }
 }

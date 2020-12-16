@@ -31,7 +31,6 @@ public class CheckAppearanceRegionSelectedWarningTest extends BaseTest {
                 .agreeWithPrivacyPolicyClick();
         registrationScreen.continueButtonClick();
 
-        Assert.assertEquals(registrationScreen.getFieldWarning(REGION),
-                "Please select a region / state!");
+        Assert.assertTrue(registrationScreen.isFieldLengthWarning(REGION));
     }
 }

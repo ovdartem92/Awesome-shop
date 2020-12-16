@@ -34,7 +34,6 @@ public class CheckAppearancePasswordLengthWarningTest extends BaseTest {
                 .agreeWithPrivacyPolicyClick();
         registrationScreen.continueButtonClick();
 
-        Assert.assertEquals(registrationScreen.getFieldWarning(PASSWORD),
-                "Password must be between 4 and 20 characters!");
+        Assert.assertTrue(registrationScreen.isFieldLengthWarning(PASSWORD));
     }
 }
