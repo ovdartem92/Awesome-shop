@@ -23,8 +23,6 @@ public class SearchResultsPage {
     public String getProductPriceFromArea() {
         By productPriceFieldLocator = By.xpath("//p[@class='price']");
         Label productPriseField = new Label(productPriceFieldLocator);
-
-        //куда-то вынести или че
         String[] array = productPriseField.getText().split("\n");
         return array[0];
     }
