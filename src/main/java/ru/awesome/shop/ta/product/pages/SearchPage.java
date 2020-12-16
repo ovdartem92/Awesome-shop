@@ -26,7 +26,9 @@ public class SearchPage {
     }
 
     public SearchPage selectCategory(int expectedIndex) {
-        new Select(Browser.getInstance().getWrappedDriver()
+        new Select(Browser
+                .getInstance()
+                .getWrappedDriver()
                 .findElement(CATEGORY_DROPDOWN_LOCATOR))
                 .selectByIndex(expectedIndex);
         return this;
