@@ -5,9 +5,10 @@ import ru.awesome.shop.ta.product.pages.fragments.CartFragment;
 public class CheckCantOpenEmptyCart extends BaseTest {
     @Test
     public void checkOpenEmptyCart() {
-        CartFragment cartPanel = new CartFragment(driver);
-        cartPanel.clickCartButton();
-        Boolean messageEmptyCartDisplayed = cartPanel.getCartDropDownEmptyMessage();
-        Assert.assertTrue(messageEmptyCartDisplayed, "The message from drop down cart menu isn't displayed!");
+        CartFragment cartFragment = new CartFragment();
+        cartFragment.clickCartButton();
+        String messageFromCart = cartFragment.getCartDropDownEmptyMessage();
+
+        Assert.assertEquals(messageFromCart, "Your shopping cart is empty!", "Messages aren't equals");
     }
 }

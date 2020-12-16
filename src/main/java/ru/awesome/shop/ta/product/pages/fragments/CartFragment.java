@@ -35,8 +35,8 @@ public class CartFragment {
     }
 
     //что-то сделать
-    public String getQuantityFromCartButton() {
+    public int getQuantityFromCartButton() {
         String[] array = cartButton.getText().split(" ");
-        return array[0];
+        return Integer.parseInt(array[0]);
     }
 }

@@ -1,27 +1,27 @@
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.awesome.shop.ta.product.pages.CartPage;
+import ru.awesome.shop.ta.product.pages.SearchResultsPage;
 import ru.awesome.shop.ta.product.pages.fragments.CartFragment;
 import ru.awesome.shop.ta.product.pages.fragments.SearchFragment;
-import ru.awesome.shop.ta.product.pages.SearchResultsPage;
 
 public class CheckUserCanAddMoreThanOneProductToCart extends BaseTest {
     @Test
     public void checkAddToCartMoreProducts() {
         String MACBOOK = "MacBook";
         String IPHONE = "iPhone";
-        SearchFragment searchPanel = new SearchFragment(driver);
-        CartFragment cartPanel = new CartFragment(driver);
-        searchPanel.typeProductName(MACBOOK);
-        SearchResultsPage searchResultsPage = searchPanel.clickSearchButton();
+        SearchFragment searchFragment = new SearchFragment();
+        CartFragment cartFragment = new CartFragment();
+        searchFragment.typeProductName(IPHONE);
+        SearchResultsPage searchResultsPage = searchFragment.clickSearchButton();
         searchResultsPage.clickAddToCartButton();
-        searchPanel.typeProductName(IPHONE);
-        searchPanel.clickSearchButton();
+        searchFragment.typeProductName(MACBOOK);
+        searchFragment.clickSearchButton();
         searchResultsPage.clickAddToCartButton();
-        cartPanel.clickCartButton();
-        CartPage cartPage = cartPanel.clickViewCartButton();
-        Boolean isProductListMoreThanOne = cartPage.isCartContainsMoreThanOneProduct();
+        cartFragment.clickCartButton();
+        CartPage cartPage = cartFragment.clickViewCartButton();
+        int sizeOfProductsList = cartPage.getProductsListSize();
 
-        Assert.assertTrue(isProductListMoreThanOne, "The size of products list isn't more 1! ");
+        Assert.assertTrue(sizeOfProductsList > 1, "The size of products list isn't more 1! ");
     }
 }

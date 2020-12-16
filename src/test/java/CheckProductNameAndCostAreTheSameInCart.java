@@ -1,27 +1,29 @@
-import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 import ru.awesome.shop.ta.product.pages.CartPage;
+import ru.awesome.shop.ta.product.pages.SearchResultsPage;
 import ru.awesome.shop.ta.product.pages.fragments.CartFragment;
 import ru.awesome.shop.ta.product.pages.fragments.SearchFragment;
-import ru.awesome.shop.ta.product.pages.SearchResultsPage;
 
 public class CheckProductNameAndCostAreTheSameInCart extends BaseTest {
     @Test
     public void checkProductNameAndCost() {
         String IPHONE = "Iphone";
-        SearchFragment searchPanel = new SearchFragment(driver);
-        CartFragment cartPanel = new CartFragment(driver);
-        searchPanel.typeProductName(IPHONE);
-        SearchResultsPage searchResultsPage = searchPanel.clickSearchButton();
+        SearchFragment searchFragment = new SearchFragment();
+        CartFragment cartFragment = new CartFragment();
+        searchFragment.typeProductName(IPHONE);
+        SearchResultsPage searchResultsPage = searchFragment.clickSearchButton();
         searchResultsPage.clickAddToCartButton();
-        String nameFromThumb = searchResultsPage.getProductNameFromThumb();
-        String costFromThumb = searchResultsPage.getProductCostFromThumb();
-        cartPanel.clickCartButtonContainsProducts();
-        CartPage cartPage = cartPanel.clickViewCartButton();
-        String nameProductInCart = cartPage.getProductNameIntoCart();
+        String nameFromSearchPage = searchResultsPage.getProductNameFromArea();
+        String priceFromSearchPage = searchResultsPage.getProductPriceFromArea();
+        cartFragment.clickCartButtonContainsProducts();
+        CartPage cartPage = cartFragment.clickViewCartButton();
+        String nameProductInCart = cartPage.getProductNameIntoCart(1);
         String priceProductInCart = cartPage.getProductUnitPriceIntoCart();
 
-        Assert.assertEquals(nameProductInCart, nameFromThumb, "The names of product aren't equals!");
-        Assert.assertEquals(priceProductInCart, costFromThumb, "The costs of product aren't equals!");
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertEquals(nameProductInCart, nameFromSearchPage, "The names of product aren't equals!");
+        softAssert.assertEquals(priceProductInCart, priceFromSearchPage, "The costs of product aren't equals!");
+        softAssert.assertAll();
     }
 }

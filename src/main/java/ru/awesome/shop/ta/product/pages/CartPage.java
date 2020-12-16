@@ -82,7 +82,7 @@ public class CartPage {
         return emptyCartLabel.getText();
     }
 
-    public int getProductListSize() {
+    public int getProductsListSize() {
         List<WebElement> productLinks = Browser.getInstance().getWrappedDriver().findElements(By
                 .xpath(lineOfProductsTablePath));
         return productLinks.size();
