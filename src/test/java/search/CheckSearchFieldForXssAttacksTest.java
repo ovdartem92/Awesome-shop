@@ -15,7 +15,9 @@ public class CheckSearchFieldForXssAttacksTest extends BaseSearchTest {
                 .clickSearchButton();
     }
 
-    @Test(description = "checks the search field for XSS attacks")
+    @Test(description = "***SearchResultForXssAttacks***\n" +
+            "EPMFARMATS-13136: check the search field for XSS attacks\n" +
+            "https://jira.epam.com/jira/browse/EPMFARMATS-13136")
     public void checkTheSearchFieldByXssAttack() {
         String expectedResult = "There is no product that matches the search criteria.";
         Assert.assertEquals(searchPage.getNoSearchResultsMessage(), expectedResult,

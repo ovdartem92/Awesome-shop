@@ -33,7 +33,8 @@ public class SearchPage {
     }
 
     public Boolean isSearchResultNameVisible(String expectedName) {
-        return Browser.getInstance()
+        return Browser
+                .getInstance()
                 .getWrappedDriver()
                 .findElement(getSearchResultLocator(expectedName))
                 .isDisplayed();
