@@ -17,11 +17,6 @@ public class Label extends CommonPageElement {
         return Browser.getInstance().getText(locator);
     }
 
-    public boolean isDisplayed() {
-        waitForPageElementVisibilityLocated(locator);
-        return Browser.getInstance().isDisplayed(locator);
-    }
-
     @Override
     public String toString() {
         String labelName = getText();
