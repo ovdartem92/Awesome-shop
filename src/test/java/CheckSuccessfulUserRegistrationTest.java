@@ -16,21 +16,21 @@ public class CheckSuccessfulUserRegistrationTest extends BaseTest {
     public void checkSuccessfulUserRegistration() {
         navigatePanel = new NavigatePanel();
         AccountRegistrationSuccessfullyScreen registrationScreen = navigatePanel.openAccountLinkScreen(REGISTER)
-                .firstNameType(text)
-                .lastNameType(text)
-                .emailType(email)
-                .telephoneType(text)
-                .faxType(text)
-                .companyType(text)
-                .firstAddressType(text)
-                .secondAddressType(text)
-                .cityType(text)
-                .postcodeType(text)
-                .regionSelect(region)
-                .passwordType(text)
-                .passwordConfirmType(text)
-                .agreeWithPrivacyPolicyClick()
-                .continueButtonClick();
+                .typeFirstName(text)
+                .typeLastName(text)
+                .typeEmail(email)
+                .typeTelephone(text)
+                .typeFax(text)
+                .typeCompany(text)
+                .typeFirstAddress(text)
+                .typeSecondAddress(text)
+                .typeCity(text)
+                .typePostcode(text)
+                .selectRegion(region)
+                .typePassword(text)
+                .typePasswordConfirm(text)
+                .clickAgreeWithPrivacyPolicy()
+                .clickContinueButton();
 
         Assert.assertEquals(registrationScreen.getAccountCreatedLabelText(), "Your Account Has Been Created!");
     }

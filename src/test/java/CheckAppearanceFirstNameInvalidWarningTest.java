@@ -18,21 +18,21 @@ public class CheckAppearanceFirstNameInvalidWarningTest extends BaseTest {
     public void checkAppearanceFirstNameInvalidWarning() {
         navigatePanel = new NavigatePanel();
         AccountRegistrationScreen registrationScreen = navigatePanel.openAccountLinkScreen(REGISTER)
-                .firstNameType(invalidFirstName)
-                .lastNameType(text)
-                .emailType(email)
-                .telephoneType(text)
-                .faxType(text)
-                .companyType(text)
-                .firstAddressType(text)
-                .secondAddressType(text)
-                .cityType(text)
-                .postcodeType(text)
-                .regionSelect(region)
-                .passwordType(text)
-                .passwordConfirmType(text)
-                .agreeWithPrivacyPolicyClick();
-        registrationScreen.continueButtonClick();
+                .typeFirstName(invalidFirstName)
+                .typeLastName(text)
+                .typeEmail(email)
+                .typeTelephone(text)
+                .typeFax(text)
+                .typeCompany(text)
+                .typeFirstAddress(text)
+                .typeSecondAddress(text)
+                .typeCity(text)
+                .typePostcode(text)
+                .selectRegion(region)
+                .typePassword(text)
+                .typePasswordConfirm(text)
+                .clickAgreeWithPrivacyPolicy();
+        registrationScreen.clickContinueButton();
 
         Assert.assertTrue(registrationScreen.isFieldInvalidWarning(FIRST_NAME));
     }

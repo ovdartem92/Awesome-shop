@@ -18,21 +18,21 @@ public class CheckAppearanceFirstAddressLengthWarningTest extends BaseTest {
     public void checkAppearanceFirstAddressLengthWarning() {
         navigatePanel = new NavigatePanel();
         AccountRegistrationScreen registrationScreen = navigatePanel.openAccountLinkScreen(REGISTER)
-                .firstNameType(text)
-                .lastNameType(text)
-                .emailType(email)
-                .telephoneType(text)
-                .faxType(text)
-                .companyType(text)
-                .firstAddressType(emptyFirstAddress)
-                .secondAddressType(text)
-                .cityType(text)
-                .postcodeType(text)
-                .regionSelect(region)
-                .passwordType(text)
-                .passwordConfirmType(text)
-                .agreeWithPrivacyPolicyClick();
-        registrationScreen.continueButtonClick();
+                .typeFirstName(text)
+                .typeLastName(text)
+                .typeEmail(email)
+                .typeTelephone(text)
+                .typeFax(text)
+                .typeCompany(text)
+                .typeFirstAddress(emptyFirstAddress)
+                .typeSecondAddress(text)
+                .typeCity(text)
+                .typePostcode(text)
+                .selectRegion(region)
+                .typePassword(text)
+                .typePasswordConfirm(text)
+                .clickAgreeWithPrivacyPolicy();
+        registrationScreen.clickContinueButton();
 
         Assert.assertTrue(registrationScreen.isFieldLengthWarning(ADDRESS_1));
     }

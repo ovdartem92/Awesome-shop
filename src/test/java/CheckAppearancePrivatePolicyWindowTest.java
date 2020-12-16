@@ -12,7 +12,7 @@ public class CheckAppearancePrivatePolicyWindowTest extends BaseTest {
     public void checkAppearancePrivatePolicyWindow() {
         navigatePanel = new NavigatePanel();
         AccountRegistrationScreen registrationScreen = navigatePanel.openAccountLinkScreen(REGISTER)
-                .privacyPolicyClick();
+                .clickPrivacyPolicy();
 
         Assert.assertTrue(registrationScreen.isDisplayedPrivacyPolicyWindow());
     }

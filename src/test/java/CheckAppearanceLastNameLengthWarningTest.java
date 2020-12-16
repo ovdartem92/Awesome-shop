@@ -18,21 +18,21 @@ public class CheckAppearanceLastNameLengthWarningTest extends BaseTest {
     public void checkAppearanceLastNameLengthWarning() {
         navigatePanel = new NavigatePanel();
         AccountRegistrationScreen registrationScreen = navigatePanel.openAccountLinkScreen(REGISTER)
-                .firstNameType(text)
-                .lastNameType(emptyLastName)
-                .emailType(email)
-                .telephoneType(text)
-                .faxType(text)
-                .companyType(text)
-                .firstAddressType(text)
-                .secondAddressType(text)
-                .cityType(text)
-                .postcodeType(text)
-                .regionSelect(region)
-                .passwordType(text)
-                .passwordConfirmType(text)
-                .agreeWithPrivacyPolicyClick();
-        registrationScreen.continueButtonClick();
+                .typeFirstName(text)
+                .typeLastName(emptyLastName)
+                .typeEmail(email)
+                .typeTelephone(text)
+                .typeFax(text)
+                .typeCompany(text)
+                .typeFirstAddress(text)
+                .typeSecondAddress(text)
+                .typeCity(text)
+                .typePostcode(text)
+                .selectRegion(region)
+                .typePassword(text)
+                .typePasswordConfirm(text)
+                .clickAgreeWithPrivacyPolicy();
+        registrationScreen.clickContinueButton();
 
         Assert.assertTrue(registrationScreen.isFieldLengthWarning(LAST_NAME));
     }

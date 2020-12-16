@@ -16,20 +16,20 @@ public class CheckAppearanceRegionSelectedWarningTest extends BaseTest {
     public void checkAppearanceRegionSelectedWarning() {
         navigatePanel = new NavigatePanel();
         AccountRegistrationScreen registrationScreen = navigatePanel.openAccountLinkScreen(REGISTER)
-                .firstNameType(text)
-                .lastNameType(text)
-                .emailType(email)
-                .telephoneType(text)
-                .faxType(text)
-                .companyType(text)
-                .firstAddressType(text)
-                .secondAddressType(text)
-                .cityType(text)
-                .postcodeType(text)
-                .passwordType(text)
-                .passwordConfirmType(text)
-                .agreeWithPrivacyPolicyClick();
-        registrationScreen.continueButtonClick();
+                .typeFirstName(text)
+                .typeLastName(text)
+                .typeEmail(email)
+                .typeTelephone(text)
+                .typeFax(text)
+                .typeCompany(text)
+                .typeFirstAddress(text)
+                .typeSecondAddress(text)
+                .typeCity(text)
+                .typePostcode(text)
+                .typePassword(text)
+                .typePasswordConfirm(text)
+                .clickAgreeWithPrivacyPolicy();
+        registrationScreen.clickContinueButton();
 
         Assert.assertTrue(registrationScreen.isFieldLengthWarning(REGION));
     }

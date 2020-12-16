@@ -16,21 +16,21 @@ public class CheckAppearanceEmailAlreadyRegisteredWarningTest extends BaseTest {
     public void checkAppearanceEmailAlreadyRegisteredWarning() {
         navigatePanel = new NavigatePanel();
         AccountRegistrationScreen registrationScreen = navigatePanel.openAccountLinkScreen(REGISTER)
-                .firstNameType(text)
-                .lastNameType(text)
-                .emailType(previouslyRegisteredEmail)
-                .telephoneType(text)
-                .faxType(text)
-                .companyType(text)
-                .firstAddressType(text)
-                .secondAddressType(text)
-                .cityType(text)
-                .postcodeType(text)
-                .regionSelect(region)
-                .passwordType(text)
-                .passwordConfirmType(text)
-                .agreeWithPrivacyPolicyClick();
-        registrationScreen.continueButtonClick();
+                .typeFirstName(text)
+                .typeLastName(text)
+                .typeEmail(previouslyRegisteredEmail)
+                .typeTelephone(text)
+                .typeFax(text)
+                .typeCompany(text)
+                .typeFirstAddress(text)
+                .typeSecondAddress(text)
+                .typeCity(text)
+                .typePostcode(text)
+                .selectRegion(region)
+                .typePassword(text)
+                .typePasswordConfirm(text)
+                .clickAgreeWithPrivacyPolicy();
+        registrationScreen.clickContinueButton();
 
         Assert.assertEquals(registrationScreen.getDangerAlertMessage(),
                 "Warning: E-Mail Address is already registered!");

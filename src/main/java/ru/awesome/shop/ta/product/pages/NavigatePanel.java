@@ -25,7 +25,7 @@ public class NavigatePanel {
     }
 
     public AccountRegistrationScreen openAccountLinkScreen(AccountLink link) {
-        myAccountLinkClick();
+        clickMyAccountLink();
         By registerBy = getAccountLinkLocator(link);
         Link register = new Link(registerBy);
         register.click();
@@ -33,39 +33,39 @@ public class NavigatePanel {
     }
 
     public NavigatePanel changeCurrency(Currency currency) {
-        changeCurrencyButtonClick();
+        clickChangeCurrencyButton();
         By currencySelectLocator = getCurrencyTypeLocator(currency);
         Button currencyButton = new Button(currencySelectLocator);
         currencyButton.click();
         return this;
     }
 
-    public NavigatePanel changeCurrencyButtonClick() {
+    public NavigatePanel clickChangeCurrencyButton() {
         changeCurrencyButton.click();
         return this;
     }
 
-    public NavigatePanel contactUsClick() {
+    public NavigatePanel clickContactUs() {
         contactUsLink.click();
         return this;
     }
 
-    public NavigatePanel myAccountLinkClick() {
+    public NavigatePanel clickMyAccountLink() {
         myAccountLink.click();
         return this;
     }
 
-    public NavigatePanel wishListLinkClick() {
+    public NavigatePanel clickWishListLink() {
         wishListLink.click();
         return this;
     }
 
-    public NavigatePanel shoppingCartLinkClick() {
+    public NavigatePanel clickShoppingCartLink() {
         shoppingCartLink.click();
         return this;
     }
 
-    public NavigatePanel checkoutLinkClick() {
+    public NavigatePanel clickCheckoutLink() {
         checkoutLink.click();
         return this;
     }

@@ -12,7 +12,7 @@ public class AccountRegistrationSuccessfullyScreen {
         return accountCreatedLabel.getText();
     }
 
-    public AccountRegistrationSuccessfullyScreen continueButtonClick() {
+    public AccountRegistrationSuccessfullyScreen clickContinueButton() {
         continueButton.click();
         return this;
     }

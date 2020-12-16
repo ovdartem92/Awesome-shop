@@ -18,105 +18,105 @@ public class AccountRegistrationScreen {
     private DropDownList regionList = new DropDownList(By.id("input-zone"));
     private TextField passwordField = new TextField(By.id("input-password"));
     private TextField passwordConfirmField = new TextField(By.id("input-confirm"));
-    private RadioButton subscribeYesRadio = new RadioButton(By.xpath("//input[@name='newsletter'][@value='1']"));
-    private RadioButton subscribeNoRadio = new RadioButton(By.xpath("//input[@name='newsletter'][@value='0']"));
+    private RadioButton subscribeYesRadioButton = new RadioButton(By.xpath("//input[@name='newsletter'][@value='1']"));
+    private RadioButton subscribeNoRadioButton = new RadioButton(By.xpath("//input[@name='newsletter'][@value='0']"));
     private Link privacyPolicyLink = new Link(By.xpath("//b[text()='Privacy Policy']/.."));
     private Checkbox agreeWithPrivacyPolicyCheckbox = new Checkbox(By.name("agree"));
     private Button continueButton = new Button(By.xpath("//input[@type='submit']"));
     private Label dangerAlertLabel = new Label(By.xpath("//div[contains(@class, 'alert-danger')]"));
     private Label policyTitleLabel = new Label(By.xpath("//h4[contains(text(),'Privacy Policy')]"));
 
-    public AccountRegistrationScreen firstNameType(String text) {
+    public AccountRegistrationScreen typeFirstName(String text) {
         firstNameField.type(text);
         return this;
     }
 
-    public AccountRegistrationScreen lastNameType(String text) {
+    public AccountRegistrationScreen typeLastName(String text) {
         lastNameField.type(text);
         return this;
     }
 
-    public AccountRegistrationScreen emailType(String text) {
+    public AccountRegistrationScreen typeEmail(String text) {
         emailField.type(text);
         return this;
     }
 
-    public AccountRegistrationScreen telephoneType(String text) {
+    public AccountRegistrationScreen typeTelephone(String text) {
         telephoneField.type(text);
         return this;
     }
 
-    public AccountRegistrationScreen faxType(String text) {
+    public AccountRegistrationScreen typeFax(String text) {
         faxField.type(text);
         return this;
     }
 
-    public AccountRegistrationScreen companyType(String text) {
+    public AccountRegistrationScreen typeCompany(String text) {
         companyField.type(text);
         return this;
     }
 
-    public AccountRegistrationScreen firstAddressType(String text) {
+    public AccountRegistrationScreen typeFirstAddress(String text) {
         firstAddressField.type(text);
         return this;
     }
 
-    public AccountRegistrationScreen secondAddressType(String text) {
+    public AccountRegistrationScreen typeSecondAddress(String text) {
         secondAddressField.type(text);
         return this;
     }
 
-    public AccountRegistrationScreen cityType(String text) {
+    public AccountRegistrationScreen typeCity(String text) {
         cityField.type(text);
         return this;
     }
 
-    public AccountRegistrationScreen postcodeType(String text) {
+    public AccountRegistrationScreen typePostcode(String text) {
         postcodeField.type(text);
         return this;
     }
 
-    public AccountRegistrationScreen countrySelect(String option) {
+    public AccountRegistrationScreen selectCountry(String option) {
         countryList.select(option);
         return this;
     }
 
-    public AccountRegistrationScreen regionSelect(String option) {
+    public AccountRegistrationScreen selectRegion(String option) {
         regionList.select(option);
         return this;
     }
 
-    public AccountRegistrationScreen passwordType(String text) {
+    public AccountRegistrationScreen typePassword(String text) {
         passwordField.type(text);
         return this;
     }
 
-    public AccountRegistrationScreen passwordConfirmType(String text) {
+    public AccountRegistrationScreen typePasswordConfirm(String text) {
         passwordConfirmField.type(text);
         return this;
     }
 
-    public AccountRegistrationScreen subscribeYesClick(String text) {
-        subscribeYesRadio.click();
+    public AccountRegistrationScreen clickSubscribeYesRadioButton(String text) {
+        subscribeYesRadioButton.click();
         return this;
     }
 
-    public AccountRegistrationScreen subscribeNoClick(String text) {
-        subscribeNoRadio.click();
+    public AccountRegistrationScreen clickSubscribeNoRadioButton(String text) {
+        subscribeNoRadioButton.click();
         return this;
     }
 
-    public AccountRegistrationScreen privacyPolicyClick() {
+    public AccountRegistrationScreen clickPrivacyPolicy() {
         privacyPolicyLink.click();
         return this;
     }
 
-    public AccountRegistrationScreen agreeWithPrivacyPolicyClick() {
+    public AccountRegistrationScreen clickAgreeWithPrivacyPolicy() {
         agreeWithPrivacyPolicyCheckbox.setSelected(true);
         return this;
     }
 
-    public AccountRegistrationSuccessfullyScreen continueButtonClick() {
+    public AccountRegistrationSuccessfullyScreen clickContinueButton() {
         continueButton.click();
         return new AccountRegistrationSuccessfullyScreen();
     }
