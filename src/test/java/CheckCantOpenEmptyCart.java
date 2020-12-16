@@ -1,14 +1,13 @@
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import ru.awesome.shop.ta.product.pages.HomePage;
+import ru.awesome.shop.ta.product.pages.CartPanel;
 
 public class CheckCantOpenEmptyCart extends BaseTest {
     @Test
     public void checkOpenEmptyCart() {
-        Boolean messageEmptyCartDisplayed = new HomePage(driver)
-                .clickCartButton()
-                .isCartDropDownEmptyMessageDisplayed();
-
+        CartPanel cartPanel = new CartPanel(driver);
+        cartPanel.clickCartButton();
+        Boolean messageEmptyCartDisplayed = cartPanel.isCartDropDownEmptyMessageDisplayed();
         Assert.assertTrue(messageEmptyCartDisplayed, "The message from drop down cart menu isn't displayed!");
     }
 }

@@ -1,21 +1,24 @@
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import ru.awesome.shop.ta.product.pages.HomePage;
+import ru.awesome.shop.ta.product.pages.CartPage;
+import ru.awesome.shop.ta.product.pages.CartPanel;
+import ru.awesome.shop.ta.product.pages.SearchPanel;
+import ru.awesome.shop.ta.product.pages.SearchResultsPage;
 
 public class CheckRemoveProductFromCart extends BaseTest {
     @Test
     public void removeProduct() {
         String MACBOOK = "MacBook";
-        Boolean messageEmptyCartDisplayed = new HomePage(driver)
-                .clearAndTypeProductNameToSearchField(MACBOOK)
-                .clickSearchButton()
-                .clickAddToCart()
-                .clickCartButton()
-                .clickViewCartButton()
-                .clickRemoveProductButton()
-                .isEmptyShoppingCartMessageDisplayed();
+        SearchPanel searchPanel = new SearchPanel(driver);
+        CartPanel cartPanel = new CartPanel(driver);
+        searchPanel.clearAndTypeProductNameToSearchField(MACBOOK);
+        SearchResultsPage searchResultsPage = searchPanel.clickSearchButton();
+        searchResultsPage.clickAddToCart();
+        cartPanel.clickCartButton();
+        CartPage cartPage = cartPanel.clickViewCartButton();
+        cartPage.clickRemoveProductButton();
+        Boolean messageEmptyCartDisplayed = cartPage.isEmptyShoppingCartMessageDisplayed();
 
         Assert.assertTrue(messageEmptyCartDisplayed, "Message isn't displayed after removing product from cart!");
     }
-
 }
