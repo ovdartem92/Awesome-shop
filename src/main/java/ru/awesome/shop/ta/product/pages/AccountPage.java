@@ -5,15 +5,15 @@ import ru.awesome.shop.ta.framework.ui.components.Label;
 import ru.awesome.shop.ta.framework.ui.components.Link;
 
 public class AccountPage {
-    private Label myAccountLabel = new Label(By.xpath("//h2[text()='My Account']"));
-    private Link changePasswordLink = new Link(By.xpath("//a[contains(text(),'Change')]"));
+    private static final By MY_ACCOUNT_LABEL_LOCATOR = By.xpath("//h2[text()='My Account']");
+    private static final By CHANGE_PASSWORD_LINK_LOCATOR = By.xpath("//a[contains(text(),'Change')]");
 
-    public boolean isTextFromMyAccountLabelDisplayed() {
-        return myAccountLabel.isDisplayed();
+    public String getTextFromMyAccountLabel() {
+        return new Label(MY_ACCOUNT_LABEL_LOCATOR).getText();
     }
 
-    public ChangePasswordPage clickOnChangePasswordLink() {
-        changePasswordLink.click();
+    public ChangePasswordPage clickChangePasswordLink() {
+        new Link(CHANGE_PASSWORD_LINK_LOCATOR).click();
         return new ChangePasswordPage();
     }
 }

@@ -22,9 +22,4 @@ public class Label extends CommonPageElement {
         String labelName = getText();
         return String.format("Label \"%s\"", labelName);
     }
-
-    public boolean isDisplayed() {
-        waitForPageElementVisibilityLocated(locator);
-        return Browser.getInstance().isDisplayed(locator);
-    }
 }

@@ -5,7 +5,7 @@ import ru.awesome.shop.ta.framework.services.UserBuilder;
 import ru.awesome.shop.ta.product.bo.user.User;
 import ru.awesome.shop.ta.product.pages.Header;
 
-public class LoginWithInvalidPasswordTest extends BaseTest {
+public class LoginWithInvalidPasswordTest extends BaseConfigurationTest {
     private boolean warningMessageDisplayed;
 
     @BeforeClass(description = "login with valid email and invalid password")

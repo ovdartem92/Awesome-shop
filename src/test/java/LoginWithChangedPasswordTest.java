@@ -9,7 +9,7 @@ import ru.awesome.shop.ta.product.pages.Header;
 
 import static ru.awesome.shop.ta.utils.StringUtils.getRandomString;
 
-public class LoginWithChangedPasswordTest extends BaseTest {
+public class LoginWithChangedPasswordTest extends BaseConfigurationTest {
     private final User user = UserBuilder.getUserWithValidCredentials();
     private boolean accountLabelDisplayed;
 
@@ -19,7 +19,7 @@ public class LoginWithChangedPasswordTest extends BaseTest {
         Header header = new Header();
         header.clickOnMyAccountLink().clickOnLoginLink()
                 .typeEmailAddress(user.getEmail())
-                .typePassword(user.getPassword()).clickOnLoginButton().clickOnChangePasswordLink()
+                .typePassword(user.getPassword()).clickOnLoginButton().clickChangePasswordLink()
                 .typeToPasswordTextField(newPassword).typeToConfirmPasswordTextField(newPassword)
                 .clickOnContinueButton();
         header.clickOnMyAccountLink().clickOnLogoutLink();
@@ -34,7 +34,7 @@ public class LoginWithChangedPasswordTest extends BaseTest {
 
     @AfterClass(description = "change password back")
     public void changePasswordBack() {
-        new AccountPage().clickOnChangePasswordLink().typeToPasswordTextField(user.getPassword())
+        new AccountPage().clickChangePasswordLink().typeToPasswordTextField(user.getPassword())
                 .typeToConfirmPasswordTextField(user.getPassword()).clickOnContinueButton();
     }
 }

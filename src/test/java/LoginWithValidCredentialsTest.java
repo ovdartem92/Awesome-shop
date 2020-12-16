@@ -5,7 +5,7 @@ import ru.awesome.shop.ta.framework.services.UserBuilder;
 import ru.awesome.shop.ta.product.bo.user.User;
 import ru.awesome.shop.ta.product.pages.Header;
 
-public class LoginWithValidCredentialsTest extends BaseTest {
+public class LoginWithValidCredentialsTest extends BaseConfigurationTest {
     private boolean myAccountLabelDisplayed;
 
     @BeforeClass(description = "login with valid email and valid password")

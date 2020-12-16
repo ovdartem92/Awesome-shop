@@ -5,7 +5,7 @@ import ru.awesome.shop.ta.framework.services.UserBuilder;
 import ru.awesome.shop.ta.product.bo.user.User;
 import ru.awesome.shop.ta.product.pages.Header;
 
-public class LogOutTest extends BaseTest {
+public class LogOutTest extends BaseConfigurationTest {
     private boolean logoutLabelDisplayed;
 
     @BeforeClass(description = "login with valid credentials and then logout")
