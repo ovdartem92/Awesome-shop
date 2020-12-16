@@ -5,7 +5,7 @@ import ru.awesome.shop.ta.product.pages.SearchResultsPage;
 import ru.awesome.shop.ta.product.pages.fragments.CartFragment;
 import ru.awesome.shop.ta.product.pages.fragments.SearchFragment;
 
-public class CheckUserCantBuyItemsOver1001 extends BaseTest {
+public class CheckUserCantBuyItemsOver1001 extends BaseConfigurationTest {
     @Test
     public void checkCantBuyOver1000() {
         String MACBOOK = "MacBook";

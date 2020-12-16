@@ -2,7 +2,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.awesome.shop.ta.product.pages.fragments.CartFragment;
 
-public class CheckCantOpenEmptyCart extends BaseTest {
+public class CheckCantOpenEmptyCart extends BaseConfigurationTest {
     @Test
     public void checkOpenEmptyCart() {
         CartFragment cartFragment = new CartFragment();

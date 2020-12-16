@@ -5,7 +5,7 @@ import ru.awesome.shop.ta.product.pages.SearchResultsPage;
 import ru.awesome.shop.ta.product.pages.fragments.CartFragment;
 import ru.awesome.shop.ta.product.pages.fragments.SearchFragment;
 
-public class CheckItemIntoCartTest extends BaseTest {
+public class CheckItemIntoCartTest extends BaseConfigurationTest {
     @Test
     public void checkItemIntoCart() {
         String MACBOOK = "MacBook";

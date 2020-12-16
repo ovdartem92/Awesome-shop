@@ -1,7 +1,7 @@
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class FirstTest extends BaseTest {
+public class FirstTest extends BaseConfigurationTest {
 
     @Test
     public void openUrl() {

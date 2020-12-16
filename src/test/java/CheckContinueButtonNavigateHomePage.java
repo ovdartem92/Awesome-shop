@@ -5,7 +5,7 @@ import ru.awesome.shop.ta.product.pages.SearchResultsPage;
 import ru.awesome.shop.ta.product.pages.fragments.CartFragment;
 import ru.awesome.shop.ta.product.pages.fragments.SearchFragment;
 
-public class CheckContinueButtonNavigateHomePage extends BaseTest {
+public class CheckContinueButtonNavigateHomePage extends BaseConfigurationTest {
     @Test
     public void continueNavigateToHomePage() {
         String MACBOOK = "MacBook";

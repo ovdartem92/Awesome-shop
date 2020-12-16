@@ -5,7 +5,7 @@ import ru.awesome.shop.ta.product.pages.SearchResultsPage;
 import ru.awesome.shop.ta.product.pages.fragments.CartFragment;
 import ru.awesome.shop.ta.product.pages.fragments.SearchFragment;
 
-public class CheckProductNameAndCostAreTheSameInCart extends BaseTest {
+public class CheckProductNameAndCostAreTheSameInCart extends BaseConfigurationTest {
     @Test
     public void checkProductNameAndCost() {
         String IPHONE = "Iphone";

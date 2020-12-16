@@ -5,7 +5,7 @@ import ru.awesome.shop.ta.product.pages.SearchResultsPage;
 import ru.awesome.shop.ta.product.pages.fragments.CartFragment;
 import ru.awesome.shop.ta.product.pages.fragments.SearchFragment;
 
-public class CheckCorrectWorkContinueShoppingButton extends BaseTest {
+public class CheckCorrectWorkContinueShoppingButton extends BaseConfigurationTest {
     @Test
     public void checkCorrectContinueShopping() {
         String IPHONE = "Iphone";
