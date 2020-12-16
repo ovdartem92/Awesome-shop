@@ -120,6 +120,15 @@ public final class Browser implements WrapsDriver {
         return highlightedWebElement.getText().trim();
     }
 
+
+    public boolean isDisplayed(By locator) {
+        Objects.requireNonNull(locator, "LOCATOR cannot be null.");
+        Log.debug("Check is element displayed on page located by " + locator);
+        WebElement webElement = wrappedDriver.findElement(locator);
+        HighlightedWebElement highlightedWebElement = new HighlightedWebElement(wrappedDriver, webElement);
+        return highlightedWebElement.isDisplayed();
+    }
+
     public File takeScreenshot() {
         String screenshotPath = String.format("%s/%s.png", screenshotDirectoryPath, System.nanoTime());
         File screenshotFile = ((TakesScreenshot) wrappedDriver).getScreenshotAs(OutputType.FILE);
