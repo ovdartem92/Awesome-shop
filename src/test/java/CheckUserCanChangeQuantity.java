@@ -19,7 +19,7 @@ public class CheckUserCanChangeQuantity extends BaseTest {
         CartPage cartPage = cartPanel.clickViewCartButton();
         cartPage.typeQuantity(QUANTITY);
         cartPage.clickUpdateProductButton();
-        String quantityFromCartButton = cartPage.getQuantityFromCartButton();
+        String quantityFromCartButton = cartPanel.getQuantityFromCartButton();
 
         Assert.assertEquals(quantityFromCartButton, QUANTITY, "The values of quantity aren't equals!");
     }

@@ -18,7 +18,7 @@ public class CheckUserCanChangeQuantityAndBuy extends BaseTest {
         cartPanel.clickCartButton();
         CartPage cartPage = cartPanel.clickViewCartButton();
         cartPage.typeQuantity(QUANTITY);
-        String finishPageTitle = cartPage.clickCheckout1Button()
+        String finishPageTitle = cartPage.clickCheckoutButtonNavigateCheckout()
                 .getPageTitle();
 
         Assert.assertEquals(finishPageTitle, "Checkout", "There is no Checkout Page in the end!");

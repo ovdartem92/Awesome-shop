@@ -19,7 +19,7 @@ public class CheckUserCantBuyItemsOver1001 extends BaseTest {
         CartPage cartPage = cartPanel.clickViewCartButton();
         cartPage.typeQuantity(QUANTITY);
         cartPage.clickUpdateProductButton();
-        cartPage.clickCheckOutLink();
+        cartPage.clickCheckOutButtonStayOnCart();
         Boolean warningQuantityDisplayed = cartPage.isQuantityWarningDisplayed();
 
         Assert.assertTrue(warningQuantityDisplayed, "There is no warning about quantity on page!");

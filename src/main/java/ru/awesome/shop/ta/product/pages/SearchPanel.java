@@ -6,9 +6,8 @@ import ru.awesome.shop.ta.framework.ui.components.Button;
 import ru.awesome.shop.ta.framework.ui.components.TextField;
 
 public class SearchPanel extends AbstractPage{
-
-    private final TextField searchField = new TextField(By.xpath("//input[@name='search']"));
-    private final Button searchButton = new Button(By.xpath("//button[@class='btn btn-default btn-lg']"));
+    private final static TextField searchField = new TextField(By.xpath("//input[@name='search']"));
+    private final static Button searchButton = new Button(By.xpath("//button[@class='btn btn-default btn-lg']"));
 
     public SearchPanel(WebDriver driver) {
         super(driver);
@@ -23,5 +22,4 @@ public class SearchPanel extends AbstractPage{
         searchButton.click();
         return new SearchResultsPage(driver);
     }
-
 }

@@ -5,19 +5,9 @@ import org.openqa.selenium.WebDriver;
 import ru.awesome.shop.ta.framework.ui.components.Button;
 import ru.awesome.shop.ta.framework.ui.components.Label;
 import ru.awesome.shop.ta.framework.ui.components.Link;
-import ru.awesome.shop.ta.framework.ui.components.TextField;
 
 
 public class SearchResultsPage extends AbstractPage {
-    //общие поля корзина
-    //private final Button cartButton = new Button(By.xpath("//div[@id='cart']//span[@id='cart-total']"));
-    private final Button cartButton = new Button(By.xpath("//div[@id='cart']"));
-    private final Button viewCartButton = new Button(By.xpath("//*[contains(text(),'View Cart')]"));
-    private final Label cartInfo = new Label(By.xpath("//p[contains(text(), 'Your shopping cart is empty!')]"));
-    //общие поля поиск панель
-    private final TextField searchField = new TextField(By.xpath("//input[@name='search']"));
-    private final Button searchButton = new Button(By.xpath("//button[@class='btn btn-default btn-lg']"));
-
     private static final String PRODUCT_THUMB_PATH = "//div[@class='product-thumb']";
     private static final String PRODUCT_NAME_PATH = "//h4//a";
     private static final String PRODUCT_COST_PATH = "//p[@class='price']";
@@ -47,30 +37,5 @@ public class SearchResultsPage extends AbstractPage {
     public String getProductCostFromThumb() {
         String[] array = productCostField.getText().split("\n");
         return array[0];
-    }
-
-    //общее корзина
-    public SearchResultsPage clickCartButton() {
-        cartButton.click();
-        return this;
-    }
-
-    //общее корзина
-    public CartPage clickViewCartButton() {
-        viewCartButton.click();
-        return new CartPage(driver);
-    }
-
-    //общее панель поиска
-    public SearchResultsPage clearAndTypeProductNameToSearchField(String productName) {
-        searchField.clear();
-        searchField.type(productName);
-        return this;
-    }
-
-    //общее панель поиска
-    public SearchResultsPage clickSearchButton() {
-        searchButton.click();
-        return new SearchResultsPage(driver);
     }
 }
