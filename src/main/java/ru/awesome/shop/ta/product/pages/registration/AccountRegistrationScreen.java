@@ -126,8 +126,7 @@ public class AccountRegistrationScreen {
     }
 
     public boolean isDisplayedPrivacyPolicyWindow() {
-        String title = policyTitleLabel.getText();
-        return title.equals("Privacy Policy");
+        return policyTitleLabel.isDisplayed();
     }
 
     public Boolean isFieldInvalidWarning(Field field) {
@@ -201,10 +200,7 @@ public class AccountRegistrationScreen {
     }
 
     public enum Field {
-        FIRST_NAME, LAST_NAME, EMAIL,
-        TELEPHONE, FAX, COMPANY,
-        ADDRESS_1, ADDRESS_2, CITY,
-        POST_CODE, COUNTRY, REGION,
-        PASSWORD, PASSWORD_CONFIRM;
+        FIRST_NAME, LAST_NAME, EMAIL, TELEPHONE, FAX, COMPANY, ADDRESS_1, ADDRESS_2,
+        CITY, POST_CODE, COUNTRY, REGION, PASSWORD, PASSWORD_CONFIRM;
     }
 }
