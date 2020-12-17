@@ -1,3 +1,6 @@
+package awesome.shop.tests.cart;
+
+import awesome.shop.tests.BaseConfigurationTest;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import ru.awesome.shop.ta.product.pages.CartPage;

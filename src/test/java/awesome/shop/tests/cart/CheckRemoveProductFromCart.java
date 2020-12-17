@@ -1,3 +1,6 @@
+package awesome.shop.tests.cart;
+
+import awesome.shop.tests.BaseConfigurationTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.awesome.shop.ta.product.pages.CartPage;
@@ -5,13 +8,12 @@ import ru.awesome.shop.ta.product.pages.SearchResultsPage;
 import ru.awesome.shop.ta.product.pages.fragments.CartButtonFragment;
 import ru.awesome.shop.ta.product.pages.fragments.SearchPanelFragment;
 
-public class CheckCanChangeQuantityLess1001AndBuy extends BaseConfigurationTest {
-    @Test(description = "***CanChangeQuantityAndBuy***\n" +
-            "EPMFARMATS-13149: Check that user can buy when product quantity less than 1001\n" +
-            "https://jira.epam.com/jira/browse/EPMFARMATS-13149")
-    public void checkCanBuyLess10001() {
+public class CheckRemoveProductFromCart extends BaseConfigurationTest {
+    @Test(description = "***RemoveProductFromCart***\n" +
+            "EPMFARMATS-13146: Check that user can remove product from cart\n" +
+            "https://jira.epam.com/jira/browse/EPMFARMATS-13146")
+    public void removeProduct() {
         String MACBOOK = "MacBook";
-        int QUANTITY = 666;
         SearchPanelFragment searchPanelFragment = new SearchPanelFragment();
         CartButtonFragment cartButtonFragment = new CartButtonFragment();
         searchPanelFragment.typeProductName(MACBOOK);
@@ -19,10 +21,10 @@ public class CheckCanChangeQuantityLess1001AndBuy extends BaseConfigurationTest 
         searchResultsPage.getSearchResultsList().get(0).clickAddToCartButton();
         cartButtonFragment.clickCartButton();
         CartPage cartPage = cartButtonFragment.clickViewCartButton();
-        cartPage.getAllCartItemsList().get(0).typeCartItemQuantity(QUANTITY);
-        cartPage.clickCheckoutButton();
-        String finishPageTitle = browser.getPageTitle();
+        cartPage.getAllCartItemsList().get(0).clickCartItemRemoveButton();
+        String messageEmptyCart = cartPage.getEmptyShoppingCartMessage();
 
-        Assert.assertEquals(finishPageTitle, "Checkout", "There is no Checkout Page in the end!");
+        Assert.assertEquals(messageEmptyCart, "Your shopping cart is empty!",
+                "Message isn't displayed after removing product from cart!");
     }
 }

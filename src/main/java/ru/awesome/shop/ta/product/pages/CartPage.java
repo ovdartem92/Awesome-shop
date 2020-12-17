@@ -10,10 +10,13 @@ import ru.awesome.shop.ta.product.pages.fragments.CartItemFragment;
 import java.util.ArrayList;
 import java.util.List;
 
+import static ru.awesome.shop.ta.framework.ui.components.CommonPageElement.waitForAllElementsPresenceLocated;
+
 public class CartPage {
 
     public List<CartItemFragment> getAllCartItemsList() {
         By lineOfTableLocator = By.xpath("//div[@class='table-responsive']//tbody//tr");
+        waitForAllElementsPresenceLocated(lineOfTableLocator);
         List<WebElement> linesOfTable = Browser.getInstance().getWrappedDriver().findElements(lineOfTableLocator);
         List<CartItemFragment> cartItemFragmentList = new ArrayList<>();
         for (WebElement element : linesOfTable) {
