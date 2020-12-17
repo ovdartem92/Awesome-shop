@@ -35,7 +35,7 @@ public class CheckAppearanceFirstNameInvalidWarningTest extends BaseConfiguratio
                 .clickAgreeWithPrivacyPolicy();
         registrationScreen.clickContinueButton();
 
-        Assert.assertEquals(registrationScreen.getFirstNameInvalidWarning(),
+        Assert.assertEquals(registrationScreen.getWarningMessage(),
                 "First Name shouldn't contains space character, special symbols, numerals");
     }
 }

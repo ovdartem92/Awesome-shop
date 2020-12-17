@@ -35,6 +35,6 @@ public class CheckAppearanceTelephoneLengthWarningTest extends BaseConfiguration
                 .clickAgreeWithPrivacyPolicy();
         registrationScreen.clickContinueButton();
 
-        Assert.assertEquals(registrationScreen.getTelephoneNumberLengthWarning(), "Telephone must be between 3 and 32 characters!");
+        Assert.assertEquals(registrationScreen.getWarningMessage(), "Telephone must be between 3 and 32 characters!");
     }
 }

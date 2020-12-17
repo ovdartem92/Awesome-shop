@@ -34,6 +34,6 @@ public class CheckAppearanceEmailAlreadyRegisteredWarningTest extends BaseConfig
                 .clickAgreeWithPrivacyPolicy();
         registrationScreen.clickContinueButton();
 
-        Assert.assertEquals(registrationScreen.getDangerMessage(), "Warning: E-Mail Address is already registered!");
+        Assert.assertEquals(registrationScreen.getWarningMessage(), "Warning: E-Mail Address is already registered!");
     }
 }

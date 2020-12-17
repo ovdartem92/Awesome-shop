@@ -35,6 +35,6 @@ public class CheckAppearanceFirstAddressLengthWarningTest extends BaseConfigurat
                 .clickAgreeWithPrivacyPolicy();
         registrationScreen.clickContinueButton();
 
-        Assert.assertEquals(registrationScreen.getFirstAddressLengthWarning(), "Address 1 must be between 3 and 128 characters!");
+        Assert.assertEquals(registrationScreen.getWarningMessage(), "Address 1 must be between 3 and 128 characters!");
     }
 }

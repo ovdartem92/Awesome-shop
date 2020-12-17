@@ -35,6 +35,6 @@ public class CheckAppearanceCityInvalidWarningTest extends BaseConfigurationTest
                 .clickAgreeWithPrivacyPolicy();
         registrationScreen.clickContinueButton();
 
-        Assert.assertEquals(registrationScreen.getCityInvalidWarning(), "City shouldn't contains special symbols and numerals!");
+        Assert.assertEquals(registrationScreen.getWarningMessage(), "City shouldn't contains special symbols and numerals!");
     }
 }

@@ -35,6 +35,6 @@ public class CheckAppearancePasswordConfirmationLengthWarningTest extends BaseCo
                 .clickAgreeWithPrivacyPolicy();
         registrationScreen.clickContinueButton();
 
-        Assert.assertEquals(registrationScreen.getPasswordConfirmLengthWarning(), "Password confirmation does not match password!");
+        Assert.assertEquals(registrationScreen.getWarningMessage(), "Password confirmation does not match password!");
     }
 }

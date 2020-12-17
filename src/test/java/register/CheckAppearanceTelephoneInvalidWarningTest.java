@@ -35,7 +35,7 @@ public class CheckAppearanceTelephoneInvalidWarningTest extends BaseConfiguratio
                 .clickAgreeWithPrivacyPolicy();
         registrationScreen.clickContinueButton();
 
-        Assert.assertEquals(registrationScreen.getLastNameInvalidWarning(),
+        Assert.assertEquals(registrationScreen.getWarningMessage(),
                 "Last Name shouldn't contains space character, special symbols, numerals.");
     }
 }

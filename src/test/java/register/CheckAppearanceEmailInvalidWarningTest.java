@@ -34,6 +34,6 @@ public class CheckAppearanceEmailInvalidWarningTest extends BaseConfigurationTes
                 .clickAgreeWithPrivacyPolicy();
         registrationScreen.clickContinueButton();
 
-        Assert.assertEquals(registrationScreen.getEmailLengthWarning(), "E-Mail Address does not appear to be valid!");
+        Assert.assertEquals(registrationScreen.getWarningMessage(), "E-Mail Address does not appear to be valid!");
     }
 }

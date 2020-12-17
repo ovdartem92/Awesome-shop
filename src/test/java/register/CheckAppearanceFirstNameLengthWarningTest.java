@@ -35,6 +35,6 @@ public class CheckAppearanceFirstNameLengthWarningTest extends BaseConfiguration
                 .clickAgreeWithPrivacyPolicy();
         registrationScreen.clickContinueButton();
 
-        Assert.assertEquals(registrationScreen.getFirstNameLengthWarning(), "First Name must be between 1 and 32 characters!");
+        Assert.assertEquals(registrationScreen.getWarningMessage(), "First Name must be between 1 and 32 characters!");
     }
 }

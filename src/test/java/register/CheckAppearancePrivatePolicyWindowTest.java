@@ -16,6 +16,6 @@ public class CheckAppearancePrivatePolicyWindowTest extends BaseConfigurationTes
                 .clickRegistrationLink()
                 .clickPrivacyPolicy();
 
-        Assert.assertEquals(registrationScreen.getPrivacyPolicyTitle(), "Privacy Policy");
+        Assert.assertEquals(registrationScreen.getWarningMessage(), "Privacy Policy");
     }
 }

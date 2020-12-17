@@ -35,6 +35,6 @@ public class CheckAppearancePostcodeLengthWarningTest extends BaseConfigurationT
                 .clickAgreeWithPrivacyPolicy();
         registrationScreen.clickContinueButton();
 
-        Assert.assertEquals(registrationScreen.getPostCodeLengthWarning(), "Postcode must be between 2 and 10 characters!");
+        Assert.assertEquals(registrationScreen.getWarningMessage(), "Postcode must be between 2 and 10 characters!");
     }
 }
