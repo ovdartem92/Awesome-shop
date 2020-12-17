@@ -4,109 +4,66 @@ import org.openqa.selenium.By;
 import ru.awesome.shop.ta.framework.ui.components.Button;
 import ru.awesome.shop.ta.framework.ui.components.Label;
 import ru.awesome.shop.ta.framework.ui.components.Link;
-import ru.awesome.shop.ta.product.pages.registration.AccountRegistrationScreen;
+import ru.awesome.shop.ta.product.pages.registration.AccountRegistrationPage;
 
 import static java.lang.String.format;
 
 public class NavigatePanel {
-    private Label currencySignLabel = new Label(By.xpath("//button[contains(@class, 'dropdown-toggle')]/strong"));
-    private Button changeCurrencyButton = new Button(By.xpath("//span[contains(text(), 'Currency')]/.."));
-    private Link contactUsLink = new Link(By.xpath("//i[contains(@class, 'fa-phone')]/.."));
-    private Link myAccountLink = new Link(By.xpath("//span[contains(text(), 'My Account')]/.."));
-    private Link wishListLink = new Link(By.xpath("//span[contains(text(), 'Wish List')]/.."));
-    private Link shoppingCartLink = new Link(By.xpath("//span[contains(text(), 'Shopping Cart')]/.."));
-    private Link checkoutLink = new Link(By.xpath("//span[contains(text(), 'Checkout')]/.."));
-
     private final String accountLinkType = "//a[contains(text(), '%s')]";
     private final String currencyType = "//ul[@class='dropdown-menu']//button[@name='%s']";
 
     public String getCurrencySign() {
+        By currencySignLocator = By.xpath("//button[contains(@class, 'dropdown-toggle')]/strong");
+        Label currencySignLabel = new Label(currencySignLocator);
         return currencySignLabel.getText();
     }
 
-    public AccountRegistrationScreen openAccountLinkScreen(AccountLink link) {
-        clickMyAccountLink();
-        By registerBy = getAccountLinkLocator(link);
-        Link register = new Link(registerBy);
-        register.click();
-        return new AccountRegistrationScreen();
-    }
-
-    public NavigatePanel changeCurrency(Currency currency) {
-        clickChangeCurrencyButton();
-        By currencySelectLocator = getCurrencyTypeLocator(currency);
-        Button currencyButton = new Button(currencySelectLocator);
-        currencyButton.click();
-        return this;
-    }
-
     public NavigatePanel clickChangeCurrencyButton() {
+        By changeCurrencyButtonLocator = By.xpath("//span[contains(text(), 'Currency')]/..");
+        Button changeCurrencyButton = new Button(changeCurrencyButtonLocator);
         changeCurrencyButton.click();
         return this;
     }
 
     public NavigatePanel clickContactUs() {
+        By contactUsLinkLocator = By.xpath("//i[contains(@class, 'fa-phone')]/..");
+        Link contactUsLink = new Link(contactUsLinkLocator);
         contactUsLink.click();
         return this;
     }
 
     public NavigatePanel clickMyAccountLink() {
+        By myAccountLocator = By.xpath("//span[contains(text(), 'My Account')]/..");
+        Link myAccountLink = new Link(myAccountLocator);
         myAccountLink.click();
         return this;
     }
 
     public NavigatePanel clickWishListLink() {
+        By wishListLinkLocator = By.xpath("//span[contains(text(), 'Wish List')]/..");
+        Link wishListLink = new Link(wishListLinkLocator);
         wishListLink.click();
         return this;
     }
 
     public NavigatePanel clickShoppingCartLink() {
+        By shoppingCartLinkLocator = By.xpath("//span[contains(text(), 'Shopping Cart')]/..");
+        Link shoppingCartLink = new Link(shoppingCartLinkLocator);
         shoppingCartLink.click();
         return this;
     }
 
     public NavigatePanel clickCheckoutLink() {
+        By checkoutLinkLocator = By.xpath("//span[contains(text(), 'Checkout')]/..");
+        Link checkoutLink = new Link(checkoutLinkLocator);
         checkoutLink.click();
         return this;
     }
 
-    private By getCurrencyTypeLocator(Currency currency) {
-        String currencyTypeLocator = format(currencyType, currency.getName());
-        return By.xpath(currencyTypeLocator);
-    }
-
-    private By getAccountLinkLocator(AccountLink link) {
-        String accountLinkLocator = format(accountLinkType, link.getName());
-        return By.xpath(accountLinkLocator);
-    }
-
-    public enum Currency {
-        EUR("EUR"), GBP("GBP"), USD("USD");
-
-        private String name;
-
-        Currency(String name) {
-            this.name = name;
-        }
-
-        public String getName() {
-            return name;
-        }
-    }
-
-    public enum AccountLink {
-        REGISTER("Register"), LOGIN("Login"), MY_ACCOUNT("My Account"),
-        ORDER_HISTORY("Order History"), TRANSACTION("Transaction"),
-        DOWNLOADS("Downloads"), LOGOUT("Logout");
-
-        private String name;
-
-        AccountLink(String name) {
-            this.name = name;
-        }
-
-        public String getName() {
-            return name;
-        }
+    public AccountRegistrationPage clickRegistrationLink() {
+        By checkoutLinkLocator = By.xpath(format(accountLinkType, "Register"));
+        Link checkoutLink = new Link(checkoutLinkLocator);
+        checkoutLink.click();
+        return new AccountRegistrationPage();
     }
 }
