@@ -1,5 +1,6 @@
-package search;
+package awesome.shop.tests.search;
 
+import awesome.shop.tests.BaseSearchTest;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -23,7 +24,7 @@ public class CheckSearchResultByProductCategoryTest extends BaseSearchTest {
             "EPMFARMATS-13135: check the search result by product category\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13135")
     public void checkTheSearchResultByProductCategory() {
-        Assert.assertTrue(searchPage.isSearchResultNameVisible(iMac),
-                iMac + "wasn't found in search result");
+        Assert.assertTrue(searchPage.isSearchResultNameContainsOnSearchList(iMac),
+                iMac + " wasn't found in search result");
     }
 }

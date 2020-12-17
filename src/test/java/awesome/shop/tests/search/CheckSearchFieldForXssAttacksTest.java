@@ -1,5 +1,6 @@
-package search;
+package awesome.shop.tests.search;
 
+import awesome.shop.tests.BaseSearchTest;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -21,6 +22,6 @@ public class CheckSearchFieldForXssAttacksTest extends BaseSearchTest {
     public void checkTheSearchFieldByXssAttack() {
         String expectedResult = "There is no product that matches the search criteria.";
         Assert.assertEquals(searchPage.getNegativeSearchResultsMessage(), expectedResult,
-                expectedResult + "is not displayed.");
+                expectedResult + " is not displayed.");
     }
 }

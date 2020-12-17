@@ -1,6 +1,6 @@
-package search;
+package awesome.shop.tests;
 
-import org.testng.annotations.AfterTest;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import ru.awesome.shop.ta.framework.browser.Browser;
@@ -23,7 +23,7 @@ public abstract class BaseSearchTest {
         browser.navigate(URL);
     }
 
-    @AfterTest(description = "Tear Down", groups = {"all", "positive", "negative"})
+    @AfterMethod(description = "Tear Down", groups = {"all", "positive", "negative"})
     public void tearDown() {
         browser.stop();
     }

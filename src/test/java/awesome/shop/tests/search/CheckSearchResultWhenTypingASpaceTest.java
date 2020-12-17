@@ -1,5 +1,6 @@
-package search;
+package awesome.shop.tests.search;
 
+import awesome.shop.tests.BaseSearchTest;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;

@@ -1,5 +1,6 @@
-package search;
+package awesome.shop.tests.search;
 
+import awesome.shop.tests.BaseSearchTest;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -20,7 +21,7 @@ public class CheckSearchResultByFullProductNameInReverseOrderTest extends BaseSe
             "https://jira.epam.com/jira/browse/EPMFARMATS-13131")
     public void checkTheSearchResultByFullProductNameInReverse() {
         String expectedResult = "iPod Classic";
-        Assert.assertTrue(searchPage.isSearchResultNameVisible(expectedResult),
-                expectedResult + "wasn't found in search result");
+        Assert.assertTrue(searchPage.isSearchResultNameContainsOnSearchList(expectedResult),
+                expectedResult + " wasn't found in search result");
     }
 }
