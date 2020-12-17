@@ -9,6 +9,7 @@ import lombok.Data;
 public class User {
     private String email;
     private String password;
+    private String passwordConfirm;
     private String firstName;
     private String lastName;
     private String telephoneNumber;
@@ -20,5 +21,4 @@ public class User {
     private String postCode;
     private String country;
     private String region;
-    private String passwordConfirm;
 }
