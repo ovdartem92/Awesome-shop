@@ -16,10 +16,8 @@ public class CheckContinueButtonNavigateHomePage extends BaseConfigurationTest {
         searchResultsPage.getSearchResultsList()
                 .get(0)
                 .clickAddToCartButton();
-        //searchResultsPage.clickAddToCartButton();
         cartButtonFragment.clickCartButton();
         CartPage cartPage = cartButtonFragment.clickViewCartButton();
-        //cartPage.clickRemoveProductButton();
         cartPage.getAllCartItemsList().get(0).clickCartItemRemoveButton();
         cartPage.clickContinueButton();
         String finishPageTitle = browser.getPageTitle();

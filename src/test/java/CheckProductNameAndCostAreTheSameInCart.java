@@ -13,23 +13,11 @@ public class CheckProductNameAndCostAreTheSameInCart extends BaseConfigurationTe
         CartButtonFragment cartButtonFragment = new CartButtonFragment();
         searchPanelFragment.typeProductName(IPHONE);
         SearchResultsPage searchResultsPage = searchPanelFragment.clickSearchButton();
-        //searchResultsPage.clickAddToCartButton();
-        searchResultsPage.getSearchResultsList()
-                .get(0)
-                .clickAddToCartButton();
-        //String nameFromSearchPage = searchResultsPage.getProductNameFromArea();
-        String nameFromSearchPage = searchResultsPage.getSearchResultsList()
-                .get(0)
-                .getProductNameFromArea();
-        //String priceFromSearchPage = searchResultsPage.getProductPriceFromArea();
-        String priceFromSearchPage = searchResultsPage.getSearchResultsList()
-                .get(0)
-                .getProductPriceFromArea();
+        searchResultsPage.getSearchResultsList().get(0).clickAddToCartButton();
+        String nameFromSearchPage = searchResultsPage.getSearchResultsList().get(0).getProductNameFromArea();
+        String priceFromSearchPage = searchResultsPage.getSearchResultsList().get(0).getProductPriceFromArea();
         cartButtonFragment.clickCartButtonContainsProducts();
         CartPage cartPage = cartButtonFragment.clickViewCartButton();
-        //String nameProductInCart = cartPage.getProductNameIntoCart(1);
-        //String priceProductInCart = cartPage.getProductUnitPriceIntoCart();
-
         String nameProductInCart = cartPage.getAllCartItemsList().get(0).getCartItemName();
         String priceProductInCart = cartPage.getAllCartItemsList().get(0).getCartItemUnitPrice();
 

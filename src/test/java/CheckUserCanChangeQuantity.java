@@ -14,16 +14,11 @@ public class CheckUserCanChangeQuantity extends BaseConfigurationTest {
         CartButtonFragment cartButtonFragment = new CartButtonFragment();
         searchPanelFragment.typeProductName(MACBOOK);
         SearchResultsPage searchResultsPage = searchPanelFragment.clickSearchButton();
-        //searchResultsPage.clickAddToCartButton();
-        searchResultsPage.getSearchResultsList()
-                .get(0)
-                .clickAddToCartButton();
+        searchResultsPage.getSearchResultsList().get(0).clickAddToCartButton();
         cartButtonFragment.clickCartButton();
         CartPage cartPage = cartButtonFragment.clickViewCartButton();
         cartPage.getAllCartItemsList().get(0).typeCartItemQuantity(QUANTITY);
         cartPage.getAllCartItemsList().get(0).clickCartItemUpdateButton();
-//        cartPage.typeQuantity(QUANTITY);
-//        cartPage.clickUpdateProductButton();
         String textFromCartButton = cartButtonFragment.getTextFromCartButton();
 
         Assert.assertEquals(textFromCartButton, "3 item(s) - $1,800.00", "The values of quantity aren't equals!");

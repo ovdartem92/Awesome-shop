@@ -14,14 +14,9 @@ public class CheckUserCantBuyZeroItems extends BaseConfigurationTest {
         CartButtonFragment cartButtonFragment = new CartButtonFragment();
         searchPanelFragment.typeProductName(MACBOOK);
         SearchResultsPage searchResultsPage = searchPanelFragment.clickSearchButton();
-        //searchResultsPage.clickAddToCartButton();
-        searchResultsPage.getSearchResultsList()
-                .get(0)
-                .clickAddToCartButton();
+        searchResultsPage.getSearchResultsList().get(0).clickAddToCartButton();
         cartButtonFragment.clickCartButton();
         CartPage cartPage = cartButtonFragment.clickViewCartButton();
-//        cartPage.typeQuantity(QUANTITY);
-//        cartPage.clickUpdateProductButton();
         cartPage.getAllCartItemsList().get(0).typeCartItemQuantity(QUANTITY);
         cartPage.getAllCartItemsList().get(0).clickCartItemUpdateButton();
         String emptyCartMessage = cartPage.getEmptyShoppingCartMessage();

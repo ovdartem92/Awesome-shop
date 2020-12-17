@@ -13,10 +13,7 @@ public class CheckCorrectWorkContinueShoppingButton extends BaseConfigurationTes
         CartButtonFragment cartButtonFragment = new CartButtonFragment();
         searchPanelFragment.typeProductName(IPHONE);
         SearchResultsPage searchResultsPage = searchPanelFragment.clickSearchButton();
-        searchResultsPage.getSearchResultsList()
-                .get(0)
-                .clickAddToCartButton();
-        //searchResultsPage.clickAddToCartButton();
+        searchResultsPage.getSearchResultsList().get(0).clickAddToCartButton();
         cartButtonFragment.clickCartButton();
         CartPage cartPage = cartButtonFragment.clickViewCartButton();
         cartPage.clickContinueShoppingButton();

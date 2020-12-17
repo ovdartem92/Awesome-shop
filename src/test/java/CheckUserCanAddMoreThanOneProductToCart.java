@@ -14,21 +14,12 @@ public class CheckUserCanAddMoreThanOneProductToCart extends BaseConfigurationTe
         CartButtonFragment cartButtonFragment = new CartButtonFragment();
         searchPanelFragment.typeProductName(IPHONE);
         SearchResultsPage searchResultsPage = searchPanelFragment.clickSearchButton();
-        //searchResultsPage.clickAddToCartButton();
-        searchResultsPage.getSearchResultsList()
-                .get(0)
-                .clickAddToCartButton();
+        searchResultsPage.getSearchResultsList().get(0).clickAddToCartButton();
         searchPanelFragment.typeProductName(MACBOOK);
         searchPanelFragment.clickSearchButton();
-        searchResultsPage.getSearchResultsList()
-                .get(0)
-                .clickAddToCartButton();
-        //searchResultsPage.clickAddToCartButton();
+        searchResultsPage.getSearchResultsList().get(0).clickAddToCartButton();
         cartButtonFragment.clickCartButton();
         CartPage cartPage = cartButtonFragment.clickViewCartButton();
-
-        //int sizeOfProductsList = cartPage.getProductsListSize();
-
         int sizeOfProductsList = cartPage.getAllCartItemsList().size();
 
         Assert.assertTrue(sizeOfProductsList > 1, "The size of products list isn't more 1! ");

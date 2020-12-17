@@ -13,16 +13,10 @@ public class CheckItemIntoCartTest extends BaseConfigurationTest {
         CartButtonFragment cartButtonFragment = new CartButtonFragment();
         searchPanelFragment.typeProductName(MACBOOK);
         SearchResultsPage searchResultsPage = searchPanelFragment.clickSearchButton();
-        //searchResultsPage.clickAddToCartButton();
-        searchResultsPage.getSearchResultsList()
-                .get(0)
-                .clickAddToCartButton();
+        searchResultsPage.getSearchResultsList().get(0).clickAddToCartButton();
         cartButtonFragment.clickCartButton();
         CartPage cartPage = cartButtonFragment.clickViewCartButton();
-        //String productName = cartPage.getProductNameIntoCart(1);
-        String productName = cartPage.getAllCartItemsList()
-                .get(0)
-                .getCartItemName();
+        String productName = cartPage.getAllCartItemsList().get(0).getCartItemName();
 
         Assert.assertEquals(productName, MACBOOK, "The values of product aren't equal!");
     }

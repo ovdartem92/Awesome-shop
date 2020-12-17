@@ -5,63 +5,21 @@ import org.openqa.selenium.WebElement;
 import ru.awesome.shop.ta.framework.browser.Browser;
 import ru.awesome.shop.ta.framework.ui.components.Button;
 import ru.awesome.shop.ta.framework.ui.components.Label;
-import ru.awesome.shop.ta.framework.ui.components.Link;
-import ru.awesome.shop.ta.framework.ui.components.TextField;
 import ru.awesome.shop.ta.product.pages.fragments.CartItemFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CartPage {
-    private static final String lineOfProductsTablePath = "//div[@class='table-responsive']//tbody//tr";
-    private static final By lineOfTableLocator = By.xpath("//div[@class='table-responsive']//tbody//tr");
 
     public List<CartItemFragment> getAllCartItemsList() {
-
+        By lineOfTableLocator = By.xpath("//div[@class='table-responsive']//tbody//tr");
         List<WebElement> linesOfTable = Browser.getInstance().getWrappedDriver().findElements(lineOfTableLocator);
-        int sizeElements = linesOfTable.size();
         List<CartItemFragment> cartItemFragmentList = new ArrayList<>();
-        for (int i = 0; i < sizeElements; i++) {
-
-            cartItemFragmentList.add(new CartItemFragment(linesOfTable.get(i)));
-            //cartItemFragmentList.add(new CartItemFragment(i));
+        for (WebElement element : linesOfTable) {
+            cartItemFragmentList.add(new CartItemFragment(element));
         }
         return cartItemFragmentList;
-    }
-
-    public String getProductNameIntoCart(int numberOfProductInCartList) {
-        By productNameLinkLocator = By
-                .xpath(lineOfProductsTablePath + "[" + numberOfProductInCartList + "]" + "//a[text()]");
-        Link productNameLink = new Link(productNameLinkLocator);
-        return productNameLink.getText();
-    }
-
-    public String getProductUnitPriceIntoCart() {
-        By productUnitPriceLabelLocator = By.xpath(lineOfProductsTablePath + "//td[5]");
-        Label productUnitPriceLabel = new Label(productUnitPriceLabelLocator);
-        return productUnitPriceLabel.getText();
-    }
-
-    public CartPage clickRemoveProductButton() {
-        By removeProductButtonLocator = By.xpath(lineOfProductsTablePath + "//button[@data-original-title='Remove']");
-        Button removeProductButton = new Button(removeProductButtonLocator);
-        removeProductButton.click();
-        return this;
-    }
-
-    public CartPage clickUpdateProductButton() {
-        By updateProductButtonLocator = By.xpath(lineOfProductsTablePath + "//button[@data-original-title='Update']");
-        Button updateProductButton = new Button(updateProductButtonLocator);
-        updateProductButton.click();
-        return this;
-    }
-
-    public CartPage typeQuantity(int quantity) {
-        By quantityFieldLocator = By.xpath("//input[contains(@name, 'quantity')]");
-        TextField quantityField = new TextField(quantityFieldLocator);
-        quantityField.clear();
-        quantityField.type(String.valueOf(quantity));
-        return this;
     }
 
     public HomePage clickContinueButton() {
@@ -96,12 +54,6 @@ public class CartPage {
         By emptyCartLabelLocator = By.xpath("//div[@id='content']//*[contains(text(),'Your shopping cart is empty!')]");
         Label emptyCartLabel = new Label(emptyCartLabelLocator);
         return emptyCartLabel.getText();
-    }
-
-    public int getProductsListSize() {
-        List<WebElement> productLinks = Browser.getInstance().getWrappedDriver().findElements(By
-                .xpath(lineOfProductsTablePath));
-        return productLinks.size();
     }
 
     public String getQuantityWarningMessage() {

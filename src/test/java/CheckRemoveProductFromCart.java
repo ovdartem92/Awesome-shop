@@ -13,13 +13,9 @@ public class CheckRemoveProductFromCart extends BaseConfigurationTest {
         CartButtonFragment cartButtonFragment = new CartButtonFragment();
         searchPanelFragment.typeProductName(MACBOOK);
         SearchResultsPage searchResultsPage = searchPanelFragment.clickSearchButton();
-        //searchResultsPage.clickAddToCartButton();
-        searchResultsPage.getSearchResultsList()
-                .get(0)
-                .clickAddToCartButton();
+        searchResultsPage.getSearchResultsList().get(0).clickAddToCartButton();
         cartButtonFragment.clickCartButton();
         CartPage cartPage = cartButtonFragment.clickViewCartButton();
-        //cartPage.clickRemoveProductButton();
         cartPage.getAllCartItemsList().get(0).clickCartItemRemoveButton();
         String messageEmptyCart = cartPage.getEmptyShoppingCartMessage();
 
