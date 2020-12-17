@@ -138,109 +138,15 @@ public class AccountRegistrationPage {
         return new AccountRegistrationSuccessfullyPage();
     }
 
+    public String getWarningMessage() {
+        By warningMessageLocator = By.xpath("//div[@class='text-danger']");
+        Label warningMessageLabel = new Label(warningMessageLocator);
+        return warningMessageLabel.getText();
+    }
+
     public String getDangerMessage() {
         By dangerLabelLocator = By.xpath("//div[contains(@class, 'alert-danger')]");
         Label dangerLabel = new Label(dangerLabelLocator);
         return dangerLabel.getText();
-    }
-
-    public String getPrivacyPolicyTitle() {
-        By policyTitleLabelLocator = By.xpath("//h4[contains(text(),'Privacy Policy')]");
-        Label policyTitleLabel = new Label(policyTitleLabelLocator);
-        return policyTitleLabel.getText();
-    }
-
-    public String getFirstNameInvalidWarning() {
-        By firstNameInvalidWarningLocator = By.xpath("//div[text()='First Name shouldn't contains" +
-                " space character, special symbols, numerals.']");
-        Label firstNameInvalidWarningLabel = new Label(firstNameInvalidWarningLocator);
-        return firstNameInvalidWarningLabel.getText();
-    }
-
-    public String getLastNameInvalidWarning() {
-        By lastNameInvalidWarningLocator = By.xpath("//div[text()='Last Name shouldn't contains" +
-                " space character, special symbols, numerals.']");
-        Label lastNameInvalidWarningLabel = new Label(lastNameInvalidWarningLocator);
-        return lastNameInvalidWarningLabel.getText();
-    }
-
-    public String getTelephoneInvalidWarning() {
-        By telephoneInvalidWarningLocator = By.xpath("//div[text()='Telephone shouldn't contains" +
-                " space characters, special symbols expect +,-,(), #,*, alphabetic characters.']");
-        Label telephoneInvalidWarningLabel = new Label(telephoneInvalidWarningLocator);
-        return telephoneInvalidWarningLabel.getText();
-    }
-
-    public String getCityInvalidWarning() {
-        By cityInvalidWarningLocator = By.xpath("//div[text()='City shouldn't contains" +
-                " special symbols and numerals!']");
-        Label cityInvalidWarningLabel = new Label(cityInvalidWarningLocator);
-        return cityInvalidWarningLabel.getText();
-    }
-
-    public String getFirstNameLengthWarning() {
-        By firstNameLengthWarningLocator = By.xpath("//div[text()='First Name must be between 1 and 32 characters!']");
-        Label firstNameLengthWarningLabel = new Label(firstNameLengthWarningLocator);
-        return firstNameLengthWarningLabel.getText();
-    }
-
-    public String getLastNameLengthWarning() {
-        By lastNameLengthWarningLocator = By.xpath("//div[text()='Last Name must be between 1 and 32 characters!']");
-        Label lastNameLengthWarningLabel = new Label(lastNameLengthWarningLocator);
-        return lastNameLengthWarningLabel.getText();
-    }
-
-    public String getEmailLengthWarning() {
-        By emailLengthWarningLocator = By.xpath("//div[text()='E-Mail Address does not appear to be valid!']");
-        Label emailLengthWarningLabel = new Label(emailLengthWarningLocator);
-        return emailLengthWarningLabel.getText();
-    }
-
-    public String getTelephoneNumberLengthWarning() {
-        By telephoneNumberLengthWarningLocator = By.xpath("//div[text()='Telephone must be between 3 and 32 characters!']");
-        Label telephoneNumberLengthWarningLabel = new Label(telephoneNumberLengthWarningLocator);
-        return telephoneNumberLengthWarningLabel.getText();
-    }
-
-    public String getFirstAddressLengthWarning() {
-        By firstAddressLengthWarningLocator = By.xpath("//div[text()='Address 1 must be between 3 and 128 characters!']");
-        Label firstAddressNumberLengthWarningLabel = new Label(firstAddressLengthWarningLocator);
-        return firstAddressNumberLengthWarningLabel.getText();
-    }
-
-    public String getSecondAddressLengthWarning() {
-        By secondAddressLengthWarningLocator = By.xpath("//div[text()='Address 2 must be between 3 and 128 characters!']");
-        Label secondAddressNumberLengthWarningLabel = new Label(secondAddressLengthWarningLocator);
-        return secondAddressNumberLengthWarningLabel.getText();
-    }
-
-    public String getCityLengthWarning() {
-        By cityLengthWarningLocator = By.xpath("//div[text()='City must be between 2 and 128 characters!']");
-        Label cityLengthWarningLabel = new Label(cityLengthWarningLocator);
-        return cityLengthWarningLabel.getText();
-    }
-
-    public String getPostCodeLengthWarning() {
-        By postCodeLengthWarningLocator = By.xpath("//div[text()='Postcode must be between 2 and 10 characters!']");
-        Label postCodeLengthWarningLabel = new Label(postCodeLengthWarningLocator);
-        return postCodeLengthWarningLabel.getText();
-    }
-
-    public String getRegionLengthWarning() {
-        By regionLengthWarningLocator = By.xpath("//div[text()='Please select a region / state!']");
-        Label regionLengthWarningLabel = new Label(regionLengthWarningLocator);
-        return regionLengthWarningLabel.getText();
-    }
-
-    public String getPasswordLengthWarning() {
-        By passwordLengthWarningLocator = By.xpath("//div[text()='Password must be between 4 and 20 characters!']");
-        Label passwordLengthWarningLabel = new Label(passwordLengthWarningLocator);
-        return passwordLengthWarningLabel.getText();
-    }
-
-    public String getPasswordConfirmLengthWarning() {
-        By passwordConfirmLengthWarningLocator = By.xpath("//div[text()='Password confirmation does not match password!']");
-        Label passwordConfirmLengthWarningLabel = new Label(passwordConfirmLengthWarningLocator);
-        return passwordConfirmLengthWarningLabel.getText();
     }
 }
