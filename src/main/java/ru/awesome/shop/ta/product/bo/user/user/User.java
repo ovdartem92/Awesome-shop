@@ -1,4 +1,4 @@
-package ru.awesome.shop.ta.product.bo.user;
+package ru.awesome.shop.ta.product.bo.user.user;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

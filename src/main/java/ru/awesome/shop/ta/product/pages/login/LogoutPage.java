@@ -5,9 +5,9 @@ import ru.awesome.shop.ta.framework.ui.components.Label;
 import ru.awesome.shop.ta.product.pages.BasePage;
 
 public class LogoutPage extends BasePage {
-    private Label logOutLabel = new Label(By.xpath("//h1[text()='Account Logout']"));
+    private static final By LOGOUT_LABEL_LOCATOR = By.xpath("//h1[text()='Account Logout']");
 
     public String getLogOutLabelText() {
-        return logOutLabel.getText();
+        return new Label(LOGOUT_LABEL_LOCATOR).getText();
     }
 }
