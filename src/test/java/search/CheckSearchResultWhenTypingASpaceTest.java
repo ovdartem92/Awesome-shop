@@ -1,18 +1,19 @@
 package search;
 
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.awesome.shop.ta.framework.browser.Browser;
-import ru.awesome.shop.ta.product.pages.Header;
+import ru.awesome.shop.ta.product.pages.SearchResultPage;
 import ru.awesome.shop.ta.utils.TestDataReader;
 
 public class CheckSearchResultWhenTypingASpaceTest extends BaseSearchTest {
-    @BeforeClass(description = "clear search bar, enter text, click to the search button")
+
+    @BeforeMethod(description = "clear search bar, enter text, click to the search button")
     public void preparingForTheTest() {
         String space = " ";
-        new Header()
-                .typeTextToSearchInput(space)
+        new SearchResultPage()
+                .typeSearchQuery(space)
                 .clickSearchButton();
     }
 

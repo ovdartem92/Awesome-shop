@@ -1,22 +1,22 @@
 package search;
 
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import ru.awesome.shop.ta.product.pages.Header;
+import ru.awesome.shop.ta.product.pages.SearchResultPage;
 
 public class CheckSearchResultByProductCategoryTest extends BaseSearchTest {
     private final String iMac = "iMac";
 
-    @BeforeClass(description = "clear search bar, enter text, " +
+    @BeforeMethod(description = "clear search bar, enter text, " +
             "click to the search button, select category, click to the search button")
     public void preparingForTheTest() {
         int iMacIndex = 3;
-        searchPage = new Header()
-                .typeTextToSearchInput(iMac)
+        searchPage = new SearchResultPage()
+                .typeSearchQuery(iMac)
                 .clickSearchButton()
                 .selectCategory(iMacIndex)
-                .clickSearchButton();
+                .clickSearchButtonAfterSearch();
     }
 
     @Test(description = "***SearchResultByProductCategory***\n" +

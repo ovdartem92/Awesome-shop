@@ -1,17 +1,17 @@
 package search;
 
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import ru.awesome.shop.ta.product.pages.Header;
+import ru.awesome.shop.ta.product.pages.SearchResultPage;
 
 public class CheckSearchResultForAWordPartOfAnExistingProductTest extends BaseSearchTest {
 
-    @BeforeClass(description = "clear search bar, enter text, click to the search button")
+    @BeforeMethod(description = "clear search bar, enter text, click to the search button")
     public void preparingForTheTest() {
         String partOfName = "iPo";
-        searchPage = new Header()
-                .typeTextToSearchInput(partOfName)
+        searchPage = new SearchResultPage()
+                .typeSearchQuery(partOfName)
                 .clickSearchButton();
     }
 

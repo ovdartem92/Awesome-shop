@@ -1,16 +1,16 @@
 package search;
 
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import ru.awesome.shop.ta.product.pages.Header;
+import ru.awesome.shop.ta.product.pages.SearchResultPage;
 
 public class CheckSearchResultWithEmptyProductNameTest extends BaseSearchTest {
 
-    @BeforeClass(description = "clear search bar, click to the search button")
+    @BeforeMethod(description = "clear search bar, click to the search button")
     public void preparingForTheTest() {
-        searchPage = new Header()
-                .typeTextToSearchInput("")
+        searchPage = new SearchResultPage()
+                .typeSearchQuery("")
                 .clickSearchButton();
     }
 
@@ -19,7 +19,7 @@ public class CheckSearchResultWithEmptyProductNameTest extends BaseSearchTest {
             "https://jira.epam.com/jira/browse/EPMFARMATS-13123")
     public void checkTheSearchResultForAnEmptyProductName() {
         String expectedResult = "There is no product that matches the search criteria.";
-        Assert.assertEquals(searchPage.getNoSearchResultsMessage(), expectedResult,
+        Assert.assertEquals(searchPage.getNegativeSearchResultsMessage(), expectedResult,
                 expectedResult + "is not displayed.");
     }
 }

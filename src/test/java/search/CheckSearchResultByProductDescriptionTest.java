@@ -1,21 +1,21 @@
 package search;
 
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import ru.awesome.shop.ta.product.pages.Header;
+import ru.awesome.shop.ta.product.pages.SearchResultPage;
 
 public class CheckSearchResultByProductDescriptionTest extends BaseSearchTest {
     private final String iPod = "iPod Classic";
 
-    @BeforeClass(description = "clear search bar, enter text, " +
+    @BeforeMethod(description = "clear search bar, enter text, " +
             "click to the search button, set description, click search button")
     public void preparingForTheTest() {
-        searchPage = new Header()
-                .typeTextToSearchInput(iPod)
+        searchPage = new SearchResultPage()
+                .typeSearchQuery(iPod)
                 .clickSearchButton()
                 .setDescriptionCheckbox(true)
-                .clickSearchButton();
+                .clickSearchButtonAfterSearch();
     }
 
     @Test(description = "***SearchResultByProductDescription***\n" +
