@@ -1,27 +1,28 @@
+package register;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.awesome.shop.ta.product.pages.NavigatePanel;
-import ru.awesome.shop.ta.product.pages.registration.AccountRegistrationScreen;
+import ru.awesome.shop.ta.product.pages.registration.AccountRegistrationPage;
 import ru.awesome.shop.ta.utils.StringUtils;
 
-import static ru.awesome.shop.ta.product.pages.NavigatePanel.AccountLink.REGISTER;
-import static ru.awesome.shop.ta.product.pages.registration.AccountRegistrationScreen.Field.FIRST_NAME;
-
-public class CheckAppearanceFirstNameLengthWarningTest extends BaseTest {
+public class CheckAppearanceTelephoneLengthWarningTest extends BaseConfigurationTest {
     private NavigatePanel navigatePanel;
     private String text = StringUtils.getRandomString();
-    private String emptyFirstName = "";
+    private String emptyTelephoneNumber = "";
     private String email = text.concat("@mail.ru");
     private String region = "Bristol";
 
     @Test
-    public void checkAppearanceFirstNameLengthWarning() {
+    public void checkAppearanceTelephoneLengthWarning() {
         navigatePanel = new NavigatePanel();
-        AccountRegistrationScreen registrationScreen = navigatePanel.openAccountLinkScreen(REGISTER)
-                .typeFirstName(emptyFirstName)
+        AccountRegistrationPage registrationScreen = navigatePanel
+                .clickMyAccountLink()
+                .clickRegistrationLink()
+                .typeFirstName(text)
                 .typeLastName(text)
                 .typeEmail(email)
-                .typeTelephone(text)
+                .typeTelephone(emptyTelephoneNumber)
                 .typeFax(text)
                 .typeCompany(text)
                 .typeFirstAddress(text)
@@ -34,6 +35,6 @@ public class CheckAppearanceFirstNameLengthWarningTest extends BaseTest {
                 .clickAgreeWithPrivacyPolicy();
         registrationScreen.clickContinueButton();
 
-        Assert.assertTrue(registrationScreen.isFieldLengthWarning(FIRST_NAME));
+        Assert.assertEquals(registrationScreen.getTelephoneNumberLengthWarning(), "Telephone must be between 3 and 32 characters!");
     }
 }

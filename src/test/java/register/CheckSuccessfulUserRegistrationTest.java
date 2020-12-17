@@ -1,25 +1,25 @@
+package register;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.awesome.shop.ta.product.pages.NavigatePanel;
-import ru.awesome.shop.ta.product.pages.registration.AccountRegistrationScreen;
+import ru.awesome.shop.ta.product.pages.registration.AccountRegistrationSuccessfullyPage;
 import ru.awesome.shop.ta.utils.StringUtils;
 
-import static ru.awesome.shop.ta.product.pages.NavigatePanel.AccountLink.REGISTER;
-import static ru.awesome.shop.ta.product.pages.registration.AccountRegistrationScreen.Field.LAST_NAME;
-
-public class CheckAppearanceLastNameLengthWarningTest extends BaseTest {
+public class CheckSuccessfulUserRegistrationTest extends BaseConfigurationTest {
     private NavigatePanel navigatePanel;
     private String text = StringUtils.getRandomString();
-    private String emptyLastName = "";
     private String email = text.concat("@mail.ru");
     private String region = "Bristol";
 
     @Test
-    public void checkAppearanceLastNameLengthWarning() {
+    public void checkSuccessfulUserRegistration() {
         navigatePanel = new NavigatePanel();
-        AccountRegistrationScreen registrationScreen = navigatePanel.openAccountLinkScreen(REGISTER)
+        AccountRegistrationSuccessfullyPage registrationScreen = navigatePanel
+                .clickMyAccountLink()
+                .clickRegistrationLink()
                 .typeFirstName(text)
-                .typeLastName(emptyLastName)
+                .typeLastName(text)
                 .typeEmail(email)
                 .typeTelephone(text)
                 .typeFax(text)
@@ -31,9 +31,9 @@ public class CheckAppearanceLastNameLengthWarningTest extends BaseTest {
                 .selectRegion(region)
                 .typePassword(text)
                 .typePasswordConfirm(text)
-                .clickAgreeWithPrivacyPolicy();
-        registrationScreen.clickContinueButton();
+                .clickAgreeWithPrivacyPolicy()
+                .clickContinueButton();
 
-        Assert.assertTrue(registrationScreen.isFieldLengthWarning(LAST_NAME));
+        Assert.assertEquals(registrationScreen.getAccountCreationMessage(), "Your Account Has Been Created!");
     }
 }

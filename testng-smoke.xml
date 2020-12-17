@@ -6,7 +6,7 @@
     </listeners>
     <test name="Smoke">
         <classes>
-            <class name="FirstTest"/>
+            <class name="register.FirstTest"/>
         </classes>
     </test>
 </suite>

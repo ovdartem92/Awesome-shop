@@ -1,21 +1,24 @@
+package register;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.awesome.shop.ta.product.pages.NavigatePanel;
-import ru.awesome.shop.ta.product.pages.registration.AccountRegistrationSuccessfullyScreen;
+import ru.awesome.shop.ta.product.pages.registration.AccountRegistrationPage;
 import ru.awesome.shop.ta.utils.StringUtils;
 
-import static ru.awesome.shop.ta.product.pages.NavigatePanel.AccountLink.REGISTER;
-
-public class CheckSuccessfulUserRegistrationTest extends BaseTest {
+public class CheckAppearancePasswordConfirmationLengthWarningTest extends BaseConfigurationTest {
     private NavigatePanel navigatePanel;
     private String text = StringUtils.getRandomString();
+    private String emptyPasswordConfirm = "";
     private String email = text.concat("@mail.ru");
     private String region = "Bristol";
 
     @Test
-    public void checkSuccessfulUserRegistration() {
+    public void checkAppearancePasswordConfirmationWarning() {
         navigatePanel = new NavigatePanel();
-        AccountRegistrationSuccessfullyScreen registrationScreen = navigatePanel.openAccountLinkScreen(REGISTER)
+        AccountRegistrationPage registrationScreen = navigatePanel
+                .clickMyAccountLink()
+                .clickRegistrationLink()
                 .typeFirstName(text)
                 .typeLastName(text)
                 .typeEmail(email)
@@ -28,10 +31,10 @@ public class CheckSuccessfulUserRegistrationTest extends BaseTest {
                 .typePostcode(text)
                 .selectRegion(region)
                 .typePassword(text)
-                .typePasswordConfirm(text)
-                .clickAgreeWithPrivacyPolicy()
-                .clickContinueButton();
+                .typePasswordConfirm(emptyPasswordConfirm)
+                .clickAgreeWithPrivacyPolicy();
+        registrationScreen.clickContinueButton();
 
-        Assert.assertEquals(registrationScreen.getAccountCreatedLabelText(), "Your Account Has Been Created!");
+        Assert.assertEquals(registrationScreen.getPasswordConfirmLengthWarning(), "Password confirmation does not match password!");
     }
 }

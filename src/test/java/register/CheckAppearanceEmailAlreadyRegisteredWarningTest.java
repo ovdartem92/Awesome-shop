@@ -1,24 +1,26 @@
+package register;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.awesome.shop.ta.product.pages.NavigatePanel;
-import ru.awesome.shop.ta.product.pages.registration.AccountRegistrationScreen;
+import ru.awesome.shop.ta.product.pages.registration.AccountRegistrationPage;
 import ru.awesome.shop.ta.utils.StringUtils;
 
-import static ru.awesome.shop.ta.product.pages.NavigatePanel.AccountLink.REGISTER;
-
-public class CheckAppearancePrivacyPolicyWarningTest extends BaseTest {
+public class CheckAppearanceEmailAlreadyRegisteredWarningTest extends BaseConfigurationTest {
     private NavigatePanel navigatePanel;
     private String text = StringUtils.getRandomString();
-    private String email = text.concat("@mail.ru");
+    private String previouslyRegisteredEmail = "kebikov1995@mail.ru";
     private String region = "Bristol";
 
     @Test
-    public void checkAppearanceFirstAddressLengthWarning() {
+    public void checkAppearanceEmailAlreadyRegisteredWarning() {
         navigatePanel = new NavigatePanel();
-        AccountRegistrationScreen registrationScreen = navigatePanel.openAccountLinkScreen(REGISTER)
+        AccountRegistrationPage registrationScreen = navigatePanel
+                .clickMyAccountLink()
+                .clickRegistrationLink()
                 .typeFirstName(text)
                 .typeLastName(text)
-                .typeEmail(email)
+                .typeEmail(previouslyRegisteredEmail)
                 .typeTelephone(text)
                 .typeFax(text)
                 .typeCompany(text)
@@ -28,10 +30,10 @@ public class CheckAppearancePrivacyPolicyWarningTest extends BaseTest {
                 .typePostcode(text)
                 .selectRegion(region)
                 .typePassword(text)
-                .typePasswordConfirm(text);
+                .typePasswordConfirm(text)
+                .clickAgreeWithPrivacyPolicy();
         registrationScreen.clickContinueButton();
 
-        Assert.assertEquals(registrationScreen.getDangerAlertMessage(),
-                "Warning: You must agree to the Privacy Policy!");
+        Assert.assertEquals(registrationScreen.getDangerMessage(), "Warning: E-Mail Address is already registered!");
     }
 }

@@ -1,24 +1,27 @@
+package register;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.awesome.shop.ta.product.pages.NavigatePanel;
-import ru.awesome.shop.ta.product.pages.registration.AccountRegistrationScreen;
+import ru.awesome.shop.ta.product.pages.registration.AccountRegistrationPage;
 import ru.awesome.shop.ta.utils.StringUtils;
 
-import static ru.awesome.shop.ta.product.pages.NavigatePanel.AccountLink.REGISTER;
-
-public class CheckAppearanceEmailAlreadyRegisteredWarningTest extends BaseTest {
+public class CheckAppearanceLastNameInvalidWarningTest extends BaseConfigurationTest {
     private NavigatePanel navigatePanel;
     private String text = StringUtils.getRandomString();
-    private String previouslyRegisteredEmail = "kebikov1995@mail.ru";
+    private String invalidLastName = text.concat("$");
+    private String email = text.concat("@mail.ru");
     private String region = "Bristol";
 
     @Test
-    public void checkAppearanceEmailAlreadyRegisteredWarning() {
+    public void checkAppearanceLastNameInvalidWarning() {
         navigatePanel = new NavigatePanel();
-        AccountRegistrationScreen registrationScreen = navigatePanel.openAccountLinkScreen(REGISTER)
-                .typeFirstName(text)
+        AccountRegistrationPage registrationScreen = navigatePanel
+                .clickMyAccountLink()
+                .clickRegistrationLink()
+                .typeFirstName(invalidLastName)
                 .typeLastName(text)
-                .typeEmail(previouslyRegisteredEmail)
+                .typeEmail(email)
                 .typeTelephone(text)
                 .typeFax(text)
                 .typeCompany(text)
@@ -32,7 +35,7 @@ public class CheckAppearanceEmailAlreadyRegisteredWarningTest extends BaseTest {
                 .clickAgreeWithPrivacyPolicy();
         registrationScreen.clickContinueButton();
 
-        Assert.assertEquals(registrationScreen.getDangerAlertMessage(),
-                "Warning: E-Mail Address is already registered!");
+        Assert.assertEquals(registrationScreen.getLastNameInvalidWarning(),
+                "Last Name shouldn't contains space character, special symbols, numerals.");
     }
 }

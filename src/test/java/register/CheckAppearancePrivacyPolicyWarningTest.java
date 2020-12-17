@@ -1,24 +1,24 @@
+package register;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.awesome.shop.ta.product.pages.NavigatePanel;
-import ru.awesome.shop.ta.product.pages.registration.AccountRegistrationScreen;
+import ru.awesome.shop.ta.product.pages.registration.AccountRegistrationPage;
 import ru.awesome.shop.ta.utils.StringUtils;
 
-import static ru.awesome.shop.ta.product.pages.NavigatePanel.AccountLink.REGISTER;
-import static ru.awesome.shop.ta.product.pages.registration.AccountRegistrationScreen.Field.LAST_NAME;
-
-public class CheckAppearanceLastNameInvalidWarningTest extends BaseTest {
+public class CheckAppearancePrivacyPolicyWarningTest extends BaseConfigurationTest {
     private NavigatePanel navigatePanel;
     private String text = StringUtils.getRandomString();
-    private String invalidLastName = text.concat("$");
     private String email = text.concat("@mail.ru");
     private String region = "Bristol";
 
     @Test
-    public void checkAppearanceLastNameInvalidWarning() {
+    public void checkAppearanceFirstAddressLengthWarning() {
         navigatePanel = new NavigatePanel();
-        AccountRegistrationScreen registrationScreen = navigatePanel.openAccountLinkScreen(REGISTER)
-                .typeFirstName(invalidLastName)
+        AccountRegistrationPage registrationScreen = navigatePanel
+                .clickMyAccountLink()
+                .clickRegistrationLink()
+                .typeFirstName(text)
                 .typeLastName(text)
                 .typeEmail(email)
                 .typeTelephone(text)
@@ -30,10 +30,9 @@ public class CheckAppearanceLastNameInvalidWarningTest extends BaseTest {
                 .typePostcode(text)
                 .selectRegion(region)
                 .typePassword(text)
-                .typePasswordConfirm(text)
-                .clickAgreeWithPrivacyPolicy();
+                .typePasswordConfirm(text);
         registrationScreen.clickContinueButton();
 
-        Assert.assertTrue(registrationScreen.isFieldInvalidWarning(LAST_NAME));
+        Assert.assertEquals(registrationScreen.getDangerMessage(), "Warning: You must agree to the Privacy Policy!");
     }
 }

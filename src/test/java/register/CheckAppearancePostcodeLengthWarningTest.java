@@ -1,23 +1,24 @@
+package register;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.awesome.shop.ta.product.pages.NavigatePanel;
-import ru.awesome.shop.ta.product.pages.registration.AccountRegistrationScreen;
+import ru.awesome.shop.ta.product.pages.registration.AccountRegistrationPage;
 import ru.awesome.shop.ta.utils.StringUtils;
 
-import static ru.awesome.shop.ta.product.pages.NavigatePanel.AccountLink.REGISTER;
-import static ru.awesome.shop.ta.product.pages.registration.AccountRegistrationScreen.Field.PASSWORD;
-
-public class CheckAppearancePasswordLengthWarningTest extends BaseTest {
+public class CheckAppearancePostcodeLengthWarningTest extends BaseConfigurationTest {
     private NavigatePanel navigatePanel;
     private String text = StringUtils.getRandomString();
-    private String emptyPassword = "";
+    private String emptyPostCode = "";
     private String email = text.concat("@mail.ru");
     private String region = "Bristol";
 
     @Test
-    public void checkAppearancePasswordLengthWarning() {
+    public void checkAppearancePostcodeLengthWarning() {
         navigatePanel = new NavigatePanel();
-        AccountRegistrationScreen registrationScreen = navigatePanel.openAccountLinkScreen(REGISTER)
+        AccountRegistrationPage registrationScreen = navigatePanel
+                .clickMyAccountLink()
+                .clickRegistrationLink()
                 .typeFirstName(text)
                 .typeLastName(text)
                 .typeEmail(email)
@@ -27,13 +28,13 @@ public class CheckAppearancePasswordLengthWarningTest extends BaseTest {
                 .typeFirstAddress(text)
                 .typeSecondAddress(text)
                 .typeCity(text)
-                .typePostcode(text)
+                .typePostcode(emptyPostCode)
                 .selectRegion(region)
-                .typePassword(emptyPassword)
+                .typePassword(text)
                 .typePasswordConfirm(text)
                 .clickAgreeWithPrivacyPolicy();
         registrationScreen.clickContinueButton();
 
-        Assert.assertTrue(registrationScreen.isFieldLengthWarning(PASSWORD));
+        Assert.assertEquals(registrationScreen.getPostCodeLengthWarning(), "Postcode must be between 2 and 10 characters!");
     }
 }

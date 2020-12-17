@@ -1,24 +1,25 @@
+package register;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.awesome.shop.ta.product.pages.NavigatePanel;
-import ru.awesome.shop.ta.product.pages.registration.AccountRegistrationScreen;
+import ru.awesome.shop.ta.product.pages.registration.AccountRegistrationPage;
 import ru.awesome.shop.ta.utils.StringUtils;
 
-import static ru.awesome.shop.ta.product.pages.NavigatePanel.AccountLink.REGISTER;
-import static ru.awesome.shop.ta.product.pages.registration.AccountRegistrationScreen.Field.POST_CODE;
-
-public class CheckAppearancePostcodeLengthWarningTest extends BaseTest {
+public class CheckAppearanceFirstNameLengthWarningTest extends BaseConfigurationTest {
     private NavigatePanel navigatePanel;
     private String text = StringUtils.getRandomString();
-    private String emptyPostCode = "";
+    private String emptyFirstName = "";
     private String email = text.concat("@mail.ru");
     private String region = "Bristol";
 
     @Test
-    public void checkAppearancePostcodeLengthWarning() {
+    public void checkAppearanceFirstNameLengthWarning() {
         navigatePanel = new NavigatePanel();
-        AccountRegistrationScreen registrationScreen = navigatePanel.openAccountLinkScreen(REGISTER)
-                .typeFirstName(text)
+        AccountRegistrationPage registrationScreen = navigatePanel
+                .clickMyAccountLink()
+                .clickRegistrationLink()
+                .typeFirstName(emptyFirstName)
                 .typeLastName(text)
                 .typeEmail(email)
                 .typeTelephone(text)
@@ -27,13 +28,13 @@ public class CheckAppearancePostcodeLengthWarningTest extends BaseTest {
                 .typeFirstAddress(text)
                 .typeSecondAddress(text)
                 .typeCity(text)
-                .typePostcode(emptyPostCode)
+                .typePostcode(text)
                 .selectRegion(region)
                 .typePassword(text)
                 .typePasswordConfirm(text)
                 .clickAgreeWithPrivacyPolicy();
         registrationScreen.clickContinueButton();
 
-        Assert.assertTrue(registrationScreen.isFieldLengthWarning(POST_CODE));
+        Assert.assertEquals(registrationScreen.getFirstNameLengthWarning(), "First Name must be between 1 and 32 characters!");
     }
 }

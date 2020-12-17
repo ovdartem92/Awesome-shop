@@ -1,27 +1,28 @@
+package register;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.awesome.shop.ta.product.pages.NavigatePanel;
-import ru.awesome.shop.ta.product.pages.registration.AccountRegistrationScreen;
+import ru.awesome.shop.ta.product.pages.registration.AccountRegistrationPage;
 import ru.awesome.shop.ta.utils.StringUtils;
 
-import static ru.awesome.shop.ta.product.pages.NavigatePanel.AccountLink.REGISTER;
-import static ru.awesome.shop.ta.product.pages.registration.AccountRegistrationScreen.Field.TELEPHONE;
-
-public class CheckAppearanceTelephoneLengthWarningTest extends BaseTest {
+public class CheckAppearanceFirstNameInvalidWarningTest extends BaseConfigurationTest {
     private NavigatePanel navigatePanel;
     private String text = StringUtils.getRandomString();
-    private String emptyTelephoneNumber = "";
+    private String invalidFirstName = text.concat("$");
     private String email = text.concat("@mail.ru");
     private String region = "Bristol";
 
     @Test
-    public void checkAppearanceTelephoneLengthWarning() {
+    public void checkAppearanceFirstNameInvalidWarning() {
         navigatePanel = new NavigatePanel();
-        AccountRegistrationScreen registrationScreen = navigatePanel.openAccountLinkScreen(REGISTER)
-                .typeFirstName(text)
+        AccountRegistrationPage registrationScreen = navigatePanel
+                .clickMyAccountLink()
+                .clickRegistrationLink()
+                .typeFirstName(invalidFirstName)
                 .typeLastName(text)
                 .typeEmail(email)
-                .typeTelephone(emptyTelephoneNumber)
+                .typeTelephone(text)
                 .typeFax(text)
                 .typeCompany(text)
                 .typeFirstAddress(text)
@@ -34,6 +35,7 @@ public class CheckAppearanceTelephoneLengthWarningTest extends BaseTest {
                 .clickAgreeWithPrivacyPolicy();
         registrationScreen.clickContinueButton();
 
-        Assert.assertTrue(registrationScreen.isFieldLengthWarning(TELEPHONE));
+        Assert.assertEquals(registrationScreen.getFirstNameInvalidWarning(),
+                "First Name shouldn't contains space character, special symbols, numerals");
     }
 }

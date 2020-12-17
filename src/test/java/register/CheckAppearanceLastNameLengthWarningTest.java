@@ -1,32 +1,33 @@
+package register;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.awesome.shop.ta.product.pages.NavigatePanel;
-import ru.awesome.shop.ta.product.pages.registration.AccountRegistrationScreen;
+import ru.awesome.shop.ta.product.pages.registration.AccountRegistrationPage;
 import ru.awesome.shop.ta.utils.StringUtils;
 
-import static ru.awesome.shop.ta.product.pages.NavigatePanel.AccountLink.REGISTER;
-import static ru.awesome.shop.ta.product.pages.registration.AccountRegistrationScreen.Field.CITY;
-
-public class CheckAppearanceCityInvalidWarningTest {
+public class CheckAppearanceLastNameLengthWarningTest extends BaseConfigurationTest {
     private NavigatePanel navigatePanel;
     private String text = StringUtils.getRandomString();
-    private String invalidCity = text.concat("$");
+    private String emptyLastName = "";
     private String email = text.concat("@mail.ru");
     private String region = "Bristol";
 
     @Test
-    public void checkAppearanceLastNameInvalidWarning() {
+    public void checkAppearanceLastNameLengthWarning() {
         navigatePanel = new NavigatePanel();
-        AccountRegistrationScreen registrationScreen = navigatePanel.openAccountLinkScreen(REGISTER)
+        AccountRegistrationPage registrationScreen = navigatePanel
+                .clickMyAccountLink()
+                .clickRegistrationLink()
                 .typeFirstName(text)
-                .typeLastName(text)
+                .typeLastName(emptyLastName)
                 .typeEmail(email)
                 .typeTelephone(text)
                 .typeFax(text)
                 .typeCompany(text)
                 .typeFirstAddress(text)
                 .typeSecondAddress(text)
-                .typeCity(invalidCity)
+                .typeCity(text)
                 .typePostcode(text)
                 .selectRegion(region)
                 .typePassword(text)
@@ -34,6 +35,6 @@ public class CheckAppearanceCityInvalidWarningTest {
                 .clickAgreeWithPrivacyPolicy();
         registrationScreen.clickContinueButton();
 
-        Assert.assertTrue(registrationScreen.isFieldInvalidWarning(CITY));
+        Assert.assertEquals(registrationScreen.getLastNameLengthWarning(), "Last Name must be between 1 and 32 characters!");
     }
 }

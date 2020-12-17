@@ -1,13 +1,12 @@
+package register;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.awesome.shop.ta.product.pages.NavigatePanel;
-import ru.awesome.shop.ta.product.pages.registration.AccountRegistrationScreen;
+import ru.awesome.shop.ta.product.pages.registration.AccountRegistrationPage;
 import ru.awesome.shop.ta.utils.StringUtils;
 
-import static ru.awesome.shop.ta.product.pages.NavigatePanel.AccountLink.REGISTER;
-import static ru.awesome.shop.ta.product.pages.registration.AccountRegistrationScreen.Field.CITY;
-
-public class CheckAppearanceCityLengthWarningTest extends BaseTest {
+public class CheckAppearanceCityLengthWarningTest extends BaseConfigurationTest {
     private NavigatePanel navigatePanel;
     private String text = StringUtils.getRandomString();
     private String emptyCity = "";
@@ -17,7 +16,9 @@ public class CheckAppearanceCityLengthWarningTest extends BaseTest {
     @Test
     public void checkAppearanceFirstAddressLengthWarning() {
         navigatePanel = new NavigatePanel();
-        AccountRegistrationScreen registrationScreen = navigatePanel.openAccountLinkScreen(REGISTER)
+        AccountRegistrationPage registrationScreen = navigatePanel
+                .clickMyAccountLink()
+                .clickRegistrationLink()
                 .typeFirstName(text)
                 .typeLastName(text)
                 .typeEmail(email)
@@ -34,6 +35,6 @@ public class CheckAppearanceCityLengthWarningTest extends BaseTest {
                 .clickAgreeWithPrivacyPolicy();
         registrationScreen.clickContinueButton();
 
-        Assert.assertTrue(registrationScreen.isFieldLengthWarning(CITY));
+        Assert.assertEquals(registrationScreen.getCityLengthWarning(), "City must be between 2 and 128 characters!");
     }
 }

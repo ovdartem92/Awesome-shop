@@ -1,23 +1,24 @@
+package register;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.awesome.shop.ta.product.pages.NavigatePanel;
-import ru.awesome.shop.ta.product.pages.registration.AccountRegistrationScreen;
+import ru.awesome.shop.ta.product.pages.registration.AccountRegistrationPage;
 import ru.awesome.shop.ta.utils.StringUtils;
 
-import static ru.awesome.shop.ta.product.pages.NavigatePanel.AccountLink.REGISTER;
-import static ru.awesome.shop.ta.product.pages.registration.AccountRegistrationScreen.Field.PASSWORD_CONFIRM;
-
-public class CheckAppearancePasswordConfirmationWarningTest extends BaseTest {
+public class CheckAppearanceCityInvalidWarningTest extends BaseConfigurationTest {
     private NavigatePanel navigatePanel;
     private String text = StringUtils.getRandomString();
-    private String emptyPasswordConfirm = "";
+    private String invalidCity = text.concat("$");
     private String email = text.concat("@mail.ru");
     private String region = "Bristol";
 
     @Test
-    public void checkAppearancePasswordConfirmationWarning() {
+    public void checkAppearanceLastNameInvalidWarning() {
         navigatePanel = new NavigatePanel();
-        AccountRegistrationScreen registrationScreen = navigatePanel.openAccountLinkScreen(REGISTER)
+        AccountRegistrationPage registrationScreen = navigatePanel
+                .clickMyAccountLink()
+                .clickRegistrationLink()
                 .typeFirstName(text)
                 .typeLastName(text)
                 .typeEmail(email)
@@ -26,14 +27,14 @@ public class CheckAppearancePasswordConfirmationWarningTest extends BaseTest {
                 .typeCompany(text)
                 .typeFirstAddress(text)
                 .typeSecondAddress(text)
-                .typeCity(text)
+                .typeCity(invalidCity)
                 .typePostcode(text)
                 .selectRegion(region)
                 .typePassword(text)
-                .typePasswordConfirm(emptyPasswordConfirm)
+                .typePasswordConfirm(text)
                 .clickAgreeWithPrivacyPolicy();
         registrationScreen.clickContinueButton();
 
-        Assert.assertTrue(registrationScreen.isFieldLengthWarning(PASSWORD_CONFIRM));
+        Assert.assertEquals(registrationScreen.getCityInvalidWarning(), "City shouldn't contains special symbols and numerals!");
     }
 }

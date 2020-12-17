@@ -1,29 +1,31 @@
+package register;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.awesome.shop.ta.product.pages.NavigatePanel;
-import ru.awesome.shop.ta.product.pages.registration.AccountRegistrationScreen;
+import ru.awesome.shop.ta.product.pages.registration.AccountRegistrationPage;
 import ru.awesome.shop.ta.utils.StringUtils;
 
-import static ru.awesome.shop.ta.product.pages.NavigatePanel.AccountLink.REGISTER;
-import static ru.awesome.shop.ta.product.pages.registration.AccountRegistrationScreen.Field.EMAIL;
-
-public class CheckAppearanceEmailInvalidWarningTest extends BaseTest {
+public class CheckAppearanceFirstAddressLengthWarningTest extends BaseConfigurationTest {
     private NavigatePanel navigatePanel;
     private String text = StringUtils.getRandomString();
-    private String emailWithoutSymbol = "";
+    private String emptyFirstAddress = "";
+    private String email = text.concat("@mail.ru");
     private String region = "Bristol";
 
     @Test
-    public void checkAppearanceEmailInvalidWarning() {
+    public void checkAppearanceFirstAddressLengthWarning() {
         navigatePanel = new NavigatePanel();
-        AccountRegistrationScreen registrationScreen = navigatePanel.openAccountLinkScreen(REGISTER)
+        AccountRegistrationPage registrationScreen = navigatePanel
+                .clickMyAccountLink()
+                .clickRegistrationLink()
                 .typeFirstName(text)
                 .typeLastName(text)
-                .typeEmail(emailWithoutSymbol)
+                .typeEmail(email)
                 .typeTelephone(text)
                 .typeFax(text)
                 .typeCompany(text)
-                .typeFirstAddress(text)
+                .typeFirstAddress(emptyFirstAddress)
                 .typeSecondAddress(text)
                 .typeCity(text)
                 .typePostcode(text)
@@ -33,6 +35,6 @@ public class CheckAppearanceEmailInvalidWarningTest extends BaseTest {
                 .clickAgreeWithPrivacyPolicy();
         registrationScreen.clickContinueButton();
 
-        Assert.assertTrue(registrationScreen.isFieldInvalidWarning(EMAIL));
+        Assert.assertEquals(registrationScreen.getFirstAddressLengthWarning(), "Address 1 must be between 3 and 128 characters!");
     }
 }
