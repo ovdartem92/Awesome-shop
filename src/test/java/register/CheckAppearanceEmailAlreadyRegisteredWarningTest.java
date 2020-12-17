@@ -12,7 +12,9 @@ public class CheckAppearanceEmailAlreadyRegisteredWarningTest extends BaseConfig
     private String previouslyRegisteredEmail = "kebikov1995@mail.ru";
     private String region = "Bristol";
 
-    @Test
+    @Test(description = "***CheckAppearanceEmailAlreadyRegisteredWarning***\n" +
+            "EPMFARMATS-13166: check appearance E-mail already registered warning\n" +
+            "https://jira.epam.com/jira/browse/EPMFARMATS-13166")
     public void checkAppearanceEmailAlreadyRegisteredWarning() {
         navigatePanel = new NavigatePanel();
         AccountRegistrationPage registrationScreen = navigatePanel

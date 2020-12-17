@@ -21,9 +21,4 @@ public class User {
     private String country;
     private String region;
     private String passwordConfirm;
-
-//    public static class Builder {
-//        private final String email;
-//        private final String password;
-//    }
 }

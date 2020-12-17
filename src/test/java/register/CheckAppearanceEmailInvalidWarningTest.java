@@ -12,7 +12,9 @@ public class CheckAppearanceEmailInvalidWarningTest extends BaseConfigurationTes
     private String emailWithoutSymbol = "";
     private String region = "Bristol";
 
-    @Test
+    @Test(description = "***CheckAppearanceEmailInvalidWarning***\n" +
+            "EPMFARMATS-13158: check appearance E-mail invalid warning\n" +
+            "https://jira.epam.com/jira/browse/EPMFARMATS-13158")
     public void checkAppearanceEmailInvalidWarning() {
         navigatePanel = new NavigatePanel();
         AccountRegistrationPage registrationScreen = navigatePanel

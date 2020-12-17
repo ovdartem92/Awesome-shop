@@ -11,7 +11,9 @@ public class CheckAppearanceRegionSelectedWarningTest extends BaseConfigurationT
     private String text = StringUtils.getRandomString();
     private String email = text.concat("@mail.ru");
 
-    @Test
+    @Test(description = "***CheckAppearanceRegionSelectedWarning***\n" +
+            "EPMFARMATS-13162: check appearance Region / State isn't selected warning\n\n" +
+            "https://jira.epam.com/jira/browse/EPMFARMATS-13162")
     public void checkAppearanceRegionSelectedWarning() {
         navigatePanel = new NavigatePanel();
         AccountRegistrationPage registrationScreen = navigatePanel

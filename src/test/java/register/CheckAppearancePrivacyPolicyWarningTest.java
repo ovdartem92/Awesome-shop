@@ -12,7 +12,9 @@ public class CheckAppearancePrivacyPolicyWarningTest extends BaseConfigurationTe
     private String email = text.concat("@mail.ru");
     private String region = "Bristol";
 
-    @Test
+    @Test(description = "***CheckAppearancePrivacyPolicyWarning***\n" +
+            "EPMFARMATS-13154: check appearance Privacy Policy warning\n\n" +
+            "https://jira.epam.com/jira/browse/EPMFARMATS-13154")
     public void checkAppearancePrivacyPolicyWarning() {
         navigatePanel = new NavigatePanel();
         AccountRegistrationPage registrationScreen = navigatePanel

@@ -13,7 +13,9 @@ public class CheckAppearanceCityLengthWarningTest extends BaseConfigurationTest 
     private String email = text.concat("@mail.ru");
     private String region = "Bristol";
 
-    @Test
+    @Test(description = "***CheckAppearanceCityLengthWarning***\n" +
+            "EPMFARMATS-13161: check appearance City length warning\n" +
+            "https://jira.epam.com/jira/browse/EPMFARMATS-13161")
     public void checkAppearanceCityLengthWarning() {
         navigatePanel = new NavigatePanel();
         AccountRegistrationPage registrationScreen = navigatePanel

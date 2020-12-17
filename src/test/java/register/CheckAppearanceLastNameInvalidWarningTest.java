@@ -13,7 +13,9 @@ public class CheckAppearanceLastNameInvalidWarningTest extends BaseConfiguration
     private String email = text.concat("@mail.ru");
     private String region = "Bristol";
 
-    @Test
+    @Test(description = "***CheckAppearanceLastNameInvalidWarning***\n" +
+            "EPMFARMATS-13182: check appearance Last Name invalid warning\n\n" +
+            "https://jira.epam.com/jira/browse/EPMFARMATS-13182")
     public void checkAppearanceLastNameInvalidWarning() {
         navigatePanel = new NavigatePanel();
         AccountRegistrationPage registrationScreen = navigatePanel

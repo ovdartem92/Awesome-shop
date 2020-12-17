@@ -13,7 +13,9 @@ public class CheckAppearanceFirstAddressLengthWarningTest extends BaseConfigurat
     private String email = text.concat("@mail.ru");
     private String region = "Bristol";
 
-    @Test
+    @Test(description = "***CheckAppearanceFirstAddressLengthWarning***\n" +
+            "EPMFARMATS-13160: check appearance Address 1 length warning\n" +
+            "https://jira.epam.com/jira/browse/EPMFARMATS-13160")
     public void checkAppearanceFirstAddressLengthWarning() {
         navigatePanel = new NavigatePanel();
         AccountRegistrationPage registrationScreen = navigatePanel

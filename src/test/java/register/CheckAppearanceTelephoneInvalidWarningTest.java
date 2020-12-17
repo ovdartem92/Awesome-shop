@@ -13,7 +13,9 @@ public class CheckAppearanceTelephoneInvalidWarningTest extends BaseConfiguratio
     private String email = text.concat("@mail.ru");
     private String region = "Bristol";
 
-    @Test
+    @Test(description = "***CheckAppearanceTelephoneInvalidWarning***\n" +
+            "EPMFARMATS-13162: check appearance Region / State isn't selected warning\n\n" +
+            "https://jira.epam.com/jira/browse/EPMFARMATS-13162")
     public void checkAppearanceTelephoneInvalidWarning() {
         navigatePanel = new NavigatePanel();
         AccountRegistrationPage registrationScreen = navigatePanel

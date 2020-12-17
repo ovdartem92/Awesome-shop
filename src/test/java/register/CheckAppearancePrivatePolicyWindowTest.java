@@ -8,7 +8,9 @@ import ru.awesome.shop.ta.product.pages.registration.AccountRegistrationPage;
 public class CheckAppearancePrivatePolicyWindowTest extends BaseConfigurationTest {
     private NavigatePanel navigatePanel;
 
-    @Test
+    @Test(description = "***CheckAppearancePrivatePolicyWindow***\n" +
+            "EPMFARMATS-13167: check appearance Private Policy window\n\n" +
+            "https://jira.epam.com/jira/browse/EPMFARMATS-13167")
     public void checkAppearancePrivatePolicyWindow() {
         navigatePanel = new NavigatePanel();
         AccountRegistrationPage registrationScreen = navigatePanel

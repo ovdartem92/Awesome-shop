@@ -13,7 +13,9 @@ public class CheckAppearanceCityInvalidWarningTest extends BaseConfigurationTest
     private String email = text.concat("@mail.ru");
     private String region = "Bristol";
 
-    @Test
+    @Test(description = "***CheckAppearanceCityInvalidWarning***\n" +
+            "EPMFARMATS-13184: check appearance City invalid warning\n" +
+            "https://jira.epam.com/jira/browse/EPMFARMATS-13184")
     public void checkAppearanceCityInvalidWarning() {
         navigatePanel = new NavigatePanel();
         AccountRegistrationPage registrationScreen = navigatePanel

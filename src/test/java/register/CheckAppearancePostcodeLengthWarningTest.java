@@ -13,7 +13,9 @@ public class CheckAppearancePostcodeLengthWarningTest extends BaseConfigurationT
     private String email = text.concat("@mail.ru");
     private String region = "Bristol";
 
-    @Test
+    @Test(description = "***CheckAppearancePostcodeLengthWarning***\n" +
+            "EPMFARMATS-13163: check appearance Postcode length warning\n\n" +
+            "https://jira.epam.com/jira/browse/EPMFARMATS-13163")
     public void checkAppearancePostcodeLengthWarning() {
         navigatePanel = new NavigatePanel();
         AccountRegistrationPage registrationScreen = navigatePanel

@@ -13,7 +13,9 @@ public class CheckAppearancePasswordLengthWarningTest extends BaseConfigurationT
     private String email = text.concat("@mail.ru");
     private String region = "Bristol";
 
-    @Test
+    @Test(description = "***CheckAppearancePasswordLengthWarning***\n" +
+            "EPMFARMATS-13164: check appearance Password length warning\n\n" +
+            "https://jira.epam.com/jira/browse/EPMFARMATS-13164")
     public void checkAppearancePasswordLengthWarning() {
         navigatePanel = new NavigatePanel();
         AccountRegistrationPage registrationScreen = navigatePanel
