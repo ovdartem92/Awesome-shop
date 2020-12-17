@@ -7,20 +7,20 @@ import ru.awesome.shop.ta.product.pages.BasePage;
 
 public class ChangePasswordPage extends BasePage {
     public ChangePasswordPage typePassword(String password) {
-        final By PASSWORD_TEXT_FIELD_LOCATOR = By.xpath("//input[@name='password']");
-        new TextField(PASSWORD_TEXT_FIELD_LOCATOR).type(password);
+        By passwordTextFieldLocator = By.xpath("//input[@name='password']");
+        new TextField(passwordTextFieldLocator).type(password);
         return this;
     }
 
     public ChangePasswordPage typeConfirmationPassword(String password) {
-        final By CONFIRM_PASSWORD_TEXT_FIELD_LOCATOR = By.xpath("//input[@name='confirm']");
-        new TextField(CONFIRM_PASSWORD_TEXT_FIELD_LOCATOR).type(password);
+        By confirmPasswordTextFieldLocator = By.xpath("//input[@name='confirm']");
+        new TextField(confirmPasswordTextFieldLocator).type(password);
         return this;
     }
 
     public AccountPage clickContinueButton() {
-        final By CONTINUE_BUTTON_LOCATOR = By.xpath("//input[@value='Continue']");
-        new Button(CONTINUE_BUTTON_LOCATOR).click();
+        By continueButtonLocator = By.xpath("//input[@value='Continue']");
+        new Button(continueButtonLocator).click();
         return new AccountPage();
     }
 }

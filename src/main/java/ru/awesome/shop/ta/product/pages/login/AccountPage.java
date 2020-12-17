@@ -8,13 +8,13 @@ import ru.awesome.shop.ta.product.pages.BasePage;
 public class AccountPage extends BasePage {
 
     public String getTextFromMyAccountLabel() {
-        final By MY_ACCOUNT_LABEL_LOCATOR = By.xpath("//h2[text()='My Account']");
-        return new Label(MY_ACCOUNT_LABEL_LOCATOR).getText();
+        By myAccountLabelLocator = By.xpath("//h2[text()='My Account']");
+        return new Label(myAccountLabelLocator).getText();
     }
 
     public ChangePasswordPage clickChangePasswordLink() {
-        final By CHANGE_PASSWORD_LINK_LOCATOR = By.xpath("//a[contains(text(),'Change')]");
-        new Link(CHANGE_PASSWORD_LINK_LOCATOR).click();
+        By changePasswordLinkLocator = By.xpath("//a[contains(text(),'Change')]");
+        new Link(changePasswordLinkLocator).click();
         return new ChangePasswordPage();
     }
 }

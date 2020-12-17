@@ -7,18 +7,17 @@ import ru.awesome.shop.ta.framework.ui.components.TextField;
 import ru.awesome.shop.ta.product.pages.BasePage;
 
 public class LoginPage extends BasePage {
-    private static final By EMAIL_TEXT_FIELD_LOCATOR = By.id("input-email");
-    private static final By PASSWORD_TEXT_FIELD_LOCATOR = By.id("input-password");
     private static final By LOGIN_BUTTON_LOCATOR = By.xpath("//input[@class='btn btn-primary']");
-    private static final By WARNING_LABEL_LOCATOR = By.xpath("//div[contains(text(),'Warning')]");
 
     public LoginPage typeEmailAddress(String email) {
-        new TextField(EMAIL_TEXT_FIELD_LOCATOR).type(email);
+        By emailTextFieldLocator = By.id("input-email");
+        new TextField(emailTextFieldLocator).type(email);
         return this;
     }
 
     public LoginPage typePassword(String password) {
-        new TextField(PASSWORD_TEXT_FIELD_LOCATOR).type(password);
+        By passwordTextFieldLocator = By.id("input-password");
+        new TextField(passwordTextFieldLocator).type(password);
         return this;
     }
 
@@ -33,6 +32,7 @@ public class LoginPage extends BasePage {
     }
 
     public String getTextWarningMessage() {
-        return new Label(WARNING_LABEL_LOCATOR).getText();
+        By warningLabelLocator = By.xpath("//div[contains(text(),'Warning')]");
+        return new Label(warningLabelLocator).getText();
     }
 }
