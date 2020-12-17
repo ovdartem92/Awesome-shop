@@ -16,11 +16,13 @@ import java.lang.reflect.Method;
 public abstract class BaseConfigurationTest {
     protected Browser browser;
     protected final String URL = TestDataReader.getStageData("home.url");
+
     @BeforeMethod(description = "Set Up", groups = {"all", "positive", "negative"})
     public void setUp(Method method) {
         browser = Browser.getInstance();
         browser.navigate(URL);
     }
+
     @AfterMethod(description = "Tear Down", groups = {"all", "positive", "negative"})
     public void tearDown() {
         browser.stop();
