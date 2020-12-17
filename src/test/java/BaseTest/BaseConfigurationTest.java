@@ -9,10 +9,11 @@ import org.testng.annotations.Listeners;
 
 @Listeners({TestListener.class, SuiteListener.class})
 public abstract class BaseConfigurationTest {
-    private Browser browser = Browser.getInstance();
+    private Browser browser;
 
     @BeforeMethod(description = "Set Up", groups = {"all", "positive", "negative"})
     public void setUp() {
+        browser= Browser.getInstance();
         browser.navigate("https://awesome-shop.01sh.ru/");
     }
 

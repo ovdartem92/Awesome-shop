@@ -10,12 +10,12 @@ public class ChangePasswordPage extends BasePage {
     private static final By CONFIRM_PASSWORD_TEXT_FIELD_LOCATOR = By.xpath("//input[@name='confirm']");
     private static final By CONTINUE_BUTTON_LOCATOR = By.xpath("//input[@value='Continue']");
 
-    public ChangePasswordPage typeToPasswordTextField(String password) {
+    public ChangePasswordPage typePassword(String password) {
         new TextField(PASSWORD_TEXT_FIELD_LOCATOR).type(password);
         return this;
     }
 
-    public ChangePasswordPage typeToConfirmPasswordTextField(String password) {
+    public ChangePasswordPage typeConfirmationPassword(String password) {
         new TextField(CONFIRM_PASSWORD_TEXT_FIELD_LOCATOR).type(password);
         return this;
     }

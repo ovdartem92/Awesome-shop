@@ -23,7 +23,7 @@ public class LoginWithChangedPasswordTest extends BaseConfigurationTest {
         new MainPage().clickOnMyAccountLink().clickOnLoginLink()
                 .typeEmailAddress(user.getEmail())
                 .typePassword(user.getPassword()).clickLoginButton().clickChangePasswordLink()
-                .typeToPasswordTextField(newPassword).typeToConfirmPasswordTextField(newPassword)
+                .typePassword(newPassword).typeConfirmationPassword(newPassword)
                 .clickContinueButton();
         new AccountPage().clickOnMyAccountLink().clickOnLogoutLink();
         accountLabelText = new LogoutPage().clickOnMyAccountLink().clickOnLoginLink().typeEmailAddress(user.getEmail())
@@ -38,7 +38,7 @@ public class LoginWithChangedPasswordTest extends BaseConfigurationTest {
 
     @AfterMethod(description = "change password back")
     public void changePasswordBack() {
-        new AccountPage().clickChangePasswordLink().typeToPasswordTextField(user.getPassword())
-                .typeToConfirmPasswordTextField(user.getPassword()).clickContinueButton();
+        new AccountPage().clickChangePasswordLink().typePassword(user.getPassword())
+                .typeConfirmationPassword(user.getPassword()).clickContinueButton();
     }
 }
