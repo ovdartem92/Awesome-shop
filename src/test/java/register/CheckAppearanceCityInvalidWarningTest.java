@@ -14,7 +14,7 @@ public class CheckAppearanceCityInvalidWarningTest extends BaseConfigurationTest
     private String region = "Bristol";
 
     @Test
-    public void checkAppearanceLastNameInvalidWarning() {
+    public void checkAppearanceCityInvalidWarning() {
         navigatePanel = new NavigatePanel();
         AccountRegistrationPage registrationScreen = navigatePanel
                 .clickMyAccountLink()

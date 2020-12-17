@@ -13,7 +13,7 @@ public class CheckAppearancePrivacyPolicyWarningTest extends BaseConfigurationTe
     private String region = "Bristol";
 
     @Test
-    public void checkAppearanceFirstAddressLengthWarning() {
+    public void checkAppearancePrivacyPolicyWarning() {
         navigatePanel = new NavigatePanel();
         AccountRegistrationPage registrationScreen = navigatePanel
                 .clickMyAccountLink()

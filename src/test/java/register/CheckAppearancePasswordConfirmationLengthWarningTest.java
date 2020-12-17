@@ -14,7 +14,7 @@ public class CheckAppearancePasswordConfirmationLengthWarningTest extends BaseCo
     private String region = "Bristol";
 
     @Test
-    public void checkAppearancePasswordConfirmationWarning() {
+    public void checkAppearancePasswordConfirmationLengthWarning() {
         navigatePanel = new NavigatePanel();
         AccountRegistrationPage registrationScreen = navigatePanel
                 .clickMyAccountLink()

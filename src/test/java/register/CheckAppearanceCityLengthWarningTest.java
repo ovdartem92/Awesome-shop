@@ -14,7 +14,7 @@ public class CheckAppearanceCityLengthWarningTest extends BaseConfigurationTest 
     private String region = "Bristol";
 
     @Test
-    public void checkAppearanceFirstAddressLengthWarning() {
+    public void checkAppearanceCityLengthWarning() {
         navigatePanel = new NavigatePanel();
         AccountRegistrationPage registrationScreen = navigatePanel
                 .clickMyAccountLink()
