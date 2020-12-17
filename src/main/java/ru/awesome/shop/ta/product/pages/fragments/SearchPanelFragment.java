@@ -5,9 +5,9 @@ import ru.awesome.shop.ta.framework.ui.components.Button;
 import ru.awesome.shop.ta.framework.ui.components.TextField;
 import ru.awesome.shop.ta.product.pages.SearchResultsPage;
 
-public class SearchFragment {
+public class SearchPanelFragment {
 
-    public SearchFragment typeProductName(String productName) {
+    public SearchPanelFragment typeProductName(String productName) {
         By searchFieldLocator = By.xpath("//input[@name='search']");
         TextField searchField = new TextField(searchFieldLocator);
         searchField.clear();

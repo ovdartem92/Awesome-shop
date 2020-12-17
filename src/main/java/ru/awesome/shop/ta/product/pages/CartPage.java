@@ -7,11 +7,27 @@ import ru.awesome.shop.ta.framework.ui.components.Button;
 import ru.awesome.shop.ta.framework.ui.components.Label;
 import ru.awesome.shop.ta.framework.ui.components.Link;
 import ru.awesome.shop.ta.framework.ui.components.TextField;
+import ru.awesome.shop.ta.product.pages.fragments.CartItemFragment;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CartPage {
     private static final String lineOfProductsTablePath = "//div[@class='table-responsive']//tbody//tr";
+    private static final By lineOfTableLocator = By.xpath("//div[@class='table-responsive']//tbody//tr");
+
+    public List<CartItemFragment> getAllCartItemsList() {
+
+        List<WebElement> linesOfTable = Browser.getInstance().getWrappedDriver().findElements(lineOfTableLocator);
+        int sizeElements = linesOfTable.size();
+        List<CartItemFragment> cartItemFragmentList = new ArrayList<>();
+        for (int i = 0; i < sizeElements; i++) {
+
+            cartItemFragmentList.add(new CartItemFragment(linesOfTable.get(i)));
+            //cartItemFragmentList.add(new CartItemFragment(i));
+        }
+        return cartItemFragmentList;
+    }
 
     public String getProductNameIntoCart(int numberOfProductInCartList) {
         By productNameLinkLocator = By

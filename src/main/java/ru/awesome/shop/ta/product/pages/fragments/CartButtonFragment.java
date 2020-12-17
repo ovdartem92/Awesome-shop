@@ -5,16 +5,16 @@ import ru.awesome.shop.ta.framework.ui.components.Button;
 import ru.awesome.shop.ta.framework.ui.components.Label;
 import ru.awesome.shop.ta.product.pages.CartPage;
 
-public class CartFragment {
+public class CartButtonFragment {
     private static final By cartButtonLocator = By.xpath("//div[@id='cart']//span[@id='cart-total']");
     private static final Button cartButton = new Button(cartButtonLocator);
 
-    public CartFragment clickCartButton() {
+    public CartButtonFragment clickCartButton() {
         cartButton.click();
         return this;
     }
 
-    public CartFragment clickCartButtonContainsProducts() {
+    public CartButtonFragment clickCartButtonContainsProducts() {
         By cartContainsProductsButtonLocator = By.xpath("//div[@id='cart']");
         Button cartContainsProductsButton = new Button(cartContainsProductsButtonLocator);
         cartContainsProductsButton.click();
@@ -34,8 +34,7 @@ public class CartFragment {
         return cartEmptyMessageLabel.getText();
     }
 
-    public int getQuantityFromCartButton() {
-        String[] array = cartButton.getText().split(" ");
-        return Integer.parseInt(array[0]);
+    public String getTextFromCartButton() {
+        return cartButton.getText();
     }
 }
