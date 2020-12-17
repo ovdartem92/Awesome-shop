@@ -12,7 +12,6 @@ public class LoginPage extends BasePage {
     private static final By LOGIN_BUTTON_LOCATOR = By.xpath("//input[@class='btn btn-primary']");
     private static final By WARNING_LABEL_LOCATOR = By.xpath("//div[contains(text(),'Warning')]");
 
-
     public LoginPage typeEmailAddress(String email) {
         new TextField(EMAIL_TEXT_FIELD_LOCATOR).type(email);
         return this;
