@@ -149,4 +149,10 @@ public class AccountRegistrationPage {
         Label dangerLabel = new Label(dangerLabelLocator);
         return dangerLabel.getText();
     }
+
+    public String getPrivacyPolicyTitle() {
+        By policyTitle = By.xpath("//h4[contains(text(),'Privacy Policy')]");
+        Label policyLabel = new Label(policyTitle);
+        return policyLabel.getText();
+    }
 }
