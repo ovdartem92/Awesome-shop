@@ -6,16 +6,16 @@ import ru.awesome.shop.ta.product.pages.fragments.CartButtonFragment;
 import ru.awesome.shop.ta.product.pages.fragments.SearchPanelFragment;
 
 public class CheckContinueButtonNavigateHomePage extends BaseConfigurationTest {
-    @Test
+    @Test(description = "***ContinueButtonNavigateToHomePage***\n" +
+            "EPMFARMATS-13151: Check that 'Continue' button in empty cart lead to main page\n" +
+            "https://jira.epam.com/jira/browse/EPMFARMATS-13151")
     public void continueNavigateToHomePage() {
         String MACBOOK = "MacBook";
         SearchPanelFragment searchPanelFragment = new SearchPanelFragment();
         CartButtonFragment cartButtonFragment = new CartButtonFragment();
         searchPanelFragment.typeProductName(MACBOOK);
         SearchResultsPage searchResultsPage = searchPanelFragment.clickSearchButton();
-        searchResultsPage.getSearchResultsList()
-                .get(0)
-                .clickAddToCartButton();
+        searchResultsPage.getSearchResultsList().get(0).clickAddToCartButton();
         cartButtonFragment.clickCartButton();
         CartPage cartPage = cartButtonFragment.clickViewCartButton();
         cartPage.getAllCartItemsList().get(0).clickCartItemRemoveButton();

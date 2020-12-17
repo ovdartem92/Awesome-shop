@@ -5,9 +5,11 @@ import ru.awesome.shop.ta.product.pages.SearchResultsPage;
 import ru.awesome.shop.ta.product.pages.fragments.CartButtonFragment;
 import ru.awesome.shop.ta.product.pages.fragments.SearchPanelFragment;
 
-public class CheckUserCanChangeQuantityAndBuy extends BaseConfigurationTest {
-    @Test
-    public void checkCanBuyLess1000() {
+public class CheckCanChangeQuantityLess1001AndBuy extends BaseConfigurationTest {
+    @Test(description = "***CanChangeQuantityAndBuy***\n" +
+            "EPMFARMATS-13149: Check that user can buy when product quantity less than 1001\n" +
+            "https://jira.epam.com/jira/browse/EPMFARMATS-13149")
+    public void checkCanBuyLess10001() {
         String MACBOOK = "MacBook";
         int QUANTITY = 666;
         SearchPanelFragment searchPanelFragment = new SearchPanelFragment();

@@ -6,7 +6,9 @@ import ru.awesome.shop.ta.product.pages.fragments.CartButtonFragment;
 import ru.awesome.shop.ta.product.pages.fragments.SearchPanelFragment;
 
 public class CheckCorrectWorkContinueShoppingButton extends BaseConfigurationTest {
-    @Test
+    @Test(description = "***CorrectWorkContinueShoppingButton***\n" +
+            "EPMFARMATS-13175: Check that 'Continue shopping' button in cart page work correctly\n" +
+            "https://jira.epam.com/jira/browse/EPMFARMATS-13175")
     public void checkCorrectContinueShopping() {
         String IPHONE = "Iphone";
         SearchPanelFragment searchPanelFragment = new SearchPanelFragment();

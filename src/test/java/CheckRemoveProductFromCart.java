@@ -6,7 +6,9 @@ import ru.awesome.shop.ta.product.pages.fragments.CartButtonFragment;
 import ru.awesome.shop.ta.product.pages.fragments.SearchPanelFragment;
 
 public class CheckRemoveProductFromCart extends BaseConfigurationTest {
-    @Test
+    @Test(description = "***RemoveProductFromCart***\n" +
+            "EPMFARMATS-13146: Check that user can remove product from cart\n" +
+            "https://jira.epam.com/jira/browse/EPMFARMATS-13146")
     public void removeProduct() {
         String MACBOOK = "MacBook";
         SearchPanelFragment searchPanelFragment = new SearchPanelFragment();

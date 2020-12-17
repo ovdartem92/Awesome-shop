@@ -36,9 +36,15 @@ public class CartItemFragment {
 
     public CartItemFragment typeCartItemQuantity(int quantity) {
         WebElement quantityField = cartItemFragmentElement
-                .findElement(By.xpath(".//input[contains(@name, 'quantity')]"));
+                .findElement(By.xpath(".//input[contains(@name,'quantity')]"));
         quantityField.clear();
         quantityField.sendKeys(String.valueOf(quantity));
         return this;
+    }
+
+    public int getCartItemQuantityValue() {
+        WebElement quantityField = cartItemFragmentElement
+                .findElement(By.xpath(".//input[contains(@name,'quantity')]"));
+        return Integer.parseInt(quantityField.getAttribute("value"));
     }
 }

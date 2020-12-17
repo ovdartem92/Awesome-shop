@@ -6,7 +6,9 @@ import ru.awesome.shop.ta.product.pages.fragments.CartButtonFragment;
 import ru.awesome.shop.ta.product.pages.fragments.SearchPanelFragment;
 
 public class CheckProductNameAndCostAreTheSameInCart extends BaseConfigurationTest {
-    @Test
+    @Test(description = "***ProductNameAndCostAreTheSameInCart***\n" +
+            "EPMFARMATS-13174: Check that product name and cost stay the same in cart\n" +
+            "https://jira.epam.com/jira/browse/EPMFARMATS-13174")
     public void checkProductNameAndCost() {
         String IPHONE = "Iphone";
         SearchPanelFragment searchPanelFragment = new SearchPanelFragment();

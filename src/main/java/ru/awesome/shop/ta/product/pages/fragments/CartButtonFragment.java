@@ -33,8 +33,4 @@ public class CartButtonFragment {
         Label cartEmptyMessageLabel = new Label(cartEmptyMessageLabelLocator);
         return cartEmptyMessageLabel.getText();
     }
-
-    public String getTextFromCartButton() {
-        return cartButton.getText();
-    }
 }

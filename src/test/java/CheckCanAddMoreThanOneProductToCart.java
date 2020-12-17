@@ -5,22 +5,25 @@ import ru.awesome.shop.ta.product.pages.SearchResultsPage;
 import ru.awesome.shop.ta.product.pages.fragments.CartButtonFragment;
 import ru.awesome.shop.ta.product.pages.fragments.SearchPanelFragment;
 
-public class CheckUserCantBuyZeroItems extends BaseConfigurationTest {
-    @Test
-    public void checkCantBuyZero() {
+public class CheckCanAddMoreThanOneProductToCart extends BaseConfigurationTest {
+    @Test(description = "***CanAddMoreThanOneProductToCart***\n" +
+            "EPMFARMATS-13150: Check that user can add more than one product to cart\n" +
+            "https://jira.epam.com/jira/browse/EPMFARMATS-13150")
+    public void checkAddToCartMoreProducts() {
         String MACBOOK = "MacBook";
-        int QUANTITY = 0;
+        String IPHONE = "iPhone";
         SearchPanelFragment searchPanelFragment = new SearchPanelFragment();
         CartButtonFragment cartButtonFragment = new CartButtonFragment();
-        searchPanelFragment.typeProductName(MACBOOK);
+        searchPanelFragment.typeProductName(IPHONE);
         SearchResultsPage searchResultsPage = searchPanelFragment.clickSearchButton();
+        searchResultsPage.getSearchResultsList().get(0).clickAddToCartButton();
+        searchPanelFragment.typeProductName(MACBOOK);
+        searchPanelFragment.clickSearchButton();
         searchResultsPage.getSearchResultsList().get(0).clickAddToCartButton();
         cartButtonFragment.clickCartButton();
         CartPage cartPage = cartButtonFragment.clickViewCartButton();
-        cartPage.getAllCartItemsList().get(0).typeCartItemQuantity(QUANTITY);
-        cartPage.getAllCartItemsList().get(0).clickCartItemUpdateButton();
-        String emptyCartMessage = cartPage.getEmptyShoppingCartMessage();
+        int sizeOfProductsList = cartPage.getAllCartItemsList().size();
 
-        Assert.assertEquals(emptyCartMessage, "Your shopping cart is empty!", "Message isn't displayed after update!");
+        Assert.assertTrue(sizeOfProductsList > 1, "The size of products list isn't more 1! ");
     }
 }

@@ -5,10 +5,13 @@ import ru.awesome.shop.ta.product.pages.SearchResultsPage;
 import ru.awesome.shop.ta.product.pages.fragments.CartButtonFragment;
 import ru.awesome.shop.ta.product.pages.fragments.SearchPanelFragment;
 
-public class CheckItemIntoCartTest extends BaseConfigurationTest {
-    @Test
-    public void checkItemIntoCart() {
+public class CheckCanChangeQuantity extends BaseConfigurationTest {
+    @Test(description = "***CanChangeQuantity***\n" +
+            "EPMFARMATS-13147: Check that user can change product quantity in cart\n" +
+            "https://jira.epam.com/jira/browse/EPMFARMATS-13147")
+    public void checkCanChangeQuantity() {
         String MACBOOK = "MacBook";
+        int QUANTITY = 3;
         SearchPanelFragment searchPanelFragment = new SearchPanelFragment();
         CartButtonFragment cartButtonFragment = new CartButtonFragment();
         searchPanelFragment.typeProductName(MACBOOK);
@@ -16,8 +19,10 @@ public class CheckItemIntoCartTest extends BaseConfigurationTest {
         searchResultsPage.getSearchResultsList().get(0).clickAddToCartButton();
         cartButtonFragment.clickCartButton();
         CartPage cartPage = cartButtonFragment.clickViewCartButton();
-        String productName = cartPage.getAllCartItemsList().get(0).getCartItemName();
+        cartPage.getAllCartItemsList().get(0).typeCartItemQuantity(QUANTITY);
+        cartPage.getAllCartItemsList().get(0).clickCartItemUpdateButton();
+        int textQuantity = cartPage.getAllCartItemsList().get(0).getCartItemQuantityValue();
 
-        Assert.assertEquals(productName, MACBOOK, "The values of product aren't equal!");
+        Assert.assertEquals(textQuantity, QUANTITY, "The values of quantity aren't equals!");
     }
 }
