@@ -14,7 +14,7 @@ public class CheckAppearancePasswordLengthWarningTest extends BaseConfigurationT
     private String region = "Bristol";
 
     @Test(description = "***CheckAppearancePasswordLengthWarning***\n" +
-            "EPMFARMATS-13164: check appearance Password length warning\n\n" +
+            "EPMFARMATS-13164: check appearance Password length warning\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13164")
     public void checkAppearancePasswordLengthWarning() {
         navigatePanel = new NavigatePanel();

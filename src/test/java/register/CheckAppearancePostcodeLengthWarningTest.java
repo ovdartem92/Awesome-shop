@@ -14,7 +14,7 @@ public class CheckAppearancePostcodeLengthWarningTest extends BaseConfigurationT
     private String region = "Bristol";
 
     @Test(description = "***CheckAppearancePostcodeLengthWarning***\n" +
-            "EPMFARMATS-13163: check appearance Postcode length warning\n\n" +
+            "EPMFARMATS-13163: check appearance Postcode length warning\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13163")
     public void checkAppearancePostcodeLengthWarning() {
         navigatePanel = new NavigatePanel();

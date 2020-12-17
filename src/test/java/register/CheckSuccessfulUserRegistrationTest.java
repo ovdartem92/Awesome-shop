@@ -12,7 +12,9 @@ public class CheckSuccessfulUserRegistrationTest extends BaseConfigurationTest {
     private String email = text.concat("@mail.ru");
     private String region = "Bristol";
 
-    @Test
+    @Test(description = "***CheckSuccessfulUserRegistration***\n" +
+            "EPMFARMATS-13155: check successful user registration\n\n" +
+            "https://jira.epam.com/jira/browse/EPMFARMATS-13155")
     public void checkSuccessfulUserRegistration() {
         navigatePanel = new NavigatePanel();
         AccountRegistrationSuccessfullyPage registrationScreen = navigatePanel

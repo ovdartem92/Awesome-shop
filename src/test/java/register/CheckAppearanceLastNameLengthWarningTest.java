@@ -14,7 +14,7 @@ public class CheckAppearanceLastNameLengthWarningTest extends BaseConfigurationT
     private String region = "Bristol";
 
     @Test(description = "***CheckAppearanceLastNameLengthWarning***\n" +
-            "EPMFARMATS-13157: check appearance Last Name length warning\n\n" +
+            "EPMFARMATS-13157: check appearance Last Name length warning\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13157")
     public void checkAppearanceLastNameLengthWarning() {
         navigatePanel = new NavigatePanel();

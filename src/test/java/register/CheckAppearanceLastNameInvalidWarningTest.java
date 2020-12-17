@@ -14,7 +14,7 @@ public class CheckAppearanceLastNameInvalidWarningTest extends BaseConfiguration
     private String region = "Bristol";
 
     @Test(description = "***CheckAppearanceLastNameInvalidWarning***\n" +
-            "EPMFARMATS-13182: check appearance Last Name invalid warning\n\n" +
+            "EPMFARMATS-13182: check appearance Last Name invalid warning\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13182")
     public void checkAppearanceLastNameInvalidWarning() {
         navigatePanel = new NavigatePanel();

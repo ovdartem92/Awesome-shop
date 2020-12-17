@@ -9,7 +9,7 @@ public class CheckAppearancePrivatePolicyWindowTest extends BaseConfigurationTes
     private NavigatePanel navigatePanel;
 
     @Test(description = "***CheckAppearancePrivatePolicyWindow***\n" +
-            "EPMFARMATS-13167: check appearance Private Policy window\n\n" +
+            "EPMFARMATS-13167: check appearance Private Policy window\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13167")
     public void checkAppearancePrivatePolicyWindow() {
         navigatePanel = new NavigatePanel();

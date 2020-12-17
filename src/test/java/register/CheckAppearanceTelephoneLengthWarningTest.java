@@ -13,7 +13,9 @@ public class CheckAppearanceTelephoneLengthWarningTest extends BaseConfiguration
     private String email = text.concat("@mail.ru");
     private String region = "Bristol";
 
-    @Test
+    @Test(description = "***CheckAppearanceTelephoneLengthWarning***\n" +
+            "EPMFARMATS-13159: check appearance Telephone length warning\n\n" +
+            "https://jira.epam.com/jira/browse/EPMFARMATS-13159")
     public void checkAppearanceTelephoneLengthWarning() {
         navigatePanel = new NavigatePanel();
         AccountRegistrationPage registrationScreen = navigatePanel

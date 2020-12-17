@@ -14,7 +14,7 @@ public class CheckAppearancePasswordConfirmationLengthWarningTest extends BaseCo
     private String region = "Bristol";
 
     @Test(description = "***CheckAppearancePasswordConfirmationLengthWarning***\n" +
-            "EPMFARMATS-13165: check appearance Password Confirmation warning\n\n" +
+            "EPMFARMATS-13165: check appearance Password Confirmation warning\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13165")
     public void checkAppearancePasswordConfirmationLengthWarning() {
         navigatePanel = new NavigatePanel();

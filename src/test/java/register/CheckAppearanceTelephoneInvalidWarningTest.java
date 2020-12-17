@@ -14,8 +14,8 @@ public class CheckAppearanceTelephoneInvalidWarningTest extends BaseConfiguratio
     private String region = "Bristol";
 
     @Test(description = "***CheckAppearanceTelephoneInvalidWarning***\n" +
-            "EPMFARMATS-13162: check appearance Region / State isn't selected warning\n\n" +
-            "https://jira.epam.com/jira/browse/EPMFARMATS-13162")
+            "EPMFARMATS-13183: check appearance Telephone invalid warning\n\n" +
+            "https://jira.epam.com/jira/browse/EPMFARMATS-13183")
     public void checkAppearanceTelephoneInvalidWarning() {
         navigatePanel = new NavigatePanel();
         AccountRegistrationPage registrationScreen = navigatePanel
