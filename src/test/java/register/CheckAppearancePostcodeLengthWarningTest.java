@@ -1,24 +1,23 @@
 package register;
 
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.awesome.shop.ta.product.pages.NavigatePanel;
 import ru.awesome.shop.ta.product.pages.registration.AccountRegistrationPage;
 import ru.awesome.shop.ta.utils.StringUtils;
 
 public class CheckAppearancePostcodeLengthWarningTest extends BaseConfigurationTest {
-    private NavigatePanel navigatePanel;
+    private AccountRegistrationPage registrationScreen;
     private String text = StringUtils.getRandomString();
     private String emptyPostCode = "";
     private String email = text.concat("@mail.ru");
     private String region = "Bristol";
 
-    @Test(description = "***CheckAppearancePostcodeLengthWarning***\n" +
-            "EPMFARMATS-13163: check appearance Postcode length warning\n" +
-            "https://jira.epam.com/jira/browse/EPMFARMATS-13163")
-    public void checkAppearancePostcodeLengthWarning() {
-        navigatePanel = new NavigatePanel();
-        AccountRegistrationPage registrationScreen = navigatePanel
+    @BeforeMethod(description = "user registration with empty postcode value",
+            groups = {"all", "positive"})
+    public void registration() {
+        registrationScreen = new NavigatePanel()
                 .clickMyAccountLink()
                 .clickRegistrationLink()
                 .typeFirstName(text)
@@ -36,7 +35,12 @@ public class CheckAppearancePostcodeLengthWarningTest extends BaseConfigurationT
                 .typePasswordConfirm(text)
                 .clickAgreeWithPrivacyPolicy();
         registrationScreen.clickContinueButton();
+    }
 
+    @Test(description = "***CheckAppearancePostcodeLengthWarning***\n" +
+            "EPMFARMATS-13163: check appearance Postcode length warning\n" +
+            "https://jira.epam.com/jira/browse/EPMFARMATS-13163")
+    public void checkAppearancePostcodeLengthWarning() {
         Assert.assertEquals(registrationScreen.getWarningMessage(), "Postcode must be between 2 and 10 characters!");
     }
 }

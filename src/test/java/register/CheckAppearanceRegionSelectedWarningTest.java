@@ -1,22 +1,21 @@
 package register;
 
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.awesome.shop.ta.product.pages.NavigatePanel;
 import ru.awesome.shop.ta.product.pages.registration.AccountRegistrationPage;
 import ru.awesome.shop.ta.utils.StringUtils;
 
 public class CheckAppearanceRegionSelectedWarningTest extends BaseConfigurationTest {
-    private NavigatePanel navigatePanel;
+    private AccountRegistrationPage registrationScreen;
     private String text = StringUtils.getRandomString();
     private String email = text.concat("@mail.ru");
 
-    @Test(description = "***CheckAppearanceRegionSelectedWarning***\n" +
-            "EPMFARMATS-13162: check appearance Region / State isn't selected warning\n" +
-            "https://jira.epam.com/jira/browse/EPMFARMATS-13162")
-    public void checkAppearanceRegionSelectedWarning() {
-        navigatePanel = new NavigatePanel();
-        AccountRegistrationPage registrationScreen = navigatePanel
+    @BeforeMethod(description = "user registration without select a region value",
+            groups = {"all", "positive"})
+    public void registration() {
+        registrationScreen = new NavigatePanel()
                 .clickMyAccountLink()
                 .clickRegistrationLink()
                 .typeFirstName(text)
@@ -33,7 +32,17 @@ public class CheckAppearanceRegionSelectedWarningTest extends BaseConfigurationT
                 .typePasswordConfirm(text)
                 .clickAgreeWithPrivacyPolicy();
         registrationScreen.clickContinueButton();
+    }
 
+    @Test(description = "***CheckAppearanceRegionSelectedWarning***\n" +
+            "EPMFARMATS-13162: check appearance Region / State isn't selected warning\n" +
+            "https://jira.epam.com/jira/browse/EPMFARMATS-13162")
+    public void checkAppearanceRegionSelectedWarning() {
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         Assert.assertEquals(registrationScreen.getWarningMessage(), "Please select a region / state!");
     }
 }

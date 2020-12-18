@@ -1,24 +1,23 @@
 package register;
 
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.awesome.shop.ta.product.pages.NavigatePanel;
 import ru.awesome.shop.ta.product.pages.registration.AccountRegistrationPage;
 import ru.awesome.shop.ta.utils.StringUtils;
 
 public class CheckAppearanceCityInvalidWarningTest extends BaseConfigurationTest {
-    private NavigatePanel navigatePanel;
+    private AccountRegistrationPage registrationScreen;
     private String text = StringUtils.getRandomString();
     private String invalidCity = text.concat("$");
     private String email = text.concat("@mail.ru");
     private String region = "Bristol";
 
-    @Test(description = "***CheckAppearanceCityInvalidWarning***\n" +
-            "EPMFARMATS-13184: check appearance City invalid warning\n" +
-            "https://jira.epam.com/jira/browse/EPMFARMATS-13184")
-    public void checkAppearanceCityInvalidWarning() {
-        navigatePanel = new NavigatePanel();
-        AccountRegistrationPage registrationScreen = navigatePanel
+    @BeforeMethod(description = "user registration with invalid city value",
+            groups = {"all", "negative"})
+    public void registration() {
+        registrationScreen = new NavigatePanel()
                 .clickMyAccountLink()
                 .clickRegistrationLink()
                 .typeFirstName(text)
@@ -36,7 +35,12 @@ public class CheckAppearanceCityInvalidWarningTest extends BaseConfigurationTest
                 .typePasswordConfirm(text)
                 .clickAgreeWithPrivacyPolicy();
         registrationScreen.clickContinueButton();
+    }
 
+    @Test(description = "***CheckAppearanceCityInvalidWarning***\n" +
+            "EPMFARMATS-13184: check appearance City invalid warning\n" +
+            "https://jira.epam.com/jira/browse/EPMFARMATS-13184")
+    public void checkAppearanceCityInvalidWarning() {
         Assert.assertEquals(registrationScreen.getWarningMessage(), "City shouldn't contains special symbols and numerals!");
     }
 }

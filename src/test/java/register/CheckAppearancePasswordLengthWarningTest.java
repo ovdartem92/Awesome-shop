@@ -1,24 +1,23 @@
 package register;
 
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.awesome.shop.ta.product.pages.NavigatePanel;
 import ru.awesome.shop.ta.product.pages.registration.AccountRegistrationPage;
 import ru.awesome.shop.ta.utils.StringUtils;
 
 public class CheckAppearancePasswordLengthWarningTest extends BaseConfigurationTest {
-    private NavigatePanel navigatePanel;
+    private AccountRegistrationPage registrationScreen;
     private String text = StringUtils.getRandomString();
     private String emptyPassword = "";
     private String email = text.concat("@mail.ru");
     private String region = "Bristol";
 
-    @Test(description = "***CheckAppearancePasswordLengthWarning***\n" +
-            "EPMFARMATS-13164: check appearance Password length warning\n" +
-            "https://jira.epam.com/jira/browse/EPMFARMATS-13164")
-    public void checkAppearancePasswordLengthWarning() {
-        navigatePanel = new NavigatePanel();
-        AccountRegistrationPage registrationScreen = navigatePanel
+    @BeforeMethod(description = "user registration with empty password value",
+            groups = {"all", "positive"})
+    public void registration() {
+        registrationScreen = new NavigatePanel()
                 .clickMyAccountLink()
                 .clickRegistrationLink()
                 .typeFirstName(text)
@@ -36,7 +35,12 @@ public class CheckAppearancePasswordLengthWarningTest extends BaseConfigurationT
                 .typePasswordConfirm(text)
                 .clickAgreeWithPrivacyPolicy();
         registrationScreen.clickContinueButton();
+    }
 
+    @Test(description = "***CheckAppearancePasswordLengthWarning***\n" +
+            "EPMFARMATS-13164: check appearance Password length warning\n" +
+            "https://jira.epam.com/jira/browse/EPMFARMATS-13164")
+    public void checkAppearancePasswordLengthWarning() {
         Assert.assertEquals(registrationScreen.getWarningMessage(), "Password must be between 4 and 20 characters!");
     }
 }

@@ -1,23 +1,22 @@
 package register;
 
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.awesome.shop.ta.product.pages.NavigatePanel;
 import ru.awesome.shop.ta.product.pages.registration.AccountRegistrationSuccessfullyPage;
 import ru.awesome.shop.ta.utils.StringUtils;
 
 public class CheckSuccessfulUserRegistrationTest extends BaseConfigurationTest {
-    private NavigatePanel navigatePanel;
+    private AccountRegistrationSuccessfullyPage registrationScreen;
     private String text = StringUtils.getRandomString();
     private String email = text.concat("@mail.ru");
     private String region = "Bristol";
 
-    @Test(description = "***CheckSuccessfulUserRegistration***\n" +
-            "EPMFARMATS-13155: check successful user registration\n\n" +
-            "https://jira.epam.com/jira/browse/EPMFARMATS-13155")
-    public void checkSuccessfulUserRegistration() {
-        navigatePanel = new NavigatePanel();
-        AccountRegistrationSuccessfullyPage registrationScreen = navigatePanel
+    @BeforeMethod(description = "successful user registration",
+            groups = {"all", "positive"})
+    public void registration() {
+        registrationScreen = new NavigatePanel()
                 .clickMyAccountLink()
                 .clickRegistrationLink()
                 .typeFirstName(text)
@@ -35,7 +34,12 @@ public class CheckSuccessfulUserRegistrationTest extends BaseConfigurationTest {
                 .typePasswordConfirm(text)
                 .clickAgreeWithPrivacyPolicy()
                 .clickContinueButton();
+    }
 
+    @Test(description = "***CheckSuccessfulUserRegistration***\n" +
+            "EPMFARMATS-13155: check successful user registration\n\n" +
+            "https://jira.epam.com/jira/browse/EPMFARMATS-13155")
+    public void checkSuccessfulUserRegistration() {
         Assert.assertEquals(registrationScreen.getAccountCreationMessage(), "Your Account Has Been Created!");
     }
 }

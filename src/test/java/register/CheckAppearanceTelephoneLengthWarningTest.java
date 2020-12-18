@@ -1,24 +1,23 @@
 package register;
 
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.awesome.shop.ta.product.pages.NavigatePanel;
 import ru.awesome.shop.ta.product.pages.registration.AccountRegistrationPage;
 import ru.awesome.shop.ta.utils.StringUtils;
 
 public class CheckAppearanceTelephoneLengthWarningTest extends BaseConfigurationTest {
-    private NavigatePanel navigatePanel;
+    private AccountRegistrationPage registrationScreen;
     private String text = StringUtils.getRandomString();
     private String emptyTelephoneNumber = "";
     private String email = text.concat("@mail.ru");
     private String region = "Bristol";
 
-    @Test(description = "***CheckAppearanceTelephoneLengthWarning***\n" +
-            "EPMFARMATS-13159: check appearance Telephone length warning\n\n" +
-            "https://jira.epam.com/jira/browse/EPMFARMATS-13159")
-    public void checkAppearanceTelephoneLengthWarning() {
-        navigatePanel = new NavigatePanel();
-        AccountRegistrationPage registrationScreen = navigatePanel
+    @BeforeMethod(description = "user registration with empty telephone number",
+            groups = {"all", "positive"})
+    public void registration() {
+        registrationScreen = new NavigatePanel()
                 .clickMyAccountLink()
                 .clickRegistrationLink()
                 .typeFirstName(text)
@@ -36,7 +35,12 @@ public class CheckAppearanceTelephoneLengthWarningTest extends BaseConfiguration
                 .typePasswordConfirm(text)
                 .clickAgreeWithPrivacyPolicy();
         registrationScreen.clickContinueButton();
+    }
 
+    @Test(description = "***CheckAppearanceTelephoneLengthWarning***\n" +
+            "EPMFARMATS-13159: check appearance Telephone length warning\n" +
+            "https://jira.epam.com/jira/browse/EPMFARMATS-13159")
+    public void checkAppearanceTelephoneLengthWarning() {
         Assert.assertEquals(registrationScreen.getWarningMessage(), "Telephone must be between 3 and 32 characters!");
     }
 }

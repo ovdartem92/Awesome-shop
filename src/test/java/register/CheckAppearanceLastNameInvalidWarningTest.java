@@ -1,24 +1,23 @@
 package register;
 
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.awesome.shop.ta.product.pages.NavigatePanel;
 import ru.awesome.shop.ta.product.pages.registration.AccountRegistrationPage;
 import ru.awesome.shop.ta.utils.StringUtils;
 
 public class CheckAppearanceLastNameInvalidWarningTest extends BaseConfigurationTest {
-    private NavigatePanel navigatePanel;
+    private AccountRegistrationPage registrationScreen;
     private String text = StringUtils.getRandomString();
     private String invalidLastName = text.concat("$");
     private String email = text.concat("@mail.ru");
     private String region = "Bristol";
 
-    @Test(description = "***CheckAppearanceLastNameInvalidWarning***\n" +
-            "EPMFARMATS-13182: check appearance Last Name invalid warning\n" +
-            "https://jira.epam.com/jira/browse/EPMFARMATS-13182")
-    public void checkAppearanceLastNameInvalidWarning() {
-        navigatePanel = new NavigatePanel();
-        AccountRegistrationPage registrationScreen = navigatePanel
+    @BeforeMethod(description = "user registration with invalid last name value",
+            groups = {"all", "negative"})
+    public void registration() {
+        registrationScreen = new NavigatePanel()
                 .clickMyAccountLink()
                 .clickRegistrationLink()
                 .typeFirstName(invalidLastName)
@@ -36,7 +35,12 @@ public class CheckAppearanceLastNameInvalidWarningTest extends BaseConfiguration
                 .typePasswordConfirm(text)
                 .clickAgreeWithPrivacyPolicy();
         registrationScreen.clickContinueButton();
+    }
 
+    @Test(description = "***CheckAppearanceLastNameInvalidWarning***\n" +
+            "EPMFARMATS-13182: check appearance Last Name invalid warning\n" +
+            "https://jira.epam.com/jira/browse/EPMFARMATS-13182")
+    public void checkAppearanceLastNameInvalidWarning() {
         Assert.assertEquals(registrationScreen.getWarningMessage(),
                 "Last Name shouldn't contains space character, special symbols, numerals.");
     }
