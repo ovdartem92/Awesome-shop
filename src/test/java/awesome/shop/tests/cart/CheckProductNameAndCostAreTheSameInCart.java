@@ -14,8 +14,8 @@ public class CheckProductNameAndCostAreTheSameInCart extends BaseConfigurationTe
     public void checkProductNameAndCost() {
         HomePage homePage = new HomePage();
         homePage.getProductsList().get(0).clickAddToCartButton();
-        String nameFromHomePage = homePage.getProductsList().get(0).getProductNameFromArea();
-        String priceFromHomePage = homePage.getProductsList().get(0).getProductPriceFromArea();
+        String nameFromHomePage = homePage.getProductsList().get(0).getProductName();
+        String priceFromHomePage = homePage.getProductsList().get(0).getProductPrice();
         CartButtonFragment cartButtonFragment = new CartButtonFragment();
         cartButtonFragment.clickCartButtonContainsProducts();
         CartPage cartPage = cartButtonFragment.clickViewCartButton();
