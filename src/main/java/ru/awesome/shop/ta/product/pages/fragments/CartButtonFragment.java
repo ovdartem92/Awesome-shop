@@ -6,7 +6,7 @@ import ru.awesome.shop.ta.framework.ui.components.Label;
 import ru.awesome.shop.ta.product.pages.CartPage;
 
 public class CartButtonFragment {
-    private static final By cartButtonLocator = By.xpath("//div[@id='cart']//span[@id='cart-total']");
+    private static final By cartButtonLocator = By.xpath("//span[@id='cart-total']");
     private static final Button cartButton = new Button(cartButtonLocator);
 
     public CartButtonFragment clickCartButton() {
