@@ -23,7 +23,8 @@ public class LogOutTest extends BaseConfigurationTest {
 
     @Test(description = "***Logout***\n" +
             "EPMFARMATS-13119: check that user can logout after successful login\n" +
-            "https://jira.epam.com/jira/browse/EPMFARMATS-13119")
+            "https://jira.epam.com/jira/browse/EPMFARMATS-13119",
+            groups = {"all", "positive"})
     public void checkThatUserCanLogout() {
         Assert.assertEquals(logOutLabelText, "Account Logout", "User can not logout");
     }
