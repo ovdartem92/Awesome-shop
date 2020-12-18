@@ -15,19 +15,19 @@ public final class UserFactory {
     }
 
     public static User getUserWithValidCredentials() {
-        return new UserBuilder().email(EMAIL).password(PASSWORD).build();
+        return new User.Builder(EMAIL, PASSWORD).build();
     }
 
     public static User getUserWithValidEmailAndInvalidPassword() {
-        return new UserBuilder().email(EMAIL).password(getRandomString()).build();
+        return new User.Builder(EMAIL, getRandomString()).build();
     }
 
     public static User getUserWithInvalidEmailAndValidPassword() {
-        return new UserBuilder().email(getRandomString()).password(PASSWORD).build();
+        return new User.Builder(getRandomString(), PASSWORD).build();
     }
 
     public static User getValidUserForRegistration() {
-        return new UserBuilder().email(EMAIL).password(PASSWORD).passwordConfirm(PASSWORD).firstName("Jhon")
+        return new User.Builder(EMAIL, PASSWORD).passwordConfirm(PASSWORD).firstName("Jhon")
                 .lastName("Doe").telephoneNumber("+1234567890").faxNumber("+1234567890").companyName("Epam")
                 .firstAddress("Baker street 1").secondAddress("Baker street 1").city("London").postCode("12323")
                 .country("United Kingdom").region("Greater London").build();
