@@ -3,12 +3,8 @@ package ru.awesome.shop.ta.product.bo.user;
 public class UserBuilder {
     private User user;
 
-    public UserBuilder() {
-        user = UserFactory.getUser(UserType.USER_WITH_VALID_CREDENTIALS);
-    }
-
-    public UserBuilder(User user) {
-        this.user = user;
+    public UserBuilder(){
+        user=new User();
     }
 
     public UserBuilder email(String email) {
