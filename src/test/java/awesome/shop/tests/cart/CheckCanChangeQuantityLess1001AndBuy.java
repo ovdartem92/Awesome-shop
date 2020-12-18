@@ -13,11 +13,11 @@ public class CheckCanChangeQuantityLess1001AndBuy extends BaseConfigurationTest 
             "https://jira.epam.com/jira/browse/EPMFARMATS-13149")
     public void checkCanBuyLess10001() {
         int QUANTITY = 666;
-        new HomePage().getProductsList().get(0).clickAddToCartButton();
+        new HomePage().getAllProducts().get(0).clickAddToCartButton();
         CartButtonFragment cartButtonFragment = new CartButtonFragment();
         cartButtonFragment.clickCartButton();
         CartPage cartPage = cartButtonFragment.clickViewCartButton();
-        cartPage.getAllCartItemsList().get(0).typeCartItemQuantity(QUANTITY);
+        cartPage.getAllCartItems().get(0).typeCartItemQuantity(QUANTITY);
         cartPage.clickCheckoutButton();
         String finishPageTitle = browser.getPageTitle();
 

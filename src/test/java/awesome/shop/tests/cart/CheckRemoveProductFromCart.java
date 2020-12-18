@@ -12,11 +12,11 @@ public class CheckRemoveProductFromCart extends BaseConfigurationTest {
             "EPMFARMATS-13146: Check that user can remove product from cart\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13146")
     public void removeProduct() {
-        new HomePage().getProductsList().get(1).clickAddToCartButton();
+        new HomePage().getAllProducts().get(1).clickAddToCartButton();
         CartButtonFragment cartButtonFragment = new CartButtonFragment();
         cartButtonFragment.clickCartButton();
         CartPage cartPage = cartButtonFragment.clickViewCartButton();
-        cartPage.getAllCartItemsList().get(0).clickCartItemRemoveButton();
+        cartPage.getAllCartItems().get(0).clickCartItemRemoveButton();
         String messageEmptyCart = cartPage.getEmptyShoppingCartMessage();
 
         Assert.assertEquals(messageEmptyCart, "Your shopping cart is empty!",

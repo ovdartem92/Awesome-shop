@@ -12,11 +12,11 @@ public class CheckContinueButtonNavigateHomePage extends BaseConfigurationTest {
             "EPMFARMATS-13151: Check that 'Continue' button in empty cart lead to main page\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13151")
     public void continueNavigateToHomePage() {
-        new HomePage().getProductsList().get(1).clickAddToCartButton();
+        new HomePage().getAllProducts().get(1).clickAddToCartButton();
         CartButtonFragment cartButtonFragment = new CartButtonFragment();
         cartButtonFragment.clickCartButton();
         CartPage cartPage = cartButtonFragment.clickViewCartButton();
-        cartPage.getAllCartItemsList().get(0).clickCartItemRemoveButton();
+        cartPage.getAllCartItems().get(0).clickCartItemRemoveButton();
         cartPage.clickContinueButton();
         String finishPageTitle = browser.getPageTitle();
 

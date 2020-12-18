@@ -13,12 +13,12 @@ public class CheckCantBuyItemsOver1000Quantity extends BaseConfigurationTest {
             "https://jira.epam.com/jira/browse/EPMFARMATS-13148")
     public void checkCantBuyOver1000() {
         int QUANTITY = 1001;
-        new HomePage().getProductsList().get(0).clickAddToCartButton();
+        new HomePage().getAllProducts().get(0).clickAddToCartButton();
         CartButtonFragment cartButtonFragment = new CartButtonFragment();
         cartButtonFragment.clickCartButton();
         CartPage cartPage = cartButtonFragment.clickViewCartButton();
-        cartPage.getAllCartItemsList().get(0).typeCartItemQuantity(QUANTITY);
-        cartPage.getAllCartItemsList().get(0).clickCartItemUpdateButton();
+        cartPage.getAllCartItems().get(0).typeCartItemQuantity(QUANTITY);
+        cartPage.getAllCartItems().get(0).clickCartItemUpdateButton();
         cartPage.clickCheckoutButtonExpectingFailure();
         String warningQuantityMessage = cartPage.getQuantityWarningMessage();
 

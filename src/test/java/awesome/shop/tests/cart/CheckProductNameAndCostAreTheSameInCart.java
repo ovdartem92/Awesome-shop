@@ -13,14 +13,14 @@ public class CheckProductNameAndCostAreTheSameInCart extends BaseConfigurationTe
             "https://jira.epam.com/jira/browse/EPMFARMATS-13174")
     public void checkProductNameAndCost() {
         HomePage homePage = new HomePage();
-        homePage.getProductsList().get(0).clickAddToCartButton();
-        String nameFromHomePage = homePage.getProductsList().get(0).getProductName();
-        String priceFromHomePage = homePage.getProductsList().get(0).getProductPrice();
+        homePage.getAllProducts().get(0).clickAddToCartButton();
+        String nameFromHomePage = homePage.getAllProducts().get(0).getProductName();
+        String priceFromHomePage = homePage.getAllProducts().get(0).getProductPrice();
         CartButtonFragment cartButtonFragment = new CartButtonFragment();
         cartButtonFragment.clickCartButtonContainsProducts();
         CartPage cartPage = cartButtonFragment.clickViewCartButton();
-        String nameProductInCart = cartPage.getAllCartItemsList().get(0).getCartItemName();
-        String priceProductInCart = cartPage.getAllCartItemsList().get(0).getCartItemUnitPrice();
+        String nameProductInCart = cartPage.getAllCartItems().get(0).getCartItemName();
+        String priceProductInCart = cartPage.getAllCartItems().get(0).getCartItemUnitPrice();
 
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(nameProductInCart, nameFromHomePage, "The names of product aren't equals!");

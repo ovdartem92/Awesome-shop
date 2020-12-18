@@ -13,13 +13,13 @@ public class CheckCanChangeQuantity extends BaseConfigurationTest {
             "https://jira.epam.com/jira/browse/EPMFARMATS-13147")
     public void checkCanChangeQuantity() {
         int QUANTITY = 3;
-        new HomePage().getProductsList().get(0).clickAddToCartButton();
+        new HomePage().getAllProducts().get(0).clickAddToCartButton();
         CartButtonFragment cartButtonFragment = new CartButtonFragment();
         cartButtonFragment.clickCartButton();
         CartPage cartPage = cartButtonFragment.clickViewCartButton();
-        cartPage.getAllCartItemsList().get(0).typeCartItemQuantity(QUANTITY);
-        cartPage.getAllCartItemsList().get(0).clickCartItemUpdateButton();
-        int textQuantity = cartPage.getAllCartItemsList().get(0).getCartItemQuantityValue();
+        cartPage.getAllCartItems().get(0).typeCartItemQuantity(QUANTITY);
+        cartPage.getAllCartItems().get(0).clickCartItemUpdateButton();
+        int textQuantity = cartPage.getAllCartItems().get(0).getCartItemQuantityValue();
 
         Assert.assertEquals(textQuantity, QUANTITY, "The values of quantity aren't equals!");
     }

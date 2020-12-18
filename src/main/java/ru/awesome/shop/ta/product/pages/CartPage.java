@@ -14,15 +14,15 @@ import static ru.awesome.shop.ta.framework.ui.components.CommonPageElement.waitF
 
 public class CartPage {
 
-    public List<CartItemFragment> getAllCartItemsList() {
-        By lineOfTableLocator = By.xpath("//div[@class='table-responsive']//tbody//tr");
-        waitForAllElementsPresenceLocated(lineOfTableLocator);
-        List<WebElement> linesOfTable = Browser.getInstance().getWrappedDriver().findElements(lineOfTableLocator);
-        List<CartItemFragment> cartItemFragmentList = new ArrayList<>();
-        for (WebElement element : linesOfTable) {
-            cartItemFragmentList.add(new CartItemFragment(element));
+    public List<CartItemFragment> getAllCartItems() {
+        By cartItemLocator = By.xpath("//div[@class='table-responsive']//tbody//tr");
+        waitForAllElementsPresenceLocated(cartItemLocator);
+        List<WebElement> cartItemElements = Browser.getInstance().getWrappedDriver().findElements(cartItemLocator);
+        List<CartItemFragment> cartItemFragments = new ArrayList<>();
+        for (WebElement element : cartItemElements) {
+            cartItemFragments.add(new CartItemFragment(element));
         }
-        return cartItemFragmentList;
+        return cartItemFragments;
     }
 
     public HomePage clickContinueButton() {

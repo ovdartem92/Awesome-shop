@@ -13,12 +13,12 @@ public class CheckCantBuyZeroItems extends BaseConfigurationTest {
             "https://jira.epam.com/jira/browse/EPMFARMATS-13178")
     public void checkCantBuyZero() {
         int QUANTITY = 0;
-        new HomePage().getProductsList().get(1).clickAddToCartButton();
+        new HomePage().getAllProducts().get(1).clickAddToCartButton();
         CartButtonFragment cartButtonFragment = new CartButtonFragment();
         cartButtonFragment.clickCartButton();
         CartPage cartPage = cartButtonFragment.clickViewCartButton();
-        cartPage.getAllCartItemsList().get(0).typeCartItemQuantity(QUANTITY);
-        cartPage.getAllCartItemsList().get(0).clickCartItemUpdateButton();
+        cartPage.getAllCartItems().get(0).typeCartItemQuantity(QUANTITY);
+        cartPage.getAllCartItems().get(0).clickCartItemUpdateButton();
         String emptyCartMessage = cartPage.getEmptyShoppingCartMessage();
 
         Assert.assertEquals(emptyCartMessage, "Your shopping cart is empty!", "Message isn't displayed after update!");

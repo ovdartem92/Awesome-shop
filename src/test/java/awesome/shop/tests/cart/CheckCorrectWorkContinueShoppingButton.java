@@ -12,7 +12,7 @@ public class CheckCorrectWorkContinueShoppingButton extends BaseConfigurationTes
             "EPMFARMATS-13175: Check that 'Continue shopping' button in cart page work correctly\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13175")
     public void checkCorrectContinueShopping() {
-        new HomePage().getProductsList().get(1).clickAddToCartButton();
+        new HomePage().getAllProducts().get(1).clickAddToCartButton();
         CartButtonFragment cartButtonFragment = new CartButtonFragment();
         cartButtonFragment.clickCartButton();
         CartPage cartPage = cartButtonFragment.clickViewCartButton();

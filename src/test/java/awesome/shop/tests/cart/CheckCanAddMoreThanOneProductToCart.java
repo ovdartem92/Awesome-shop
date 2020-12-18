@@ -13,12 +13,12 @@ public class CheckCanAddMoreThanOneProductToCart extends BaseConfigurationTest {
             "https://jira.epam.com/jira/browse/EPMFARMATS-13150")
     public void checkAddToCartMoreProducts() {
         HomePage homePage = new HomePage();
-        homePage.getProductsList().get(0).clickAddToCartButton();
-        homePage.getProductsList().get(1).clickAddToCartButton();
+        homePage.getAllProducts().get(0).clickAddToCartButton();
+        homePage.getAllProducts().get(1).clickAddToCartButton();
         CartButtonFragment cartButtonFragment = new CartButtonFragment();
         cartButtonFragment.clickCartButton();
         CartPage cartPage = cartButtonFragment.clickViewCartButton();
-        int sizeOfProductsList = cartPage.getAllCartItemsList().size();
+        int sizeOfProductsList = cartPage.getAllCartItems().size();
 
         Assert.assertTrue(sizeOfProductsList > 1, "The size of products list isn't more 1! ");
     }

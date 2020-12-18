@@ -12,11 +12,11 @@ public class CheckCanAddItemIntoCartTest extends BaseConfigurationTest {
             "EPMFARMATS-13145: Check that user can add product to cart\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13145")
     public void checkItemIntoCart() {
-        new HomePage().getProductsList().get(0).clickAddToCartButton();
+        new HomePage().getAllProducts().get(0).clickAddToCartButton();
         CartButtonFragment cartButtonFragment = new CartButtonFragment();
         cartButtonFragment.clickCartButton();
         CartPage cartPage = cartButtonFragment.clickViewCartButton();
-        String productName = cartPage.getAllCartItemsList().get(0).getCartItemName();
+        String productName = cartPage.getAllCartItems().get(0).getCartItemName();
 
         Assert.assertEquals(productName, "MacBook", "The values of product aren't equal!");
     }
