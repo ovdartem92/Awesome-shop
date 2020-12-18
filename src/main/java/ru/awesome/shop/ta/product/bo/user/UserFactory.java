@@ -27,8 +27,8 @@ public final class UserFactory {
     }
 
     public static User getValidUserForRegistration() {
-        return new UserBuilder().email(EMAIL).password(PASSWORD).passwordConfirm(PASSWORD).firstName("Jhon").lastName("Doe")
-                .telephoneNumber("+1234567890").faxNumber("+1234567890").companyName("Epam")
+        return new UserBuilder().email(EMAIL).password(PASSWORD).passwordConfirm(PASSWORD).firstName("Jhon")
+                .lastName("Doe").telephoneNumber("+1234567890").faxNumber("+1234567890").companyName("Epam")
                 .firstAddress("Baker street 1").secondAddress("Baker street 1").city("London").postCode("12323")
                 .country("United Kingdom").region("Greater London").build();
     }
