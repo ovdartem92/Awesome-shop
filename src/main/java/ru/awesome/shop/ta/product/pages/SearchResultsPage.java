@@ -3,7 +3,6 @@ package ru.awesome.shop.ta.product.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import ru.awesome.shop.ta.framework.browser.Browser;
-import ru.awesome.shop.ta.framework.ui.components.Button;
 import ru.awesome.shop.ta.product.pages.fragments.SearchResultFragment;
 
 import java.util.ArrayList;
@@ -26,10 +25,4 @@ public class SearchResultsPage {
         return searchResultFragments;
     }
 
-    public SearchResultsPage clickAddToCartButton() {
-        By addToCartButtonLocator = By.xpath("//button[contains(@onclick,'cart.add')]");
-        Button addToCartButton = new Button(addToCartButtonLocator);
-        addToCartButton.click();
-        return this;
-    }
 }
