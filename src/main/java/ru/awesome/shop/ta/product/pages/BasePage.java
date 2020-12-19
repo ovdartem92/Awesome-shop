@@ -13,4 +13,3 @@ public class BasePage {
         return new AccountPopUp();
     }
 }
-

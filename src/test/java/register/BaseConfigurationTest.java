@@ -7,7 +7,9 @@ import ru.awesome.shop.ta.framework.browser.Browser;
 import ru.awesome.shop.ta.framework.listeners.SuiteListener;
 import ru.awesome.shop.ta.framework.listeners.TestListener;
 import ru.awesome.shop.ta.utils.TestDataReader;
+
 import java.lang.reflect.Method;
+
 /**
  * The class is a super class for all tests classes.
  * The class provides the configuration of browser and preconditions for each tests.
@@ -28,4 +30,3 @@ public abstract class BaseConfigurationTest {
         browser.stop();
     }
 }
-
