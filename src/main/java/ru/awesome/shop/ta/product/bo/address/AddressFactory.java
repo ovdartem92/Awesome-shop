@@ -15,4 +15,8 @@ public class AddressFactory {
     private AddressFactory() {
         throw new AssertionError(format("Creation of instance of %s is prohibited.", AddressFactory.class));
     }
+
+    public static Address getValidAddress() {
+        return new Address(FIRST_ADDRESS, SECOND_ADDRESS, CITY, POSTCODE, COUNTRY, REGION);
+    }
 }

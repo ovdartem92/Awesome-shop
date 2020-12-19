@@ -1,5 +1,6 @@
 package ru.awesome.shop.ta.product.bo.user;
 
+import ru.awesome.shop.ta.product.bo.contacts.ContactInfoFactory;
 import ru.awesome.shop.ta.product.bo.credentials.CredentialsFactory;
 import ru.awesome.shop.ta.utils.TestDataReader;
 
@@ -14,5 +15,10 @@ public final class UserFactory {
 
     public static User generateValidUser() {
         return new User.Builder(CredentialsFactory.getValidCredentials()).build();
+    }
+
+    public static User generateValidUserForRegistration() {
+        return new User.Builder(CredentialsFactory.getValidCredentials()).firstName(FIRST_NAME).lastName(LAST_NAME)
+                .companyName(COMPANY).contactInfo(ContactInfoFactory.getValidContactInfo()).build();
     }
 }
