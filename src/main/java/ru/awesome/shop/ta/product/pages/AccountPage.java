@@ -5,7 +5,7 @@ import ru.awesome.shop.ta.framework.ui.components.Label;
 import ru.awesome.shop.ta.framework.ui.components.Link;
 
 public class AccountPage extends BasePage {
-    
+
     public String getMyAccountName() {
         By myAccountLabelLocator = By.xpath("//h2[text()='My Account']");
         Label myAccountLabel = new Label(myAccountLabelLocator);
