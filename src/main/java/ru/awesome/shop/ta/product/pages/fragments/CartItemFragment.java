@@ -20,18 +20,16 @@ public class CartItemFragment {
         return productUnitPriceLabel.getText();
     }
 
-    public CartItemFragment clickCartItemRemoveButton() {
+    public void clickCartItemRemoveButton() {
         WebElement removeProductButton = cartItemElement
                 .findElement(By.xpath(".//button[@data-original-title='Remove']"));
         removeProductButton.click();
-        return this;
     }
 
-    public CartItemFragment clickCartItemUpdateButton() {
+    public void clickCartItemUpdateButton() {
         WebElement updateProductButton = cartItemElement
                 .findElement(By.xpath(".//button[@data-original-title='Update']"));
         updateProductButton.click();
-        return this;
     }
 
     public CartItemFragment typeCartItemQuantity(int quantity) {

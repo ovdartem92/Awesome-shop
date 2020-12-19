@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import ru.awesome.shop.ta.product.pages.CartPage;
 import ru.awesome.shop.ta.product.pages.HomePage;
-import ru.awesome.shop.ta.product.pages.fragments.CartButtonFragment;
+import ru.awesome.shop.ta.product.pages.popups.CartTotalPopup;
 
 public class CheckProductNameAndCostAreTheSameInCart extends BaseConfigurationTest {
     @Test(description = "***ProductNameAndCostAreTheSameInCart***\n" +
@@ -13,12 +13,13 @@ public class CheckProductNameAndCostAreTheSameInCart extends BaseConfigurationTe
             "https://jira.epam.com/jira/browse/EPMFARMATS-13174")
     public void checkProductNameAndCost() {
         HomePage homePage = new HomePage();
-        homePage.getAllProducts().get(0).clickAddToCartButton();
+        CartTotalPopup cartTotalPopup = new CartTotalPopup();
+        CartPage cartPage = new CartPage();
         String nameFromHomePage = homePage.getAllProducts().get(0).getProductName();
         String priceFromHomePage = homePage.getAllProducts().get(0).getProductPrice();
-        CartButtonFragment cartButtonFragment = new CartButtonFragment();
-        cartButtonFragment.clickCartButtonContainsProducts();
-        CartPage cartPage = cartButtonFragment.clickViewCartButton();
+        homePage.getAllProducts().get(0).clickAddToCartButton();
+        homePage.clickCartTotalButton();
+        cartTotalPopup.clickViewCartButton();
         String nameProductInCart = cartPage.getAllCartItems().get(0).getCartItemName();
         String priceProductInCart = cartPage.getAllCartItems().get(0).getCartItemUnitPrice();
 

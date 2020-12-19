@@ -12,7 +12,7 @@ import java.util.List;
 
 import static ru.awesome.shop.ta.framework.ui.components.CommonPageElement.waitForAllElementsPresenceLocated;
 
-public class CartPage {
+public class CartPage extends BasePage {
 
     public List<CartItemFragment> getAllCartItems() {
         By cartItemLocator = By.xpath("//div[@class='table-responsive']//tbody//tr");

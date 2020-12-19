@@ -5,7 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.awesome.shop.ta.product.pages.CartPage;
 import ru.awesome.shop.ta.product.pages.HomePage;
-import ru.awesome.shop.ta.product.pages.fragments.CartButtonFragment;
+import ru.awesome.shop.ta.product.pages.popups.CartTotalPopup;
 
 public class CheckCanChangeQuantity extends BaseConfigurationTest {
     @Test(description = "***CanChangeQuantity***\n" +
@@ -13,14 +13,16 @@ public class CheckCanChangeQuantity extends BaseConfigurationTest {
             "https://jira.epam.com/jira/browse/EPMFARMATS-13147")
     public void checkCanChangeQuantity() {
         int QUANTITY = 3;
-        new HomePage().getAllProducts().get(0).clickAddToCartButton();
-        CartButtonFragment cartButtonFragment = new CartButtonFragment();
-        cartButtonFragment.clickCartButton();
-        CartPage cartPage = cartButtonFragment.clickViewCartButton();
+        HomePage homePage = new HomePage();
+        CartTotalPopup cartTotalPopup = new CartTotalPopup();
+        CartPage cartPage = new CartPage();
+        homePage.getAllProducts().get(0).clickAddToCartButton();
+        homePage.clickCartTotalButton();
+        cartTotalPopup.clickViewCartButton();
         cartPage.getAllCartItems().get(0).typeCartItemQuantity(QUANTITY);
         cartPage.getAllCartItems().get(0).clickCartItemUpdateButton();
-        int textQuantity = cartPage.getAllCartItems().get(0).getCartItemQuantityValue();
+        int quantityResult = cartPage.getAllCartItems().get(0).getCartItemQuantityValue();
 
-        Assert.assertEquals(textQuantity, QUANTITY, "The values of quantity aren't equals!");
+        Assert.assertEquals(quantityResult, QUANTITY, "The values of quantity aren't equals!");
     }
 }

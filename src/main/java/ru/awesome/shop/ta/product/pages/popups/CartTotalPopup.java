@@ -1,25 +1,11 @@
-package ru.awesome.shop.ta.product.pages.fragments;
+package ru.awesome.shop.ta.product.pages.popups;
 
 import org.openqa.selenium.By;
 import ru.awesome.shop.ta.framework.ui.components.Button;
 import ru.awesome.shop.ta.framework.ui.components.Label;
 import ru.awesome.shop.ta.product.pages.CartPage;
 
-public class CartButtonFragment {
-    private static final By cartButtonLocator = By.xpath("//span[@id='cart-total']");
-    private static final Button cartButton = new Button(cartButtonLocator);
-
-    public CartButtonFragment clickCartButton() {
-        cartButton.click();
-        return this;
-    }
-
-    public CartButtonFragment clickCartButtonContainsProducts() {
-        By cartContainsProductsButtonLocator = By.xpath("//div[@id='cart']");
-        Button cartContainsProductsButton = new Button(cartContainsProductsButtonLocator);
-        cartContainsProductsButton.click();
-        return this;
-    }
+public class CartTotalPopup {
 
     public CartPage clickViewCartButton() {
         By viewCartButtonLocator = By.xpath("//*[contains(text(),'View Cart')]");

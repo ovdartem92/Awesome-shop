@@ -5,7 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.awesome.shop.ta.product.pages.CartPage;
 import ru.awesome.shop.ta.product.pages.HomePage;
-import ru.awesome.shop.ta.product.pages.fragments.CartButtonFragment;
+import ru.awesome.shop.ta.product.pages.popups.CartTotalPopup;
 
 public class CheckCanAddMoreThanOneProductToCart extends BaseConfigurationTest {
     @Test(description = "***CanAddMoreThanOneProductToCart***\n" +
@@ -13,12 +13,14 @@ public class CheckCanAddMoreThanOneProductToCart extends BaseConfigurationTest {
             "https://jira.epam.com/jira/browse/EPMFARMATS-13150")
     public void checkAddToCartMoreProducts() {
         HomePage homePage = new HomePage();
+        CartTotalPopup cartTotalPopup = new CartTotalPopup();
+        CartPage cartPage = new CartPage();
         homePage.getAllProducts().get(0).clickAddToCartButton();
         homePage.getAllProducts().get(1).clickAddToCartButton();
-        CartButtonFragment cartButtonFragment = new CartButtonFragment();
-        cartButtonFragment.clickCartButton();
-        CartPage cartPage = cartButtonFragment.clickViewCartButton();
+        homePage.clickCartTotalButton();
+        cartTotalPopup.clickViewCartButton();
         int sizeOfProductsList = cartPage.getAllCartItems().size();
+        System.out.println("SIZE: " + sizeOfProductsList);
 
         Assert.assertTrue(sizeOfProductsList > 1, "The size of products list isn't more 1! ");
     }

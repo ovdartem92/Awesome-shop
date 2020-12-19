@@ -5,7 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.awesome.shop.ta.product.pages.CartPage;
 import ru.awesome.shop.ta.product.pages.HomePage;
-import ru.awesome.shop.ta.product.pages.fragments.CartButtonFragment;
+import ru.awesome.shop.ta.product.pages.popups.CartTotalPopup;
 
 public class CheckCantBuyItemsOver1000Quantity extends BaseConfigurationTest {
     @Test(description = "***CantBuyItemsOver1000Quantity***\n" +
@@ -13,10 +13,12 @@ public class CheckCantBuyItemsOver1000Quantity extends BaseConfigurationTest {
             "https://jira.epam.com/jira/browse/EPMFARMATS-13148")
     public void checkCantBuyOver1000() {
         int QUANTITY = 1001;
-        new HomePage().getAllProducts().get(0).clickAddToCartButton();
-        CartButtonFragment cartButtonFragment = new CartButtonFragment();
-        cartButtonFragment.clickCartButton();
-        CartPage cartPage = cartButtonFragment.clickViewCartButton();
+        HomePage homePage = new HomePage();
+        CartTotalPopup cartTotalPopup = new CartTotalPopup();
+        CartPage cartPage = new CartPage();
+        homePage.getAllProducts().get(0).clickAddToCartButton();
+        homePage.clickCartTotalButton();
+        cartTotalPopup.clickViewCartButton();
         cartPage.getAllCartItems().get(0).typeCartItemQuantity(QUANTITY);
         cartPage.getAllCartItems().get(0).clickCartItemUpdateButton();
         cartPage.clickCheckoutButtonExpectingFailure();

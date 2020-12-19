@@ -10,7 +10,7 @@ import java.util.List;
 
 import static ru.awesome.shop.ta.framework.ui.components.CommonPageElement.waitForAllElementsPresenceLocated;
 
-public class HomePage {
+public class HomePage extends BasePage {
 
     public List<HomeItemFragment> getAllProducts() {
         By productLocator = By.xpath("//div[@class='product-thumb transition']");

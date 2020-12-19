@@ -11,8 +11,7 @@ public class HomeItemFragment {
     }
 
     public HomeItemFragment clickAddToCartButton() {
-        WebElement addToCartButton = homeItemElement
-                .findElement(By.xpath(".//button[contains(@onclick,'cart.add')]"));
+        WebElement addToCartButton = homeItemElement.findElement(By.xpath(".//button[contains(@onclick,'cart.add')]"));
         addToCartButton.click();
         return this;
     }
