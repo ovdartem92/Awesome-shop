@@ -3,13 +3,12 @@ package ru.awesome.shop.ta.product.bo.credentials;
 import ru.awesome.shop.ta.utils.TestDataReader;
 
 import static java.lang.String.format;
-import static ru.awesome.shop.ta.utils.StringUtils.getRandomString;
 
 public class CredentialsFactory {
     private static final String EMAIL = TestDataReader.getTestData("testData.email",
-            TestDataReader.getStageData("email"));
+                                        TestDataReader.getStageData("email"));
     private static final String PASSWORD = TestDataReader.getTestData("testData.password",
-            TestDataReader.getStageData("password"));
+                                           TestDataReader.getStageData("password"));
 
     private CredentialsFactory() {
         throw new AssertionError(format("Creation of instance of %s is prohibited.", CredentialsFactory.class));
@@ -17,13 +16,5 @@ public class CredentialsFactory {
 
     public static Credentials getValidCredentials() {
         return new Credentials(EMAIL, PASSWORD);
-    }
-
-    public static Credentials getCredentialsWithValidEmailAndInvalidPassword() {
-        return new Credentials(EMAIL, getRandomString());
-    }
-
-    public static Credentials getCredentialsWithInvalidEmailAndValidPassword() {
-        return new Credentials(getRandomString(), PASSWORD);
     }
 }
