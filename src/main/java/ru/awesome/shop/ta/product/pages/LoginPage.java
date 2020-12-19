@@ -9,9 +9,10 @@ import ru.awesome.shop.ta.framework.ui.components.TextField;
 public class LoginPage extends BasePage {
     private static final By LOGIN_BUTTON_LOCATOR = By.xpath("//input[@class='btn btn-primary']");
     private static final Button LOGIN_BUTTON = new Button(LOGIN_BUTTON_LOCATOR);
+    private static final String URL = "https://awesome-shop.01sh.ru/index.php?route=account/login";
 
-    public LoginPage open(){
-        Browser.getInstance().navigate("https://awesome-shop.01sh.ru/index.php?route=account/login");
+    public LoginPage open() {
+        Browser.getInstance().navigate(URL);
         return new LoginPage();
     }
 

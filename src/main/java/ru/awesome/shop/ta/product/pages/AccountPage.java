@@ -1,17 +1,11 @@
 package ru.awesome.shop.ta.product.pages;
 
 import org.openqa.selenium.By;
-import ru.awesome.shop.ta.framework.browser.Browser;
 import ru.awesome.shop.ta.framework.ui.components.Label;
 import ru.awesome.shop.ta.framework.ui.components.Link;
 
 public class AccountPage extends BasePage {
-
-    public AccountPage open(){
-        Browser.getInstance().navigate("https://awesome-shop.01sh.ru/index.php?route=account/account");
-        return new AccountPage();
-    }
-
+    
     public String getMyAccountName() {
         By myAccountLabelLocator = By.xpath("//h2[text()='My Account']");
         Label myAccountLabel = new Label(myAccountLabelLocator);

@@ -1,6 +1,5 @@
-package awesome.shop.tests.login;
+package awesome.shop.tests;
 
-import awesome.shop.tests.BaseConfigurationTest;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
