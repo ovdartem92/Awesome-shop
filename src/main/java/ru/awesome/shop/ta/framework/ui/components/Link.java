@@ -16,4 +16,9 @@ public class Link extends CommonPageElement {
         waitForPageElementToBeClickable(locator);
         Browser.getInstance().click(locator);
     }
+
+    public String getText() {
+        waitForPageElementVisibilityLocated(locator);
+        return Browser.getInstance().getText(locator);
+    }
 }
