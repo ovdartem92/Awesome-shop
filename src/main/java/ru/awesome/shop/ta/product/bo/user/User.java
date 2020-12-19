@@ -1,34 +1,47 @@
 package ru.awesome.shop.ta.product.bo.user;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import ru.awesome.shop.ta.product.bo.contacts.ContactInfo;
+import ru.awesome.shop.ta.product.bo.credentials.Credentials;
 
-@Data
-@NoArgsConstructor(force = true)
-@AllArgsConstructor(access = AccessLevel.PUBLIC)
 public class User {
-    private Credentials credentials;
-    private PersonalDetails personalDetails;
-    private Address address;
+    private final Credentials credentials;
+    private final String firstName;
+    private final String lastName;
+    private final String companyName;
+    private final ContactInfo contactInfo;
 
     public static class Builder {
-        private Credentials credentials;
-        private PersonalDetails personalDetails;
-        private Address address;
+        // Required parameters.
+        private final Credentials credentials;
+
+        // Optional parameters - initialized to default values.
+        private String firstName = "";
+        private String lastName = "";
+        private String companyName = "";
+        private ContactInfo contactInfo;
 
         public Builder(Credentials credentials) {
-            this.credentials = credentials;
+            this.credentials = new Credentials(credentials.getEmail(), credentials.getPassword());
         }
 
-        public Builder personalDetails(PersonalDetails personalDetails) {
-            this.personalDetails = personalDetails;
+        public Builder firstName(String firstName) {
+            this.firstName = firstName;
             return this;
         }
 
-        public Builder address(Address address) {
-            this.address = address;
+        public Builder lastName(String lastName) {
+            this.lastName = lastName;
+            return this;
+        }
+
+        public Builder companyName(String companyName) {
+            this.companyName = companyName;
+            return this;
+        }
+
+        public Builder contactInfo(ContactInfo contactInfo) {
+            this.contactInfo = new ContactInfo(contactInfo.getTelephoneNumber(),
+                    contactInfo.getFaxNumber(), contactInfo.getAddress());
             return this;
         }
 
@@ -38,8 +51,30 @@ public class User {
     }
 
     private User(Builder builder) {
-        this.credentials = builder.credentials;
-        this.personalDetails = builder.personalDetails;
-        this.address = builder.address;
+        credentials = builder.credentials;
+        firstName = builder.firstName;
+        lastName = builder.lastName;
+        companyName = builder.companyName;
+        contactInfo = builder.contactInfo;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public ContactInfo getContactInfo() {
+        return new ContactInfo(contactInfo.getTelephoneNumber(), contactInfo.getFaxNumber(), contactInfo.getAddress());
+    }
+
+    public Credentials getCredentials() {
+        return new Credentials(credentials.getEmail(), credentials.getPassword());
     }
 }

@@ -1,9 +1,8 @@
-package ru.awesome.shop.ta.product.bo.user.factories;
+package ru.awesome.shop.ta.product.bo.credentials;
 
-import ru.awesome.shop.ta.product.bo.user.Credentials;
-import ru.awesome.shop.ta.product.bo.user.UserFactory;
 import ru.awesome.shop.ta.utils.TestDataReader;
 
+import static java.lang.String.format;
 import static ru.awesome.shop.ta.utils.StringUtils.getRandomString;
 
 public class CredentialsFactory {
@@ -11,22 +10,20 @@ public class CredentialsFactory {
             TestDataReader.getStageData("email"));
     private static final String PASSWORD = TestDataReader.getTestData("testData.password",
             TestDataReader.getStageData("password"));
-    private static final String PASSWORD_CONFIRM = PASSWORD;
 
     private CredentialsFactory() {
-        throw new AssertionError(String.format("Creation of instance of %s is prohibited.", UserFactory.class));
+        throw new AssertionError(format("Creation of instance of %s is prohibited.", CredentialsFactory.class));
     }
 
     public static Credentials getValidCredentials() {
-        return new Credentials(EMAIL, PASSWORD, PASSWORD_CONFIRM);
+        return new Credentials(EMAIL, PASSWORD);
     }
 
     public static Credentials getCredentialsWithValidEmailAndInvalidPassword() {
-        String invalidPassword = getRandomString();
-        return new Credentials(EMAIL, invalidPassword, invalidPassword);
+        return new Credentials(EMAIL, getRandomString());
     }
 
     public static Credentials getCredentialsWithInvalidEmailAndValidPassword() {
-        return new Credentials(getRandomString(), PASSWORD, PASSWORD_CONFIRM);
+        return new Credentials(getRandomString(), PASSWORD);
     }
 }
