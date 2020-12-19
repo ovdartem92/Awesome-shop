@@ -4,11 +4,11 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.awesome.shop.ta.product.pages.NavigatePanel;
-import ru.awesome.shop.ta.product.pages.registration.AccountRegistrationSuccessfullyPage;
+import ru.awesome.shop.ta.product.pages.registration.SuccessfulAccountRegistrationPage;
 import ru.awesome.shop.ta.utils.StringUtils;
 
 public class CheckSuccessfulUserRegistrationTest extends BaseConfigurationTest {
-    private AccountRegistrationSuccessfullyPage registrationScreen;
+    private SuccessfulAccountRegistrationPage registrationScreen;
     private String text = StringUtils.getRandomString();
     private String email = text.concat("@mail.ru");
     private String region = "Bristol";
@@ -32,7 +32,7 @@ public class CheckSuccessfulUserRegistrationTest extends BaseConfigurationTest {
                 .selectRegion(region)
                 .typePassword(text)
                 .typePasswordConfirm(text)
-                .clickAgreeWithPrivacyPolicy()
+                .clickAgreeWithPrivacyPolicyCheckbox()
                 .clickContinueButton();
     }
 

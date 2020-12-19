@@ -33,7 +33,7 @@ public class CheckAppearanceTelephoneInvalidWarningTest extends BaseConfiguratio
                 .selectRegion(region)
                 .typePassword(text)
                 .typePasswordConfirm(text)
-                .clickAgreeWithPrivacyPolicy();
+                .clickAgreeWithPrivacyPolicyCheckbox();
         registrationScreen.clickContinueButton();
     }
 

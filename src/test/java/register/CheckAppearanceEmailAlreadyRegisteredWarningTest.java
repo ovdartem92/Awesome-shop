@@ -31,7 +31,7 @@ public class CheckAppearanceEmailAlreadyRegisteredWarningTest extends BaseConfig
                 .selectRegion(region)
                 .typePassword(text)
                 .typePasswordConfirm(text)
-                .clickAgreeWithPrivacyPolicy();
+                .clickAgreeWithPrivacyPolicyCheckbox();
         registrationScreen.clickContinueButton();
     }
 

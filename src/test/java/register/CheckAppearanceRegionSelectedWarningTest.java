@@ -30,7 +30,7 @@ public class CheckAppearanceRegionSelectedWarningTest extends BaseConfigurationT
                 .typePostcode(text)
                 .typePassword(text)
                 .typePasswordConfirm(text)
-                .clickAgreeWithPrivacyPolicy();
+                .clickAgreeWithPrivacyPolicyCheckbox();
         registrationScreen.clickContinueButton();
     }
 

@@ -15,7 +15,7 @@ public class CheckAppearancePrivatePolicyWindowTest extends BaseConfigurationTes
         registrationScreen = new NavigatePanel()
                 .clickMyAccountLink()
                 .clickRegistrationLink()
-                .clickPrivacyPolicy();
+                .clickPrivacyPolicyLink();
     }
 
     @Test(description = "***CheckAppearancePrivatePolicyWindow***\n" +

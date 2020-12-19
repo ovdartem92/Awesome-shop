@@ -7,135 +7,135 @@ public class AccountRegistrationPage {
 
     public AccountRegistrationPage typeFirstName(String firstName) {
         By firstNameLocator = By.id("input-firstname");
-        TextField firstNameField = new TextField(firstNameLocator);
-        firstNameField.type(firstName);
+        TextField firstNameTextField = new TextField(firstNameLocator);
+        firstNameTextField.type(firstName);
         return this;
     }
 
     public AccountRegistrationPage typeLastName(String lastName) {
         By lastNameLocator = By.id("input-lastname");
-        TextField lastNameField = new TextField(lastNameLocator);
-        lastNameField.type(lastName);
+        TextField lastNameTextField = new TextField(lastNameLocator);
+        lastNameTextField.type(lastName);
         return this;
     }
 
     public AccountRegistrationPage typeEmail(String emailAddress) {
         By emailLocator = By.id("input-email");
-        TextField emailField = new TextField(emailLocator);
-        emailField.type(emailAddress);
+        TextField emailTextField = new TextField(emailLocator);
+        emailTextField.type(emailAddress);
         return this;
     }
 
     public AccountRegistrationPage typeTelephone(String telephoneNumber) {
         By telephoneNumberLocator = By.id("input-telephone");
-        TextField telephoneField = new TextField(telephoneNumberLocator);
-        telephoneField.type(telephoneNumber);
+        TextField telephoneTextField = new TextField(telephoneNumberLocator);
+        telephoneTextField.type(telephoneNumber);
         return this;
     }
 
     public AccountRegistrationPage typeFax(String faxNumber) {
         By faxNumberLocator = By.id("input-fax");
-        TextField faxField = new TextField(faxNumberLocator);
-        faxField.type(faxNumber);
+        TextField faxTextField = new TextField(faxNumberLocator);
+        faxTextField.type(faxNumber);
         return this;
     }
 
     public AccountRegistrationPage typeCompany(String companyName) {
         By companyNameLocator = By.id("input-company");
-        TextField companyField = new TextField(companyNameLocator);
-        companyField.type(companyName);
+        TextField companyTextField = new TextField(companyNameLocator);
+        companyTextField.type(companyName);
         return this;
     }
 
     public AccountRegistrationPage typeFirstAddress(String firstAddress) {
         By firstAddressLocator = By.id("input-address-1");
-        TextField firstAddressField = new TextField(firstAddressLocator);
-        firstAddressField.type(firstAddress);
+        TextField firstAddressTextField = new TextField(firstAddressLocator);
+        firstAddressTextField.type(firstAddress);
         return this;
     }
 
     public AccountRegistrationPage typeSecondAddress(String secondAddress) {
         By secondAddressLocator = By.id("input-address-2");
-        TextField secondAddressField = new TextField(secondAddressLocator);
-        secondAddressField.type(secondAddress);
+        TextField secondAddressTextField = new TextField(secondAddressLocator);
+        secondAddressTextField.type(secondAddress);
         return this;
     }
 
     public AccountRegistrationPage typeCity(String city) {
         By cityLocator = By.id("input-city");
-        TextField cityField = new TextField(cityLocator);
-        cityField.type(city);
+        TextField cityTextField = new TextField(cityLocator);
+        cityTextField.type(city);
         return this;
     }
 
     public AccountRegistrationPage typePostcode(String postcode) {
         By postcodeLocator = By.id("input-postcode");
-        TextField postcodeField = new TextField(postcodeLocator);
-        postcodeField.type(postcode);
+        TextField postcodeTextField = new TextField(postcodeLocator);
+        postcodeTextField.type(postcode);
         return this;
     }
 
     public AccountRegistrationPage selectCountry(String country) {
         By countryLocator = By.id("input-country");
-        DropDownList countryList = new DropDownList(countryLocator);
-        countryList.select(country);
+        DropDownList countryDropDownList = new DropDownList(countryLocator);
+        countryDropDownList.select(country);
         return this;
     }
 
     public AccountRegistrationPage selectRegion(String region) {
         By regionLocator = By.id("input-zone");
-        DropDownList regionList = new DropDownList(regionLocator);
-        regionList.select(region);
+        DropDownList regionDropDownList = new DropDownList(regionLocator);
+        regionDropDownList.select(region);
         return this;
     }
 
     public AccountRegistrationPage typePassword(String password) {
         By passwordLocator = By.id("input-password");
-        TextField passwordField = new TextField(passwordLocator);
-        passwordField.type(password);
+        TextField passwordTextField = new TextField(passwordLocator);
+        passwordTextField.type(password);
         return this;
     }
 
     public AccountRegistrationPage typePasswordConfirm(String passwordConfirm) {
         By passwordConfirmLocator = By.id("input-confirm");
-        TextField passwordConfirmField = new TextField(passwordConfirmLocator);
-        passwordConfirmField.type(passwordConfirm);
+        TextField passwordConfirmTextField = new TextField(passwordConfirmLocator);
+        passwordConfirmTextField.type(passwordConfirm);
         return this;
     }
 
-    public AccountRegistrationPage clickSubscribeYesButton() {
-        By subscribeYesButtonLocator = By.xpath("//input[@name='newsletter'][@value='1']");
-        RadioButton subscribeYesButton = new RadioButton(subscribeYesButtonLocator);
-        subscribeYesButton.click();
+    public AccountRegistrationPage clickSubscribeYesRadioButton() {
+        By subscribeYesRadioButtonLocator = By.xpath("//input[@name='newsletter'][@value='1']");
+        RadioButton subscribeYesRadioButton = new RadioButton(subscribeYesRadioButtonLocator);
+        subscribeYesRadioButton.click();
         return this;
     }
 
-    public AccountRegistrationPage clickSubscribeNoButton() {
-        By subscribeNoButtonLocator = By.xpath("//input[@name='newsletter'][@value='0']");
-        RadioButton subscribeNoButton = new RadioButton(subscribeNoButtonLocator);
-        subscribeNoButton.click();
+    public AccountRegistrationPage clickSubscribeNoRadioButton() {
+        By subscribeNoRadioButtonLocator = By.xpath("//input[@name='newsletter'][@value='0']");
+        RadioButton subscribeNoRadioButton = new RadioButton(subscribeNoRadioButtonLocator);
+        subscribeNoRadioButton.click();
         return this;
     }
 
-    public AccountRegistrationPage clickPrivacyPolicy() {
+    public AccountRegistrationPage clickPrivacyPolicyLink() {
         By privacyPolicyLinkLocator = By.xpath("//b[text()='Privacy Policy']/..");
         Link privacyPolicyLink = new Link(privacyPolicyLinkLocator);
         privacyPolicyLink.click();
         return this;
     }
 
-    public AccountRegistrationPage clickAgreeWithPrivacyPolicy() {
+    public AccountRegistrationPage clickAgreeWithPrivacyPolicyCheckbox() {
         By agreeWithPrivacyPolicyLocator = By.name("agree");
         Checkbox agreeWithPrivacyPolicyCheckbox = new Checkbox(agreeWithPrivacyPolicyLocator);
         agreeWithPrivacyPolicyCheckbox.setSelected(true);
         return this;
     }
 
-    public AccountRegistrationSuccessfullyPage clickContinueButton() {
+    public SuccessfulAccountRegistrationPage clickContinueButton() {
         By continueButtonLocator = By.xpath("//input[@value='Continue']");
         Button continueButton = new Button(continueButtonLocator);
         continueButton.click();
-        return new AccountRegistrationSuccessfullyPage();
+        return new SuccessfulAccountRegistrationPage();
     }
 
     public String getWarningMessage() {

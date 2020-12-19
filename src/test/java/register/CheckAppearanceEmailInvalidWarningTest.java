@@ -32,7 +32,7 @@ public class CheckAppearanceEmailInvalidWarningTest extends BaseConfigurationTes
                 .selectRegion(region)
                 .typePassword(text)
                 .typePasswordConfirm(text)
-                .clickAgreeWithPrivacyPolicy();
+                .clickAgreeWithPrivacyPolicyCheckbox();
         registrationScreen.clickContinueButton();
     }
 

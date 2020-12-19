@@ -33,7 +33,7 @@ public class CheckAppearanceFirstAddressLengthWarningTest extends BaseConfigurat
                 .selectRegion(region)
                 .typePassword(text)
                 .typePasswordConfirm(text)
-                .clickAgreeWithPrivacyPolicy();
+                .clickAgreeWithPrivacyPolicyCheckbox();
         registrationScreen.clickContinueButton();
     }
 

@@ -33,7 +33,7 @@ public class CheckAppearanceLastNameInvalidWarningTest extends BaseConfiguration
                 .selectRegion(region)
                 .typePassword(text)
                 .typePasswordConfirm(text)
-                .clickAgreeWithPrivacyPolicy();
+                .clickAgreeWithPrivacyPolicyCheckbox();
         registrationScreen.clickContinueButton();
     }
 

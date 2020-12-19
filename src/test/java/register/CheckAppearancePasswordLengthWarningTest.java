@@ -33,7 +33,7 @@ public class CheckAppearancePasswordLengthWarningTest extends BaseConfigurationT
                 .selectRegion(region)
                 .typePassword(emptyPassword)
                 .typePasswordConfirm(text)
-                .clickAgreeWithPrivacyPolicy();
+                .clickAgreeWithPrivacyPolicyCheckbox();
         registrationScreen.clickContinueButton();
     }
 

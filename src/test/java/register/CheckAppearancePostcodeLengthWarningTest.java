@@ -33,7 +33,7 @@ public class CheckAppearancePostcodeLengthWarningTest extends BaseConfigurationT
                 .selectRegion(region)
                 .typePassword(text)
                 .typePasswordConfirm(text)
-                .clickAgreeWithPrivacyPolicy();
+                .clickAgreeWithPrivacyPolicyCheckbox();
         registrationScreen.clickContinueButton();
     }
 

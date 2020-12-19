@@ -33,7 +33,7 @@ public class CheckAppearancePasswordConfirmationLengthWarningTest extends BaseCo
                 .selectRegion(region)
                 .typePassword(text)
                 .typePasswordConfirm(emptyPasswordConfirm)
-                .clickAgreeWithPrivacyPolicy();
+                .clickAgreeWithPrivacyPolicyCheckbox();
         registrationScreen.clickContinueButton();
     }
 
