@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import ru.awesome.shop.ta.framework.ui.components.Button;
 import ru.awesome.shop.ta.product.pages.popups.CartTotalPopup;
 
-public class BasePage {
+abstract class BasePage {
 
     public void open(){
     }

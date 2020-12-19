@@ -34,7 +34,6 @@ public class CartTest extends BaseConfigurationTest{
         homePage.clickCartTotalButton();
         cartTotalPopup.clickViewCartButton();
         int sizeOfProductsList = cartPage.getAllCartItems().size();
-        System.out.println("SIZE: " + sizeOfProductsList);
 
         Assert.assertTrue(sizeOfProductsList > 1, "The size of products list isn't more 1! ");
     }
