@@ -1,10 +1,10 @@
-package ru.awesome.shop.ta.product.pages.registration;
+package ru.awesome.shop.ta.product.pages;
 
 import org.openqa.selenium.By;
 import ru.awesome.shop.ta.framework.ui.components.Button;
 import ru.awesome.shop.ta.framework.ui.components.Label;
 
-public class SuccessfulAccountRegistrationPage {
+public class SuccessfulAccountRegistrationPage extends BasePage {
 
     public String getAccountCreationMessage() {
         By accountCreationMessageLocator = By.tagName("h1");

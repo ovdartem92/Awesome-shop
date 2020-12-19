@@ -3,8 +3,8 @@ package register;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import ru.awesome.shop.ta.product.pages.NavigatePanel;
-import ru.awesome.shop.ta.product.pages.registration.AccountRegistrationPage;
+import ru.awesome.shop.ta.product.pages.AccountRegistrationPage;
+import ru.awesome.shop.ta.product.pages.MainPage;
 import ru.awesome.shop.ta.utils.StringUtils;
 
 public class CheckAppearanceCityInvalidWarningTest extends BaseConfigurationTest {
@@ -17,7 +17,7 @@ public class CheckAppearanceCityInvalidWarningTest extends BaseConfigurationTest
     @BeforeMethod(description = "user registration with invalid city value",
             groups = {"all", "negative"})
     public void registration() {
-        registrationScreen = new NavigatePanel()
+        registrationScreen = new MainPage()
                 .clickMyAccountLink()
                 .clickRegistrationLink()
                 .typeFirstName(text)

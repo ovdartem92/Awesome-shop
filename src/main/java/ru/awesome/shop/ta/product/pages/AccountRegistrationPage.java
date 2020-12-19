@@ -1,9 +1,9 @@
-package ru.awesome.shop.ta.product.pages.registration;
+package ru.awesome.shop.ta.product.pages;
 
 import org.openqa.selenium.By;
 import ru.awesome.shop.ta.framework.ui.components.*;
 
-public class AccountRegistrationPage {
+public class AccountRegistrationPage extends BasePage {
 
     public AccountRegistrationPage typeFirstName(String firstName) {
         By firstNameLocator = By.id("input-firstname");

@@ -3,8 +3,8 @@ package register;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import ru.awesome.shop.ta.product.pages.NavigatePanel;
-import ru.awesome.shop.ta.product.pages.registration.AccountRegistrationPage;
+import ru.awesome.shop.ta.product.pages.AccountRegistrationPage;
+import ru.awesome.shop.ta.product.pages.MainPage;
 import ru.awesome.shop.ta.utils.StringUtils;
 
 public class CheckAppearancePrivacyPolicyWarningTest extends BaseConfigurationTest {
@@ -16,7 +16,7 @@ public class CheckAppearancePrivacyPolicyWarningTest extends BaseConfigurationTe
     @BeforeMethod(description = "user registration without a click on privacy policy checkbox",
             groups = {"all", "positive"})
     public void registration() {
-        registrationScreen = new NavigatePanel()
+        registrationScreen = new MainPage()
                 .clickMyAccountLink()
                 .clickRegistrationLink()
                 .typeFirstName(text)

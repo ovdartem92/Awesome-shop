@@ -3,8 +3,8 @@ package register;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import ru.awesome.shop.ta.product.pages.NavigatePanel;
-import ru.awesome.shop.ta.product.pages.registration.AccountRegistrationPage;
+import ru.awesome.shop.ta.product.pages.AccountRegistrationPage;
+import ru.awesome.shop.ta.product.pages.MainPage;
 import ru.awesome.shop.ta.utils.StringUtils;
 
 public class CheckAppearanceLastNameLengthWarningTest extends BaseConfigurationTest {
@@ -17,7 +17,7 @@ public class CheckAppearanceLastNameLengthWarningTest extends BaseConfigurationT
     @BeforeMethod(description = "user registration with empty last name value",
             groups = {"all", "positive"})
     public void registration() {
-        registrationScreen = new NavigatePanel()
+        registrationScreen = new MainPage()
                 .clickMyAccountLink()
                 .clickRegistrationLink()
                 .typeFirstName(text)

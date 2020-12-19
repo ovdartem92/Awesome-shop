@@ -3,8 +3,8 @@ package register;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import ru.awesome.shop.ta.product.pages.NavigatePanel;
-import ru.awesome.shop.ta.product.pages.registration.SuccessfulAccountRegistrationPage;
+import ru.awesome.shop.ta.product.pages.MainPage;
+import ru.awesome.shop.ta.product.pages.SuccessfulAccountRegistrationPage;
 import ru.awesome.shop.ta.utils.StringUtils;
 
 public class CheckSuccessfulUserRegistrationTest extends BaseConfigurationTest {
@@ -16,7 +16,7 @@ public class CheckSuccessfulUserRegistrationTest extends BaseConfigurationTest {
     @BeforeMethod(description = "successful user registration",
             groups = {"all", "positive"})
     public void registration() {
-        registrationScreen = new NavigatePanel()
+        registrationScreen = new MainPage()
                 .clickMyAccountLink()
                 .clickRegistrationLink()
                 .typeFirstName(text)
