@@ -1,11 +1,12 @@
-package awesome.shop.tests;
-
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import ru.awesome.shop.ta.framework.browser.Browser;
 import ru.awesome.shop.ta.framework.listeners.SuiteListener;
 import ru.awesome.shop.ta.framework.listeners.TestListener;
+import ru.awesome.shop.ta.product.pages.CartPage;
+import ru.awesome.shop.ta.product.pages.HomePage;
+import ru.awesome.shop.ta.product.pages.popups.CartTotalPopup;
 import ru.awesome.shop.ta.utils.TestDataReader;
 
 import java.lang.reflect.Method;
