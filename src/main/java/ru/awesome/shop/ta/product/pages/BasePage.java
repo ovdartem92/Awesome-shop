@@ -6,6 +6,9 @@ import ru.awesome.shop.ta.product.pages.popups.CartTotalPopup;
 
 public class BasePage {
 
+    public void open(){
+    }
+
     public CartTotalPopup clickCartTotalButton() {
         By cartTotalButtonLocator = By.xpath("//div[@class='col-sm-3']//button//i[@class='fa fa-shopping-cart']");
         Button cartTotalButton = new Button(cartTotalButtonLocator);

@@ -22,5 +22,10 @@ public class HomePage extends BasePage {
         }
         return homeProducts;
     }
+
+    @Override
+    public void open() {
+        Browser.getInstance().navigate("https://awesome-shop.01sh.ru/");
+    }
 }
 

@@ -14,6 +14,7 @@ public class CartTest extends BaseConfigurationTest{
             "EPMFARMATS-13145: Check that user can add product to cart\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13145")
     public void checkItemIntoCart() {
+        homePage.open();
         String productNameFromHomePage = homePage.getAllProducts().get(0).getProductName();
         homePage.getAllProducts().get(0).clickAddToCartButton();
         homePage.clickCartTotalButton();
@@ -27,6 +28,7 @@ public class CartTest extends BaseConfigurationTest{
             "EPMFARMATS-13150: Check that user can add more than one product to cart\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13150")
     public void checkAddToCartMoreProducts() {
+        homePage.open();
         homePage.getAllProducts().get(0).clickAddToCartButton();
         homePage.getAllProducts().get(1).clickAddToCartButton();
         homePage.clickCartTotalButton();
@@ -42,6 +44,7 @@ public class CartTest extends BaseConfigurationTest{
             "https://jira.epam.com/jira/browse/EPMFARMATS-13147")
     public void checkCanChangeQuantity() {
         int QUANTITY = 3;
+        homePage.open();
         homePage.getAllProducts().get(0).clickAddToCartButton();
         homePage.clickCartTotalButton();
         cartTotalPopup.clickViewCartButton();
@@ -57,6 +60,7 @@ public class CartTest extends BaseConfigurationTest{
             "https://jira.epam.com/jira/browse/EPMFARMATS-13149")
     public void checkCanBuyLess1001() {
         int QUANTITY = 666;
+        homePage.open();
         homePage.getAllProducts().get(0).clickAddToCartButton();
         homePage.clickCartTotalButton();
         cartTotalPopup.clickViewCartButton();
@@ -72,6 +76,7 @@ public class CartTest extends BaseConfigurationTest{
             "https://jira.epam.com/jira/browse/EPMFARMATS-13148")
     public void checkCantBuyOver1000() {
         int QUANTITY = 1001;
+        homePage.open();
         homePage.getAllProducts().get(0).clickAddToCartButton();
         homePage.clickCartTotalButton();
         cartTotalPopup.clickViewCartButton();
@@ -90,6 +95,7 @@ public class CartTest extends BaseConfigurationTest{
             "https://jira.epam.com/jira/browse/EPMFARMATS-13178")
     public void checkCantBuyZero() {
         int QUANTITY = 0;
+        homePage.open();
         homePage.getAllProducts().get(0).clickAddToCartButton();
         homePage.clickCartTotalButton();
         cartTotalPopup.clickViewCartButton();
@@ -104,6 +110,7 @@ public class CartTest extends BaseConfigurationTest{
             "EPMFARMATS-13173: Check that user can't open empty cart\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13173")
     public void checkCantOpenEmptyCart() {
+        homePage.open();
         homePage.clickCartTotalButton();
         String messageFromPopup = cartTotalPopup.getCartDropDownEmptyMessage();
 
@@ -114,6 +121,7 @@ public class CartTest extends BaseConfigurationTest{
             "EPMFARMATS-13151: Check that 'Continue' button in empty cart lead to main page\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13151")
     public void continueNavigateToHomePage() {
+        homePage.open();
         homePage.getAllProducts().get(0).clickAddToCartButton();
         homePage.clickCartTotalButton();
         cartTotalPopup.clickViewCartButton();
@@ -128,6 +136,7 @@ public class CartTest extends BaseConfigurationTest{
             "EPMFARMATS-13175: Check that 'Continue shopping' button in cart page work correctly\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13175")
     public void checkCorrectContinueShopping() {
+        homePage.open();
         homePage.getAllProducts().get(0).clickAddToCartButton();
         homePage.clickCartTotalButton();
         cartTotalPopup.clickViewCartButton();
@@ -141,6 +150,7 @@ public class CartTest extends BaseConfigurationTest{
             "EPMFARMATS-13174: Check that product name and cost stay the same in cart\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13174")
     public void checkProductNameAndCost() {
+        homePage.open();
         String nameFromHomePage = homePage.getAllProducts().get(0).getProductName();
         String priceFromHomePage = homePage.getAllProducts().get(0).getProductPrice();
         homePage.getAllProducts().get(0).clickAddToCartButton();
@@ -159,6 +169,7 @@ public class CartTest extends BaseConfigurationTest{
             "EPMFARMATS-13146: Check that user can remove product from cart\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13146")
     public void removeProduct() {
+        homePage.open();
         homePage.getAllProducts().get(1).clickAddToCartButton();
         homePage.clickCartTotalButton();
         cartTotalPopup.clickViewCartButton();
