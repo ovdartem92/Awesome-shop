@@ -1,5 +1,6 @@
 package ru.awesome.shop.ta.product.bo.user;
 
+import ru.awesome.shop.ta.product.bo.address.Address;
 import ru.awesome.shop.ta.product.bo.contacts.ContactInfo;
 import ru.awesome.shop.ta.product.bo.credentials.Credentials;
 
@@ -18,7 +19,8 @@ public class User {
         private String firstName = "";
         private String lastName = "";
         private String companyName = "";
-        private ContactInfo contactInfo;
+        private ContactInfo contactInfo = new ContactInfo("", "",
+                new Address("", "", "", "", "", ""));
 
         public Builder(Credentials credentials) {
             this.credentials = new Credentials(credentials.getEmail(), credentials.getPassword());
