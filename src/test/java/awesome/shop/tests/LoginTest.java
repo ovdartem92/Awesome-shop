@@ -19,12 +19,12 @@ public class LoginTest extends BaseConfigurationTest {
     @DataProvider(name = "user")
     public Object[][] getUser(Method method) {
         if (method.getName().equalsIgnoreCase("loginWithInvalidCredentials")) {
-            return new Object[][]{{UserFactory.getUserWithInvalidEmailAndValidPassword()},
-                    {UserFactory.getUserWithValidEmailAndInvalidPassword()}
+            return new Object[][]{{UserFactory.generateUserWithValidEmailInvalidPassword()},
+                    {UserFactory.generateUserWithInvalidEmailValidPassword()}
             };
         } else {
             return new Object[][]{
-                    {UserFactory.getUserWithValidCredentials()},
+                    {UserFactory.generateValidUser()},
             };
         }
     }
@@ -41,8 +41,8 @@ public class LoginTest extends BaseConfigurationTest {
             dataProvider = "user",
             groups = {"all", "positive"})
     public void loginWithValidCredentialsTest(User user) {
-        String myAccountName = loginPage.typeEmailAddress(user.getEmail())
-                .typePassword(user.getPassword())
+        String myAccountName = loginPage.typeEmailAddress(user.getCredentials().getEmail())
+                .typePassword(user.getCredentials().getPassword())
                 .clickLoginButton().getMyAccountName();
         Assert.assertEquals(myAccountName, "My Account",
                 "User with valid email and password can not login");
@@ -54,8 +54,8 @@ public class LoginTest extends BaseConfigurationTest {
             dataProvider = "user",
             groups = {"all", "positive"})
     public void checkThatUserCanLogout(User user) {
-        String breadcrumbLogoutText = loginPage.typeEmailAddress(user.getEmail())
-                .typePassword(user.getPassword())
+        String breadcrumbLogoutText = loginPage.typeEmailAddress(user.getCredentials().getEmail())
+                .typePassword(user.getCredentials().getPassword())
                 .clickLoginButton()
                 .clickMyAccountLink()
                 .clickLogoutLink()
@@ -71,8 +71,8 @@ public class LoginTest extends BaseConfigurationTest {
             dataProvider = "user",
             groups = {"all", "negative"})
     public void loginWithInvalidCredentials(User user) {
-        String warningMessageText = loginPage.typeEmailAddress(user.getEmail())
-                .typePassword(user.getPassword()).clickLoginButtonExpectingFailure()
+        String warningMessageText = loginPage.typeEmailAddress(user.getCredentials().getEmail())
+                .typePassword(user.getCredentials().getPassword()).clickLoginButtonExpectingFailure()
                 .getWarningMessage();
         Assert.assertEquals(warningMessageText, "Warning: No match for E-Mail Address and/or Password.",
                 "User can login with invalid email and valid password");
@@ -86,8 +86,8 @@ public class LoginTest extends BaseConfigurationTest {
         AccountPage accountPage = new AccountPage();
         String newPassword = getRandomString();
         String accountName = loginPage
-                .typeEmailAddress(user.getEmail())
-                .typePassword(user.getPassword())
+                .typeEmailAddress(user.getCredentials().getEmail())
+                .typePassword(user.getCredentials().getPassword())
                 .clickLoginButton()
                 .clickChangePasswordLink()
                 .typePassword(newPassword)
@@ -97,13 +97,13 @@ public class LoginTest extends BaseConfigurationTest {
                 .clickLogoutLink()
                 .clickMyAccountLink()
                 .clickLoginLink()
-                .typeEmailAddress(user.getEmail())
+                .typeEmailAddress(user.getCredentials().getEmail())
                 .typePassword(newPassword)
                 .clickLoginButton()
                 .getMyAccountName();
         Assert.assertEquals(accountName, "My Account",
                 "User can not login after successfully changing password");
-        accountPage.clickChangePasswordLink().typePassword(user.getPassword())
-                .typeConfirmationPassword(user.getPassword()).clickContinueButton();
+        accountPage.clickChangePasswordLink().typePassword(user.getCredentials().getPassword())
+                .typeConfirmationPassword(user.getCredentials().getPassword()).clickContinueButton();
     }
 }
