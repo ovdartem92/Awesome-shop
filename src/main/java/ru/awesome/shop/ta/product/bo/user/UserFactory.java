@@ -17,6 +17,14 @@ public final class UserFactory {
         return new User.Builder(CredentialsFactory.getValidCredentials()).build();
     }
 
+    public static User generateUserWithValidEmailInvalidPassword() {
+        return new User.Builder(CredentialsFactory.getValidEmailInvalidPassword()).build();
+    }
+
+    public static User generateUserWithInvalidEmailValidPassword() {
+        return new User.Builder(CredentialsFactory.getInvalidEmailValidPassword()).build();
+    }
+    
     public static User generateValidUserForRegistration() {
         return new User.Builder(CredentialsFactory.getValidCredentials()).firstName(FIRST_NAME).lastName(LAST_NAME)
                 .companyName(COMPANY).contactInfo(ContactInfoFactory.getValidContactInfo()).build();

@@ -4,7 +4,7 @@ import ru.awesome.shop.ta.product.bo.address.Address;
 import ru.awesome.shop.ta.product.bo.contacts.ContactInfo;
 import ru.awesome.shop.ta.product.bo.credentials.Credentials;
 
-public class User {
+public final class User {
     private final Credentials credentials;
     private final String firstName;
     private final String lastName;

@@ -4,7 +4,7 @@ import ru.awesome.shop.ta.utils.TestDataReader;
 
 import static java.lang.String.format;
 
-public class AddressFactory {
+public final class AddressFactory {
     private static final String FIRST_ADDRESS = TestDataReader.getStageData("address1");
     private static final String SECOND_ADDRESS = TestDataReader.getStageData("address2");
     private static final String CITY = TestDataReader.getStageData("city");

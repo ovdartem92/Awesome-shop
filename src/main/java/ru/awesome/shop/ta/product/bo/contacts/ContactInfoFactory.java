@@ -5,7 +5,7 @@ import ru.awesome.shop.ta.utils.TestDataReader;
 
 import static java.lang.String.format;
 
-public class ContactInfoFactory {
+public final class ContactInfoFactory {
     private static final String TELEPHONE_NUMBER = TestDataReader.getStageData("telephone");
     private static final String FAX_NUMBER = TestDataReader.getStageData("fax");
 
