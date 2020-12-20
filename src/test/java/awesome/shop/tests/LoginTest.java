@@ -8,6 +8,8 @@ import ru.awesome.shop.ta.product.bo.user.User;
 import ru.awesome.shop.ta.product.bo.user.UserFactory;
 import ru.awesome.shop.ta.product.pages.AccountPage;
 import ru.awesome.shop.ta.product.pages.LoginPage;
+import ru.awesome.shop.ta.product.pages.LogoutPage;
+import ru.awesome.shop.ta.service.LoginService;
 
 import java.lang.reflect.Method;
 
@@ -15,6 +17,7 @@ import static ru.awesome.shop.ta.utils.StringUtils.getRandomString;
 
 public class LoginTest extends BaseConfigurationTest {
     private final LoginPage loginPage = new LoginPage();
+    private final LoginService loginService = new LoginService();
 
     @DataProvider(name = "user")
     public Object[][] getUser(Method method) {
@@ -41,9 +44,8 @@ public class LoginTest extends BaseConfigurationTest {
             dataProvider = "user",
             groups = {"all", "positive"})
     public void loginWithValidCredentialsTest(User user) {
-        String myAccountName = loginPage.typeEmailAddress(user.getCredentials().getEmail())
-                .typePassword(user.getCredentials().getPassword())
-                .clickLoginButton().getMyAccountName();
+        loginService.login(user.getCredentials().getEmail(), user.getCredentials().getPassword());
+        String myAccountName = new AccountPage().getMyAccountName();
         Assert.assertEquals(myAccountName, "My Account",
                 "User with valid email and password can not login");
     }
@@ -54,12 +56,9 @@ public class LoginTest extends BaseConfigurationTest {
             dataProvider = "user",
             groups = {"all", "positive"})
     public void checkThatUserCanLogout(User user) {
-        String breadcrumbLogoutText = loginPage.typeEmailAddress(user.getCredentials().getEmail())
-                .typePassword(user.getCredentials().getPassword())
-                .clickLoginButton()
-                .clickMyAccountLink()
-                .clickLogoutLink()
-                .getBreadcrumbLogoutText();
+        loginService.login(user.getCredentials().getEmail(), user.getCredentials().getPassword());
+        loginService.logout();
+        String breadcrumbLogoutText = new LogoutPage().getBreadcrumbLogoutText();
         Assert.assertEquals(breadcrumbLogoutText, "Logout", "User can not logout");
     }
 
@@ -71,9 +70,8 @@ public class LoginTest extends BaseConfigurationTest {
             dataProvider = "user",
             groups = {"all", "negative"})
     public void loginWithInvalidCredentials(User user) {
-        String warningMessageText = loginPage.typeEmailAddress(user.getCredentials().getEmail())
-                .typePassword(user.getCredentials().getPassword()).clickLoginButtonExpectingFailure()
-                .getWarningMessage();
+        loginService.login(user.getCredentials().getEmail(), user.getCredentials().getPassword());
+        String warningMessageText = loginPage.getWarningMessage();
         Assert.assertEquals(warningMessageText, "Warning: No match for E-Mail Address and/or Password.",
                 "User can login with invalid email and valid password");
     }
@@ -85,25 +83,13 @@ public class LoginTest extends BaseConfigurationTest {
     public void loginWithChangedPassword(User user) {
         AccountPage accountPage = new AccountPage();
         String newPassword = getRandomString();
-        String accountName = loginPage
-                .typeEmailAddress(user.getCredentials().getEmail())
-                .typePassword(user.getCredentials().getPassword())
-                .clickLoginButton()
-                .clickChangePasswordLink()
-                .typePassword(newPassword)
-                .typeConfirmationPassword(newPassword)
-                .clickContinueButton()
-                .clickMyAccountLink()
-                .clickLogoutLink()
-                .clickMyAccountLink()
-                .clickLoginLink()
-                .typeEmailAddress(user.getCredentials().getEmail())
-                .typePassword(newPassword)
-                .clickLoginButton()
-                .getMyAccountName();
+        loginService.login(user.getCredentials().getEmail(), user.getCredentials().getPassword());
+        loginService.changePassword(newPassword);
+        loginService.logout();
+        loginService.login(user.getCredentials().getEmail(), newPassword);
+        String accountName = accountPage.getMyAccountName();
         Assert.assertEquals(accountName, "My Account",
                 "User can not login after successfully changing password");
-        accountPage.clickChangePasswordLink().typePassword(user.getCredentials().getPassword())
-                .typeConfirmationPassword(user.getCredentials().getPassword()).clickContinueButton();
+        loginService.changePassword(user.getCredentials().getPassword());
     }
 }
