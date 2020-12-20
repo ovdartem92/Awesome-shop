@@ -3,23 +3,29 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import ru.awesome.shop.ta.product.pages.CartPage;
 import ru.awesome.shop.ta.product.pages.HomePage;
+import ru.awesome.shop.ta.product.pages.fragments.CartItemFragment;
+import ru.awesome.shop.ta.product.pages.fragments.HomeProductFragment;
 import ru.awesome.shop.ta.product.pages.popups.CartTotalPopup;
 
-public class CartTest extends BaseConfigurationTest{
-    HomePage homePage = new HomePage();
-    CartTotalPopup cartTotalPopup = new CartTotalPopup();
-    CartPage cartPage = new CartPage();
+import java.util.List;
+
+public class CartTest extends BaseConfigurationTest {
+    private HomePage homePage = new HomePage();
 
     @Test(description = "***CanAddItemIntoCart***\n" +
             "EPMFARMATS-13145: Check that user can add product to cart\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13145")
     public void checkItemIntoCart() {
         homePage.open();
-        String productNameFromHomePage = homePage.getAllProducts().get(0).getProductName();
-        homePage.getAllProducts().get(0).clickAddToCartButton();
-        homePage.clickCartTotalButton();
-        cartTotalPopup.clickViewCartButton();
-        String productNameFromCart = cartPage.getAllCartItems().get(0).getCartItemName();
+        List<HomeProductFragment> homePageProducts = homePage.getAllProducts();
+        HomeProductFragment homeProductFragment = homePageProducts.get(0);
+        String productNameFromHomePage = homeProductFragment.getProductName();
+        homeProductFragment.clickAddToCartButton();
+        CartPage cartPage = homePage.clickCartTotalButton()
+                .clickViewCartButton();
+        List<CartItemFragment> cartItemFragments = cartPage.getAllCartItems();
+        CartItemFragment cartItemFragment = cartItemFragments.get(0);
+        String productNameFromCart = cartItemFragment.getCartItemName();
 
         Assert.assertEquals(productNameFromCart, productNameFromHomePage, "The values of product aren't equal!");
     }
@@ -29,13 +35,16 @@ public class CartTest extends BaseConfigurationTest{
             "https://jira.epam.com/jira/browse/EPMFARMATS-13150")
     public void checkAddToCartMoreProducts() {
         homePage.open();
-        homePage.getAllProducts().get(0).clickAddToCartButton();
-        homePage.getAllProducts().get(1).clickAddToCartButton();
-        homePage.clickCartTotalButton();
-        cartTotalPopup.clickViewCartButton();
-        int sizeOfProductsList = cartPage.getAllCartItems().size();
+        List<HomeProductFragment> homePageProducts = homePage.getAllProducts();
+        HomeProductFragment firstHomeProductFragment = homePageProducts.get(0);
+        HomeProductFragment secondHomeProductFragment = homePageProducts.get(1);
+        firstHomeProductFragment.clickAddToCartButton();
+        secondHomeProductFragment.clickAddToCartButton();
+        CartPage cartPage = homePage.clickCartTotalButton()
+                .clickViewCartButton();
+        List<CartItemFragment> cartItemFragments = cartPage.getAllCartItems();
 
-        Assert.assertTrue(sizeOfProductsList > 1, "The size of products list isn't more 1! ");
+        Assert.assertTrue(cartItemFragments.size() > 1, "The size of products list isn't more 1! ");
     }
 
     @Test(description = "***CanChangeQuantity***\n" +
@@ -44,12 +53,18 @@ public class CartTest extends BaseConfigurationTest{
     public void checkCanChangeQuantity() {
         int QUANTITY = 3;
         homePage.open();
-        homePage.getAllProducts().get(0).clickAddToCartButton();
-        homePage.clickCartTotalButton();
-        cartTotalPopup.clickViewCartButton();
-        cartPage.getAllCartItems().get(0).typeCartItemQuantity(QUANTITY);
-        cartPage.getAllCartItems().get(0).clickCartItemUpdateButton();
-        int quantityResult = cartPage.getAllCartItems().get(0).getCartItemQuantityValue();
+        List<HomeProductFragment> homePageProducts = homePage.getAllProducts();
+        HomeProductFragment productFragment = homePageProducts.get(0);
+        productFragment.clickAddToCartButton();
+        CartPage cartPage = homePage.clickCartTotalButton().
+                clickViewCartButton();
+        List<CartItemFragment> cartItemFragments = cartPage.getAllCartItems();
+        CartItemFragment cartItemFragment = cartItemFragments.get(0);
+        cartItemFragment.typeCartItemQuantity(QUANTITY);
+        cartItemFragment.clickCartItemUpdateButton();
+        List<CartItemFragment> cartItemFragmentsAfterUpdate = cartPage.getAllCartItems();
+        CartItemFragment cartItemFragmentAfterUpdate = cartItemFragmentsAfterUpdate.get(0);
+        int quantityResult = cartItemFragmentAfterUpdate.getCartItemQuantityValue();
 
         Assert.assertEquals(quantityResult, QUANTITY, "The values of quantity aren't equals!");
     }
@@ -60,13 +75,18 @@ public class CartTest extends BaseConfigurationTest{
     public void checkCanBuyLess1001() {
         int QUANTITY = 666;
         homePage.open();
-        homePage.getAllProducts().get(0).clickAddToCartButton();
-        homePage.clickCartTotalButton();
-        cartTotalPopup.clickViewCartButton();
-        cartPage.getAllCartItems().get(0).typeCartItemQuantity(QUANTITY);
-        cartPage.getAllCartItems().get(0).clickCartItemUpdateButton();
+        List<HomeProductFragment> homePageProducts = homePage.getAllProducts();
+        HomeProductFragment productFragment = homePageProducts.get(0);
+        productFragment.clickAddToCartButton();
+        CartPage cartPage = homePage.clickCartTotalButton().
+                clickViewCartButton();
+        List<CartItemFragment> cartItemFragments = cartPage.getAllCartItems();
+        CartItemFragment cartItemFragment = cartItemFragments.get(0);
+        cartItemFragment.typeCartItemQuantity(QUANTITY);
+        cartItemFragment.clickCartItemUpdateButton();
         cartPage.clickCheckoutButton();
         String finishPageTitle = browser.getPageTitle();
+
         Assert.assertEquals(finishPageTitle, "Checkout", "There is no Checkout Page in the end!");
     }
 
@@ -76,11 +96,15 @@ public class CartTest extends BaseConfigurationTest{
     public void checkCantBuyOver1000() {
         int QUANTITY = 1001;
         homePage.open();
-        homePage.getAllProducts().get(0).clickAddToCartButton();
-        homePage.clickCartTotalButton();
-        cartTotalPopup.clickViewCartButton();
-        cartPage.getAllCartItems().get(0).typeCartItemQuantity(QUANTITY);
-        cartPage.getAllCartItems().get(0).clickCartItemUpdateButton();
+        List<HomeProductFragment> homePageProducts = homePage.getAllProducts();
+        HomeProductFragment productFragment = homePageProducts.get(0);
+        productFragment.clickAddToCartButton();
+        CartPage cartPage = homePage.clickCartTotalButton().
+                clickViewCartButton();
+        List<CartItemFragment> cartItemFragments = cartPage.getAllCartItems();
+        CartItemFragment cartItemFragment = cartItemFragments.get(0);
+        cartItemFragment.typeCartItemQuantity(QUANTITY);
+        cartItemFragment.clickCartItemUpdateButton();
         cartPage.clickCheckoutButtonExpectingFailure();
         String warningQuantityMessage = cartPage.getQuantityWarningMessage();
 
@@ -95,11 +119,15 @@ public class CartTest extends BaseConfigurationTest{
     public void checkCantBuyZero() {
         int QUANTITY = 0;
         homePage.open();
-        homePage.getAllProducts().get(0).clickAddToCartButton();
-        homePage.clickCartTotalButton();
-        cartTotalPopup.clickViewCartButton();
-        cartPage.getAllCartItems().get(0).typeCartItemQuantity(QUANTITY);
-        cartPage.getAllCartItems().get(0).clickCartItemUpdateButton();
+        List<HomeProductFragment> homePageProducts = homePage.getAllProducts();
+        HomeProductFragment productFragment = homePageProducts.get(0);
+        productFragment.clickAddToCartButton();
+        CartPage cartPage = homePage.clickCartTotalButton().
+                clickViewCartButton();
+        List<CartItemFragment> cartItemFragments = cartPage.getAllCartItems();
+        CartItemFragment cartItemFragment = cartItemFragments.get(0);
+        cartItemFragment.typeCartItemQuantity(QUANTITY);
+        cartItemFragment.clickCartItemUpdateButton();
         String emptyCartMessage = cartPage.getEmptyShoppingCartMessage();
 
         Assert.assertEquals(emptyCartMessage, "Your shopping cart is empty!", "Message isn't displayed after update!");
@@ -110,8 +138,8 @@ public class CartTest extends BaseConfigurationTest{
             "https://jira.epam.com/jira/browse/EPMFARMATS-13173")
     public void checkCantOpenEmptyCart() {
         homePage.open();
-        homePage.clickCartTotalButton();
-        String messageFromPopup = cartTotalPopup.getCartDropDownEmptyMessage();
+        CartTotalPopup cartTotalPopup = homePage.clickCartTotalButton();
+        String messageFromPopup = cartTotalPopup.getEmptyCartMessage();
 
         Assert.assertEquals(messageFromPopup, "Your shopping cart is empty!", "Messages aren't equals");
     }
@@ -121,10 +149,14 @@ public class CartTest extends BaseConfigurationTest{
             "https://jira.epam.com/jira/browse/EPMFARMATS-13151")
     public void continueNavigateToHomePage() {
         homePage.open();
-        homePage.getAllProducts().get(0).clickAddToCartButton();
-        homePage.clickCartTotalButton();
-        cartTotalPopup.clickViewCartButton();
-        cartPage.getAllCartItems().get(0).clickCartItemRemoveButton();
+        List<HomeProductFragment> homePageProducts = homePage.getAllProducts();
+        HomeProductFragment productFragment = homePageProducts.get(0);
+        productFragment.clickAddToCartButton();
+        CartPage cartPage = homePage.clickCartTotalButton().
+                clickViewCartButton();
+        List<CartItemFragment> cartItemFragments = cartPage.getAllCartItems();
+        CartItemFragment cartItemFragment = cartItemFragments.get(0);
+        cartItemFragment.clickCartItemRemoveButton();
         cartPage.clickContinueButton();
         String finishPageTitle = browser.getPageTitle();
 
@@ -136,9 +168,11 @@ public class CartTest extends BaseConfigurationTest{
             "https://jira.epam.com/jira/browse/EPMFARMATS-13175")
     public void checkCorrectContinueShopping() {
         homePage.open();
-        homePage.getAllProducts().get(0).clickAddToCartButton();
-        homePage.clickCartTotalButton();
-        cartTotalPopup.clickViewCartButton();
+        List<HomeProductFragment> homePageProducts = homePage.getAllProducts();
+        HomeProductFragment productFragment = homePageProducts.get(0);
+        productFragment.clickAddToCartButton();
+        CartPage cartPage = homePage.clickCartTotalButton().
+                clickViewCartButton();
         cartPage.clickContinueShoppingButton();
         String finishPageTitle = browser.getPageTitle();
 
@@ -150,13 +184,17 @@ public class CartTest extends BaseConfigurationTest{
             "https://jira.epam.com/jira/browse/EPMFARMATS-13174")
     public void checkProductNameAndCost() {
         homePage.open();
-        String nameFromHomePage = homePage.getAllProducts().get(0).getProductName();
-        String priceFromHomePage = homePage.getAllProducts().get(0).getProductPrice();
-        homePage.getAllProducts().get(0).clickAddToCartButton();
-        homePage.clickCartTotalButton();
-        cartTotalPopup.clickViewCartButton();
-        String nameProductInCart = cartPage.getAllCartItems().get(0).getCartItemName();
-        String priceProductInCart = cartPage.getAllCartItems().get(0).getCartItemUnitPrice();
+        List<HomeProductFragment> homePageProducts = homePage.getAllProducts();
+        HomeProductFragment productFragment = homePageProducts.get(0);
+        String nameFromHomePage = productFragment.getProductName();
+        String priceFromHomePage = productFragment.getProductPrice();
+        productFragment.clickAddToCartButton();
+        CartPage cartPage = homePage.clickCartTotalButton()
+                .clickViewCartButton();
+        List<CartItemFragment> cartItemFragments = cartPage.getAllCartItems();
+        CartItemFragment cartItemFragment = cartItemFragments.get(0);
+        String nameProductInCart = cartItemFragment.getCartItemName();
+        String priceProductInCart = cartItemFragment.getCartItemUnitPrice();
 
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(nameProductInCart, nameFromHomePage, "The names of product aren't equals!");
@@ -169,10 +207,13 @@ public class CartTest extends BaseConfigurationTest{
             "https://jira.epam.com/jira/browse/EPMFARMATS-13146")
     public void removeProduct() {
         homePage.open();
-        homePage.getAllProducts().get(1).clickAddToCartButton();
-        homePage.clickCartTotalButton();
-        cartTotalPopup.clickViewCartButton();
-        cartPage.getAllCartItems().get(0).clickCartItemRemoveButton();
+        List<HomeProductFragment> homePageProducts = homePage.getAllProducts();
+        HomeProductFragment productFragment = homePageProducts.get(0);
+        String productName = productFragment.getProductName();
+        productFragment.clickAddToCartButton();
+        CartPage cartPage = homePage.clickCartTotalButton()
+                .clickViewCartButton();
+        cartPage.deleteItemFromCartByName(productName);
         String messageEmptyCart = cartPage.getEmptyShoppingCartMessage();
 
         Assert.assertEquals(messageEmptyCart, "Your shopping cart is empty!",

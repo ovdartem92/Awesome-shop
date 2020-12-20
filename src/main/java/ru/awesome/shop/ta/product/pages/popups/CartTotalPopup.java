@@ -14,7 +14,7 @@ public class CartTotalPopup {
         return new CartPage();
     }
 
-    public String getCartDropDownEmptyMessage() {
+    public String getEmptyCartMessage() {
         By cartEmptyMessageLabelLocator = By.xpath("//p[contains(text(), 'Your shopping cart is empty!')]");
         Label cartEmptyMessageLabel = new Label(cartEmptyMessageLabelLocator);
         return cartEmptyMessageLabel.getText();

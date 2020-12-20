@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static ru.awesome.shop.ta.framework.ui.components.CommonPageElement.waitForAllElementsPresenceLocated;
+import static ru.awesome.shop.ta.framework.ui.components.CommonPageElement.waitForPageElementInvisibilityLocated;
 
 public class CartPage extends BasePage {
 
@@ -63,5 +64,14 @@ public class CartPage extends BasePage {
         By warningQuantityLabelLocator = By.xpath("//div[contains(text(),'Products marked with ***')]");
         Label warningQuantityLabel = new Label(warningQuantityLabelLocator);
         return warningQuantityLabel.getText();
+    }
+
+    public void deleteItemFromCartByName(String productName) {
+        By removeButtonLocator = By.xpath(String.format(
+                "//div[@class='table-responsive']//a[text()='%s']/ancestor::" +
+                        "tr//button[contains(@onclick,'cart.remove')]", productName));
+        Button removeButton = new Button(removeButtonLocator);
+        removeButton.click();
+        waitForPageElementInvisibilityLocated(removeButtonLocator, 3);
     }
 }
