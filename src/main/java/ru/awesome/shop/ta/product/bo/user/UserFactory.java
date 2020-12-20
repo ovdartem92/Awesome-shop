@@ -17,12 +17,12 @@ public final class UserFactory {
         return new User.Builder(CredentialsFactory.getValidCredentials()).build();
     }
 
-    public static User generateUserWithValidEmailInvalidPassword() {
-        return new User.Builder(CredentialsFactory.getValidEmailInvalidPassword()).build();
+    public static User generateUserWithInvalidPassword() {
+        return new User.Builder(CredentialsFactory.generateCredentialsWithInvalidPassword()).build();
     }
 
-    public static User generateUserWithInvalidEmailValidPassword() {
-        return new User.Builder(CredentialsFactory.getInvalidEmailValidPassword()).build();
+    public static User generateUserWithInvalidEmail() {
+        return new User.Builder(CredentialsFactory.generateCredentialsWithInvalidEmail()).build();
     }
     
     public static User generateValidUserForRegistration() {

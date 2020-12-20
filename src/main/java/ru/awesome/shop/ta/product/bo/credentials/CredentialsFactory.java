@@ -19,11 +19,11 @@ public final class CredentialsFactory {
         return new Credentials(EMAIL, PASSWORD);
     }
 
-    public static Credentials getValidEmailInvalidPassword() {
+    public static Credentials generateCredentialsWithInvalidPassword() {
         return new Credentials(EMAIL, getRandomString());
     }
 
-    public static Credentials getInvalidEmailValidPassword() {
+    public static Credentials generateCredentialsWithInvalidEmail() {
         return new Credentials(getRandomString(), PASSWORD);
     }
 }
