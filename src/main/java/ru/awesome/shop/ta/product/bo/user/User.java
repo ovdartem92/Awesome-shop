@@ -42,8 +42,13 @@ public final class User {
         }
 
         public Builder contactInfo(ContactInfo contactInfo) {
+            Address contactAddress = contactInfo.getAddress();
+            Address targetAddress = new Address(contactAddress.getFirstAddress(), contactAddress.getSecondAddress(),
+                    contactAddress.getCity(), contactAddress.getPostCode(),
+                    contactAddress.getCountry(), contactAddress.getRegion());
+
             this.contactInfo = new ContactInfo(contactInfo.getTelephoneNumber(),
-                    contactInfo.getFaxNumber(), contactInfo.getAddress());
+                    contactInfo.getFaxNumber(), targetAddress);
             return this;
         }
 
