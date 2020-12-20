@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import ru.awesome.shop.ta.framework.ui.components.Link;
 import ru.awesome.shop.ta.product.pages.popups.AccountPopUp;
 
-public abstract class BasePage {
+public class BasePage {
 
     public AccountPopUp clickMyAccountLink() {
         By myAccountLinkLocator = By.xpath("//a[@title='My Account']");

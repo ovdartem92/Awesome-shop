@@ -2,7 +2,7 @@ package ru.awesome.shop.ta.product.bo.user;
 
 import ru.awesome.shop.ta.product.bo.credentials.CredentialsFactory;
 
-public class UserFactory {
+public final class UserFactory {
 
     private UserFactory() {
         throw new AssertionError(String.format("Creation of instance of %s is prohibited.", UserFactory.class));

@@ -5,7 +5,7 @@ import ru.awesome.shop.ta.utils.TestDataReader;
 import static java.lang.String.format;
 import static ru.awesome.shop.ta.utils.StringUtils.getRandomString;
 
-public class CredentialsFactory {
+public final class CredentialsFactory {
     private static final String EMAIL = TestDataReader.getTestData("testData.email",
             "nivanis@yandex.ru");
     private static final String PASSWORD = TestDataReader.getTestData("testData.password",
