@@ -49,7 +49,7 @@ public class SearchResultPage extends BasePage {
         return label.getText();
     }
 
-    public SearchResultFragment getFirstSearchResult() {
+    public SearchResultFragment getFirstSearchResultFragment() {
         return getAllSearchResultsList().get(0);
     }
 

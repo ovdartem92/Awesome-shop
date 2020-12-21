@@ -70,7 +70,7 @@ public class SearchTest extends BaseConfigurationTest {
     public void checkTheSearchFieldByPositiveSearchData(String searchData) {
         searchResultPage.typeSearchQuery(searchData);
         searchResultPage.clickSearchButton();
-        Assert.assertEquals(searchResultPage.getFirstSearchResult().getName(), expectedResultIPod,
+        Assert.assertEquals(searchResultPage.getFirstSearchResultFragment().getName(), expectedResultIPod,
                 expectedResultIPod + " is not displayed.");
     }
 
@@ -81,7 +81,7 @@ public class SearchTest extends BaseConfigurationTest {
         String enter = "\n";
         String iPod = "iPod";
         searchResultPage.typeSearchQuery(iPod + enter);
-        Assert.assertEquals(searchResultPage.getFirstSearchResult().getName(), expectedResultIPod,
+        Assert.assertEquals(searchResultPage.getFirstSearchResultFragment().getName(), expectedResultIPod,
                 expectedResultIPod + " wasn't found in search result");
     }
 
@@ -89,15 +89,15 @@ public class SearchTest extends BaseConfigurationTest {
             "EPMFARMATS-13135: check the search result by product category\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13135", groups = "positive")
     public void checkTheSearchResultByProductCategory() {
-        String iMac = "      Mac";
+        String iMacCategory = "      Mac";
         String expectedResult = "iMac";
         searchResultPage
-                .typeSearchQuery(iMac)
+                .typeSearchQuery(iMacCategory)
                 .clickSearchButton()
-                .selectCategory(iMac)
+                .selectCategory(iMacCategory)
                 .clickSearchButtonAfterSearch();
-        Assert.assertEquals(searchResultPage.getFirstSearchResult().getName(), expectedResult,
-                iMac + " wasn't found in search result");
+        Assert.assertEquals(searchResultPage.getFirstSearchResultFragment().getName(), expectedResult,
+                iMacCategory + " wasn't found in search result");
     }
 
     @Test(description = "***SearchResultByProductDescription***\n" +
@@ -109,7 +109,7 @@ public class SearchTest extends BaseConfigurationTest {
                 .clickSearchButton()
                 .setDescriptionCheckbox(true)
                 .clickSearchButtonAfterSearch();
-        Assert.assertEquals(searchResultPage.getFirstSearchResult().getName(), expectedResultIPod,
+        Assert.assertEquals(searchResultPage.getFirstSearchResultFragment().getName(), expectedResultIPod,
                 expectedResultIPod + " wasn't found in search result");
     }
 }
