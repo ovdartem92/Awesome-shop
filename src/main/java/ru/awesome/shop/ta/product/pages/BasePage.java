@@ -3,6 +3,7 @@ package ru.awesome.shop.ta.product.pages;
 import org.openqa.selenium.By;
 import ru.awesome.shop.ta.framework.ui.components.Button;
 import ru.awesome.shop.ta.framework.ui.components.TextField;
+import ru.awesome.shop.ta.product.pages.popups.CartTotalPopup;
 
 public abstract class BasePage {
     protected static final String BASE_URL = "https://awesome-shop.01sh.ru/";
@@ -22,11 +23,10 @@ public abstract class BasePage {
         return new SearchResultPage();
     }
 
-        public CartTotalPopup clickCartTotalButton () {
-            By cartTotalButtonLocator = By.xpath("//div[@class='col-sm-3']//button//i[@class='fa fa-shopping-cart']");
-            Button cartTotalButton = new Button(cartTotalButtonLocator);
-            cartTotalButton.click();
-            return new CartTotalPopup();
-        }
+    public CartTotalPopup clickCartTotalButton() {
+        By cartTotalButtonLocator = By.xpath("//div[@class='col-sm-3']//button//i[@class='fa fa-shopping-cart']");
+        Button cartTotalButton = new Button(cartTotalButtonLocator);
+        cartTotalButton.click();
+        return new CartTotalPopup();
     }
 }
