@@ -20,7 +20,7 @@ public final class UserFactory {
     }
 
     // User factories.
-    public static User getRegisteredUser() {
+    public static User getUserWithRegisteredCredentials() {
         Credentials registeredCredentials = CredentialsFactory.getRegisteredCredentials();
         return new User.Builder(registeredCredentials).firstName(FIRST_NAME).lastName(LAST_NAME)
                 .companyName(COMPANY).contactInfo(VALID_CONTACT_INFO).build();
