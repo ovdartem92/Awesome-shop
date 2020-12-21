@@ -70,7 +70,7 @@ public class SearchTest extends BaseConfigurationTest {
     public void checkTheSearchFieldByPositiveSearchData(String searchData) {
         searchResultPage.typeSearchQuery(searchData);
         searchResultPage.clickSearchButton();
-        Assert.assertEquals(searchResultPage.getFirstSearchResultFragment().getName(), expectedResultIPod,
+        Assert.assertEquals(searchResultPage.getAllSearchResultsList().get(0).getName(), expectedResultIPod,
                 expectedResultIPod + " is not displayed.");
     }
 
@@ -81,7 +81,7 @@ public class SearchTest extends BaseConfigurationTest {
         String iPod = "iPod";
         String enter = "\n";
         searchResultPage.typeSearchQuery(iPod + enter);
-        Assert.assertEquals(searchResultPage.getFirstSearchResultFragment().getName(), expectedResultIPod,
+        Assert.assertEquals(searchResultPage.getAllSearchResultsList().get(0).getName(), expectedResultIPod,
                 expectedResultIPod + " wasn't found in search result");
     }
 
@@ -91,12 +91,11 @@ public class SearchTest extends BaseConfigurationTest {
     public void checkTheSearchResultByProductCategory() {
         String iMacCategory = "      Mac";
         String expectedResult = "iMac";
-        searchResultPage
-                .typeSearchQuery(iMacCategory)
-                .clickSearchButton()
-                .selectCategory(iMacCategory)
-                .clickSearchButtonOnSearchResultPage();
-        Assert.assertEquals(searchResultPage.getFirstSearchResultFragment().getName(), expectedResult,
+        searchResultPage.typeSearchQuery(iMacCategory);
+        searchResultPage.clickSearchButton();
+        searchResultPage.selectCategory(iMacCategory);
+        searchResultPage.clickSearchButtonOnSearchResultPage();
+        Assert.assertEquals(searchResultPage.getAllSearchResultsList().get(0).getName(), expectedResult,
                 expectedResult + " wasn't found in search result");
     }
 
@@ -104,12 +103,11 @@ public class SearchTest extends BaseConfigurationTest {
             "EPMFARMATS-13134: check the search result by product description\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13134", groups = "positive")
     public void checkTheSearchResultByProductDescription() {
-        searchResultPage
-                .typeSearchQuery(expectedResultIPod)
-                .clickSearchButton()
-                .setDescriptionCheckbox(true)
-                .clickSearchButtonOnSearchResultPage();
-        Assert.assertEquals(searchResultPage.getFirstSearchResultFragment().getName(), expectedResultIPod,
+        searchResultPage.typeSearchQuery(expectedResultIPod);
+        searchResultPage.clickSearchButton();
+        searchResultPage.setDescriptionCheckbox(true);
+        searchResultPage.clickSearchButtonOnSearchResultPage();
+        Assert.assertEquals(searchResultPage.getAllSearchResultsList().get(0).getName(), expectedResultIPod,
                 expectedResultIPod + " wasn't found in search result");
     }
 }

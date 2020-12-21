@@ -49,10 +49,6 @@ public class SearchResultPage extends BasePage {
         return label.getText();
     }
 
-    public SearchResultFragment getFirstSearchResultFragment() {
-        return getAllSearchResultsList().get(0);
-    }
-
     public List<SearchResultFragment> getAllSearchResultsList() {
         By searchResultMessageLocator = By.xpath("//div[contains(@class,'product-layout')]");
         waitForAllElementsPresenceLocated(searchResultMessageLocator);
