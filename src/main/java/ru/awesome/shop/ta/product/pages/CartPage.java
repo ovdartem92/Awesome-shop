@@ -6,9 +6,7 @@ import ru.awesome.shop.ta.framework.browser.Browser;
 import ru.awesome.shop.ta.framework.ui.components.Button;
 import ru.awesome.shop.ta.framework.ui.components.Label;
 import ru.awesome.shop.ta.framework.ui.components.TextField;
-import ru.awesome.shop.ta.product.pages.fragments.CartItemFragment;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -16,17 +14,6 @@ import static ru.awesome.shop.ta.framework.ui.components.CommonPageElement.waitF
 import static ru.awesome.shop.ta.framework.ui.components.CommonPageElement.waitForPageElementInvisibilityLocated;
 
 public class CartPage extends BasePage {
-
-    public List<CartItemFragment> getAllCartItems() {
-        By cartItemLocator = By.xpath("//div[@class='table-responsive']//tbody//tr");
-        waitForAllElementsPresenceLocated(cartItemLocator);
-        List<WebElement> cartItemElements = Browser.getInstance().getWrappedDriver().findElements(cartItemLocator);
-        List<CartItemFragment> cartItemFragments = new ArrayList<>();
-        for (WebElement element : cartItemElements) {
-            cartItemFragments.add(new CartItemFragment(element));
-        }
-        return cartItemFragments;
-    }
 
     public HomePage clickContinueButton() {
         By continueButtonLocator = By.xpath("//div[@class='pull-right']//a[contains(text(),'Continue')]");
