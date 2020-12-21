@@ -73,8 +73,8 @@ public class SearchTest extends BaseConfigurationTest {
         homePage.typeSearchQuery(searchData);
         SearchResultPage searchResultPage = homePage.clickSearchButton();
         List<SearchResultFragment> allSearchResults = searchResultPage.getAllSearchResults();
-        String actualFirstSearchResult = allSearchResults.get(0).getName();
-        Assert.assertEquals(actualFirstSearchResult, expectedResult,
+        SearchResultFragment actualFirstSearchResult = allSearchResults.get(0);
+        Assert.assertEquals(actualFirstSearchResult.getName(), expectedResult,
                 expectedResult + " is not displayed.");
     }
 
@@ -90,8 +90,8 @@ public class SearchTest extends BaseConfigurationTest {
         homePage.typeSearchQuery(iPod + enter);
         SearchResultPage searchResultPage = new SearchResultPage();
         List<SearchResultFragment> allSearchResults = searchResultPage.getAllSearchResults();
-        String actualFirstSearchResult = allSearchResults.get(0).getName();
-        Assert.assertEquals(actualFirstSearchResult, expectedResult,
+        SearchResultFragment actualFirstSearchResult = allSearchResults.get(0);
+        Assert.assertEquals(actualFirstSearchResult.getName(), expectedResult,
                 expectedResult + " wasn't found in search result");
     }
 
@@ -108,8 +108,8 @@ public class SearchTest extends BaseConfigurationTest {
         searchResultPage.selectCategory(iMacCategory);
         searchResultPage.clickSearchButtonOnSearchResultPage();
         List<SearchResultFragment> allSearchResults = searchResultPage.getAllSearchResults();
-        String actualFirstSearchResult = allSearchResults.get(0).getName();
-        Assert.assertEquals(actualFirstSearchResult, expectedResult,
+        SearchResultFragment actualFirstSearchResult = allSearchResults.get(0);
+        Assert.assertEquals(actualFirstSearchResult.getName(), expectedResult,
                 expectedResult + " wasn't found in search result");
     }
 
@@ -125,8 +125,8 @@ public class SearchTest extends BaseConfigurationTest {
         searchResultPage.setDescriptionCheckbox(true);
         searchResultPage.clickSearchButtonOnSearchResultPage();
         List<SearchResultFragment> allSearchResults = searchResultPage.getAllSearchResults();
-        String actualFirstSearchResult = allSearchResults.get(0).getName();
-        Assert.assertEquals(actualFirstSearchResult, expectedResult,
+        SearchResultFragment actualFirstSearchResult = allSearchResults.get(0);
+        Assert.assertEquals(actualFirstSearchResult.getName(), expectedResult,
                 expectedResult + " wasn't found in search result");
     }
 }
