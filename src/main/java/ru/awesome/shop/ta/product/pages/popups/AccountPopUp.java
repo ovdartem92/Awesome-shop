@@ -9,9 +9,9 @@ import ru.awesome.shop.ta.product.pages.AccountRegistrationPage;
 public class AccountPopUp {
 
     public AccountRegistrationPage clickRegistrationLink() {
-        By checkoutLinkLocator = By.xpath("//a[text()='Register']");
-        Link checkoutLink = new Link(checkoutLinkLocator);
-        checkoutLink.click();
+        By registrationLinkLocator = By.xpath("//a[text()='Register']");
+        Link registrationLink = new Link(registrationLinkLocator);
+        registrationLink.click();
         return new AccountRegistrationPage();
     }
 

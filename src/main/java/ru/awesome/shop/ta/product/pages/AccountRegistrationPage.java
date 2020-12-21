@@ -1,9 +1,11 @@
 package ru.awesome.shop.ta.product.pages;
 
 import org.openqa.selenium.By;
+import ru.awesome.shop.ta.framework.browser.Browser;
 import ru.awesome.shop.ta.framework.ui.components.*;
 
 public class AccountRegistrationPage extends BasePage {
+    private static final String REGISTRATION_PAGE_URL = "index.php?route=account/register";
 
     public AccountRegistrationPage typeFirstName(String firstName) {
         By firstNameLocator = By.id("input-firstname");
@@ -154,5 +156,10 @@ public class AccountRegistrationPage extends BasePage {
         By policyTitle = By.xpath("//h4[contains(text(),'Privacy Policy')]");
         Label policyLabel = new Label(policyTitle);
         return policyLabel.getText();
+    }
+
+    @Override
+    public void open() {
+        Browser.getInstance().navigate(BASE_URL.concat(REGISTRATION_PAGE_URL));
     }
 }
