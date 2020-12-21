@@ -49,8 +49,8 @@ public class SearchResultPage extends BasePage {
         return label.getText();
     }
 
-    public String getFirstSearchResultName() {
-        return getAllSearchResultsList().get(0).getName();
+    public SearchResultFragment getFirstSearchResult() {
+        return getAllSearchResultsList().get(0);
     }
 
     public List<SearchResultFragment> getAllSearchResultsList() {
