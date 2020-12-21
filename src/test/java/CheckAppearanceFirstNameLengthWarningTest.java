@@ -1,10 +1,8 @@
-package register;
-
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.awesome.shop.ta.product.pages.AccountRegistrationPage;
-import ru.awesome.shop.ta.product.pages.MainPage;
+import ru.awesome.shop.ta.product.pages.BasePage;
 import ru.awesome.shop.ta.utils.StringUtils;
 
 public class CheckAppearanceFirstNameLengthWarningTest extends BaseConfigurationTest {
@@ -17,7 +15,7 @@ public class CheckAppearanceFirstNameLengthWarningTest extends BaseConfiguration
     @BeforeMethod(description = "user registration with empty first name value",
             groups = {"all", "positive"})
     public void registration() {
-        registrationScreen = new MainPage()
+        registrationScreen = new BasePage()
                 .clickMyAccountLink()
                 .clickRegistrationLink()
                 .typeFirstName(emptyFirstName)

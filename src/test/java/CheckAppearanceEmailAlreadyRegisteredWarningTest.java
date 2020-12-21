@@ -1,32 +1,29 @@
-package register;
-
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.awesome.shop.ta.product.pages.AccountRegistrationPage;
-import ru.awesome.shop.ta.product.pages.MainPage;
+import ru.awesome.shop.ta.product.pages.BasePage;
 import ru.awesome.shop.ta.utils.StringUtils;
 
-public class CheckAppearanceFirstAddressLengthWarningTest extends BaseConfigurationTest {
+public class CheckAppearanceEmailAlreadyRegisteredWarningTest extends BaseConfigurationTest {
     private AccountRegistrationPage registrationScreen;
     private String text = StringUtils.getRandomString();
-    private String emptyFirstAddress = "";
-    private String email = text.concat("@mail.ru");
+    private String previouslyRegisteredEmail = "kebikov1995@mail.ru";
     private String region = "Bristol";
 
-    @BeforeMethod(description = "user registration with empty first address value",
+    @BeforeMethod(description = "user registration with already registered email",
             groups = {"all", "positive"})
     public void registration() {
-         registrationScreen = new MainPage()
+        registrationScreen = new BasePage()
                 .clickMyAccountLink()
                 .clickRegistrationLink()
                 .typeFirstName(text)
                 .typeLastName(text)
-                .typeEmail(email)
+                .typeEmail(previouslyRegisteredEmail)
                 .typeTelephone(text)
                 .typeFax(text)
                 .typeCompany(text)
-                .typeFirstAddress(emptyFirstAddress)
+                .typeFirstAddress(text)
                 .typeSecondAddress(text)
                 .typeCity(text)
                 .typePostcode(text)
@@ -37,10 +34,10 @@ public class CheckAppearanceFirstAddressLengthWarningTest extends BaseConfigurat
         registrationScreen.clickContinueButton();
     }
 
-    @Test(description = "***CheckAppearanceFirstAddressLengthWarning***\n" +
-            "EPMFARMATS-13160: check appearance Address 1 length warning\n" +
-            "https://jira.epam.com/jira/browse/EPMFARMATS-13160")
-    public void checkAppearanceFirstAddressLengthWarning() {
-        Assert.assertEquals(registrationScreen.getWarningMessage(), "Address 1 must be between 3 and 128 characters!");
+    @Test(description = "***CheckAppearanceEmailAlreadyRegisteredWarning***\n" +
+            "EPMFARMATS-13166: check appearance E-mail already registered warning\n" +
+            "https://jira.epam.com/jira/browse/EPMFARMATS-13166")
+    public void checkAppearanceEmailAlreadyRegisteredWarning() {
+        Assert.assertEquals(registrationScreen.getWarningMessage(), "Warning: E-Mail Address is already registered!");
     }
 }

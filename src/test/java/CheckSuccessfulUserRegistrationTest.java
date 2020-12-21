@@ -1,22 +1,20 @@
-package register;
-
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import ru.awesome.shop.ta.product.pages.AccountRegistrationPage;
-import ru.awesome.shop.ta.product.pages.MainPage;
+import ru.awesome.shop.ta.product.pages.BasePage;
+import ru.awesome.shop.ta.product.pages.SuccessfulAccountRegistrationPage;
 import ru.awesome.shop.ta.utils.StringUtils;
 
-public class CheckAppearancePrivacyPolicyWarningTest extends BaseConfigurationTest {
-    private AccountRegistrationPage registrationScreen;
+public class CheckSuccessfulUserRegistrationTest extends BaseConfigurationTest {
+    private SuccessfulAccountRegistrationPage registrationScreen;
     private String text = StringUtils.getRandomString();
     private String email = text.concat("@mail.ru");
     private String region = "Bristol";
 
-    @BeforeMethod(description = "user registration without a click on privacy policy checkbox",
+    @BeforeMethod(description = "successful user registration",
             groups = {"all", "positive"})
     public void registration() {
-        registrationScreen = new MainPage()
+        registrationScreen = new BasePage()
                 .clickMyAccountLink()
                 .clickRegistrationLink()
                 .typeFirstName(text)
@@ -31,14 +29,15 @@ public class CheckAppearancePrivacyPolicyWarningTest extends BaseConfigurationTe
                 .typePostcode(text)
                 .selectRegion(region)
                 .typePassword(text)
-                .typePasswordConfirm(text);
-        registrationScreen.clickContinueButton();
+                .typePasswordConfirm(text)
+                .clickAgreeWithPrivacyPolicyCheckbox()
+                .clickContinueButton();
     }
 
-    @Test(description = "***CheckAppearancePrivacyPolicyWarning***\n" +
-            "EPMFARMATS-13154: check appearance Privacy Policy warning\n" +
-            "https://jira.epam.com/jira/browse/EPMFARMATS-13154")
-    public void checkAppearancePrivacyPolicyWarning() {
-        Assert.assertEquals(registrationScreen.getDangerMessage(), "Warning: You must agree to the Privacy Policy!");
+    @Test(description = "***CheckSuccessfulUserRegistration***\n" +
+            "EPMFARMATS-13155: check successful user registration\n\n" +
+            "https://jira.epam.com/jira/browse/EPMFARMATS-13155")
+    public void checkSuccessfulUserRegistration() {
+        Assert.assertEquals(registrationScreen.getAccountCreationMessage(), "Your Account Has Been Created!");
     }
 }

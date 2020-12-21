@@ -1,26 +1,24 @@
-package register;
-
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.awesome.shop.ta.product.pages.AccountRegistrationPage;
-import ru.awesome.shop.ta.product.pages.MainPage;
+import ru.awesome.shop.ta.product.pages.BasePage;
 import ru.awesome.shop.ta.utils.StringUtils;
 
-public class CheckAppearanceFirstNameInvalidWarningTest extends BaseConfigurationTest {
+public class CheckAppearanceLastNameInvalidWarningTest extends BaseConfigurationTest {
     private AccountRegistrationPage registrationScreen;
     private String text = StringUtils.getRandomString();
-    private String invalidFirstName = text.concat("$");
+    private String invalidLastName = text.concat("$");
     private String email = text.concat("@mail.ru");
     private String region = "Bristol";
 
-    @BeforeMethod(description = "user registration with invalid first name value",
+    @BeforeMethod(description = "user registration with invalid last name value",
             groups = {"all", "negative"})
     public void registration() {
-        registrationScreen = new MainPage()
+        registrationScreen = new BasePage()
                 .clickMyAccountLink()
                 .clickRegistrationLink()
-                .typeFirstName(invalidFirstName)
+                .typeFirstName(invalidLastName)
                 .typeLastName(text)
                 .typeEmail(email)
                 .typeTelephone(text)
@@ -37,11 +35,11 @@ public class CheckAppearanceFirstNameInvalidWarningTest extends BaseConfiguratio
         registrationScreen.clickContinueButton();
     }
 
-    @Test(description = "***CheckAppearanceFirstNameInvalidWarning***\n" +
-            "EPMFARMATS-13181: check appearance First Name invalid warning\n" +
-            "https://jira.epam.com/jira/browse/EPMFARMATS-13181")
-    public void checkAppearanceFirstNameInvalidWarning() {
+    @Test(description = "***CheckAppearanceLastNameInvalidWarning***\n" +
+            "EPMFARMATS-13182: check appearance Last Name invalid warning\n" +
+            "https://jira.epam.com/jira/browse/EPMFARMATS-13182")
+    public void checkAppearanceLastNameInvalidWarning() {
         Assert.assertEquals(registrationScreen.getWarningMessage(),
-                "First Name shouldn't contains space character, special symbols, numerals");
+                "Last Name shouldn't contains space character, special symbols, numerals.");
     }
 }

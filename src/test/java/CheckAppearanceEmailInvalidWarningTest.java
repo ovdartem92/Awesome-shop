@@ -1,28 +1,25 @@
-package register;
-
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.awesome.shop.ta.product.pages.AccountRegistrationPage;
-import ru.awesome.shop.ta.product.pages.MainPage;
+import ru.awesome.shop.ta.product.pages.BasePage;
 import ru.awesome.shop.ta.utils.StringUtils;
 
-public class CheckAppearanceLastNameLengthWarningTest extends BaseConfigurationTest {
+public class CheckAppearanceEmailInvalidWarningTest extends BaseConfigurationTest {
     private AccountRegistrationPage registrationScreen;
     private String text = StringUtils.getRandomString();
-    private String emptyLastName = "";
-    private String email = text.concat("@mail.ru");
+    private String emptyEmail = "";
     private String region = "Bristol";
 
-    @BeforeMethod(description = "user registration with empty last name value",
+    @BeforeMethod(description = "user registration with empty email value",
             groups = {"all", "positive"})
     public void registration() {
-        registrationScreen = new MainPage()
+        registrationScreen = new BasePage()
                 .clickMyAccountLink()
                 .clickRegistrationLink()
                 .typeFirstName(text)
-                .typeLastName(emptyLastName)
-                .typeEmail(email)
+                .typeLastName(text)
+                .typeEmail(emptyEmail)
                 .typeTelephone(text)
                 .typeFax(text)
                 .typeCompany(text)
@@ -37,10 +34,10 @@ public class CheckAppearanceLastNameLengthWarningTest extends BaseConfigurationT
         registrationScreen.clickContinueButton();
     }
 
-    @Test(description = "***CheckAppearanceLastNameLengthWarning***\n" +
-            "EPMFARMATS-13157: check appearance Last Name length warning\n" +
-            "https://jira.epam.com/jira/browse/EPMFARMATS-13157")
-    public void checkAppearanceLastNameLengthWarning() {
-        Assert.assertEquals(registrationScreen.getWarningMessage(), "Last Name must be between 1 and 32 characters!");
+    @Test(description = "***CheckAppearanceEmailInvalidWarning***\n" +
+            "EPMFARMATS-13158: check appearance E-mail invalid warning\n" +
+            "https://jira.epam.com/jira/browse/EPMFARMATS-13158")
+    public void checkAppearanceEmailInvalidWarning() {
+        Assert.assertEquals(registrationScreen.getWarningMessage(), "E-Mail Address does not appear to be valid!");
     }
 }

@@ -1,34 +1,32 @@
-package register;
-
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.awesome.shop.ta.product.pages.AccountRegistrationPage;
-import ru.awesome.shop.ta.product.pages.MainPage;
+import ru.awesome.shop.ta.product.pages.BasePage;
 import ru.awesome.shop.ta.utils.StringUtils;
 
-public class CheckAppearanceCityLengthWarningTest extends BaseConfigurationTest {
+public class CheckAppearanceLastNameLengthWarningTest extends BaseConfigurationTest {
     private AccountRegistrationPage registrationScreen;
     private String text = StringUtils.getRandomString();
-    private String emptyCity = "";
+    private String emptyLastName = "";
     private String email = text.concat("@mail.ru");
     private String region = "Bristol";
 
-    @BeforeMethod(description = "user registration with empty city value",
+    @BeforeMethod(description = "user registration with empty last name value",
             groups = {"all", "positive"})
     public void registration() {
-        registrationScreen = new MainPage()
+        registrationScreen = new BasePage()
                 .clickMyAccountLink()
                 .clickRegistrationLink()
                 .typeFirstName(text)
-                .typeLastName(text)
+                .typeLastName(emptyLastName)
                 .typeEmail(email)
                 .typeTelephone(text)
                 .typeFax(text)
                 .typeCompany(text)
                 .typeFirstAddress(text)
                 .typeSecondAddress(text)
-                .typeCity(emptyCity)
+                .typeCity(text)
                 .typePostcode(text)
                 .selectRegion(region)
                 .typePassword(text)
@@ -37,10 +35,10 @@ public class CheckAppearanceCityLengthWarningTest extends BaseConfigurationTest 
         registrationScreen.clickContinueButton();
     }
 
-    @Test(description = "***CheckAppearanceCityLengthWarning***\n" +
-            "EPMFARMATS-13161: check appearance City length warning\n" +
-            "https://jira.epam.com/jira/browse/EPMFARMATS-13161")
-    public void checkAppearanceCityLengthWarning() {
-        Assert.assertEquals(registrationScreen.getWarningMessage(), "City must be between 2 and 128 characters!");
+    @Test(description = "***CheckAppearanceLastNameLengthWarning***\n" +
+            "EPMFARMATS-13157: check appearance Last Name length warning\n" +
+            "https://jira.epam.com/jira/browse/EPMFARMATS-13157")
+    public void checkAppearanceLastNameLengthWarning() {
+        Assert.assertEquals(registrationScreen.getWarningMessage(), "Last Name must be between 1 and 32 characters!");
     }
 }

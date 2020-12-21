@@ -1,23 +1,21 @@
-package register;
-
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.awesome.shop.ta.product.pages.AccountRegistrationPage;
-import ru.awesome.shop.ta.product.pages.MainPage;
+import ru.awesome.shop.ta.product.pages.BasePage;
 import ru.awesome.shop.ta.utils.StringUtils;
 
-public class CheckAppearanceCityInvalidWarningTest extends BaseConfigurationTest {
+public class CheckAppearancePasswordLengthWarningTest extends BaseConfigurationTest {
     private AccountRegistrationPage registrationScreen;
     private String text = StringUtils.getRandomString();
-    private String invalidCity = text.concat("$");
+    private String emptyPassword = "";
     private String email = text.concat("@mail.ru");
     private String region = "Bristol";
 
-    @BeforeMethod(description = "user registration with invalid city value",
-            groups = {"all", "negative"})
+    @BeforeMethod(description = "user registration with empty password value",
+            groups = {"all", "positive"})
     public void registration() {
-        registrationScreen = new MainPage()
+        registrationScreen = new BasePage()
                 .clickMyAccountLink()
                 .clickRegistrationLink()
                 .typeFirstName(text)
@@ -28,19 +26,19 @@ public class CheckAppearanceCityInvalidWarningTest extends BaseConfigurationTest
                 .typeCompany(text)
                 .typeFirstAddress(text)
                 .typeSecondAddress(text)
-                .typeCity(invalidCity)
+                .typeCity(text)
                 .typePostcode(text)
                 .selectRegion(region)
-                .typePassword(text)
+                .typePassword(emptyPassword)
                 .typePasswordConfirm(text)
                 .clickAgreeWithPrivacyPolicyCheckbox();
         registrationScreen.clickContinueButton();
     }
 
-    @Test(description = "***CheckAppearanceCityInvalidWarning***\n" +
-            "EPMFARMATS-13184: check appearance City invalid warning\n" +
-            "https://jira.epam.com/jira/browse/EPMFARMATS-13184")
-    public void checkAppearanceCityInvalidWarning() {
-        Assert.assertEquals(registrationScreen.getWarningMessage(), "City shouldn't contains special symbols and numerals!");
+    @Test(description = "***CheckAppearancePasswordLengthWarning***\n" +
+            "EPMFARMATS-13164: check appearance Password length warning\n" +
+            "https://jira.epam.com/jira/browse/EPMFARMATS-13164")
+    public void checkAppearancePasswordLengthWarning() {
+        Assert.assertEquals(registrationScreen.getWarningMessage(), "Password must be between 4 and 20 characters!");
     }
 }

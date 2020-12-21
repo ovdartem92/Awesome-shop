@@ -1,10 +1,8 @@
-package register;
-
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.awesome.shop.ta.product.pages.AccountRegistrationPage;
-import ru.awesome.shop.ta.product.pages.MainPage;
+import ru.awesome.shop.ta.product.pages.BasePage;
 import ru.awesome.shop.ta.utils.StringUtils;
 
 public class CheckAppearanceTelephoneInvalidWarningTest extends BaseConfigurationTest {
@@ -17,7 +15,7 @@ public class CheckAppearanceTelephoneInvalidWarningTest extends BaseConfiguratio
     @BeforeMethod(description = "user registration with invalid telephone number",
             groups = {"all", "negative"})
     public void registration() {
-        registrationScreen = new MainPage()
+        registrationScreen = new BasePage()
                 .clickMyAccountLink()
                 .clickRegistrationLink()
                 .typeFirstName(text)

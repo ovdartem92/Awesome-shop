@@ -1,26 +1,24 @@
-package register;
-
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.awesome.shop.ta.product.pages.AccountRegistrationPage;
-import ru.awesome.shop.ta.product.pages.MainPage;
+import ru.awesome.shop.ta.product.pages.BasePage;
 import ru.awesome.shop.ta.utils.StringUtils;
 
-public class CheckAppearanceLastNameInvalidWarningTest extends BaseConfigurationTest {
+public class CheckAppearancePasswordConfirmationLengthWarningTest extends BaseConfigurationTest {
     private AccountRegistrationPage registrationScreen;
     private String text = StringUtils.getRandomString();
-    private String invalidLastName = text.concat("$");
+    private String emptyPasswordConfirm = "";
     private String email = text.concat("@mail.ru");
     private String region = "Bristol";
 
-    @BeforeMethod(description = "user registration with invalid last name value",
-            groups = {"all", "negative"})
+    @BeforeMethod(description = "user registration with empty password confirm value",
+            groups = {"all", "positive"})
     public void registration() {
-        registrationScreen = new MainPage()
+        registrationScreen = new BasePage()
                 .clickMyAccountLink()
                 .clickRegistrationLink()
-                .typeFirstName(invalidLastName)
+                .typeFirstName(text)
                 .typeLastName(text)
                 .typeEmail(email)
                 .typeTelephone(text)
@@ -32,16 +30,15 @@ public class CheckAppearanceLastNameInvalidWarningTest extends BaseConfiguration
                 .typePostcode(text)
                 .selectRegion(region)
                 .typePassword(text)
-                .typePasswordConfirm(text)
+                .typePasswordConfirm(emptyPasswordConfirm)
                 .clickAgreeWithPrivacyPolicyCheckbox();
         registrationScreen.clickContinueButton();
     }
 
-    @Test(description = "***CheckAppearanceLastNameInvalidWarning***\n" +
-            "EPMFARMATS-13182: check appearance Last Name invalid warning\n" +
-            "https://jira.epam.com/jira/browse/EPMFARMATS-13182")
-    public void checkAppearanceLastNameInvalidWarning() {
-        Assert.assertEquals(registrationScreen.getWarningMessage(),
-                "Last Name shouldn't contains space character, special symbols, numerals.");
+    @Test(description = "***CheckAppearancePasswordConfirmationLengthWarning***\n" +
+            "EPMFARMATS-13165: check appearance Password Confirmation warning\n" +
+            "https://jira.epam.com/jira/browse/EPMFARMATS-13165")
+    public void checkAppearancePasswordConfirmationLengthWarning() {
+        Assert.assertEquals(registrationScreen.getWarningMessage(), "Password confirmation does not match password!");
     }
 }

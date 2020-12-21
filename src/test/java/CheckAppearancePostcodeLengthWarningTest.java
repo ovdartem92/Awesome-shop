@@ -1,23 +1,21 @@
-package register;
-
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.awesome.shop.ta.product.pages.AccountRegistrationPage;
-import ru.awesome.shop.ta.product.pages.MainPage;
+import ru.awesome.shop.ta.product.pages.BasePage;
 import ru.awesome.shop.ta.utils.StringUtils;
 
-public class CheckAppearancePasswordConfirmationLengthWarningTest extends BaseConfigurationTest {
+public class CheckAppearancePostcodeLengthWarningTest extends BaseConfigurationTest {
     private AccountRegistrationPage registrationScreen;
     private String text = StringUtils.getRandomString();
-    private String emptyPasswordConfirm = "";
+    private String emptyPostCode = "";
     private String email = text.concat("@mail.ru");
     private String region = "Bristol";
 
-    @BeforeMethod(description = "user registration with empty password confirm value",
+    @BeforeMethod(description = "user registration with empty postcode value",
             groups = {"all", "positive"})
     public void registration() {
-        registrationScreen = new MainPage()
+        registrationScreen = new BasePage()
                 .clickMyAccountLink()
                 .clickRegistrationLink()
                 .typeFirstName(text)
@@ -29,18 +27,18 @@ public class CheckAppearancePasswordConfirmationLengthWarningTest extends BaseCo
                 .typeFirstAddress(text)
                 .typeSecondAddress(text)
                 .typeCity(text)
-                .typePostcode(text)
+                .typePostcode(emptyPostCode)
                 .selectRegion(region)
                 .typePassword(text)
-                .typePasswordConfirm(emptyPasswordConfirm)
+                .typePasswordConfirm(text)
                 .clickAgreeWithPrivacyPolicyCheckbox();
         registrationScreen.clickContinueButton();
     }
 
-    @Test(description = "***CheckAppearancePasswordConfirmationLengthWarning***\n" +
-            "EPMFARMATS-13165: check appearance Password Confirmation warning\n" +
-            "https://jira.epam.com/jira/browse/EPMFARMATS-13165")
-    public void checkAppearancePasswordConfirmationLengthWarning() {
-        Assert.assertEquals(registrationScreen.getWarningMessage(), "Password confirmation does not match password!");
+    @Test(description = "***CheckAppearancePostcodeLengthWarning***\n" +
+            "EPMFARMATS-13163: check appearance Postcode length warning\n" +
+            "https://jira.epam.com/jira/browse/EPMFARMATS-13163")
+    public void checkAppearancePostcodeLengthWarning() {
+        Assert.assertEquals(registrationScreen.getWarningMessage(), "Postcode must be between 2 and 10 characters!");
     }
 }

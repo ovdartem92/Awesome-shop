@@ -1,24 +1,24 @@
-package register;
-
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.awesome.shop.ta.product.pages.AccountRegistrationPage;
-import ru.awesome.shop.ta.product.pages.MainPage;
+import ru.awesome.shop.ta.product.pages.BasePage;
 import ru.awesome.shop.ta.utils.StringUtils;
 
-public class CheckAppearanceRegionSelectedWarningTest extends BaseConfigurationTest {
+public class CheckAppearanceFirstNameInvalidWarningTest extends BaseConfigurationTest {
     private AccountRegistrationPage registrationScreen;
     private String text = StringUtils.getRandomString();
+    private String invalidFirstName = text.concat("$");
     private String email = text.concat("@mail.ru");
+    private String region = "Bristol";
 
-    @BeforeMethod(description = "user registration without select a region value",
-            groups = {"all", "positive"})
+    @BeforeMethod(description = "user registration with invalid first name value",
+            groups = {"all", "negative"})
     public void registration() {
-        registrationScreen = new MainPage()
+        registrationScreen = new BasePage()
                 .clickMyAccountLink()
                 .clickRegistrationLink()
-                .typeFirstName(text)
+                .typeFirstName(invalidFirstName)
                 .typeLastName(text)
                 .typeEmail(email)
                 .typeTelephone(text)
@@ -28,21 +28,18 @@ public class CheckAppearanceRegionSelectedWarningTest extends BaseConfigurationT
                 .typeSecondAddress(text)
                 .typeCity(text)
                 .typePostcode(text)
+                .selectRegion(region)
                 .typePassword(text)
                 .typePasswordConfirm(text)
                 .clickAgreeWithPrivacyPolicyCheckbox();
         registrationScreen.clickContinueButton();
     }
 
-    @Test(description = "***CheckAppearanceRegionSelectedWarning***\n" +
-            "EPMFARMATS-13162: check appearance Region / State isn't selected warning\n" +
-            "https://jira.epam.com/jira/browse/EPMFARMATS-13162")
-    public void checkAppearanceRegionSelectedWarning() {
-        try {
-            Thread.sleep(10000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        Assert.assertEquals(registrationScreen.getWarningMessage(), "Please select a region / state!");
+    @Test(description = "***CheckAppearanceFirstNameInvalidWarning***\n" +
+            "EPMFARMATS-13181: check appearance First Name invalid warning\n" +
+            "https://jira.epam.com/jira/browse/EPMFARMATS-13181")
+    public void checkAppearanceFirstNameInvalidWarning() {
+        Assert.assertEquals(registrationScreen.getWarningMessage(),
+                "First Name shouldn't contains space character, special symbols, numerals");
     }
 }
