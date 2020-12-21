@@ -97,7 +97,7 @@ public class SearchTest extends BaseConfigurationTest {
                 .selectCategory(iMacCategory)
                 .clickSearchButtonAfterSearch();
         Assert.assertEquals(searchResultPage.getFirstSearchResultFragment().getName(), expectedResult,
-                iMacCategory + " wasn't found in search result");
+                expectedResult + " wasn't found in search result");
     }
 
     @Test(description = "***SearchResultByProductDescription***\n" +
