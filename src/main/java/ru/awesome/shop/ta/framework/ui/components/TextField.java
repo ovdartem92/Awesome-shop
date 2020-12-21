@@ -22,4 +22,11 @@ public class TextField extends CommonPageElement {
         waitForPageElementPresenceLocated(locator);
         Browser.getInstance().sendKeys(locator, textForType);
     }
+
+    public String getAttribute(String value){
+        Objects.requireNonNull(value, "Value can not be null");
+        waitForPageElementPresenceLocated(locator);
+        String attribute = Browser.getInstance().getAttribute(locator, value);
+        return attribute;
+    }
 }
