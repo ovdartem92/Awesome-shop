@@ -29,7 +29,7 @@ public class SearchResultPage extends BasePage {
         return this;
     }
 
-    public SearchResultPage setDescriptionCheckbox(Boolean shouldBeChecked) {
+    public SearchResultPage setDescriptionCheckbox(boolean shouldBeChecked) {
         By descriptionCheckboxLocator = By.xpath("//input[@name='description']");
         Checkbox descriptionCheckbox = new Checkbox(descriptionCheckboxLocator);
         descriptionCheckbox.setSelected(shouldBeChecked);
