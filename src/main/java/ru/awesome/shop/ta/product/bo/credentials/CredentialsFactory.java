@@ -38,11 +38,11 @@ public final class CredentialsFactory {
         return new Credentials(invalidEmail, PASSWORD);
     }
 
-    public static Credentials generateCredentialsWithEmptyPassword() {
-        return new Credentials(EMAIL, "");
+    public static Credentials generateCredentialsWithCustomPassword(String password) {
+        return new Credentials(EMAIL, password);
     }
 
-    public static Credentials generateCredentialsWithEmptyEmail() {
-        return new Credentials("", PASSWORD);
+    public static Credentials generateCredentialsWithCustomEmail(String email) {
+        return new Credentials(email, PASSWORD);
     }
 }
