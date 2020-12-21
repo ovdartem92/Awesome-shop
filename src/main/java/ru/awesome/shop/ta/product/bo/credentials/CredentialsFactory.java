@@ -1,7 +1,6 @@
 package ru.awesome.shop.ta.product.bo.credentials;
 
 import org.apache.commons.lang3.RandomStringUtils;
-import ru.awesome.shop.ta.utils.TestDataReader;
 
 import static java.lang.String.format;
 
@@ -14,14 +13,6 @@ public final class CredentialsFactory {
 
     private CredentialsFactory() {
         throw new AssertionError(format("Creation of instance of %s is prohibited.", CredentialsFactory.class));
-    }
-
-    public static Credentials getRegisteredCredentials() {
-        String registeredEmail = TestDataReader.getTestData("testData.email",
-                                 TestDataReader.getStageData("email"));
-        String registeredPassword = TestDataReader.getTestData("testData.password",
-                                    TestDataReader.getStageData("password"));
-        return new Credentials(registeredEmail, registeredPassword);
     }
 
     public static Credentials generateValidCredentials() {
@@ -38,11 +29,11 @@ public final class CredentialsFactory {
         return new Credentials(invalidEmail, PASSWORD);
     }
 
-    public static Credentials generateCredentialsWithCustomPassword(String password) {
-        return new Credentials(EMAIL, password);
+    public static Credentials generateCredentialsWithEmptyPassword() {
+        return new Credentials(EMAIL, "");
     }
 
-    public static Credentials generateCredentialsWithCustomEmail(String email) {
-        return new Credentials(email, PASSWORD);
+    public static Credentials generateCredentialsWithEmptyEmail() {
+        return new Credentials("", PASSWORD);
     }
 }
