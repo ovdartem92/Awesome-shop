@@ -5,10 +5,12 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.awesome.shop.ta.product.pages.SearchResultPage;
+import ru.awesome.shop.ta.product.pages.fragments.SearchResultFragment;
+
+import javax.naming.directory.SearchResult;
+import java.util.List;
 
 public class SearchTest extends BaseConfigurationTest {
-    private final String expectedResultIPod = "iPod Classic";
-    SearchResultPage searchResultPage = new SearchResultPage();
 
     @DataProvider(name = "negativeSearchData")
     public Object[][] provideNegativeTestData() {
@@ -25,7 +27,7 @@ public class SearchTest extends BaseConfigurationTest {
         return new Object[][]{
                 {"Classic iPod",},
                 {"Class Pod"},
-                {expectedResultIPod},
+                {"iPod Classic"},
                 {"iPo"},
                 {"IPOD"},
         };
@@ -34,6 +36,7 @@ public class SearchTest extends BaseConfigurationTest {
     @BeforeMethod(description = "open search-page",
             groups = {"all", "negative", "positive"})
     public void openSearchResultPage() {
+        SearchResultPage searchResultPage = new SearchResultPage();
         searchResultPage.open();
     }
 
@@ -49,6 +52,7 @@ public class SearchTest extends BaseConfigurationTest {
             dataProvider = "negativeSearchData", groups = "negative")
     public void checkTheSearchFieldByNegativeSearchData(String searchData) {
         String expectedResult = "There is no product that matches the search criteria.";
+        SearchResultPage searchResultPage = new SearchResultPage();
         searchResultPage.typeSearchQuery(searchData);
         searchResultPage.clickSearchButton();
         Assert.assertEquals(searchResultPage.getIncorrectSearchCriteriaMessage(), expectedResult,
@@ -68,10 +72,14 @@ public class SearchTest extends BaseConfigurationTest {
             "https://jira.epam.com/jira/browse/EPMFARMATS-13131\n",
             dataProvider = "positiveSearchData", groups = "positive")
     public void checkTheSearchFieldByPositiveSearchData(String searchData) {
+        SearchResultPage searchResultPage = new SearchResultPage();
+        String expectedResult = "iPod Classic";
         searchResultPage.typeSearchQuery(searchData);
         searchResultPage.clickSearchButton();
-        Assert.assertEquals(searchResultPage.getAllSearchResultsList().get(0).getName(), expectedResultIPod,
-                expectedResultIPod + " is not displayed.");
+        List<SearchResultFragment> allSearchResults = searchResultPage.getAllSearchResults();
+        String actualFirstSearchResult = allSearchResults.get(0).getName();
+        Assert.assertEquals(actualFirstSearchResult, expectedResult,
+                expectedResult + " is not displayed.");
     }
 
     @Test(description = "***SearchResultByPressingTheEnter***\n" +
@@ -80,9 +88,13 @@ public class SearchTest extends BaseConfigurationTest {
     public void checkTheSearchResultByPressingTheEnterKey() {
         String iPod = "iPod";
         String enter = "\n";
+        String expectedResult = "iPod Classic";
+        SearchResultPage searchResultPage = new SearchResultPage();
         searchResultPage.typeSearchQuery(iPod + enter);
-        Assert.assertEquals(searchResultPage.getAllSearchResultsList().get(0).getName(), expectedResultIPod,
-                expectedResultIPod + " wasn't found in search result");
+        List<SearchResultFragment> allSearchResults = searchResultPage.getAllSearchResults();
+        String actualFirstSearchResult = allSearchResults.get(0).getName();
+        Assert.assertEquals(actualFirstSearchResult, expectedResult,
+                expectedResult + " wasn't found in search result");
     }
 
     @Test(description = "***SearchResultByProductCategory***\n" +
@@ -91,11 +103,14 @@ public class SearchTest extends BaseConfigurationTest {
     public void checkTheSearchResultByProductCategory() {
         String iMacCategory = "      Mac";
         String expectedResult = "iMac";
+        SearchResultPage searchResultPage = new SearchResultPage();
         searchResultPage.typeSearchQuery(iMacCategory);
         searchResultPage.clickSearchButton();
         searchResultPage.selectCategory(iMacCategory);
         searchResultPage.clickSearchButtonOnSearchResultPage();
-        Assert.assertEquals(searchResultPage.getAllSearchResultsList().get(0).getName(), expectedResult,
+        List<SearchResultFragment> allSearchResults = searchResultPage.getAllSearchResults();
+        String actualFirstSearchResult = allSearchResults.get(0).getName();
+        Assert.assertEquals(actualFirstSearchResult, expectedResult,
                 expectedResult + " wasn't found in search result");
     }
 
@@ -103,11 +118,15 @@ public class SearchTest extends BaseConfigurationTest {
             "EPMFARMATS-13134: check the search result by product description\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13134", groups = "positive")
     public void checkTheSearchResultByProductDescription() {
-        searchResultPage.typeSearchQuery(expectedResultIPod);
+        SearchResultPage searchResultPage = new SearchResultPage();
+        String expectedResult = "iPod Classic";
+        searchResultPage.typeSearchQuery(expectedResult);
         searchResultPage.clickSearchButton();
         searchResultPage.setDescriptionCheckbox(true);
         searchResultPage.clickSearchButtonOnSearchResultPage();
-        Assert.assertEquals(searchResultPage.getAllSearchResultsList().get(0).getName(), expectedResultIPod,
-                expectedResultIPod + " wasn't found in search result");
+        List<SearchResultFragment> allSearchResults = searchResultPage.getAllSearchResults();
+        String actualFirstSearchResult = allSearchResults.get(0).getName();
+        Assert.assertEquals(actualFirstSearchResult, expectedResult,
+                expectedResult + " wasn't found in search result");
     }
 }

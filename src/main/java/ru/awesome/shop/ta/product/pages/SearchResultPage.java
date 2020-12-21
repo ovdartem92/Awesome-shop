@@ -49,7 +49,7 @@ public class SearchResultPage extends BasePage {
         return label.getText();
     }
 
-    public List<SearchResultFragment> getAllSearchResultsList() {
+    public List<SearchResultFragment> getAllSearchResults() {
         By searchResultMessageLocator = By.xpath("//div[contains(@class,'product-layout')]");
         waitForAllElementsPresenceLocated(searchResultMessageLocator);
         List<SearchResultFragment> searchResultPageList = new ArrayList<>();
