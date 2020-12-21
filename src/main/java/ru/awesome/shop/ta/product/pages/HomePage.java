@@ -11,7 +11,7 @@ import java.util.List;
 import static ru.awesome.shop.ta.framework.ui.components.CommonPageElement.waitForAllElementsPresenceLocated;
 
 public class HomePage extends BasePage {
-    private static final String HOME_PAGE_PATH = "index.php?route=common/home";
+    private static final String HOME_PAGE_URL = "index.php?route=common/home";
 
     public List<HomeProductFragment> getAllProducts() {
         By productLocator = By.xpath("//div[@class='product-thumb transition']");
@@ -25,7 +25,7 @@ public class HomePage extends BasePage {
     }
 
     public HomePage open() {
-        Browser.getInstance().navigate(BASE_URL + HOME_PAGE_PATH);
+        Browser.getInstance().navigate(BASE_URL.concat(HOME_PAGE_URL));
         return this;
     }
 }

@@ -1,4 +1,5 @@
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import ru.awesome.shop.ta.product.pages.CartPage;
@@ -12,11 +13,16 @@ import java.util.List;
 public class CartTest extends BaseConfigurationTest {
     private HomePage homePage = new HomePage();
 
+    @BeforeMethod(description = "open home page",
+            groups = {"all", "negative", "positive"})
+    public void openHomePage() {
+        homePage.open();
+    }
+
     @Test(description = "***CanAddItemIntoCart***\n" +
             "EPMFARMATS-13145: Check that user can add product to cart\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13145")
     public void checkItemIntoCart() {
-        homePage.open();
         List<HomeProductFragment> homePageProducts = homePage.getAllProducts();
         HomeProductFragment homeProductFragment = homePageProducts.get(0);
         String productNameFromHomePage = homeProductFragment.getProductName();
@@ -34,10 +40,9 @@ public class CartTest extends BaseConfigurationTest {
             "EPMFARMATS-13150: Check that user can add more than one product to cart\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13150")
     public void checkAddToCartMoreProducts() {
-        homePage.open();
         List<HomeProductFragment> homePageProducts = homePage.getAllProducts();
-        HomeProductFragment firstHomeProductFragment = homePageProducts.get(0);
-        HomeProductFragment secondHomeProductFragment = homePageProducts.get(1);
+        HomeProductFragment firstHomeProductFragment = homePageProducts.get(1);
+        HomeProductFragment secondHomeProductFragment = homePageProducts.get(0);
         firstHomeProductFragment.clickAddToCartButton();
         secondHomeProductFragment.clickAddToCartButton();
         CartPage cartPage = homePage.clickCartTotalButton()
@@ -52,7 +57,6 @@ public class CartTest extends BaseConfigurationTest {
             "https://jira.epam.com/jira/browse/EPMFARMATS-13147")
     public void checkCanChangeQuantity() {
         int QUANTITY = 3;
-        homePage.open();
         List<HomeProductFragment> homePageProducts = homePage.getAllProducts();
         HomeProductFragment productFragment = homePageProducts.get(0);
         productFragment.clickAddToCartButton();
@@ -74,7 +78,6 @@ public class CartTest extends BaseConfigurationTest {
             "https://jira.epam.com/jira/browse/EPMFARMATS-13149")
     public void checkCanBuyLess1001() {
         int QUANTITY = 666;
-        homePage.open();
         List<HomeProductFragment> homePageProducts = homePage.getAllProducts();
         HomeProductFragment productFragment = homePageProducts.get(0);
         productFragment.clickAddToCartButton();
@@ -95,7 +98,6 @@ public class CartTest extends BaseConfigurationTest {
             "https://jira.epam.com/jira/browse/EPMFARMATS-13148")
     public void checkCantBuyOver1000() {
         int QUANTITY = 1001;
-        homePage.open();
         List<HomeProductFragment> homePageProducts = homePage.getAllProducts();
         HomeProductFragment productFragment = homePageProducts.get(0);
         productFragment.clickAddToCartButton();
@@ -118,7 +120,6 @@ public class CartTest extends BaseConfigurationTest {
             "https://jira.epam.com/jira/browse/EPMFARMATS-13178")
     public void checkCantBuyZero() {
         int QUANTITY = 0;
-        homePage.open();
         List<HomeProductFragment> homePageProducts = homePage.getAllProducts();
         HomeProductFragment productFragment = homePageProducts.get(0);
         productFragment.clickAddToCartButton();
@@ -137,7 +138,6 @@ public class CartTest extends BaseConfigurationTest {
             "EPMFARMATS-13173: Check that user can't open empty cart\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13173")
     public void checkCantOpenEmptyCart() {
-        homePage.open();
         CartTotalPopup cartTotalPopup = homePage.clickCartTotalButton();
         String messageFromPopup = cartTotalPopup.getEmptyCartMessage();
 
@@ -148,7 +148,6 @@ public class CartTest extends BaseConfigurationTest {
             "EPMFARMATS-13151: Check that 'Continue' button in empty cart lead to main page\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13151")
     public void continueNavigateToHomePage() {
-        homePage.open();
         List<HomeProductFragment> homePageProducts = homePage.getAllProducts();
         HomeProductFragment productFragment = homePageProducts.get(0);
         productFragment.clickAddToCartButton();
@@ -167,7 +166,6 @@ public class CartTest extends BaseConfigurationTest {
             "EPMFARMATS-13175: Check that 'Continue shopping' button in cart page work correctly\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13175")
     public void checkCorrectContinueShopping() {
-        homePage.open();
         List<HomeProductFragment> homePageProducts = homePage.getAllProducts();
         HomeProductFragment productFragment = homePageProducts.get(0);
         productFragment.clickAddToCartButton();
@@ -183,7 +181,6 @@ public class CartTest extends BaseConfigurationTest {
             "EPMFARMATS-13174: Check that product name and cost stay the same in cart\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13174")
     public void checkProductNameAndCost() {
-        homePage.open();
         List<HomeProductFragment> homePageProducts = homePage.getAllProducts();
         HomeProductFragment productFragment = homePageProducts.get(0);
         String nameFromHomePage = productFragment.getProductName();
@@ -206,7 +203,6 @@ public class CartTest extends BaseConfigurationTest {
             "EPMFARMATS-13146: Check that user can remove product from cart\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13146")
     public void removeProduct() {
-        homePage.open();
         List<HomeProductFragment> homePageProducts = homePage.getAllProducts();
         HomeProductFragment productFragment = homePageProducts.get(0);
         String productName = productFragment.getProductName();
