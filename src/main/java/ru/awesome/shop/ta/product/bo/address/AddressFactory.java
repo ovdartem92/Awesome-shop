@@ -28,27 +28,27 @@ public final class AddressFactory {
                 POSTCODE, COUNTRY, REGION);
     }
 
-    public static Address generateAddressWithCustomFirstAddress(String firstAddress) {
-        return new Address(firstAddress, SECOND_ADDRESS, CITY, POSTCODE, COUNTRY, REGION);
+    public static Address generateAddressWithEmptyFirstAddress() {
+        return new Address("", SECOND_ADDRESS, CITY, POSTCODE, COUNTRY, REGION);
     }
 
-    public static Address generateAddressWithCustomSecondAddress(String secondAddress) {
-        return new Address(FIRST_ADDRESS, secondAddress, CITY, POSTCODE, COUNTRY, REGION);
+    public static Address generateAddressWithEmptySecondAddress() {
+        return new Address(FIRST_ADDRESS, "", CITY, POSTCODE, COUNTRY, REGION);
     }
 
-    public static Address generateAddressWithCustomCity(String city) {
-        return new Address(FIRST_ADDRESS, SECOND_ADDRESS, city, POSTCODE, COUNTRY, REGION);
+    public static Address generateAddressWithEmptyCity() {
+        return new Address(FIRST_ADDRESS, SECOND_ADDRESS, "", POSTCODE, COUNTRY, REGION);
     }
 
-    public static Address generateAddressWithCustomPostCode(String postCode) {
-        return new Address(FIRST_ADDRESS, SECOND_ADDRESS, CITY, postCode, COUNTRY, REGION);
+    public static Address generateAddressWithEmptyPostCode() {
+        return new Address(FIRST_ADDRESS, SECOND_ADDRESS, CITY, "", COUNTRY, REGION);
     }
 
-    public static Address generateAddressWithCustomCountry(String country) {
-        return new Address(FIRST_ADDRESS, SECOND_ADDRESS, CITY, CITY, country, REGION);
+    public static Address generateAddressWithEmptyCountry() {
+        return new Address(FIRST_ADDRESS, SECOND_ADDRESS, CITY, CITY, "", REGION);
     }
 
-    public static Address generateAddressWithCustomRegion(String region) {
-        return new Address(FIRST_ADDRESS, SECOND_ADDRESS, CITY, CITY, COUNTRY, region);
+    public static Address generateAddressWithEmptyRegion() {
+        return new Address(FIRST_ADDRESS, SECOND_ADDRESS, CITY, CITY, COUNTRY, "");
     }
 }
