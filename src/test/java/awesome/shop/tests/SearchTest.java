@@ -24,7 +24,7 @@ public class SearchTest extends BaseConfigurationTest {
     @DataProvider(name = "positiveSearchData")
     public Object[][] providePositiveTestData() {
         return new Object[][]{
-                {"Classic iPod",},
+                {"Classic iPod"},
                 {"Class Pod"},
                 {"iPod Classic"},
                 {"iPo"},
