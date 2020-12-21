@@ -73,7 +73,7 @@ public final class UserFactory {
 
     public static User generateUserWithEmptyPassword() {
         Credentials credentialsWithEmptyPassword = CredentialsFactory.generateCredentialsWithEmptyPassword();
-        return new User.Builder(validCredentials).firstName(FIRST_NAME).lastName(LAST_NAME)
+        return new User.Builder(credentialsWithEmptyPassword).firstName(FIRST_NAME).lastName(LAST_NAME)
                 .companyName(COMPANY).contactInfo(validContactInfo).build();
     }
 
