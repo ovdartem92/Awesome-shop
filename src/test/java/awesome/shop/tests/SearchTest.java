@@ -33,7 +33,7 @@ public class SearchTest extends BaseConfigurationTest {
 
     @BeforeMethod(description = "open search-page",
             groups = {"all", "negative", "positive"})
-    public void preparingForTheTest() {
+    public void openSearchResultPage() {
         searchResultPage.open();
     }
 
@@ -42,10 +42,10 @@ public class SearchTest extends BaseConfigurationTest {
             "EPMFARMATS-13129: check the search result for a non-existent product\n" +
             "EPMFARMATS-13137: checks the search result when typing a space.\n" +
             "EPMFARMATS-13123: check the search result for an empty product name.\n" +
-            "https://jira.epam.com/jira/browse/EPMFARMATS-13136" +
-            "https://jira.epam.com/jira/browse/EPMFARMATS-13129" +
-            "https://jira.epam.com/jira/browse/EPMFARMATS-13137" +
-            "https://jira.epam.com/jira/browse/EPMFARMATS-13123",
+            "https://jira.epam.com/jira/browse/EPMFARMATS-13136\n" +
+            "https://jira.epam.com/jira/browse/EPMFARMATS-13129\n" +
+            "https://jira.epam.com/jira/browse/EPMFARMATS-13137\n" +
+            "https://jira.epam.com/jira/browse/EPMFARMATS-13123\n",
             dataProvider = "negativeSearchData", groups = "negative")
     public void checkTheSearchFieldByNegativeSearchData(String searchData) {
         String expectedResult = "There is no product that matches the search criteria.";
@@ -61,11 +61,11 @@ public class SearchTest extends BaseConfigurationTest {
             "EPMFARMATS-13128: check the search result for an existing product by full name\n" +
             "EPMFARMATS-13132: check the search result by part of words in reverse order\n" +
             "EPMFARMATS-13131: check the search result by full product name in reverse order\n" +
-            "https://jira.epam.com/jira/browse/EPMFARMATS-13133" +
-            "https://jira.epam.com/jira/browse/EPMFARMATS-13130" +
-            "https://jira.epam.com/jira/browse/EPMFARMATS-13128" +
-            "https://jira.epam.com/jira/browse/EPMFARMATS-13132" +
-            "https://jira.epam.com/jira/browse/EPMFARMATS-13131",
+            "https://jira.epam.com/jira/browse/EPMFARMATS-13133\n" +
+            "https://jira.epam.com/jira/browse/EPMFARMATS-13130\n" +
+            "https://jira.epam.com/jira/browse/EPMFARMATS-13128\n" +
+            "https://jira.epam.com/jira/browse/EPMFARMATS-13132\n" +
+            "https://jira.epam.com/jira/browse/EPMFARMATS-13131\n",
             dataProvider = "positiveSearchData", groups = "positive")
     public void checkTheSearchFieldByPositiveSearchData(String searchData) {
         searchResultPage.typeSearchQuery(searchData);
@@ -78,8 +78,8 @@ public class SearchTest extends BaseConfigurationTest {
             "EPMFARMATS-13138: check the search result by pressing the enter key\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13138", groups = "positive")
     public void checkTheSearchResultByPressingTheEnterKey() {
-        String enter = "\n";
         String iPod = "iPod";
+        String enter = "\n";
         searchResultPage.typeSearchQuery(iPod + enter);
         Assert.assertEquals(searchResultPage.getFirstSearchResultFragment().getName(), expectedResultIPod,
                 expectedResultIPod + " wasn't found in search result");
