@@ -7,11 +7,11 @@ import org.testng.annotations.Test;
 import ru.awesome.shop.ta.product.pages.SearchResultPage;
 
 public class SearchTest extends BaseConfigurationTest {
-    SearchResultPage searchResultPage = new SearchResultPage();
     private final String expectedResultIPod = "iPod Classic";
+    SearchResultPage searchResultPage = new SearchResultPage();
 
     @DataProvider(name = "negativeSearchData")
-    public Object[][] negativeSearchData() {
+    public Object[][] provideNegativeTestData() {
         return new Object[][]{
                 {"alert('I hacked this!')"},
                 {"Mercedes GLE-Coupe"},
@@ -66,7 +66,7 @@ public class SearchTest extends BaseConfigurationTest {
             "https://jira.epam.com/jira/browse/EPMFARMATS-13128" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13132" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13131",
-            dataProvider = "providePositiveTestData", groups = "positive")
+            dataProvider = "positiveSearchData", groups = "positive")
     public void checkTheSearchFieldByPositiveSearchData(String searchData) {
         searchResultPage.typeSearchQuery(searchData);
         searchResultPage.clickSearchButton();
