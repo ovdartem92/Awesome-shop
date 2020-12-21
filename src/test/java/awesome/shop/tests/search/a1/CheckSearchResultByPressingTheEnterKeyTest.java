@@ -1,4 +1,4 @@
-//package awesome.shop.tests.search;
+//package awesome.shop.tests.search.a1;//package awesome.shop.tests.search;
 //
 //import awesome.shop.tests.BaseConfigurationTest;
 //import org.testng.Assert;
@@ -11,12 +11,9 @@
 //    @BeforeMethod(description = "clear search bar, enter text by 'Enter' key")
 //    public void preparingForTheTest() {
 //        String enter = "\n";
-//        String iPod = "i";
+//        String iPod = "iPod";
 //        new SearchResultPage()
 //                .typeSearchQuery(iPod + enter);
-//        for (int i = 0; i < new SearchResultPage().getAllSearchResults().size(); i++) {
-//            System.out.println(new SearchResultPage().getAllSearchResults().get(i).getPrice());
-//        }
 //    }
 //
 //    @Test(description = "***SearchResultByPressingTheEnter***\n" +

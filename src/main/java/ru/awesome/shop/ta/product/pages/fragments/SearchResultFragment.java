@@ -2,8 +2,11 @@ package ru.awesome.shop.ta.product.pages.fragments;
 
 import org.openqa.selenium.WebElement;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class SearchResultFragment {
-    private WebElement searchResultElement;
+    private final WebElement searchResultElement;
 
     public SearchResultFragment(WebElement searchResultElement) {
         this.searchResultElement = searchResultElement;
@@ -18,6 +21,8 @@ public class SearchResultFragment {
     }
 
     public String getPrice() {
-        return searchResultElement.getText();
+        Pattern p = Pattern.compile("(\\$\\d+.\\d+)\\w+");
+        Matcher matcher = p.matcher(searchResultElement.getText());
+        return matcher.find() ? matcher.group(0) : "";
     }
 }

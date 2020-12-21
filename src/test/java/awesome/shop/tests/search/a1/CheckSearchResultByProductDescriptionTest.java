@@ -1,4 +1,4 @@
-//package awesome.shop.tests.search;
+//package awesome.shop.tests.search.a1;//package awesome.shop.tests.search;
 //
 //import awesome.shop.tests.BaseConfigurationTest;
 //import org.testng.Assert;

@@ -5,9 +5,10 @@ import ru.awesome.shop.ta.framework.ui.components.Button;
 import ru.awesome.shop.ta.framework.ui.components.TextField;
 
 public abstract class BasePage {
+    protected static final String BASE_URL = "https://awesome-shop.01sh.ru/";
 
     public BasePage typeSearchQuery(String query) {
-        final By searchTextInputLocator = By.xpath("//*[@id='search']//input");
+        By searchTextInputLocator = By.xpath("//*[@id='search']//input");
         TextField textField = new TextField(searchTextInputLocator);
         textField.clear();
         textField.type(query);
@@ -15,7 +16,7 @@ public abstract class BasePage {
     }
 
     public SearchResultPage clickSearchButton() {
-        final By searchButtonLocator = By.xpath("//*[@id='search']//button");
+        By searchButtonLocator = By.xpath("//*[@id='search']//button");
         Button searchButton = new Button(searchButtonLocator);
         searchButton.click();
         return new SearchResultPage();
