@@ -158,7 +158,8 @@ public class AccountRegistrationPage extends BasePage {
         return policyLabel.getText();
     }
 
-    public void open() {
+    public AccountRegistrationPage open() {
         Browser.getInstance().navigate(BASE_URL.concat(REGISTRATION_PAGE_URL));
+        return this;
     }
 }
