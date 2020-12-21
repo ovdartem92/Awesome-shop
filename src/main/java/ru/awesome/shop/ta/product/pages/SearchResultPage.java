@@ -22,7 +22,7 @@ public class SearchResultPage extends BasePage {
         return this;
     }
 
-    public SearchResultPage clickSearchButtonAfterSearch() {
+    public SearchResultPage clickSearchButtonOnSearchResultPage() {
         By searchButtonLocator = By.xpath("//input[@id='button-search']");
         Button searchButton = new Button(searchButtonLocator);
         searchButton.click();

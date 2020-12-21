@@ -95,7 +95,7 @@ public class SearchTest extends BaseConfigurationTest {
                 .typeSearchQuery(iMacCategory)
                 .clickSearchButton()
                 .selectCategory(iMacCategory)
-                .clickSearchButtonAfterSearch();
+                .clickSearchButtonOnSearchResultPage();
         Assert.assertEquals(searchResultPage.getFirstSearchResultFragment().getName(), expectedResult,
                 expectedResult + " wasn't found in search result");
     }
@@ -108,7 +108,7 @@ public class SearchTest extends BaseConfigurationTest {
                 .typeSearchQuery(expectedResultIPod)
                 .clickSearchButton()
                 .setDescriptionCheckbox(true)
-                .clickSearchButtonAfterSearch();
+                .clickSearchButtonOnSearchResultPage();
         Assert.assertEquals(searchResultPage.getFirstSearchResultFragment().getName(), expectedResultIPod,
                 expectedResultIPod + " wasn't found in search result");
     }
