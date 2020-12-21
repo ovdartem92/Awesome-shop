@@ -17,7 +17,6 @@ public final class ContactInfoFactory {
         throw new AssertionError(format("Creation of instance of %s is prohibited.", ContactInfoFactory.class));
     }
 
-    // ContactInfo factories.
     public static ContactInfo generateValidContactInfo() {
         return new ContactInfo(TELEPHONE_NUMBER, FAX_NUMBER, VALID_ADDRESS);
     }
@@ -27,47 +26,46 @@ public final class ContactInfoFactory {
         return new ContactInfo(invalidTelephone, FAX_NUMBER, VALID_ADDRESS);
     }
 
-    public static ContactInfo generateContactInfoWithCustomTelephone(String telephoneNumber) {
-        return new ContactInfo(telephoneNumber, FAX_NUMBER, VALID_ADDRESS);
+    public static ContactInfo generateContactInfoWithEmptyTelephone() {
+        return new ContactInfo("", FAX_NUMBER, VALID_ADDRESS);
     }
 
-    public static ContactInfo generateContactInfoWithCustomFax(String faxNumber) {
-        return new ContactInfo(TELEPHONE_NUMBER, faxNumber, VALID_ADDRESS);
+    public static ContactInfo generateContactInfoWithEmptyFax() {
+        return new ContactInfo(TELEPHONE_NUMBER, "", VALID_ADDRESS);
     }
 
-    // ContactInfo factories with Address factories.
     public static ContactInfo generateContactInfoWithInvalidCity() {
         Address addressWithInvalidCity = AddressFactory.generateAddressWithInvalidCity();
         return new ContactInfo(TELEPHONE_NUMBER, FAX_NUMBER, addressWithInvalidCity);
     }
 
-    public static ContactInfo generateContactInfoWithCustomFirstAddress(String firstAddress) {
-        Address addressWithCustomFirstAddress = AddressFactory.generateAddressWithCustomFirstAddress(firstAddress);
-        return new ContactInfo(TELEPHONE_NUMBER, FAX_NUMBER, addressWithCustomFirstAddress);
+    public static ContactInfo generateContactInfoWithEmptyFirstAddress() {
+        Address addressWithEmptyFirstAddress = AddressFactory.generateAddressWithEmptyFirstAddress();
+        return new ContactInfo(TELEPHONE_NUMBER, FAX_NUMBER, addressWithEmptyFirstAddress);
     }
 
-    public static ContactInfo generateContactInfoWithCustomSecondAddress(String secondAddress) {
-        Address addressWithCustomSecondAddress = AddressFactory.generateAddressWithCustomSecondAddress(secondAddress);
-        return new ContactInfo(TELEPHONE_NUMBER, FAX_NUMBER, addressWithCustomSecondAddress);
+    public static ContactInfo generateContactInfoWithEmptySecondAddress() {
+        Address addressWithEmptySecondAddress = AddressFactory.generateAddressWithEmptySecondAddress();
+        return new ContactInfo(TELEPHONE_NUMBER, FAX_NUMBER, addressWithEmptySecondAddress);
     }
 
-    public static ContactInfo generateContactInfoWithCustomCity(String city) {
-        Address addressWithCustomCity = AddressFactory.generateAddressWithCustomCity(city);
-        return new ContactInfo(TELEPHONE_NUMBER, FAX_NUMBER, addressWithCustomCity);
+    public static ContactInfo generateContactInfoWithEmptyCity() {
+        Address addressWithEmptyCity = AddressFactory.generateAddressWithEmptyCity();
+        return new ContactInfo(TELEPHONE_NUMBER, FAX_NUMBER, addressWithEmptyCity);
     }
 
-    public static ContactInfo generateContactInfoWithCustomPostCode(String postCode) {
-        Address addressWithCustomPostCode = AddressFactory.generateAddressWithCustomPostCode(postCode);
-        return new ContactInfo(TELEPHONE_NUMBER, FAX_NUMBER, addressWithCustomPostCode);
+    public static ContactInfo generateContactInfoWithEmptyPostCode() {
+        Address addressWithEmptyPostCode = AddressFactory.generateAddressWithEmptyPostCode();
+        return new ContactInfo(TELEPHONE_NUMBER, FAX_NUMBER, addressWithEmptyPostCode);
     }
 
-    public static ContactInfo generateContactInfoWithCustomCountry(String country) {
-        Address addressWithCustomCountry = AddressFactory.generateAddressWithCustomCountry(country);
-        return new ContactInfo(TELEPHONE_NUMBER, FAX_NUMBER, addressWithCustomCountry);
+    public static ContactInfo generateContactInfoWithEmptyCountry() {
+        Address addressWithEmptyCountry = AddressFactory.generateAddressWithEmptyCountry();
+        return new ContactInfo(TELEPHONE_NUMBER, FAX_NUMBER, addressWithEmptyCountry);
     }
 
-    public static ContactInfo generateContactInfoWithCustomRegion(String region) {
-        Address addressWithCustomRegion = AddressFactory.generateAddressWithCustomRegion(region);
-        return new ContactInfo(TELEPHONE_NUMBER, FAX_NUMBER, addressWithCustomRegion);
+    public static ContactInfo generateContactInfoWithEmptyRegion() {
+        Address addressWithEmptyRegion = AddressFactory.generateAddressWithEmptyRegion();
+        return new ContactInfo(TELEPHONE_NUMBER, FAX_NUMBER, addressWithEmptyRegion);
     }
 }
