@@ -15,12 +15,6 @@ import java.util.List;
 import static ru.awesome.shop.ta.framework.ui.components.CommonPageElement.waitForAllElementsPresenceLocated;
 
 public class SearchResultPage extends BasePage {
-    private static final String SEARCH_RESULT_PAGE_URL = "index.php?route=product/search";
-
-    public SearchResultPage open() {
-        Browser.getInstance().navigate(BASE_URL.concat(SEARCH_RESULT_PAGE_URL));
-        return this;
-    }
 
     public SearchResultPage clickSearchButtonOnSearchResultPage() {
         By searchButtonLocator = By.xpath("//input[@id='button-search']");
