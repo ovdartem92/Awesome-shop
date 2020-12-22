@@ -3,7 +3,6 @@ package ru.awesome.shop.ta.product.bo.credentials;
 import org.apache.commons.lang3.RandomStringUtils;
 import ru.awesome.shop.ta.framework.configuration.PropertyManager;
 
-
 import static java.lang.String.format;
 
 public final class CredentialsFactory {
