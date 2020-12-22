@@ -1,3 +1,5 @@
+package awesome.shop.tests;
+
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -20,11 +22,11 @@ public class CartTest extends BaseConfigurationTest {
             "EPMFARMATS-13145: Check that user can add product to cart\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13145")
     public void checkItemIntoCart() {
-        homePage.clickAddProductToCartButtonByName(IPHONE);
-        String productNameFromHomePage = homePage.getProductNameByName(IPHONE);
+        homePage.clickAddProductToCartButton(IPHONE);
+        String productNameFromHomePage = homePage.getProductName(IPHONE);
         CartPage cartPage = homePage.clickCartTotalButton()
                 .clickViewCartButton();
-        String productNameFromCart = cartPage.getItemNameByName(productNameFromHomePage);
+        String productNameFromCart = cartPage.getItemName(productNameFromHomePage);
 
         Assert.assertEquals(productNameFromCart, productNameFromHomePage, "The values of product aren't equal!");
     }
@@ -33,11 +35,11 @@ public class CartTest extends BaseConfigurationTest {
             "EPMFARMATS-13150: Check that user can add more than one product to cart\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13150")
     public void checkAddToCartMoreProducts() {
-        homePage.clickAddProductToCartButtonByName(IPHONE);
-        homePage.clickAddProductToCartButtonByName(MACBOOK);
+        homePage.clickAddProductToCartButton(IPHONE);
+        homePage.clickAddProductToCartButton(MACBOOK);
         CartPage cartPage = homePage.clickCartTotalButton()
                 .clickViewCartButton();
-        int cartItems = cartPage.getSizeOfCartItemsList();
+        int cartItems = cartPage.getNumberOfCartItems();
 
         Assert.assertTrue(cartItems > 1, "The size of products list isn't more 1! ");
     }
@@ -47,12 +49,12 @@ public class CartTest extends BaseConfigurationTest {
             "https://jira.epam.com/jira/browse/EPMFARMATS-13147")
     public void checkCanChangeQuantity() {
         int QUANTITY = 3;
-        homePage.clickAddProductToCartButtonByName(IPHONE);
+        homePage.clickAddProductToCartButton(IPHONE);
         CartPage cartPage = homePage.clickCartTotalButton().
                 clickViewCartButton();
-        cartPage.typeItemQuantityByName(IPHONE, QUANTITY);
-        cartPage.clickUpdateItemButtonByName(IPHONE);
-        int quantityResult = cartPage.getItemQuantityValueByName(IPHONE);
+        cartPage.typeItemQuantity(IPHONE, QUANTITY);
+        cartPage.clickUpdateItemButton(IPHONE);
+        int quantityResult = cartPage.getItemQuantityValue(IPHONE);
 
         Assert.assertEquals(quantityResult, QUANTITY, "The values of quantity aren't equals!");
     }
@@ -62,11 +64,11 @@ public class CartTest extends BaseConfigurationTest {
             "https://jira.epam.com/jira/browse/EPMFARMATS-13149")
     public void checkCanBuyLess1001() {
         int QUANTITY = 666;
-        homePage.clickAddProductToCartButtonByName(IPHONE);
+        homePage.clickAddProductToCartButton(IPHONE);
         CartPage cartPage = homePage.clickCartTotalButton().
                 clickViewCartButton();
-        cartPage.typeItemQuantityByName(IPHONE, QUANTITY);
-        cartPage.clickUpdateItemButtonByName(IPHONE);
+        cartPage.typeItemQuantity(IPHONE, QUANTITY);
+        cartPage.clickUpdateItemButton(IPHONE);
         cartPage.clickCheckoutButton();
         String finishPageTitle = browser.getPageTitle();
 
@@ -78,11 +80,11 @@ public class CartTest extends BaseConfigurationTest {
             "https://jira.epam.com/jira/browse/EPMFARMATS-13148")
     public void checkCantBuyOver1000() {
         int QUANTITY = 1001;
-        homePage.clickAddProductToCartButtonByName(MACBOOK);
+        homePage.clickAddProductToCartButton(MACBOOK);
         CartPage cartPage = homePage.clickCartTotalButton().
                 clickViewCartButton();
-        cartPage.typeItemQuantityByName(MACBOOK, QUANTITY);
-        cartPage.clickUpdateItemButtonByName(MACBOOK);
+        cartPage.typeItemQuantity(MACBOOK, QUANTITY);
+        cartPage.clickUpdateItemButton(MACBOOK);
         cartPage.clickCheckoutButtonExpectingFailure();
         String warningQuantityMessage = cartPage.getQuantityWarningMessage();
 
@@ -96,11 +98,11 @@ public class CartTest extends BaseConfigurationTest {
             "https://jira.epam.com/jira/browse/EPMFARMATS-13178")
     public void checkCantBuyZero() {
         int QUANTITY = 0;
-        homePage.clickAddProductToCartButtonByName(MACBOOK);
+        homePage.clickAddProductToCartButton(MACBOOK);
         CartPage cartPage = homePage.clickCartTotalButton().
                 clickViewCartButton();
-        cartPage.typeItemQuantityByName(MACBOOK, QUANTITY);
-        cartPage.clickUpdateItemButtonByName(MACBOOK);
+        cartPage.typeItemQuantity(MACBOOK, QUANTITY);
+        cartPage.clickUpdateItemButton(MACBOOK);
         String emptyCartMessage = cartPage.getEmptyShoppingCartMessage();
 
         Assert.assertEquals(emptyCartMessage, "Your shopping cart is empty!", "Message isn't displayed after update!");
@@ -120,10 +122,10 @@ public class CartTest extends BaseConfigurationTest {
             "EPMFARMATS-13151: Check that 'Continue' button in empty cart lead to main page\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13151")
     public void continueNavigateToHomePage() {
-        homePage.clickAddProductToCartButtonByName(MACBOOK);
+        homePage.clickAddProductToCartButton(MACBOOK);
         CartPage cartPage = homePage.clickCartTotalButton().
                 clickViewCartButton();
-        cartPage.clickRemoveItemFromCartByName(MACBOOK);
+        cartPage.clickRemoveItemFromCart(MACBOOK);
         cartPage.clickContinueButton();
         String finishPageTitle = browser.getPageTitle();
 
@@ -134,7 +136,7 @@ public class CartTest extends BaseConfigurationTest {
             "EPMFARMATS-13175: Check that 'Continue shopping' button in cart page work correctly\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13175")
     public void checkCorrectContinueShopping() {
-        homePage.clickAddProductToCartButtonByName(MACBOOK);
+        homePage.clickAddProductToCartButton(MACBOOK);
         CartPage cartPage = homePage.clickCartTotalButton().
                 clickViewCartButton();
         cartPage.clickContinueShoppingButton();
@@ -147,13 +149,13 @@ public class CartTest extends BaseConfigurationTest {
             "EPMFARMATS-13174: Check that product name and cost stay the same in cart\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13174")
     public void checkProductNameAndCost() {
-        String nameFromHomePage = homePage.getProductNameByName(IPHONE);
-        String priceFromHomePage = homePage.getProductPriceByName(IPHONE);
-        homePage.clickAddProductToCartButtonByName(IPHONE);
+        String nameFromHomePage = homePage.getProductName(IPHONE);
+        String priceFromHomePage = homePage.getProductPrice(IPHONE);
+        homePage.clickAddProductToCartButton(IPHONE);
         CartPage cartPage = homePage.clickCartTotalButton()
                 .clickViewCartButton();
-        String nameProductInCart = cartPage.getItemNameByName(IPHONE);
-        String priceProductInCart = cartPage.getItemUnitPriceByName(IPHONE);
+        String nameProductInCart = cartPage.getItemName(IPHONE);
+        String priceProductInCart = cartPage.getItemUnitPrice(IPHONE);
 
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(nameProductInCart, nameFromHomePage, "The names of product aren't equals!");
@@ -165,10 +167,10 @@ public class CartTest extends BaseConfigurationTest {
             "EPMFARMATS-13146: Check that user can remove product from cart\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13146")
     public void removeProduct() {
-        homePage.clickAddProductToCartButtonByName(MACBOOK);
+        homePage.clickAddProductToCartButton(MACBOOK);
         CartPage cartPage = homePage.clickCartTotalButton()
                 .clickViewCartButton();
-        cartPage.clickRemoveItemFromCartByName(MACBOOK);
+        cartPage.clickRemoveItemFromCart(MACBOOK);
         String messageEmptyCart = cartPage.getEmptyShoppingCartMessage();
 
         Assert.assertEquals(messageEmptyCart, "Your shopping cart is empty!",

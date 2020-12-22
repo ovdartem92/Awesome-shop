@@ -25,8 +25,7 @@ public class TextField extends CommonPageElement {
 
     public String getAttribute(String value){
         Objects.requireNonNull(value, "Value can not be null");
-        waitForPageElementPresenceLocated(locator);
-        String attribute = Browser.getInstance().getAttribute(locator, value);
+        String attribute = CommonPageElement.getAttribute(locator, value);
         return attribute;
     }
 }

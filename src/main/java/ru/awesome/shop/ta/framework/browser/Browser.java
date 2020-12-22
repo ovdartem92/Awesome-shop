@@ -166,13 +166,6 @@ public final class Browser implements WrapsDriver {
         return wrappedDriver.getTitle();
     }
 
-    public String getAttribute(By locator, String attribute) {
-        Objects.requireNonNull(locator, "LOCATOR cannot be null.");
-        Objects.requireNonNull(locator, "ATTRIBUTE cannot be null.");
-        WebElement webElement = wrappedDriver.findElement(locator);
-        return webElement.getAttribute(attribute);
-    }
-
     @Override
     public WebDriver getWrappedDriver() {
         Log.debug("Getting WebDriver");

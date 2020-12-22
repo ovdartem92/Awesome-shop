@@ -16,7 +16,7 @@ public class HomePage extends BasePage {
         return this;
     }
 
-    public void clickAddProductToCartButtonByName(String productName) {
+    public void clickAddProductToCartButton(String productName) {
         Button cartTotalButton = new Button(By.xpath("//div[@id='cart']"));
         String startTextFromCartTotalButton = cartTotalButton.getText();
         String[] arrayButtonInfo = startTextFromCartTotalButton.split(" ");
@@ -32,14 +32,14 @@ public class HomePage extends BasePage {
         waitForPageElementVisibilityLocated(By.xpath(expectTextFromCartTotalButton), 3);
     }
 
-    public String getProductNameByName(String productName) {
+    public String getProductName(String productName) {
         By productNameLinkLocator = By
                 .xpath(String.format("//div[@class='product-thumb transition']//a[text()='%s']", productName));
         Link productNameLink = new Link(productNameLinkLocator);
         return productNameLink.getText();
     }
 
-    public String getProductPriceByName(String productName) {
+    public String getProductPrice(String productName) {
         By productPriceLabelLocator = By
                 .xpath(String.format("//div[@class='product-thumb transition']//a[text()='%s']/ancestor::" +
                         "div[@class='product-thumb transition']//p[@class='price']", productName));

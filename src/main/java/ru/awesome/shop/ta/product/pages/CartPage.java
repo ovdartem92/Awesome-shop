@@ -55,7 +55,7 @@ public class CartPage extends BasePage {
         return warningQuantityLabel.getText();
     }
 
-    public void clickRemoveItemFromCartByName(String productName) {
+    public void clickRemoveItemFromCart(String productName) {
         By removeButtonLocator = By.xpath(String.format(
                 "//div[@class='table-responsive']//a[text()='%s']/ancestor::" +
                         "tr//button[contains(@onclick,'cart.remove')]", productName));
@@ -64,20 +64,20 @@ public class CartPage extends BasePage {
         waitForPageElementInvisibilityLocated(removeButtonLocator, 3);
     }
 
-    public String getItemNameByName(String productName) {
+    public String getItemName(String productName) {
         By nameLabelLocator = By.xpath(String.format("//div[@class='table-responsive']//a[text()='%s']", productName));
         Label itemNameLabel = new Label(nameLabelLocator);
         return itemNameLabel.getText();
     }
 
-    public String getItemUnitPriceByName(String productName) {
+    public String getItemUnitPrice(String productName) {
         By unitPriceLabelLocator = By.xpath(String.format(
                 "//div[@class='table-responsive']//a[text()='%s']/ancestor::tr//td[5]", productName));
         Label unitPriceLabel = new Label(unitPriceLabelLocator);
         return unitPriceLabel.getText();
     }
 
-    public void clickUpdateItemButtonByName(String productName) {
+    public void clickUpdateItemButton(String productName) {
         By updateItemButtonLocator = By.xpath(String.format(
                 "//div[@class='table-responsive']//a[text()='%s']/ancestor::tr//button[@data-original-title='Update']",
                 productName));
@@ -85,7 +85,7 @@ public class CartPage extends BasePage {
         updateItemButton.click();
     }
 
-    public void typeItemQuantityByName(String productName, int quantity) {
+    public void typeItemQuantity(String productName, int quantity) {
         Objects.requireNonNull(quantity, "QUANTITY cannot be null.");
         By quantityFieldLocator = By.xpath(String.format(
                 "//div[@class='table-responsive']//a[text()='%s']/ancestor::tr//input[contains(@name,'quantity')]",
@@ -95,7 +95,7 @@ public class CartPage extends BasePage {
         quantityField.type(String.valueOf(quantity));
     }
 
-    public int getItemQuantityValueByName(String productName) {
+    public int getItemQuantityValue(String productName) {
         By quantityFieldLocator = By.xpath(String.format(
                 "//div[@class='table-responsive']//a[text()='%s']/ancestor::tr//input[contains(@name,'quantity')]",
                 productName));
@@ -103,7 +103,7 @@ public class CartPage extends BasePage {
         return Integer.parseInt(quantityField.getAttribute("value"));
     }
 
-    public int getSizeOfCartItemsList() {
+    public int getNumberOfCartItems() {
         By cartItemLocator = By.xpath("//div[@class='table-responsive']//tbody//tr");
         waitForAllElementsPresenceLocated(cartItemLocator);
         List<WebElement> cartItemElements = Browser.getInstance().getWrappedDriver().findElements(cartItemLocator);
