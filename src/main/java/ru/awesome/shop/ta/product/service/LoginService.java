@@ -1,4 +1,4 @@
-package ru.awesome.shop.ta.service;
+package ru.awesome.shop.ta.product.service;
 
 import ru.awesome.shop.ta.product.pages.AccountPage;
 import ru.awesome.shop.ta.product.pages.LoginPage;

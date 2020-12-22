@@ -11,7 +11,7 @@ import ru.awesome.shop.ta.product.bo.user.UserFactory;
 import ru.awesome.shop.ta.product.pages.AccountPage;
 import ru.awesome.shop.ta.product.pages.LoginPage;
 import ru.awesome.shop.ta.product.pages.LogoutPage;
-import ru.awesome.shop.ta.service.LoginService;
+import ru.awesome.shop.ta.product.service.LoginService;
 
 public class LoginTest extends BaseConfigurationTest {
     private static final LoginPage loginPage = new LoginPage();
