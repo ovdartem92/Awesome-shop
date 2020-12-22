@@ -11,10 +11,9 @@ import ru.awesome.shop.ta.product.bo.credentials.Credentials;
 import ru.awesome.shop.ta.product.bo.user.User;
 import ru.awesome.shop.ta.product.bo.user.UserFactory;
 import ru.awesome.shop.ta.product.pages.AccountRegistrationPage;
-import ru.awesome.shop.ta.product.pages.BasePage;
 import ru.awesome.shop.ta.product.pages.SuccessfulAccountRegistrationPage;
 
-public class RegistrationTest extends BasePage {
+public class RegistrationTest extends BaseConfigurationTest {
     private AccountRegistrationPage registrationPage = new AccountRegistrationPage();
     private final User validUser = UserFactory.generateValidUser();
 
