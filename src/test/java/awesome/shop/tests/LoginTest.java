@@ -11,12 +11,13 @@ import ru.awesome.shop.ta.product.bo.user.UserFactory;
 import ru.awesome.shop.ta.product.pages.AccountPage;
 import ru.awesome.shop.ta.product.pages.LoginPage;
 import ru.awesome.shop.ta.product.pages.LogoutPage;
-import ru.awesome.shop.ta.product.pages.popups.AccountPopUp;
+import ru.awesome.shop.ta.service.LoginService;
 
 public class LoginTest extends BaseConfigurationTest {
     private static final LoginPage loginPage = new LoginPage();
     private static final String REGISTER_EMAIL = PropertyManager.getEmail();
     private static final String REGISTER_PASSWORD = PropertyManager.getPassword();
+    private static final LoginService loginService = new LoginService();
 
     @DataProvider(name = "invalidUser")
     public Object[][] getInvalidUser() {
@@ -36,9 +37,8 @@ public class LoginTest extends BaseConfigurationTest {
             "https://jira.epam.com/jira/browse/EPMFARMATS-13118",
             groups = {"all", "positive"})
     public void loginWithValidCredentialsTest() {
-        loginPage.typeEmailAddress(REGISTER_EMAIL);
-        loginPage.typePassword(REGISTER_PASSWORD);
-        AccountPage accountPage = loginPage.clickLoginButton();
+        loginService.login(REGISTER_EMAIL, REGISTER_PASSWORD);
+        AccountPage accountPage = new AccountPage();
         String actualAccountName = accountPage.getMyAccountName();
         Assert.assertEquals(actualAccountName, "My Account",
                 "Incorrect account name");
@@ -49,11 +49,9 @@ public class LoginTest extends BaseConfigurationTest {
             "https://jira.epam.com/jira/browse/EPMFARMATS-13119",
             groups = {"all", "positive"})
     public void checkThatUserCanLogout() {
-        loginPage.typeEmailAddress(REGISTER_EMAIL);
-        loginPage.typePassword(REGISTER_PASSWORD);
-        AccountPage accountPage = loginPage.clickLoginButton();
-        AccountPopUp accountPopUp = accountPage.clickMyAccountLink();
-        LogoutPage logoutPage = accountPopUp.clickLogoutLink();
+        loginService.login(REGISTER_EMAIL, REGISTER_PASSWORD);
+        loginService.logout();
+        LogoutPage logoutPage = new LogoutPage();
         String actualBreadcrumbLogoutText = logoutPage.getBreadcrumbLogoutText();
         Assert.assertEquals(actualBreadcrumbLogoutText, "Logout",
                 "Incorrect breadcrumbls logout text");
@@ -70,9 +68,7 @@ public class LoginTest extends BaseConfigurationTest {
         Credentials userCredentials = user.getCredentials();
         String userEmail = userCredentials.getEmail();
         String userPassword = userCredentials.getPassword();
-        loginPage.typeEmailAddress(userEmail);
-        loginPage.typePassword(userPassword);
-        loginPage.clickLoginButton();
+        loginService.login(userEmail, userPassword);
         String warningMessageText = loginPage.getWarningMessage();
         Assert.assertEquals(warningMessageText, "Warning: No match for E-Mail Address and/or Password.",
                 "Incorrect warning message text");
