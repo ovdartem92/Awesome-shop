@@ -2,26 +2,20 @@ package ru.awesome.shop.ta.service;
 
 import ru.awesome.shop.ta.product.pages.AccountPage;
 import ru.awesome.shop.ta.product.pages.LoginPage;
+import ru.awesome.shop.ta.product.pages.popups.AccountPopUp;
 
 public class LoginService {
-    private AccountPage accountPage = new AccountPage();
 
     public void login(String email, String password) {
-        new LoginPage().clickMyAccountLink()
-                .clickLoginLink()
-                .typeEmailAddress(email)
-                .typePassword(password)
-                .clickLoginButton();
+        LoginPage loginPage = new LoginPage();
+        loginPage.typeEmailAddress(email);
+        loginPage.typePassword(password);
+        loginPage.clickLoginButton();
     }
 
     public void logout() {
-        accountPage.clickMyAccountLink().clickLogoutLink();
-    }
-
-    public void changePassword(String newPassword) {
-        accountPage.clickChangePasswordLink()
-                .typePassword(newPassword)
-                .typeConfirmationPassword(newPassword)
-                .clickContinueButton();
+        AccountPage accountPage = new AccountPage();
+        AccountPopUp accountPopUp = accountPage.clickMyAccountLink();
+        accountPopUp.clickLogoutLink();
     }
 }
