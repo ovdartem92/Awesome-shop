@@ -4,6 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import ru.awesome.shop.ta.framework.configuration.PropertyManager;
 import ru.awesome.shop.ta.product.bo.address.Address;
 import ru.awesome.shop.ta.product.bo.contacts.ContactInfo;
 import ru.awesome.shop.ta.product.bo.credentials.Credentials;
@@ -12,11 +13,10 @@ import ru.awesome.shop.ta.product.bo.user.UserFactory;
 import ru.awesome.shop.ta.product.pages.AccountRegistrationPage;
 import ru.awesome.shop.ta.product.pages.BasePage;
 import ru.awesome.shop.ta.product.pages.SuccessfulAccountRegistrationPage;
-import ru.awesome.shop.ta.utils.TestDataReader;
 
 public class RegistrationTest extends BasePage {
     private AccountRegistrationPage registrationPage = new AccountRegistrationPage();
-    private User validUser = UserFactory.generateValidUser();
+    private final User validUser = UserFactory.generateValidUser();
 
     @DataProvider(name = "userWithEmptyProperty")
     public Object[][] getUserWithEmptyProperty() {
@@ -202,8 +202,8 @@ public class RegistrationTest extends BasePage {
             "https://jira.epam.com/jira/browse/EPMFARMATS-13166\n",
             groups = {"all", "positive"})
     public void checkAppearanceEmailAlreadyRegisteredWarning() {
-        String registeredEmail = TestDataReader.getTestData("testData.email", TestDataReader.getStageData("email"));
-        String registeredPassword= TestDataReader.getTestData("testData.password", TestDataReader.getStageData("password"));
+        String registeredEmail = PropertyManager.getEmail();
+        String registeredPassword= PropertyManager.getPassword();
         Credentials registeredCredentials = new Credentials(registeredEmail, registeredPassword);
         User registeredUser = new User.Builder(registeredCredentials).firstName(validUser.getFirstName())
                 .lastName(validUser.getLastName()).companyName(validUser.getCompanyName())
