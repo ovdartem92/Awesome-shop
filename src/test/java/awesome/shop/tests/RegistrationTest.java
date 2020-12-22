@@ -201,12 +201,15 @@ public class RegistrationTest extends BaseConfigurationTest {
             "https://jira.epam.com/jira/browse/EPMFARMATS-13166\n",
             groups = {"all", "positive"})
     public void checkAppearanceEmailAlreadyRegisteredWarning() {
+        String validFirstName = validUser.getFirstName();
+        String validLastName = validUser.getLastName();
+        String validCompanyName = validUser.getCompanyName();
+        ContactInfo validContactInfo = validUser.getContactInfo();
         String registeredEmail = PropertyManager.getEmail();
         String registeredPassword= PropertyManager.getPassword();
         Credentials registeredCredentials = new Credentials(registeredEmail, registeredPassword);
-        User registeredUser = new User.Builder(registeredCredentials).firstName(validUser.getFirstName())
-                .lastName(validUser.getLastName()).companyName(validUser.getCompanyName())
-                .contactInfo(validUser.getContactInfo()).build();
+        User registeredUser = new User.Builder(registeredCredentials).firstName(validFirstName)
+                .lastName(validLastName).companyName(validCompanyName).contactInfo(validContactInfo).build();
 
         Credentials credentials = registeredUser.getCredentials();
         ContactInfo contactInfo = registeredUser.getContactInfo();
@@ -289,7 +292,7 @@ public class RegistrationTest extends BaseConfigurationTest {
             "EPMFARMATS-13154: check appearance Privacy Policy warning\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13154\n",
             groups = {"all", "positive"})
-    public void checkAppearancePrivacyPolicyWarning(User user) {
+    public void checkAppearancePrivacyPolicyWarning() {
         Credentials credentials = validUser.getCredentials();
         ContactInfo contactInfo = validUser.getContactInfo();
         Address address = validUser.getContactInfo().getAddress();
