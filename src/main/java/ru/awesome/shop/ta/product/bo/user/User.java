@@ -78,7 +78,15 @@ public final class User {
     }
 
     public ContactInfo getContactInfo() {
-        return new ContactInfo(contactInfo.getTelephoneNumber(), contactInfo.getFaxNumber(), contactInfo.getAddress());
+        Address address = contactInfo.getAddress();
+        String firstAddress = address.getFirstAddress();
+        String secondAddress = address.getSecondAddress();
+        String city = address.getCity();
+        String postCode = address.getPostCode();
+        String country = address.getCountry();
+        String region = address.getRegion();
+        return new ContactInfo(contactInfo.getTelephoneNumber(), contactInfo.getFaxNumber(),
+                new Address(firstAddress, secondAddress, city, postCode, country, region));
     }
 
     public Credentials getCredentials() {
