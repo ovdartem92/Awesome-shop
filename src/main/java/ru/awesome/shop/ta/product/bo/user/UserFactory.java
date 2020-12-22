@@ -48,22 +48,21 @@ public final class UserFactory {
                 .companyName(COMPANY).contactInfo(VALID_CONTACT_INFO).build();
     }
 
-    public static User generateUserWithCustomFirstName(String firstName) {
-        return new User.Builder(VALID_CREDENTIALS).firstName(firstName).lastName(LAST_NAME)
+    public static User generateUserWithEmptyFirstName() {
+        return new User.Builder(VALID_CREDENTIALS).firstName("").lastName(LAST_NAME)
                 .companyName(COMPANY).contactInfo(VALID_CONTACT_INFO).build();
     }
 
-    public static User generateUserWithCustomLastName(String lastName) {
-        return new User.Builder(VALID_CREDENTIALS).firstName(FIRST_NAME).lastName(lastName)
+    public static User generateUserWithEmptyLastName() {
+        return new User.Builder(VALID_CREDENTIALS).firstName(FIRST_NAME).lastName("")
                 .companyName(COMPANY).contactInfo(VALID_CONTACT_INFO).build();
     }
 
-    public static User generateUserWithCustomCompany(String company) {
+    public static User generateUserWithEmptyCompany() {
         return new User.Builder(VALID_CREDENTIALS).firstName(FIRST_NAME).lastName(LAST_NAME)
-                .companyName(company).contactInfo(VALID_CONTACT_INFO).build();
+                .companyName("").contactInfo(VALID_CONTACT_INFO).build();
     }
 
-    // User factories with Credentials factories.
     public static User generateUserWithInvalidPassword() {
         Credentials credentialsWithInvalidPassword = CredentialsFactory.generateCredentialsWithInvalidPassword();
         return new User.Builder(credentialsWithInvalidPassword).firstName(FIRST_NAME).lastName(LAST_NAME)
@@ -76,19 +75,18 @@ public final class UserFactory {
                 .companyName(COMPANY).contactInfo(VALID_CONTACT_INFO).build();
     }
 
-    public static User generateUserWithCustomPassword(String password) {
-        Credentials credentialsWithCustomPassword = CredentialsFactory.generateCredentialsWithCustomPassword(password);
-        return new User.Builder(credentialsWithCustomPassword).firstName(FIRST_NAME).lastName(LAST_NAME)
+    public static User generateUserWithEmptyPassword() {
+        Credentials credentialsWithEmptyPassword = CredentialsFactory.generateCredentialsWithEmptyPassword();
+        return new User.Builder(credentialsWithEmptyPassword).firstName(FIRST_NAME).lastName(LAST_NAME)
                 .companyName(COMPANY).contactInfo(VALID_CONTACT_INFO).build();
     }
 
-    public static User generateUserWithCustomEmail(String email) {
-        Credentials credentialsWithCustomEmail = CredentialsFactory.generateCredentialsWithCustomEmail(email);
-        return new User.Builder(credentialsWithCustomEmail).firstName(FIRST_NAME).lastName(LAST_NAME)
+    public static User generateUserWithEmptyEmail() {
+        Credentials credentialsWithEmptyEmail = CredentialsFactory.generateCredentialsWithEmptyEmail();
+        return new User.Builder(credentialsWithEmptyEmail).firstName(FIRST_NAME).lastName(LAST_NAME)
                 .companyName(COMPANY).contactInfo(VALID_CONTACT_INFO).build();
     }
 
-    // User factories with ContactInfo factories.
     public static User generateUserWithInvalidTelephone() {
         ContactInfo contactInfoWithInvalidTelephone = ContactInfoFactory.generateContactInfoWithInvalidTelephone();
         return new User.Builder(VALID_CREDENTIALS).firstName(FIRST_NAME).lastName(LAST_NAME)
@@ -101,53 +99,53 @@ public final class UserFactory {
                 .companyName(COMPANY).contactInfo(contactInfoWithInvalidCity).build();
     }
 
-    public static User generateUserWithCustomTelephone(String telephone) {
-        ContactInfo contactInfoWithCustomTelephone = ContactInfoFactory.generateContactInfoWithCustomTelephone(telephone);
+    public static User generateUserWithEmptyTelephone() {
+        ContactInfo contactInfoWithEmptyTelephone = ContactInfoFactory.generateContactInfoWithEmptyTelephone();
         return new User.Builder(VALID_CREDENTIALS).firstName(FIRST_NAME).lastName(LAST_NAME)
-                .companyName(COMPANY).contactInfo(contactInfoWithCustomTelephone).build();
+                .companyName(COMPANY).contactInfo(contactInfoWithEmptyTelephone).build();
     }
 
-    public static User generateUserWithCustomFax(String faxNumber) {
-        ContactInfo contactInfoWithCustomFax = ContactInfoFactory.generateContactInfoWithCustomFax(faxNumber);
+    public static User generateUserWithEmptyFax() {
+        ContactInfo contactInfoWithEmptyFax = ContactInfoFactory.generateContactInfoWithEmptyFax();
         return new User.Builder(VALID_CREDENTIALS).firstName(FIRST_NAME).lastName(LAST_NAME)
-                .companyName(COMPANY).contactInfo(contactInfoWithCustomFax).build();
+                .companyName(COMPANY).contactInfo(contactInfoWithEmptyFax).build();
     }
 
-    public static User generateUserWithCustomCity(String city) {
-        ContactInfo contactInfoWithCustomCity = ContactInfoFactory.generateContactInfoWithCustomCity(city);
+    public static User generateUserWithEmptyCity() {
+        ContactInfo contactInfoWithEmptyCity = ContactInfoFactory.generateContactInfoWithEmptyCity();
         return new User.Builder(VALID_CREDENTIALS).firstName(FIRST_NAME).lastName(LAST_NAME)
-                .companyName(COMPANY).contactInfo(contactInfoWithCustomCity).build();
+                .companyName(COMPANY).contactInfo(contactInfoWithEmptyCity).build();
     }
 
-    public static User generateUserWithCustomFirstAddress(String firstAddress) {
-        ContactInfo contactInfoWithCustomFirstAddress = ContactInfoFactory
-                .generateContactInfoWithCustomFirstAddress(firstAddress);
+    public static User generateUserWithEmptyFirstAddress() {
+        ContactInfo contactInfoWithEmptyFirstAddress = ContactInfoFactory
+                .generateContactInfoWithEmptyFirstAddress();
         return new User.Builder(VALID_CREDENTIALS).firstName(FIRST_NAME).lastName(LAST_NAME)
-                .companyName(COMPANY).contactInfo(contactInfoWithCustomFirstAddress).build();
+                .companyName(COMPANY).contactInfo(contactInfoWithEmptyFirstAddress).build();
     }
 
-    public static User generateUserWithCustomSecondAddress(String secondAddress) {
-        ContactInfo contactInfoWithCustomSecondAddress = ContactInfoFactory
-                .generateContactInfoWithCustomSecondAddress(secondAddress);
+    public static User generateUserWithEmptySecondAddress() {
+        ContactInfo contactInfoWithEmptySecondAddress = ContactInfoFactory
+                .generateContactInfoWithEmptySecondAddress();
         return new User.Builder(VALID_CREDENTIALS).firstName(FIRST_NAME).lastName(LAST_NAME)
-                .companyName(COMPANY).contactInfo(contactInfoWithCustomSecondAddress).build();
+                .companyName(COMPANY).contactInfo(contactInfoWithEmptySecondAddress).build();
     }
 
-    public static User generateUserWithCustomPostCode(String postCode) {
-        ContactInfo contactInfoWithCustomPostCode = ContactInfoFactory.generateContactInfoWithCustomPostCode(postCode);
+    public static User generateUserWithEmptyPostCode() {
+        ContactInfo contactInfoWithEmptyPostCode = ContactInfoFactory.generateContactInfoWithEmptyPostCode();
         return new User.Builder(VALID_CREDENTIALS).firstName(FIRST_NAME).lastName(LAST_NAME)
-                .companyName(COMPANY).contactInfo(contactInfoWithCustomPostCode).build();
+                .companyName(COMPANY).contactInfo(contactInfoWithEmptyPostCode).build();
     }
 
-    public static User generateUserWithCustomCountry(String country) {
-        ContactInfo contactInfoWithCustomCountry = ContactInfoFactory.generateContactInfoWithCustomCountry(country);
+    public static User generateUserWithEmptyCountry() {
+        ContactInfo contactInfoWithEmptyCountry = ContactInfoFactory.generateContactInfoWithEmptyCountry();
         return new User.Builder(VALID_CREDENTIALS).firstName(FIRST_NAME).lastName(LAST_NAME)
-                .companyName(COMPANY).contactInfo(contactInfoWithCustomCountry).build();
+                .companyName(COMPANY).contactInfo(contactInfoWithEmptyCountry).build();
     }
 
-    public static User generateUserWithCustomRegion(String region) {
-        ContactInfo contactInfoWithCustomRegion = ContactInfoFactory.generateContactInfoWithCustomRegion(region);
+    public static User generateUserWithEmptyRegion() {
+        ContactInfo contactInfoWithEmptyRegion = ContactInfoFactory.generateContactInfoWithEmptyRegion();
         return new User.Builder(VALID_CREDENTIALS).firstName(FIRST_NAME).lastName(LAST_NAME)
-                .companyName(COMPANY).contactInfo(contactInfoWithCustomRegion).build();
+                .companyName(COMPANY).contactInfo(contactInfoWithEmptyRegion).build();
     }
 }
