@@ -8,13 +8,7 @@ import ru.awesome.shop.ta.framework.ui.components.TextField;
 
 public class LoginPage extends BasePage {
     private static final By LOGIN_BUTTON_LOCATOR = By.xpath("//input[@class='btn btn-primary']");
-    private static final Button LOGIN_BUTTON = new Button(LOGIN_BUTTON_LOCATOR);
-    private static final String URL = "https://awesome-shop.01sh.ru/index.php?route=account/login";
-
-    public LoginPage open() {
-        Browser.getInstance().navigate(URL);
-        return new LoginPage();
-    }
+    private static final String LOGIN_PAGE_URL = "index.php?route=account/login";
 
     public LoginPage typeEmailAddress(String email) {
         By emailTextFieldLocator = By.id("input-email");
@@ -31,12 +25,14 @@ public class LoginPage extends BasePage {
     }
 
     public AccountPage clickLoginButton() {
-        LOGIN_BUTTON.click();
+        Button loginButton = new Button(LOGIN_BUTTON_LOCATOR);
+        loginButton.click();
         return new AccountPage();
     }
 
     public LoginPage clickLoginButtonExpectingFailure() {
-        LOGIN_BUTTON.click();
+        Button loginButton = new Button(LOGIN_BUTTON_LOCATOR);
+        loginButton.click();
         return this;
     }
 
@@ -44,5 +40,10 @@ public class LoginPage extends BasePage {
         By warningLabelLocator = By.xpath("//div[contains(text(),'Warning')]");
         Label warningLabel = new Label(warningLabelLocator);
         return warningLabel.getText();
+    }
+
+    public LoginPage open() {
+        Browser.getInstance().navigate(BASE_URL.concat(LOGIN_PAGE_URL));
+        return new LoginPage();
     }
 }

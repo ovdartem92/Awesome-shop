@@ -4,32 +4,25 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import ru.awesome.shop.ta.framework.configuration.PropertyManager;
+import ru.awesome.shop.ta.product.bo.credentials.Credentials;
 import ru.awesome.shop.ta.product.bo.user.User;
 import ru.awesome.shop.ta.product.bo.user.UserFactory;
 import ru.awesome.shop.ta.product.pages.AccountPage;
 import ru.awesome.shop.ta.product.pages.LoginPage;
 import ru.awesome.shop.ta.product.pages.LogoutPage;
-import ru.awesome.shop.ta.service.LoginService;
-
-import java.lang.reflect.Method;
-
-import static ru.awesome.shop.ta.utils.StringUtils.getRandomString;
+import ru.awesome.shop.ta.product.pages.popups.AccountPopUp;
 
 public class LoginTest extends BaseConfigurationTest {
-    private final LoginPage loginPage = new LoginPage();
-    private final LoginService loginService = new LoginService();
+    private static final LoginPage loginPage = new LoginPage();
+    private static final String REGISTER_EMAIL = PropertyManager.getEmail();
+    private static final String REGISTER_PASSWORD = PropertyManager.getPassword();
 
-    @DataProvider(name = "user")
-    public Object[][] getUser(Method method) {
-        if (method.getName().equalsIgnoreCase("loginWithInvalidCredentials")) {
-            return new Object[][]{{UserFactory.generateUserWithValidEmailInvalidPassword()},
-                    {UserFactory.generateUserWithInvalidEmailValidPassword()}
-            };
-        } else {
-            return new Object[][]{
-                    {UserFactory.generateValidUser()},
-            };
-        }
+    @DataProvider(name = "invalidUser")
+    public Object[][] getInvalidUser() {
+        return new Object[][]{{UserFactory.generateUserWithRegisteredCredentialsWithInvalidEmail()},
+                {UserFactory.generateUserWithRegisteredCredentialsWithInvalidPassword()}
+        };
     }
 
     @BeforeMethod(description = "open login page",
@@ -41,25 +34,29 @@ public class LoginTest extends BaseConfigurationTest {
     @Test(description = "***LoginWithValidCredentials***\n" +
             "EPMFARMATS-13118: check than user can login with correct email and password\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13118",
-            dataProvider = "user",
             groups = {"all", "positive"})
-    public void loginWithValidCredentialsTest(User user) {
-        loginService.login(user.getCredentials().getEmail(), user.getCredentials().getPassword());
-        String myAccountName = new AccountPage().getMyAccountName();
-        Assert.assertEquals(myAccountName, "My Account",
-                "User with valid email and password can not login");
+    public void loginWithValidCredentialsTest() {
+        loginPage.typeEmailAddress(REGISTER_EMAIL);
+        loginPage.typePassword(REGISTER_PASSWORD);
+        AccountPage accountPage = loginPage.clickLoginButton();
+        String actualAccountName = accountPage.getMyAccountName();
+        Assert.assertEquals(actualAccountName, "My Account",
+                "Incorrect account name");
     }
 
     @Test(description = "***Logout***\n" +
             "EPMFARMATS-13119: check that user can logout after successful login\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13119",
-            dataProvider = "user",
             groups = {"all", "positive"})
-    public void checkThatUserCanLogout(User user) {
-        loginService.login(user.getCredentials().getEmail(), user.getCredentials().getPassword());
-        loginService.logout();
-        String breadcrumbLogoutText = new LogoutPage().getBreadcrumbLogoutText();
-        Assert.assertEquals(breadcrumbLogoutText, "Logout", "User can not logout");
+    public void checkThatUserCanLogout() {
+        loginPage.typeEmailAddress(REGISTER_EMAIL);
+        loginPage.typePassword(REGISTER_PASSWORD);
+        AccountPage accountPage = loginPage.clickLoginButton();
+        AccountPopUp accountPopUp = accountPage.clickMyAccountLink();
+        LogoutPage logoutPage = accountPopUp.clickLogoutLink();
+        String actualBreadcrumbLogoutText = logoutPage.getBreadcrumbLogoutText();
+        Assert.assertEquals(actualBreadcrumbLogoutText, "Logout",
+                "Incorrect breadcrumbls logout text");
     }
 
     @Test(description = "***LoginWithInvalidCredentials***\n" +
@@ -67,29 +64,17 @@ public class LoginTest extends BaseConfigurationTest {
             "EPMFARMATS-13120: check that user can not login with valid email and invalid password\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13121\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13120",
-            dataProvider = "user",
+            dataProvider = "invalidUser",
             groups = {"all", "negative"})
     public void loginWithInvalidCredentials(User user) {
-        loginService.login(user.getCredentials().getEmail(), user.getCredentials().getPassword());
+        Credentials userCredentials = user.getCredentials();
+        String userEmail = userCredentials.getEmail();
+        String userPassword = userCredentials.getPassword();
+        loginPage.typeEmailAddress(userEmail);
+        loginPage.typePassword(userPassword);
+        loginPage.clickLoginButton();
         String warningMessageText = loginPage.getWarningMessage();
         Assert.assertEquals(warningMessageText, "Warning: No match for E-Mail Address and/or Password.",
-                "User can login with invalid email and valid password");
-    }
-
-    @Test(description = "***LoginAfterChangingPassword***\n" +
-            "Check that user can login after changing password",
-            dataProvider = "user",
-            groups = {"all", "positive"})
-    public void loginWithChangedPassword(User user) {
-        AccountPage accountPage = new AccountPage();
-        String newPassword = getRandomString();
-        loginService.login(user.getCredentials().getEmail(), user.getCredentials().getPassword());
-        loginService.changePassword(newPassword);
-        loginService.logout();
-        loginService.login(user.getCredentials().getEmail(), newPassword);
-        String accountName = accountPage.getMyAccountName();
-        Assert.assertEquals(accountName, "My Account",
-                "User can not login after successfully changing password");
-        loginService.changePassword(user.getCredentials().getPassword());
+                "Incorrect warning message text");
     }
 }

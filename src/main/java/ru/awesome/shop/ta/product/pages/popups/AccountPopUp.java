@@ -6,14 +6,6 @@ import ru.awesome.shop.ta.product.pages.LoginPage;
 import ru.awesome.shop.ta.product.pages.LogoutPage;
 
 public class AccountPopUp {
-
-    public AccountRegistrationPage clickRegistrationLink() {
-        By checkoutLinkLocator = By.xpath("//a[text()='Register']");
-        Link checkoutLink = new Link(checkoutLinkLocator);
-        checkoutLink.click();
-        return new AccountRegistrationPage();
-    }
-
     public LoginPage clickLoginLink() {
         By loginLinkLocator = By.xpath("//ul[contains(@class,'menu-right')]//a[text()='Login']");
         Link loginLink = new Link(loginLinkLocator);
