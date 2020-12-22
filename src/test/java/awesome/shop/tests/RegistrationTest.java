@@ -16,28 +16,7 @@ import ru.awesome.shop.ta.utils.TestDataReader;
 
 public class RegistrationTest extends BasePage {
     private AccountRegistrationPage registrationPage = new AccountRegistrationPage();
-
-    private User getRegisteredUser() {
-        User user = UserFactory.generateValidUser();
-        String email = TestDataReader.getTestData("testData.email", TestDataReader.getStageData("email"));
-        String password = TestDataReader.getTestData("testData.password", TestDataReader.getStageData("password"));
-        Credentials registeredCredentials = new Credentials(email, password);
-        User registeredUser = new User.Builder(registeredCredentials).firstName(user.getFirstName())
-                .lastName(user.getLastName()).companyName(user.getCompanyName())
-                .contactInfo(user.getContactInfo()).build();
-        return registeredUser;
-    }
-
-    /* Email has already registered. */
-    @DataProvider(name = "userWithRegisteredEmail")
-    public Object[][] getUserWithRegisteredEmail() {
-        return new Object[][]{{getRegisteredUser()}};
-    }
-
-    @DataProvider(name = "validUser")
-    public Object[][] getValidUser() {
-        return new Object[][]{{UserFactory.generateValidUser()}};
-    }
+    private User validUser = UserFactory.generateValidUser();
 
     @DataProvider(name = "userWithEmptyProperty")
     public Object[][] getUserWithEmptyProperty() {
@@ -127,7 +106,7 @@ public class RegistrationTest extends BasePage {
         registrationPage.typePassword(password);
         registrationPage.typePasswordConfirm(password);
         registrationPage.clickAgreeWithPrivacyPolicyCheckbox();
-        SuccessfulAccountRegistrationPage successfulAccountRegistrationPage = registrationPage.clickContinueButton();
+        registrationPage.clickContinueButton();
         Assert.assertEquals(registrationPage.getWarningMessage(), message);
     }
 
@@ -174,22 +153,21 @@ public class RegistrationTest extends BasePage {
         registrationPage.typePassword(password);
         registrationPage.typePasswordConfirm(password);
         registrationPage.clickAgreeWithPrivacyPolicyCheckbox();
-        SuccessfulAccountRegistrationPage successfulAccountRegistrationPage = registrationPage.clickContinueButton();
+        registrationPage.clickContinueButton();
         Assert.assertEquals(registrationPage.getWarningMessage(), message);
     }
 
     @Test(description = "***CheckSuccessfulUserRegistration***\n" +
             "EPMFARMATS-13155: check successful user registration\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13155\n",
-            dataProvider = "validUser",
             groups = {"all", "positive"})
-    public void checkSuccessfulUserRegistration(User user) {
-        Credentials credentials = user.getCredentials();
-        ContactInfo contactInfo = user.getContactInfo();
-        Address address = user.getContactInfo().getAddress();
-        String firstName = user.getFirstName();
-        String lastName = user.getLastName();
-        String company = user.getCompanyName();
+    public void checkSuccessfulUserRegistration() {
+        Credentials credentials = validUser.getCredentials();
+        ContactInfo contactInfo = validUser.getContactInfo();
+        Address address = validUser.getContactInfo().getAddress();
+        String firstName = validUser.getFirstName();
+        String lastName = validUser.getLastName();
+        String company = validUser.getCompanyName();
         String email = credentials.getEmail();
         String password = credentials.getPassword();
         String telephoneNumber = contactInfo.getTelephoneNumber();
@@ -222,16 +200,21 @@ public class RegistrationTest extends BasePage {
     @Test(description = "***CheckAppearanceEmailAlreadyRegisteredWarning***\n" +
             "EPMFARMATS-13166: check appearance E-mail already registered warning\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13166\n",
-            dataProvider = "userWithRegisteredEmail",
             groups = {"all", "positive"})
-    public void checkAppearanceEmailAlreadyRegisteredWarning(User user) {
-        // Change validUser to registered user.
-        Credentials credentials = user.getCredentials();
-        ContactInfo contactInfo = user.getContactInfo();
-        Address address = user.getContactInfo().getAddress();
-        String firstName = user.getFirstName();
-        String lastName = user.getLastName();
-        String company = user.getCompanyName();
+    public void checkAppearanceEmailAlreadyRegisteredWarning() {
+        String registeredEmail = TestDataReader.getTestData("testData.email", TestDataReader.getStageData("email"));
+        String registeredPassword= TestDataReader.getTestData("testData.password", TestDataReader.getStageData("password"));
+        Credentials registeredCredentials = new Credentials(registeredEmail, registeredPassword);
+        User registeredUser = new User.Builder(registeredCredentials).firstName(validUser.getFirstName())
+                .lastName(validUser.getLastName()).companyName(validUser.getCompanyName())
+                .contactInfo(validUser.getContactInfo()).build();
+
+        Credentials credentials = registeredUser.getCredentials();
+        ContactInfo contactInfo = registeredUser.getContactInfo();
+        Address address = registeredUser.getContactInfo().getAddress();
+        String firstName = registeredUser.getFirstName();
+        String lastName = registeredUser.getLastName();
+        String company = registeredUser.getCompanyName();
         String email = credentials.getEmail();
         String password = credentials.getPassword();
         String telephoneNumber = contactInfo.getTelephoneNumber();
@@ -257,23 +240,22 @@ public class RegistrationTest extends BasePage {
         registrationPage.typePassword(password);
         registrationPage.typePasswordConfirm(password);
         registrationPage.clickAgreeWithPrivacyPolicyCheckbox();
-        SuccessfulAccountRegistrationPage successfulAccountRegistrationPage = registrationPage.clickContinueButton();
+        registrationPage.clickContinueButton();
         Assert.assertEquals(registrationPage.getDangerMessage(), "Warning: E-Mail Address is already registered!");
     }
 
     @Test(description = "***CheckAppearancePasswordConfirmationLengthWarning***\n" +
             "EPMFARMATS-13165: check appearance Password Confirmation warning\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13165\n",
-            dataProvider = "validUser",
             groups = {"all", "positive"})
-    public void checkAppearancePasswordConfirmationLengthWarning(User user) {
+    public void checkAppearancePasswordConfirmationLengthWarning() {
         String emptyPasswordConfirm = "";
-        Credentials credentials = user.getCredentials();
-        ContactInfo contactInfo = user.getContactInfo();
-        Address address = user.getContactInfo().getAddress();
-        String firstName = user.getFirstName();
-        String lastName = user.getLastName();
-        String company = user.getCompanyName();
+        Credentials credentials = validUser.getCredentials();
+        ContactInfo contactInfo = validUser.getContactInfo();
+        Address address = validUser.getContactInfo().getAddress();
+        String firstName = validUser.getFirstName();
+        String lastName = validUser.getLastName();
+        String company = validUser.getCompanyName();
         String email = credentials.getEmail();
         String password = credentials.getPassword();
         String telephoneNumber = contactInfo.getTelephoneNumber();
@@ -299,7 +281,7 @@ public class RegistrationTest extends BasePage {
         registrationPage.typePassword(password);
         registrationPage.typePasswordConfirm(emptyPasswordConfirm); // empty password
         registrationPage.clickAgreeWithPrivacyPolicyCheckbox();
-        SuccessfulAccountRegistrationPage successfulAccountRegistrationPage = registrationPage.clickContinueButton();
+        registrationPage.clickContinueButton();
         Assert.assertEquals(registrationPage.getWarningMessage(), "Password confirmation does not match password!");
     }
 
@@ -307,15 +289,14 @@ public class RegistrationTest extends BasePage {
     @Test(description = "***CheckAppearancePrivacyPolicyWarning***\n" +
             "EPMFARMATS-13154: check appearance Privacy Policy warning\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13154\n",
-            dataProvider = "validUser",
             groups = {"all", "positive"})
     public void checkAppearancePrivacyPolicyWarning(User user) {
-        Credentials credentials = user.getCredentials();
-        ContactInfo contactInfo = user.getContactInfo();
-        Address address = user.getContactInfo().getAddress();
-        String firstName = user.getFirstName();
-        String lastName = user.getLastName();
-        String company = user.getCompanyName();
+        Credentials credentials = validUser.getCredentials();
+        ContactInfo contactInfo = validUser.getContactInfo();
+        Address address = validUser.getContactInfo().getAddress();
+        String firstName = validUser.getFirstName();
+        String lastName = validUser.getLastName();
+        String company = validUser.getCompanyName();
         String email = credentials.getEmail();
         String password = credentials.getPassword();
         String telephoneNumber = contactInfo.getTelephoneNumber();
@@ -341,16 +322,15 @@ public class RegistrationTest extends BasePage {
         registrationPage.typePassword(password);
         registrationPage.typePasswordConfirm(password);
 //        registrationPage.clickAgreeWithPrivacyPolicyCheckbox();
-        SuccessfulAccountRegistrationPage successfulAccountRegistrationPage = registrationPage.clickContinueButton();
+        registrationPage.clickContinueButton();
         Assert.assertEquals(registrationPage.getDangerMessage(), "Warning: You must agree to the Privacy Policy!");
     }
 
     @Test(description = "***CheckAppearancePrivatePolicyWindow***\n" +
             "EPMFARMATS-13167: check appearance Private Policy window\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13167\n",
-            dataProvider = "validUser",
             groups = {"all", "positive"})
-    public void checkAppearancePrivatePolicyWindow(User user) {
+    public void checkAppearancePrivatePolicyWindow() {
         registrationPage.clickPrivacyPolicyLink();
         Assert.assertEquals(registrationPage.getPrivacyPolicyTitle(), "Privacy Policy");
     }
