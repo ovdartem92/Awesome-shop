@@ -71,8 +71,7 @@ public class RegistrationTest extends BaseConfigurationTest {
             groups = {"all", "positive"})
     public void checkSuccessfulUserRegistration() {
         SuccessfulAccountRegistrationPage successfulRegistrationPage = registrationService.registerUser(validUser);
-        Assert.assertEquals(successfulAccountRegistrationPage.getAccountCreationMessage(),
-                "Your Account Has Been Created!");
+        Assert.assertEquals(successfulRegistrationPage.getAccountCreationMessage(), "Your Account Has Been Created!");
     }
 
     @Test(description = "***CheckAppearanceEmailAlreadyRegisteredWarning***\n" +
