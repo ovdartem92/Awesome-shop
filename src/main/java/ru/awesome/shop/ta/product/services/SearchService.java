@@ -11,30 +11,30 @@ public class SearchService {
     SearchResultPage searchResultPage = new SearchResultPage();
 
     public void openHomePageTypeDataToSearch(String searchData) {
-        homePage.open()
-                .typeSearchQuery(searchData);
+        homePage.open();
+        homePage.typeSearchQuery(searchData);
     }
 
     public void openHomePageTypeDataToSearchClickSearchButton(String searchData) {
-        homePage.open()
-                .typeSearchQuery(searchData)
-                .clickSearchButton();
+        homePage.open();
+        homePage.typeSearchQuery(searchData);
+        homePage.clickSearchButton();
     }
 
     public void openHomePageTypeDataToSearchClickSearchButtonSelectCategory(String searchData, String categoryName) {
-        homePage.open()
-                .typeSearchQuery(searchData)
-                .clickSearchButton()
-                .selectCategory(categoryName)
-                .clickSearchButtonOnSearchResultPage();
+        homePage.open();
+        homePage.typeSearchQuery(searchData);
+        homePage.clickSearchButton();
+        searchResultPage.selectCategory(categoryName);
+        searchResultPage.clickSearchButtonOnSearchResultPage();
     }
 
     public void openHomePageTypeDataToSearchClickSearchButtonSetDescription(String searchData) {
-        homePage.open()
-                .typeSearchQuery(searchData)
-                .clickSearchButton()
-                .setDescriptionCheckbox(true)
-                .clickSearchButtonOnSearchResultPage();
+        homePage.open();
+        homePage.typeSearchQuery(searchData);
+        searchResultPage.clickSearchButton();
+        searchResultPage.setDescriptionCheckbox(true);
+        searchResultPage.clickSearchButtonOnSearchResultPage();
     }
 
     public SearchResultFragment getFirstActualSearchFragment() {
