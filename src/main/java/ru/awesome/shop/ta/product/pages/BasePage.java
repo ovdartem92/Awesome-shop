@@ -1,11 +1,10 @@
 package ru.awesome.shop.ta.product.pages;
 
 import org.openqa.selenium.By;
-
-import ru.awesome.shop.ta.framework.ui.components.Link;
-import ru.awesome.shop.ta.product.pages.popups.AccountPopUp;
 import ru.awesome.shop.ta.framework.ui.components.Button;
+import ru.awesome.shop.ta.framework.ui.components.Link;
 import ru.awesome.shop.ta.framework.ui.components.TextField;
+import ru.awesome.shop.ta.product.pages.popups.AccountPopUp;
 import ru.awesome.shop.ta.product.pages.popups.CartTotalPopup;
 
 public abstract class BasePage {
@@ -34,7 +33,7 @@ public abstract class BasePage {
     }
 
     public CartTotalPopup clickCartTotalButton() {
-        By cartTotalButtonLocator = By.xpath("//div[@class='col-sm-3']//button//i[@class='fa fa-shopping-cart']");
+        By cartTotalButtonLocator = By.xpath("//div[@id='cart']//button//i[@class='fa fa-shopping-cart']");
         Button cartTotalButton = new Button(cartTotalButtonLocator);
         cartTotalButton.click();
         return new CartTotalPopup();

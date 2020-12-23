@@ -10,7 +10,7 @@ import ru.awesome.shop.ta.framework.ui.components.TextField;
 import java.util.List;
 import java.util.Objects;
 
-import static ru.awesome.shop.ta.framework.ui.components.CommonPageElement.waitForAllElementsPresenceLocated;
+import static ru.awesome.shop.ta.framework.ui.components.CommonPageElement.waitForAllPageElementsVisibilityLocated;
 import static ru.awesome.shop.ta.framework.ui.components.CommonPageElement.waitForPageElementInvisibilityLocated;
 
 public class CartPage extends BasePage {
@@ -100,12 +100,12 @@ public class CartPage extends BasePage {
                 "//div[@class='table-responsive']//a[text()='%s']/ancestor::tr//input[contains(@name,'quantity')]",
                 productName));
         TextField quantityField = new TextField(quantityFieldLocator);
-        return Integer.parseInt(quantityField.getAttribute("value"));
+        return Integer.parseInt(quantityField.getText());
     }
 
     public int getNumberOfCartItems() {
         By cartItemLocator = By.xpath("//div[@class='table-responsive']//tbody//tr");
-        waitForAllElementsPresenceLocated(cartItemLocator);
+        waitForAllPageElementsVisibilityLocated(cartItemLocator, 10);
         List<WebElement> cartItemElements = Browser.getInstance().getWrappedDriver().findElements(cartItemLocator);
         return cartItemElements.size();
     }
