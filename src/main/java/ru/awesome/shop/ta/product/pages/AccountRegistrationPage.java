@@ -3,6 +3,7 @@ package ru.awesome.shop.ta.product.pages;
 import org.openqa.selenium.By;
 import ru.awesome.shop.ta.framework.browser.Browser;
 import ru.awesome.shop.ta.framework.ui.components.*;
+import ru.awesome.shop.ta.product.bo.address.Region;
 
 public class AccountRegistrationPage extends BasePage {
     private static final String REGISTRATION_PAGE_URL = "index.php?route=account/register";
@@ -84,10 +85,10 @@ public class AccountRegistrationPage extends BasePage {
         return this;
     }
 
-    public AccountRegistrationPage selectRegion(String region) {
+    public AccountRegistrationPage selectRegion(Region region) {
         By regionLocator = By.id("input-zone");
         DropDownList regionDropDownList = new DropDownList(regionLocator);
-        regionDropDownList.select(region);
+        regionDropDownList.select(region.getRegionName());
         return this;
     }
 

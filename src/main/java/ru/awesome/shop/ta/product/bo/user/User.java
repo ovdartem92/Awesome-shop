@@ -1,6 +1,7 @@
 package ru.awesome.shop.ta.product.bo.user;
 
 import ru.awesome.shop.ta.product.bo.address.Address;
+import ru.awesome.shop.ta.product.bo.address.Region;
 import ru.awesome.shop.ta.product.bo.contacts.ContactInfo;
 import ru.awesome.shop.ta.product.bo.credentials.Credentials;
 
@@ -20,7 +21,7 @@ public final class User {
         private String lastName = "";
         private String companyName = "";
         private ContactInfo contactInfo = new ContactInfo("", "",
-                new Address("", "", "", "", "", ""));
+                new Address("", "", "", "", "", Region.EMPTY_REGION));
 
         public Builder(Credentials credentials) {
             this.credentials = new Credentials(credentials.getEmail(), credentials.getPassword());
@@ -84,7 +85,7 @@ public final class User {
         String city = address.getCity();
         String postCode = address.getPostCode();
         String country = address.getCountry();
-        String region = address.getRegion();
+        Region region = address.getRegion();
         return new ContactInfo(contactInfo.getTelephoneNumber(), contactInfo.getFaxNumber(),
                 new Address(firstAddress, secondAddress, city, postCode, country, region));
     }

@@ -6,6 +6,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.awesome.shop.ta.framework.configuration.PropertyManager;
 import ru.awesome.shop.ta.product.bo.address.Address;
+import ru.awesome.shop.ta.product.bo.address.Region;
 import ru.awesome.shop.ta.product.bo.contacts.ContactInfo;
 import ru.awesome.shop.ta.product.bo.credentials.Credentials;
 import ru.awesome.shop.ta.product.bo.user.User;
@@ -87,7 +88,7 @@ public class RegistrationTest extends BaseConfigurationTest {
         String firstAddress = address.getFirstAddress();
         String secondAddress = address.getSecondAddress();
         String country = address.getCountry();
-        String region = address.getRegion();
+        Region region = address.getRegion();
         String city = address.getCity();
         String postCode = address.getPostCode();
 
@@ -134,7 +135,7 @@ public class RegistrationTest extends BaseConfigurationTest {
         String firstAddress = address.getFirstAddress();
         String secondAddress = address.getSecondAddress();
         String country = address.getCountry();
-        String region = address.getRegion();
+        Region region = address.getRegion();
         String city = address.getCity();
         String postCode = address.getPostCode();
 
@@ -174,7 +175,7 @@ public class RegistrationTest extends BaseConfigurationTest {
         String firstAddress = address.getFirstAddress();
         String secondAddress = address.getSecondAddress();
         String country = address.getCountry();
-        String region = address.getRegion();
+        Region region = address.getRegion();
         String city = address.getCity();
         String postCode = address.getPostCode();
 
@@ -224,7 +225,7 @@ public class RegistrationTest extends BaseConfigurationTest {
         String firstAddress = address.getFirstAddress();
         String secondAddress = address.getSecondAddress();
         String country = address.getCountry();
-        String region = address.getRegion();
+        Region region = address.getRegion();
         String city = address.getCity();
         String postCode = address.getPostCode();
 
@@ -265,7 +266,7 @@ public class RegistrationTest extends BaseConfigurationTest {
         String firstAddress = address.getFirstAddress();
         String secondAddress = address.getSecondAddress();
         String country = address.getCountry();
-        String region = address.getRegion();
+        Region region = address.getRegion();
         String city = address.getCity();
         String postCode = address.getPostCode();
 
@@ -306,7 +307,7 @@ public class RegistrationTest extends BaseConfigurationTest {
         String firstAddress = address.getFirstAddress();
         String secondAddress = address.getSecondAddress();
         String country = address.getCountry();
-        String region = address.getRegion();
+        Region region = address.getRegion();
         String city = address.getCity();
         String postCode = address.getPostCode();
 

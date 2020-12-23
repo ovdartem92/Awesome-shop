@@ -16,7 +16,7 @@ public final class AddressFactory {
     private static final String CITY = RandomStringUtils.randomAlphabetic(startInclusive, endExclusive);
     private static final String POSTCODE = RandomStringUtils.randomNumeric(startInclusive, endExclusive);
     private static final String COUNTRY = RandomStringUtils.randomAlphabetic(startInclusive, endExclusive);
-    private static final String REGION = generateRegion();
+    private static final Region REGION = generateRegion();
 
     private AddressFactory() {
         throw new AssertionError(format("Creation of instance of %s is prohibited.", AddressFactory.class));
@@ -53,15 +53,14 @@ public final class AddressFactory {
     }
 
     public static Address generateAddressWithEmptyRegion() {
-        return new Address(FIRST_ADDRESS, SECOND_ADDRESS, CITY, CITY, COUNTRY, " --- Please Select --- ");
+        return new Address(FIRST_ADDRESS, SECOND_ADDRESS, CITY, CITY, COUNTRY, Region.EMPTY_REGION);
     }
 
-    private static String generateRegion() {
+    private static Region generateRegion() {
         Random random = new Random();
         List<Region> regionList = Arrays.asList(Region.values());
         int size = regionList.size();
         int randomIndex = random.nextInt(size);
-        Region randomRegion = regionList.get(randomIndex);
-        return randomRegion.getRegionName();
+        return regionList.get(randomIndex);
     }
 }
