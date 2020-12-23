@@ -42,7 +42,7 @@ public class SearchService {
         return allSearchResults.get(0);
     }
 
-    public String getCheckedIncorrectMessage() {
+    public String getCheckedIncorrectSearchCriteriaMessage() {
         try {
             return searchResultPage.getIncorrectSearchCriteriaMessage();
         } catch (Exception e) {

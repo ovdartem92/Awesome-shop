@@ -3,7 +3,6 @@ package awesome.shop.tests;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import ru.awesome.shop.ta.product.pages.SearchResultPage;
 import ru.awesome.shop.ta.product.services.SearchService;
 
 public class SearchTest extends BaseConfigurationTest {
@@ -43,7 +42,7 @@ public class SearchTest extends BaseConfigurationTest {
     public void checkTheSearchFieldByNegativeSearchData(String searchData) {
         String expectedResult = "There is no product that matches the search criteria.";
         searchService.openHomePageTypeDataToSearchClickSearchButton(searchData);
-        Assert.assertEquals(searchService.getCheckedIncorrectMessage(), expectedResult,
+        Assert.assertEquals(searchService.getCheckedIncorrectSearchCriteriaMessage(), expectedResult,
                 expectedResult + " is not displayed.");
     }
 
