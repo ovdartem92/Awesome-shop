@@ -19,6 +19,18 @@ public final class UserFactory {
         throw new AssertionError(String.format("Creation of instance of %s is prohibited.", UserFactory.class));
     }
 
+    public static User generateUserWithRegisteredCredentialsWithInvalidEmail() {
+        Credentials registeredCredentials = CredentialsFactory.generateRegisteredCredentialsWithInvalidEmail();
+        return new User.Builder(registeredCredentials).firstName(FIRST_NAME).lastName(LAST_NAME)
+                .companyName(COMPANY).contactInfo(VALID_CONTACT_INFO).build();
+    }
+
+    public static User generateUserWithRegisteredCredentialsWithInvalidPassword() {
+        Credentials registeredCredentials = CredentialsFactory.generateRegisteredCredentialsWithInvalidPassword();
+        return new User.Builder(registeredCredentials).firstName(FIRST_NAME).lastName(LAST_NAME)
+                .companyName(COMPANY).contactInfo(VALID_CONTACT_INFO).build();
+    }
+
     public static User generateValidUser() {
         return new User.Builder(VALID_CREDENTIALS).firstName(FIRST_NAME).lastName(LAST_NAME)
                 .companyName(COMPANY).contactInfo(VALID_CONTACT_INFO).build();
