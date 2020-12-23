@@ -48,21 +48,6 @@ public final class UserFactory {
                 .companyName(COMPANY).contactInfo(VALID_CONTACT_INFO).build();
     }
 
-    public static User generateUserWithEmptyFirstName() {
-        return new User.Builder(VALID_CREDENTIALS).firstName("").lastName(LAST_NAME)
-                .companyName(COMPANY).contactInfo(VALID_CONTACT_INFO).build();
-    }
-
-    public static User generateUserWithEmptyLastName() {
-        return new User.Builder(VALID_CREDENTIALS).firstName(FIRST_NAME).lastName("")
-                .companyName(COMPANY).contactInfo(VALID_CONTACT_INFO).build();
-    }
-
-    public static User generateUserWithEmptyCompany() {
-        return new User.Builder(VALID_CREDENTIALS).firstName(FIRST_NAME).lastName(LAST_NAME)
-                .companyName("").contactInfo(VALID_CONTACT_INFO).build();
-    }
-
     public static User generateUserWithInvalidPassword() {
         Credentials credentialsWithInvalidPassword = CredentialsFactory.generateCredentialsWithInvalidPassword();
         return new User.Builder(credentialsWithInvalidPassword).firstName(FIRST_NAME).lastName(LAST_NAME)
@@ -72,18 +57,6 @@ public final class UserFactory {
     public static User generateUserWithInvalidEmail() {
         Credentials credentialsWithInvalidEmail = CredentialsFactory.generateCredentialsWithInvalidEmail();
         return new User.Builder(credentialsWithInvalidEmail).firstName(FIRST_NAME).lastName(LAST_NAME)
-                .companyName(COMPANY).contactInfo(VALID_CONTACT_INFO).build();
-    }
-
-    public static User generateUserWithEmptyPassword() {
-        Credentials credentialsWithEmptyPassword = CredentialsFactory.generateCredentialsWithEmptyPassword();
-        return new User.Builder(credentialsWithEmptyPassword).firstName(FIRST_NAME).lastName(LAST_NAME)
-                .companyName(COMPANY).contactInfo(VALID_CONTACT_INFO).build();
-    }
-
-    public static User generateUserWithEmptyEmail() {
-        Credentials credentialsWithEmptyEmail = CredentialsFactory.generateCredentialsWithEmptyEmail();
-        return new User.Builder(credentialsWithEmptyEmail).firstName(FIRST_NAME).lastName(LAST_NAME)
                 .companyName(COMPANY).contactInfo(VALID_CONTACT_INFO).build();
     }
 
@@ -97,55 +70,5 @@ public final class UserFactory {
         ContactInfo contactInfoWithInvalidCity = ContactInfoFactory.generateContactInfoWithInvalidCity();
         return new User.Builder(VALID_CREDENTIALS).firstName(FIRST_NAME).lastName(LAST_NAME)
                 .companyName(COMPANY).contactInfo(contactInfoWithInvalidCity).build();
-    }
-
-    public static User generateUserWithEmptyTelephone() {
-        ContactInfo contactInfoWithEmptyTelephone = ContactInfoFactory.generateContactInfoWithEmptyTelephone();
-        return new User.Builder(VALID_CREDENTIALS).firstName(FIRST_NAME).lastName(LAST_NAME)
-                .companyName(COMPANY).contactInfo(contactInfoWithEmptyTelephone).build();
-    }
-
-    public static User generateUserWithEmptyFax() {
-        ContactInfo contactInfoWithEmptyFax = ContactInfoFactory.generateContactInfoWithEmptyFax();
-        return new User.Builder(VALID_CREDENTIALS).firstName(FIRST_NAME).lastName(LAST_NAME)
-                .companyName(COMPANY).contactInfo(contactInfoWithEmptyFax).build();
-    }
-
-    public static User generateUserWithEmptyCity() {
-        ContactInfo contactInfoWithEmptyCity = ContactInfoFactory.generateContactInfoWithEmptyCity();
-        return new User.Builder(VALID_CREDENTIALS).firstName(FIRST_NAME).lastName(LAST_NAME)
-                .companyName(COMPANY).contactInfo(contactInfoWithEmptyCity).build();
-    }
-
-    public static User generateUserWithEmptyFirstAddress() {
-        ContactInfo contactInfoWithEmptyFirstAddress = ContactInfoFactory
-                .generateContactInfoWithEmptyFirstAddress();
-        return new User.Builder(VALID_CREDENTIALS).firstName(FIRST_NAME).lastName(LAST_NAME)
-                .companyName(COMPANY).contactInfo(contactInfoWithEmptyFirstAddress).build();
-    }
-
-    public static User generateUserWithEmptySecondAddress() {
-        ContactInfo contactInfoWithEmptySecondAddress = ContactInfoFactory
-                .generateContactInfoWithEmptySecondAddress();
-        return new User.Builder(VALID_CREDENTIALS).firstName(FIRST_NAME).lastName(LAST_NAME)
-                .companyName(COMPANY).contactInfo(contactInfoWithEmptySecondAddress).build();
-    }
-
-    public static User generateUserWithEmptyPostCode() {
-        ContactInfo contactInfoWithEmptyPostCode = ContactInfoFactory.generateContactInfoWithEmptyPostCode();
-        return new User.Builder(VALID_CREDENTIALS).firstName(FIRST_NAME).lastName(LAST_NAME)
-                .companyName(COMPANY).contactInfo(contactInfoWithEmptyPostCode).build();
-    }
-
-    public static User generateUserWithEmptyCountry() {
-        ContactInfo contactInfoWithEmptyCountry = ContactInfoFactory.generateContactInfoWithEmptyCountry();
-        return new User.Builder(VALID_CREDENTIALS).firstName(FIRST_NAME).lastName(LAST_NAME)
-                .companyName(COMPANY).contactInfo(contactInfoWithEmptyCountry).build();
-    }
-
-    public static User generateUserWithEmptyRegion() {
-        ContactInfo contactInfoWithEmptyRegion = ContactInfoFactory.generateContactInfoWithEmptyRegion();
-        return new User.Builder(VALID_CREDENTIALS).firstName(FIRST_NAME).lastName(LAST_NAME)
-                .companyName(COMPANY).contactInfo(contactInfoWithEmptyRegion).build();
     }
 }

@@ -41,12 +41,4 @@ public final class CredentialsFactory {
         String invalidEmail = RandomStringUtils.randomAscii(startInclusive, endExclusive).concat("@mail.com");
         return new Credentials(invalidEmail, PASSWORD);
     }
-
-    public static Credentials generateCredentialsWithEmptyPassword() {
-        return new Credentials(EMAIL, "");
-    }
-
-    public static Credentials generateCredentialsWithEmptyEmail() {
-        return new Credentials("", PASSWORD);
-    }
 }
