@@ -6,7 +6,7 @@
     </listeners>
     <test name="Smoke">
         <classes>
-            <class name="awesome.shop.tests.RegistrationTest"/>
+            <class name="awesome.shop.tests.SearchTest"/>
         </classes>
     </test>
 </suite>
