@@ -56,7 +56,6 @@ public class CommonPageElement {
         wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
     }
 
-
     public static void waitForPageElementInvisibilityLocated(By locator) {
         Objects.requireNonNull(locator, "Locator cannot be null.");
         waitForPageElementInvisibilityLocated(locator, TIMEOUT_IN_SECONDS);

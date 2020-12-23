@@ -35,7 +35,7 @@ public class CartTest extends BaseConfigurationTest {
     @Test(description = "***CanAddMoreThanOneProductToCart***\n" +
             "EPMFARMATS-13150: Check that user can add more than one product to cart\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13150")
-    public void checkAddToCartMoreProducts() {
+    public void checkAddToCartMoreThanOneProduct() {
         homePage.clickAddProductToCartButton(IPHONE);
         homePage.clickAddProductToCartButton(MACBOOK);
         CartPage cartPage = homePage.clickCartTotalButton()
@@ -122,7 +122,7 @@ public class CartTest extends BaseConfigurationTest {
     @Test(description = "***ContinueButtonNavigateToHomePage***\n" +
             "EPMFARMATS-13151: Check that 'Continue' button in empty cart lead to main page\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13151")
-    public void continueNavigateToHomePage() {
+    public void checkContinueNavigateToHomePage() {
         homePage.clickAddProductToCartButton(MACBOOK);
         CartPage cartPage = homePage.clickCartTotalButton().
                 clickViewCartButton();
@@ -167,7 +167,7 @@ public class CartTest extends BaseConfigurationTest {
     @Test(description = "***RemoveProductFromCart***\n" +
             "EPMFARMATS-13146: Check that user can remove product from cart\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13146")
-    public void removeProduct() {
+    public void checkCanRemoveProduct() {
         homePage.clickAddProductToCartButton(MACBOOK);
         CartPage cartPage = homePage.clickCartTotalButton()
                 .clickViewCartButton();
