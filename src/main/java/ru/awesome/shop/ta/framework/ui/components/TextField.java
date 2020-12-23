@@ -1,6 +1,7 @@
 package ru.awesome.shop.ta.framework.ui.components;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import ru.awesome.shop.ta.framework.browser.Browser;
 
 import java.util.Objects;
@@ -21,6 +22,11 @@ public class TextField extends CommonPageElement {
         Objects.requireNonNull(textForType, "Text can not be null");
         waitForPageElementPresenceLocated(locator);
         Browser.getInstance().sendKeys(locator, textForType);
+    }
+
+    public void replaceWith(String text) {
+        Objects.requireNonNull(text, "Text cannot be null");
+        type(Keys.chord(Keys.CONTROL, "a"), text);
     }
 
     public String getText() {
