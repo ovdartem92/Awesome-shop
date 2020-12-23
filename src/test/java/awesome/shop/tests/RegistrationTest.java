@@ -45,7 +45,37 @@ public class RegistrationTest extends BaseConfigurationTest {
             "https://jira.epam.com/jira/browse/EPMFARMATS-13156\n",
             groups = {"all", "positive"})
     public void checkAppearanceWithEmptyFirstNameWarning() {
-        registrationService.registerUser(validUser);
+        Credentials credentials = validUser.getCredentials();
+        ContactInfo contactInfo = validUser.getContactInfo();
+        Address address = validUser.getContactInfo().getAddress();
+        String firstName = validUser.getFirstName();
+        String lastName = validUser.getLastName();
+        String company = validUser.getCompanyName();
+        String email = credentials.getEmail();
+        String password = credentials.getPassword();
+        String telephoneNumber = contactInfo.getTelephoneNumber();
+        String faxNumber = contactInfo.getFaxNumber();
+        String firstAddress = address.getFirstAddress();
+        String secondAddress = address.getSecondAddress();
+        String country = address.getCountry();
+        Region region = address.getRegion();
+        String city = address.getCity();
+        String postCode = address.getPostCode();
+
+        registrationPage.typeLastName(lastName);
+        registrationPage.typeEmail(email);
+        registrationPage.typeTelephone(telephoneNumber);
+        registrationPage.typeFax(faxNumber);
+        registrationPage.typeCompany(company);
+        registrationPage.typeFirstAddress(firstAddress);
+        registrationPage.typeSecondAddress(secondAddress);
+        registrationPage.typeCity(city);
+        registrationPage.typePostcode(postCode);
+        registrationPage.selectRegion(region);
+        registrationPage.typePassword(password);
+        registrationPage.typePasswordConfirm(password);
+        registrationPage.clickAgreeWithPrivacyPolicyCheckbox();
+        registrationPage.clickContinueButton();
         Assert.assertEquals(registrationPage.getWarningMessage(), "First Name must be between 1 and 32 characters!");
     }
 
