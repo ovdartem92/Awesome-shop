@@ -32,7 +32,7 @@ public class SearchService {
     public void openHomePageTypeDataToSearchClickSearchButtonSetDescription(String searchData) {
         homePage.open();
         homePage.typeSearchQuery(searchData);
-        searchResultPage.clickSearchButton();
+        homePage.clickSearchButton();
         searchResultPage.setDescriptionCheckbox(true);
         searchResultPage.clickSearchButtonOnSearchResultPage();
     }
