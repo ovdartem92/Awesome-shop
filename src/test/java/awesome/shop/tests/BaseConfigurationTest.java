@@ -9,7 +9,7 @@ import ru.awesome.shop.ta.framework.listeners.TestListener;
 
 @Listeners({TestListener.class, SuiteListener.class})
 public abstract class BaseConfigurationTest {
-    private Browser browser;
+    protected Browser browser;
 
     @BeforeMethod(description = "Set Up", groups = {"all", "positive", "negative"})
     public void setUp() {
