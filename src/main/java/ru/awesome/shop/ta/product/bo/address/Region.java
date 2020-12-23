@@ -4,7 +4,7 @@ public enum Region {
     ABERDEEN("Aberdeen"), BRISTOL("Bristol"), CORNWALL("Cornwall"),
     EDINBURGH("Edinburgh"), ESSEX("Essex"), FALKIRK("Falkirk"),
     FIFE("Fife"), FLINTSHIRE("Flintshire"), GLASGOW("Glasgow"),
-    GREATER_LONDON("Greater London"), EMPTY_REGION(" --- Please Select --- ");
+    GREATER_LONDON("Greater London");
 
     private String regionName;
 

@@ -21,7 +21,7 @@ public final class User {
         private String lastName = "";
         private String companyName = "";
         private ContactInfo contactInfo = new ContactInfo("", "",
-                new Address("", "", "", "", "", Region.EMPTY_REGION));
+                new Address("", "", "", "", "", Region.ABERDEEN));
 
         public Builder(Credentials credentials) {
             this.credentials = new Credentials(credentials.getEmail(), credentials.getPassword());

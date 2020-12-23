@@ -32,30 +32,6 @@ public final class AddressFactory {
                 POSTCODE, COUNTRY, REGION);
     }
 
-    public static Address generateAddressWithEmptyFirstAddress() {
-        return new Address("", SECOND_ADDRESS, CITY, POSTCODE, COUNTRY, REGION);
-    }
-
-    public static Address generateAddressWithEmptySecondAddress() {
-        return new Address(FIRST_ADDRESS, "", CITY, POSTCODE, COUNTRY, REGION);
-    }
-
-    public static Address generateAddressWithEmptyCity() {
-        return new Address(FIRST_ADDRESS, SECOND_ADDRESS, "", POSTCODE, COUNTRY, REGION);
-    }
-
-    public static Address generateAddressWithEmptyPostCode() {
-        return new Address(FIRST_ADDRESS, SECOND_ADDRESS, CITY, "", COUNTRY, REGION);
-    }
-
-    public static Address generateAddressWithEmptyCountry() {
-        return new Address(FIRST_ADDRESS, SECOND_ADDRESS, CITY, CITY, "", REGION);
-    }
-
-    public static Address generateAddressWithEmptyRegion() {
-        return new Address(FIRST_ADDRESS, SECOND_ADDRESS, CITY, CITY, COUNTRY, Region.EMPTY_REGION);
-    }
-
     private static Region generateRegion() {
         Random random = new Random();
         List<Region> regionList = Arrays.asList(Region.values());

@@ -18,21 +18,6 @@ public class RegistrationTest extends BaseConfigurationTest {
     private AccountRegistrationPage registrationPage = new AccountRegistrationPage();
     private final User validUser = UserFactory.generateValidUser();
 
-    @DataProvider(name = "userWithEmptyProperty")
-    public Object[][] getUserWithEmptyProperty() {
-        return new Object[][] {
-                { UserFactory.generateUserWithEmptyFirstName(), "First Name must be between 1 and 32 characters!" },
-                { UserFactory.generateUserWithEmptyLastName(), "Last Name must be between 1 and 32 characters!" },
-                { UserFactory.generateUserWithEmptyEmail(), "E-Mail Address does not appear to be valid!" },
-                { UserFactory.generateUserWithEmptyTelephone(), "Telephone must be between 3 and 32 characters!" },
-                { UserFactory.generateUserWithEmptyFirstAddress(), "Address 1 must be between 3 and 128 characters!" },
-                { UserFactory.generateUserWithEmptyCity(), "City must be between 2 and 128 characters!" },
-                { UserFactory.generateUserWithEmptyRegion(), "Please select a region / state!" },
-                { UserFactory.generateUserWithEmptyPostCode(), "Postcode must be between 2 and 10 characters!" },
-                { UserFactory.generateUserWithEmptyPassword(), "Password must be between 4 and 20 characters!" },
-        };
-    }
-
     @DataProvider(name = "userWithInvalidProperty")
     public Object[][] getUserWithInvalidProperty() {
         return new Object[][] {
@@ -53,34 +38,17 @@ public class RegistrationTest extends BaseConfigurationTest {
         registrationPage.open();
     }
 
-    @Test(description = "***RegistrationTestsWithEmptyProperties***\n" +
+    @Test(description = "***RegistrationTestWithEmptyFirstname***\n" +
             "EPMFARMATS-13156: Check appearance First Name length warning\n" +
-            "EPMFARMATS-13157: check appearance Last Name length warning\n" +
-            "EPMFARMATS-13158: check appearance E-mail invalid warning\n" +
-            "EPMFARMATS-13159: check appearance Telephone length warning\n" +
-            "EPMFARMATS-13160: check appearance Address 1 length warning\n" +
-            "EPMFARMATS-13161: check appearance City length warning\n" +
-            "EPMFARMATS-13162: check appearance Region / State isn't selected warning\n" +
-            "EPMFARMATS-13163: check appearance Postcode length warning\n" +
-            "EPMFARMATS-13164: check appearance Password length warning\n" +
-            "https://jira.epam.com/jira/browse/EPMFARMATS-13156\n" +
-            "https://jira.epam.com/jira/browse/EPMFARMATS-13157\n" +
-            "https://jira.epam.com/jira/browse/EPMFARMATS-13158\n" +
-            "https://jira.epam.com/jira/browse/EPMFARMATS-13159\n" +
-            "https://jira.epam.com/jira/browse/EPMFARMATS-13160\n" +
-            "https://jira.epam.com/jira/browse/EPMFARMATS-13161\n" +
-            "https://jira.epam.com/jira/browse/EPMFARMATS-13162\n" +
-            "https://jira.epam.com/jira/browse/EPMFARMATS-13163\n" +
-            "https://jira.epam.com/jira/browse/EPMFARMATS-13164\n",
-            dataProvider = "userWithEmptyProperty",
+            "https://jira.epam.com/jira/browse/EPMFARMATS-13156\n",
             groups = {"all", "positive"})
-    public void checkAppearanceWithEmptyPropertyWarning(User user, String message) {
-        Credentials credentials = user.getCredentials();
-        ContactInfo contactInfo = user.getContactInfo();
-        Address address = user.getContactInfo().getAddress();
-        String firstName = user.getFirstName();
-        String lastName = user.getLastName();
-        String company = user.getCompanyName();
+    public void checkAppearanceWithEmptyFirstNameWarning() {
+        Credentials credentials = validUser.getCredentials();
+        ContactInfo contactInfo = validUser.getContactInfo();
+        Address address = validUser.getContactInfo().getAddress();
+        String firstName = validUser.getFirstName();
+        String lastName = validUser.getLastName();
+        String company = validUser.getCompanyName();
         String email = credentials.getEmail();
         String password = credentials.getPassword();
         String telephoneNumber = contactInfo.getTelephoneNumber();
@@ -92,7 +60,6 @@ public class RegistrationTest extends BaseConfigurationTest {
         String city = address.getCity();
         String postCode = address.getPostCode();
 
-        registrationPage.typeFirstName(firstName);
         registrationPage.typeLastName(lastName);
         registrationPage.typeEmail(email);
         registrationPage.typeTelephone(telephoneNumber);
@@ -107,7 +74,7 @@ public class RegistrationTest extends BaseConfigurationTest {
         registrationPage.typePasswordConfirm(password);
         registrationPage.clickAgreeWithPrivacyPolicyCheckbox();
         registrationPage.clickContinueButton();
-        Assert.assertEquals(registrationPage.getWarningMessage(), message);
+        Assert.assertEquals(registrationPage.getWarningMessage(), "First Name must be between 1 and 32 characters!");
     }
 
     @Test(description = "***RegistrationTestsWithInvalidProperties***\n" +
@@ -282,7 +249,6 @@ public class RegistrationTest extends BaseConfigurationTest {
         registrationPage.typePostcode(postCode);
         registrationPage.selectRegion(region);
         registrationPage.typePassword(password);
-        registrationPage.typePasswordConfirm(emptyPasswordConfirm); // empty password
         registrationPage.clickAgreeWithPrivacyPolicyCheckbox();
         registrationPage.clickContinueButton();
         Assert.assertEquals(registrationPage.getWarningMessage(), "Password confirmation does not match password!");
@@ -324,7 +290,6 @@ public class RegistrationTest extends BaseConfigurationTest {
         registrationPage.selectRegion(region);
         registrationPage.typePassword(password);
         registrationPage.typePasswordConfirm(password);
-//        registrationPage.clickAgreeWithPrivacyPolicyCheckbox();
         registrationPage.clickContinueButton();
         Assert.assertEquals(registrationPage.getDangerMessage(), "Warning: You must agree to the Privacy Policy!");
     }
