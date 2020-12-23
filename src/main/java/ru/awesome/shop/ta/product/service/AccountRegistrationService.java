@@ -42,7 +42,6 @@ public class AccountRegistrationService {
         registrationPage.selectRegion(region);
         registrationPage.typePassword(password);
         registrationPage.typePasswordConfirm(password);
-        registrationPage.clickAgreeWithPrivacyPolicyCheckbox();
         return registrationPage;
     }
 
