@@ -5,6 +5,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import ru.awesome.shop.ta.product.pages.CartPage;
+import ru.awesome.shop.ta.product.pages.CheckoutPage;
 import ru.awesome.shop.ta.product.pages.HomePage;
 import ru.awesome.shop.ta.product.pages.popups.CartTotalPopup;
 
@@ -22,8 +23,8 @@ public class CartTest extends BaseConfigurationTest {
             "EPMFARMATS-13145: Check that user can add product to cart\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13145")
     public void checkItemIntoCart() {
-        homePage.clickAddProductToCartButton(IPHONE);
         String productNameFromHomePage = homePage.getProductName(IPHONE);
+        homePage.clickAddProductToCartButton(IPHONE);
         CartPage cartPage = homePage.clickCartTotalButton()
                 .clickViewCartButton();
         String productNameFromCart = cartPage.getItemName(productNameFromHomePage);
@@ -48,42 +49,42 @@ public class CartTest extends BaseConfigurationTest {
             "EPMFARMATS-13147: Check that user can change product quantity in cart\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13147")
     public void checkCanChangeQuantity() {
-        int QUANTITY = 3;
+        int INPUT_ITEM_QUANTITY = 3;
         homePage.clickAddProductToCartButton(IPHONE);
         CartPage cartPage = homePage.clickCartTotalButton().
                 clickViewCartButton();
-        cartPage.typeItemQuantity(IPHONE, QUANTITY);
+        cartPage.typeItemQuantity(IPHONE, INPUT_ITEM_QUANTITY);
         cartPage.clickUpdateItemButton(IPHONE);
         int quantityResult = cartPage.getItemQuantityValue(IPHONE);
 
-        Assert.assertEquals(quantityResult, QUANTITY, "The values of quantity aren't equals!");
+        Assert.assertEquals(quantityResult, INPUT_ITEM_QUANTITY, "The values of quantity aren't equals!");
     }
 
-    @Test(description = "***CanChangeQuantityAndBuy***\n" +
-            "EPMFARMATS-13149: Check that user can buy when product quantity less than 1001\n" +
+    @Test(description = "***CanChangeLessUpperLimitQuantityAndBuy***\n" +
+            "EPMFARMATS-13149: Check that user can buy when product quantity less upper limit for this product\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13149")
-    public void checkCanBuyLess1001() {
-        int QUANTITY = 666;
+    public void checkCanBuyLessUpperLimit() {
+        int UPPER_LIMIT_IPHONE_QUANTITY = 793;
         homePage.clickAddProductToCartButton(IPHONE);
         CartPage cartPage = homePage.clickCartTotalButton().
                 clickViewCartButton();
-        cartPage.typeItemQuantity(IPHONE, QUANTITY);
+        cartPage.typeItemQuantity(IPHONE, UPPER_LIMIT_IPHONE_QUANTITY);
         cartPage.clickUpdateItemButton(IPHONE);
-        cartPage.clickCheckoutButton();
-        String finishPageTitle = browser.getPageTitle();
+        CheckoutPage checkoutPage = cartPage.clickCheckoutButton();
+        String finishPageTitle = checkoutPage.getPageTitle();
 
         Assert.assertEquals(finishPageTitle, "Checkout", "There is no Checkout Page in the end!");
     }
 
-    @Test(description = "***CantBuyItemsOver1000Quantity***\n" +
-            "EPMFARMATS-13148: Check that user can't buy when product quantity more than 1000\n" +
+    @Test(description = "***CantBuyItemsOverUpperLimitQuantity***\n" +
+            "EPMFARMATS-13148: Check that user can't buy when product quantity more than upper limit for this product\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13148")
-    public void checkCantBuyOver1000() {
-        int QUANTITY = 1001;
+    public void checkCantBuyOverUpperLimit() {
+        int OVER_UPPER_LIMIT_MACBOOK_QUANTITY = 925;
         homePage.clickAddProductToCartButton(MACBOOK);
         CartPage cartPage = homePage.clickCartTotalButton().
                 clickViewCartButton();
-        cartPage.typeItemQuantity(MACBOOK, QUANTITY);
+        cartPage.typeItemQuantity(MACBOOK, OVER_UPPER_LIMIT_MACBOOK_QUANTITY);
         cartPage.clickUpdateItemButton(MACBOOK);
         cartPage.clickCheckoutButtonExpectingFailure();
         String warningQuantityMessage = cartPage.getQuantityWarningMessage();
@@ -97,11 +98,11 @@ public class CartTest extends BaseConfigurationTest {
             "EPMFARMATS-13178: Check that when user set quantity less than or equal to 0 product is removed from cart\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13178")
     public void checkCantBuyZero() {
-        int QUANTITY = 0;
+        int INPUT_ITEM_QUANTITY = 0;
         homePage.clickAddProductToCartButton(MACBOOK);
         CartPage cartPage = homePage.clickCartTotalButton().
                 clickViewCartButton();
-        cartPage.typeItemQuantity(MACBOOK, QUANTITY);
+        cartPage.typeItemQuantity(MACBOOK, INPUT_ITEM_QUANTITY);
         cartPage.clickUpdateItemButton(MACBOOK);
         String emptyCartMessage = cartPage.getEmptyShoppingCartMessage();
 
@@ -127,7 +128,7 @@ public class CartTest extends BaseConfigurationTest {
                 clickViewCartButton();
         cartPage.clickRemoveItemFromCart(MACBOOK);
         cartPage.clickContinueButton();
-        String finishPageTitle = browser.getPageTitle();
+        String finishPageTitle = homePage.getPageTitle();
 
         Assert.assertEquals(finishPageTitle, "Your Store", "There is no Home Page in the end!");
     }
@@ -140,7 +141,7 @@ public class CartTest extends BaseConfigurationTest {
         CartPage cartPage = homePage.clickCartTotalButton().
                 clickViewCartButton();
         cartPage.clickContinueShoppingButton();
-        String finishPageTitle = browser.getPageTitle();
+        String finishPageTitle = homePage.getPageTitle();
 
         Assert.assertEquals(finishPageTitle, "Your Store", "There is no Home Page in the end!");
     }

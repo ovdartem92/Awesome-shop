@@ -1,6 +1,7 @@
 package ru.awesome.shop.ta.product.pages;
 
 import org.openqa.selenium.By;
+import ru.awesome.shop.ta.framework.browser.Browser;
 import ru.awesome.shop.ta.framework.ui.components.Button;
 import ru.awesome.shop.ta.framework.ui.components.Link;
 import ru.awesome.shop.ta.framework.ui.components.TextField;
@@ -37,6 +38,10 @@ public abstract class BasePage {
         Button cartTotalButton = new Button(cartTotalButtonLocator);
         cartTotalButton.click();
         return new CartTotalPopup();
+    }
+
+    public String getPageTitle() {
+        return Browser.getInstance().getPageTitle();
     }
 }
 
