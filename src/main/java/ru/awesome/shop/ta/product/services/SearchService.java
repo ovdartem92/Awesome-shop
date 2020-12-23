@@ -21,7 +21,7 @@ public class SearchService {
                 .clickSearchButton();
     }
 
-    public void openHomePageTypeDataToSearchClickSearchButtonSelectCategoryClickSearchButton(String searchData, String categoryName) {
+    public void openHomePageTypeDataToSearchClickSearchButtonSelectCategory(String searchData, String categoryName) {
         homePage.open()
                 .typeSearchQuery(searchData)
                 .clickSearchButton()
@@ -29,7 +29,7 @@ public class SearchService {
                 .clickSearchButtonOnSearchResultPage();
     }
 
-    public void openHomePageTypeDataToSearchClickSearchButtonSetDescriptionClickSearchButton(String searchData) {
+    public void openHomePageTypeDataToSearchClickSearchButtonSetDescription(String searchData) {
         homePage.open()
                 .typeSearchQuery(searchData)
                 .clickSearchButton()

@@ -42,8 +42,9 @@ public class SearchTest extends BaseConfigurationTest {
     public void checkTheSearchFieldByNegativeSearchData(String searchData) {
         String expectedResult = "There is no product that matches the search criteria.";
         searchService.openHomePageTypeDataToSearchClickSearchButton(searchData);
-        Assert.assertEquals(searchService.getCheckedIncorrectSearchCriteriaMessage(), expectedResult,
-                expectedResult + " is not displayed.");
+        Assert.assertEquals
+                (searchService.getCheckedIncorrectSearchCriteriaMessage(), expectedResult,
+                        expectedResult + " is not displayed.");
     }
 
     @Test(description = "***PositiveSearchResultTests***\n" +
@@ -83,7 +84,8 @@ public class SearchTest extends BaseConfigurationTest {
     public void checkTheSearchResultByProductCategory() {
         String expectedResult = "iMac";
         String iMacCategory = "      Mac";
-        searchService.openHomePageTypeDataToSearchClickSearchButtonSelectCategoryClickSearchButton(expectedResult, iMacCategory);
+        searchService.openHomePageTypeDataToSearchClickSearchButtonSelectCategory(expectedResult,
+                iMacCategory);
         Assert.assertEquals(searchService.getFirstActualSearchFragment().getName(), expectedResult,
                 expectedResult + " wasn't found in search result");
     }
@@ -93,7 +95,7 @@ public class SearchTest extends BaseConfigurationTest {
             "https://jira.epam.com/jira/browse/EPMFARMATS-13134", groups = "positive")
     public void checkTheSearchResultByProductDescription() {
         String expectedResult = "iPod Classic";
-        searchService.openHomePageTypeDataToSearchClickSearchButtonSetDescriptionClickSearchButton(expectedResult);
+        searchService.openHomePageTypeDataToSearchClickSearchButtonSetDescription(expectedResult);
         Assert.assertEquals(searchService.getFirstActualSearchFragment().getName(), expectedResult,
                 expectedResult + " wasn't found in search result");
     }
