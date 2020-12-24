@@ -5,8 +5,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.awesome.shop.ta.framework.configuration.PropertyManager;
-import ru.awesome.shop.ta.product.bo.address.Address;
-import ru.awesome.shop.ta.product.bo.address.Region;
 import ru.awesome.shop.ta.product.bo.contacts.ContactInfo;
 import ru.awesome.shop.ta.product.bo.credentials.Credentials;
 import ru.awesome.shop.ta.product.bo.user.User;
@@ -45,35 +43,8 @@ public class RegistrationTest extends BaseConfigurationTest {
             "https://jira.epam.com/jira/browse/EPMFARMATS-13156\n",
             groups = {"all", "positive"})
     public void checkAppearanceWithEmptyFirstNameWarning() {
-        Credentials credentials = validUser.getCredentials();
-        ContactInfo contactInfo = validUser.getContactInfo();
-        Address address = validUser.getContactInfo().getAddress();
-        String firstName = validUser.getFirstName();
-        String lastName = validUser.getLastName();
-        String company = validUser.getCompanyName();
-        String email = credentials.getEmail();
-        String password = credentials.getPassword();
-        String telephoneNumber = contactInfo.getTelephoneNumber();
-        String faxNumber = contactInfo.getFaxNumber();
-        String firstAddress = address.getFirstAddress();
-        String secondAddress = address.getSecondAddress();
-        String country = address.getCountry();
-        Region region = address.getRegion();
-        String city = address.getCity();
-        String postCode = address.getPostCode();
-
-        registrationPage.typeLastName(lastName);
-        registrationPage.typeEmail(email);
-        registrationPage.typeTelephone(telephoneNumber);
-        registrationPage.typeFax(faxNumber);
-        registrationPage.typeCompany(company);
-        registrationPage.typeFirstAddress(firstAddress);
-        registrationPage.typeSecondAddress(secondAddress);
-        registrationPage.typeCity(city);
-        registrationPage.typePostcode(postCode);
-        registrationPage.selectRegion(region);
-        registrationPage.typePassword(password);
-        registrationPage.typePasswordConfirm(password);
+        registrationService.fillInRegistrationForm(validUser);
+        registrationPage.replaceWithFirstName("");
         registrationPage.clickAgreeWithPrivacyPolicyCheckbox();
         registrationPage.clickContinueButton();
         Assert.assertEquals(registrationPage.getWarningMessage(), "First Name must be between 1 and 32 characters!");
@@ -128,35 +99,8 @@ public class RegistrationTest extends BaseConfigurationTest {
             "https://jira.epam.com/jira/browse/EPMFARMATS-13165\n",
             groups = {"all", "positive"})
     public void checkAppearancePasswordConfirmationLengthWarning() {
-        Credentials credentials = validUser.getCredentials();
-        ContactInfo contactInfo = validUser.getContactInfo();
-        Address address = validUser.getContactInfo().getAddress();
-        String firstName = validUser.getFirstName();
-        String lastName = validUser.getLastName();
-        String company = validUser.getCompanyName();
-        String email = credentials.getEmail();
-        String password = credentials.getPassword();
-        String telephoneNumber = contactInfo.getTelephoneNumber();
-        String faxNumber = contactInfo.getFaxNumber();
-        String firstAddress = address.getFirstAddress();
-        String secondAddress = address.getSecondAddress();
-        String country = address.getCountry();
-        Region region = address.getRegion();
-        String city = address.getCity();
-        String postCode = address.getPostCode();
-
-        registrationPage.typeFirstName(firstName);
-        registrationPage.typeLastName(lastName);
-        registrationPage.typeEmail(email);
-        registrationPage.typeTelephone(telephoneNumber);
-        registrationPage.typeFax(faxNumber);
-        registrationPage.typeCompany(company);
-        registrationPage.typeFirstAddress(firstAddress);
-        registrationPage.typeSecondAddress(secondAddress);
-        registrationPage.typeCity(city);
-        registrationPage.typePostcode(postCode);
-        registrationPage.selectRegion(region);
-        registrationPage.typePassword(password);
+        registrationService.fillInRegistrationForm(validUser);
+        registrationPage.replaceWithPasswordConfirm("");
         registrationPage.clickAgreeWithPrivacyPolicyCheckbox();
         registrationPage.clickContinueButton();
         Assert.assertEquals(registrationPage.getWarningMessage(), "Password confirmation does not match password!");

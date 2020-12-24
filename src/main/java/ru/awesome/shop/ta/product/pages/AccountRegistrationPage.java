@@ -7,11 +7,18 @@ import ru.awesome.shop.ta.product.bo.address.Region;
 
 public class AccountRegistrationPage extends BasePage {
     private static final String REGISTRATION_PAGE_URL = "index.php?route=account/register";
+    By firstNameLocator = By.id("input-firstname");
+    By passwordConfirmLocator = By.id("input-confirm");
 
     public AccountRegistrationPage typeFirstName(String firstName) {
-        By firstNameLocator = By.id("input-firstname");
         TextField firstNameTextField = new TextField(firstNameLocator);
         firstNameTextField.type(firstName);
+        return this;
+    }
+
+    public AccountRegistrationPage replaceWithFirstName(String firstName) {
+        TextField firstNameTextField = new TextField(firstNameLocator);
+        firstNameTextField.replaceWith(firstName);
         return this;
     }
 
@@ -100,9 +107,14 @@ public class AccountRegistrationPage extends BasePage {
     }
 
     public AccountRegistrationPage typePasswordConfirm(String passwordConfirm) {
-        By passwordConfirmLocator = By.id("input-confirm");
         TextField passwordConfirmTextField = new TextField(passwordConfirmLocator);
         passwordConfirmTextField.type(passwordConfirm);
+        return this;
+    }
+
+    public AccountRegistrationPage replaceWithPasswordConfirm(String passwordConfirm) {
+        TextField passwordConfirmTextField = new TextField(passwordConfirmLocator);
+        passwordConfirmTextField.replaceWith(passwordConfirm);
         return this;
     }
 
