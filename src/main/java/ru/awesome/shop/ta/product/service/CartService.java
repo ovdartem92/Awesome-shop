@@ -12,20 +12,17 @@ public class CartService extends BasePage {
     }
 
     public int setItemQuantityAndReturnValue(String itemName, int itemQuantity) {
-        cartPage.typeItemQuantity(itemName, itemQuantity);
-        cartPage.clickUpdateItemButton(itemName);
+        setItemQuantity(itemName, itemQuantity);
         return cartPage.getItemQuantityValue(itemName);
     }
 
     public void setItemQuantityAndClickCheckout(String itemName, int itemQuantity) {
-        cartPage.typeItemQuantity(itemName, itemQuantity);
-        cartPage.clickUpdateItemButton(itemName);
+        setItemQuantity(itemName, itemQuantity);
         cartPage.clickCheckoutButton();
     }
 
     public void setItemQuantityAndClickCheckoutExpectingFailure(String itemName, int itemQuantity) {
-        cartPage.typeItemQuantity(itemName, itemQuantity);
-        cartPage.clickUpdateItemButton(itemName);
+        setItemQuantity(itemName, itemQuantity);
         cartPage.clickCheckoutButtonExpectingFailure();
     }
 
