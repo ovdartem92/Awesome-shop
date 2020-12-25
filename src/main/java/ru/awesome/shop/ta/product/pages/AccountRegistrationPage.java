@@ -1,24 +1,24 @@
 package ru.awesome.shop.ta.product.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import ru.awesome.shop.ta.framework.browser.Browser;
 import ru.awesome.shop.ta.framework.ui.components.*;
 import ru.awesome.shop.ta.product.bo.address.Region;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class AccountRegistrationPage extends BasePage {
     private static final String REGISTRATION_PAGE_URL = "index.php?route=account/register";
-    By firstNameLocator = By.id("input-firstname");
-    By passwordConfirmLocator = By.id("input-confirm");
+    private final By firstNameLocator = By.id("input-firstname");
+    private final By passwordConfirmLocator = By.id("input-confirm");
+    private final By warningMessageLocator = By.xpath("//div[@class='text-danger']");
 
     public AccountRegistrationPage typeFirstName(String firstName) {
         TextField firstNameTextField = new TextField(firstNameLocator);
         firstNameTextField.type(firstName);
-        return this;
-    }
-
-    public AccountRegistrationPage replaceWithFirstName(String firstName) {
-        TextField firstNameTextField = new TextField(firstNameLocator);
-        firstNameTextField.replaceWith(firstName);
         return this;
     }
 
@@ -112,12 +112,6 @@ public class AccountRegistrationPage extends BasePage {
         return this;
     }
 
-    public AccountRegistrationPage replaceWithPasswordConfirm(String passwordConfirm) {
-        TextField passwordConfirmTextField = new TextField(passwordConfirmLocator);
-        passwordConfirmTextField.replaceWith(passwordConfirm);
-        return this;
-    }
-
     public AccountRegistrationPage clickSubscribeYesRadioButton() {
         By subscribeYesRadioButtonLocator = By.xpath("//input[@name='newsletter'][@value='1']");
         RadioButton subscribeYesRadioButton = new RadioButton(subscribeYesRadioButtonLocator);
@@ -154,9 +148,23 @@ public class AccountRegistrationPage extends BasePage {
     }
 
     public String getWarningMessage() {
-        By warningMessageLocator = By.xpath("//div[@class='text-danger']");
         Label warningMessageLabel = new Label(warningMessageLocator);
         return warningMessageLabel.getText();
+    }
+
+    public List<String> getAllErrorMessages() {
+        int timeoutInSecond = 3;
+        List<String> errorMessageList = new ArrayList<>();
+        WebDriver driver = Browser.getInstance().getWrappedDriver();
+        CommonPageElement.isAllElementVisible(warningMessageLocator, timeoutInSecond);
+        List<WebElement> errorMessageWebElementList = driver.findElements(warningMessageLocator);
+
+        for (int i = 0; i < errorMessageWebElementList.size(); i++) {
+            WebElement messageWebElement = errorMessageWebElementList.get(i);
+            String errorMessage = messageWebElement.getText();
+            errorMessageList.add(errorMessage);
+        }
+        return errorMessageList;
     }
 
     public String getDangerMessage() {
