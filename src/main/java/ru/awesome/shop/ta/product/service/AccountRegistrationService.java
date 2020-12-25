@@ -28,7 +28,6 @@ public class AccountRegistrationService {
         String faxNumber = contactInfo.getFaxNumber();
         String firstAddress = address.getFirstAddress();
         String secondAddress = address.getSecondAddress();
-        String country = address.getCountry();
         Region region = address.getRegion();
         String city = address.getCity();
         String postCode = address.getPostCode();
@@ -54,7 +53,7 @@ public class AccountRegistrationService {
         accountRegistrationPage.clickContinueButton();
         List<String> errorMessages = accountRegistrationPage.getAllErrorMessages();
 
-        if(errorMessages.size() > 0) {
+        if (errorMessages.size() > 0) {
             throw new RegistrationException("Registration failed:\n" + StringUtils.join(errorMessages, "\n"));
         }
         return new SuccessfulAccountRegistrationPage();

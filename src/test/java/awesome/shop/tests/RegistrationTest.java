@@ -39,7 +39,7 @@ public class RegistrationTest extends BaseConfigurationTest {
         accountRegistrationPage.open();
     }
 
-    @Test(description = "***RegistrationTestWithEmptyFirstname***\n" +
+    @Test(description = "***RegistrationTestWithEmptyProperties***\n" +
             "EPMFARMATS-13156: Check appearance First Name length warning\n" +
             "EPMFARMATS-13157: Check appearance Last Name length warning\n" +
             "EPMFARMATS-13159: Check appearance Telephone length warning\n" +
@@ -54,7 +54,7 @@ public class RegistrationTest extends BaseConfigurationTest {
             "https://jira.epam.com/jira/browse/EPMFARMATS-13163\n",
             expectedExceptions = {RegistrationException.class},
             groups = {"all", "positive"})
-    public void checkAppearanceWithEmptyFirstNameWarning() throws RegistrationException {
+    public void checkAppearanceWithEmptyPropertiesWarning() throws RegistrationException {
         Credentials credentials = CredentialsFactory.generateValidCredentials();
         User invalidUser = new User.Builder(credentials).build();
         accountRegistrationService.register(invalidUser);

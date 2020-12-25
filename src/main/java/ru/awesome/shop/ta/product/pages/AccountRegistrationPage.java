@@ -153,7 +153,7 @@ public class AccountRegistrationPage extends BasePage {
     }
 
     public List<String> getAllErrorMessages() {
-        int timeoutInSecond = 3;
+        final int timeoutInSecond = 3;
         List<String> errorMessageList = new ArrayList<>();
         WebDriver driver = Browser.getInstance().getWrappedDriver();
         CommonPageElement.isAllElementsVisible(warningMessageLocator, timeoutInSecond);

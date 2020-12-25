@@ -7,11 +7,11 @@ import ru.awesome.shop.ta.product.bo.credentials.Credentials;
 import ru.awesome.shop.ta.product.bo.credentials.CredentialsFactory;
 
 public final class UserFactory {
-    private static final int startInclusive = 5;
-    private static final int endExclusive = 15;
-    private static final String FIRST_NAME = RandomStringUtils.randomAlphabetic(startInclusive, endExclusive);
-    private static final String LAST_NAME = RandomStringUtils.randomAlphabetic(startInclusive, endExclusive);
-    private static final String COMPANY = RandomStringUtils.randomAlphabetic(startInclusive, endExclusive);
+    private static final int START_INCLUSIVE = 5;
+    private static final int END_EXCLUSIVE = 15;
+    private static final String FIRST_NAME = RandomStringUtils.randomAlphabetic(START_INCLUSIVE, END_EXCLUSIVE);
+    private static final String LAST_NAME = RandomStringUtils.randomAlphabetic(START_INCLUSIVE, END_EXCLUSIVE);
+    private static final String COMPANY = RandomStringUtils.randomAlphabetic(START_INCLUSIVE, END_EXCLUSIVE);
     private static final Credentials VALID_CREDENTIALS = CredentialsFactory.generateValidCredentials();
     private static final ContactInfo VALID_CONTACT_INFO = ContactInfoFactory.generateValidContactInfo();
 
@@ -37,13 +37,13 @@ public final class UserFactory {
     }
 
     public static User generateUserWithInvalidFirstName() {
-        String invalidFirstName = RandomStringUtils.randomAscii(startInclusive, endExclusive);
+        String invalidFirstName = RandomStringUtils.randomAscii(START_INCLUSIVE, END_EXCLUSIVE);
         return new User.Builder(VALID_CREDENTIALS).firstName(invalidFirstName).lastName(LAST_NAME)
                 .companyName(COMPANY).contactInfo(VALID_CONTACT_INFO).build();
     }
 
     public static User generateUserWithInvalidLastName() {
-        String invalidLastName = RandomStringUtils.randomAscii(startInclusive, endExclusive);
+        String invalidLastName = RandomStringUtils.randomAscii(START_INCLUSIVE, END_EXCLUSIVE);
         return new User.Builder(VALID_CREDENTIALS).firstName(FIRST_NAME).lastName(invalidLastName)
                 .companyName(COMPANY).contactInfo(VALID_CONTACT_INFO).build();
     }
