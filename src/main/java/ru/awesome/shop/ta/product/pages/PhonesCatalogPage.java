@@ -16,8 +16,8 @@ public class PhonesCatalogPage extends BasePage {
 
     public void clickAddPhoneToCartButton(String phoneName) {
         By addToCartButtonLocator = By
-                .xpath(String.format("//div[@class='product-thumb']//a[text()='%s']/ancestor" +
-                        "::div[@class='product-thumb']//button[contains(@onclick,'cart.add')]", phoneName));
+                .xpath(String.format("//div[@class='product-thumb']//a[text()='%s']/ancestor"
+                        + "::div[@class='product-thumb']//button[contains(@onclick,'cart.add')]", phoneName));
         Button addToCartButton = new Button(addToCartButtonLocator);
         addToCartButton.click();
     }
@@ -31,8 +31,8 @@ public class PhonesCatalogPage extends BasePage {
 
     public String getPhonePrice(String phonePrice) {
         By phonePriceLabelLocator = By
-                .xpath(String.format("//div[@class='product-thumb']//a[text()='%s']/ancestor::" +
-                        "div[@class='product-thumb']//p[@class='price']", phonePrice));
+                .xpath(String.format("//div[@class='product-thumb']//a[text()='%s']/ancestor::"
+                        + "div[@class='product-thumb']//p[@class='price']", phonePrice));
         Label phonePriceLabel = new Label(phonePriceLabelLocator);
         String[] array = phonePriceLabel.getText().split("\n");
         return array[0];

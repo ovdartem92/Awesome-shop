@@ -65,8 +65,8 @@ public class CartPage extends BasePage {
     public void clickRemoveItemFromCart(String productName) {
         int INVISIBILITY_TIMEOUT_IN_SECONDS = 3;
         By removeButtonLocator = By.xpath(String.format(
-                "//div[@class='table-responsive']//a[text()='%s']/ancestor::" +
-                        "tr//button[contains(@onclick,'cart.remove')]", productName));
+                "//div[@class='table-responsive']//a[text()='%s']/ancestor::"
+                        + "tr//button[contains(@onclick,'cart.remove')]", productName));
         Button removeButton = new Button(removeButtonLocator);
         removeButton.click();
         waitForPageElementInvisibilityLocated(removeButtonLocator, INVISIBILITY_TIMEOUT_IN_SECONDS);

@@ -16,8 +16,8 @@ public class HomePage extends BasePage {
 
     public void clickAddProductToCartButton(String productName) {
         By addToCartButtonLocator = By
-                .xpath(String.format("//div[@class='product-thumb transition']//a[text()='%s']/ancestor::" +
-                        "div[@class='product-thumb transition']//button[contains(@onclick,'cart.add')]", productName));
+                .xpath(String.format("//div[@class='product-thumb transition']//a[text()='%s']/ancestor::div[@class="
+                        + "'product-thumb transition']//button[contains(@onclick,'cart.add')]", productName));
         Button addToCartButton = new Button(addToCartButtonLocator);
         addToCartButton.click();
     }
@@ -31,8 +31,8 @@ public class HomePage extends BasePage {
 
     public String getProductPrice(String productName) {
         By productPriceLabelLocator = By
-                .xpath(String.format("//div[@class='product-thumb transition']//a[text()='%s']/ancestor::" +
-                        "div[@class='product-thumb transition']//p[@class='price']", productName));
+                .xpath(String.format("//div[@class='product-thumb transition']//a[text()='%s']/ancestor::div[@class="
+                        + "'product-thumb transition']//p[@class='price']", productName));
         Label productPriceLabel = new Label(productPriceLabelLocator);
         String[] array = productPriceLabel.getText().split("\n");
         return array[0];
