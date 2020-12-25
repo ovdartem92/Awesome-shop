@@ -106,7 +106,7 @@ public class CommonPageElement {
             waitForPageElementVisibilityLocated(locator, timeoutInSeconds);
             return true;
         } catch (TimeoutException e) {
-            Log.info("No error message found on login page.");
+            Log.info("No element found on current page.");
             return false;
         }
     }
