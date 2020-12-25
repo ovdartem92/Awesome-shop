@@ -22,6 +22,10 @@ public final class CredentialsFactory {
         return new Credentials(EMAIL, PASSWORD);
     }
 
+    public static Credentials generateEmptyCredentials() {
+        return new Credentials("", "");
+    }
+
     public static Credentials generateCredentialsWithInvalidPassword() {
         String invalidPassword = RandomStringUtils.randomAscii(START_INCLUSIVE, END_EXCLUSIVE);
         return new Credentials(EMAIL, invalidPassword);

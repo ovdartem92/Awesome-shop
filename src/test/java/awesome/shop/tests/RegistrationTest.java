@@ -42,20 +42,24 @@ public class RegistrationTest extends BaseConfigurationTest {
     @Test(description = "***RegistrationTestWithEmptyProperties***\n" +
             "EPMFARMATS-13156: Check appearance First Name length warning\n" +
             "EPMFARMATS-13157: Check appearance Last Name length warning\n" +
+            "EPMFARMATS-13158: Check appearance E-mail invalid warning\n" +
             "EPMFARMATS-13159: Check appearance Telephone length warning\n" +
             "EPMFARMATS-13160: Check appearance Address 1 length warning\n" +
             "EPMFARMATS-13161: Check appearance City length warning\n" +
-            "EPMFARMATS-13163: Check appearance City length warning\n" +
+            "EPMFARMATS-13163: Check appearance Postcode length warning\n" +
+            "EPMFARMATS-13164: Check appearance Password length warning\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13156\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13157\n" +
+            "https://jira.epam.com/jira/browse/EPMFARMATS-13158\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13159\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13160\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13161\n" +
-            "https://jira.epam.com/jira/browse/EPMFARMATS-13163\n",
+            "https://jira.epam.com/jira/browse/EPMFARMATS-13163\n" +
+            "https://jira.epam.com/jira/browse/EPMFARMATS-13164\n",
             expectedExceptions = {RegistrationException.class},
             groups = {"all", "positive"})
     public void checkAppearanceWithEmptyPropertiesWarning() throws RegistrationException {
-        Credentials credentials = CredentialsFactory.generateValidCredentials();
+        Credentials credentials = CredentialsFactory.generateEmptyCredentials();
         User invalidUser = new User.Builder(credentials).build();
         accountRegistrationService.register(invalidUser);
     }
