@@ -9,6 +9,7 @@ public class NavigationService {
     private PhonesCatalogPage phonesCatalogPage = new PhonesCatalogPage();
     private LaptopsCatalogPage laptopsCatalogPage = new LaptopsCatalogPage();
     private HomePage homePage = new HomePage();
+    private CheckoutPage checkoutPage = new CheckoutPage();
 
     public void navigateToLoginPage() {
         loginPage.open();
@@ -32,5 +33,9 @@ public class NavigationService {
 
     public void navigateToHomePage() {
         homePage.open();
+    }
+
+    public void navigateToCheckoutPage() {
+        checkoutPage.open();
     }
 }

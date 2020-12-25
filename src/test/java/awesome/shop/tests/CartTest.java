@@ -67,10 +67,11 @@ public class CartTest extends BaseConfigurationTest {
         phonesCatalogPage.clickAddPhoneToCartButton(IPHONE);
         navigationService.navigateToCartPage();
         cartService.updateProductQuantity(IPHONE, UPPER_LIMIT_IPHONE_QUANTITY);
-        cartPage.clickCheckoutButton();
-        String finishPageTitle = new CheckoutPage().getPageTitle();
+        String finishPageTitle = cartPage.clickCheckoutButton().getPageTitle();
+        navigationService.navigateToCheckoutPage();
+        String checkoutPageTitle = new CheckoutPage().getPageTitle();
 
-        Assert.assertEquals(finishPageTitle, "Checkout", "There is no Checkout Page in the end!");
+        Assert.assertEquals(finishPageTitle, checkoutPageTitle, "There is no Checkout Page in the end!");
     }
 
     @Test(description = "***CantBuyItemsOverUpperLimitQuantity***\n" +
