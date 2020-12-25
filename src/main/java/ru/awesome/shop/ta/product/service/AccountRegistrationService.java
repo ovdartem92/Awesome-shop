@@ -1,5 +1,7 @@
 package ru.awesome.shop.ta.product.service;
 
+import org.apache.commons.lang3.StringUtils;
+import ru.awesome.shop.ta.framework.exceptions.RegistrationException;
 import ru.awesome.shop.ta.product.bo.address.Address;
 import ru.awesome.shop.ta.product.bo.address.Region;
 import ru.awesome.shop.ta.product.bo.contacts.ContactInfo;
@@ -8,10 +10,12 @@ import ru.awesome.shop.ta.product.bo.user.User;
 import ru.awesome.shop.ta.product.pages.AccountRegistrationPage;
 import ru.awesome.shop.ta.product.pages.SuccessfulAccountRegistrationPage;
 
-public class AccountRegistrationService {
-    private AccountRegistrationPage registrationPage = new AccountRegistrationPage();
+import java.util.List;
 
-    public AccountRegistrationPage fillInRegistrationForm(User user) {
+public class AccountRegistrationService {
+    private final AccountRegistrationPage accountRegistrationPage = new AccountRegistrationPage();
+
+    public void fillInRegistrationForm(User user) {
         Credentials credentials = user.getCredentials();
         ContactInfo contactInfo = user.getContactInfo();
         Address address = user.getContactInfo().getAddress();
@@ -29,26 +33,30 @@ public class AccountRegistrationService {
         String city = address.getCity();
         String postCode = address.getPostCode();
 
-        registrationPage.typeFirstName(firstName);
-        registrationPage.typeLastName(lastName);
-        registrationPage.typeEmail(email);
-        registrationPage.typeTelephone(telephoneNumber);
-        registrationPage.typeFax(faxNumber);
-        registrationPage.typeCompany(company);
-        registrationPage.typeFirstAddress(firstAddress);
-        registrationPage.typeSecondAddress(secondAddress);
-        registrationPage.typeCity(city);
-        registrationPage.typePostcode(postCode);
-        registrationPage.selectRegion(region);
-        registrationPage.typePassword(password);
-        registrationPage.typePasswordConfirm(password);
-        return registrationPage;
+        accountRegistrationPage.typeFirstName(firstName);
+        accountRegistrationPage.typeLastName(lastName);
+        accountRegistrationPage.typeEmail(email);
+        accountRegistrationPage.typeTelephone(telephoneNumber);
+        accountRegistrationPage.typeFax(faxNumber);
+        accountRegistrationPage.typeCompany(company);
+        accountRegistrationPage.typeFirstAddress(firstAddress);
+        accountRegistrationPage.typeSecondAddress(secondAddress);
+        accountRegistrationPage.typeCity(city);
+        accountRegistrationPage.typePostcode(postCode);
+        accountRegistrationPage.selectRegion(region);
+        accountRegistrationPage.typePassword(password);
+        accountRegistrationPage.typePasswordConfirm(password);
     }
 
-    public SuccessfulAccountRegistrationPage registerUser(User user) {
+    public SuccessfulAccountRegistrationPage register(User user) throws RegistrationException {
         fillInRegistrationForm(user);
-        registrationPage.clickAgreeWithPrivacyPolicyCheckbox();
-        registrationPage.clickContinueButton();
+        accountRegistrationPage.clickAgreeWithPrivacyPolicyCheckbox();
+        accountRegistrationPage.clickContinueButton();
+        List<String> errorMessages = accountRegistrationPage.getAllErrorMessages();
+
+        if(errorMessages.size() > 0) {
+            throw new RegistrationException("Registration failed:\n" + StringUtils.join(errorMessages, "\n"));
+        }
         return new SuccessfulAccountRegistrationPage();
     }
 }
