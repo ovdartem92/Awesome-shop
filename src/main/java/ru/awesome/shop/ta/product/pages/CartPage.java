@@ -14,6 +14,12 @@ import static ru.awesome.shop.ta.framework.ui.components.CommonPageElement.waitF
 import static ru.awesome.shop.ta.framework.ui.components.CommonPageElement.waitForPageElementInvisibilityLocated;
 
 public class CartPage extends BasePage {
+    private static final String CART_PAGE_URL = "index.php?route=checkout/cart";
+
+    public CartPage open() {
+        Browser.getInstance().navigate(BASE_URL.concat(CART_PAGE_URL));
+        return this;
+    }
 
     public HomePage clickContinueButton() {
         By continueButtonLocator = By.xpath("//div[@class='pull-right']//a[contains(text(),'Continue')]");
