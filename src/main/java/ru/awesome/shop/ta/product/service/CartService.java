@@ -10,23 +10,23 @@ import java.util.Map;
 public class CartService extends BasePage {
     private CartPage cartPage = new CartPage();
 
-    public void setItemQuantity(String itemName, int itemQuantity) {
-        cartPage.typeItemQuantity(itemName, itemQuantity);
-        cartPage.clickUpdateItemButton(itemName);
+    public void updateProductQuantity(String productName, int quantity) {
+        cartPage.typeItemQuantity(productName, quantity);
+        cartPage.clickUpdateItemButton(productName);
     }
 
     public int setItemQuantityAndReturnValue(String itemName, int itemQuantity) {
-        setItemQuantity(itemName, itemQuantity);
+        updateProductQuantity(itemName, itemQuantity);
         return cartPage.getItemQuantityValue(itemName);
     }
 
     public void setItemQuantityAndClickCheckout(String itemName, int itemQuantity) {
-        setItemQuantity(itemName, itemQuantity);
+        updateProductQuantity(itemName, itemQuantity);
         cartPage.clickCheckoutButton();
     }
 
     public void setItemQuantityAndClickCheckoutExpectingFailure(String itemName, int itemQuantity) {
-        setItemQuantity(itemName, itemQuantity);
+        updateProductQuantity(itemName, itemQuantity);
         cartPage.clickCheckoutButtonExpectingFailure();
     }
 
@@ -39,8 +39,12 @@ public class CartService extends BasePage {
         clickCartTotalButton().clickViewCartButton();
     }
 
+    public List<String> getAllProductNames() {
+        List<String> itemNames = cartPage.getAllItemsNames();
+        return itemNames;
+    }
 
-    public void updateProducts(Map<String, Integer> productNameToQuantityMapping) {
+    public void updateProductsQuantity(Map<String, Integer> productNameToQuantityMapping) {
         List<String> itemNames = getAllProductNames();
         for (Map.Entry<String, Integer> entry : productNameToQuantityMapping.entrySet()) {
             String itemNameFromMap = entry.getKey();
@@ -78,9 +82,8 @@ public class CartService extends BasePage {
         return totalQuantity;
     }
 
-    public List<String> getAllProductNames() {
-        List<String> itemNames = cartPage.getAllItemsNames();
-        return itemNames;
+    public String getProductName(String productName) {
+        return cartPage.getItemName(productName);
     }
 
     public String getProductPrice(String productName) {
