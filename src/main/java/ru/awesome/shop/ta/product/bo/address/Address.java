@@ -6,10 +6,10 @@ public final class Address {
     private final String city;
     private final String postCode;
     private final String country;
-    private final String region;
+    private final Region region;
 
     public Address(String firstAddress, String secondAddress, String city,
-                   String postCode, String country, String region) {
+                   String postCode, String country, Region region) {
         this.firstAddress = firstAddress;
         this.secondAddress = secondAddress;
         this.city = city;
@@ -38,7 +38,7 @@ public final class Address {
         return country;
     }
 
-    public String getRegion() {
+    public Region getRegion() {
         return region;
     }
 }

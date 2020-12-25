@@ -1,6 +1,5 @@
 package ru.awesome.shop.ta.framework.ui.components;
 
-import ru.awesome.shop.ta.framework.browser.Browser;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.StaleElementReferenceException;
@@ -8,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
+import ru.awesome.shop.ta.framework.browser.Browser;
 
 import java.time.Duration;
 import java.util.Objects;
@@ -45,6 +45,15 @@ public class CommonPageElement {
         }
         Wait<? extends WebDriver> wait = getCustomWait(timeoutInSeconds);
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+    }
+
+    public static void waitForAllPageElementsVisibilityLocated(By locator, int timeoutInSeconds) {
+        Objects.requireNonNull(locator, "Locator cannot be null.");
+        if (timeoutInSeconds < 0) {
+            throw new IllegalArgumentException("Timeout in seconds cannot be less than 0.");
+        }
+        Wait<? extends WebDriver> wait = getCustomWait(timeoutInSeconds);
+        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
     }
 
     public static void waitForPageElementInvisibilityLocated(By locator) {
