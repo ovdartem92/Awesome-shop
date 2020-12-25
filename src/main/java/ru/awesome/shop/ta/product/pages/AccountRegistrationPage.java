@@ -156,7 +156,7 @@ public class AccountRegistrationPage extends BasePage {
         int timeoutInSecond = 3;
         List<String> errorMessageList = new ArrayList<>();
         WebDriver driver = Browser.getInstance().getWrappedDriver();
-        CommonPageElement.isAllElementVisible(warningMessageLocator, timeoutInSecond);
+        CommonPageElement.isAllElementsVisible(warningMessageLocator, timeoutInSecond);
         List<WebElement> errorMessageWebElementList = driver.findElements(warningMessageLocator);
 
         for (int i = 0; i < errorMessageWebElementList.size(); i++) {

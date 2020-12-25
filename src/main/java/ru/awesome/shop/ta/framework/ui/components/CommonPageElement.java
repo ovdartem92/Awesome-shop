@@ -110,7 +110,7 @@ public class CommonPageElement {
         wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
 
-    public static boolean isAllElementVisible(By locator, int timeoutInSeconds) {
+    public static boolean isAllElementsVisible(By locator, int timeoutInSeconds) {
         try {
             waitForAllPageElementsVisibilityLocated(locator, timeoutInSeconds);
             return true;

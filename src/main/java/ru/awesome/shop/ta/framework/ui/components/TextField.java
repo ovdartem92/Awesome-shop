@@ -23,12 +23,6 @@ public class TextField extends CommonPageElement {
         Browser.getInstance().sendKeys(locator, textForType);
     }
 
-    public void replaceWith(String text) {
-        Objects.requireNonNull(text, "Text cannot be null.");
-        clear();
-        type(text);
-    }
-
     public String getText() {
         String attribute = CommonPageElement.getAttribute(locator, "value");
         return attribute;
