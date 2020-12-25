@@ -17,7 +17,7 @@ public abstract class BaseConfigurationTest {
         browser = Browser.getInstance();
     }
 
-    @AfterTest(description = "Tear Down", groups = {"all", "positive", "negative"})
+    @AfterMethod(description = "Tear Down", groups = {"all", "positive", "negative"})
     public void tearDown() {
         browser.stop();
     }
