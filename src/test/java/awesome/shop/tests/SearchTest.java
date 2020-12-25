@@ -3,6 +3,7 @@ package awesome.shop.tests;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import ru.awesome.shop.ta.framework.exceptions.IncorrectSearchCriteriaException;
 import ru.awesome.shop.ta.product.services.SearchService;
 
 public class SearchTest extends BaseConfigurationTest {
@@ -38,13 +39,12 @@ public class SearchTest extends BaseConfigurationTest {
             "https://jira.epam.com/jira/browse/EPMFARMATS-13129\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13137\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13123\n",
-            dataProvider = "negativeSearchData", groups = "negative")
-    public void checkTheSearchFieldByNegativeSearchData(String searchData) {
-        String expectedResult = "There is no product that matches the search criteria.";
-        searchService.openHomePageTypeDataToSearchClickSearchButton(searchData);
-        Assert.assertEquals
-                (searchService.getCheckedIncorrectSearchCriteriaMessage(), expectedResult,
-                        expectedResult + " is not displayed.");
+            dataProvider = "negativeSearchData", groups = "negative",
+            expectedExceptions = IncorrectSearchCriteriaException.class)
+    public void checkTheSearchFieldByNegativeSearchData(String searchCriteria) throws IncorrectSearchCriteriaException {
+        String[] actualSearchResultsName = searchService.search(searchCriteria);
+        Assert.assertTrue(actualSearchResultsName.length < 1,
+                "The search result should not be on the page.");
     }
 
     @Test(description = "***PositiveSearchResultTests***\n" +
@@ -59,11 +59,11 @@ public class SearchTest extends BaseConfigurationTest {
             "https://jira.epam.com/jira/browse/EPMFARMATS-13132\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13131\n",
             dataProvider = "positiveSearchData", groups = "positive")
-    public void checkTheSearchFieldByPositiveSearchData(String searchData) {
+    public void checkTheSearchFieldByPositiveSearchData(String searchCriteria) {
         String expectedResult = "iPod Classic";
-        searchService.openHomePageTypeDataToSearchClickSearchButton(searchData);
-        Assert.assertEquals(searchService.getFirstActualSearchFragment().getName(), expectedResult,
-                expectedResult + " is not displayed.");
+        String[] actualSearchResultsName = searchService.search(searchCriteria);
+        Assert.assertEquals(actualSearchResultsName[0], expectedResult,
+                expectedResult + " wasn't found in search result.");
     }
 
     @Test(description = "***SearchResultByPressingTheEnter***\n" +
@@ -73,30 +73,28 @@ public class SearchTest extends BaseConfigurationTest {
         String expectedResult = "iPod Classic";
         String iPod = "iPod";
         String enter = "\n";
-        searchService.openHomePageTypeDataToSearch(iPod + enter);
-        Assert.assertEquals(searchService.getFirstActualSearchFragment().getName(), expectedResult,
-                expectedResult + " wasn't found in search result");
+        String[] actualSearchResultsName = searchService.searchWithoutClickingTheSearchButton(iPod + enter);
+        Assert.assertEquals(actualSearchResultsName[0], expectedResult,
+                expectedResult + " wasn't found in search result.");
     }
 
     @Test(description = "***SearchResultByProductCategory***\n" +
             "EPMFARMATS-13135: check the search result by product category\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13135", groups = "positive")
     public void checkTheSearchResultByProductCategory() {
-        String expectedResult = "iMac";
-        String iMacCategory = "      Mac";
-        searchService.openHomePageTypeDataToSearchClickSearchButtonSelectCategory(expectedResult,
-                iMacCategory);
-        Assert.assertEquals(searchService.getFirstActualSearchFragment().getName(), expectedResult,
-                expectedResult + " wasn't found in search result");
+        String searchCriteria = "iMac";
+        String[] actualSearchResultsName = searchService.search(searchCriteria, false, true);
+        Assert.assertEquals(actualSearchResultsName[0], searchCriteria,
+                searchCriteria + " wasn't found in search result.");
     }
 
     @Test(description = "***SearchResultByProductDescription***\n" +
             "EPMFARMATS-13134: check the search result by product description\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13134", groups = "positive")
     public void checkTheSearchResultByProductDescription() {
-        String expectedResult = "iPod Classic";
-        searchService.openHomePageTypeDataToSearchClickSearchButtonSetDescription(expectedResult);
-        Assert.assertEquals(searchService.getFirstActualSearchFragment().getName(), expectedResult,
-                expectedResult + " wasn't found in search result");
+        String searchCriteria = "iPod Classic";
+        String[] actualSearchResults = searchService.search(searchCriteria, true, false);
+        Assert.assertEquals(actualSearchResults[0], searchCriteria,
+                searchCriteria + " wasn't found in search result.");
     }
 }
