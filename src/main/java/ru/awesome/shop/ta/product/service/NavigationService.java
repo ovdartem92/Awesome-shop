@@ -8,6 +8,7 @@ public class NavigationService {
     private CartPage cartPage = new CartPage();
     private PhonesCatalogPage phonesCatalogPage = new PhonesCatalogPage();
     private LaptopsCatalogPage laptopsCatalogPage = new LaptopsCatalogPage();
+    private HomePage homePage = new HomePage();
 
     public void navigateToLoginPage() {
         loginPage.open();
@@ -27,5 +28,9 @@ public class NavigationService {
 
     public void navigateToLaptopsCatalogPage() {
         laptopsCatalogPage.open();
+    }
+
+    public void navigateToHomePage() {
+        homePage.open();
     }
 }
