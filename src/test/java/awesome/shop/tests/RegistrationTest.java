@@ -5,17 +5,18 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.awesome.shop.ta.framework.configuration.PropertyManager;
+import ru.awesome.shop.ta.framework.exceptions.RegistrationException;
 import ru.awesome.shop.ta.product.bo.contacts.ContactInfo;
 import ru.awesome.shop.ta.product.bo.credentials.Credentials;
+import ru.awesome.shop.ta.product.bo.credentials.CredentialsFactory;
 import ru.awesome.shop.ta.product.bo.user.User;
 import ru.awesome.shop.ta.product.bo.user.UserFactory;
 import ru.awesome.shop.ta.product.pages.AccountRegistrationPage;
-import ru.awesome.shop.ta.product.pages.SuccessfulAccountRegistrationPage;
 import ru.awesome.shop.ta.product.service.AccountRegistrationService;
 
 public class RegistrationTest extends BaseConfigurationTest {
-    private AccountRegistrationPage registrationPage = new AccountRegistrationPage();
-    private AccountRegistrationService registrationService = new AccountRegistrationService();
+    private final AccountRegistrationPage accountRegistrationPage = new AccountRegistrationPage();
+    private final AccountRegistrationService accountRegistrationService = new AccountRegistrationService();
     private final User validUser = UserFactory.generateValidUser();
 
     @DataProvider(name = "userWithInvalidProperty")
@@ -35,19 +36,28 @@ public class RegistrationTest extends BaseConfigurationTest {
     @BeforeMethod(description = "open registration page",
             groups = {"all", "negative", "positive"})
     public void openRegistrationPage() {
-        registrationPage.open();
+        accountRegistrationPage.open();
     }
 
     @Test(description = "***RegistrationTestWithEmptyFirstname***\n" +
             "EPMFARMATS-13156: Check appearance First Name length warning\n" +
-            "https://jira.epam.com/jira/browse/EPMFARMATS-13156\n",
+            "EPMFARMATS-13157: Check appearance Last Name length warning\n" +
+            "EPMFARMATS-13159: Check appearance Telephone length warning\n" +
+            "EPMFARMATS-13160: Check appearance Address 1 length warning\n" +
+            "EPMFARMATS-13161: Check appearance City length warning\n" +
+            "EPMFARMATS-13163: Check appearance City length warning\n" +
+            "https://jira.epam.com/jira/browse/EPMFARMATS-13156\n" +
+            "https://jira.epam.com/jira/browse/EPMFARMATS-13157\n" +
+            "https://jira.epam.com/jira/browse/EPMFARMATS-13159\n" +
+            "https://jira.epam.com/jira/browse/EPMFARMATS-13160\n" +
+            "https://jira.epam.com/jira/browse/EPMFARMATS-13161\n" +
+            "https://jira.epam.com/jira/browse/EPMFARMATS-13163\n",
+            expectedExceptions = {RegistrationException.class},
             groups = {"all", "positive"})
-    public void checkAppearanceWithEmptyFirstNameWarning() {
-        registrationService.fillInRegistrationForm(validUser);
-        registrationPage.replaceWithFirstName("");
-        registrationPage.clickAgreeWithPrivacyPolicyCheckbox();
-        registrationPage.clickContinueButton();
-        Assert.assertEquals(registrationPage.getWarningMessage(), "First Name must be between 1 and 32 characters!");
+    public void checkAppearanceWithEmptyFirstNameWarning() throws RegistrationException {
+        Credentials credentials = CredentialsFactory.generateValidCredentials();
+        User invalidUser = new User.Builder(credentials).build();
+        accountRegistrationService.register(invalidUser);
     }
 
     @Test(description = "***RegistrationTestsWithInvalidProperties***\n" +
@@ -60,26 +70,25 @@ public class RegistrationTest extends BaseConfigurationTest {
             "https://jira.epam.com/jira/browse/EPMFARMATS-13183\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13184\n",
             dataProvider = "userWithInvalidProperty",
+            expectedExceptions = {RegistrationException.class},
             groups = {"all", "negative"})
-    public void checkAppearanceWithInvalidPropertyWarning(User user, String message) {
-        registrationService.registerUser(user);
-        Assert.assertEquals(registrationPage.getWarningMessage(), message);
+    public void checkAppearanceWithInvalidPropertyWarning(User user, String message) throws RegistrationException {
+        accountRegistrationService.register(user);
     }
 
     @Test(description = "***CheckSuccessfulUserRegistration***\n" +
             "EPMFARMATS-13155: check successful user registration\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13155\n",
             groups = {"all", "positive"})
-    public void checkSuccessfulUserRegistration() {
-        SuccessfulAccountRegistrationPage successfulRegistrationPage = registrationService.registerUser(validUser);
-        Assert.assertEquals(successfulRegistrationPage.getAccountCreationMessage(), "Your Account Has Been Created!");
+    public void checkSuccessfulUserRegistration() throws RegistrationException {
+        accountRegistrationService.register(validUser);
     }
 
     @Test(description = "***CheckAppearanceEmailAlreadyRegisteredWarning***\n" +
             "EPMFARMATS-13166: check appearance E-mail already registered warning\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13166\n",
             groups = {"all", "positive"})
-    public void checkAppearanceEmailAlreadyRegisteredWarning() {
+    public void checkAppearanceEmailAlreadyRegisteredWarning() throws RegistrationException {
         String validFirstName = validUser.getFirstName();
         String validLastName = validUser.getLastName();
         String validCompanyName = validUser.getCompanyName();
@@ -90,20 +99,8 @@ public class RegistrationTest extends BaseConfigurationTest {
         User registeredUser = new User.Builder(registeredCredentials).firstName(validFirstName)
                 .lastName(validLastName).companyName(validCompanyName).contactInfo(validContactInfo).build();
 
-        registrationService.registerUser(registeredUser);
-        Assert.assertEquals(registrationPage.getDangerMessage(), "Warning: E-Mail Address is already registered!");
-    }
-
-    @Test(description = "***CheckAppearancePasswordConfirmationLengthWarning***\n" +
-            "EPMFARMATS-13165: check appearance Password Confirmation warning\n" +
-            "https://jira.epam.com/jira/browse/EPMFARMATS-13165\n",
-            groups = {"all", "positive"})
-    public void checkAppearancePasswordConfirmationLengthWarning() {
-        registrationService.fillInRegistrationForm(validUser);
-        registrationPage.replaceWithPasswordConfirm("");
-        registrationPage.clickAgreeWithPrivacyPolicyCheckbox();
-        registrationPage.clickContinueButton();
-        Assert.assertEquals(registrationPage.getWarningMessage(), "Password confirmation does not match password!");
+        accountRegistrationService.register(registeredUser);
+        Assert.assertEquals(accountRegistrationPage.getDangerMessage(), "Warning: E-Mail Address is already registered!");
     }
 
     @Test(description = "***CheckAppearancePrivacyPolicyWarning***\n" +
@@ -111,9 +108,9 @@ public class RegistrationTest extends BaseConfigurationTest {
             "https://jira.epam.com/jira/browse/EPMFARMATS-13154\n",
             groups = {"all", "positive"})
     public void checkAppearancePrivacyPolicyWarning() {
-        registrationService.fillInRegistrationForm(validUser);
-        registrationPage.clickContinueButton();
-        Assert.assertEquals(registrationPage.getDangerMessage(), "Warning: You must agree to the Privacy Policy!");
+        accountRegistrationService.fillInRegistrationForm(validUser);
+        accountRegistrationPage.clickContinueButton();
+        Assert.assertEquals(accountRegistrationPage.getDangerMessage(), "Warning: You must agree to the Privacy Policy!");
     }
 
     @Test(description = "***CheckAppearancePrivatePolicyWindow***\n" +
@@ -121,7 +118,7 @@ public class RegistrationTest extends BaseConfigurationTest {
             "https://jira.epam.com/jira/browse/EPMFARMATS-13167\n",
             groups = {"all", "positive"})
     public void checkAppearancePrivatePolicyWindow() {
-        registrationPage.clickPrivacyPolicyLink();
-        Assert.assertEquals(registrationPage.getPrivacyPolicyTitle(), "Privacy Policy");
+        accountRegistrationPage.clickPrivacyPolicyLink();
+        Assert.assertEquals(accountRegistrationPage.getPrivacyPolicyTitle(), "Privacy Policy");
     }
 }
