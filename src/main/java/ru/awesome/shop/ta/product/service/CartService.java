@@ -15,30 +15,6 @@ public class CartService extends BasePage {
         cartPage.clickUpdateItemButton(productName);
     }
 
-    public int setItemQuantityAndReturnValue(String itemName, int itemQuantity) {
-        updateProductQuantity(itemName, itemQuantity);
-        return cartPage.getItemQuantityValue(itemName);
-    }
-
-    public void setItemQuantityAndClickCheckout(String itemName, int itemQuantity) {
-        updateProductQuantity(itemName, itemQuantity);
-        cartPage.clickCheckoutButton();
-    }
-
-    public void setItemQuantityAndClickCheckoutExpectingFailure(String itemName, int itemQuantity) {
-        updateProductQuantity(itemName, itemQuantity);
-        cartPage.clickCheckoutButtonExpectingFailure();
-    }
-
-    public void removeItemFromCartAndClickContinue(String itemName) {
-        cartPage.clickRemoveItemFromCart(itemName);
-        cartPage.clickContinueButton();
-    }
-
-    public void navigateToCartPage() {
-        clickCartTotalButton().clickViewCartButton();
-    }
-
     public List<String> getAllProductNames() {
         List<String> itemNames = cartPage.getAllItemsNames();
         return itemNames;
