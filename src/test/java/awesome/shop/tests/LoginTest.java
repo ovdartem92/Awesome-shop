@@ -4,6 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import rp.org.apache.http.auth.AuthenticationException;
 import ru.awesome.shop.ta.framework.configuration.PropertyManager;
 import ru.awesome.shop.ta.product.bo.credentials.Credentials;
 import ru.awesome.shop.ta.product.bo.user.User;
@@ -36,7 +37,7 @@ public class LoginTest extends BaseConfigurationTest {
             "EPMFARMATS-13118: check than user can login with correct email and password\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13118",
             groups = {"all", "positive"})
-    public void loginWithValidCredentialsTest() {
+    public void loginWithValidCredentialsTest() throws AuthenticationException {
         loginService.login(REGISTER_EMAIL, REGISTER_PASSWORD);
         AccountPage accountPage = new AccountPage();
         String actualAccountName = accountPage.getMyAccountName();
@@ -48,7 +49,7 @@ public class LoginTest extends BaseConfigurationTest {
             "EPMFARMATS-13119: check that user can logout after successful login\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13119",
             groups = {"all", "positive"})
-    public void checkThatUserCanLogout() {
+    public void checkThatUserCanLogout() throws AuthenticationException {
         loginService.login(REGISTER_EMAIL, REGISTER_PASSWORD);
         loginService.logout();
         LogoutPage logoutPage = new LogoutPage();
@@ -63,14 +64,12 @@ public class LoginTest extends BaseConfigurationTest {
             "https://jira.epam.com/jira/browse/EPMFARMATS-13121\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13120",
             dataProvider = "invalidUser",
+            expectedExceptions = AuthenticationException.class,
             groups = {"all", "negative"})
-    public void loginWithInvalidCredentials(User user) {
+    public void loginWithInvalidCredentials(User user) throws AuthenticationException {
         Credentials userCredentials = user.getCredentials();
         String userEmail = userCredentials.getEmail();
         String userPassword = userCredentials.getPassword();
         loginService.login(userEmail, userPassword);
-        String warningMessageText = loginPage.getWarningMessage();
-        Assert.assertEquals(warningMessageText, "Warning: No match for E-Mail Address and/or Password.",
-                "Incorrect warning message text");
     }
 }

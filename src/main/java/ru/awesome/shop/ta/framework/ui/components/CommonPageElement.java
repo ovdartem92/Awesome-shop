@@ -1,13 +1,11 @@
 package ru.awesome.shop.ta.framework.ui.components;
 
+import org.openqa.selenium.*;
 import ru.awesome.shop.ta.framework.browser.Browser;
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.StaleElementReferenceException;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
+import ru.awesome.shop.ta.framework.logging.Log;
 
 import java.time.Duration;
 import java.util.Objects;
@@ -101,5 +99,15 @@ public class CommonPageElement {
         }
         Wait<? extends WebDriver> wait = getCustomWait(timeoutInSeconds);
         wait.until(ExpectedConditions.elementToBeClickable(locator));
+    }
+
+    public static boolean isElementVisible(By locator, int timeoutInSeconds) {
+        try {
+            waitForPageElementVisibilityLocated(locator, timeoutInSeconds);
+            return true;
+        } catch (TimeoutException e) {
+            Log.info("No error message found on login page.");
+            return false;
+        }
     }
 }
