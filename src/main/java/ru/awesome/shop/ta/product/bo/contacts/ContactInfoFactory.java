@@ -26,46 +26,8 @@ public final class ContactInfoFactory {
         return new ContactInfo(invalidTelephone, FAX_NUMBER, VALID_ADDRESS);
     }
 
-    public static ContactInfo generateContactInfoWithEmptyTelephone() {
-        return new ContactInfo("", FAX_NUMBER, VALID_ADDRESS);
-    }
-
-    public static ContactInfo generateContactInfoWithEmptyFax() {
-        return new ContactInfo(TELEPHONE_NUMBER, "", VALID_ADDRESS);
-    }
-
     public static ContactInfo generateContactInfoWithInvalidCity() {
         Address addressWithInvalidCity = AddressFactory.generateAddressWithInvalidCity();
         return new ContactInfo(TELEPHONE_NUMBER, FAX_NUMBER, addressWithInvalidCity);
-    }
-
-    public static ContactInfo generateContactInfoWithEmptyFirstAddress() {
-        Address addressWithEmptyFirstAddress = AddressFactory.generateAddressWithEmptyFirstAddress();
-        return new ContactInfo(TELEPHONE_NUMBER, FAX_NUMBER, addressWithEmptyFirstAddress);
-    }
-
-    public static ContactInfo generateContactInfoWithEmptySecondAddress() {
-        Address addressWithEmptySecondAddress = AddressFactory.generateAddressWithEmptySecondAddress();
-        return new ContactInfo(TELEPHONE_NUMBER, FAX_NUMBER, addressWithEmptySecondAddress);
-    }
-
-    public static ContactInfo generateContactInfoWithEmptyCity() {
-        Address addressWithEmptyCity = AddressFactory.generateAddressWithEmptyCity();
-        return new ContactInfo(TELEPHONE_NUMBER, FAX_NUMBER, addressWithEmptyCity);
-    }
-
-    public static ContactInfo generateContactInfoWithEmptyPostCode() {
-        Address addressWithEmptyPostCode = AddressFactory.generateAddressWithEmptyPostCode();
-        return new ContactInfo(TELEPHONE_NUMBER, FAX_NUMBER, addressWithEmptyPostCode);
-    }
-
-    public static ContactInfo generateContactInfoWithEmptyCountry() {
-        Address addressWithEmptyCountry = AddressFactory.generateAddressWithEmptyCountry();
-        return new ContactInfo(TELEPHONE_NUMBER, FAX_NUMBER, addressWithEmptyCountry);
-    }
-
-    public static ContactInfo generateContactInfoWithEmptyRegion() {
-        Address addressWithEmptyRegion = AddressFactory.generateAddressWithEmptyRegion();
-        return new ContactInfo(TELEPHONE_NUMBER, FAX_NUMBER, addressWithEmptyRegion);
     }
 }

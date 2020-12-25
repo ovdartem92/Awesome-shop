@@ -45,6 +45,15 @@ public class CommonPageElement {
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
+    public static void waitForAllPageElementsVisibilityLocated(By locator, int timeoutInSeconds) {
+        Objects.requireNonNull(locator, "Locator cannot be null.");
+        if (timeoutInSeconds < 0) {
+            throw new IllegalArgumentException("Timeout in seconds cannot be less than 0.");
+        }
+        Wait<? extends WebDriver> wait = getCustomWait(timeoutInSeconds);
+        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
+    }
+
     public static void waitForPageElementInvisibilityLocated(By locator) {
         Objects.requireNonNull(locator, "Locator cannot be null.");
         waitForPageElementInvisibilityLocated(locator, TIMEOUT_IN_SECONDS);
