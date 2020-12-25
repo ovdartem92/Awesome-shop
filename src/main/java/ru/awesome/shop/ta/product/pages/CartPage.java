@@ -7,6 +7,7 @@ import ru.awesome.shop.ta.framework.ui.components.Button;
 import ru.awesome.shop.ta.framework.ui.components.Label;
 import ru.awesome.shop.ta.framework.ui.components.TextField;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -111,10 +112,19 @@ public class CartPage extends BasePage {
     }
 
     public int getNumberOfCartItems() {
+        return getAllItemsNames().size();
+    }
+
+    public List<String> getAllItemsNames() {
         int VISIBILITY_TIMEOUT_IN_SECONDS = 10;
-        By cartItemLocator = By.xpath("//div[@class='table-responsive']//tbody//tr");
-        waitForAllPageElementsVisibilityLocated(cartItemLocator, VISIBILITY_TIMEOUT_IN_SECONDS);
-        List<WebElement> cartItemElements = Browser.getInstance().getWrappedDriver().findElements(cartItemLocator);
-        return cartItemElements.size();
+        By itemNameLocator = By.xpath("//div[@class='table-responsive']//a[text()]");
+        waitForAllPageElementsVisibilityLocated(itemNameLocator, VISIBILITY_TIMEOUT_IN_SECONDS);
+        List<WebElement> itemNameElements = Browser.getInstance().getWrappedDriver().findElements(itemNameLocator);
+        List<String> itemsNames = new ArrayList<>();
+        for (WebElement element : itemNameElements) {
+            String itemName = element.getText();
+            itemsNames.add(itemName);
+        }
+        return itemsNames;
     }
 }
