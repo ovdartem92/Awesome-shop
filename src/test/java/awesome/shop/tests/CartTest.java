@@ -4,9 +4,11 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import ru.awesome.shop.ta.product.service.CartService;
-import ru.awesome.shop.ta.product.service.CatalogService;
-import ru.awesome.shop.ta.product.service.NavigationService;
+import ru.awesome.shop.ta.product.pages.CartPage;
+import ru.awesome.shop.ta.product.pages.LaptopsCatalogPage;
+import ru.awesome.shop.ta.product.services.CartService;
+import ru.awesome.shop.ta.product.services.CatalogService;
+import ru.awesome.shop.ta.product.services.NavigationService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +17,8 @@ public class CartTest extends BaseConfigurationTest {
     private NavigationService navigationService = new NavigationService();
     private CartService cartService = new CartService();
     private CatalogService catalogService = new CatalogService();
+    private LaptopsCatalogPage laptopsCatalogPage = new LaptopsCatalogPage();
+    private CartPage cartPage = new CartPage();
     private String IPHONE = "iPhone";
     private String MACBOOK = "MacBook";
     private List<String> phones = new ArrayList<>();
@@ -125,11 +129,11 @@ public class CartTest extends BaseConfigurationTest {
             "EPMFARMATS-13151: Check that 'Continue' button in empty cart lead to main page\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13151")
     public void checkContinueNavigateToHomePageAfterRemove() {
-        navigationService.navigateToLaptopsCatalogPage();
-        catalogService.addLaptopsToCart(laptops);
-        navigationService.navigateToCartPage();
-        cartService.deleteProduct(MACBOOK);
-        String finishPageTitle = cartService.clickContinueAndGetTitle();
+        laptopsCatalogPage.open();
+        laptopsCatalogPage.clickAddLaptopToCartButton(MACBOOK);
+        cartPage.open();
+        cartPage.clickRemoveItemFromCart(MACBOOK);
+        String finishPageTitle = cartPage.clickContinueButton().getPageTitle();
 
         Assert.assertEquals(finishPageTitle, "Your Store", "There is no Home Page in the end!");
     }
@@ -138,10 +142,10 @@ public class CartTest extends BaseConfigurationTest {
             "EPMFARMATS-13175: Check that 'Continue shopping' button in cart page work correctly\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13175")
     public void checkCorrectContinueShopping() {
-        navigationService.navigateToLaptopsCatalogPage();
-        catalogService.addLaptopsToCart(laptops);
-        navigationService.navigateToCartPage();
-        String finishPageTitle = cartService.clickContinueShoppingGetTitle();
+        laptopsCatalogPage.open();
+        laptopsCatalogPage.clickAddLaptopToCartButton(MACBOOK);
+        cartPage.open();
+        String finishPageTitle = cartPage.clickContinueShoppingButton().getPageTitle();
 
         Assert.assertEquals(finishPageTitle, "Your Store", "There is no Home Page in the end!");
     }

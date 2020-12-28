@@ -1,4 +1,4 @@
-package ru.awesome.shop.ta.product.service;
+package ru.awesome.shop.ta.product.services;
 
 import ru.awesome.shop.ta.product.pages.LaptopsCatalogPage;
 import ru.awesome.shop.ta.product.pages.PhonesCatalogPage;

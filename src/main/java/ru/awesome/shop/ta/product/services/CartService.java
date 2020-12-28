@@ -1,4 +1,4 @@
-package ru.awesome.shop.ta.product.service;
+package ru.awesome.shop.ta.product.services;
 
 import ru.awesome.shop.ta.framework.browser.Browser;
 import ru.awesome.shop.ta.framework.logging.Log;
@@ -79,16 +79,6 @@ public class CartService {
 
     public void clickCheckoutExpectingFailure() {
         cartPage.clickCheckoutButtonExpectingFailure();
-    }
-
-    public String clickContinueAndGetTitle() {
-        cartPage.clickContinueButton();
-        return Browser.getInstance().getPageTitle();
-    }
-
-    public String clickContinueShoppingGetTitle() {
-        cartPage.clickContinueShoppingButton();
-        return Browser.getInstance().getPageTitle();
     }
 
     public String getQuantityWarning() {
