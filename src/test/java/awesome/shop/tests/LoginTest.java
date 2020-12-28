@@ -17,7 +17,6 @@ public class LoginTest extends BaseConfigurationTest {
     private static final String REGISTER_EMAIL = PropertyManager.getEmail();
     private static final String REGISTER_PASSWORD = PropertyManager.getPassword();
     private static final AuthenticationService AUTHENTICATION_SERVICE = new AuthenticationService();
-    private static final AccountService ACCOUNT_SERVICE = new AccountService();
 
     @DataProvider(name = "invalidUser")
     public Object[][] getInvalidUser() {
@@ -38,7 +37,8 @@ public class LoginTest extends BaseConfigurationTest {
             groups = {"all", "positive"})
     public void loginWithValidCredentialsTest() throws AuthenticationException {
         AUTHENTICATION_SERVICE.login(REGISTER_EMAIL, REGISTER_PASSWORD);
-        String actualAccountName = ACCOUNT_SERVICE.getAccountName();
+        AccountService accountService = new AccountService();
+        String actualAccountName = accountService.getAccountName();
         Assert.assertEquals(actualAccountName, "My Account",
                 "Incorrect account name");
     }
