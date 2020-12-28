@@ -1,4 +1,4 @@
-package ru.awesome.shop.ta.product.service;
+package ru.awesome.shop.ta.product.services;
 
 import org.apache.commons.lang3.StringUtils;
 import ru.awesome.shop.ta.framework.exceptions.RegistrationException;

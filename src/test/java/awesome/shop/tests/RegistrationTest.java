@@ -12,7 +12,7 @@ import ru.awesome.shop.ta.product.bo.credentials.CredentialsFactory;
 import ru.awesome.shop.ta.product.bo.user.User;
 import ru.awesome.shop.ta.product.bo.user.UserFactory;
 import ru.awesome.shop.ta.product.pages.AccountRegistrationPage;
-import ru.awesome.shop.ta.product.service.AccountRegistrationService;
+import ru.awesome.shop.ta.product.services.AccountRegistrationService;
 
 public class RegistrationTest extends BaseConfigurationTest {
     private final AccountRegistrationPage accountRegistrationPage = new AccountRegistrationPage();
