@@ -1,7 +1,7 @@
-Feature: User want to log in account
+Feature: Login Functionality
 
   @smoke
-  Scenario: User must log in account with valid credentials
+  Scenario: Login Functionality
 
     Given user open LoginPage
     When user type valid email

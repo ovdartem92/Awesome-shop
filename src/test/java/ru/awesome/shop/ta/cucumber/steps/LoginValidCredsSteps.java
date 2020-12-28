@@ -32,6 +32,5 @@ public class LoginValidCredsSteps {
     @Then("text {string} is displayed")
     public void verifyTextIsDisplayed(String text) {
         Assert.assertEquals(text, "My Account", "The final text isn't equals expected!");
-
     }
 }
