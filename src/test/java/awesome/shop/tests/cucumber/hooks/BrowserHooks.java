@@ -1,4 +1,4 @@
-package ru.awesome.shop.ta.cucumber.hooks;
+package awesome.shop.tests.cucumber.hooks;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -9,13 +9,13 @@ public class BrowserHooks {
     protected Browser browser;
 
     @Before
-    public void setUp(){
-       browser = Browser.getInstance();
-       browser.navigate(PropertyManager.getUrl());
+    public void setUp() {
+        browser = Browser.getInstance();
+        browser.navigate(PropertyManager.getUrl());
     }
 
     @After
-    public void tearDown(){
+    public void tearDown() {
         browser.stop();
     }
 }

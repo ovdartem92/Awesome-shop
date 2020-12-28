@@ -1,4 +1,4 @@
-package ru.awesome.shop.ta.cucumber.steps;
+package awesome.shop.tests.cucumber.steps;
 
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -6,7 +6,7 @@ import org.testng.Assert;
 import ru.awesome.shop.ta.framework.configuration.PropertyManager;
 import ru.awesome.shop.ta.product.pages.LoginPage;
 
-public class LoginValidCredsSteps {
+public class Login {
     LoginPage loginPage = new LoginPage();
 
     @When("user open LoginPage")
