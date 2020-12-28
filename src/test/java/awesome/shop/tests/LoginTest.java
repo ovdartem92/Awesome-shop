@@ -9,16 +9,15 @@ import ru.awesome.shop.ta.framework.configuration.PropertyManager;
 import ru.awesome.shop.ta.product.bo.credentials.Credentials;
 import ru.awesome.shop.ta.product.bo.user.User;
 import ru.awesome.shop.ta.product.bo.user.UserFactory;
-import ru.awesome.shop.ta.product.pages.AccountPage;
 import ru.awesome.shop.ta.product.pages.LoginPage;
-import ru.awesome.shop.ta.product.pages.LogoutPage;
-import ru.awesome.shop.ta.product.service.LoginService;
+import ru.awesome.shop.ta.product.service.AccountService;
+import ru.awesome.shop.ta.product.service.AuthenticationService;
 
 public class LoginTest extends BaseConfigurationTest {
-    private static final LoginPage loginPage = new LoginPage();
     private static final String REGISTER_EMAIL = PropertyManager.getEmail();
     private static final String REGISTER_PASSWORD = PropertyManager.getPassword();
-    private static final LoginService loginService = new LoginService();
+    private static final AuthenticationService AUTHENTICATION_SERVICE = new AuthenticationService();
+    private static final AccountService ACCOUNT_SERVICE = new AccountService();
 
     @DataProvider(name = "invalidUser")
     public Object[][] getInvalidUser() {
@@ -30,7 +29,7 @@ public class LoginTest extends BaseConfigurationTest {
     @BeforeMethod(description = "open login page",
             groups = {"all", "negative", "positive"})
     public void openLoginPage() {
-        loginPage.open();
+        new LoginPage().open();
     }
 
     @Test(description = "***LoginWithValidCredentials***\n" +
@@ -38,9 +37,8 @@ public class LoginTest extends BaseConfigurationTest {
             "https://jira.epam.com/jira/browse/EPMFARMATS-13118",
             groups = {"all", "positive"})
     public void loginWithValidCredentialsTest() throws AuthenticationException {
-        loginService.login(REGISTER_EMAIL, REGISTER_PASSWORD);
-        AccountPage accountPage = new AccountPage();
-        String actualAccountName = accountPage.getMyAccountName();
+        AUTHENTICATION_SERVICE.login(REGISTER_EMAIL, REGISTER_PASSWORD);
+        String actualAccountName = ACCOUNT_SERVICE.getAccountName();
         Assert.assertEquals(actualAccountName, "My Account",
                 "Incorrect account name");
     }
@@ -50,10 +48,9 @@ public class LoginTest extends BaseConfigurationTest {
             "https://jira.epam.com/jira/browse/EPMFARMATS-13119",
             groups = {"all", "positive"})
     public void checkThatUserCanLogout() throws AuthenticationException {
-        loginService.login(REGISTER_EMAIL, REGISTER_PASSWORD);
-        loginService.logout();
-        LogoutPage logoutPage = new LogoutPage();
-        String actualBreadcrumbLogoutText = logoutPage.getBreadcrumbLogoutText();
+        AUTHENTICATION_SERVICE.login(REGISTER_EMAIL, REGISTER_PASSWORD);
+        AUTHENTICATION_SERVICE.logout();
+        String actualBreadcrumbLogoutText = AUTHENTICATION_SERVICE.getBreadcrumbLogoutText();
         Assert.assertEquals(actualBreadcrumbLogoutText, "Logout",
                 "Incorrect breadcrumbls logout text");
     }
@@ -70,6 +67,6 @@ public class LoginTest extends BaseConfigurationTest {
         Credentials userCredentials = user.getCredentials();
         String userEmail = userCredentials.getEmail();
         String userPassword = userCredentials.getPassword();
-        loginService.login(userEmail, userPassword);
+        AUTHENTICATION_SERVICE.login(userEmail, userPassword);
     }
 }
