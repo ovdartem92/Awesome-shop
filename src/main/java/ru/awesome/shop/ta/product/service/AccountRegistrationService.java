@@ -8,14 +8,36 @@ import ru.awesome.shop.ta.product.bo.contacts.ContactInfo;
 import ru.awesome.shop.ta.product.bo.credentials.Credentials;
 import ru.awesome.shop.ta.product.bo.user.User;
 import ru.awesome.shop.ta.product.pages.AccountRegistrationPage;
-import ru.awesome.shop.ta.product.pages.SuccessfulAccountRegistrationPage;
 
 import java.util.List;
 
 public class AccountRegistrationService {
     private final AccountRegistrationPage accountRegistrationPage = new AccountRegistrationPage();
 
-    public void fillInRegistrationForm(User user) {
+    public void register(User user, boolean isSubscribed, boolean hasPrivacyPolicyBeenRead)
+            throws RegistrationException {
+        fillInRegistrationForm(user);
+
+        if (isSubscribed) {
+            accountRegistrationPage.clickSubscribeYesRadioButton();
+        }
+
+        if (hasPrivacyPolicyBeenRead) {
+            accountRegistrationPage.clickAgreeWithPrivacyPolicyCheckbox();
+        }
+        accountRegistrationPage.clickContinueButton();
+        List<String> errorMessages = accountRegistrationPage.getAllErrorMessages();
+
+        if (errorMessages.size() > 0) {
+            throw new RegistrationException("Registration failed:\n" + StringUtils.join(errorMessages, "\n"));
+        }
+    }
+
+    public void register(User user) throws RegistrationException {
+        register(user, false, false);
+    }
+
+    private void fillInRegistrationForm(User user) {
         Credentials credentials = user.getCredentials();
         ContactInfo contactInfo = user.getContactInfo();
         Address address = user.getContactInfo().getAddress();
@@ -45,17 +67,5 @@ public class AccountRegistrationService {
         accountRegistrationPage.selectRegion(region);
         accountRegistrationPage.typePassword(password);
         accountRegistrationPage.typePasswordConfirm(password);
-    }
-
-    public SuccessfulAccountRegistrationPage register(User user) throws RegistrationException {
-        fillInRegistrationForm(user);
-        accountRegistrationPage.clickAgreeWithPrivacyPolicyCheckbox();
-        accountRegistrationPage.clickContinueButton();
-        List<String> errorMessages = accountRegistrationPage.getAllErrorMessages();
-
-        if (errorMessages.size() > 0) {
-            throw new RegistrationException("Registration failed:\n" + StringUtils.join(errorMessages, "\n"));
-        }
-        return new SuccessfulAccountRegistrationPage();
     }
 }

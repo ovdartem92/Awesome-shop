@@ -61,7 +61,7 @@ public class RegistrationTest extends BaseConfigurationTest {
     public void checkAppearanceWithEmptyPropertiesWarning() throws RegistrationException {
         Credentials credentials = CredentialsFactory.generateEmptyCredentials();
         User invalidUser = new User.Builder(credentials).build();
-        accountRegistrationService.register(invalidUser);
+        accountRegistrationService.register(invalidUser, true, true);
     }
 
     @Test(description = "***RegistrationTestsWithInvalidProperties***\n" +
@@ -76,8 +76,8 @@ public class RegistrationTest extends BaseConfigurationTest {
             dataProvider = "userWithInvalidProperty",
             expectedExceptions = {RegistrationException.class},
             groups = {"all", "negative"})
-    public void checkAppearanceWithInvalidPropertyWarning(User user, String message) throws RegistrationException {
-        accountRegistrationService.register(user);
+    public void checkAppearanceWithInvalidPropertyWarning(User invalidUser, String message) throws RegistrationException {
+        accountRegistrationService.register(invalidUser, true, true);
     }
 
     @Test(description = "***CheckSuccessfulUserRegistration***\n" +
@@ -85,12 +85,13 @@ public class RegistrationTest extends BaseConfigurationTest {
             "https://jira.epam.com/jira/browse/EPMFARMATS-13155\n",
             groups = {"all", "positive"})
     public void checkSuccessfulUserRegistration() throws RegistrationException {
-        accountRegistrationService.register(validUser);
+        accountRegistrationService.register(validUser, true, true);
     }
 
     @Test(description = "***CheckAppearanceEmailAlreadyRegisteredWarning***\n" +
             "EPMFARMATS-13166: check appearance E-mail already registered warning\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13166\n",
+            expectedExceptions = {RegistrationException.class},
             groups = {"all", "positive"})
     public void checkAppearanceEmailAlreadyRegisteredWarning() throws RegistrationException {
         String validFirstName = validUser.getFirstName();
@@ -103,17 +104,17 @@ public class RegistrationTest extends BaseConfigurationTest {
         User registeredUser = new User.Builder(registeredCredentials).firstName(validFirstName)
                 .lastName(validLastName).companyName(validCompanyName).contactInfo(validContactInfo).build();
 
-        accountRegistrationService.register(registeredUser);
+        accountRegistrationService.register(registeredUser, true, true);
         Assert.assertEquals(accountRegistrationPage.getDangerMessage(), "Warning: E-Mail Address is already registered!");
     }
 
     @Test(description = "***CheckAppearancePrivacyPolicyWarning***\n" +
             "EPMFARMATS-13154: check appearance Privacy Policy warning\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13154\n",
+            expectedExceptions = {RegistrationException.class},
             groups = {"all", "positive"})
-    public void checkAppearancePrivacyPolicyWarning() {
-        accountRegistrationService.fillInRegistrationForm(validUser);
-        accountRegistrationPage.clickContinueButton();
+    public void checkAppearancePrivacyPolicyWarning() throws RegistrationException {
+        accountRegistrationService.register(validUser, false, false);
         Assert.assertEquals(accountRegistrationPage.getDangerMessage(), "Warning: You must agree to the Privacy Policy!");
     }
 
