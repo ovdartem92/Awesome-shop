@@ -72,11 +72,6 @@ public class CartService {
         return cartPage.getItemQuantityValue(productName);
     }
 
-    public String clickCheckoutAndGetTitle() {
-        cartPage.clickCheckoutButton();
-        return Browser.getInstance().getPageTitle();
-    }
-
     public void clickCheckoutExpectingFailure() {
         cartPage.clickCheckoutButtonExpectingFailure();
     }

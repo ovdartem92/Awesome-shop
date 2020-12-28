@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import ru.awesome.shop.ta.product.pages.CartPage;
 import ru.awesome.shop.ta.product.pages.LaptopsCatalogPage;
+import ru.awesome.shop.ta.product.pages.PhonesCatalogPage;
 import ru.awesome.shop.ta.product.services.CartService;
 import ru.awesome.shop.ta.product.services.CatalogService;
 import ru.awesome.shop.ta.product.services.NavigationService;
@@ -18,6 +19,7 @@ public class CartTest extends BaseConfigurationTest {
     private CartService cartService = new CartService();
     private CatalogService catalogService = new CatalogService();
     private LaptopsCatalogPage laptopsCatalogPage = new LaptopsCatalogPage();
+    private PhonesCatalogPage phonesCatalogPage = new PhonesCatalogPage();
     private CartPage cartPage = new CartPage();
     private String IPHONE = "iPhone";
     private String MACBOOK = "MacBook";
@@ -75,11 +77,12 @@ public class CartTest extends BaseConfigurationTest {
             "https://jira.epam.com/jira/browse/EPMFARMATS-13149")
     public void checkCanBuyLessUpperLimit() {
         int UPPER_LIMIT_IPHONE_QUANTITY = 793;
-        navigationService.navigateToPhonesCatalogPage();
-        catalogService.addPhonesToCart(phones);
-        navigationService.navigateToCartPage();
-        cartService.updateProductQuantity(IPHONE, UPPER_LIMIT_IPHONE_QUANTITY);
-        String finishPageTitle = cartService.clickCheckoutAndGetTitle();
+        phonesCatalogPage.open();
+        phonesCatalogPage.clickAddPhoneToCartButton(IPHONE);
+        cartPage.open();
+        cartPage.typeItemQuantity(IPHONE, UPPER_LIMIT_IPHONE_QUANTITY);
+        cartPage.clickUpdateItemButton(IPHONE);
+        String finishPageTitle = cartPage.clickCheckoutButton().getPageTitle();
 
         Assert.assertEquals(finishPageTitle, "Checkout", "There is no Checkout Page in the end!");
     }
