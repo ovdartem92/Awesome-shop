@@ -1,14 +1,16 @@
 package ru.awesome.shop.ta.product.service;
 
+import ru.awesome.shop.ta.framework.browser.Browser;
 import ru.awesome.shop.ta.framework.logging.Log;
-import ru.awesome.shop.ta.product.pages.BasePage;
 import ru.awesome.shop.ta.product.pages.CartPage;
+import ru.awesome.shop.ta.product.pages.popups.CartTotalPopup;
 
 import java.util.List;
 import java.util.Map;
 
-public class CartService extends BasePage {
+public class CartService {
     private CartPage cartPage = new CartPage();
+    private CartTotalPopup cartTotalPopup = new CartTotalPopup();
 
     public void updateProductQuantity(String productName, int quantity) {
         cartPage.typeItemQuantity(productName, quantity);
@@ -68,5 +70,37 @@ public class CartService extends BasePage {
 
     public int getProductQuantity(String productName) {
         return cartPage.getItemQuantityValue(productName);
+    }
+
+    public String clickCheckoutAndGetTitle() {
+        cartPage.clickCheckoutButton();
+        return Browser.getInstance().getPageTitle();
+    }
+
+    public void clickCheckoutExpectingFailure() {
+        cartPage.clickCheckoutButtonExpectingFailure();
+    }
+
+    public String clickContinueAndGetTitle() {
+        cartPage.clickContinueButton();
+        return Browser.getInstance().getPageTitle();
+    }
+
+    public String clickContinueShoppingGetTitle() {
+        cartPage.clickContinueShoppingButton();
+        return Browser.getInstance().getPageTitle();
+    }
+
+    public String getQuantityWarning() {
+        return cartPage.getQuantityWarningMessage();
+    }
+
+    public String getEmptyCartMessage() {
+        return cartPage.getEmptyShoppingCartMessage();
+    }
+
+    public String getEmptyCartMessageFromPopup() {
+        cartPage.clickCartTotalButton();
+        return cartTotalPopup.getEmptyCartMessage();
     }
 }
