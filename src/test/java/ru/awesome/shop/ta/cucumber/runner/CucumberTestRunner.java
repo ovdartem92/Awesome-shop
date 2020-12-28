@@ -7,7 +7,7 @@ import io.cucumber.testng.CucumberOptions;
         plugin = "pretty",
         monochrome = true,
         tags = "@smoke",
-        glue = "ru.awesome.shop.ta.cucumber.steps",
+        glue = "ru.awesome.shop.ta.cucumber",
         features = "src/test/resources/features"
 )
 
