@@ -38,4 +38,3 @@ public class HomePage extends BasePage {
         return array[0];
     }
 }
-

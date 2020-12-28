@@ -6,6 +6,8 @@ import org.testng.annotations.Test;
 import ru.awesome.shop.ta.framework.exceptions.IncorrectSearchCriteriaException;
 import ru.awesome.shop.ta.product.services.SearchService;
 
+import java.util.List;
+
 public class SearchTest extends BaseConfigurationTest {
     SearchService searchService = new SearchService();
 
@@ -42,8 +44,8 @@ public class SearchTest extends BaseConfigurationTest {
             dataProvider = "negativeSearchData", groups = "negative",
             expectedExceptions = IncorrectSearchCriteriaException.class)
     public void checkTheSearchFieldByNegativeSearchData(String searchCriteria) throws IncorrectSearchCriteriaException {
-        String[] actualSearchResultsName = searchService.search(searchCriteria);
-        Assert.assertTrue(actualSearchResultsName.length < 1,
+        List<String> actualSearchResultsName = searchService.performAdvancedSearch(searchCriteria);
+        Assert.assertTrue(actualSearchResultsName.size() < 1,
                 "The search result should not be on the page.");
     }
 
@@ -61,8 +63,8 @@ public class SearchTest extends BaseConfigurationTest {
             dataProvider = "positiveSearchData", groups = "positive")
     public void checkTheSearchFieldByPositiveSearchData(String searchCriteria) {
         String expectedResult = "iPod Classic";
-        String[] actualSearchResultsName = searchService.search(searchCriteria);
-        Assert.assertEquals(actualSearchResultsName[0], expectedResult,
+        List<String> actualSearchResultsName = searchService.performBasicSearch(searchCriteria);
+        Assert.assertEquals(actualSearchResultsName.get(0), expectedResult,
                 expectedResult + " wasn't found in search result.");
     }
 
@@ -73,8 +75,9 @@ public class SearchTest extends BaseConfigurationTest {
         String expectedResult = "iPod Classic";
         String iPod = "iPod";
         String enter = "\n";
-        String[] actualSearchResultsName = searchService.searchWithoutClickingTheSearchButton(iPod + enter);
-        Assert.assertEquals(actualSearchResultsName[0], expectedResult,
+        List<String> actualSearchResultsName = searchService
+                .performAdvancedSearch(iPod + enter, false, false, true);
+        Assert.assertEquals(actualSearchResultsName.get(0), expectedResult,
                 expectedResult + " wasn't found in search result.");
     }
 
@@ -83,8 +86,9 @@ public class SearchTest extends BaseConfigurationTest {
             "https://jira.epam.com/jira/browse/EPMFARMATS-13135", groups = "positive")
     public void checkTheSearchResultByProductCategory() {
         String searchCriteria = "iMac";
-        String[] actualSearchResultsName = searchService.search(searchCriteria, false, true);
-        Assert.assertEquals(actualSearchResultsName[0], searchCriteria,
+        List<String> actualSearchResultsName = searchService
+                .performAdvancedSearch(searchCriteria, false, true);
+        Assert.assertEquals(actualSearchResultsName.get(0), searchCriteria,
                 searchCriteria + " wasn't found in search result.");
     }
 
@@ -93,8 +97,9 @@ public class SearchTest extends BaseConfigurationTest {
             "https://jira.epam.com/jira/browse/EPMFARMATS-13134", groups = "positive")
     public void checkTheSearchResultByProductDescription() {
         String searchCriteria = "iPod Classic";
-        String[] actualSearchResults = searchService.search(searchCriteria, true, false);
-        Assert.assertEquals(actualSearchResults[0], searchCriteria,
+        List<String> actualSearchResults = searchService
+                .performAdvancedSearch(searchCriteria, true, false);
+        Assert.assertEquals(actualSearchResults.get(0), searchCriteria,
                 searchCriteria + " wasn't found in search result.");
     }
 }
