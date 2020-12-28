@@ -18,4 +18,3 @@ public class LogoutPage extends BasePage {
         return this;
     }
 }
-
