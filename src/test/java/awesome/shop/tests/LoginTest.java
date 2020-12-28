@@ -16,7 +16,7 @@ import ru.awesome.shop.ta.product.service.AuthenticationService;
 public class LoginTest extends BaseConfigurationTest {
     private static final String REGISTER_EMAIL = PropertyManager.getEmail();
     private static final String REGISTER_PASSWORD = PropertyManager.getPassword();
-    private static final AuthenticationService AUTHENTICATION_SERVICE = new AuthenticationService();
+    private AuthenticationService authenticationService = new AuthenticationService();
 
     @DataProvider(name = "invalidUser")
     public Object[][] getInvalidUser() {
@@ -36,7 +36,7 @@ public class LoginTest extends BaseConfigurationTest {
             "https://jira.epam.com/jira/browse/EPMFARMATS-13118",
             groups = {"all", "positive"})
     public void loginWithValidCredentialsTest() throws AuthenticationException {
-        AUTHENTICATION_SERVICE.login(REGISTER_EMAIL, REGISTER_PASSWORD);
+        authenticationService.login(REGISTER_EMAIL, REGISTER_PASSWORD);
         AccountService accountService = new AccountService();
         String actualAccountName = accountService.getAccountName();
         Assert.assertEquals(actualAccountName, "My Account",
@@ -48,9 +48,9 @@ public class LoginTest extends BaseConfigurationTest {
             "https://jira.epam.com/jira/browse/EPMFARMATS-13119",
             groups = {"all", "positive"})
     public void checkThatUserCanLogout() throws AuthenticationException {
-        AUTHENTICATION_SERVICE.login(REGISTER_EMAIL, REGISTER_PASSWORD);
-        AUTHENTICATION_SERVICE.logout();
-        String actualBreadcrumbLogoutText = AUTHENTICATION_SERVICE.getBreadcrumbLogoutText();
+        authenticationService.login(REGISTER_EMAIL, REGISTER_PASSWORD);
+        authenticationService.logout();
+        String actualBreadcrumbLogoutText = authenticationService.getBreadcrumbLogoutText();
         Assert.assertEquals(actualBreadcrumbLogoutText, "Logout",
                 "Incorrect breadcrumbls logout text");
     }
@@ -67,6 +67,6 @@ public class LoginTest extends BaseConfigurationTest {
         Credentials userCredentials = user.getCredentials();
         String userEmail = userCredentials.getEmail();
         String userPassword = userCredentials.getPassword();
-        AUTHENTICATION_SERVICE.login(userEmail, userPassword);
+        authenticationService.login(userEmail, userPassword);
     }
 }
