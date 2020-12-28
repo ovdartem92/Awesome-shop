@@ -4,19 +4,19 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import rp.org.apache.http.auth.AuthenticationException;
 import ru.awesome.shop.ta.framework.configuration.PropertyManager;
 import ru.awesome.shop.ta.product.bo.credentials.Credentials;
 import ru.awesome.shop.ta.product.bo.user.User;
 import ru.awesome.shop.ta.product.bo.user.UserFactory;
-import ru.awesome.shop.ta.product.pages.AccountPage;
 import ru.awesome.shop.ta.product.pages.LoginPage;
-import ru.awesome.shop.ta.product.pages.LogoutPage;
-import ru.awesome.shop.ta.product.pages.popups.AccountPopUp;
+import ru.awesome.shop.ta.product.service.AccountService;
+import ru.awesome.shop.ta.product.service.AuthenticationService;
 
 public class LoginTest extends BaseConfigurationTest {
-    private static final LoginPage loginPage = new LoginPage();
     private static final String REGISTER_EMAIL = PropertyManager.getEmail();
     private static final String REGISTER_PASSWORD = PropertyManager.getPassword();
+    private AuthenticationService authenticationService = new AuthenticationService();
 
     @DataProvider(name = "invalidUser")
     public Object[][] getInvalidUser() {
@@ -28,18 +28,17 @@ public class LoginTest extends BaseConfigurationTest {
     @BeforeMethod(description = "open login page",
             groups = {"all", "negative", "positive"})
     public void openLoginPage() {
-        loginPage.open();
+        new LoginPage().open();
     }
 
     @Test(description = "***LoginWithValidCredentials***\n" +
             "EPMFARMATS-13118: check than user can login with correct email and password\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13118",
             groups = {"all", "positive"})
-    public void loginWithValidCredentialsTest() {
-        loginPage.typeEmailAddress(REGISTER_EMAIL);
-        loginPage.typePassword(REGISTER_PASSWORD);
-        AccountPage accountPage = loginPage.clickLoginButton();
-        String actualAccountName = accountPage.getMyAccountName();
+    public void loginWithValidCredentialsTest() throws AuthenticationException {
+        authenticationService.login(REGISTER_EMAIL, REGISTER_PASSWORD);
+        AccountService accountService = new AccountService();
+        String actualAccountName = accountService.getAccountName();
         Assert.assertEquals(actualAccountName, "My Account",
                 "Incorrect account name");
     }
@@ -48,13 +47,10 @@ public class LoginTest extends BaseConfigurationTest {
             "EPMFARMATS-13119: check that user can logout after successful login\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13119",
             groups = {"all", "positive"})
-    public void checkThatUserCanLogout() {
-        loginPage.typeEmailAddress(REGISTER_EMAIL);
-        loginPage.typePassword(REGISTER_PASSWORD);
-        AccountPage accountPage = loginPage.clickLoginButton();
-        AccountPopUp accountPopUp = accountPage.clickMyAccountLink();
-        LogoutPage logoutPage = accountPopUp.clickLogoutLink();
-        String actualBreadcrumbLogoutText = logoutPage.getBreadcrumbLogoutText();
+    public void checkThatUserCanLogout() throws AuthenticationException {
+        authenticationService.login(REGISTER_EMAIL, REGISTER_PASSWORD);
+        authenticationService.logout();
+        String actualBreadcrumbLogoutText = authenticationService.getBreadcrumbLogoutText();
         Assert.assertEquals(actualBreadcrumbLogoutText, "Logout",
                 "Incorrect breadcrumbls logout text");
     }
@@ -65,16 +61,12 @@ public class LoginTest extends BaseConfigurationTest {
             "https://jira.epam.com/jira/browse/EPMFARMATS-13121\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13120",
             dataProvider = "invalidUser",
+            expectedExceptions = AuthenticationException.class,
             groups = {"all", "negative"})
-    public void loginWithInvalidCredentials(User user) {
+    public void loginWithInvalidCredentials(User user) throws AuthenticationException {
         Credentials userCredentials = user.getCredentials();
         String userEmail = userCredentials.getEmail();
         String userPassword = userCredentials.getPassword();
-        loginPage.typeEmailAddress(userEmail);
-        loginPage.typePassword(userPassword);
-        loginPage.clickLoginButton();
-        String warningMessageText = loginPage.getWarningMessage();
-        Assert.assertEquals(warningMessageText, "Warning: No match for E-Mail Address and/or Password.",
-                "Incorrect warning message text");
+        authenticationService.login(userEmail, userPassword);
     }
 }

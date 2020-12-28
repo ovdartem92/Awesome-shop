@@ -34,4 +34,3 @@ public class ChangePasswordPage extends BasePage {
         return this;
     }
 }
-
