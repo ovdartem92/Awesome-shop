@@ -6,6 +6,8 @@ import ru.awesome.shop.ta.framework.ui.components.Button;
 import ru.awesome.shop.ta.framework.ui.components.Label;
 import ru.awesome.shop.ta.framework.ui.components.TextField;
 
+import static ru.awesome.shop.ta.framework.ui.components.CommonPageElement.isElementVisible;
+
 public class LoginPage extends BasePage {
     private static final By LOGIN_BUTTON_LOCATOR = By.xpath("//input[@class='btn btn-primary']");
     private static final String LOGIN_PAGE_URL = "index.php?route=account/login";
@@ -46,5 +48,10 @@ public class LoginPage extends BasePage {
         Browser.getInstance().navigate(BASE_URL.concat(LOGIN_PAGE_URL));
         return new LoginPage();
     }
-}
 
+    public boolean hasErrorMessage() {
+        By errorMessageLocator = By.xpath("//div[contains(text(),'Warning')]");
+        final int timeoutInSeconds = 2;
+        return isElementVisible(errorMessageLocator, timeoutInSeconds);
+    }
+}
