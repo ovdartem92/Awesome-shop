@@ -4,9 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import ru.awesome.shop.ta.product.pages.CartPage;
-import ru.awesome.shop.ta.product.pages.LaptopsCatalogPage;
-import ru.awesome.shop.ta.product.pages.PhonesCatalogPage;
+import ru.awesome.shop.ta.product.pages.*;
 import ru.awesome.shop.ta.product.services.CartService;
 import ru.awesome.shop.ta.product.services.CatalogService;
 import ru.awesome.shop.ta.product.services.NavigationService;
@@ -82,7 +80,8 @@ public class CartTest extends BaseConfigurationTest {
         cartPage.open();
         cartPage.typeItemQuantity(IPHONE, UPPER_LIMIT_IPHONE_QUANTITY);
         cartPage.clickUpdateItemButton(IPHONE);
-        String finishPageTitle = cartPage.clickCheckoutButton().getPageTitle();
+        CheckoutPage checkoutPage = cartPage.clickCheckoutButton();
+        String finishPageTitle = checkoutPage.getPageTitle();
 
         Assert.assertEquals(finishPageTitle, "Checkout", "There is no Checkout Page in the end!");
     }
@@ -136,7 +135,8 @@ public class CartTest extends BaseConfigurationTest {
         laptopsCatalogPage.clickAddLaptopToCartButton(MACBOOK);
         cartPage.open();
         cartPage.clickRemoveItemFromCart(MACBOOK);
-        String finishPageTitle = cartPage.clickContinueButton().getPageTitle();
+        HomePage homePage = cartPage.clickContinueButton();
+        String finishPageTitle = homePage.getPageTitle();
 
         Assert.assertEquals(finishPageTitle, "Your Store", "There is no Home Page in the end!");
     }
@@ -148,7 +148,8 @@ public class CartTest extends BaseConfigurationTest {
         laptopsCatalogPage.open();
         laptopsCatalogPage.clickAddLaptopToCartButton(MACBOOK);
         cartPage.open();
-        String finishPageTitle = cartPage.clickContinueShoppingButton().getPageTitle();
+        HomePage homePage = cartPage.clickContinueShoppingButton();
+        String finishPageTitle = homePage.getPageTitle();
 
         Assert.assertEquals(finishPageTitle, "Your Store", "There is no Home Page in the end!");
     }
