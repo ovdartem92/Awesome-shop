@@ -164,9 +164,8 @@ public class AccountRegistrationPage extends BasePage {
             Log.debug("No element found on current page.");
         }
 
-        for (int i = 0; i < errorMessageWebElementList.size(); i++) {
-            WebElement messageWebElement = errorMessageWebElementList.get(i);
-            String errorMessage = messageWebElement.getText();
+        for (WebElement errorMessageWebElement : errorMessageWebElementList) {
+            String errorMessage = errorMessageWebElement.getText();
             errorMessageList.add(errorMessage);
         }
         return errorMessageList;

@@ -114,7 +114,7 @@ public class RegistrationTest extends BaseConfigurationTest {
             expectedExceptions = {RegistrationException.class},
             groups = {"all", "positive"})
     public void checkAppearancePrivacyPolicyWarning() throws RegistrationException {
-        accountRegistrationService.register(validUser, false, false);
+        accountRegistrationService.register(validUser);
         Assert.assertEquals(accountRegistrationPage.getDangerMessage(), "Warning: You must agree to the Privacy Policy!");
     }
 
