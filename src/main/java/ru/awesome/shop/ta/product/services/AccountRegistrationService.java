@@ -34,7 +34,7 @@ public class AccountRegistrationService {
     }
 
     public void register(User user) throws RegistrationException {
-        register(user, false, false);
+        register(user, false, true);
     }
 
     private void fillInRegistrationForm(User user) {
