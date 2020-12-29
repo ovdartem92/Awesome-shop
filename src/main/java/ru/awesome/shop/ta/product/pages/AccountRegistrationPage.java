@@ -152,26 +152,17 @@ public class AccountRegistrationPage extends BasePage {
 
     public List<String> getAllErrorMessages() {
         final int timeoutInSeconds = 3;
+        By errorMessageLocator = By.xpath("//div[@class='text-danger']|//div[contains(@class, 'alert-danger')]");
         WebDriver driver = Browser.getInstance().getWrappedDriver();
         List<String> errorMessageList = new ArrayList<>();
         List<WebElement> errorMessageWebElementList = new ArrayList<>();
-        List<WebElement> dangerMessageWebElementList = new ArrayList<>();
-        List<WebElement> warningMessageWebElementList = new ArrayList<>();
 
         try {
-            CommonPageElement.waitForAllPageElementsVisibilityLocated(dangerMessageLocator, timeoutInSeconds);
-            dangerMessageWebElementList = driver.findElements(dangerMessageLocator);
+            CommonPageElement.waitForAllPageElementsVisibilityLocated(errorMessageLocator, timeoutInSeconds);
+            errorMessageWebElementList = driver.findElements(errorMessageLocator);
         } catch (TimeoutException e) {
-            Log.debug("No danger element found on current page.");
+            Log.debug("No element found on current page.");
         }
-        try {
-            CommonPageElement.waitForAllPageElementsVisibilityLocated(warningMessageLocator, timeoutInSeconds);
-            warningMessageWebElementList = driver.findElements(warningMessageLocator);
-        } catch (TimeoutException e) {
-            Log.debug("No warning element found on current page.");
-        }
-        errorMessageWebElementList.addAll(warningMessageWebElementList);
-        errorMessageWebElementList.addAll(dangerMessageWebElementList);
 
         for (int i = 0; i < errorMessageWebElementList.size(); i++) {
             WebElement messageWebElement = errorMessageWebElementList.get(i);
