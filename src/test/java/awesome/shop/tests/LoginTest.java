@@ -10,8 +10,8 @@ import ru.awesome.shop.ta.product.bo.credentials.Credentials;
 import ru.awesome.shop.ta.product.bo.user.User;
 import ru.awesome.shop.ta.product.bo.user.UserFactory;
 import ru.awesome.shop.ta.product.pages.LoginPage;
-import ru.awesome.shop.ta.product.service.AccountService;
-import ru.awesome.shop.ta.product.service.AuthenticationService;
+import ru.awesome.shop.ta.product.services.AccountService;
+import ru.awesome.shop.ta.product.services.AuthenticationService;
 
 public class LoginTest extends BaseConfigurationTest {
     private static final String REGISTER_EMAIL = PropertyManager.getEmail();
