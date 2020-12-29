@@ -1,4 +1,4 @@
-package ru.awesome.shop.ta.product.service;
+package ru.awesome.shop.ta.product.services;
 
 import rp.org.apache.http.auth.AuthenticationException;
 import ru.awesome.shop.ta.product.pages.AccountPage;
