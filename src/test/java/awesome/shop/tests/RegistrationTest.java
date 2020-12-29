@@ -61,7 +61,7 @@ public class RegistrationTest extends BaseConfigurationTest {
     public void checkAppearanceWithEmptyPropertiesWarning() throws RegistrationException {
         Credentials credentials = CredentialsFactory.generateEmptyCredentials();
         User invalidUser = new User.Builder(credentials).build();
-        accountRegistrationService.register(invalidUser, true, true);
+        accountRegistrationService.register(invalidUser);
     }
 
     @Test(description = "***RegistrationTestsWithInvalidProperties***\n" +
@@ -77,7 +77,7 @@ public class RegistrationTest extends BaseConfigurationTest {
             expectedExceptions = {RegistrationException.class},
             groups = {"all", "negative"})
     public void checkAppearanceWithInvalidPropertyWarning(User invalidUser, String message) throws RegistrationException {
-        accountRegistrationService.register(invalidUser, true, true);
+        accountRegistrationService.register(invalidUser);
     }
 
     @Test(description = "***CheckSuccessfulUserRegistration***\n" +
@@ -85,7 +85,7 @@ public class RegistrationTest extends BaseConfigurationTest {
             "https://jira.epam.com/jira/browse/EPMFARMATS-13155\n",
             groups = {"all", "positive"})
     public void checkSuccessfulUserRegistration() throws RegistrationException {
-        accountRegistrationService.register(validUser, true, true);
+        accountRegistrationService.register(validUser);
     }
 
     @Test(description = "***CheckAppearanceEmailAlreadyRegisteredWarning***\n" +
@@ -104,7 +104,7 @@ public class RegistrationTest extends BaseConfigurationTest {
         User registeredUser = new User.Builder(registeredCredentials).firstName(validFirstName)
                 .lastName(validLastName).companyName(validCompanyName).contactInfo(validContactInfo).build();
 
-        accountRegistrationService.register(registeredUser, true, true);
+        accountRegistrationService.register(registeredUser);
         Assert.assertEquals(accountRegistrationPage.getDangerMessage(), "Warning: E-Mail Address is already registered!");
     }
 
@@ -114,7 +114,7 @@ public class RegistrationTest extends BaseConfigurationTest {
             expectedExceptions = {RegistrationException.class},
             groups = {"all", "positive"})
     public void checkAppearancePrivacyPolicyWarning() throws RegistrationException {
-        accountRegistrationService.register(validUser);
+        accountRegistrationService.register(validUser, false, false);
         Assert.assertEquals(accountRegistrationPage.getDangerMessage(), "Warning: You must agree to the Privacy Policy!");
     }
 
