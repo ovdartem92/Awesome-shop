@@ -5,11 +5,17 @@ import ru.awesome.shop.ta.framework.browser.Browser;
 import ru.awesome.shop.ta.framework.ui.components.Button;
 import ru.awesome.shop.ta.framework.ui.components.Link;
 import ru.awesome.shop.ta.framework.ui.components.TextField;
+import ru.awesome.shop.ta.product.pages.fragments.SearchFragment;
 import ru.awesome.shop.ta.product.pages.popups.AccountPopUp;
 import ru.awesome.shop.ta.product.pages.popups.CartTotalPopup;
 
 public abstract class BasePage {
     protected static final String BASE_URL = "https://awesome-shop.01sh.ru/";
+    private SearchFragment searchFragment = new SearchFragment();
+
+    public SearchFragment getSearchFragment() {
+        return searchFragment;
+    }
 
     public AccountPopUp clickMyAccountLink() {
         By myAccountLinkLocator = By.xpath("//a[@title='My Account']");
