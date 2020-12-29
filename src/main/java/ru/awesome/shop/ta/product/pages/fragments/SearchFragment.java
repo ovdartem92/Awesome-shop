@@ -7,6 +7,12 @@ import ru.awesome.shop.ta.product.pages.SearchResultPage;
 
 public class SearchFragment {
 
+    public SearchResultPage performSearchByPressingEnter(String searchCriteria) {
+        String enter = "\n";
+        typeSearchQuery(searchCriteria + enter);
+        return new SearchResultPage();
+    }
+
     public SearchFragment typeSearchQuery(String searchCriteria) {
         By searchTextInputLocator = By.xpath("//*[@id='search']//input");
         TextField textField = new TextField(searchTextInputLocator);

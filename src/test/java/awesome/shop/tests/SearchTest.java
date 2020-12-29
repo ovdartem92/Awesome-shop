@@ -4,6 +4,10 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.awesome.shop.ta.framework.exceptions.IncorrectSearchCriteriaException;
+import ru.awesome.shop.ta.product.pages.HomePage;
+import ru.awesome.shop.ta.product.pages.SearchResultPage;
+import ru.awesome.shop.ta.product.pages.fragments.SearchFragment;
+import ru.awesome.shop.ta.product.pages.fragments.SearchResultFragment;
 import ru.awesome.shop.ta.product.services.SearchService;
 
 import java.util.List;
@@ -73,11 +77,12 @@ public class SearchTest extends BaseConfigurationTest {
             "https://jira.epam.com/jira/browse/EPMFARMATS-13138", groups = "positive")
     public void checkTheSearchResultByPressingTheEnterKey() {
         String expectedResult = "iPod Classic";
-        String iPod = "iPod";
-        String enter = "\n";
-        List<String> actualSearchResultsName = searchService
-                .performAdvancedSearch(iPod + enter, false, false, true);
-        Assert.assertEquals(actualSearchResultsName.get(0), expectedResult,
+        HomePage homePage = new HomePage();
+        homePage.open();
+        SearchFragment searchFragment = homePage.getSearchFragment();
+        SearchResultPage searchResultPage = searchFragment.performSearchByPressingEnter(expectedResult);
+        List<SearchResultFragment> searchResults = searchResultPage.getAllSearchResults();
+        Assert.assertEquals(searchResults.get(0).getName(), expectedResult,
                 expectedResult + " wasn't found in search result.");
     }
 

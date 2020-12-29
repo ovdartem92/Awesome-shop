@@ -54,30 +54,4 @@ public class SearchService {
         }
         return productNames;
     }
-
-    public List<String> performAdvancedSearch(String searchCriteria, boolean isSearchInProductDescriptionsEnabled, boolean isSearchInSubcategoriesEnabled, boolean isNotPressTheEnterKey) {
-        homePage.open();
-        SearchFragment searchFragment = homePage.getSearchFragment();
-        searchFragment.typeSearchQuery(searchCriteria);
-        SearchResultPage searchResultPage = new SearchResultPage();
-        if (!isNotPressTheEnterKey) {
-            searchResultPage.clickSearchButton();
-        }
-        if (isSearchInProductDescriptionsEnabled) {
-            searchResultPage.setDescriptionCheckbox(true);
-        }
-        if (isSearchInSubcategoriesEnabled) {
-            searchResultPage.setIMacCategory();
-        }
-        searchResultPage.clickSearchButton();
-        if (searchResultPage.hasErrorMessage()) {
-            throw new IncorrectSearchCriteriaException("Search failed: " + searchResultPage.getIncorrectSearchCriteriaMessage());
-        }
-        List<SearchResultFragment> searchResults = searchResultPage.getAllSearchResults();
-        List<String> productNames = new ArrayList<>();
-        for (SearchResultFragment searchResult : searchResults) {
-            productNames.add(searchResult.getName());
-        }
-        return productNames;
-    }
 }
