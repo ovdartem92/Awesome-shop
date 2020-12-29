@@ -24,10 +24,9 @@ public class CartTest extends BaseConfigurationTest {
     private List<String> phones = new ArrayList<>();
     private List<String> laptops = new ArrayList<>();
 
-    @BeforeMethod
-    public void addProductsToLists() {
-        phones.add("iPhone");
-        laptops.add("MacBook");
+    private CartTest() {
+        phones.add(IPHONE);
+        laptops.add(MACBOOK);
     }
 
     @Test(description = "***CanAddItemIntoCart***\n" +
