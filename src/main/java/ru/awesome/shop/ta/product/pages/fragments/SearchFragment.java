@@ -9,9 +9,9 @@ import ru.awesome.shop.ta.product.pages.SearchResultPage;
 public class SearchFragment {
     private final By searchTextInputLocator = By.xpath("//*[@id='search']//input");
 
-    public SearchResultPage performSearchByPressingEnter(String searchCriteria) {
+    public SearchResultPage performSearchByPressingEnter() {
         TextField searchTextField = new TextField(searchTextInputLocator);
-        searchTextField.type(searchCriteria + Keys.ENTER);
+        searchTextField.type(Keys.ENTER);
         return new SearchResultPage();
     }
 

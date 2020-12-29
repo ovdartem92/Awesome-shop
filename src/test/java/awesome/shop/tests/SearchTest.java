@@ -80,7 +80,8 @@ public class SearchTest extends BaseConfigurationTest {
         HomePage homePage = new HomePage();
         homePage.open();
         SearchFragment searchFragment = homePage.getSearchFragment();
-        SearchResultPage searchResultPage = searchFragment.performSearchByPressingEnter(expectedResult);
+        searchFragment.typeSearchQuery(expectedResult);
+        SearchResultPage searchResultPage = searchFragment.performSearchByPressingEnter();
         List<SearchResultFragment> searchResults = searchResultPage.getAllSearchResults();
         Assert.assertEquals(searchResults.get(0).getName(), expectedResult,
                 expectedResult + " wasn't found in search result.");
