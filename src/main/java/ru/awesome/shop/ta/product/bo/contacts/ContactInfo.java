@@ -11,7 +11,7 @@ public final class ContactInfo {
         this.telephoneNumber = telephoneNumber;
         this.faxNumber = faxNumber;
         this.address = new Address(address.getFirstAddress(), address.getSecondAddress(), address.getCity(),
-                address.getPostCode(), address.getCountry(), address.getRegion());
+                address.getPostCode(), address.getRegion());
     }
 
     public String getTelephoneNumber() {
@@ -24,6 +24,6 @@ public final class ContactInfo {
 
     public Address getAddress() {
         return new Address(address.getFirstAddress(), address.getSecondAddress(), address.getCity(),
-                address.getPostCode(), address.getCountry(), address.getRegion());
+                address.getPostCode(), address.getRegion());
     }
 }

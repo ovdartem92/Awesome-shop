@@ -1,15 +1,25 @@
 package ru.awesome.shop.ta.product.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import ru.awesome.shop.ta.framework.browser.Browser;
+import ru.awesome.shop.ta.framework.logging.Log;
 import ru.awesome.shop.ta.framework.ui.components.*;
 import ru.awesome.shop.ta.product.bo.address.Region;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class AccountRegistrationPage extends BasePage {
     private static final String REGISTRATION_PAGE_URL = "index.php?route=account/register";
+    private final By firstNameLocator = By.id("input-firstname");
+    private final By passwordConfirmLocator = By.id("input-confirm");
+    private final By warningMessageLocator = By.xpath("//div[@class='text-danger']");
+    private final By dangerMessageLocator = By.xpath("//div[contains(@class, 'alert-danger')]");
 
     public AccountRegistrationPage typeFirstName(String firstName) {
-        By firstNameLocator = By.id("input-firstname");
         TextField firstNameTextField = new TextField(firstNameLocator);
         firstNameTextField.type(firstName);
         return this;
@@ -100,7 +110,6 @@ public class AccountRegistrationPage extends BasePage {
     }
 
     public AccountRegistrationPage typePasswordConfirm(String passwordConfirm) {
-        By passwordConfirmLocator = By.id("input-confirm");
         TextField passwordConfirmTextField = new TextField(passwordConfirmLocator);
         passwordConfirmTextField.type(passwordConfirm);
         return this;
@@ -141,15 +150,34 @@ public class AccountRegistrationPage extends BasePage {
         return new SuccessfulAccountRegistrationPage();
     }
 
+    public List<String> getAllErrorMessages() {
+        final int timeoutInSeconds = 3;
+        By errorMessageLocator = By.xpath("//div[@class='text-danger']|//div[contains(@class, 'alert-danger')]");
+        WebDriver driver = Browser.getInstance().getWrappedDriver();
+        List<String> errorMessageList = new ArrayList<>();
+        List<WebElement> errorMessageWebElementList = new ArrayList<>();
+
+        try {
+            CommonPageElement.waitForAllPageElementsVisibilityLocated(errorMessageLocator, timeoutInSeconds);
+            errorMessageWebElementList = driver.findElements(errorMessageLocator);
+        } catch (TimeoutException e) {
+            Log.debug("No element found on current page.");
+        }
+
+        for (WebElement errorMessageWebElement : errorMessageWebElementList) {
+            String errorMessage = errorMessageWebElement.getText();
+            errorMessageList.add(errorMessage);
+        }
+        return errorMessageList;
+    }
+
     public String getWarningMessage() {
-        By warningMessageLocator = By.xpath("//div[@class='text-danger']");
         Label warningMessageLabel = new Label(warningMessageLocator);
         return warningMessageLabel.getText();
     }
 
     public String getDangerMessage() {
-        By dangerLabelLocator = By.xpath("//div[contains(@class, 'alert-danger')]");
-        Label dangerLabel = new Label(dangerLabelLocator);
+        Label dangerLabel = new Label(dangerMessageLocator);
         return dangerLabel.getText();
     }
 

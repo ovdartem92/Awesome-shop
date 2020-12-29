@@ -9,13 +9,12 @@ import java.util.Random;
 import static java.lang.String.format;
 
 public final class AddressFactory {
-    private static final int startInclusive = 3;
-    private static final int endExclusive = 10;
-    private static final String FIRST_ADDRESS = RandomStringUtils.randomAlphanumeric(startInclusive, endExclusive);
-    private static final String SECOND_ADDRESS = RandomStringUtils.randomAlphanumeric(startInclusive, endExclusive);
-    private static final String CITY = RandomStringUtils.randomAlphabetic(startInclusive, endExclusive);
-    private static final String POSTCODE = RandomStringUtils.randomNumeric(startInclusive, endExclusive);
-    private static final String COUNTRY = RandomStringUtils.randomAlphabetic(startInclusive, endExclusive);
+    private static final int START_INCLUSIVE = 3;
+    private static final int END_EXCLUSIVE = 10;
+    private static final String FIRST_ADDRESS = RandomStringUtils.randomAlphanumeric(START_INCLUSIVE, END_EXCLUSIVE);
+    private static final String SECOND_ADDRESS = RandomStringUtils.randomAlphanumeric(START_INCLUSIVE, END_EXCLUSIVE);
+    private static final String CITY = RandomStringUtils.randomAlphabetic(START_INCLUSIVE, END_EXCLUSIVE);
+    private static final String POSTCODE = RandomStringUtils.randomNumeric(START_INCLUSIVE, END_EXCLUSIVE);
     private static final Region REGION = generateRegion();
 
     private AddressFactory() {
@@ -23,13 +22,13 @@ public final class AddressFactory {
     }
 
     public static Address generateValidAddress() {
-        return new Address(FIRST_ADDRESS, SECOND_ADDRESS, CITY, POSTCODE, COUNTRY, REGION);
+        return new Address(FIRST_ADDRESS, SECOND_ADDRESS, CITY, POSTCODE, REGION);
     }
 
     public static Address generateAddressWithInvalidCity() {
-        String invalidCity = RandomStringUtils.randomAscii(startInclusive, endExclusive);
+        String invalidCity = RandomStringUtils.randomAscii(START_INCLUSIVE, END_EXCLUSIVE);
         return new Address(FIRST_ADDRESS, SECOND_ADDRESS, invalidCity,
-                POSTCODE, COUNTRY, REGION);
+                POSTCODE, REGION);
     }
 
     private static Region generateRegion() {
