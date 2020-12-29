@@ -6,7 +6,7 @@ import org.testng.Assert;
 import ru.awesome.shop.ta.framework.configuration.PropertyManager;
 import ru.awesome.shop.ta.product.pages.LoginPage;
 
-public class Login {
+public class LoginSteps {
     LoginPage loginPage = new LoginPage();
 
     @When("user open LoginPage")
