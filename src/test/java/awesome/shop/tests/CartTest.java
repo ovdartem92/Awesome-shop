@@ -26,8 +26,8 @@ public class CartTest extends BaseConfigurationTest {
 
     @BeforeMethod
     public void addProductsToLists() {
-        phones.add("iPhone");
-        laptops.add("MacBook");
+        phones.add(IPHONE);
+        laptops.add(MACBOOK);
     }
 
     @Test(description = "***CanAddItemIntoCart***\n" +
