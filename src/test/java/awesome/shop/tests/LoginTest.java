@@ -12,6 +12,7 @@ import ru.awesome.shop.ta.product.bo.user.UserFactory;
 import ru.awesome.shop.ta.product.pages.LoginPage;
 import ru.awesome.shop.ta.product.services.AccountService;
 import ru.awesome.shop.ta.product.services.AuthenticationService;
+import ru.awesome.shop.ta.product.services.NavigationService;
 
 public class LoginTest extends BaseConfigurationTest {
     private static final String REGISTER_EMAIL = PropertyManager.getEmail();
@@ -28,7 +29,8 @@ public class LoginTest extends BaseConfigurationTest {
     @BeforeMethod(description = "open login page",
             groups = {"all", "negative", "positive"})
     public void openLoginPage() {
-        new LoginPage().open();
+        NavigationService navigationService = new NavigationService();
+        navigationService.navigateToLoginPage();
     }
 
     @Test(description = "***LoginWithValidCredentials***\n" +
