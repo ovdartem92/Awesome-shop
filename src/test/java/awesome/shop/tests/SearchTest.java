@@ -8,12 +8,14 @@ import ru.awesome.shop.ta.product.pages.HomePage;
 import ru.awesome.shop.ta.product.pages.SearchResultPage;
 import ru.awesome.shop.ta.product.pages.fragments.SearchFragment;
 import ru.awesome.shop.ta.product.pages.fragments.SearchResultFragment;
+import ru.awesome.shop.ta.product.services.NavigationService;
 import ru.awesome.shop.ta.product.services.SearchService;
 
 import java.util.List;
 
 public class SearchTest extends BaseConfigurationTest {
     SearchService searchService = new SearchService();
+    NavigationService navigationService = new NavigationService();
 
     @DataProvider(name = "negativeSearchData")
     public Object[][] provideNegativeTestData() {
@@ -48,6 +50,7 @@ public class SearchTest extends BaseConfigurationTest {
             dataProvider = "negativeSearchData", groups = "negative",
             expectedExceptions = IncorrectSearchCriteriaException.class)
     public void checkTheSearchFieldByNegativeSearchData(String searchCriteria) throws IncorrectSearchCriteriaException {
+        navigationService.navigateToHomePage();
         List<String> actualSearchResultsName = searchService.performAdvancedSearch(searchCriteria);
         Assert.assertTrue(actualSearchResultsName.size() < 1,
                 "The search result should not be on the page.");
@@ -67,6 +70,7 @@ public class SearchTest extends BaseConfigurationTest {
             dataProvider = "positiveSearchData", groups = "positive")
     public void checkTheSearchFieldByPositiveSearchData(String searchCriteria) {
         String expectedResult = "iPod Classic";
+        navigationService.navigateToHomePage();
         List<String> actualSearchResultsName = searchService.performBasicSearch(searchCriteria);
         Assert.assertEquals(actualSearchResultsName.get(0), expectedResult,
                 expectedResult + " wasn't found in search result.");
@@ -92,6 +96,7 @@ public class SearchTest extends BaseConfigurationTest {
             "https://jira.epam.com/jira/browse/EPMFARMATS-13135", groups = "positive")
     public void checkTheSearchResultByProductCategory() {
         String searchCriteria = "iMac";
+        navigationService.navigateToHomePage();
         List<String> actualSearchResultsName = searchService
                 .performAdvancedSearch(searchCriteria, false, true);
         Assert.assertEquals(actualSearchResultsName.get(0), searchCriteria,
@@ -103,6 +108,7 @@ public class SearchTest extends BaseConfigurationTest {
             "https://jira.epam.com/jira/browse/EPMFARMATS-13134", groups = "positive")
     public void checkTheSearchResultByProductDescription() {
         String searchCriteria = "iPod Classic";
+        navigationService.navigateToHomePage();
         List<String> actualSearchResults = searchService
                 .performAdvancedSearch(searchCriteria, true, false);
         Assert.assertEquals(actualSearchResults.get(0), searchCriteria,
