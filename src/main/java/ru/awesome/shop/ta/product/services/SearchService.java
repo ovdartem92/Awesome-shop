@@ -13,7 +13,6 @@ public class SearchService {
     HomePage homePage = new HomePage();
 
     public List<String> performBasicSearch(String searchCriteria) {
-        homePage.open();
         SearchFragment searchFragment = homePage.getSearchFragment();
         searchFragment.typeSearchQuery(searchCriteria);
         SearchResultPage searchResultPage = searchFragment.clickSearchButton();
@@ -33,7 +32,6 @@ public class SearchService {
     }
 
     public List<String> performAdvancedSearch(String searchCriteria, boolean isSearchInProductDescriptionsEnabled, boolean isSearchInSubcategoriesEnabled) {
-        homePage.open();
         SearchFragment searchFragment = homePage.getSearchFragment();
         searchFragment.typeSearchQuery(searchCriteria);
         SearchResultPage searchResultPage = searchFragment.clickSearchButton();
