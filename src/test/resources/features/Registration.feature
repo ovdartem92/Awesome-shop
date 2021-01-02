@@ -7,21 +7,25 @@ Feature: Registration test scenarios
   Scenario: User registration with empty parameters
     Given the User with "emptyUser" parameters
     When the User tries to register
+    Then throw a registration error with message "Registration failed"
 
   @test @registration @negative
   Scenario Outline: Registering a user with one invalid parameter
     Given the User with "<invalidUser>" parameters
     When the User tries to register
-    Then throw a registration error with information about invalid fields
+    Then throw a registration error with message "Registration failed"
     Examples:
       | invalidUser              |
       | userWithInvalidFirstName |
       | userWithInvalidLastName  |
+      | userWithInvalidCity      |
+      | userWithInvalidTelephone |
 
   @test @registration @positive @smoke
   Scenario: Registering a user with valid parameters
     Given the User with "validUser" parameters
     When the User tries to register
+    Then the User does not receive registration errors
 
   @test @registration @positive
   Scenario: Registering a user with an already registered email
