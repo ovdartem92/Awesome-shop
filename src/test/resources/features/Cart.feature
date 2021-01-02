@@ -87,6 +87,3 @@ Feature: Cart functionality
     When user add phone "iPhone" to cart
     And user navigate to cart
     Then user check that product name into cart the same as phone "iPhone"
-
-
-
