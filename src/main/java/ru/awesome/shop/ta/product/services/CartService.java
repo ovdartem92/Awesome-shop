@@ -1,6 +1,5 @@
 package ru.awesome.shop.ta.product.services;
 
-import ru.awesome.shop.ta.framework.browser.Browser;
 import ru.awesome.shop.ta.framework.logging.Log;
 import ru.awesome.shop.ta.product.pages.CartPage;
 import ru.awesome.shop.ta.product.pages.popups.CartTotalPopup;

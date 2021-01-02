@@ -63,13 +63,13 @@ public class CartPage extends BasePage {
     }
 
     public void clickRemoveItemFromCart(String productName) {
-        int INVISIBILITY_TIMEOUT_IN_SECONDS = 3;
+        int invisibilityTimeoutInSeconds = 3;
         By removeButtonLocator = By.xpath(String.format(
                 "//div[@class='table-responsive']//a[text()='%s']/ancestor::"
                         + "tr//button[contains(@onclick,'cart.remove')]", productName));
         Button removeButton = new Button(removeButtonLocator);
         removeButton.click();
-        waitForPageElementInvisibilityLocated(removeButtonLocator, INVISIBILITY_TIMEOUT_IN_SECONDS);
+        waitForPageElementInvisibilityLocated(removeButtonLocator, invisibilityTimeoutInSeconds);
     }
 
     public String getItemName(String productName) {
@@ -116,9 +116,9 @@ public class CartPage extends BasePage {
     }
 
     public List<String> getAllItemsNames() {
-        int VISIBILITY_TIMEOUT_IN_SECONDS = 10;
+        int visibilityTimeoutInSeconds = 10;
         By itemNameLocator = By.xpath("//div[@class='table-responsive']//a[text()]");
-        waitForAllPageElementsVisibilityLocated(itemNameLocator, VISIBILITY_TIMEOUT_IN_SECONDS);
+        waitForAllPageElementsVisibilityLocated(itemNameLocator, visibilityTimeoutInSeconds);
         List<WebElement> itemNameElements = Browser.getInstance().getWrappedDriver().findElements(itemNameLocator);
         List<String> itemsNames = new ArrayList<>();
         for (WebElement element : itemNameElements) {
