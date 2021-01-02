@@ -36,12 +36,12 @@ public class RegistrationStepDefinitions {
         }
     }
 
-    @When("the user clicks on a link with user agreement")
+    @When("the User clicks on a link with user agreement")
     public void clickPrivacyPolicy() {
         accountRegistrationPage.clickPrivacyPolicyLink();
     }
 
-    @When("the user tries to register without clicking on the checkbox of the Privacy Policy")
+    @When("the User tries to register without clicking on the checkbox of the Privacy Policy")
     public void registerUserWithoutAgreeingPrivacyPolicy() {
         boolean isSubscribed = false;
         boolean isPrivacyPolicyChecked = false;
@@ -52,7 +52,7 @@ public class RegistrationStepDefinitions {
         }
     }
 
-    @Then("the user should get a window with a title {string}")
+    @Then("should get a window with a title {string}")
     public void assertPrivacyPolicyTitle(String title) {
         String privacyPolicyTitle = accountRegistrationPage.getPrivacyPolicyTitle();
         Assert.assertEquals(privacyPolicyTitle, title);
