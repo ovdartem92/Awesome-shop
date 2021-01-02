@@ -5,6 +5,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.testng.Assert;
+import org.testng.asserts.SoftAssert;
 import ru.awesome.shop.ta.framework.browser.Browser;
 import ru.awesome.shop.ta.product.pages.CartPage;
 import ru.awesome.shop.ta.product.pages.HomePage;
@@ -15,12 +16,12 @@ import ru.awesome.shop.ta.product.services.CartService;
 import ru.awesome.shop.ta.product.services.NavigationService;
 
 public class CartSteps {
-    private NavigationService navigationService = new NavigationService();
-    private PhonesCatalogPage phonesCatalogPage = new PhonesCatalogPage();
-    private LaptopsCatalogPage laptopsCatalogPage = new LaptopsCatalogPage();
-    private CartService cartService = new CartService();
-    private CartPage cartPage = new CartPage();
-    private HomePage homePage = new HomePage();
+    private final NavigationService navigationService = new NavigationService();
+    private final PhonesCatalogPage phonesCatalogPage = new PhonesCatalogPage();
+    private final LaptopsCatalogPage laptopsCatalogPage = new LaptopsCatalogPage();
+    private final CartService cartService = new CartService();
+    private final CartPage cartPage = new CartPage();
+    private final HomePage homePage = new HomePage();
 
     @Given("user navigate to phones catalog")
     public void navigateToPhonesCatalog() {
@@ -28,7 +29,7 @@ public class CartSteps {
     }
 
     @Given("user navigate to home page")
-    public void navigateToHomePage() {
+    public void navigateToHome() {
         navigationService.navigateToHomePage();
     }
 
@@ -58,10 +59,14 @@ public class CartSteps {
     }
 
     @And("user set quantity {int} for product {string}")
-    public void setQuantityForPhone(int quantity, String productName) {
+    public void setQuantity(int quantity, String productName) {
         cartService.updateProductQuantity(productName, quantity);
     }
 
+    @And("user remove product {string} from cart")
+    public void removeProductFromCart(String productName) {
+        cartService.deleteProduct(productName);
+    }
 
     @And("user click checkout expecting success")
     public void clickCheckoutExpectingSuccess() {
@@ -73,27 +78,37 @@ public class CartSteps {
         cartPage.clickCheckoutButtonExpectingFailure();
     }
 
+    @And("user click continue")
+    public void clickContinue() {
+        cartPage.clickContinueButton();
+    }
+
+    @And("user click continue shopping")
+    public void clickContinueShopping() {
+        cartPage.clickContinueShoppingButton();
+    }
+
     @Then("user check that product name into cart the same as phone {string}")
-    public void verifyPhoneName(String phoneName) {
-        String nameIntoCart = cartPage.getItemName(phoneName);
-        Assert.assertEquals(nameIntoCart, phoneName, "The names aren't equals!");
+    public void verifyName(String productName) {
+        String nameIntoCart = cartPage.getItemName(productName);
+        Assert.assertEquals(nameIntoCart, productName, "The names aren't equals!");
     }
 
     @Then("user check that products number is more than {int}")
     public void verifyNumber(int number) {
         int size = cartPage.getNumberOfCartItems();
-        Assert.assertTrue(size>number, "The size of product list less then " + number);
+        Assert.assertTrue(size > number, "The size of product list less then " + number);
     }
 
-    @Then("user check that product quantity for phone {string} the same as {int}")
-    public void verifyQuantity(String phoneName, int quantity) {
-        int resultQuantity = cartService.getProductQuantity(phoneName);
+    @Then("user check that quantity for product {string} the same as {int}")
+    public void verifyQuantity(String productName, int quantity) {
+        int resultQuantity = cartService.getProductQuantity(productName);
         Assert.assertEquals(resultQuantity, quantity, "Quantities aren't equals!");
     }
 
     @Then("user check that was navigated to {string} page")
     public void verifyPage(String pageTitle) {
-        String resultTitle =  Browser.getInstance().getPageTitle();
+        String resultTitle = Browser.getInstance().getPageTitle();
         Assert.assertEquals(resultTitle, pageTitle);
     }
 
@@ -115,5 +130,16 @@ public class CartSteps {
     public void verifyEmptyCartFromPopUp() {
         String messageFromPopup = new CartTotalPopup().getEmptyCartMessage();
         Assert.assertEquals(messageFromPopup, "Your shopping cart is empty!", "Messages aren't equals");
+    }
+
+    @Then("user check that product name is {string} and price is {string}")
+    public void verifyProductNameAndPrice(String productName, String productPrice) {
+        String nameProductFromCart = cartService.getProductName(productName);
+        String priceProductFromCart = cartService.getProductPrice(productName);
+
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertEquals(nameProductFromCart, productName, "The names of product aren't equals!");
+        softAssert.assertEquals(priceProductFromCart, productPrice, "The costs of product aren't equals!");
+        softAssert.assertAll();
     }
 }
