@@ -17,17 +17,17 @@ public class RegistrationStepDefinitions {
     private String errorMessage;
     private User user;
 
-    @Given("the user open the registration page")
+    @Given("^user open the registration page$")
     public void openRegistrationPage() {
         navigationService.navigateToAccountRegistrationPage();
     }
 
-    @Given("the User with {string} parameters")
+    @Given("^user with \"([^\"]*)\" parameters$")
     public void setUser(String userType) {
         user = UserRegistrationFactory.getUser(userType);
     }
 
-    @When("the User tries to register")
+    @When("^user tries to register$")
     public void registerUser() {
         try {
             accountRegistrationService.register(user);
@@ -36,12 +36,12 @@ public class RegistrationStepDefinitions {
         }
     }
 
-    @When("the User clicks on a link with user agreement")
+    @When("^user clicks on a link with user agreement$")
     public void clickPrivacyPolicy() {
         accountRegistrationPage.clickPrivacyPolicyLink();
     }
 
-    @When("the User tries to register without clicking on the checkbox of the Privacy Policy")
+    @When("^user tries to register without clicking on the checkbox of the Privacy Policy$")
     public void registerUserWithoutAgreeingPrivacyPolicy() {
         boolean isSubscribed = false;
         boolean isPrivacyPolicyChecked = false;
@@ -52,18 +52,18 @@ public class RegistrationStepDefinitions {
         }
     }
 
-    @Then("should get a window with a title {string}")
+    @Then("^should get a window with a title \"([^\"]*)\"$")
     public void assertPrivacyPolicyTitle(String title) {
         String privacyPolicyTitle = accountRegistrationPage.getPrivacyPolicyTitle();
         Assert.assertEquals(privacyPolicyTitle, title);
     }
 
-    @Then("throw a registration error with message {string}")
+    @Then("^registration error should be thrown with message \"([^\"]*)\"$")
     public void assertRegistrationErrorMessage(String message) {
         Assert.assertTrue(errorMessage.contains(message));
     }
 
-    @Then("the User does not receive registration errors")
+    @Then("^registration should be successful$")
     public void assertRegistrationWithoutErrorMessage() {
         Assert.assertTrue(Strings.isNullOrEmpty(errorMessage));
     }
