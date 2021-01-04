@@ -13,8 +13,8 @@ public class AuthenticationService {
         loginPage.typeEmailAddress(email);
         loginPage.typePassword(password);
         loginPage.clickLoginButton();
-            if (loginPage.hasErrorMessage()) {
-                throw new AuthenticationException("Authentication failed" + loginPage.getWarningMessage());
+        if (loginPage.hasErrorMessage()) {
+            throw new AuthenticationException("Authentication failed" + loginPage.getWarningMessage());
         }
     }
 
@@ -29,7 +29,7 @@ public class AuthenticationService {
         return logoutPage.getBreadcrumbLogoutText();
     }
 
-    public String getErrorMessageTet(){
+    public String getErrorMessageTet() {
         LoginPage loginPage = new LoginPage();
         return loginPage.getWarningMessage();
     }
