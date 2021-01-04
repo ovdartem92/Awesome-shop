@@ -7,6 +7,7 @@ import io.cucumber.java.en.When;
 import org.testng.Assert;
 import rp.org.apache.http.auth.AuthenticationException;
 import ru.awesome.shop.ta.framework.configuration.PropertyManager;
+import ru.awesome.shop.ta.framework.logging.Log;
 import ru.awesome.shop.ta.product.bo.credentials.Credentials;
 import ru.awesome.shop.ta.product.bo.user.User;
 import ru.awesome.shop.ta.product.bo.user.UserFactory;
@@ -70,6 +71,10 @@ public class LoginSteps {
         Credentials invalidCredentials = userWithInvalidCredentials.getCredentials();
         String email = invalidCredentials.getEmail();
         String password = invalidCredentials.getPassword();
-        authenticationService.login(email, password);
+        try {
+            authenticationService.login(email, password);
+        } catch (AuthenticationException e) {
+            Log.info(e.getMessage());
+        }
     }
 }
