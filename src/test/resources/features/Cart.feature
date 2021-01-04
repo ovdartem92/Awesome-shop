@@ -2,88 +2,89 @@ Feature: Cart functionality
 
   @cart
   Scenario: User add product to cart and remove it
-    Given user navigate to phones catalog
-    When user add phone "iPhone" to cart
-    And user navigate to cart
-    And user remove product "iPhone" from cart
-    Then user check that empty cart message is appeared
+    Given I have navigated to phones catalog
+    When I add phone "iPhone" to cart
+    And I navigate to cart
+    And I remove product "iPhone" from cart
+    Then The empty cart message should be displayed
 
   @cart
   Scenario: User add product to cart and check its value and price
-    Given user navigate to phones catalog
-    When user add phone "iPhone" to cart
-    And user navigate to cart
-    Then user check that product name is "iPhone" and price is "$121.20"
+    Given I have navigated to phones catalog
+    When I add phone "iPhone" to cart
+    And I navigate to cart
+    Then The product name should be "iPhone"
+    Then The product price for "iPhone" should be "$121.20"
 
   @cart
   Scenario: User add product to cart and then click continue shopping
-    Given user navigate to laptops catalog
-    When user add laptop "MacBook" to cart
-    And user navigate to cart
-    And  user click continue shopping
-    Then user check that was navigated to "Your Store" page
+    Given I have navigated to laptops catalog
+    When I add laptop "MacBook" to cart
+    And I navigate to cart
+    And  I click continue shopping
+    Then I should navigated to "Your Store" page
 
   @cart
   Scenario: User make cart is empty and continue button navigate to home page
-    Given user navigate to laptops catalog
-    When user add laptop "MacBook" to cart
-    And user navigate to cart
-    And user remove product "MacBook" from cart
-    And  user click continue
-    Then user check that was navigated to "Your Store" page
+    Given I have navigated to laptops catalog
+    When I add laptop "MacBook" to cart
+    And I navigate to cart
+    And I remove product "MacBook" from cart
+    And  I click continue
+    Then I should navigated to "Your Store" page
 
   @cart
   Scenario: User try to open empty cart
-    Given user navigate to home page
-    When user click cart button
-    Then user check that empty cart message from pupUp is appeared
+    Given I have navigated to home page
+    When I click cart button
+    Then The empty cart message from pupUp should be displayed
 
   @cart
   Scenario: User add product to cart, sets its quantity equals zero
-    Given user navigate to laptops catalog
-    When user add laptop "MacBook" to cart
-    And user navigate to cart
-    And user set quantity 0 for product "MacBook"
-    Then user check that empty cart message is appeared
+    Given I have navigated to laptops catalog
+    When I add laptop "MacBook" to cart
+    And I navigate to cart
+    And I set quantity 0 for product "MacBook"
+    Then The empty cart message should be displayed
 
   @cart
   Scenario: User try to buy the product witch quantity more than its upper limit
-    Given user navigate to laptops catalog
-    When user add laptop "MacBook" to cart
-    And user navigate to cart
-    And user set quantity 925 for product "MacBook"
-    And user click checkout expecting failure
-    Then user check that quantity warning message is appeared
+    Given I have navigated to laptops catalog
+    When I add laptop "MacBook" to cart
+    And I navigate to cart
+    And I set quantity 925 for product "MacBook"
+    And I click checkout expecting failure
+    Then The quantity warning message should be displayed
 
   @cart
   Scenario: User try to buy the product witch quantity less than its upper limit
-    Given user navigate to phones catalog
-    When user add phone "iPhone" to cart
-    And user navigate to cart
-    And user set quantity 793 for product "iPhone"
-    And user click checkout expecting success
-    Then user check that was navigated to "Checkout" page
+    Given I have navigated to phones catalog
+    When I add phone "iPhone" to cart
+    And I navigate to cart
+    And I set quantity 793 for product "iPhone"
+    And I click checkout expecting success
+    Then I should navigated to "Checkout" page
 
   @cart
   Scenario: User change quantity of product into cart
-    Given user navigate to phones catalog
-    When user add phone "iPhone" to cart
-    And user navigate to cart
-    And user set quantity 530 for product "iPhone"
-    Then user check that quantity for product "iPhone" the same as 530
+    Given I have navigated to phones catalog
+    When I add phone "iPhone" to cart
+    And I navigate to cart
+    And I set quantity 530 for product "iPhone"
+    Then The quantity for product "iPhone" should be 530
 
   @cart
   Scenario: User add to cart more than one product
-    Given user navigate to phones catalog
-    When user add phone "iPhone" to cart
-    And user navigate to laptops catalog
-    And user add laptop "MacBook" to cart
-    And user navigate to cart
-    Then user check that products number is more than 1
+    Given I have navigated to phones catalog
+    When I add phone "iPhone" to cart
+    And I have navigated to laptops catalog
+    And I add laptop "MacBook" to cart
+    And I navigate to cart
+    Then The number of products into cart should be more than 1
 
   @cart
   Scenario: User add product to cart
-    Given user navigate to phones catalog
-    When user add phone "iPhone" to cart
-    And user navigate to cart
-    Then user check that product name into cart the same as phone "iPhone"
+    Given I have navigated to phones catalog
+    When I add phone "iPhone" to cart
+    And I navigate to cart
+    Then The product name into cart should be the same as "iPhone"
