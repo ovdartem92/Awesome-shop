@@ -1,6 +1,6 @@
 package awesome.shop.tests.cucumber.steps.registration;
 
-public class TextContext {
+public class TestContext {
     private String errorMessage;
 
     public String getErrorMessage() {

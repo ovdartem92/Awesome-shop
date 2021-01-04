@@ -21,11 +21,11 @@ public class RegistrationSteps {
     private final AccountRegistrationService accountRegistrationService = new AccountRegistrationService();
     private final AccountRegistrationPage accountRegistrationPage = new AccountRegistrationPage();
     private final NavigationService navigationService = new NavigationService();
-    private TextContext textContext;
+    private TestContext testContext;
     private User user;
 
-    public RegistrationSteps(TextContext textContext) {
-        this.textContext = textContext;
+    public RegistrationSteps(TestContext testContext) {
+        this.testContext = testContext;
     }
 
     @Given("^I have opened the registration page$")
@@ -48,7 +48,7 @@ public class RegistrationSteps {
             accountRegistrationService.register(user);
         } catch (RegistrationException ex) {
             String errorMessage = ex.getMessage();
-            textContext.setErrorMessage(errorMessage);
+            testContext.setErrorMessage(errorMessage);
             System.out.println("ERROR: " + errorMessage);
         }
     }
@@ -66,7 +66,7 @@ public class RegistrationSteps {
             accountRegistrationService.register(user, isSubscribed, isPrivacyPolicyChecked);
         } catch (RegistrationException ex) {
             String errorMessage = ex.getMessage();
-            textContext.setErrorMessage(errorMessage);
+            testContext.setErrorMessage(errorMessage);
         }
     }
 
@@ -78,13 +78,13 @@ public class RegistrationSteps {
 
     @Then("^I should see registration error message \"([^\"]*)\"$")
     public void iShouldSeeRegistrationErrorMessage(String message) {
-        String errorMessage = textContext.getErrorMessage();
+        String errorMessage = testContext.getErrorMessage();
         Assert.assertTrue(errorMessage.contains(message));
     }
 
     @Then("^registration should be successful$")
     public void assertRegistrationWithoutErrorMessage() {
-        String errorMessage = textContext.getErrorMessage();
+        String errorMessage = testContext.getErrorMessage();
         Assert.assertTrue(Strings.isNullOrEmpty(errorMessage));
     }
 
@@ -97,6 +97,4 @@ public class RegistrationSteps {
     public void iShouldSeePopUpWindow(String title) {
         Assert.assertEquals(title, "Privacy Policy", "Incorrect window title");
     }
-
-
 }
