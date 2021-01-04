@@ -3,17 +3,17 @@ Feature: login
   Background:
     Given I have opened login page
 
-#  @login @positive @all
-#  Scenario: login with valid credentials
-#    When I login with valid credentials
-#    Then I should see My Account account name
-#
-#  @login @positive @all
-#  Scenario: logout after successful login
-#    When I login with valid credentials
-#    And I click logout button
-#    Then Logout page with title Account Logout should be opened
-#    And  I should see that breadcrumb contains Logout text
+  @login @positive @all
+  Scenario: login with valid credentials
+    When I login with valid credentials
+    Then I should see My Account account name
+
+  @login @positive @all
+  Scenario: logout after successful login
+    When I login with valid credentials
+    And I click logout button
+    Then Logout page with title Account Logout should be opened
+    And  I should see that breadcrumb contains Logout text
 
   @login @negative @all
   Scenario Outline: login with invalid credentials

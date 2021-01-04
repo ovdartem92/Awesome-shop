@@ -35,8 +35,7 @@ public class LoginSteps {
     public void clickLogoutButton() {
         authenticationService.logout();
     }
-
-
+    
     @Then("^Logout page with title (.*) should be opened$")
     public void checkThatLogoutPageIsOpened(String expectedPageTitle) {
         String actualPageTitle = authenticationService.getLogoutPageTitle();
