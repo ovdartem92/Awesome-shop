@@ -14,7 +14,6 @@ import ru.awesome.shop.ta.product.bo.user.UserFactory;
 import ru.awesome.shop.ta.product.services.AccountService;
 import ru.awesome.shop.ta.product.services.AuthenticationService;
 import ru.awesome.shop.ta.product.services.NavigationService;
-import ru.awesome.shop.ta.utils.StringUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -55,19 +54,12 @@ public class LoginSteps {
                 "Incorrect breadcrumbls logout text");
     }
 
-
-    @Then("Error message is appeared")
-    public void errorMessageIsAppeared() {
-        String errorTextMessage = authenticationService.getErrorMessageTet();
-        Assert.assertEquals(errorTextMessage, "Warning: No match for E-Mail Address and/or Password.");
-    }
-
     @When("^login with invalid credentials (.*)$")
     public void loginWithInvalidCredentialsUser(String invalidUser) {
-        Map<String, User> users = new HashMap<>();
-        users.put("userWithInvalidPassword", UserFactory.generateUserWithRegisteredCredentialsWithInvalidPassword());
-        users.put("userWithInvalidEmail", UserFactory.generateUserWithRegisteredCredentialsWithInvalidEmail());
-        User userWithInvalidCredentials = users.get(invalidUser);
+        Map<String, User> invalidUsers = new HashMap<>();
+        invalidUsers.put("userWithInvalidPassword", UserFactory.generateUserWithRegisteredCredentialsWithInvalidPassword());
+        invalidUsers.put("userWithInvalidEmail", UserFactory.generateUserWithRegisteredCredentialsWithInvalidEmail());
+        User userWithInvalidCredentials = invalidUsers.get(invalidUser);
         Credentials invalidCredentials = userWithInvalidCredentials.getCredentials();
         String email = invalidCredentials.getEmail();
         String password = invalidCredentials.getPassword();
@@ -76,5 +68,12 @@ public class LoginSteps {
         } catch (AuthenticationException e) {
             Log.info(e.getMessage());
         }
+    }
+
+    @Then("Error message with text {string} is appeared")
+    public void errorMessageWithTextIsAppeared(String expectedErrorMessageText) {
+        String actualErrorTextMessage = authenticationService.getErrorMessageTet();
+        Assert.assertEquals(actualErrorTextMessage, expectedErrorMessageText,
+                "Incorrect error message text");
     }
 }

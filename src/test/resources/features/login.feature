@@ -17,7 +17,7 @@ Feature: login
   @login @negative @all
   Scenario Outline: login with invalid credentials
     When login with invalid credentials <User>
-    Then Error message is appeared
+    Then Error message with text "Warning: No match for E-Mail Address and/or Password." is appeared
     Examples:
       | User                    |
       | userWithInvalidPassword |
