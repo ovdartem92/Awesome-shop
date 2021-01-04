@@ -8,53 +8,39 @@ Feature: Registration Functionality Feature
 
 #  @test @registration @positive
 #  Scenario: Registration with empty user parameters
+#    When I register with empty data
+#    Then I should see registration error message "Registration failed"
 #
-#    Given user with "emptyUser" parameters
-#    When user tries to register
-#    Then registration error should be thrown with message "Registration failed"
-
-
-
-  @test @registration @positive
-  Scenario: Registration with empty user parameters
-    When I register with data:
-      | email    |  |
-      | password |  |
-    Then I should see registration error message "Registration failed"
-
 #  @test @registration @negative
 #  Scenario Outline: Registration with one invalid user parameter
+#    When I register with data:
+#      | First Name   | Last Name   | City   | Telephone   |
+#      | <first_name> | <last_name> | <city> | <telephone> |
+#    Then I should see registration error message "Registration failed"
 #
-#    Given user with "<invalidUser>" parameters
-#    When user tries to register
-#    Then registration error should be thrown with message "Registration failed"
 #    Examples:
-#      | invalidUser              |
-#      | userWithInvalidFirstName |
-#      | userWithInvalidLastName  |
-#      | userWithInvalidCity      |
-#      | userWithInvalidTelephone |
+#      | first_name | last_name | city    | telephone    |
+#      | Joe#       | Dow       | London  | +1234567890  |
+#      | Joe        | Dow$      | London  | +1234567890  |
+#      | Joe        | Dow       | L@ondon | +1234567890  |
+#      | Joe        | Dow       | London  | +"1234567890 |
 #
 #  @test @registration @positive @smoke
-#  Scenario: Registration with valid user parameters
-#
-#    Given user with "validUser" parameters
-#    When user tries to register
-#    Then registration should be successful
-#
-#  @test @registration @positive
-#  Scenario: Registration with an already registered email
-#
-#    Given user with "registeredUser" parameters
-#    When user tries to register
-#    Then registration error should be thrown with message "Warning: E-Mail Address is already registered!"
-#
+#  Scenario: Registration  as a valid user
+#    When I am registering as a user with the consent to the license agreement is "false"
+#    Then I should see home page
+
+  @test @registration @positive
+  Scenario: Registration with an already registered email
+    When I register with data:
+      | Email             | Password             |
+      | $REGISTERED_EMAIL | $REGISTERED_PASSWORD |
+    Then I should see registration error message "E-Mail Address is already registered!"
+
 #  @test @registration @positive
 #  Scenario: Registration without consent to the license agreement
-#
-#    Given user with "validUser" parameters
-#    When user tries to register without clicking on the checkbox of the Privacy Policy
-#    Then registration error should be thrown with message "Warning: You must agree to the Privacy Policy!"
+#    When I am registering as a user with the consent to the license agreement is "false"
+#    Then I should see registration error message "You must agree to the Privacy Policy!"
 #
 #  @test @registration @positive
 #  Scenario: Open the license agreement window with the corresponding title

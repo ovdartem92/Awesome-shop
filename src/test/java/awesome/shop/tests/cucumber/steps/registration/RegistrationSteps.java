@@ -5,21 +5,26 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.testng.Assert;
-import org.testng.util.Strings;
 import ru.awesome.shop.ta.framework.exceptions.RegistrationException;
+import ru.awesome.shop.ta.product.bo.address.Address;
+import ru.awesome.shop.ta.product.bo.address.Region;
+import ru.awesome.shop.ta.product.bo.contacts.ContactInfo;
 import ru.awesome.shop.ta.product.bo.credentials.Credentials;
 import ru.awesome.shop.ta.product.bo.user.User;
 import ru.awesome.shop.ta.product.bo.user.UserFactory;
 import ru.awesome.shop.ta.product.pages.AccountRegistrationPage;
+import ru.awesome.shop.ta.product.pages.SuccessfulAccountRegistrationPage;
 import ru.awesome.shop.ta.product.services.AccountRegistrationService;
 import ru.awesome.shop.ta.product.services.NavigationService;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 public class RegistrationSteps {
     private final AccountRegistrationService accountRegistrationService = new AccountRegistrationService();
     private final AccountRegistrationPage accountRegistrationPage = new AccountRegistrationPage();
+    private final SuccessfulAccountRegistrationPage successfulRegistrationPage = new SuccessfulAccountRegistrationPage();
     private final NavigationService navigationService = new NavigationService();
     private TestContext testContext;
     private User user;
@@ -29,72 +34,100 @@ public class RegistrationSteps {
     }
 
     @Given("^I have opened the registration page$")
-    public void iHaveOpenedTheRegistrationPage() {
+    public void openRegistrationPage() {
         navigationService.navigateToAccountRegistrationPage();
     }
 
-    @When("I register with data:")
-    public void i_register_with_data(DataTable dataTable) {
-//        List<Map<String, String>> signUpForm = dataTable.asMaps(String.class, String.class);
-//        String email = Objects.requireNonNullElse(signUpForm.get(0).get("email"), "");
-//        String password = Objects.requireNonNullElse(signUpForm.get(0).get("password"), "");
-        List<String> emailRows = dataTable.row(0);
-        List<String> passwordRows = dataTable.row(1);
-        String email = Objects.requireNonNullElse(emailRows.get(1), "");
-        String password = Objects.requireNonNullElse(passwordRows.get(1), "");
-        Credentials credentials = new Credentials(email, password);
-        user = UserFactory.generateUserWithCustomCredentials(credentials);
+    @When("^I register with data:$")
+    public void registerWithData(DataTable dataTable) {
+        List<Map<String, String>> signUpForm = dataTable.asMaps(String.class, String.class);
+        User validUser = UserFactory.generateValidUser();
+        Credentials validCredentials = validUser.getCredentials();
+        ContactInfo validContactInfo = validUser.getContactInfo();
+        Address validAddress = validContactInfo.getAddress();
+        Region region = validAddress.getRegion();
+
+        for (Map<String, String> form : signUpForm) {
+            System.out.println(form);
+            String firstName = Objects.requireNonNullElse(form.get("First Name"), validUser.getFirstName());
+            String lastName = Objects.requireNonNullElse(form.get("Last Name"), validUser.getLastName());
+            String email = Objects.requireNonNullElse(form.get("Email"), validCredentials.getEmail());
+            String password = Objects.requireNonNullElse(form.get("Password"), validCredentials.getPassword());
+            String telephone = Objects.requireNonNullElse(form.get("Telephone"), validContactInfo.getTelephoneNumber());
+            String fax = Objects.requireNonNullElse(form.get("Fax"), validContactInfo.getFaxNumber());
+            String company = Objects.requireNonNullElse(form.get("Company"), validUser.getCompanyName());
+            String firstAddress = Objects.requireNonNullElse(form.get("First Address"), validAddress.getFirstAddress());
+            String secondAddress = Objects.requireNonNullElse(form.get("Second Address"), validAddress.getSecondAddress());
+            String city = Objects.requireNonNullElse(form.get("City"), validAddress.getCity());
+            String postCode = Objects.requireNonNullElse(form.get("Postcode"), validAddress.getPostCode());
+
+            Credentials credentials = new Credentials(email, password);
+            Address address = new Address(firstAddress, secondAddress, city, postCode, region);
+            ContactInfo contactInfo = new ContactInfo(telephone, fax, address);
+            user = new User.Builder(credentials).firstName(firstName).lastName(lastName)
+                    .companyName(company).contactInfo(contactInfo).build();
+            System.out.println("FIRST_NAME: " + firstName);
+            System.out.println("LAST_NAME: " + lastName);
+        }
+
         try {
             accountRegistrationService.register(user);
         } catch (RegistrationException ex) {
             String errorMessage = ex.getMessage();
-            testContext.setErrorMessage(errorMessage);
-            System.out.println("ERROR: " + errorMessage);
+            String[] split = errorMessage.split(":");
+            testContext.setErrorMessage(split[0]);
         }
     }
 
-    @When("^user clicks on a link with user agreement$")
-    public void clickPrivacyPolicy() {
-        accountRegistrationPage.clickPrivacyPolicyLink();
-    }
-
-    @When("^user tries to register without clicking on the checkbox of the Privacy Policy$")
-    public void registerUserWithoutAgreeingPrivacyPolicy() {
-        boolean isSubscribed = false;
-        boolean isPrivacyPolicyChecked = false;
+    @When("^I register with empty data$")
+    public void registerWithEmptyData() {
         try {
-            accountRegistrationService.register(user, isSubscribed, isPrivacyPolicyChecked);
+            String email = "";
+            String password = "";
+            Credentials credentials = new Credentials(email, password);
+            user = new User.Builder(credentials).build();
+            accountRegistrationService.register(user);
         } catch (RegistrationException ex) {
             String errorMessage = ex.getMessage();
-            testContext.setErrorMessage(errorMessage);
+            String[] split = errorMessage.split(":");
+            testContext.setErrorMessage(split[2].trim());
         }
     }
 
-    @Then("^should get a window with a title \"([^\"]*)\"$")
-    public void assertPrivacyPolicyTitle(String title) {
-        String privacyPolicyTitle = accountRegistrationPage.getPrivacyPolicyTitle();
-        Assert.assertEquals(privacyPolicyTitle, title);
-    }
-
-    @Then("^I should see registration error message \"([^\"]*)\"$")
-    public void iShouldSeeRegistrationErrorMessage(String message) {
-        String errorMessage = testContext.getErrorMessage();
-        Assert.assertTrue(errorMessage.contains(message));
-    }
-
-    @Then("^registration should be successful$")
-    public void assertRegistrationWithoutErrorMessage() {
-        String errorMessage = testContext.getErrorMessage();
-        Assert.assertTrue(Strings.isNullOrEmpty(errorMessage));
+    @When("^I am registering as a user with the consent to the license agreement is \"([^\"]*)\"$")
+    public void registerAsValidUser_for_a_license_agreement(String isAgreeWithLicense) {
+        boolean isSubscribed = false;
+        boolean isAgree = isAgreeWithLicense.equals("true");
+        user = UserFactory.generateValidUser();
+        try {
+            accountRegistrationService.register(user, isSubscribed, isAgree);
+        } catch (RegistrationException ex) {
+            String errorMessage = ex.getMessage();
+            String[] split = errorMessage.split(":");
+            testContext.setErrorMessage(split[2].trim());
+        }
     }
 
     @When("^I click privacy policy link$")
-    public void iClickPrivacyPolicyLink() {
+    public void clickPrivacyPolicyLink() {
         accountRegistrationPage.clickPrivacyPolicyLink();
     }
 
+    @Then("^I should see registration error message \"([^\"]*)\"$")
+    public void checkRegistrationErrorMessage(String expectedErrorMessage) {
+        String errorMessage = testContext.getErrorMessage();
+        Assert.assertEquals(errorMessage, expectedErrorMessage,
+                "The expected error message does not match the actual one");
+    }
+
     @Then("^I should see \"([^\"]*)\" pop up window$")
-    public void iShouldSeePopUpWindow(String title) {
+    public void checkPopUpWindowTitle(String title) {
         Assert.assertEquals(title, "Privacy Policy", "Incorrect window title");
+    }
+
+    @Then("^I should see home page$")
+    public void checkPageTitle() {
+        Assert.assertEquals(successfulRegistrationPage.getPageTitle(), "Your Account Has Been Created!",
+                "Incorrect page title");
     }
 }
