@@ -13,7 +13,7 @@ Feature: Cart functionality
     Given I have navigated to phones catalog
     When I add phone "iPhone" to cart
     And I navigate to cart
-    Then The product name should be "iPhone"
+    Then The product name into cart should be "iPhone"
     Then The product price for "iPhone" should be "$121.20"
 
   @cart
@@ -87,4 +87,4 @@ Feature: Cart functionality
     Given I have navigated to phones catalog
     When I add phone "iPhone" to cart
     And I navigate to cart
-    Then The product name into cart should be the same as "iPhone"
+    Then The product name into cart should be "iPhone"

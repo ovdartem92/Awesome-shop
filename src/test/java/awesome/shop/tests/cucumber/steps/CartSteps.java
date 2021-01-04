@@ -64,11 +64,6 @@ public class CartSteps {
         cartPage.clickContinueShoppingButton();
     }
 
-    @Then("The product name into cart should be the same as {string}")
-    public void verifyNameOfProduct(String productName) {
-        String nameIntoCart = cartPage.getItemName(productName);
-        Assert.assertEquals(nameIntoCart, productName, "The names aren't equals!");
-    }
 
     @Then("The number of products into cart should be more than {int}")
     public void verifyProductsIntoCartNumber(int number) {
@@ -102,15 +97,14 @@ public class CartSteps {
         Assert.assertEquals(messageFromPopup, "Your shopping cart is empty!", "Messages aren't equals");
     }
 
-
-    @Then("The product name should be {string}")
-    public void theProductNameShouldBe(String productName) {
+    @Then("The product name into cart should be {string}")
+    public void verifyNameOfProduct(String productName) {
         String nameProductFromCart = cartService.getProductName(productName);
         Assert.assertEquals(nameProductFromCart, productName, "The names of product aren't equals!");
     }
 
     @Then("The product price for {string} should be {string}")
-    public void theProductPriceShouldBe(String productName, String productPrice) {
+    public void verifyPriceOfProduct(String productName, String productPrice) {
         String priceProductFromCart = cartService.getProductPrice(productName);
         Assert.assertEquals(priceProductFromCart, productPrice, "The costs of product aren't equals!");
     }
