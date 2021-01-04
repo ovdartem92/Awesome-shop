@@ -7,6 +7,7 @@ import ru.awesome.shop.ta.product.pages.LogoutPage;
 import ru.awesome.shop.ta.product.pages.popups.AccountPopUp;
 
 public class AuthenticationService {
+    private LogoutPage logoutPage = new LogoutPage();
 
     public void login(String email, String password) throws AuthenticationException {
         LoginPage loginPage = new LoginPage();
@@ -14,7 +15,7 @@ public class AuthenticationService {
         loginPage.typePassword(password);
         loginPage.clickLoginButton();
         if (loginPage.hasErrorMessage()) {
-            throw new AuthenticationException("Authentication failed" + loginPage.getWarningMessage());
+            throw new AuthenticationException("Authentication failed " + loginPage.getWarningMessage());
         }
     }
 
@@ -25,12 +26,10 @@ public class AuthenticationService {
     }
 
     public String getBreadcrumbLogoutText() {
-        LogoutPage logoutPage = new LogoutPage();
         return logoutPage.getBreadcrumbLogoutText();
     }
 
-    public String getErrorMessageTet() {
-        LoginPage loginPage = new LoginPage();
-        return loginPage.getWarningMessage();
+    public String getLogoutPageTitle() {
+        return logoutPage.getPageTitle();
     }
 }
