@@ -9,7 +9,7 @@ import ru.awesome.shop.ta.framework.configuration.PropertyManager;
 import ru.awesome.shop.ta.product.services.AccountService;
 import ru.awesome.shop.ta.product.services.AuthenticationService;
 
-public class LoginSteps extends TestContext {
+public class LoginSteps {
     private static final String VALID_EMAIL = PropertyManager.getEmail();
     private static final String VALID_PASSWORD = PropertyManager.getPassword();
     private AuthenticationService authenticationService = new AuthenticationService();
