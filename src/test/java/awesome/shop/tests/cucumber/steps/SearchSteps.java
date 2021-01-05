@@ -15,73 +15,65 @@ import java.util.List;
 
 public class SearchSteps {
 
-    @Given("home page is opened")
-    public void openHomePage() {
+    @Given("I have opened home page")
+    public void iHaveOpenedHomePage() {
         HomePage homePage = new HomePage();
         homePage.open();
     }
 
-    @When("enter {string} data to search")
-    public void enterDataToSearch(String searchCriteria) {
+    @When("I perform basic search of {string} product")
+    public void iPerformBasicSearchOfProduct(String searchCriteria) {
         SearchFragment searchFragment = new SearchFragment();
         searchFragment.typeSearchQuery(searchCriteria);
         searchFragment.clickSearchButton();
     }
 
-    @When("enter {string} without click to search")
-    public void enterWithoutClickToSearch(String searchCriteria) {
+    @When("I type {string} search query")
+    public void iTypeSearchQuery(String searchCriteria) {
         SearchFragment searchFragment = new SearchFragment();
         searchFragment.typeSearchQuery(searchCriteria);
     }
 
-    @And("set description checkbox")
-    public void setDescriptionCheckbox() {
-        SearchResultPage searchResultPage = new SearchResultPage();
-        searchResultPage.setDescriptionCheckbox(true);
-        searchResultPage.clickSearchButton();
-    }
-
-    @And("set iMac category")
-    public void setIMacCategory() {
-        SearchResultPage searchResultPage = new SearchResultPage();
-        searchResultPage.setIMacCategory();
-        searchResultPage.clickSearchButton();
-    }
-
-    @And("press key Enter")
-    public void pressKeyEnter() {
+    @And("I press Enter")
+    public void iPressEnter() {
         SearchFragment searchFragment = new SearchFragment();
         searchFragment.performSearchByPressingEnter();
     }
 
-    @Then("Incorrect message is appeared")
-    public void incorrectMessageIsAppeared() {
+    @And("I select “iMac” category")
+    public void iSelectIMacCategory() {
         SearchResultPage searchResultPage = new SearchResultPage();
-        Assert.assertEquals(searchResultPage.getIncorrectSearchCriteriaMessage(), "There is no product that matches the search criteria.");
+        searchResultPage.setIMacCategory();
     }
 
-    @Then("Product was found")
-    public void productWasFound() {
+    @And("I enable search in product descriptions")
+    public void iEnableSearchInProductDescriptions() {
+        SearchResultPage searchResultPage = new SearchResultPage();
+        searchResultPage.setDescriptionCheckbox(true);
+    }
+
+    @And("I click advanced search button")
+    public void iClickAdvancedSearchButton() {
+        SearchResultPage searchResultPage = new SearchResultPage();
+        searchResultPage.clickSearchButtonOnSearchResultPage();
+    }
+
+    @Then("{string} product should be found")
+    public void productShouldBeFound(String expectedResultProduct) {
         SearchResultPage searchResultPage = new SearchResultPage();
         List<SearchResultFragment> searchResults = searchResultPage.getAllSearchResults();
         List<String> productNames = new ArrayList<>();
         for (SearchResultFragment searchResult : searchResults) {
             productNames.add(searchResult.getName());
         }
-        String expectedResult = "iPod Classic";
-        Assert.assertEquals(productNames.get(0), expectedResult,
-                expectedResult + " wasn't found in search result.");
+        Assert.assertEquals(productNames.get(0), expectedResultProduct,
+                expectedResultProduct + " wasn't found in search result.");
     }
 
-    @Then("Product {string} was found")
-    public void productWasFound(String expectedResult) {
+    @Then("I should see incorrect search message {string}")
+    public void iShouldSeeIncorrectSearchMessage(String expectedResultMessage) {
         SearchResultPage searchResultPage = new SearchResultPage();
-        List<SearchResultFragment> searchResults = searchResultPage.getAllSearchResults();
-        List<String> productNames = new ArrayList<>();
-        for (SearchResultFragment searchResult : searchResults) {
-            productNames.add(searchResult.getName());
-        }
-        Assert.assertEquals(productNames.get(0), expectedResult,
-                expectedResult + " wasn't found in search result.");
+        Assert.assertEquals(searchResultPage.getIncorrectSearchCriteriaMessage(), expectedResultMessage,
+                expectedResultMessage + " isn't displayed");
     }
 }
