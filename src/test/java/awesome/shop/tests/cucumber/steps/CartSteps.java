@@ -1,6 +1,5 @@
 package awesome.shop.tests.cucumber.steps;
 
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.testng.Assert;
@@ -29,37 +28,37 @@ public class CartSteps {
         phonesCatalogPage.clickAddPhoneToCartButton(phoneName);
     }
 
-    @And("I add laptop {string} to cart")
+    @When("I add laptop {string} to cart")
     public void addLaptopToCart(String laptopName) {
         laptopsCatalogPage.clickAddLaptopToCartButton(laptopName);
     }
 
-    @And("I set quantity {int} for product {string}")
+    @When("I set quantity {int} for product {string}")
     public void setQuantityForProduct(int quantity, String productName) {
         cartService.updateProductQuantity(productName, quantity);
     }
 
-    @And("I remove product {string} from cart")
+    @When("I remove product {string} from cart")
     public void removeProductFromCart(String productName) {
         cartService.deleteProduct(productName);
     }
 
-    @And("I click checkout expecting success")
+    @When("I click checkout expecting success")
     public void clickCheckoutExpectingSuccess() {
         cartPage.clickCheckoutButton();
     }
 
-    @And("I click checkout expecting failure")
+    @When("I click checkout expecting failure")
     public void clickCheckoutExpectingFailure() {
         cartPage.clickCheckoutButtonExpectingFailure();
     }
 
-    @And("I click continue")
+    @When("I click continue")
     public void clickContinue() {
         cartPage.clickContinueButton();
     }
 
-    @And("I click continue shopping")
+    @When("I click continue shopping")
     public void clickContinueShopping() {
         cartPage.clickContinueShoppingButton();
     }
