@@ -8,7 +8,9 @@ Feature: Registration Functionality Feature
 
   @test @registration @positive
   Scenario: Registration with empty user parameters
-    When I register with empty data
+    When I register with data:
+      | Email   | Password |
+      | [blank] | [blank]  |
     Then I should see registration error message "Registration failed"
 
   @test @registration @negative

@@ -1,6 +1,7 @@
 package awesome.shop.tests.cucumber.steps.registration;
 
 import io.cucumber.datatable.DataTable;
+import io.cucumber.java.DataTableType;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -34,6 +35,11 @@ public class RegistrationSteps {
 
     public RegistrationSteps(TestContext testContext) {
         this.testContext = testContext;
+    }
+
+    @DataTableType(replaceWithEmptyString = "[blank]")
+    public String listOfStringListsType(String cell) {
+        return cell;
     }
 
     @Given("^I have opened the registration page$")
@@ -77,21 +83,6 @@ public class RegistrationSteps {
                     .companyName(company).contactInfo(contactInfo).build();
         }
 
-        try {
-            accountRegistrationService.register(user);
-        } catch (RegistrationException ex) {
-            String errorMessage = ex.getMessage();
-            String[] split = errorMessage.split(":");
-            testContext.setErrorMessage(split[0]);
-        }
-    }
-
-    @When("^I register with empty data$")
-    public void registerWithEmptyData() {
-        String email = "";
-        String password = "";
-        Credentials credentials = new Credentials(email, password);
-        user = new User.Builder(credentials).build();
         try {
             accountRegistrationService.register(user);
         } catch (RegistrationException ex) {
