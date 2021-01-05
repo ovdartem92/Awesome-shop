@@ -49,7 +49,7 @@ public class RegistrationSteps {
 
     @When("^I register with data:$")
     public void registerWithData(DataTable dataTable) {
-        List<Map<String, String>> signUpForm = dataTable.asMaps(String.class, String.class);
+        List<Map<String, String>> signUpForm = dataTable.asMaps();
         User validUser = UserFactory.generateValidUser();
         Credentials validCredentials = validUser.getCredentials();
         ContactInfo validContactInfo = validUser.getContactInfo();

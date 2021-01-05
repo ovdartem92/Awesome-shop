@@ -2,6 +2,7 @@ package ru.awesome.shop.ta.product.bo.address;
 
 import org.apache.commons.lang3.RandomStringUtils;
 
+import java.security.SecureRandom;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
@@ -32,7 +33,7 @@ public final class AddressFactory {
     }
 
     private static Region generateRegion() {
-        Random random = new Random();
+        Random random = new SecureRandom();
         List<Region> regionList = Arrays.asList(Region.values());
         int size = regionList.size();
         int randomIndex = random.nextInt(size);
