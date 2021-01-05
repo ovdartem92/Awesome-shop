@@ -22,7 +22,7 @@ Feature: Cart functionality
     When I add laptop "MacBook" to cart
     When I have navigated to cart
     When  I click continue shopping
-    Then I should navigated to "Your Store" page
+    Then I should be navigated to "Your Store" page
 
   @cart
   Scenario: User make cart is empty and continue button navigate to home page
@@ -31,7 +31,7 @@ Feature: Cart functionality
     When I have navigated to cart
     When I remove product "MacBook" from cart
     When I click continue
-    Then I should navigated to "Your Store" page
+    Then I should be navigated to "Your Store" page
 
   @cart
   Scenario: User try to open empty cart
@@ -63,7 +63,7 @@ Feature: Cart functionality
     When I have navigated to cart
     When I set quantity 793 for product "iPhone"
     When I click checkout expecting success
-    Then I should navigated to "Checkout" page
+    Then I should be navigated to "Checkout" page
 
   @cart
   Scenario: User change quantity of product into cart
