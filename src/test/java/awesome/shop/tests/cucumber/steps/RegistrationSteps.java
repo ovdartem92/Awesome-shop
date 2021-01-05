@@ -1,4 +1,4 @@
-package awesome.shop.tests.cucumber.steps.registration;
+package awesome.shop.tests.cucumber.steps;
 
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.DataTableType;

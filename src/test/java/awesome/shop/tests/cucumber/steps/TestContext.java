@@ -1,4 +1,4 @@
-package awesome.shop.tests.cucumber.steps.registration;
+package awesome.shop.tests.cucumber.steps;
 
 public class TestContext {
     private String errorMessage;
