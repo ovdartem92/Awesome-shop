@@ -10,7 +10,7 @@ import ru.awesome.shop.ta.framework.listeners.TestListener;
         plugin = {"pretty",
                 "html:target/cucumber-reports/cucumber-pretty.html"},
         monochrome = true,
-        tags = "@cart",
+        tags = "@smoke",
         glue = "awesome.shop.tests.cucumber",
         features = "src/test/resources/features")
 @Listeners({TestListener.class, SuiteListener.class})
