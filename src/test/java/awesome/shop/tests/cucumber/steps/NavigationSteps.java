@@ -20,7 +20,7 @@ public class NavigationSteps {
         navigationService.navigateToLaptopsCatalogPage();
     }
 
-    @And("I navigate to cart")
+    @And("I have navigated to cart")
     public void navigateToCart() {
         navigationService.navigateToCartPage();
     }
@@ -30,7 +30,7 @@ public class NavigationSteps {
         navigationService.navigateToHomePage();
     }
 
-    @Then("I should navigated to {string} page")
+    @Then("I should be navigated to {string} page")
     public void verifyPageTitle(String pageTitle) {
         String resultTitle = Browser.getInstance().getPageTitle();
         Assert.assertEquals(resultTitle, pageTitle);
