@@ -20,11 +20,11 @@ public class LoginSteps {
     }
 
     @When("^I login with valid credentials$")
-    public void loginWithValidCredentials() throws AuthenticationException {
+    public void userLoginWithValidCredentials() throws AuthenticationException {
         authenticationService.login(VALID_EMAIL, VALID_PASSWORD);
     }
 
-    @Then("^I should see \"(.*)\" account name$")
+    @Then("^I should see (.*) account name$")
     public void checkMyAccountName(String expectedAccountName) {
         AccountService accountService = new AccountService();
         String actualAccountName = accountService.getAccountName();
@@ -36,13 +36,13 @@ public class LoginSteps {
         authenticationService.logout();
     }
 
-    @Then("^Logout page with title \"(.*)\" should be opened$")
+    @Then("^Logout page with title (.*) should be opened$")
     public void checkThatLogoutPageIsOpened(String expectedPageTitle) {
         String actualPageTitle = authenticationService.getLogoutPageTitle();
         Assert.assertEquals(actualPageTitle, expectedPageTitle, "Incorrect logout page title");
     }
 
-    @And("^I should see that breadcrumb contains \"(.*)\" text$")
+    @And("^I should see that breadcrumb contains (.*) text$")
     public void checkBreadcrumb(String expectedBreadcrumbText) {
         String actualBreadcrumbLogoutText = authenticationService.getBreadcrumbLogoutText();
         Assert.assertEquals(actualBreadcrumbLogoutText, expectedBreadcrumbText,
@@ -50,18 +50,16 @@ public class LoginSteps {
     }
 
     @When("^I login with (.*) email and (.*) password$")
-    public void loginWithInvalidCredentials(String email, String password) {
+    public void iLoginWithEmailEmailAndPasswordPassword(String email, String password) {
         try {
             authenticationService.login(email, password);
         } catch (AuthenticationException e) {
-            String errorMessage = e.getMessage().replace("Authentication failed", "").trim();
-            testContext.setErrorMessage(errorMessage);
+            testContext.errorMessage = e.getMessage().replace("Authentication failed", "").trim();
         }
     }
 
-    @Then("^I should see authentication error message \"(.*)\"$")
-    public void checkAuthenticationErrorMessage(String expectedErrorMessage) {
-        String actualErrorMessage = testContext.getErrorMessage();
-        Assert.assertEquals(actualErrorMessage, expectedErrorMessage, "Incorrect error message text");
+    @Then("^I should see authentication error message (.*)$")
+    public void iShouldSeeAuthenticationErrorMessageErrorMessage(String expectedErrorMessage) {
+        Assert.assertEquals(testContext.errorMessage, expectedErrorMessage, "Incorrect error message text");
     }
 }
