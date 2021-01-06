@@ -15,6 +15,11 @@ public class NavigationSteps {
         navigationService.navigateToLoginPage();
     }
 
+    @Given("^I have opened home page$")
+    public void openHomePage() {
+        navigationService.navigateToHomePage();
+    }
+
     @Given("I navigate to phones catalog")
     public void navigateToPhonesCatalog() {
         navigationService.navigateToPhonesCatalogPage();
