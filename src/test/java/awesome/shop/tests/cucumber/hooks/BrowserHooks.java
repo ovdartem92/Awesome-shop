@@ -17,7 +17,6 @@ public class BrowserHooks {
     @Before
     public void setUp() {
         browser = Browser.getInstance();
-        browser.navigate(PropertyManager.getUrl());
     }
 
     @After
