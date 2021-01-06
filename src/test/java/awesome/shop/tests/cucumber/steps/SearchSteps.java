@@ -67,7 +67,7 @@ public class SearchSteps {
     }
 
     @Then("^\"(.*)\" product should be found$")
-    public void getSearchResult(String expectedResultProduct) {
+    public void findSearchResultProduct(String expectedResultProduct) {
         List<SearchResultFragment> searchResults = searchResultPage.getAllSearchResults();
         List<String> productNames = new ArrayList<>();
         for (SearchResultFragment searchResult : searchResults) {
@@ -78,7 +78,7 @@ public class SearchSteps {
     }
 
     @Then("^I should see incorrect search message \"(.*)\"$")
-    public void getIncorrectSearchMessage(String expectedResultMessage) {
+    public void seeSearchMessage(String expectedResultMessage) {
         Assert.assertEquals(searchResultPage.getIncorrectSearchCriteriaMessage(), expectedResultMessage,
                 expectedResultMessage + " isn't displayed");
     }
