@@ -10,6 +10,11 @@ import ru.awesome.shop.ta.product.services.NavigationService;
 public class NavigationSteps {
     private final NavigationService navigationService = new NavigationService();
 
+    @Given("^I have opened login page$")
+    public void openLoginPage() {
+        navigationService.navigateToLoginPage();
+    }
+
     @Given("I navigate to phones catalog")
     public void navigateToPhonesCatalog() {
         navigationService.navigateToPhonesCatalogPage();
