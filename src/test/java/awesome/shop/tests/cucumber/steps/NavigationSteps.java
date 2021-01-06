@@ -10,4 +10,9 @@ public class NavigationSteps {
     public void openLoginPage() {
         navigationService.navigateToLoginPage();
     }
+
+    @Given("^I have opened home page$")
+    public void openHomePage() {
+        navigationService.navigateToHomePage();
+    }
 }

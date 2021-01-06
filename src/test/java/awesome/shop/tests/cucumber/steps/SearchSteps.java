@@ -23,12 +23,6 @@ public class SearchSteps {
         return cell;
     }
 
-    @Given("^I have opened home page$")
-    public void openHomePage() {
-        NavigationService service = new NavigationService();
-        service.navigateToHomePage();
-    }
-
     @When("^I search for \"(.*)\" product$")
     public void search(String searchCriteria) {
         searchFragment.typeSearchQuery(listOfStringListsType(searchCriteria));
