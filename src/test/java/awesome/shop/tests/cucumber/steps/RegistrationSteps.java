@@ -1,7 +1,6 @@
 package awesome.shop.tests.cucumber.steps;
 
 import io.cucumber.datatable.DataTable;
-import io.cucumber.java.DataTableType;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -34,11 +33,6 @@ public class RegistrationSteps {
 
     public RegistrationSteps(TestContext testContext) {
         this.testContext = testContext;
-    }
-
-    @DataTableType(replaceWithEmptyString = "[blank]")
-    public String listOfStringListsType(String cell) {
-        return cell;
     }
 
     @Given("^I have opened the registration page$")
