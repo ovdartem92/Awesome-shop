@@ -1,6 +1,5 @@
 package awesome.shop.tests.cucumber.steps;
 
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.testng.Assert;
@@ -31,7 +30,7 @@ public class LoginSteps {
         Assert.assertEquals(actualAccountName, expectedAccountName, "Incorrect account name");
     }
 
-    @And("^I click logout button$")
+    @When("^I click logout button$")
     public void clickLogoutButton() {
         authenticationService.logout();
     }
@@ -42,7 +41,7 @@ public class LoginSteps {
         Assert.assertEquals(actualPageTitle, expectedPageTitle, "Incorrect logout page title");
     }
 
-    @And("^I should see that breadcrumb contains \"(.*)\" text$")
+    @Then("^I should see that breadcrumb contains \"(.*)\" text$")
     public void checkBreadcrumb(String expectedBreadcrumbText) {
         String actualBreadcrumbLogoutText = authenticationService.getBreadcrumbLogoutText();
         Assert.assertEquals(actualBreadcrumbLogoutText, expectedBreadcrumbText,
