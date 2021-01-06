@@ -1,74 +1,73 @@
 package awesome.shop.tests.cucumber.steps;
 
-import io.cucumber.java.en.And;
+import io.cucumber.java.DataTableType;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.testng.Assert;
-import ru.awesome.shop.ta.product.pages.HomePage;
 import ru.awesome.shop.ta.product.pages.SearchResultPage;
 import ru.awesome.shop.ta.product.pages.fragments.SearchFragment;
 import ru.awesome.shop.ta.product.pages.fragments.SearchResultFragment;
+import ru.awesome.shop.ta.product.services.NavigationService;
+import ru.awesome.shop.ta.product.services.SearchService;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SearchSteps {
+    SearchService searchService = new SearchService();
+    SearchFragment searchFragment = new SearchFragment();
+    SearchResultPage searchResultPage = new SearchResultPage();
+
+    @DataTableType(replaceWithEmptyString = "[blank]")
+    public String listOfStringListsType(String cell) {
+        return cell;
+    }
 
     @Given("^I have opened home page$")
-    public void iHaveOpenedHomePage() {
-        HomePage homePage = new HomePage();
-        homePage.open();
+    public void openHomePage() {
+        NavigationService service = new NavigationService();
+        service.navigateToHomePage();
     }
 
     @When("^I search for \"(.*)\" product$")
-    public void iSearchForProduct(String searchCriteria) {
+    public void search(String searchCriteria) {
         if (searchCriteria.equals("[blank]")) searchCriteria = "";
-        SearchFragment searchFragment = new SearchFragment();
-        searchFragment.typeSearchQuery(searchCriteria);
-        searchFragment.clickSearchButton();
+        searchService.performBasicSearch(searchCriteria);
     }
 
     @When("^I perform basic search of \"(.*)\" product$")
-    public void iPerformBasicSearchOfProduct(String searchCriteria) {
-        SearchFragment searchFragment = new SearchFragment();
-        searchFragment.typeSearchQuery(searchCriteria);
-        searchFragment.clickSearchButton();
+    public void performBasicSearch(String searchCriteria) {
+        searchService.performBasicSearch(searchCriteria);
     }
 
     @When("^I type \"(.*)\" search query$")
-    public void iTypeSearchQuery(String searchCriteria) {
-        SearchFragment searchFragment = new SearchFragment();
+    public void typeSearchQuery(String searchCriteria) {
         searchFragment.typeSearchQuery(searchCriteria);
     }
 
-    @And("^I press Enter$")
-    public void iPressEnter() {
-        SearchFragment searchFragment = new SearchFragment();
+    @When("^I press Enter$")
+    public void pressEnter() {
         searchFragment.performSearchByPressingEnter();
     }
 
-    @And("^I select “iMac” category$")
-    public void iSelectIMacCategory() {
-        SearchResultPage searchResultPage = new SearchResultPage();
+    @When("^I select “iMac” category$")
+    public void selectIMacCategory() {
         searchResultPage.setIMacCategory();
     }
 
-    @And("^I enable search in product descriptions$")
-    public void iEnableSearchInProductDescriptions() {
-        SearchResultPage searchResultPage = new SearchResultPage();
+    @When("^I enable search in product descriptions$")
+    public void enableProductDescriptions() {
         searchResultPage.setDescriptionCheckbox(true);
     }
 
-    @And("^I click advanced search button$")
-    public void iClickAdvancedSearchButton() {
-        SearchResultPage searchResultPage = new SearchResultPage();
+    @When("^I click advanced search button$")
+    public void clickAdvancedSearchButton() {
         searchResultPage.clickSearchButtonOnSearchResultPage();
     }
 
     @Then("^\"(.*)\" product should be found$")
-    public void productShouldBeFound(String expectedResultProduct) {
-        SearchResultPage searchResultPage = new SearchResultPage();
+    public void getSearchResult(String expectedResultProduct) {
         List<SearchResultFragment> searchResults = searchResultPage.getAllSearchResults();
         List<String> productNames = new ArrayList<>();
         for (SearchResultFragment searchResult : searchResults) {
@@ -79,8 +78,7 @@ public class SearchSteps {
     }
 
     @Then("^I should see incorrect search message \"(.*)\"$")
-    public void iShouldSeeIncorrectSearchMessage(String expectedResultMessage) {
-        SearchResultPage searchResultPage = new SearchResultPage();
+    public void getIncorrectSearchMessage(String expectedResultMessage) {
         Assert.assertEquals(searchResultPage.getIncorrectSearchCriteriaMessage(), expectedResultMessage,
                 expectedResultMessage + " isn't displayed");
     }
