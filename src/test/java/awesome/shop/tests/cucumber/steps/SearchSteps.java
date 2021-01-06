@@ -15,50 +15,58 @@ import java.util.List;
 
 public class SearchSteps {
 
-    @Given("I have opened home page")
+    @Given("^I have opened home page$")
     public void iHaveOpenedHomePage() {
         HomePage homePage = new HomePage();
         homePage.open();
     }
 
-    @When("I perform basic search of {string} product")
+    @When("^I search for \"(.*)\" product$")
+    public void iSearchForProduct(String searchCriteria) {
+        if (searchCriteria.equals("[blank]")) searchCriteria = "";
+        SearchFragment searchFragment = new SearchFragment();
+        searchFragment.typeSearchQuery(searchCriteria);
+        searchFragment.clickSearchButton();
+    }
+
+    @When("^I perform basic search of \"(.*)\" product$")
     public void iPerformBasicSearchOfProduct(String searchCriteria) {
         SearchFragment searchFragment = new SearchFragment();
         searchFragment.typeSearchQuery(searchCriteria);
         searchFragment.clickSearchButton();
     }
 
-    @When("I type {string} search query")
+    @When("^I type \"(.*)\" search query$")
     public void iTypeSearchQuery(String searchCriteria) {
         SearchFragment searchFragment = new SearchFragment();
         searchFragment.typeSearchQuery(searchCriteria);
     }
 
-    @And("I press Enter")
+    @And("^I press Enter$")
     public void iPressEnter() {
         SearchFragment searchFragment = new SearchFragment();
         searchFragment.performSearchByPressingEnter();
     }
 
-    @And("I select “iMac” category")
+    @And("^I select “iMac” category$")
     public void iSelectIMacCategory() {
         SearchResultPage searchResultPage = new SearchResultPage();
         searchResultPage.setIMacCategory();
     }
 
-    @And("I enable search in product descriptions")
+    @And("^I enable search in product descriptions$")
     public void iEnableSearchInProductDescriptions() {
         SearchResultPage searchResultPage = new SearchResultPage();
         searchResultPage.setDescriptionCheckbox(true);
     }
 
-    @And("I click advanced search button")
+    @And("^I click advanced search button$")
     public void iClickAdvancedSearchButton() {
         SearchResultPage searchResultPage = new SearchResultPage();
         searchResultPage.clickSearchButtonOnSearchResultPage();
     }
 
-    @Then("{string} product should be found")
+    @Then("^\"(.*)\" product should be found$")
     public void productShouldBeFound(String expectedResultProduct) {
         SearchResultPage searchResultPage = new SearchResultPage();
         List<SearchResultFragment> searchResults = searchResultPage.getAllSearchResults();
@@ -70,7 +78,7 @@ public class SearchSteps {
                 expectedResultProduct + " wasn't found in search result.");
     }
 
-    @Then("I should see incorrect search message {string}")
+    @Then("^I should see incorrect search message \"(.*)\"$")
     public void iShouldSeeIncorrectSearchMessage(String expectedResultMessage) {
         SearchResultPage searchResultPage = new SearchResultPage();
         Assert.assertEquals(searchResultPage.getIncorrectSearchCriteriaMessage(), expectedResultMessage,

@@ -25,7 +25,7 @@ Feature: search
 
   @search @positive @all
   Scenario Outline: check search by positive data
-    When I perform basic search of "<product_name>" product
+    When I search for "<product_name>" product
     Then "iPod Classic" product should be found
 
     Examples:
@@ -37,11 +37,11 @@ Feature: search
 
   @search @negative @all
   Scenario Outline: check search by negative data
-    When I perform basic search of "<search_query>" product
+    When I search for "<search_query>" product
     Then I should see incorrect search message "<message>"
 
     Examples:
       | search_query            | message                                               |
       | alert('I hacked this!') | There is no product that matches the search criteria. |
       | Mercedes GLE-Coupe      | There is no product that matches the search criteria. |
-      |                         | There is no product that matches the search criteria. |
+      | [blank]                 | There is no product that matches the search criteria. |
