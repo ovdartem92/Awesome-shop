@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SearchSteps {
-    SearchService searchService = new SearchService();
     SearchFragment searchFragment = new SearchFragment();
     SearchResultPage searchResultPage = new SearchResultPage();
 
@@ -32,12 +31,13 @@ public class SearchSteps {
 
     @When("^I search for \"(.*)\" product$")
     public void search(String searchCriteria) {
-        if (searchCriteria.equals("[blank]")) searchCriteria = "";
-        searchService.performBasicSearch(searchCriteria);
+        searchFragment.typeSearchQuery(listOfStringListsType(searchCriteria));
+        searchFragment.clickSearchButton();
     }
 
     @When("^I perform basic search of \"(.*)\" product$")
     public void performBasicSearch(String searchCriteria) {
+        SearchService searchService = new SearchService();
         searchService.performBasicSearch(searchCriteria);
     }
 
