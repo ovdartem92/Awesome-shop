@@ -9,15 +9,17 @@ Feature: Registration Functionality Feature
   @registration @positive @all
   Scenario: Registration with empty user parameters
     When I register with data:
-      | Email   | Password |
-      | [blank] | [blank]  |
+      | Email    | [blank] |
+      | Password | [blank] |
     Then I should see registration error message "Registration failed"
 
   @registration @negative @all
   Scenario Outline: Registration with one invalid user parameter
     When I register with data:
-      | First Name   | Last Name   | City   | Telephone   |
-      | <first_name> | <last_name> | <city> | <telephone> |
+      | First Name | <first_name> |
+      | Last Name  | <last_name>  |
+      | City       | <city>       |
+      | Telephone  | <telephone>  |
     Then I should see registration error message "Registration failed"
 
     Examples:
@@ -35,8 +37,8 @@ Feature: Registration Functionality Feature
   @registration @positive @all
   Scenario: Registration with an already registered email
     When I register with data:
-      | Email                    | Password    |
-      | alexandr_ladygin@mail.ru | qwerty12345 |
+      | Email    | alexandr_ladygin@mail.ru |
+      | Password | qwerty12345              |
     Then I should see registration error message "Registration failed"
 
   @registration @positive @all

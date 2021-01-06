@@ -19,7 +19,6 @@ import ru.awesome.shop.ta.product.pages.SuccessfulAccountRegistrationPage;
 import ru.awesome.shop.ta.product.services.AccountRegistrationService;
 import ru.awesome.shop.ta.product.services.NavigationService;
 
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -49,43 +48,42 @@ public class RegistrationSteps {
 
     @When("^I register with data:$")
     public void registerWithData(DataTable dataTable) {
-        List<Map<String, String>> signUpForm = dataTable.asMaps(String.class, String.class);
+        Map<String, String> form = dataTable.asMap(String.class, String.class);
         User validUser = UserFactory.generateValidUser();
         Credentials validCredentials = validUser.getCredentials();
         ContactInfo validContactInfo = validUser.getContactInfo();
         Address validAddress = validContactInfo.getAddress();
         Region region = validAddress.getRegion();
 
-        for (Map<String, String> form : signUpForm) {
-            String email;
-            String password;
-            String firstName = Objects.requireNonNullElse(form.get("First Name"), validUser.getFirstName());
-            String lastName = Objects.requireNonNullElse(form.get("Last Name"), validUser.getLastName());
-            String telephone = Objects.requireNonNullElse(form.get("Telephone"), validContactInfo.getTelephoneNumber());
-            String fax = Objects.requireNonNullElse(form.get("Fax"), validContactInfo.getFaxNumber());
-            String company = Objects.requireNonNullElse(form.get("Company"), validUser.getCompanyName());
-            String firstAddress = Objects.requireNonNullElse(form.get("First Address"), validAddress.getFirstAddress());
-            String secondAddress = Objects.requireNonNullElse(form.get("Second Address"), validAddress.getSecondAddress());
-            String city = Objects.requireNonNullElse(form.get("City"), validAddress.getCity());
-            String postCode = Objects.requireNonNullElse(form.get("Postcode"), validAddress.getPostCode());
+        String email;
+        String password;
+        String firstName = Objects.requireNonNullElse(form.get("First Name"), validUser.getFirstName());
+        String lastName = Objects.requireNonNullElse(form.get("Last Name"), validUser.getLastName());
+        String telephone = Objects.requireNonNullElse(form.get("Telephone"), validContactInfo.getTelephoneNumber());
+        String fax = Objects.requireNonNullElse(form.get("Fax"), validContactInfo.getFaxNumber());
+        String company = Objects.requireNonNullElse(form.get("Company"), validUser.getCompanyName());
+        String firstAddress = Objects.requireNonNullElse(form.get("First Address"), validAddress.getFirstAddress());
+        String secondAddress = Objects.requireNonNullElse(form.get("Second Address"), validAddress.getSecondAddress());
+        String city = Objects.requireNonNullElse(form.get("City"), validAddress.getCity());
+        String postCode = Objects.requireNonNullElse(form.get("Postcode"), validAddress.getPostCode());
 
-            if (REGISTERED_EMAIL.equals(form.get("Email")) || REGISTERED_PASSWORD.equals(form.get("Password"))) {
-                email = PropertyManager.getEmail();
-                password = PropertyManager.getPassword();
-            } else {
-                email = Objects.requireNonNullElse(form.get("Email"), validCredentials.getEmail());
-                password = Objects.requireNonNullElse(form.get("Password"), validCredentials.getPassword());
-            }
-            Credentials credentials = new Credentials(email, password);
-            Address address = new Address(firstAddress, secondAddress, city, postCode, region);
-            ContactInfo contactInfo = new ContactInfo(telephone, fax, address);
-            user = new User.Builder(credentials).firstName(firstName).lastName(lastName)
-                    .companyName(company).contactInfo(contactInfo).build();
+        if (REGISTERED_EMAIL.equals(form.get("Email")) || REGISTERED_PASSWORD.equals(form.get("Password"))) {
+            email = PropertyManager.getEmail();
+            password = PropertyManager.getPassword();
+        } else {
+            email = Objects.requireNonNullElse(form.get("Email"), validCredentials.getEmail());
+            password = Objects.requireNonNullElse(form.get("Password"), validCredentials.getPassword());
         }
+        Credentials credentials = new Credentials(email, password);
+        Address address = new Address(firstAddress, secondAddress, city, postCode, region);
+        ContactInfo contactInfo = new ContactInfo(telephone, fax, address);
+        user = new User.Builder(credentials).firstName(firstName).lastName(lastName)
+                .companyName(company).contactInfo(contactInfo).build();
 
         try {
             accountRegistrationService.register(user);
-        } catch (RegistrationException ex) {
+        } catch (
+                RegistrationException ex) {
             String errorMessage = ex.getMessage();
             String[] split = errorMessage.split(":");
             testContext.setErrorMessage(split[0]);
@@ -120,7 +118,7 @@ public class RegistrationSteps {
 
     @Then("^I should see \"(.*)\" pop up window$")
     public void checkPopUpWindowTitle(String expectedTitle) {
-        Assert.assertEquals( "Privacy Policy", expectedTitle, "Incorrect pop up window title");
+        Assert.assertEquals("Privacy Policy", expectedTitle, "Incorrect pop up window title");
     }
 
     @Then("^I should see home page$")
