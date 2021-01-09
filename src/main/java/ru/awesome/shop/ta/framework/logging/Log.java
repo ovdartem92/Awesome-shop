@@ -11,6 +11,7 @@ import static java.lang.String.format;
 
 public final class Log {
     private static final Logger LOGGER = Logger.getLogger("custom-logger");
+    public static final String MESSAGE_CANNOT_BE_NULL = "Message cannot be null.";
 
     static {
         URL resource = Log.class.getClassLoader().getResource("log4j.properties");
@@ -33,33 +34,33 @@ public final class Log {
     }
 
     public static void trace(Object message) {
-        Objects.requireNonNull(message, "Message cannot be null.");
+        Objects.requireNonNull(message, MESSAGE_CANNOT_BE_NULL);
         LOGGER.trace(message);
     }
 
     public static void debug(Object message) {
-        Objects.requireNonNull(message, "Message cannot be null.");
+        Objects.requireNonNull(message, MESSAGE_CANNOT_BE_NULL);
         LOGGER.debug(message);
     }
 
     public static void info(Object message) {
-        Objects.requireNonNull(message, "Message cannot be null.");
+        Objects.requireNonNull(message, MESSAGE_CANNOT_BE_NULL);
         LOGGER.info(message);
     }
 
     public static void warn(Object message) {
-        Objects.requireNonNull(message, "Message cannot be null.");
+        Objects.requireNonNull(message, MESSAGE_CANNOT_BE_NULL);
         LOGGER.warn(message);
     }
 
     public static void error(Object message, Throwable exception) {
-        Objects.requireNonNull(message, "Message cannot be null.");
+        Objects.requireNonNull(message, MESSAGE_CANNOT_BE_NULL);
         Objects.requireNonNull(exception, "Exception cannot be null.");
         LOGGER.error(message, exception);
     }
 
     public static void fatal(Object message, Throwable exception) {
-        Objects.requireNonNull(message, "Message cannot be null.");
+        Objects.requireNonNull(message, MESSAGE_CANNOT_BE_NULL);
         Objects.requireNonNull(exception, "Exception cannot be null.");
         LOGGER.fatal(message, exception);
     }
