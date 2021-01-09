@@ -112,7 +112,7 @@ public class RegistrationSteps {
 
     @Then("^I should see \"(.*)\" pop up window$")
     public void checkPopUpWindowTitle(String expectedTitle) {
-        Assert.assertEquals("Privacy Policy", expectedTitle, "Incorrect pop up window title");
+        Assert.assertEquals(expectedTitle, "Privacy Policy", "Incorrect pop up window title");
     }
 
     @Then("^I should see home page$")
