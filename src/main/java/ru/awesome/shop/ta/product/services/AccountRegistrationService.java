@@ -27,7 +27,7 @@ public class AccountRegistrationService {
         accountRegistrationPage.clickContinueButton();
         List<String> errorMessages = accountRegistrationPage.getAllErrorMessages();
 
-        if (errorMessages.isEmpty()) {
+        if (!errorMessages.isEmpty()) {
             throw new RegistrationException("Registration failed:\n" + StringUtils.join(errorMessages, "\n"));
         }
     }
