@@ -35,11 +35,6 @@ public class RegistrationSteps {
         this.testContext = testContext;
     }
 
-    @Given("^I have opened the registration page$")
-    public void openRegistrationPage() {
-        navigationService.navigateToAccountRegistrationPage();
-    }
-
     @When("^I register with data:$")
     public void registerWithData(DataTable dataTable) {
         Map<String, String> form = dataTable.asMap(String.class, String.class);
