@@ -1,13 +1,12 @@
 package ru.awesome.shop.ta.framework.browser;
 
-import ru.awesome.shop.ta.framework.logging.Log;
-import ru.awesome.shop.ta.framework.ui.elements.HighlightedWebElement;
-
-import ru.awesome.shop.ta.utils.DirectoryGenerator;
-import ru.awesome.shop.ta.utils.TestDataReader;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.Select;
+import ru.awesome.shop.ta.framework.logging.Log;
+import ru.awesome.shop.ta.framework.ui.elements.HighlightedWebElement;
+import ru.awesome.shop.ta.utils.DirectoryGenerator;
+import ru.awesome.shop.ta.utils.TestDataReader;
 
 import java.io.File;
 import java.io.IOException;
@@ -19,7 +18,8 @@ import java.util.concurrent.TimeUnit;
 public final class Browser implements WrapsDriver {
     private static Browser instance;
     private final WebDriver wrappedDriver;
-    private String screenshotDirectoryPath;
+    private final String screenshotDirectoryPath;
+    private static final String LOCATOR_NULL_MESSAGE = "LOCATOR cannot be null.";
 
     private Browser() {
         BrowserType browserType = BrowserType.valueOf(System.getProperty("browser",
@@ -38,11 +38,11 @@ public final class Browser implements WrapsDriver {
         return instance;
     }
 
-    public void stop() {
+    public static void stop() {
         Log.debug("Stopping the browser");
         try {
             if (instance != null) {
-                wrappedDriver.quit();
+                instance.getWrappedDriver().quit();
             }
         } finally {
             instance = null;
@@ -56,7 +56,7 @@ public final class Browser implements WrapsDriver {
     }
 
     public void click(By locator) {
-        Objects.requireNonNull(locator, "LOCATOR cannot be null.");
+        Objects.requireNonNull(locator, LOCATOR_NULL_MESSAGE);
         Log.debug("Click on " + locator);
         WebElement webElement = wrappedDriver.findElement(locator);
         HighlightedWebElement highlightedWebElement = new HighlightedWebElement(wrappedDriver, webElement);
@@ -64,13 +64,13 @@ public final class Browser implements WrapsDriver {
     }
 
     public boolean isSelected(By locator) {
-        Objects.requireNonNull(locator, "LOCATOR cannot be null.");
+        Objects.requireNonNull(locator, LOCATOR_NULL_MESSAGE);
         WebElement webElement = wrappedDriver.findElement(locator);
         return webElement.isSelected();
     }
 
     public void select(By locator, String option) {
-        Objects.requireNonNull(locator, "LOCATOR cannot be null.");
+        Objects.requireNonNull(locator, LOCATOR_NULL_MESSAGE);
         Objects.requireNonNull(option, "OPTION cannot be null.");
         click(locator);
         WebElement element = wrappedDriver.findElement(locator);
@@ -81,17 +81,17 @@ public final class Browser implements WrapsDriver {
     }
 
     public String getFirstSelectedOption(By locator) {
-        Objects.requireNonNull(locator, "Locator cannot be null.");
+        Objects.requireNonNull(locator, LOCATOR_NULL_MESSAGE);
         Log.debug("Selecting the first option from " + locator);
         WebElement element = wrappedDriver.findElement(locator);
         HighlightedWebElement highlightedWebElement = new HighlightedWebElement(wrappedDriver, element);
         Select dropDownList = new Select(highlightedWebElement);
         String selectedOptionText = dropDownList.getFirstSelectedOption().getText();
-        return selectedOptionText.replaceAll(" ", "").replaceAll("\n", "");
+        return selectedOptionText.replace(" ", "").replace("\n", "");
     }
 
     public void sendKeys(By locator, CharSequence... keysToSend) {
-        Objects.requireNonNull(locator, "LOCATOR cannot be null.");
+        Objects.requireNonNull(locator, LOCATOR_NULL_MESSAGE);
         Objects.requireNonNull(keysToSend, "KEYS TO SEND cannot be null.");
         Log.debug("Send text " + keysToSend + " to " + locator);
         WebElement webElement = wrappedDriver.findElement(locator);
@@ -100,7 +100,7 @@ public final class Browser implements WrapsDriver {
     }
 
     public void clear(By locator) {
-        Objects.requireNonNull(locator, "LOCATOR cannot be null.");
+        Objects.requireNonNull(locator, LOCATOR_NULL_MESSAGE);
         Log.debug("Clearing field " + locator);
         WebElement webElement = wrappedDriver.findElement(locator);
         HighlightedWebElement highlightedWebElement = new HighlightedWebElement(wrappedDriver, webElement);
@@ -113,7 +113,7 @@ public final class Browser implements WrapsDriver {
     }
 
     public String getText(By locator) {
-        Objects.requireNonNull(locator, "LOCATOR cannot be null.");
+        Objects.requireNonNull(locator, LOCATOR_NULL_MESSAGE);
         Log.debug("Getting the text of WebElement located by " + locator);
         WebElement webElement = wrappedDriver.findElement(locator);
         HighlightedWebElement highlightedWebElement = new HighlightedWebElement(wrappedDriver, webElement);
