@@ -35,11 +35,6 @@ public class NavigationSteps {
         navigationService.navigateToCartPage();
     }
 
-    @Given("I navigate to home page")
-    public void navigateToHomePage() {
-        navigationService.navigateToHomePage();
-    }
-
     @Then("I should be navigated to {string} page")
     public void verifyPageTitle(String pageTitle) {
         String resultTitle = Browser.getInstance().getPageTitle();
