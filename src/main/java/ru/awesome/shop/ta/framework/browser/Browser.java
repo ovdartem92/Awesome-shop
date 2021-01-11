@@ -38,14 +38,14 @@ public final class Browser implements WrapsDriver {
         return instance;
     }
 
-    public static void stop() {
+    public void stop() {
         Log.debug("Stopping the browser");
         try {
             if (instance != null) {
                 instance.getWrappedDriver().quit();
             }
         } finally {
-            instance = null;
+            instance = null; //NOSONAR
         }
     }
 
