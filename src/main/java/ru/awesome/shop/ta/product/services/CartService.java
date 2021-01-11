@@ -17,8 +17,7 @@ public class CartService {
     }
 
     public List<String> getAllProductNames() {
-        List<String> itemNames = cartPage.getAllItemsNames();
-        return itemNames;
+        return cartPage.getAllItemsNames();
     }
 
     public void updateProductsQuantity(Map<String, Integer> productNameToQuantityMapping) {

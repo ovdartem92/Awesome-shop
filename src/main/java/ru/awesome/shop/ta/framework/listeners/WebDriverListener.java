@@ -16,22 +16,22 @@ public class WebDriverListener implements WebDriverEventListener {
 
     @Override
     public void afterAlertAccept(WebDriver webDriver) {
-
+//unused method
     }
 
     @Override
     public void afterAlertDismiss(WebDriver webDriver) {
-
+//unused method
     }
 
     @Override
     public void beforeAlertDismiss(WebDriver webDriver) {
-
+//unused method
     }
 
     @Override
     public void beforeNavigateTo(String s, WebDriver webDriver) {
-
+//unused method
     }
 
     @Override
@@ -41,32 +41,32 @@ public class WebDriverListener implements WebDriverEventListener {
 
     @Override
     public void beforeNavigateBack(WebDriver webDriver) {
-
+//unused method
     }
 
     @Override
     public void afterNavigateBack(WebDriver webDriver) {
-
+//unused method
     }
 
     @Override
     public void beforeNavigateForward(WebDriver webDriver) {
-
+//unused method
     }
 
     @Override
     public void afterNavigateForward(WebDriver webDriver) {
-
+//unused method
     }
 
     @Override
     public void beforeNavigateRefresh(WebDriver webDriver) {
-
+//unused method
     }
 
     @Override
     public void afterNavigateRefresh(WebDriver webDriver) {
-
+//unused method
     }
 
     @Override
@@ -76,7 +76,7 @@ public class WebDriverListener implements WebDriverEventListener {
 
     @Override
     public void afterFindBy(By by, WebElement webElement, WebDriver webDriver) {
-
+//unused method
     }
 
     @Override
@@ -86,7 +86,7 @@ public class WebDriverListener implements WebDriverEventListener {
 
     @Override
     public void afterClickOn(WebElement webElement, WebDriver webDriver) {
-
+//unused method
     }
 
     @Override
@@ -103,51 +103,51 @@ public class WebDriverListener implements WebDriverEventListener {
 
     @Override
     public void afterChangeValueOf(WebElement webElement, WebDriver webDriver, CharSequence[] charSequences) {
-
+//unused method
     }
 
     @Override
     public void beforeScript(String s, WebDriver webDriver) {
-
+//unused method
     }
 
     @Override
     public void afterScript(String s, WebDriver webDriver) {
-
+//unused method
     }
 
     @Override
     public void beforeSwitchToWindow(String s, WebDriver webDriver) {
-
+//unused method
     }
 
     @Override
     public void afterSwitchToWindow(String s, WebDriver webDriver) {
-
+//unused method
     }
 
     @Override
     public void onException(Throwable throwable, WebDriver webDriver) {
-
+//unused method
     }
 
     @Override
     public <X> void beforeGetScreenshotAs(OutputType<X> outputType) {
-
+//unused method
     }
 
     @Override
     public <X> void afterGetScreenshotAs(OutputType<X> outputType, X x) {
-
+//unused method
     }
 
     @Override
     public void beforeGetText(WebElement webElement, WebDriver webDriver) {
-
+//unused method
     }
 
     @Override
     public void afterGetText(WebElement webElement, WebDriver webDriver, String s) {
-
+//unused method
     }
 }

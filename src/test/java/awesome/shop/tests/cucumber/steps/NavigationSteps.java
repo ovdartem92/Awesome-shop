@@ -35,9 +35,9 @@ public class NavigationSteps {
         navigationService.navigateToCartPage();
     }
 
-    @Given("I navigate to home page")
-    public void navigateToHomePage() {
-        navigationService.navigateToHomePage();
+    @Given("^I have opened the registration page$")
+    public void openRegistrationPage() {
+        navigationService.navigateToAccountRegistrationPage();
     }
 
     @Then("I should be navigated to {string} page")

@@ -17,7 +17,8 @@ public class SearchService {
         searchFragment.typeSearchQuery(searchCriteria);
         SearchResultPage searchResultPage = searchFragment.clickSearchButton();
         if (searchResultPage.hasErrorMessage()) {
-            throw new IncorrectSearchCriteriaException("Search failed: " + searchResultPage.getIncorrectSearchCriteriaMessage());
+            throw new IncorrectSearchCriteriaException("Search failed: "
+                    + searchResultPage.getIncorrectSearchCriteriaMessage());
         }
         List<SearchResultFragment> searchResults = searchResultPage.getAllSearchResults();
         List<String> productNames = new ArrayList<>();
@@ -43,7 +44,8 @@ public class SearchService {
         }
         searchResultPage.clickSearchButton();
         if (searchResultPage.hasErrorMessage()) {
-            throw new IncorrectSearchCriteriaException("Search failed: " + searchResultPage.getIncorrectSearchCriteriaMessage());
+            throw new IncorrectSearchCriteriaException("Search failed: "
+                    + searchResultPage.getIncorrectSearchCriteriaMessage());
         }
         List<SearchResultFragment> searchResults = searchResultPage.getAllSearchResults();
         List<String> productNames = new ArrayList<>();

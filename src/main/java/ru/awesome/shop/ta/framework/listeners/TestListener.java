@@ -10,22 +10,23 @@ import java.io.File;
 import java.util.Objects;
 
 public class TestListener implements ITestListener {
+    private static final String MESSAGE = "iTestResult cannot be null.";
 
     @Override
     public void onTestStart(ITestResult iTestResult) {
-        Objects.requireNonNull(iTestResult, "iTestResult cannot be null.");
+        Objects.requireNonNull(iTestResult, MESSAGE);
         Log.info(String.format("Test method %s STARTED.", iTestResult.getMethod().getDescription()));
     }
 
     @Override
     public void onTestSuccess(ITestResult iTestResult) {
-        Objects.requireNonNull(iTestResult, "iTestResult cannot be null.");
+        Objects.requireNonNull(iTestResult, MESSAGE);
         Log.info(String.format("Test method %s SUCCESSFULLY PASSED", iTestResult.getMethod().getDescription()));
     }
 
     @Override
     public void onTestFailure(ITestResult iTestResult) {
-        Objects.requireNonNull(iTestResult, "iTestResult cannot be null.");
+        Objects.requireNonNull(iTestResult, MESSAGE);
         Log.info(String.format("Test method %s FAILED.", iTestResult.getMethod().getDescription()));
         File screenshot = Browser.getInstance().takeScreenshot();
         String screenshotTag = String.format("<a href='../../screenshots/%s'><img src='../../screenshots/%s' "
@@ -35,7 +36,7 @@ public class TestListener implements ITestListener {
 
     @Override
     public void onTestSkipped(ITestResult iTestResult) {
-        Objects.requireNonNull(iTestResult, "iTestResult cannot be null.");
+        Objects.requireNonNull(iTestResult, MESSAGE);
         Log.info(String.format("Test method %s SKIPPED.", iTestResult.getMethod().getDescription()));
         File screenshot = Browser.getInstance().takeScreenshot();
         String screenshotTag = String.format("<a href='../../screenshots/%s'><img src='../../screenshots/%s' "
@@ -45,7 +46,7 @@ public class TestListener implements ITestListener {
 
     @Override
     public void onTestFailedButWithinSuccessPercentage(ITestResult iTestResult) {
-        Objects.requireNonNull(iTestResult, "ITestResult cannot be null");
+        Objects.requireNonNull(iTestResult, MESSAGE);
     }
 
     @Override

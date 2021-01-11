@@ -14,8 +14,7 @@ import java.util.List;
 public class AccountRegistrationService {
     private final AccountRegistrationPage accountRegistrationPage = new AccountRegistrationPage();
 
-    public void register(User user, boolean isSubscribed, boolean hasPrivacyPolicyBeenRead)
-            throws RegistrationException {
+    public void register(User user, boolean isSubscribed, boolean hasPrivacyPolicyBeenRead) {
         fillInRegistrationForm(user);
 
         if (isSubscribed) {
@@ -28,12 +27,12 @@ public class AccountRegistrationService {
         accountRegistrationPage.clickContinueButton();
         List<String> errorMessages = accountRegistrationPage.getAllErrorMessages();
 
-        if (errorMessages.size() > 0) {
+        if (!errorMessages.isEmpty()) {
             throw new RegistrationException("Registration failed:\n" + StringUtils.join(errorMessages, "\n"));
         }
     }
 
-    public void register(User user) throws RegistrationException {
+    public void register(User user) {
         register(user, false, true);
     }
 

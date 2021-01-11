@@ -24,7 +24,6 @@ public class TextField extends CommonPageElement {
     }
 
     public String getText() {
-        String attribute = CommonPageElement.getAttribute(locator, "value");
-        return attribute;
+        return CommonPageElement.getAttribute(locator, "value");
     }
 }

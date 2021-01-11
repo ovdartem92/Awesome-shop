@@ -7,7 +7,7 @@ import java.util.Objects;
 
 import static java.lang.String.format;
 
-public class HighlightedWebElement extends AbstractWebElementDecorator {
+public class HighlightedWebElement implements AbstractWebElementDecorator {
     private final WebDriver driver;
     private final WebElement element;
     private final String backgroundColor;
@@ -118,7 +118,7 @@ public class HighlightedWebElement extends AbstractWebElementDecorator {
     }
 
     @Override
-    public <X> X getScreenshotAs(OutputType<X> outputType) throws WebDriverException {
+    public <X> X getScreenshotAs(OutputType<X> outputType) {
         return element.getScreenshotAs(outputType);
     }
 }
