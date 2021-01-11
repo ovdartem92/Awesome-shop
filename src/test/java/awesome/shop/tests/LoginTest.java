@@ -9,7 +9,6 @@ import ru.awesome.shop.ta.framework.configuration.PropertyManager;
 import ru.awesome.shop.ta.product.bo.credentials.Credentials;
 import ru.awesome.shop.ta.product.bo.user.User;
 import ru.awesome.shop.ta.product.bo.user.UserFactory;
-import ru.awesome.shop.ta.product.pages.LoginPage;
 import ru.awesome.shop.ta.product.services.AccountService;
 import ru.awesome.shop.ta.product.services.AuthenticationService;
 import ru.awesome.shop.ta.product.services.NavigationService;
