@@ -1,13 +1,13 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite thread-count="2" name="SeleniumGridDocker" parallel="tests">
-    <test name="Test">
+    <test name="login">
         <classes>
             <class name="awesome.shop.tests.LoginTest"/>
         </classes>
     </test>
 
-    <test name="Test">
+    <test name="cart">
         <classes>
             <class name="awesome.shop.tests.CartTest"/>
         </classes>
