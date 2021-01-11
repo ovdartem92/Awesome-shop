@@ -40,7 +40,7 @@ public class NavigationSteps {
         navigationService.navigateToHomePage();
     }
 
-    @Given("^I have opened the registration page$")
+    @Given("I have opened the registration page")
     public void openRegistrationPage() {
         navigationService.navigateToAccountRegistrationPage();
     }
