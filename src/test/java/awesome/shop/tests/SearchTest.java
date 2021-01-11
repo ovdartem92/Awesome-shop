@@ -47,7 +47,7 @@ public class SearchTest extends BaseConfigurationTest {
             "https://jira.epam.com/jira/browse/EPMFARMATS-13129\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13137\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13123\n",
-            dataProvider = "negativeSearchData", groups = "negative",
+            dataProvider = "negativeSearchData", groups = {"all", "negative"},
             expectedExceptions = IncorrectSearchCriteriaException.class)
     public void checkTheSearchFieldByNegativeSearchData(String searchCriteria) throws IncorrectSearchCriteriaException {
         navigationService.navigateToHomePage();
@@ -67,7 +67,7 @@ public class SearchTest extends BaseConfigurationTest {
             "https://jira.epam.com/jira/browse/EPMFARMATS-13128\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13132\n" +
             "https://jira.epam.com/jira/browse/EPMFARMATS-13131\n",
-            dataProvider = "positiveSearchData", groups = "positive")
+            dataProvider = "positiveSearchData", groups = {"all", "positive"})
     public void checkTheSearchFieldByPositiveSearchData(String searchCriteria) {
         String expectedResult = "iPod Classic";
         navigationService.navigateToHomePage();
@@ -78,7 +78,7 @@ public class SearchTest extends BaseConfigurationTest {
 
     @Test(description = "***SearchResultByPressingTheEnter***\n" +
             "EPMFARMATS-13138: check the search result by pressing the enter key\n" +
-            "https://jira.epam.com/jira/browse/EPMFARMATS-13138", groups = "positive")
+            "https://jira.epam.com/jira/browse/EPMFARMATS-13138", groups = {"all", "positive"})
     public void checkTheSearchResultByPressingTheEnterKey() {
         String expectedResult = "iPod Classic";
         HomePage homePage = new HomePage();
@@ -93,7 +93,7 @@ public class SearchTest extends BaseConfigurationTest {
 
     @Test(description = "***SearchResultByProductCategory***\n" +
             "EPMFARMATS-13135: check the search result by product category\n" +
-            "https://jira.epam.com/jira/browse/EPMFARMATS-13135", groups = "positive")
+            "https://jira.epam.com/jira/browse/EPMFARMATS-13135", groups = {"all", "positive"})
     public void checkTheSearchResultByProductCategory() {
         String searchCriteria = "iMac";
         navigationService.navigateToHomePage();
@@ -105,7 +105,7 @@ public class SearchTest extends BaseConfigurationTest {
 
     @Test(description = "***SearchResultByProductDescription***\n" +
             "EPMFARMATS-13134: check the search result by product description\n" +
-            "https://jira.epam.com/jira/browse/EPMFARMATS-13134", groups = "positive")
+            "https://jira.epam.com/jira/browse/EPMFARMATS-13134", groups = {"all", "positive"})
     public void checkTheSearchResultByProductDescription() {
         String searchCriteria = "iPod Classic";
         navigationService.navigateToHomePage();

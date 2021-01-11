@@ -1,10 +1,10 @@
 package ru.awesome.shop.ta.framework.ui.components;
 
 import org.openqa.selenium.*;
-import ru.awesome.shop.ta.framework.browser.Browser;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
+import ru.awesome.shop.ta.framework.browser.Browser;
 import ru.awesome.shop.ta.framework.logging.Log;
 
 import java.time.Duration;
@@ -27,14 +27,14 @@ public class CommonPageElement {
     }
 
     public static String getAttribute(By locator, String attribute) {
-        if (locator != null && attribute != null) {
-            waitForPageElementPresenceLocated(locator);
-            WebDriver wrappedDriver = Browser.getInstance().getWrappedDriver();
-            return wrappedDriver.findElement(locator).getAttribute(attribute).trim();
-        } else {
+        if (locator == null || attribute == null) {
             throw new IllegalArgumentException(String.format("Invalid price: %s, %s", LOCATOR_ERROR_MESSAGE,
                     ATTRIBUTE_ERROR_MESSAGE));
         }
+        waitForPageElementPresenceLocated(locator);
+        WebDriver wrappedDriver = Browser.getInstance().getWrappedDriver();
+        WebElement webElement = wrappedDriver.findElement(locator);
+        return webElement.getAttribute(attribute).trim();
     }
 
     public static void waitForPageElementVisibilityLocated(By locator) {
