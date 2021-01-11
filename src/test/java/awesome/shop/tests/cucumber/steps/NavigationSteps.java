@@ -35,6 +35,11 @@ public class NavigationSteps {
         navigationService.navigateToCartPage();
     }
 
+    @Given("^I have opened the registration page$")
+    public void openRegistrationPage() {
+        navigationService.navigateToAccountRegistrationPage();
+    }
+
     @Then("I should be navigated to {string} page")
     public void verifyPageTitle(String pageTitle) {
         String resultTitle = Browser.getInstance().getPageTitle();
