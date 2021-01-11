@@ -27,9 +27,11 @@ public class CommonPageElement {
     }
 
     public static String getAttribute(By locator, String attribute) {
-        if (locator == null || attribute == null) {
-            throw new IllegalArgumentException(String.format("Invalid price: %s, %s", LOCATOR_ERROR_MESSAGE,
-                    ATTRIBUTE_ERROR_MESSAGE));
+        if (locator == null) {
+            throw new IllegalArgumentException(String.format("Invalid locator: %s", LOCATOR_ERROR_MESSAGE));
+        }
+        if (attribute == null) {
+            throw new IllegalArgumentException(String.format("Invalid attribute: %s", ATTRIBUTE_ERROR_MESSAGE));
         }
         waitForPageElementPresenceLocated(locator);
         WebDriver wrappedDriver = Browser.getInstance().getWrappedDriver();
