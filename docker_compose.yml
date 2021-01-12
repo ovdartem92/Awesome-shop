@@ -36,8 +36,8 @@ services:
     environment:
       HUB_PORT_8090_TCP_ADDR: hub
       HUB_PORT_8090_TCP_PORT: 8090
-      NODE_MAX_SESSION: 2
-      NODE_MAX_INSTANCES: 2
+      NODE_MAX_SESSION: 4
+      NODE_MAX_INSTANCES: 4
     volumes:
       - /dev/shm:/dev/shm
     ports:

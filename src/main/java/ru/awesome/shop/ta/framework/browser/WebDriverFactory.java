@@ -21,18 +21,19 @@ public final class WebDriverFactory {
     public static WebDriver getWebDriver(BrowserType type) {
         WebDriver webDriver = null;
         try {
+            URL hubUrl = new URL("http:localhost:4444/wd/hub");
             switch (type) {
                 case FIREFOX:
-                    webDriver = new RemoteWebDriver(new URL("http:localhost:4444/wd/hub"), DesiredCapabilities.firefox());
+                    webDriver = new RemoteWebDriver(hubUrl, DesiredCapabilities.firefox());
                     break;
                 case CHROME:
-                    webDriver = new RemoteWebDriver(new URL("http:localhost:4444/wd/hub"), DesiredCapabilities.chrome());
+                    webDriver = new RemoteWebDriver(hubUrl, DesiredCapabilities.chrome());
                     break;
                 default:
                     throw new IllegalArgumentException(format("Unexpected browser type: %s", type));
             }
         } catch (MalformedURLException e) {
-            Log.info(e.getMessage());
+            Log.error("Malformed URL has occurred", e);
         }
         EventFiringWebDriver eventFiringWebDriver = new EventFiringWebDriver(webDriver);
         eventFiringWebDriver.register(new WebDriverListener());

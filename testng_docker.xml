@@ -1,21 +1,15 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite thread-count="3" name="SeleniumGridDocker" parallel="tests">
-    <test name="login">
+<suite thread-count="4" name="SeleniumGridDocker" parallel="classes">
+    <listeners>
+        <listener class-name="com.epam.reportportal.testng.ReportPortalTestNGListener"/>
+    </listeners>
+    <test name="all tests">
         <classes>
             <class name="awesome.shop.tests.LoginTest"/>
-        </classes>
-    </test>
-
-    <test name="cart">
-        <classes>
             <class name="awesome.shop.tests.CartTest"/>
-        </classes>
-    </test>
-
-    <test name="registration">
-        <classes>
             <class name="awesome.shop.tests.RegistrationTest"/>
+            <class name="awesome.shop.tests.SearchTest"/>
         </classes>
     </test>
 </suite>
