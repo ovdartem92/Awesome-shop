@@ -1,10 +1,10 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="Smoke" verbose="1" parallel="classes" thread-count="4">
+<suite thread-count="4" name="SeleniumGridDocker" parallel="classes">
     <listeners>
         <listener class-name="com.epam.reportportal.testng.ReportPortalTestNGListener"/>
     </listeners>
-    <test name="Smoke">
+    <test name="all tests">
         <classes>
             <class name="awesome.shop.tests.LoginTest"/>
             <class name="awesome.shop.tests.CartTest"/>

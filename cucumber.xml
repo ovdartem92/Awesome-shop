@@ -1,0 +1,12 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Cucumber" verbose="1">
+    <listeners>
+        <listener class-name="com.epam.reportportal.testng.ReportPortalTestNGListener"/>
+    </listeners>
+    <test name="Cucumber">
+        <classes>
+            <class name="ru.awesome.shop.ta.framework.runner.CucumberTestRunner"/>
+        </classes>
+    </test>
+</suite>
