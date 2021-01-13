@@ -15,11 +15,6 @@ To run Cucumber tests using Selenium Grid from command line:
 mvn -Dsurefire.suiteXmlFiles=cucumber.xml -Dcucumber.filter.tags=@TAG_NAME clean test 
 ```
 
-To run Framework project from command line:
-```
-mvn -Dbrowser=chrome -Dsurefire.suiteXmlFiles=testng-smoke.xml clean test
-```
-
 ## Default values:
 Command line pattern:
 ```
