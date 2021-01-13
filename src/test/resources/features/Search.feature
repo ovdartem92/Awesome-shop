@@ -1,5 +1,8 @@
 Feature: search
 
+  In order to ensure Search functionality works,
+  I want to run the cucumber test to verify it is working
+
   Background:
     Given I have opened home page
 

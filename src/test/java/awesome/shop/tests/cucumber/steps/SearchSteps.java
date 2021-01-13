@@ -1,14 +1,12 @@
 package awesome.shop.tests.cucumber.steps;
 
 import io.cucumber.java.DataTableType;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.testng.Assert;
 import ru.awesome.shop.ta.product.pages.SearchResultPage;
 import ru.awesome.shop.ta.product.pages.fragments.SearchFragment;
 import ru.awesome.shop.ta.product.pages.fragments.SearchResultFragment;
-import ru.awesome.shop.ta.product.services.NavigationService;
 import ru.awesome.shop.ta.product.services.SearchService;
 
 import java.util.ArrayList;

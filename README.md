@@ -1,8 +1,18 @@
 # Awesome-Shop AT-Lab 2020
 ## Setup Awesome-Shop framework
-To run Framework project from command line:
+Before running tests should run Selenium Grid with Docker with command:
 ```
-mvn -Dbrowser=chrome -Dsurefire.suiteXmlFiles=testng-smoke.xml clean test
+docker-compose -f docker-compose.yml up -d
+```
+
+To run testNG tests using Selenium Grid from command line:
+```
+mvn -Dsurefire.suiteXmlFiles=testng_docker.xml clean test 
+```
+
+To run Cucumber tests using Selenium Grid from command line:
+```
+mvn -Dsurefire.suiteXmlFiles=cucumber.xml -Dcucumber.filter.tags=@TAG_NAME clean test 
 ```
 
 ## Default values:

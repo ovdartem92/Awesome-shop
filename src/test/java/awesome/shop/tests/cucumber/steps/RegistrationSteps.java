@@ -35,11 +35,6 @@ public class RegistrationSteps {
         this.testContext = testContext;
     }
 
-    @Given("^I have opened the registration page$")
-    public void openRegistrationPage() {
-        navigationService.navigateToAccountRegistrationPage();
-    }
-
     @When("^I register with data:$")
     public void registerWithData(DataTable dataTable) {
         Map<String, String> form = dataTable.asMap(String.class, String.class);
@@ -112,7 +107,7 @@ public class RegistrationSteps {
 
     @Then("^I should see \"(.*)\" pop up window$")
     public void checkPopUpWindowTitle(String expectedTitle) {
-        Assert.assertEquals("Privacy Policy", expectedTitle, "Incorrect pop up window title");
+        Assert.assertEquals(expectedTitle, "Privacy Policy", "Incorrect pop up window title");
     }
 
     @Then("^I should see home page$")
