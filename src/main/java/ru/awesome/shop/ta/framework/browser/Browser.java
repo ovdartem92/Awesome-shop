@@ -16,7 +16,7 @@ import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 public final class Browser implements WrapsDriver {
-    private static Browser instance;
+    private static ThreadLocal<Browser> instance = new ThreadLocal<>();
     private final WebDriver wrappedDriver;
     private final String screenshotDirectoryPath;
     private static final String LOCATOR_NULL_MESSAGE = "LOCATOR cannot be null.";
@@ -32,20 +32,20 @@ public final class Browser implements WrapsDriver {
 
     public static Browser getInstance() {
         Log.debug("Getting instance of browser");
-        if (instance == null) {
-            instance = new Browser();
+        if (instance.get() == null) {
+            instance.set(new Browser());
         }
-        return instance;
+        return instance.get();
     }
 
     public void stop() {
         Log.debug("Stopping the browser");
         try {
-            if (instance != null) {
-                instance.getWrappedDriver().quit();
+            if (instance.get() != null) {
+                instance.get().getWrappedDriver().quit();
             }
         } finally {
-            instance = null; //NOSONAR
+            instance.set(null); //NOSONAR
         }
     }
 
