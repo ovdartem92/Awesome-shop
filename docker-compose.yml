@@ -4,7 +4,7 @@ services:
   hub:
     image: selenium/hub
     ports:
-      - "8090:8090"
+      - "4444:4444"
 
     environment:
       GRID_MAX_SESSION: 16
@@ -17,8 +17,8 @@ services:
     depends_on:
       - hub
     environment:
-      HUB_PORT_8090_TCP_ADDR: hub
-      HUB_PORT_8090_TCP_PORT: 8090
+      HUB_PORT_4444_TCP_ADDR: hub
+      HUB_PORT_4444_TCP_PORT: 4444
       NODE_MAX_SESSION: 4
       NODE_MAX_INSTANCES: 4
     volumes:
@@ -34,8 +34,8 @@ services:
     depends_on:
       - hub
     environment:
-      HUB_PORT_8090_TCP_ADDR: hub
-      HUB_PORT_8090_TCP_PORT: 8090
+      HUB_PORT_4444_TCP_ADDR: hub
+      HUB_PORT_4444_TCP_PORT: 4444
       NODE_MAX_SESSION: 4
       NODE_MAX_INSTANCES: 4
     volumes:
