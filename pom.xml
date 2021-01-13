@@ -62,7 +62,7 @@
                 <version>2.19.1</version>
                 <configuration>
                     <suiteXmlFiles>
-                        <suiteXmlFile>testng-smoke.xml</suiteXmlFile>
+                        <suiteXmlFile>testng_selenium_grid.xml</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
             </plugin>

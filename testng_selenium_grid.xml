@@ -1,6 +1,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite thread-count="2" name="SeleniumGridDocker" parallel="classes">
+<suite thread-count="4" name="SeleniumGridDocker" parallel="classes">
     <listeners>
         <listener class-name="com.epam.reportportal.testng.ReportPortalTestNGListener"/>
     </listeners>
