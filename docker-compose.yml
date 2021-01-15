@@ -1,6 +1,12 @@
 version: "3.8"
 services:
 
+  sonarqube:
+    image: sonarqube:latest
+    restart: unless-stopped
+    ports:
+      - "9000:9000"
+
   hub:
     image: selenium/hub
     ports:
