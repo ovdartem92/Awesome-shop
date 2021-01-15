@@ -32,7 +32,7 @@ Feature: Registration Functionality Feature
   @registration @positive @all @smoke
   Scenario: Registration as a valid user
     When I am registering as a user with the consent to the license agreement is "true"
-    Then I should see home page
+    Then I should see a title with successful registration
 
   @registration @positive @all
   Scenario: Registration with an already registered email

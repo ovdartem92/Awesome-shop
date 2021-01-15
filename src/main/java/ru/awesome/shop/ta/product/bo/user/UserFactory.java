@@ -12,7 +12,6 @@ public final class UserFactory {
     private static final String FIRST_NAME = RandomStringUtils.randomAlphabetic(START_INCLUSIVE, END_EXCLUSIVE);
     private static final String LAST_NAME = RandomStringUtils.randomAlphabetic(START_INCLUSIVE, END_EXCLUSIVE);
     private static final String COMPANY = RandomStringUtils.randomAlphabetic(START_INCLUSIVE, END_EXCLUSIVE);
-    private static final Credentials VALID_CREDENTIALS = CredentialsFactory.generateValidCredentials();
     private static final ContactInfo VALID_CONTACT_INFO = ContactInfoFactory.generateValidContactInfo();
 
     private UserFactory() {
@@ -32,19 +31,22 @@ public final class UserFactory {
     }
 
     public static User generateValidUser() {
-        return new User.Builder(VALID_CREDENTIALS).firstName(FIRST_NAME).lastName(LAST_NAME)
+        Credentials validCredentials = CredentialsFactory.generateValidCredentials();
+        return new User.Builder(validCredentials).firstName(FIRST_NAME).lastName(LAST_NAME)
                 .companyName(COMPANY).contactInfo(VALID_CONTACT_INFO).build();
     }
 
     public static User generateUserWithInvalidFirstName() {
+        Credentials validCredentials = CredentialsFactory.generateValidCredentials();
         String invalidFirstName = RandomStringUtils.randomAscii(START_INCLUSIVE, END_EXCLUSIVE);
-        return new User.Builder(VALID_CREDENTIALS).firstName(invalidFirstName).lastName(LAST_NAME)
+        return new User.Builder(validCredentials).firstName(invalidFirstName).lastName(LAST_NAME)
                 .companyName(COMPANY).contactInfo(VALID_CONTACT_INFO).build();
     }
 
     public static User generateUserWithInvalidLastName() {
+        Credentials validCredentials = CredentialsFactory.generateValidCredentials();
         String invalidLastName = RandomStringUtils.randomAscii(START_INCLUSIVE, END_EXCLUSIVE);
-        return new User.Builder(VALID_CREDENTIALS).firstName(FIRST_NAME).lastName(invalidLastName)
+        return new User.Builder(validCredentials).firstName(FIRST_NAME).lastName(invalidLastName)
                 .companyName(COMPANY).contactInfo(VALID_CONTACT_INFO).build();
     }
 
@@ -61,14 +63,16 @@ public final class UserFactory {
     }
 
     public static User generateUserWithInvalidTelephone() {
+        Credentials validCredentials = CredentialsFactory.generateValidCredentials();
         ContactInfo contactInfoWithInvalidTelephone = ContactInfoFactory.generateContactInfoWithInvalidTelephone();
-        return new User.Builder(VALID_CREDENTIALS).firstName(FIRST_NAME).lastName(LAST_NAME)
+        return new User.Builder(validCredentials).firstName(FIRST_NAME).lastName(LAST_NAME)
                 .companyName(COMPANY).contactInfo(contactInfoWithInvalidTelephone).build();
     }
 
     public static User generateUserWithInvalidCity() {
+        Credentials validCredentials = CredentialsFactory.generateValidCredentials();
         ContactInfo contactInfoWithInvalidCity = ContactInfoFactory.generateContactInfoWithInvalidCity();
-        return new User.Builder(VALID_CREDENTIALS).firstName(FIRST_NAME).lastName(LAST_NAME)
+        return new User.Builder(validCredentials).firstName(FIRST_NAME).lastName(LAST_NAME)
                 .companyName(COMPANY).contactInfo(contactInfoWithInvalidCity).build();
     }
 }

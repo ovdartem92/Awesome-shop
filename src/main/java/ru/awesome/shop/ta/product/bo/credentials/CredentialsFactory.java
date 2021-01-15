@@ -20,7 +20,9 @@ public final class CredentialsFactory {
     }
 
     public static Credentials generateValidCredentials() {
-        return new Credentials(EMAIL, PASSWORD);
+        String validEmail = RandomStringUtils.randomAlphanumeric(START_INCLUSIVE, END_EXCLUSIVE).concat(DOMAIN);
+        String validPassword = RandomStringUtils.randomAlphanumeric(START_INCLUSIVE, END_EXCLUSIVE);
+        return new Credentials(validEmail, validPassword);
     }
 
     public static Credentials generateEmptyCredentials() {
