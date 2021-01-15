@@ -17,7 +17,6 @@ import ru.awesome.shop.ta.product.services.AccountRegistrationService;
 public class RegistrationTest extends BaseConfigurationTest {
     private final AccountRegistrationPage accountRegistrationPage = new AccountRegistrationPage();
     private final AccountRegistrationService accountRegistrationService = new AccountRegistrationService();
-    private final User validUser = UserFactory.generateValidUser();
 
     @DataProvider(name = "userWithInvalidProperty")
     public Object[][] getUserWithInvalidProperty() {
@@ -85,6 +84,7 @@ public class RegistrationTest extends BaseConfigurationTest {
             "https://jira.epam.com/jira/browse/EPMFARMATS-13155\n",
             groups = {"all", "positive"})
     public void checkSuccessfulUserRegistration() throws RegistrationException {
+        User validUser = UserFactory.generateValidUser();
         accountRegistrationService.register(validUser);
     }
 
@@ -94,6 +94,7 @@ public class RegistrationTest extends BaseConfigurationTest {
             expectedExceptions = {RegistrationException.class},
             groups = {"all", "positive"})
     public void checkAppearanceEmailAlreadyRegisteredWarning() throws RegistrationException {
+        User validUser = UserFactory.generateValidUser();
         String validFirstName = validUser.getFirstName();
         String validLastName = validUser.getLastName();
         String validCompanyName = validUser.getCompanyName();
@@ -114,6 +115,7 @@ public class RegistrationTest extends BaseConfigurationTest {
             expectedExceptions = {RegistrationException.class},
             groups = {"all", "positive"})
     public void checkAppearancePrivacyPolicyWarning() throws RegistrationException {
+        User validUser = UserFactory.generateValidUser();
         accountRegistrationService.register(validUser, false, false);
         Assert.assertEquals(accountRegistrationPage.getDangerMessage(), "Warning: You must agree to the Privacy Policy!");
     }
