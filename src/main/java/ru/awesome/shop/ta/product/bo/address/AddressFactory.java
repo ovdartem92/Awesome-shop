@@ -1,7 +1,6 @@
 package ru.awesome.shop.ta.product.bo.address;
 
 import org.apache.commons.lang3.RandomStringUtils;
-import org.apache.commons.lang3.RandomUtils;
 
 import java.security.SecureRandom;
 import java.util.Arrays;
@@ -11,35 +10,29 @@ import java.util.Random;
 import static java.lang.String.format;
 
 public final class AddressFactory {
-    private static final int START_INCLUSIVE = 3;
-    private static final int END_EXCLUSIVE = 10;
+    private static final int LOCATION_START_INCLUSIVE = 3;
+    private static final int LOCATION_END_EXCLUSIVE = 128;
+    private static final int POSTCODE_START_INCLUSIVE = 2;
+    private static final int POSTCODE_END_EXCLUSIVE = 10;
 
     private AddressFactory() {
         throw new AssertionError(format("Creation of instance of %s is prohibited.", AddressFactory.class));
     }
 
     public static Address generateValidAddress() {
-        int firstAddressLength = RandomUtils.nextInt(START_INCLUSIVE, END_EXCLUSIVE);
-        int secondAddressLength = RandomUtils.nextInt(START_INCLUSIVE, END_EXCLUSIVE);
-        int cityLength = RandomUtils.nextInt(START_INCLUSIVE, END_EXCLUSIVE);
-        int postCodeLength = RandomUtils.nextInt(START_INCLUSIVE, END_EXCLUSIVE);
-        String firstAddress = RandomStringUtils.randomAlphanumeric(firstAddressLength);
-        String secondAddress = RandomStringUtils.randomAlphanumeric(secondAddressLength);
-        String city = RandomStringUtils.randomAlphabetic(cityLength);
-        String postcode = RandomStringUtils.randomNumeric(postCodeLength);
+        String firstAddress = RandomStringUtils.randomAlphanumeric(LOCATION_START_INCLUSIVE, LOCATION_END_EXCLUSIVE);
+        String secondAddress = RandomStringUtils.randomAlphanumeric(LOCATION_START_INCLUSIVE, LOCATION_END_EXCLUSIVE);
+        String city = RandomStringUtils.randomAlphabetic(LOCATION_START_INCLUSIVE, LOCATION_END_EXCLUSIVE);
+        String postcode = RandomStringUtils.randomNumeric(POSTCODE_START_INCLUSIVE, POSTCODE_END_EXCLUSIVE);
         Region region = generateRegion();
         return new Address(firstAddress, secondAddress, city, postcode, region);
     }
 
     public static Address generateAddressWithInvalidCity() {
-        int firstAddressLength = RandomUtils.nextInt(START_INCLUSIVE, END_EXCLUSIVE);
-        int secondAddressLength = RandomUtils.nextInt(START_INCLUSIVE, END_EXCLUSIVE);
-        int cityLength = RandomUtils.nextInt(START_INCLUSIVE, END_EXCLUSIVE);
-        int postCodeLength = RandomUtils.nextInt(START_INCLUSIVE, END_EXCLUSIVE);
-        String firstAddress = RandomStringUtils.randomAlphanumeric(firstAddressLength);
-        String secondAddress = RandomStringUtils.randomAlphanumeric(secondAddressLength);
-        String invalidCity = RandomStringUtils.randomAscii(cityLength);
-        String postcode = RandomStringUtils.randomNumeric(postCodeLength);
+        String firstAddress = RandomStringUtils.randomAlphanumeric(LOCATION_START_INCLUSIVE, LOCATION_END_EXCLUSIVE);
+        String secondAddress = RandomStringUtils.randomAlphanumeric(LOCATION_START_INCLUSIVE, LOCATION_END_EXCLUSIVE);
+        String invalidCity = RandomStringUtils.randomAscii(LOCATION_START_INCLUSIVE, LOCATION_END_EXCLUSIVE);
+        String postcode = RandomStringUtils.randomNumeric(POSTCODE_START_INCLUSIVE, POSTCODE_END_EXCLUSIVE);
         Region region = generateRegion();
         return new Address(firstAddress, secondAddress, invalidCity, postcode, region);
     }
