@@ -24,9 +24,11 @@ public final class Browser implements WrapsDriver {
     private Browser() {
         BrowserType browserType = BrowserType.valueOf(System.getProperty("browser",
                 TestDataReader.getStageData("browser")).toUpperCase());
+        String executionProperty = System.getProperty("grid", "false");
+        Boolean isGridExecution = executionProperty.equals("true");
         screenshotDirectoryPath = DirectoryGenerator.create("./target/screenshots");
         Log.debug("Creating instance of WebDriver for " + browserType);
-        wrappedDriver = WebDriverFactory.getWebDriver(browserType);
+        wrappedDriver = WebDriverFactory.getWebDriver(browserType, isGridExecution);
         wrappedDriver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
     }
 
