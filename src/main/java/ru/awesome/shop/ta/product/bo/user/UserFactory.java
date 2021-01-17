@@ -7,68 +7,102 @@ import ru.awesome.shop.ta.product.bo.credentials.Credentials;
 import ru.awesome.shop.ta.product.bo.credentials.CredentialsFactory;
 
 public final class UserFactory {
-    private static final int START_INCLUSIVE = 5;
-    private static final int END_EXCLUSIVE = 15;
-    private static final String FIRST_NAME = RandomStringUtils.randomAlphabetic(START_INCLUSIVE, END_EXCLUSIVE);
-    private static final String LAST_NAME = RandomStringUtils.randomAlphabetic(START_INCLUSIVE, END_EXCLUSIVE);
-    private static final String COMPANY = RandomStringUtils.randomAlphabetic(START_INCLUSIVE, END_EXCLUSIVE);
-    private static final Credentials VALID_CREDENTIALS = CredentialsFactory.generateValidCredentials();
-    private static final ContactInfo VALID_CONTACT_INFO = ContactInfoFactory.generateValidContactInfo();
+    private static final int NAME_START_INCLUSIVE = 1;
+    private static final int NAME_END_EXCLUSIVE = 32;
 
     private UserFactory() {
         throw new AssertionError(String.format("Creation of instance of %s is prohibited.", UserFactory.class));
     }
 
     public static User generateUserWithRegisteredCredentialsWithInvalidEmail() {
-        Credentials registeredCredentials = CredentialsFactory.generateRegisteredCredentialsWithInvalidEmail();
-        return new User.Builder(registeredCredentials).firstName(FIRST_NAME).lastName(LAST_NAME)
-                .companyName(COMPANY).contactInfo(VALID_CONTACT_INFO).build();
+        Credentials registeredCredentialsWithInvalidEmail = CredentialsFactory
+                .generateRegisteredCredentialsWithInvalidEmail();
+        String firstName = RandomStringUtils.randomAlphabetic(NAME_START_INCLUSIVE, NAME_END_EXCLUSIVE);
+        String lastName = RandomStringUtils.randomAlphabetic(NAME_START_INCLUSIVE, NAME_END_EXCLUSIVE);
+        String company = RandomStringUtils.randomAlphabetic(NAME_START_INCLUSIVE, NAME_END_EXCLUSIVE);
+        ContactInfo contactInfo = ContactInfoFactory.generateValidContactInfo();
+        return new User.Builder(registeredCredentialsWithInvalidEmail).firstName(firstName).lastName(lastName)
+                .companyName(company).contactInfo(contactInfo).build();
     }
 
     public static User generateUserWithRegisteredCredentialsWithInvalidPassword() {
-        Credentials registeredCredentials = CredentialsFactory.generateRegisteredCredentialsWithInvalidPassword();
-        return new User.Builder(registeredCredentials).firstName(FIRST_NAME).lastName(LAST_NAME)
-                .companyName(COMPANY).contactInfo(VALID_CONTACT_INFO).build();
+        Credentials registeredCredentialsWithInvalidPassword = CredentialsFactory
+                .generateRegisteredCredentialsWithInvalidPassword();
+        String firstName = RandomStringUtils.randomAlphabetic(NAME_START_INCLUSIVE, NAME_END_EXCLUSIVE);
+        String lastName = RandomStringUtils.randomAlphabetic(NAME_START_INCLUSIVE, NAME_END_EXCLUSIVE);
+        String company = RandomStringUtils.randomAlphabetic(NAME_START_INCLUSIVE, NAME_END_EXCLUSIVE);
+        ContactInfo contactInfo = ContactInfoFactory.generateValidContactInfo();
+        return new User.Builder(registeredCredentialsWithInvalidPassword).firstName(firstName).lastName(lastName)
+                .companyName(company).contactInfo(contactInfo).build();
     }
 
     public static User generateValidUser() {
-        return new User.Builder(VALID_CREDENTIALS).firstName(FIRST_NAME).lastName(LAST_NAME)
-                .companyName(COMPANY).contactInfo(VALID_CONTACT_INFO).build();
+        Credentials validCredentials = CredentialsFactory.generateValidCredentials();
+        String firstName = RandomStringUtils.randomAlphabetic(NAME_START_INCLUSIVE, NAME_END_EXCLUSIVE);
+        String lastName = RandomStringUtils.randomAlphabetic(NAME_START_INCLUSIVE, NAME_END_EXCLUSIVE);
+        String company = RandomStringUtils.randomAlphabetic(NAME_START_INCLUSIVE, NAME_END_EXCLUSIVE);
+        ContactInfo contactInfo = ContactInfoFactory.generateValidContactInfo();
+        return new User.Builder(validCredentials).firstName(firstName).lastName(lastName)
+                .companyName(company).contactInfo(contactInfo).build();
     }
 
     public static User generateUserWithInvalidFirstName() {
-        String invalidFirstName = RandomStringUtils.randomAscii(START_INCLUSIVE, END_EXCLUSIVE);
-        return new User.Builder(VALID_CREDENTIALS).firstName(invalidFirstName).lastName(LAST_NAME)
-                .companyName(COMPANY).contactInfo(VALID_CONTACT_INFO).build();
+        Credentials validCredentials = CredentialsFactory.generateValidCredentials();
+        String invalidFirstName = RandomStringUtils.randomAscii(NAME_START_INCLUSIVE, NAME_END_EXCLUSIVE);
+        String lastName = RandomStringUtils.randomAlphabetic(NAME_START_INCLUSIVE, NAME_END_EXCLUSIVE);
+        String company = RandomStringUtils.randomAlphabetic(NAME_START_INCLUSIVE, NAME_END_EXCLUSIVE);
+        ContactInfo contactInfo = ContactInfoFactory.generateValidContactInfo();
+        return new User.Builder(validCredentials).firstName(invalidFirstName).lastName(lastName)
+                .companyName(company).contactInfo(contactInfo).build();
     }
 
     public static User generateUserWithInvalidLastName() {
-        String invalidLastName = RandomStringUtils.randomAscii(START_INCLUSIVE, END_EXCLUSIVE);
-        return new User.Builder(VALID_CREDENTIALS).firstName(FIRST_NAME).lastName(invalidLastName)
-                .companyName(COMPANY).contactInfo(VALID_CONTACT_INFO).build();
+        Credentials validCredentials = CredentialsFactory.generateValidCredentials();
+        String firstName = RandomStringUtils.randomAlphabetic(NAME_START_INCLUSIVE, NAME_END_EXCLUSIVE);
+        String invalidLastName = RandomStringUtils.randomAlphabetic(NAME_START_INCLUSIVE, NAME_END_EXCLUSIVE);
+        String company = RandomStringUtils.randomAlphabetic(NAME_START_INCLUSIVE, NAME_END_EXCLUSIVE);
+        ContactInfo contactInfo = ContactInfoFactory.generateValidContactInfo();
+        return new User.Builder(validCredentials).firstName(firstName).lastName(invalidLastName)
+                .companyName(company).contactInfo(contactInfo).build();
     }
 
     public static User generateUserWithInvalidPassword() {
         Credentials credentialsWithInvalidPassword = CredentialsFactory.generateCredentialsWithInvalidPassword();
-        return new User.Builder(credentialsWithInvalidPassword).firstName(FIRST_NAME).lastName(LAST_NAME)
-                .companyName(COMPANY).contactInfo(VALID_CONTACT_INFO).build();
+        String firstName = RandomStringUtils.randomAlphabetic(NAME_START_INCLUSIVE, NAME_END_EXCLUSIVE);
+        String lastName = RandomStringUtils.randomAlphabetic(NAME_START_INCLUSIVE, NAME_END_EXCLUSIVE);
+        String company = RandomStringUtils.randomAlphabetic(NAME_START_INCLUSIVE, NAME_END_EXCLUSIVE);
+        ContactInfo contactInfo = ContactInfoFactory.generateValidContactInfo();
+        return new User.Builder(credentialsWithInvalidPassword).firstName(firstName).lastName(lastName)
+                .companyName(company).contactInfo(contactInfo).build();
     }
 
     public static User generateUserWithInvalidEmail() {
         Credentials credentialsWithInvalidEmail = CredentialsFactory.generateCredentialsWithInvalidEmail();
-        return new User.Builder(credentialsWithInvalidEmail).firstName(FIRST_NAME).lastName(LAST_NAME)
-                .companyName(COMPANY).contactInfo(VALID_CONTACT_INFO).build();
+        String firstName = RandomStringUtils.randomAlphabetic(NAME_START_INCLUSIVE, NAME_END_EXCLUSIVE);
+        String lastName = RandomStringUtils.randomAlphabetic(NAME_START_INCLUSIVE, NAME_END_EXCLUSIVE);
+        String company = RandomStringUtils.randomAlphabetic(NAME_START_INCLUSIVE, NAME_END_EXCLUSIVE);
+        ContactInfo contactInfo = ContactInfoFactory.generateValidContactInfo();
+        return new User.Builder(credentialsWithInvalidEmail).firstName(firstName).lastName(lastName)
+                .companyName(company).contactInfo(contactInfo).build();
     }
 
     public static User generateUserWithInvalidTelephone() {
+        Credentials validCredentials = CredentialsFactory.generateValidCredentials();
+        String firstName = RandomStringUtils.randomAlphabetic(NAME_START_INCLUSIVE, NAME_END_EXCLUSIVE);
+        String lastName = RandomStringUtils.randomAlphabetic(NAME_START_INCLUSIVE, NAME_END_EXCLUSIVE);
+        String company = RandomStringUtils.randomAlphabetic(NAME_START_INCLUSIVE, NAME_END_EXCLUSIVE);
         ContactInfo contactInfoWithInvalidTelephone = ContactInfoFactory.generateContactInfoWithInvalidTelephone();
-        return new User.Builder(VALID_CREDENTIALS).firstName(FIRST_NAME).lastName(LAST_NAME)
-                .companyName(COMPANY).contactInfo(contactInfoWithInvalidTelephone).build();
+        return new User.Builder(validCredentials).firstName(firstName).lastName(lastName)
+                .companyName(company).contactInfo(contactInfoWithInvalidTelephone).build();
     }
 
     public static User generateUserWithInvalidCity() {
+        Credentials validCredentials = CredentialsFactory.generateValidCredentials();
+        String firstName = RandomStringUtils.randomAlphabetic(NAME_START_INCLUSIVE, NAME_END_EXCLUSIVE);
+        String lastName = RandomStringUtils.randomAlphabetic(NAME_START_INCLUSIVE, NAME_END_EXCLUSIVE);
+        String company = RandomStringUtils.randomAlphabetic(NAME_START_INCLUSIVE, NAME_END_EXCLUSIVE);
         ContactInfo contactInfoWithInvalidCity = ContactInfoFactory.generateContactInfoWithInvalidCity();
-        return new User.Builder(VALID_CREDENTIALS).firstName(FIRST_NAME).lastName(LAST_NAME)
-                .companyName(COMPANY).contactInfo(contactInfoWithInvalidCity).build();
+        return new User.Builder(validCredentials).firstName(firstName).lastName(lastName)
+                .companyName(company).contactInfo(contactInfoWithInvalidCity).build();
     }
 }

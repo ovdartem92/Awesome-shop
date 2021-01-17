@@ -71,11 +71,10 @@ public class RegistrationSteps {
 
         try {
             accountRegistrationService.register(user);
-        } catch (
-                RegistrationException ex) {
+        } catch (RegistrationException ex) {
             String errorMessage = ex.getMessage();
             String[] split = errorMessage.split(":");
-            testContext.setErrorMessage(split[0]);
+            testContext.setErrorMessage(split[0].trim());
         }
     }
 
@@ -110,7 +109,7 @@ public class RegistrationSteps {
         Assert.assertEquals(expectedTitle, "Privacy Policy", "Incorrect pop up window title");
     }
 
-    @Then("^I should see home page$")
+    @Then("^I should see a title with successful registration$")
     public void checkPageTitle() {
         Assert.assertEquals(successfulRegistrationPage.getPageTitle(), "Your Account Has Been Created!",
                 "Incorrect page title");

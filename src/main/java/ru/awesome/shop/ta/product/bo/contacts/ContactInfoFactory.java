@@ -7,27 +7,31 @@ import ru.awesome.shop.ta.product.bo.address.AddressFactory;
 import static java.lang.String.format;
 
 public final class ContactInfoFactory {
-    private static final int START_INCLUSIVE = 6;
-    private static final int END_EXCLUSIVE = 13;
-    private static final String TELEPHONE_NUMBER = RandomStringUtils.randomNumeric(START_INCLUSIVE, END_EXCLUSIVE);
-    private static final String FAX_NUMBER = RandomStringUtils.randomNumeric(START_INCLUSIVE, END_EXCLUSIVE);
-    private static final Address VALID_ADDRESS = AddressFactory.generateValidAddress();
+    private static final int TELEPHONE_START_INCLUSIVE = 3;
+    private static final int TELEPHONE_END_EXCLUSIVE = 32;
 
     private ContactInfoFactory() {
         throw new AssertionError(format("Creation of instance of %s is prohibited.", ContactInfoFactory.class));
     }
 
     public static ContactInfo generateValidContactInfo() {
-        return new ContactInfo(TELEPHONE_NUMBER, FAX_NUMBER, VALID_ADDRESS);
+        String telephoneNumber = RandomStringUtils.randomNumeric(TELEPHONE_START_INCLUSIVE, TELEPHONE_END_EXCLUSIVE);
+        String faxNumber = RandomStringUtils.randomNumeric(TELEPHONE_START_INCLUSIVE, TELEPHONE_END_EXCLUSIVE);
+        Address address = AddressFactory.generateValidAddress();
+        return new ContactInfo(telephoneNumber, faxNumber, address);
     }
 
     public static ContactInfo generateContactInfoWithInvalidTelephone() {
-        String invalidTelephone = RandomStringUtils.randomAscii(START_INCLUSIVE, END_EXCLUSIVE);
-        return new ContactInfo(invalidTelephone, FAX_NUMBER, VALID_ADDRESS);
+        String invalidTelephone = RandomStringUtils.randomAscii(TELEPHONE_START_INCLUSIVE, TELEPHONE_END_EXCLUSIVE);
+        String faxNumber = RandomStringUtils.randomNumeric(TELEPHONE_START_INCLUSIVE, TELEPHONE_END_EXCLUSIVE);
+        Address address = AddressFactory.generateValidAddress();
+        return new ContactInfo(invalidTelephone, faxNumber, address);
     }
 
     public static ContactInfo generateContactInfoWithInvalidCity() {
+        String telephoneNumber = RandomStringUtils.randomNumeric(TELEPHONE_START_INCLUSIVE, TELEPHONE_END_EXCLUSIVE);
+        String faxNumber = RandomStringUtils.randomNumeric(TELEPHONE_START_INCLUSIVE, TELEPHONE_END_EXCLUSIVE);
         Address addressWithInvalidCity = AddressFactory.generateAddressWithInvalidCity();
-        return new ContactInfo(TELEPHONE_NUMBER, FAX_NUMBER, addressWithInvalidCity);
+        return new ContactInfo(telephoneNumber, faxNumber, addressWithInvalidCity);
     }
 }
