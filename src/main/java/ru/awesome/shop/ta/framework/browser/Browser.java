@@ -47,7 +47,7 @@ public final class Browser implements WrapsDriver {
                 instance.get().getWrappedDriver().quit();
             }
         } finally {
-            instance.set(null); //NOSONAR
+            instance.remove();
         }
     }
 
