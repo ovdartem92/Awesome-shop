@@ -81,7 +81,7 @@ public class WebDriverListener implements WebDriverEventListener {
 
     @Override
     public void beforeClickOn(WebElement webElement, WebDriver webDriver) {
-        Log.info(String.format("Before click on web element %s", webElement));
+        Log.debug(String.format("Before click on web element %s", webElement));
     }
 
     @Override
@@ -97,7 +97,7 @@ public class WebDriverListener implements WebDriverEventListener {
                 sb.append(charSequence);
                 sb.append(" ");
             }
-            Log.info(String.format("Before change of value of %s using %s", webElement, sb));
+            Log.debug(String.format("Before change of value of %s using %s", webElement, sb));
         }
     }
 
