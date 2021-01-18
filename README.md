@@ -26,7 +26,8 @@ mvn -Dbrowser=${browser} -Dsurefire.suiteXmlFiles=${surefire.suiteXmlFiles}
   - chrome
   - firefox
 * surefire.suiteXmlFiles
-  - testng-smoke.xml
+  - cucumber.xml
+  - testng_selenium_grid.xml
   - testng-all.xml
 * cucumber.filter.tags
   - cart
