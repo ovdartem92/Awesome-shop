@@ -21,13 +21,13 @@ public final class WebDriverFactory {
         throw new AssertionError(format("Creation of instance of %s is prohibited.", WebDriverFactory.class));
     }
 
-    public static WebDriver getWebDriver(BrowserType type, Boolean isGridExecution) {
+    public static WebDriver getWebDriver(BrowserType type, boolean isSeleniumGridEnabled) {
         WebDriver webDriver = null;
         try {
             URL hubUrl = new URL("http:localhost:4444/wd/hub");
             switch (type) {
                 case FIREFOX:
-                    if (isGridExecution) {
+                    if (isSeleniumGridEnabled) {
                         webDriver = new RemoteWebDriver(hubUrl, DesiredCapabilities.firefox());
                     } else {
                         WebDriverManager.firefoxdriver().setup();
@@ -35,7 +35,7 @@ public final class WebDriverFactory {
                     }
                     break;
                 case CHROME:
-                    if (isGridExecution) {
+                    if (isSeleniumGridEnabled) {
                         webDriver = new RemoteWebDriver(hubUrl, DesiredCapabilities.chrome());
                     } else {
                         WebDriverManager.chromedriver().setup();
