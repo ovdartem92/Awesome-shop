@@ -24,9 +24,11 @@ public final class Browser implements WrapsDriver {
     private Browser() {
         BrowserType browserType = BrowserType.valueOf(System.getProperty("browser",
                 TestDataReader.getStageData("browser")).toUpperCase());
+        String executionProperty = System.getProperty("grid", "false");
+        boolean isSeleniumGridEnabled = executionProperty.equals("true");
         screenshotDirectoryPath = DirectoryGenerator.create("./target/screenshots");
         Log.debug("Creating instance of WebDriver for " + browserType);
-        wrappedDriver = WebDriverFactory.getWebDriver(browserType);
+        wrappedDriver = WebDriverFactory.getWebDriver(browserType, isSeleniumGridEnabled);
         wrappedDriver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
     }
 
@@ -45,7 +47,7 @@ public final class Browser implements WrapsDriver {
                 instance.get().getWrappedDriver().quit();
             }
         } finally {
-            instance.set(null); //NOSONAR
+            instance.remove();
         }
     }
 
