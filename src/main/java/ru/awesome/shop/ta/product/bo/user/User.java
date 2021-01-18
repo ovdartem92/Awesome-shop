@@ -1,9 +1,12 @@
 package ru.awesome.shop.ta.product.bo.user;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import ru.awesome.shop.ta.product.bo.address.Address;
 import ru.awesome.shop.ta.product.bo.address.Region;
 import ru.awesome.shop.ta.product.bo.contacts.ContactInfo;
 import ru.awesome.shop.ta.product.bo.credentials.Credentials;
+import ru.awesome.shop.ta.utils.JsonRepresentation;
 
 public final class User {
     private final Credentials credentials;
@@ -90,5 +93,45 @@ public final class User {
         public User build() {
             return new User(this);
         }
+    }
+
+    @Override
+    public int hashCode() {
+        final int firstPrime = 91;
+        final int secondPrime = 11;
+        return new HashCodeBuilder(firstPrime, secondPrime)
+                .append(credentials)
+                .append(firstName)
+                .append(lastName)
+                .append(companyName)
+                .append(contactInfo)
+                .toHashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (obj == this) {
+            return true;
+        }
+        if (obj.getClass() != this.getClass()) {
+            return false;
+        }
+        User other = (User) obj;
+        return new EqualsBuilder()
+                .appendSuper(super.equals(obj))
+                .append(credentials, other.credentials)
+                .append(firstName, other.firstName)
+                .append(lastName, other.lastName)
+                .append(companyName, other.companyName)
+                .append(contactInfo, other.contactInfo)
+                .isEquals();
+    }
+
+    @Override
+    public String toString() {
+        return JsonRepresentation.convertToJson(this);
     }
 }
