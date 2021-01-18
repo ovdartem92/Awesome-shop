@@ -97,8 +97,8 @@ public final class User {
 
     @Override
     public int hashCode() {
-        final int firstPrime = 91;
-        final int secondPrime = 11;
+        final int firstPrime = 11;
+        final int secondPrime = 83;
         return new HashCodeBuilder(firstPrime, secondPrime)
                 .append(credentials)
                 .append(firstName)

@@ -43,7 +43,7 @@ public final class Address {
     @Override
     public int hashCode() {
         final int firstPrime = 17;
-        final int secondPrime = 35;
+        final int secondPrime = 37;
         return new HashCodeBuilder(firstPrime, secondPrime)
                 .append(firstAddress)
                 .append(secondAddress)

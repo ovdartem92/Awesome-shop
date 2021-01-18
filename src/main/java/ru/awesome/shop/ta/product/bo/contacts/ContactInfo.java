@@ -32,8 +32,8 @@ public final class ContactInfo {
 
     @Override
     public int hashCode() {
-        final int firstPrime = 27;
-        final int secondPrime = 55;
+        final int firstPrime = 61;
+        final int secondPrime = 23;
         return new HashCodeBuilder(firstPrime, secondPrime)
                 .append(telephoneNumber)
                 .append(faxNumber)

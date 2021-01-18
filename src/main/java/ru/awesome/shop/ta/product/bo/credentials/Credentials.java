@@ -23,8 +23,8 @@ public final class Credentials {
 
     @Override
     public int hashCode() {
-        final int firstPrime = 45;
-        final int secondPrime = 87;
+        final int firstPrime = 29;
+        final int secondPrime = 73;
         return new HashCodeBuilder(firstPrime, secondPrime)
                 .append(email)
                 .append(password)
