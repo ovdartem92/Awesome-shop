@@ -7,7 +7,7 @@ docker-compose -f docker-compose.yml up -d
 
 To run testNG tests using Selenium Grid from command line:
 ```
-mvn -Dsurefire.suiteXmlFiles=testng_docker.xml clean test 
+mvn -Dsurefire.suiteXmlFiles=testng_selenium_grid.xml clean test 
 ```
 
 To run Cucumber tests using Selenium Grid from command line:
