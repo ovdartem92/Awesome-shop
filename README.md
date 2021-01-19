@@ -13,7 +13,7 @@ docker-compose -f docker-compose.yml up -d
 To run **testNG** tests using Selenium Grid from command line:
 
 ```
-mvn -Dsurefire.suiteXmlFiles=testng_selenium_grid.xml -Dgrid=true clean test
+mvn -Dsurefire.suiteXmlFiles=testng.xml -Dgrid=true clean test
 ```
 
 To run **Cucumber** tests using Selenium Grid from command line:
@@ -27,7 +27,7 @@ mvn -Dsurefire.suiteXmlFiles=cucumber.xml -Dcucumber.filter.tags=@${cucumber.fil
 To run **testNG** tests in parallel from command line:
 
 ```
-mvn -Dsurefire.suiteXmlFiles=testng_selenium_grid.xml clean test
+mvn -Dsurefire.suiteXmlFiles=testng.xml clean test
 ```
 
 To run **Cucumber** tests in parallel from command line:
@@ -59,9 +59,8 @@ mvn -Dbrowser=${browser} -Dsurefire.suiteXmlFiles=${surefire.suiteXmlFiles}
   - chrome
   - firefox
 * surefire.suiteXmlFiles
-  - testng_selenium_grid.xml
+  - testng.xml
   - cucumber.xml
-  - testng-all.xml
 * grid
   - false
   - true
