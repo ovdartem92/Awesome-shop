@@ -4,7 +4,7 @@
     <listeners>
         <listener class-name="com.epam.reportportal.testng.ReportPortalTestNGListener"/>
     </listeners>
-    <test name="all tests">
+    <test name="TestNG">
         <classes>
             <class name="awesome.shop.tests.LoginTest"/>
             <class name="awesome.shop.tests.CartTest"/>
