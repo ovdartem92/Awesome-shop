@@ -12,7 +12,7 @@ mvn -Dsurefire.suiteXmlFiles=testng_selenium_grid.xml -Dgrid=true clean test
 
 To run Cucumber tests using Selenium Grid from command line:
 ```
-mvn -Dsurefire.suiteXmlFiles=cucumber.xml -Dcucumber.filter.tags=@${cucumber.filter.tags} -Ddataproviderthreadcount=${threadcount} -Dgrid=true clean test
+mvn -Dsurefire.suiteXmlFiles=cucumber.xml -Dcucumber.filter.tags=@${cucumber.filter.tags} -Dgrid=true clean test
 ```
 
 ## Default values:
