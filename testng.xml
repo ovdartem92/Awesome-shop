@@ -1,10 +1,10 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite thread-count="4" name="SeleniumGridDocker" parallel="classes">
+<suite thread-count="4" name="TestNG" parallel="classes">
     <listeners>
         <listener class-name="com.epam.reportportal.testng.ReportPortalTestNGListener"/>
     </listeners>
-    <test name="all tests">
+    <test name="TestNG">
         <classes>
             <class name="awesome.shop.tests.LoginTest"/>
             <class name="awesome.shop.tests.CartTest"/>
