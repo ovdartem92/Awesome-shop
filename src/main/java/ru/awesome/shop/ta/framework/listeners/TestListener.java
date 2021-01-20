@@ -1,10 +1,11 @@
 package ru.awesome.shop.ta.framework.listeners;
 
-import ru.awesome.shop.ta.framework.browser.Browser;
-import ru.awesome.shop.ta.framework.logging.Log;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
+import ru.awesome.shop.ta.framework.browser.Browser;
+import ru.awesome.shop.ta.framework.logging.Log;
+import ru.awesome.shop.ta.utils.ReportPortalManager;
 
 import java.io.File;
 import java.util.Objects;
@@ -29,9 +30,7 @@ public class TestListener implements ITestListener {
         Objects.requireNonNull(iTestResult, MESSAGE);
         Log.info(String.format("Test method %s FAILED.", iTestResult.getMethod().getDescription()));
         File screenshot = Browser.getInstance().takeScreenshot();
-        String screenshotTag = String.format("<a href='../../screenshots/%s'><img src='../../screenshots/%s' "
-                + "height='304' width='525'/></a>", screenshot.getName(), screenshot.getName());
-        Log.info(String.format("Screenshot %s was saved", screenshotTag));
+        ReportPortalManager.post(screenshot);
     }
 
     @Override
