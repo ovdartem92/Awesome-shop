@@ -7,6 +7,7 @@ import org.apache.commons.io.FileUtils;
 import ru.awesome.shop.ta.framework.browser.Browser;
 import ru.awesome.shop.ta.framework.configuration.PropertyManager;
 import ru.awesome.shop.ta.framework.logging.Log;
+import ru.awesome.shop.ta.utils.ReportPortalManager;
 
 import java.io.File;
 import java.io.IOException;
@@ -28,6 +29,7 @@ public class BrowserHooks {
             byte[] screenshotByteArray = FileUtils.readFileToByteArray(screenshot);
             scenario.attach(screenshotByteArray, "image/png", scenario.getName());
             Log.info("SCREENSHOT was attached to: target/cucumber-reports/cucumber-pretty.html");
+            ReportPortalManager.post(screenshot);
         }
         browser.stop();
     }
