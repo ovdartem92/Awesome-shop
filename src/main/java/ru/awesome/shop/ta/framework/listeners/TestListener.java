@@ -30,11 +30,7 @@ public class TestListener implements ITestListener {
         Objects.requireNonNull(iTestResult, MESSAGE);
         Log.info(String.format("Test method %s FAILED.", iTestResult.getMethod().getDescription()));
         File screenshot = Browser.getInstance().takeScreenshot();
-//        String screenshotTag = String.format("<a href='../../screenshots/%s'><img src='../../screenshots/%s' "
-//                + "height='304' width='525'/></a>", screenshot.getName(), screenshot.getName());
-//        Log.info(String.format("Screenshot %s was saved", screenshotTag));
         ReportPortalManager.post(screenshot);
-//        Reporter.log(screenshotTag);
     }
 
     @Override
