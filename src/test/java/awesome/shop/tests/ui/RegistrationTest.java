@@ -1,4 +1,4 @@
-package awesome.shop.tests;
+package awesome.shop.tests.ui;
 
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;

@@ -1,4 +1,4 @@
-package awesome.shop.tests.cucumber.steps;
+package awesome.shop.tests.ui.cucumber.steps;
 
 import io.cucumber.java.DataTableType;
 import io.cucumber.java.en.Then;

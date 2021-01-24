@@ -1,4 +1,4 @@
-package awesome.shop.tests;
+package awesome.shop.tests.ui;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.AfterMethod;
