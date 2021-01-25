@@ -34,7 +34,7 @@ public class CartSteps {
                 "Wrong success message");
     }
 
-    @Then("^I see this item in the cart with (.*) and (.*)$")
+    @Then("^I see this item in the cart with item id (.*) and quantity (.*)$")
     public void checkItemInCart(int itemId, int quantity) {
         Response response = CartApiService.checkItemInCart(testContext.getToken());
         ItemResponse items = response.getBody().as(ItemResponse.class);
@@ -54,7 +54,7 @@ public class CartSteps {
         actualSuccessCartMessage = changeCartResponse.getSuccess();
     }
 
-    @Then("^I see this item in the cart with  quantity (.*)$")
+    @Then("^I see this item in the cart with quantity (.*)$")
     public void checkQuantityItem(int expectedQuantity) {
         Response response = CartApiService.checkItemInCart(testContext.getToken());
         ItemResponse items = response.getBody().as(ItemResponse.class);
