@@ -16,6 +16,7 @@ import java.util.List;
 public class CartSteps {
     private String actualSuccessCartMessage;
     private TextContextApi testContext;
+    private CartApiService cartApiService = new CartApiService();
 
     public CartSteps(TextContextApi textContextApi) {
         this.testContext = textContextApi;
@@ -23,7 +24,7 @@ public class CartSteps {
 
     @When("^I add item to cart with item id (.*) and quantity (.*)$")
     public void addItemToCart(String itemId, int amount) {
-        Response response = CartApiService.addItem(itemId, amount, testContext.getToken());
+        Response response = cartApiService.addItem(itemId, amount, testContext.getToken());
         ChangeCartResponse addItemResponse = response.getBody().as(ChangeCartResponse.class);
         actualSuccessCartMessage = addItemResponse.getSuccess();
     }
@@ -36,7 +37,7 @@ public class CartSteps {
 
     @Then("^I see this item in the cart with item id (.*) and quantity (.*)$")
     public void checkItemInCart(int itemId, int quantity) {
-        Response response = CartApiService.checkItemInCart(testContext.getToken());
+        Response response = cartApiService.checkItemInCart(testContext.getToken());
         ItemResponse items = response.getBody().as(ItemResponse.class);
         Product product = items.getProducts().get(0);
         int cartId = product.getCart_id();
@@ -49,14 +50,14 @@ public class CartSteps {
 
     @When("^I edit item quantity (.*) in cart$")
     public void editQuantityInCart(int quantity) {
-        Response response = CartApiService.editItemQuantity(testContext.getToken(), quantity, testContext.getCartId());
+        Response response = cartApiService.editItemQuantity(testContext.getToken(), quantity, testContext.getCartId());
         ChangeCartResponse changeCartResponse = response.getBody().as(ChangeCartResponse.class);
         actualSuccessCartMessage = changeCartResponse.getSuccess();
     }
 
     @Then("^I see this item in the cart with quantity (.*)$")
     public void checkQuantityItem(int expectedQuantity) {
-        Response response = CartApiService.checkItemInCart(testContext.getToken());
+        Response response = cartApiService.checkItemInCart(testContext.getToken());
         ItemResponse items = response.getBody().as(ItemResponse.class);
         Product product = items.getProducts().get(0);
         int actualQuantity = product.getQuantity();
@@ -65,7 +66,7 @@ public class CartSteps {
 
     @And("I have cart id")
     public void getCartId() {
-        Response response = CartApiService.checkItemInCart(testContext.getToken());
+        Response response = cartApiService.checkItemInCart(testContext.getToken());
         ItemResponse items = response.getBody().as(ItemResponse.class);
         Product product = items.getProducts().get(0);
         int cartId = product.getCart_id();
@@ -74,14 +75,14 @@ public class CartSteps {
 
     @And("I remove item from cart")
     public void removeFromCart() {
-        Response response = CartApiService.removeItemFromCart(testContext.getToken(), testContext.getCartId());
+        Response response = cartApiService.removeItemFromCart(testContext.getToken(), testContext.getCartId());
         ChangeCartResponse changeCartResponse = response.getBody().as(ChangeCartResponse.class);
         actualSuccessCartMessage = changeCartResponse.getSuccess();
     }
 
     @And("I see that cart is empty")
     public void checkThatCartIsEmpty() {
-        Response response = CartApiService.checkItemInCart(testContext.getToken());
+        Response response = cartApiService.checkItemInCart(testContext.getToken());
         ItemResponse items = response.getBody().as(ItemResponse.class);
         List<Product> products = items.getProducts();
         Assert.assertTrue(products.isEmpty(), "Products wasn't removed from cart");

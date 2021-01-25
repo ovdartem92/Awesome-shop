@@ -1,9 +1,9 @@
 package ru.awesome.shop.ta.framework.apiEngine;
 
 public class CouponRequest {
-    public String coupon;
+    public int coupon;
 
-    public CouponRequest(String coupon) {
+    public CouponRequest(int coupon) {
         this.coupon = coupon;
     }
 }
