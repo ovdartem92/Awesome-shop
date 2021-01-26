@@ -1,5 +1,6 @@
 package ru.awesome.shop.ta.product.microservices;
 
+import org.json.simple.JSONObject;
 import ru.awesome.shop.ta.framework.client.HttpClient;
 import ru.awesome.shop.ta.product.http.HttpResponse;
 import ru.awesome.shop.ta.product.http.body.request.TokenRequestBody;
