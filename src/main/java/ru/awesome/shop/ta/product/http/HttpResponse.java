@@ -10,4 +10,16 @@ public class HttpResponse<T> {
     public HttpResponse(int responseStatusCode, Map<String, String> headers, T body) {
 
     }
+
+    public int getResponseStatusCode() {
+        return responseStatusCode;
+    }
+
+    public Map<String, String> getHeaders() {
+        return headers;
+    }
+
+    public T getBody() {
+        return body;
+    }
 }
