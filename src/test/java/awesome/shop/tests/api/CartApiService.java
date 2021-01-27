@@ -4,47 +4,47 @@ import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.json.simple.JSONObject;
+import ru.awesome.shop.ta.framework.apiEngine.Routes;
 
-public class CartApiService {
-    private static final String baseUrl = "https://awesome-shop.01sh.ru";
+public class CartApiService extends EndPoint{
 
-    public static Response addItem(String itemId, int amount, String token) {
-        RestAssured.baseURI = baseUrl;
+    public Response addItem(String itemId, int amount, String token) {
+        RestAssured.baseURI = getBaseUrl();
         RequestSpecification request = RestAssured.given();
         request.queryParam("token", token);
         JSONObject requestParams = new JSONObject();
         requestParams.put("product_id", itemId);
         requestParams.put("quantity", amount);
         request.params(requestParams);
-        return request.post("/index.php?route=api/cart/add");
+        return request.post(Routes.addItem());
     }
 
-    public static Response checkItemInCart(String token) {
-        RestAssured.baseURI = baseUrl;
+    public Response checkItemInCart(String token) {
+        RestAssured.baseURI = getBaseUrl();
         RequestSpecification request = RestAssured.given();
         request.queryParam("token", token);
-        return request.post("/index.php?route=api/cart/products");
+        return request.post(Routes.openCart());
     }
 
-    public static Response editItemQuantity(String token, int quantity, int cartId) {
-        RestAssured.baseURI = baseUrl;
+    public Response editItemQuantity(String token, int quantity, int cartId) {
+        RestAssured.baseURI = getBaseUrl();
         RequestSpecification request = RestAssured.given();
         request.queryParam("token", token);
         JSONObject requestParams = new JSONObject();
         requestParams.put("key", cartId);
         requestParams.put("quantity", quantity);
         request.params(requestParams);
-        return request.post("/index.php?route=api/cart/edit");
+        return request.post(Routes.editCart());
     }
 
-    public static Response removeItemFromCart(String token, int cartId) {
+    public Response removeItemFromCart(String token, int cartId) {
         System.out.println("TOKEN EDIT CART - " + token);
-        RestAssured.baseURI = baseUrl;
+        RestAssured.baseURI = getBaseUrl();
         RequestSpecification request = RestAssured.given();
         request.queryParam("token", token);
         JSONObject requestParams = new JSONObject();
         requestParams.put("key", cartId);
         request.params(requestParams);
-        return request.post("/index.php?route=api/cart/remove");
+        return request.post(Routes.removeItem());
     }
 }

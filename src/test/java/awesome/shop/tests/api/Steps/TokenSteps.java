@@ -18,9 +18,10 @@ public class TokenSteps {
 
     @Given("^I have had a token$")
     public void getTokenForNewSession() {
-        Response response = GetTokenService.getToken(userName, key);
+        GetTokenService getTokenService = new GetTokenService();
+        Response response = getTokenService.getToken(userName, key);
         AuthorizationResponse authorizationResponse = response.getBody().as(AuthorizationResponse.class);
-        testContext.setToken(authorizationResponse.getToken());
-        System.out.println(testContext.getToken());
+        String token = authorizationResponse.getToken();
+        testContext.setToken(token);
     }
 }
