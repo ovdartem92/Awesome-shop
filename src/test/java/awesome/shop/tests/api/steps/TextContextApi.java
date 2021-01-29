@@ -1,4 +1,5 @@
-package awesome.shop.tests.api.Steps;
+package awesome.shop.tests.api.steps;
+
 
 public class TextContextApi {
     private String token;

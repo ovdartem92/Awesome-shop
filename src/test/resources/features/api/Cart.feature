@@ -7,6 +7,7 @@ Feature: login
   Scenario Outline: add item to cart
     When I add item to cart with item id <item_id> and quantity <quantity>
     Then I see message success "Success: You have modified your shopping cart!"
+    And I see response status code 200
     Then I see this item in the cart with item id <item_id> and quantity <quantity>
     Examples:
       | item_id | quantity |
@@ -18,11 +19,12 @@ Feature: login
     And I have cart id
     And I edit item quantity <quantity> in cart
     Then I see message success "Success: You have modified your shopping cart!"
+    And I see response status code 200
     And I see this item in the cart with quantity <quantity>
     Examples:
       | quantity |
       | 5        |
-      | 3        |
+      | 10       |
 
   @cart @positive @all
   Scenario: remove item from cart
@@ -30,5 +32,6 @@ Feature: login
     And I have cart id
     And I remove item from cart
     Then I see message success "Success: You have modified your shopping cart!"
+    And  I see response status code 200
     And I see that cart is empty
 

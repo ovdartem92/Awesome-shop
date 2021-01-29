@@ -1,4 +1,4 @@
-package ru.awesome.shop.ta.framework.apiEngine;
+package ru.awesome.shop.ta.framework.client;
 
 public class Routes {
     private static final String COMMON_PART = "/index.php?route=api/";

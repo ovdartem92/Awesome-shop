@@ -1,12 +1,12 @@
-package ru.awesome.shop.ta.framework.apiEngine;
+package ru.awesome.shop.ta.product.http.body.response;
 
-public class CouponResponse {
+public class CouponResponseBody {
     private String error;
 
-    public CouponResponse() {
+    public CouponResponseBody() {
     }
 
-    public CouponResponse(String error) {
+    public CouponResponseBody(String error) {
         super();
         this.error = error;
     }

@@ -1,12 +1,12 @@
-package ru.awesome.shop.ta.framework.apiEngine;
+package ru.awesome.shop.ta.product.http.body.response;
 
-public class ChangeCartResponse {
+public class ChangeCartResponseBody {
     private String success;
 
-    public ChangeCartResponse() {
+    public ChangeCartResponseBody() {
     }
 
-    public ChangeCartResponse(String success) {
+    public ChangeCartResponseBody(String success) {
         super();
         this.success = success;
     }
