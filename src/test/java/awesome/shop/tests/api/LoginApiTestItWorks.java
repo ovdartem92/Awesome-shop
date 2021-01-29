@@ -106,7 +106,7 @@ public class LoginApiTestItWorks {
         System.out.println(response1.asString());
     }
 
-//    @Test(dependsOnMethods = "getToken")
+    //    @Test(dependsOnMethods = "getToken")
     @Test
     public void useCouponTest() throws JsonProcessingException, ParseException {
 //        RestAssured.baseURI = baseUrl;
