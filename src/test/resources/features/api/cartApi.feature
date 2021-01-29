@@ -1,4 +1,4 @@
-Feature: login
+Feature: cart
 
   Background:
     Given I have had a token
@@ -34,4 +34,3 @@ Feature: login
     Then I see message success "Success: You have modified your shopping cart!"
     And  I see response status code 200
     And I see that cart is empty
-

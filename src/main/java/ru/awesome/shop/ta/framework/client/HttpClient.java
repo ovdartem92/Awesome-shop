@@ -13,8 +13,6 @@ import java.util.Map;
 public class HttpClient {
     private final String baseUrl = "https://awesome-shop.01sh.ru";
     private final Map<String, String> defaultHeaders = new HashMap<>();
-    private JSONObject body;
-    private int codeResponse;
     private Response response;
 
     public HttpClient() {
@@ -32,7 +30,8 @@ public class HttpClient {
         return get(relativeUrl, defaultHeaders);
     }
 
-    public HttpResponse<JSONObject> post(String relativeUrl, Map<String, String> requestHeaders, JSONObject requestBody, String token) {
+    public HttpResponse<JSONObject> post(String relativeUrl, Map<String, String> requestHeaders, JSONObject requestBody,
+                                         String token) {
         RestAssured.baseURI = baseUrl;
         RequestSpecification request = RestAssured.given();
         request.queryParam("token", token);
@@ -47,7 +46,6 @@ public class HttpClient {
     }
 
     public HttpResponse<JSONObject> put(String relativeUrl, Map<String, String> requestHeaders, JSONObject requestBody) {
-        Map<String, String> headers = new HashMap<>();
         RestAssured.baseURI = baseUrl;
         RequestSpecification request = RestAssured.given();
         request.headers(requestHeaders);
@@ -60,7 +58,6 @@ public class HttpClient {
     }
 
     public HttpResponse<JSONObject> delete(String relativeUrl, Map<String, String> requestHeaders) {
-        Map<String, String> headers = new HashMap<>();
         RestAssured.baseURI = baseUrl;
         RequestSpecification request = RestAssured.given();
         request.headers(requestHeaders);
@@ -82,7 +79,3 @@ public class HttpClient {
         return new HttpResponse<>(responseCode, headers, body);
     }
 }
-
-
-
-

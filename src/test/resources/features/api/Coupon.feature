@@ -7,6 +7,7 @@ Feature: coupon
   Scenario Outline: use coupon
     When I use wrong coupon <couponNumber>
     Then I see message error "Warning: Coupon is either invalid, expired or reached it's usage limit!"
+    And I see response status code 200
     Examples:
       | couponNumber |
       | 22222        |

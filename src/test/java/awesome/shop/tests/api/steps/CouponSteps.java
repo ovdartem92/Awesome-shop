@@ -15,6 +15,7 @@ public class CouponSteps {
     private TextContextApi textContextApi;
     private String actualErrorMessage;
 
+
     public CouponSteps(TextContextApi textContextApi) {
         this.textContextApi = textContextApi;
     }
@@ -27,6 +28,8 @@ public class CouponSteps {
         HttpResponse<CouponResponseBody> response = couponMicroservice.useCoupon(couponRequestBody, textContextApi.getToken());
         CouponResponseBody couponResponseBody = response.getBody();
         actualErrorMessage = couponResponseBody.getError();
+        int codeResponse = response.getResponseStatusCode();
+        textContextApi.setActualCodeResponse(codeResponse);
     }
 
     @Then("^I see message error \"(.*)\"$")
