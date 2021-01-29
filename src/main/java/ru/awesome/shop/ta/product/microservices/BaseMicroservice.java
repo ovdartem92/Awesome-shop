@@ -9,12 +9,11 @@ import ru.awesome.shop.ta.framework.client.HttpClient;
 
 public class BaseMicroservice {
     protected HttpClient httpClient;
+    protected ObjectMapper mapper = new ObjectMapper();
 
     public BaseMicroservice(HttpClient httpClient) {
         this.httpClient = httpClient;
     }
-
-    protected ObjectMapper mapper = new ObjectMapper();
 
     protected JSONObject convertObjectToJson(Object object) throws ParseException, JsonProcessingException {
         String jsonString = mapper.writeValueAsString(object);
