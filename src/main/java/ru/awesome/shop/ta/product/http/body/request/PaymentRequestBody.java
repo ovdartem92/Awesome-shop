@@ -1,4 +1,4 @@
-package ru.awesome.shop.ta.product.http.body.response;
+package ru.awesome.shop.ta.product.http.body.request;
 
 public class PaymentRequestBody {
     private String paymentMethod;

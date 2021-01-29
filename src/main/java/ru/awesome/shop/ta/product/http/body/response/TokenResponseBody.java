@@ -1,4 +1,4 @@
-package ru.awesome.shop.ta.product.http.body.request;
+package ru.awesome.shop.ta.product.http.body.response;
 
 public class TokenResponseBody {
     private String success;

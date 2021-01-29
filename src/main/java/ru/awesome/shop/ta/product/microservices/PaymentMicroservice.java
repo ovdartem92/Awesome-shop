@@ -5,7 +5,7 @@ import org.json.simple.JSONObject;
 import ru.awesome.shop.ta.framework.client.HttpClient;
 import ru.awesome.shop.ta.product.http.body.HttpResponse;
 import ru.awesome.shop.ta.product.http.body.request.AddressRequestBody;
-import ru.awesome.shop.ta.product.http.body.response.PaymentRequestBody;
+import ru.awesome.shop.ta.product.http.body.request.PaymentRequestBody;
 import ru.awesome.shop.ta.product.http.body.response.PaymentResponseBody;
 
 import java.io.IOException;
