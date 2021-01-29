@@ -24,7 +24,7 @@ public class TokenResponseBody {
 
     @Override
     public String toString() {
-        return "AuthorizationResponse{" +
+        return "TokenResponseBody{" +
                 "success='" + success + '\'' +
                 ", token='" + token + '\'' +
                 '}';

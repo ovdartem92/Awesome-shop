@@ -12,7 +12,7 @@ import ru.awesome.shop.ta.framework.listeners.SuiteListener;
         monochrome = true,
         tags = "@all",
         glue = "awesome.shop.tests.ui.cucumber",
-        features = "src/test/resources/features/api")
+        features = "src/test/resources/features")
 @Listeners({SuiteListener.class})
 public class CucumberTestRunner extends AbstractTestNGCucumberTests {
 
