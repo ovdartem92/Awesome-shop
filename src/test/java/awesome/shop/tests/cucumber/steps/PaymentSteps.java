@@ -3,12 +3,12 @@ package awesome.shop.tests.cucumber.steps;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.testng.Assert;
-import ru.awesome.shop.ta.product.microservices.PaymentMicroservice;
 import ru.awesome.shop.ta.framework.client.HttpClient;
 import ru.awesome.shop.ta.product.http.body.HttpResponse;
 import ru.awesome.shop.ta.product.http.body.request.AddressRequestBody;
 import ru.awesome.shop.ta.product.http.body.request.PaymentRequestBody;
 import ru.awesome.shop.ta.product.http.body.response.PaymentResponseBody;
+import ru.awesome.shop.ta.product.microservices.PaymentMicroservice;
 
 import java.io.IOException;
 
@@ -16,11 +16,10 @@ public class PaymentSteps {
     HttpResponse<PaymentResponseBody> httpResponse;
     HttpClient httpClient = new HttpClient();
     PaymentMicroservice paymentMicroservice = new PaymentMicroservice(httpClient);
-    AddressRequestBody addressRequestBody = new AddressRequestBody();
-    PaymentRequestBody paymentRequestBody = new PaymentRequestBody();
 
     @When("I perform request to add payment address")
     public void iPerformRequestToAddPaymentAddress() throws IOException {
+        AddressRequestBody addressRequestBody = new AddressRequestBody();
         httpResponse = paymentMicroservice.addPaymentAddress(addressRequestBody);
     }
 
@@ -31,6 +30,7 @@ public class PaymentSteps {
 
     @When("I perform request to set payment method")
     public void iPerformRequestToSetPaymentMethod() throws IOException {
+        PaymentRequestBody paymentRequestBody = new PaymentRequestBody();
         httpResponse = paymentMicroservice.setPayments(paymentRequestBody);
     }
 
