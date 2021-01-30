@@ -17,8 +17,8 @@ public class AuthorizationMicroservice extends BaseMicroservice {
         super(httpClient);
     }
 
-    public HttpResponse<TokenResponseBody> generateToken(TokenRequestBody tokenRequestBody) throws JsonProcessingException,
-            ParseException {
+    public HttpResponse<TokenResponseBody> generateToken(TokenRequestBody tokenRequestBody)
+            throws JsonProcessingException, ParseException {
         JSONObject requestBody = convertObjectToJson(tokenRequestBody);
         Map<String, String> queryParameters = new HashMap<>();
         queryParameters.put("route", "api/login");
