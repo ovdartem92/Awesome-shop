@@ -17,12 +17,13 @@ public class AuthenticationMicroservice {
     }
 
     public HttpResponse<TokenResponseBody> generateToken(TokenRequestBody tokenRequestBody) throws IOException {
+        String relativeUrl = "/index.php?route=api/login";
         ObjectMapper mapper = new ObjectMapper();
         String result = mapper.writeValueAsString(tokenRequestBody);
         JSONObject jsonBody = mapper.readValue(result, JSONObject.class);
-        HttpResponse<JSONObject> tokenResponse = this.httpClient.post("/index.php?route=api/login", jsonBody);
+        HttpResponse<JSONObject> tokenResponse = this.httpClient.post(relativeUrl, jsonBody);
         JSONObject body = tokenResponse.getBody();
         TokenResponseBody tokenResponseBody = mapper.readValue(body.toJSONString(), TokenResponseBody.class);
-        return new HttpResponse<>(tokenResponse.getResponseStatusCode(), tokenResponse.getHeaders(), tokenResponseBody);
+        return new HttpResponse<TokenResponseBody>(tokenResponse.getStatusCode(), tokenResponse.getHeaders(), tokenResponseBody);
     }
 }

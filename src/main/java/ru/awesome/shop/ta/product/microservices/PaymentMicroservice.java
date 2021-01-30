@@ -18,30 +18,33 @@ public class PaymentMicroservice {
     }
 
     public HttpResponse<PaymentResponseBody> addPaymentAddress(AddressRequestBody paymentCreationRequestBody) throws IOException {
+        String relativeUrl = "/index.php?route=api/payment/address";
         ObjectMapper mapper = new ObjectMapper();
         String jsonInString = mapper.writeValueAsString(paymentCreationRequestBody);
         JSONObject jsonBody = mapper.readValue(jsonInString, JSONObject.class);
-        HttpResponse<JSONObject> tokenResponse = this.httpClient.post("/index.php?route=api/payment/address", jsonBody);
+        HttpResponse<JSONObject> tokenResponse = this.httpClient.post(relativeUrl, jsonBody);
         JSONObject body = tokenResponse.getBody();
         PaymentResponseBody paymentResponseBody = mapper.readValue(body.toJSONString(), PaymentResponseBody.class);
-        return new HttpResponse<>(tokenResponse.getResponseStatusCode(), tokenResponse.getHeaders(), paymentResponseBody);
+        return new HttpResponse<PaymentResponseBody>(tokenResponse.getStatusCode(), tokenResponse.getHeaders(), paymentResponseBody);
     }
 
     public HttpResponse<PaymentResponseBody> setPayments(PaymentRequestBody paymentCreationRequestBody) throws IOException {
+        String relativeUrl = "/index.php?route=api/payment/method";
         ObjectMapper mapper = new ObjectMapper();
         String jsonInString = mapper.writeValueAsString(paymentCreationRequestBody);
         JSONObject jsonBody = mapper.readValue(jsonInString, JSONObject.class);
-        HttpResponse<JSONObject> tokenResponse = this.httpClient.post("/index.php?route=api/payment/method", jsonBody);
+        HttpResponse<JSONObject> tokenResponse = this.httpClient.post(relativeUrl, jsonBody);
         JSONObject body = tokenResponse.getBody();
         PaymentResponseBody paymentResponseBody = mapper.readValue(body.toJSONString(), PaymentResponseBody.class);
-        return new HttpResponse<>(tokenResponse.getResponseStatusCode(), tokenResponse.getHeaders(), paymentResponseBody);
+        return new HttpResponse<PaymentResponseBody>(tokenResponse.getStatusCode(), tokenResponse.getHeaders(), paymentResponseBody);
     }
 
     public HttpResponse<PaymentResponseBody> getPayments() throws IOException {
+        String relativeUrl = "/index.php?route=api/payment/method";
         ObjectMapper mapper = new ObjectMapper();
-        HttpResponse<JSONObject> tokenResponse = this.httpClient.get("/index.php?route=api/payment/method");
+        HttpResponse<JSONObject> tokenResponse = this.httpClient.get(relativeUrl);
         JSONObject body = tokenResponse.getBody();
         PaymentResponseBody paymentResponseBody = mapper.readValue(body.toJSONString(), PaymentResponseBody.class);
-        return new HttpResponse<>(tokenResponse.getResponseStatusCode(), tokenResponse.getHeaders(), paymentResponseBody);
+        return new HttpResponse<PaymentResponseBody>(tokenResponse.getStatusCode(), tokenResponse.getHeaders(), paymentResponseBody);
     }
 }

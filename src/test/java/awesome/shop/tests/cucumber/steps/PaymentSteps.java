@@ -1,5 +1,6 @@
 package awesome.shop.tests.cucumber.steps;
 
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.testng.Assert;
@@ -11,41 +12,51 @@ import ru.awesome.shop.ta.product.http.body.response.PaymentResponseBody;
 import ru.awesome.shop.ta.product.microservices.PaymentMicroservice;
 
 import java.io.IOException;
+import java.util.Map;
 
 public class PaymentSteps {
-    HttpResponse<PaymentResponseBody> httpResponse;
-    HttpClient httpClient = new HttpClient();
-    PaymentMicroservice paymentMicroservice = new PaymentMicroservice(httpClient);
+    private HttpResponse<PaymentResponseBody> httpResponse;
+    private HttpClient httpClient = new HttpClient();
+    private PaymentMicroservice paymentMicroservice = new PaymentMicroservice(httpClient);
+    private TestContext testContext;
+
+    public PaymentSteps(TestContext testContext) {
+        this.testContext = testContext;
+    }
 
     @When("I perform request to add payment address")
-    public void iPerformRequestToAddPaymentAddress() throws IOException {
-        AddressRequestBody addressRequestBody = new AddressRequestBody();
+    public void addPaymentAddress(DataTable dataTable) throws IOException {
+        Map<String, String> form = dataTable.asMap(String.class, String.class);
+        AddressRequestBody addressRequestBody = new AddressRequestBody
+                (form.get("First Name"), form.get("Last Name"), form.get("Address"),
+                        form.get("City"), form.get("Country"), form.get("Zone_Id"));
         httpResponse = paymentMicroservice.addPaymentAddress(addressRequestBody);
     }
 
     @When("I perform request to get payment method")
-    public void iPerformRequestToGetPaymentMethod() throws IOException {
+    public void getPaymentMethod() throws IOException {
         httpResponse = paymentMicroservice.getPayments();
     }
 
     @When("I perform request to set payment method")
-    public void iPerformRequestToSetPaymentMethod() throws IOException {
-        PaymentRequestBody paymentRequestBody = new PaymentRequestBody();
+    public void setPaymentMethod(DataTable dataTable) throws IOException {
+        Map<String, String> form = dataTable.asMap(String.class, String.class);
+        PaymentRequestBody paymentRequestBody = new PaymentRequestBody(form.get("Payment Method"));
         httpResponse = paymentMicroservice.setPayments(paymentRequestBody);
     }
 
     @Then("I get status cod {int}")
-    public void iGetStatusCod(int statusCodeExpected) {
-        Assert.assertEquals(httpResponse.getResponseStatusCode(), statusCodeExpected);
+    public void getStatusCod(int statusCodeExpected) {
+        Assert.assertEquals(httpResponse.getStatusCode(), statusCodeExpected);
     }
 
-    @Then("I get success message")
-    public void iGetSuccessMessage() {
-        Assert.assertTrue(httpResponse.getBody().getSuccess().contains("Success"));
+    @Then("I get success message: {string}")
+    public void getSuccessMessage(String expectedMessage) {
+        Assert.assertEquals(httpResponse.getBody().getSuccess(), expectedMessage);
     }
 
-    @Then("I get error message")
-    public void iGetErrorMessage() {
-        Assert.assertTrue(httpResponse.getBody().getError().contains("Warning"));
+    @Then("I get error message: {string}")
+    public void getErrorMessage(String expectedMessage) {
+        Assert.assertEquals(httpResponse.getBody().getError(), expectedMessage);
     }
 }
