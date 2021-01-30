@@ -21,7 +21,7 @@ public class PaymentMicroservice extends BaseMicroservice {
     public HttpResponse<PaymentResponseBody> addPaymentAddress(AddressRequestBody paymentCreationRequestBody) throws IOException, ParseException {
         JSONObject requestBody = convertObjectToJson(paymentCreationRequestBody);
         Map<String, String> queryParameters = new HashMap<>();
-        queryParameters.put("route", "api/payment/address");
+        queryParameters.put("route", "api/payment/address");//NOSONAR
         HttpResponse<JSONObject> httpResponse = this.httpClient.post(commonUrl, queryParameters, requestBody);
         PaymentResponseBody paymentResponseBody = mapper.convertValue(httpResponse.getBody(), PaymentResponseBody.class);
         return new HttpResponse<>(httpResponse.getStatusCode(), httpResponse.getHeaders(), paymentResponseBody);

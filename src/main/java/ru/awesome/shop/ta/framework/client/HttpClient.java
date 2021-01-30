@@ -84,7 +84,7 @@ public class HttpClient {
         JSONObject body = response.body().as(JSONObject.class);
         int responseCode = response.getStatusCode();
         Map<String, String> headers = convertHeaders(response.headers());
-        return new HttpResponse<JSONObject>(responseCode, headers, body);
+        return new HttpResponse<>(responseCode, headers, body);
     }
 
     private Map<String, String> convertHeaders(Headers headers) {
