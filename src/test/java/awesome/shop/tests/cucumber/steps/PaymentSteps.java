@@ -52,9 +52,9 @@ public class PaymentSteps {
     }
 
     @Then("I get status cod {int}")
-    public void checkStatusCod(int statusCodeExpected) {
-        Assert.assertEquals(testContext.getActualCodeResponse(), statusCodeExpected,
-                statusCodeExpected + " does not match");
+    public void checkStatusCod(int expectedCodeResponse) {
+        Assert.assertEquals(testContext.getActualCodeResponse(), expectedCodeResponse,
+                expectedCodeResponse + " does not match");
     }
 
     @Then("I get message: {string}")
