@@ -8,6 +8,7 @@ Feature: cart
     When I add item to cart with item id <item_id> and quantity <quantity>
     Then I should see response status code 200
     And I should see message success "Success: You have modified your shopping cart!"
+    When I open cart
     And I should see this item in the cart with item id <item_id> and quantity <quantity>
     Examples:
       | item_id | quantity |

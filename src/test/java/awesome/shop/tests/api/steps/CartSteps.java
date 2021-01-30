@@ -20,7 +20,6 @@ import java.util.List;
 
 public class CartSteps {
     private HttpClient httpClient = new HttpClient();
-    private String actualSuccessCartMessage;
     private ApiTestContext apiTestContext;
     private CartMicroservice cartMicroservice;
 
@@ -34,35 +33,43 @@ public class CartSteps {
         AddItemRequestBody addItemRequestBody = new AddItemRequestBody(itemId, amount);
         HttpResponse<ChangeCartResponseBody> response = cartMicroservice.addItem(addItemRequestBody);
         ChangeCartResponseBody responseBody = response.getBody();
-        actualSuccessCartMessage = responseBody.getSuccess();
-        apiTestContext.setActualCodeResponse(response.getStatusCode());
+        String actualSuccessMessage = responseBody.getSuccess();
+        int actualStatusCode = response.getStatusCode();
+        apiTestContext.setActualSuccessMessage(actualSuccessMessage);
+        apiTestContext.setActualCodeResponse(actualStatusCode);
     }
 
     @Then("^I should see message success \"(.*)\"$")
     public void checkSuccessMessage(String message) {
-        Assert.assertEquals(actualSuccessCartMessage, message,
+        Assert.assertEquals(apiTestContext.getActualSuccessMessage(), message,
                 "Wrong success message");
     }
 
     @Then("^I should see this item in the cart with item id (.*) and quantity (.*)$")
     public void checkItemInCart(int itemId, int quantity) {
-        HttpResponse<OpenCartResponseBody> response = cartMicroservice.openCart();
-        OpenCartResponseBody items = response.getBody();
-        Product product = items.getProducts().get(0);
-        int cartId = product.getCart_id();
-        apiTestContext.setCartId(cartId);
-        int actualItemId = product.getProduct_id();
-        int actualQuantity = product.getQuantity();
+        int actualItemId = apiTestContext.getProduct().getProduct_id();
+        int actualQuantity = apiTestContext.getProduct().getQuantity();
         Assert.assertEquals(actualItemId, itemId, "Wrong product id in the cart");
         Assert.assertEquals(actualQuantity, quantity, "Wrong product quantity in the cart");
     }
 
+
+    @When("^I open cart$")
+    public void openCart() {
+        HttpResponse<OpenCartResponseBody> response = cartMicroservice.openCart();
+        OpenCartResponseBody items = response.getBody();
+        Product product = items.getProducts().get(0);
+        apiTestContext.setProduct(product);
+    }
+
     @When("^I edit item quantity (.*) in cart$")
     public void editQuantityInCart(int quantity) throws JsonProcessingException, ParseException {
-        EditCartRequestBody editCartRequestBody = new EditCartRequestBody(apiTestContext.getCartId(), quantity);
+        int cartId = apiTestContext.getProduct().getCart_id();
+        EditCartRequestBody editCartRequestBody = new EditCartRequestBody(cartId, quantity);
         HttpResponse<ChangeCartResponseBody> response = cartMicroservice.editCart(editCartRequestBody);
         ChangeCartResponseBody body = response.getBody();
-        actualSuccessCartMessage = body.getSuccess();
+        String actualSuccessMessage = body.getSuccess();
+        apiTestContext.setActualSuccessMessage(actualSuccessMessage);
     }
 
     @Then("^I should see this item in the cart with quantity (.*)$")
@@ -79,16 +86,17 @@ public class CartSteps {
         HttpResponse<OpenCartResponseBody> response = cartMicroservice.openCart();
         OpenCartResponseBody items = response.getBody();
         Product product = items.getProducts().get(0);
-        int cartId = product.getCart_id();
-        apiTestContext.setCartId(cartId);
+        apiTestContext.setProduct(product);
     }
 
     @When("I remove item from cart")
     public void removeFromCart() throws JsonProcessingException, ParseException {
-        RemoveItemRequestBody deleteItemRequestBody = new RemoveItemRequestBody(apiTestContext.getCartId());
+        int cartId = apiTestContext.getProduct().getCart_id();
+        RemoveItemRequestBody deleteItemRequestBody = new RemoveItemRequestBody(cartId);
         HttpResponse<ChangeCartResponseBody> response = cartMicroservice.removeItemFromCart(deleteItemRequestBody);
         ChangeCartResponseBody responseBody = response.getBody();
-        actualSuccessCartMessage = responseBody.getSuccess();
+        String actualSuccessMessage = responseBody.getSuccess();
+        apiTestContext.setActualSuccessMessage(actualSuccessMessage);
         int statusCode = response.getStatusCode();
         apiTestContext.setActualCodeResponse(statusCode);
     }
