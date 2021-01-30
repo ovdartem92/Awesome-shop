@@ -22,7 +22,6 @@ public class CartMicroservice extends BaseMicroservice {
         super(httpClient);
         Objects.requireNonNull(token, "Token cannot be null");
         this.token = token;
-
     }
 
     public HttpResponse<ChangeCartResponseBody> addItem(AddItemRequestBody addItemRequestBody)
