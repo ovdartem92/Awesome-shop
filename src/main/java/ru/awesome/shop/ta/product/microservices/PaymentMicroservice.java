@@ -25,7 +25,7 @@ public class PaymentMicroservice {
         HttpResponse<JSONObject> tokenResponse = this.httpClient.post(relativeUrl, jsonBody);
         JSONObject body = tokenResponse.getBody();
         PaymentResponseBody paymentResponseBody = mapper.readValue(body.toJSONString(), PaymentResponseBody.class);
-        return new HttpResponse<>(tokenResponse.getStatusCode(), tokenResponse.getHeaders(), paymentResponseBody);
+        return new HttpResponse<PaymentResponseBody>(tokenResponse.getStatusCode(), tokenResponse.getHeaders(), paymentResponseBody);//NOSONAR
     }
 
     public HttpResponse<PaymentResponseBody> setPayments(PaymentRequestBody paymentCreationRequestBody) throws IOException {
@@ -36,7 +36,7 @@ public class PaymentMicroservice {
         HttpResponse<JSONObject> tokenResponse = this.httpClient.post(relativeUrl, jsonBody);
         JSONObject body = tokenResponse.getBody();
         PaymentResponseBody paymentResponseBody = mapper.readValue(body.toJSONString(), PaymentResponseBody.class);
-        return new HttpResponse<>(tokenResponse.getStatusCode(), tokenResponse.getHeaders(), paymentResponseBody);
+        return new HttpResponse<PaymentResponseBody>(tokenResponse.getStatusCode(), tokenResponse.getHeaders(), paymentResponseBody);//NOSONAR
     }
 
     public HttpResponse<PaymentResponseBody> getPayments() throws IOException {
@@ -45,6 +45,6 @@ public class PaymentMicroservice {
         HttpResponse<JSONObject> tokenResponse = this.httpClient.get(relativeUrl);
         JSONObject body = tokenResponse.getBody();
         PaymentResponseBody paymentResponseBody = mapper.readValue(body.toJSONString(), PaymentResponseBody.class);
-        return new HttpResponse<>(tokenResponse.getStatusCode(), tokenResponse.getHeaders(), paymentResponseBody);
+        return new HttpResponse<PaymentResponseBody>(tokenResponse.getStatusCode(), tokenResponse.getHeaders(), paymentResponseBody);//NOSONAR
     }
 }
