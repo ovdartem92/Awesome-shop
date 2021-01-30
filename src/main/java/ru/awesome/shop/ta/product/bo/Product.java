@@ -19,11 +19,29 @@ public class Product {
     private String total;
     private Integer reward;
 
-    public int getCart_id() {
+    public Product() {
+    }
+
+    public Product(int cartId, int productId, String name, String model, List<Object> option, int quantity,
+                   Boolean stock, String shipping, String price, String total, Integer reward) {
+        this.cart_id = cartId;
+        this.product_id = productId;
+        this.name = name;
+        this.model = model;
+        this.option = option;
+        this.quantity = quantity;
+        this.stock = stock;
+        this.shipping = shipping;
+        this.price = price;
+        this.total = total;
+        this.reward = reward;
+    }
+
+    public int getCart_id() { //NOSONAR
         return cart_id;
     }
 
-    public int getProduct_id() {
+    public int getProduct_id() { //NOSONAR
         return product_id;
     }
 

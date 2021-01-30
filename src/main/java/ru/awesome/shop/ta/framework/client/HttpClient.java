@@ -13,11 +13,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class HttpClient {
-    private final String baseUrl = "https://awesome-shop.01sh.ru";
+    private static final String BASE_URL = "https://awesome-shop.01sh.ru";
     private final Map<String, String> defaultHeaders = new HashMap<>();
 
     public HttpClient() {
-        RestAssured.baseURI = baseUrl;
+        RestAssured.baseURI = BASE_URL;
     }
 
     public HttpResponse<JSONObject> get(String relativeUrl, Map<String, String> requestHeaders) {
@@ -46,7 +46,7 @@ public class HttpClient {
     }
 
     public HttpResponse<JSONObject> post(String relativeUrl, JSONObject requestBody) {
-        return post(relativeUrl, Collections.<String, String>emptyMap(), defaultHeaders, requestBody);
+        return post(relativeUrl, Collections.emptyMap(), defaultHeaders, requestBody);
     }
 
     public HttpResponse<JSONObject> put(String relativeUrl, Map<String, String> requestHeaders, JSONObject requestBody) {

@@ -1,6 +1,6 @@
 package awesome.shop.tests.api.steps;
 
-public class TextContextApi {
+public class ApiTestContext {
     private String token;
     private int cartId;
     private int actualCodeResponse;

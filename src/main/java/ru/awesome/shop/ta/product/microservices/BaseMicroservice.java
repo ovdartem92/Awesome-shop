@@ -10,6 +10,7 @@ import ru.awesome.shop.ta.framework.client.HttpClient;
 public class BaseMicroservice {
     protected HttpClient httpClient;
     protected ObjectMapper mapper = new ObjectMapper();
+    protected String commonUrl = "/index.php";
 
     public BaseMicroservice(HttpClient httpClient) {
         this.httpClient = httpClient;

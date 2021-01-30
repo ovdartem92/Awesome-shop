@@ -10,20 +10,21 @@ import ru.awesome.shop.ta.product.http.body.response.TokenResponseBody;
 import ru.awesome.shop.ta.product.microservices.AuthorizationMicroservice;
 
 public class TokenSteps {
-    private TextContextApi testContext;
+    private ApiTestContext testContext;
     private HttpClient httpClient = new HttpClient();
 
-    public TokenSteps(TextContextApi textContextApi) {
+    public TokenSteps(ApiTestContext textContextApi) {
         this.testContext = textContextApi;
     }
 
     @Given("^I have had a token$")
-    public void getTokenForNewSession() throws JsonProcessingException, ParseException {
+    public void generateTokenForNewSession() throws JsonProcessingException, ParseException {
         TokenRequestBody tokenRequestBody = new TokenRequestBody();
         AuthorizationMicroservice authorizationMicroservice = new AuthorizationMicroservice(httpClient);
-        HttpResponse<TokenResponseBody> response = authorizationMicroservice.getToken(tokenRequestBody);
+        HttpResponse<TokenResponseBody> response = authorizationMicroservice.generateToken(tokenRequestBody);
         TokenResponseBody body = response.getBody();
         String token = body.getToken();
         testContext.setToken(token);
+        System.out.println("TOKEN ---------------" + testContext.getToken());
     }
 }

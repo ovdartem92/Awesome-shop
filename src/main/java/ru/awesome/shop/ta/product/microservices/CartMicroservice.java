@@ -4,7 +4,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 import ru.awesome.shop.ta.framework.client.HttpClient;
-import ru.awesome.shop.ta.framework.client.Routes;
 import ru.awesome.shop.ta.product.http.HttpResponse;
 import ru.awesome.shop.ta.product.http.body.request.AddItemRequestBody;
 import ru.awesome.shop.ta.product.http.body.request.RemoveItemRequestBody;
@@ -14,55 +13,70 @@ import ru.awesome.shop.ta.product.http.body.response.OpenCartResponseBody;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class CartMicroservice extends BaseMicroservice {
-    public CartMicroservice(HttpClient httpClient) {
+    private String token;
+
+    public CartMicroservice(HttpClient httpClient, String token) {
         super(httpClient);
+        Objects.requireNonNull(token, "Token cannot be null");
+        this.token = token;
+
     }
 
-    public HttpResponse<ChangeCartResponseBody> addItem(AddItemRequestBody addItemRequestBody, String token)
+    public HttpResponse<ChangeCartResponseBody> addItem(AddItemRequestBody addItemRequestBody)
             throws JsonProcessingException, ParseException {
         Map<String, String> queryParameters = new HashMap<>();
-        queryParameters.put("token", token);
+        queryParameters.put("token", this.token);
+        queryParameters.put("route", "api/cart/add");
         JSONObject requestBody = convertObjectToJson(addItemRequestBody);
-        HttpResponse httpResponse = this.httpClient.post(Routes.addItem(), queryParameters, requestBody);
+        HttpResponse<JSONObject> httpResponse = this.httpClient.post(commonUrl,
+                queryParameters, requestBody);
         ChangeCartResponseBody changeCartResponseBody = mapper.convertValue(httpResponse.getBody(),
                 ChangeCartResponseBody.class);
-        return new HttpResponse<ChangeCartResponseBody>(httpResponse.getStatusCode(), httpResponse.getHeaders(),
+        return new HttpResponse<>(httpResponse.getStatusCode(), httpResponse.getHeaders(),
                 changeCartResponseBody);
     }
 
-    public HttpResponse<OpenCartResponseBody> openCart(String token) {
+    public HttpResponse<OpenCartResponseBody> openCart() {
         Map<String, String> queryParameters = new HashMap<>();
-        queryParameters.put("token", token);
+        queryParameters.put("token", this.token);
+        queryParameters.put("route", "api/cart/products");
         JSONObject requestBody = new JSONObject();
-        HttpResponse httpResponse = this.httpClient.post(Routes.openCart(), queryParameters, requestBody);
+        HttpResponse<JSONObject> httpResponse = this.httpClient.post(commonUrl,
+                queryParameters, requestBody);
         OpenCartResponseBody openCartResponseBody = mapper.convertValue(httpResponse.getBody(),
                 OpenCartResponseBody.class);
-        return new HttpResponse<OpenCartResponseBody>(httpResponse.getStatusCode(), httpResponse.getHeaders(),
+        return new HttpResponse<>(httpResponse.getStatusCode(), httpResponse.getHeaders(),
                 openCartResponseBody);
     }
 
-    public HttpResponse<ChangeCartResponseBody> editCart(EditCartRequestBody editCartRequestBody, String token)
+    public HttpResponse<ChangeCartResponseBody> editCart(EditCartRequestBody editCartRequestBody)
             throws JsonProcessingException, ParseException {
         Map<String, String> queryParameters = new HashMap<>();
-        queryParameters.put("token", token);
+        queryParameters.put("token", this.token);
+        queryParameters.put("route", "api/cart/edit");
         JSONObject requestBody = convertObjectToJson(editCartRequestBody);
-        HttpResponse httpResponse = this.httpClient.post(Routes.editCart(), queryParameters, requestBody);
+        HttpResponse<JSONObject> httpResponse = this.httpClient.post(commonUrl, queryParameters,
+                requestBody);
         ChangeCartResponseBody changeCartResponseBody = mapper.convertValue(httpResponse.getBody(),
                 ChangeCartResponseBody.class);
-        return new HttpResponse<ChangeCartResponseBody>(httpResponse.getStatusCode(), httpResponse.getHeaders(),
+        return new HttpResponse<>(httpResponse.getStatusCode(), httpResponse.getHeaders(),
                 changeCartResponseBody);
     }
 
-    public HttpResponse<ChangeCartResponseBody> removeItemFromCart(RemoveItemRequestBody deleteItemRequestBody,
-                                                                   String token) throws JsonProcessingException, ParseException {
+    public HttpResponse<ChangeCartResponseBody> removeItemFromCart(RemoveItemRequestBody deleteItemRequestBody)
+            throws JsonProcessingException, ParseException {
         Map<String, String> queryParameters = new HashMap<>();
-        queryParameters.put("token", token);
+        queryParameters.put("token", this.token);
+        queryParameters.put("route", "api/cart/remove");
         JSONObject requestBody = convertObjectToJson(deleteItemRequestBody);
-        HttpResponse httpResponse = this.httpClient.post(Routes.removeItem(), queryParameters, requestBody);
-        ChangeCartResponseBody changeCartResponseBody = mapper.convertValue(httpResponse.getBody(), ChangeCartResponseBody.class);
-        return new HttpResponse<ChangeCartResponseBody>(httpResponse.getStatusCode(), httpResponse.getHeaders(),
+        HttpResponse<JSONObject> httpResponse = this.httpClient.post(commonUrl,
+                queryParameters, requestBody);
+        ChangeCartResponseBody changeCartResponseBody = mapper.convertValue(httpResponse.getBody(),
+                ChangeCartResponseBody.class);
+        return new HttpResponse<>(httpResponse.getStatusCode(), httpResponse.getHeaders(),
                 changeCartResponseBody);
     }
 }

@@ -21,21 +21,22 @@ import java.util.List;
 public class CartApiSteps {
     private HttpClient httpClient = new HttpClient();
     private String actualSuccessCartMessage;
-    private TextContextApi testContext;
-    private CartMicroservice cartMicroservice = new CartMicroservice(httpClient);
+    private ApiTestContext apiTestContext;
+    private CartMicroservice cartMicroservice;
 
-    public CartApiSteps(TextContextApi textContextApi) {
-        this.testContext = textContextApi;
+    public CartApiSteps(ApiTestContext textContextApi) {
+        this.apiTestContext = textContextApi;
+        this.cartMicroservice = new CartMicroservice(httpClient, apiTestContext.getToken());
     }
 
     @When("^I add item to cart with item id (.*) and quantity (.*)$")
     public void addItemToCart(int itemId, int amount) throws JsonProcessingException, ParseException {
+        System.out.println("TOKEN FROM CART-----" + apiTestContext.getToken());
         AddItemRequestBody addItemRequestBody = new AddItemRequestBody(itemId, amount);
-        HttpResponse<ChangeCartResponseBody> response = cartMicroservice.addItem(addItemRequestBody,
-                testContext.getToken());
+        HttpResponse<ChangeCartResponseBody> response = cartMicroservice.addItem(addItemRequestBody);
         ChangeCartResponseBody responseBody = response.getBody();
         actualSuccessCartMessage = responseBody.getSuccess();
-        testContext.setActualCodeResponse(response.getStatusCode());
+        apiTestContext.setActualCodeResponse(response.getStatusCode());
     }
 
     @Then("^I see message success \"(.*)\"$")
@@ -46,11 +47,11 @@ public class CartApiSteps {
 
     @Then("^I see this item in the cart with item id (.*) and quantity (.*)$")
     public void checkItemInCart(int itemId, int quantity) {
-        HttpResponse<OpenCartResponseBody> response = cartMicroservice.openCart(testContext.getToken());
+        HttpResponse<OpenCartResponseBody> response = cartMicroservice.openCart();
         OpenCartResponseBody items = response.getBody();
         Product product = items.getProducts().get(0);
         int cartId = product.getCart_id();
-        testContext.setCartId(cartId);
+        apiTestContext.setCartId(cartId);
         int actualItemId = product.getProduct_id();
         int actualQuantity = product.getQuantity();
         Assert.assertEquals(actualItemId, itemId, "Wrong product id in the cart");
@@ -59,16 +60,15 @@ public class CartApiSteps {
 
     @When("^I edit item quantity (.*) in cart$")
     public void editQuantityInCart(int quantity) throws JsonProcessingException, ParseException {
-        EditCartRequestBody editCartRequestBody = new EditCartRequestBody(testContext.getCartId(), quantity);
-        HttpResponse<ChangeCartResponseBody> response = cartMicroservice.editCart(editCartRequestBody,
-                testContext.getToken());
+        EditCartRequestBody editCartRequestBody = new EditCartRequestBody(apiTestContext.getCartId(), quantity);
+        HttpResponse<ChangeCartResponseBody> response = cartMicroservice.editCart(editCartRequestBody);
         ChangeCartResponseBody body = response.getBody();
         actualSuccessCartMessage = body.getSuccess();
     }
 
     @Then("^I see this item in the cart with quantity (.*)$")
     public void checkQuantityItem(int expectedQuantity) {
-        HttpResponse<OpenCartResponseBody> response = cartMicroservice.openCart(testContext.getToken());
+        HttpResponse<OpenCartResponseBody> response = cartMicroservice.openCart();
         OpenCartResponseBody items = response.getBody();
         Product product = items.getProducts().get(0);
         int actualQuantity = product.getQuantity();
@@ -77,27 +77,26 @@ public class CartApiSteps {
 
     @And("I have cart id")
     public void getCartId() {
-        HttpResponse<OpenCartResponseBody> response = cartMicroservice.openCart(testContext.getToken());
+        HttpResponse<OpenCartResponseBody> response = cartMicroservice.openCart();
         OpenCartResponseBody items = response.getBody();
         Product product = items.getProducts().get(0);
         int cartId = product.getCart_id();
-        testContext.setCartId(cartId);
+        apiTestContext.setCartId(cartId);
     }
 
     @And("I remove item from cart")
     public void removeFromCart() throws JsonProcessingException, ParseException {
-        RemoveItemRequestBody deleteItemRequestBody = new RemoveItemRequestBody(testContext.getCartId());
-        HttpResponse<ChangeCartResponseBody> response = cartMicroservice.removeItemFromCart(deleteItemRequestBody,
-                testContext.getToken());
+        RemoveItemRequestBody deleteItemRequestBody = new RemoveItemRequestBody(apiTestContext.getCartId());
+        HttpResponse<ChangeCartResponseBody> response = cartMicroservice.removeItemFromCart(deleteItemRequestBody);
         ChangeCartResponseBody responseBody = response.getBody();
         actualSuccessCartMessage = responseBody.getSuccess();
         int statusCode = response.getStatusCode();
-        testContext.setActualCodeResponse(statusCode);
+        apiTestContext.setActualCodeResponse(statusCode);
     }
 
     @And("I see that cart is empty")
     public void checkThatCartIsEmpty() {
-        HttpResponse<OpenCartResponseBody> response = cartMicroservice.openCart(testContext.getToken());
+        HttpResponse<OpenCartResponseBody> response = cartMicroservice.openCart();
         OpenCartResponseBody body = response.getBody();
         List<Product> products = body.getProducts();
         Assert.assertTrue(products.isEmpty(), "Products wasn't removed from cart");
@@ -105,6 +104,6 @@ public class CartApiSteps {
 
     @And("^I see response status code (.*)")
     public void iSeeResponseStatusCode(int expectedCode) {
-        Assert.assertEquals(testContext.getActualCodeResponse(), expectedCode, "Wrong response status code");
+        Assert.assertEquals(apiTestContext.getActualCodeResponse(), expectedCode, "Wrong response status code");
     }
 }
