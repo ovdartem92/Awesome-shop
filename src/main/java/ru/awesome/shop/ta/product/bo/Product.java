@@ -7,8 +7,8 @@ import ru.awesome.shop.ta.utils.JsonRepresentation;
 import java.util.List;
 
 public class Product {
-    private int cart_id;
-    private int product_id;
+    private int cart_id; //NOSONAR
+    private int product_id; //NOSONAR
     private String name;
     private String model;
     private List<Object> option = null;

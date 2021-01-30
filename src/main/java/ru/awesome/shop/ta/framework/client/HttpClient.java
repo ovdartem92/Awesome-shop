@@ -20,15 +20,17 @@ public class HttpClient {
         RestAssured.baseURI = BASE_URL;
     }
 
-    public HttpResponse<JSONObject> get(String relativeUrl, Map<String, String> requestHeaders) {
+    public HttpResponse<JSONObject> get(String relativeUrl, Map<String, String> queryParameters,
+                                        Map<String, String> requestHeaders) {
         RequestSpecification request = RestAssured.given();
+        request.queryParams(queryParameters);
         request.headers(requestHeaders);
         Response response = request.get(relativeUrl);
         return prepareHttpResponse(response);
     }
 
-    public HttpResponse<JSONObject> get(String relativeUrl) {
-        return get(relativeUrl, defaultHeaders);
+    public HttpResponse<JSONObject> get(String relativeUrl, Map<String, String> queryParameters) {
+        return get(relativeUrl, queryParameters, defaultHeaders);
     }
 
     public HttpResponse<JSONObject> post(String relativeUrl, Map<String, String> queryParameters, JSONObject requestBody) {
@@ -43,10 +45,6 @@ public class HttpClient {
         request.params(requestBody);
         Response response = request.post(relativeUrl);
         return prepareHttpResponse(response);
-    }
-
-    public HttpResponse<JSONObject> post(String relativeUrl, JSONObject requestBody) {
-        return post(relativeUrl, Collections.emptyMap(), defaultHeaders, requestBody);
     }
 
     public HttpResponse<JSONObject> put(String relativeUrl, Map<String, String> requestHeaders, JSONObject requestBody) {
@@ -75,7 +73,7 @@ public class HttpClient {
         JSONObject body = response.body().as(JSONObject.class);
         int responseCode = response.getStatusCode();
         Map<String, String> headers = convertHeaders(response.headers());
-        return new HttpResponse<JSONObject>(responseCode, headers, body);
+        return new HttpResponse<>(responseCode, headers, body);
     }
 
     private Map<String, String> convertHeaders(Headers headers) {

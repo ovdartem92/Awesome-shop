@@ -31,7 +31,6 @@ public class CartApiSteps {
 
     @When("^I add item to cart with item id (.*) and quantity (.*)$")
     public void addItemToCart(int itemId, int amount) throws JsonProcessingException, ParseException {
-        System.out.println("TOKEN FROM CART-----" + apiTestContext.getToken());
         AddItemRequestBody addItemRequestBody = new AddItemRequestBody(itemId, amount);
         HttpResponse<ChangeCartResponseBody> response = cartMicroservice.addItem(addItemRequestBody);
         ChangeCartResponseBody responseBody = response.getBody();

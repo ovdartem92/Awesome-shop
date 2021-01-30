@@ -25,6 +25,5 @@ public class TokenSteps {
         TokenResponseBody body = response.getBody();
         String token = body.getToken();
         testContext.setToken(token);
-        System.out.println("TOKEN ---------------" + testContext.getToken());
     }
 }
