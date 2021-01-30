@@ -24,13 +24,6 @@ public class PaymentResponseBody {
         return success;
     }
 
-    public String getMessage() {
-        if (getSuccess() == null) {
-            return getError();
-        }
-        return getSuccess();
-    }
-
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {

@@ -8,68 +8,61 @@ import io.restassured.specification.RequestSpecification;
 import org.json.simple.JSONObject;
 import ru.awesome.shop.ta.product.http.body.HttpResponse;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
 public class HttpClient {
+    private static final String BASE_URL = "https://awesome-shop.01sh.ru";
     private final Map<String, String> defaultHeaders = new HashMap<>();
-    private String baseUrl = "https://awesome-shop.01sh.ru";
 
     public HttpClient() {
-        RestAssured.baseURI = baseUrl;
+        RestAssured.baseURI = BASE_URL;
     }
 
-    private Map<String, String> convertHeaders(Headers headers) {
-        Map<String, String> buffer = new HashMap<>();
-        for (Header header : headers.asList()) {
-            buffer.put(header.getName(), header.getValue());
-        }
-        return buffer;
-    }
-
-    public HttpResponse<JSONObject> get(String relativeUrl, Map<String, String> requestHeaders) {
-        int statusCode;
-        Response response;
-        JSONObject body;
+    public HttpResponse<JSONObject> get(String relativeUrl, Map<String,
+            String> queryParameters, Map<String, String> requestHeaders) {
         RequestSpecification request = RestAssured.given();
+        request.queryParams(queryParameters);
         request.headers(requestHeaders);
-        response = request.get(relativeUrl);
-        body = response.body().as(JSONObject.class);
-        statusCode = response.getStatusCode();
-        return new HttpResponse<>(statusCode, convertHeaders(response.headers()), body);
+        Response response = request.get(relativeUrl);
+        return prepareHttpResponse(response);
     }
 
     public HttpResponse<JSONObject> get(String relativeUrl) {
-        return get(relativeUrl, defaultHeaders);
+        return get(relativeUrl, Collections.emptyMap(), defaultHeaders);
     }
 
-    public HttpResponse<JSONObject> post(String relativeUrl, Map<String, String> requestHeaders, JSONObject requestBody) {
-        int statusCode;
-        Response response;
-        JSONObject body;
+    public HttpResponse<JSONObject> get(String relativeUrl, Map<String,
+            String> queryParameters) {
+        return get(relativeUrl, queryParameters, defaultHeaders);
+    }
+
+    public HttpResponse<JSONObject> post(String relativeUrl, Map<String,
+            String> queryParameters, JSONObject requestBody) {
+        return post(relativeUrl, queryParameters, defaultHeaders, requestBody);
+    }
+
+    public HttpResponse<JSONObject> post(String relativeUrl, Map<String, String> queryParameters,
+                                         Map<String, String> requestHeaders, JSONObject requestBody) {
         RequestSpecification request = RestAssured.given();
+        request.queryParams(queryParameters);
         request.headers(requestHeaders);
         request.params(requestBody);
-        response = request.post(relativeUrl);
-        body = response.getBody().as(JSONObject.class);
-        statusCode = response.getStatusCode();
-        return new HttpResponse<>(statusCode, convertHeaders(response.headers()), body);
+        Response response = request.post(relativeUrl);
+        return prepareHttpResponse(response);
     }
 
     public HttpResponse<JSONObject> post(String relativeUrl, JSONObject requestBody) {
-        return post(relativeUrl, defaultHeaders, requestBody);
+        return post(relativeUrl, Collections.emptyMap(), defaultHeaders, requestBody);
     }
 
-    public HttpResponse<JSONObject> put(String relativeUrl, Map<String, String> requestHeaders, JSONObject requestBody) {
-        int statusCode;
-        Response response;
-        JSONObject body;
+    public HttpResponse<JSONObject> put(String relativeUrl, Map<String,
+            String> requestHeaders, JSONObject requestBody) {
         RequestSpecification request = RestAssured.given();
         request.headers(requestHeaders);
-        response = request.params(requestBody).put(relativeUrl);
-        body = response.body().as(JSONObject.class);
-        statusCode = response.getStatusCode();
-        return new HttpResponse<>(statusCode, convertHeaders(response.headers()), body);
+        Response response = request.params(requestBody).put(relativeUrl);
+        return prepareHttpResponse(response);
     }
 
     public HttpResponse<JSONObject> put(String relativeUrl, JSONObject requestBody) {
@@ -77,18 +70,28 @@ public class HttpClient {
     }
 
     public HttpResponse<JSONObject> delete(String relativeUrl, Map<String, String> requestHeaders) {
-        int statusCode;
-        Response response;
-        JSONObject body;
         RequestSpecification request = RestAssured.given();
         request.headers(requestHeaders);
-        response = request.delete(relativeUrl);
-        body = response.body().as(JSONObject.class);
-        statusCode = response.getStatusCode();
-        return new HttpResponse<>(statusCode, convertHeaders(response.headers()), body);
+        Response response = request.delete(relativeUrl);
+        return prepareHttpResponse(response);
     }
 
     public HttpResponse<JSONObject> delete(String relativeUrl) {
         return delete(relativeUrl, defaultHeaders);
+    }
+
+    private HttpResponse<JSONObject> prepareHttpResponse(Response response) {
+        JSONObject body = response.body().as(JSONObject.class);
+        int responseCode = response.getStatusCode();
+        Map<String, String> headers = convertHeaders(response.headers());
+        return new HttpResponse<JSONObject>(responseCode, headers, body);
+    }
+
+    private Map<String, String> convertHeaders(Headers headers) {
+        Map<String, String> headersMap = new HashMap<>();
+        for (Header header : headers) {
+            headersMap.put(header.getName(), header.getValue());
+        }
+        return headersMap;
     }
 }

@@ -1,6 +1,6 @@
 package awesome.shop.tests.cucumber.steps;
 
-public class TextContextApi {
+public class ApiTestContext {
     private String token;
     private int actualCodeResponse;
     private String actualBodyMessage;
@@ -14,7 +14,7 @@ public class TextContextApi {
     }
 
     public String getToken() {
-        return token;
+        return this.token;
     }
 
     public void setToken(String token) {
@@ -22,7 +22,7 @@ public class TextContextApi {
     }
 
     public int getActualCodeResponse() {
-        return actualCodeResponse;
+        return this.actualCodeResponse;
     }
 
     public void setActualCodeResponse(int actualCodeResponse) {
