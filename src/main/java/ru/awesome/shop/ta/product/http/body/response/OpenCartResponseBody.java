@@ -6,6 +6,7 @@ import ru.awesome.shop.ta.product.bo.Product;
 import ru.awesome.shop.ta.utils.JsonRepresentation;
 
 import java.util.List;
+import java.util.Objects;
 
 public class OpenCartResponseBody {
     private List<Product> products;
@@ -16,6 +17,9 @@ public class OpenCartResponseBody {
     }
 
     public OpenCartResponseBody(List<Product> products, List<Object> vouchers, List<Object> totals) {
+        Objects.requireNonNull(products, "Products cannot be null");
+        Objects.requireNonNull(vouchers, "Vouchers cannot be null");
+        Objects.requireNonNull(totals, "Totals cannot be null");
         this.products = products;
         this.vouchers = vouchers;
         this.totals = totals;

@@ -10,6 +10,7 @@ import ru.awesome.shop.ta.product.http.HttpResponse;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class CouponMicroservice extends BaseMicroservice {
     private String token;
@@ -21,6 +22,7 @@ public class CouponMicroservice extends BaseMicroservice {
 
     public HttpResponse<CouponResponseBody> useCoupon(CouponRequestBody couponRequestBody)
             throws JsonProcessingException, ParseException {
+        Objects.requireNonNull(couponRequestBody, "Coupon response body cannot be null");
         Map<String, String> queryParameters = new HashMap<>();
         queryParameters.put("token", this.token);
         queryParameters.put("route", "api/coupon");

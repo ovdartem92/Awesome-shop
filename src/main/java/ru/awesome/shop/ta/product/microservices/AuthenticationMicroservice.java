@@ -10,6 +10,7 @@ import ru.awesome.shop.ta.product.http.body.response.TokenResponseBody;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class AuthenticationMicroservice extends BaseMicroservice {
 
@@ -19,6 +20,7 @@ public class AuthenticationMicroservice extends BaseMicroservice {
 
     public HttpResponse<TokenResponseBody> generateToken(TokenRequestBody tokenRequestBody)
             throws JsonProcessingException, ParseException {
+        Objects.requireNonNull(tokenRequestBody, "Token response body cannot be null");
         JSONObject requestBody = convertObjectToJson(tokenRequestBody);
         Map<String, String> queryParameters = new HashMap<>();
         queryParameters.put("route", "api/login");

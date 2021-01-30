@@ -4,6 +4,8 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import ru.awesome.shop.ta.utils.JsonRepresentation;
 
+import java.util.Objects;
+
 public class TokenRequestBody {
     private String username;
     private String key;
@@ -12,6 +14,8 @@ public class TokenRequestBody {
     }
 
     public TokenRequestBody(String username, String key) {
+        Objects.requireNonNull(key, "Key cannot be null");
+        Objects.requireNonNull(username, "User name cannot be null");
         this.key = key;
         this.username = username;
     }

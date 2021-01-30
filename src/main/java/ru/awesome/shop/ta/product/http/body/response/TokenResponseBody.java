@@ -4,6 +4,8 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import ru.awesome.shop.ta.utils.JsonRepresentation;
 
+import java.util.Objects;
+
 public class TokenResponseBody {
     private String success;
     private String token;
@@ -12,6 +14,8 @@ public class TokenResponseBody {
     }
 
     public TokenResponseBody(String success, String token) {
+        Objects.requireNonNull(success, "Success message cannot be null");
+        Objects.requireNonNull(token, "Token cannot be null");
         this.success = success;
         this.token = token;
     }

@@ -29,6 +29,7 @@ public class CartMicroservice extends BaseMicroservice {
 
     public HttpResponse<ChangeCartResponseBody> addItem(AddItemRequestBody addItemRequestBody)
             throws JsonProcessingException, ParseException {
+        Objects.requireNonNull(addItemRequestBody, "Add item response body cannot be null");
         queryParameters.put("route", "api/cart/add");
         JSONObject requestBody = convertObjectToJson(addItemRequestBody);
         HttpResponse<JSONObject> httpResponse = this.httpClient.post(commonUrl,
@@ -52,6 +53,7 @@ public class CartMicroservice extends BaseMicroservice {
 
     public HttpResponse<ChangeCartResponseBody> editCart(EditCartRequestBody editCartRequestBody)
             throws JsonProcessingException, ParseException {
+        Objects.requireNonNull(editCartRequestBody, "Edit cart response body cannot be null");
         queryParameters.put("route", "api/cart/edit");
         JSONObject requestBody = convertObjectToJson(editCartRequestBody);
         HttpResponse<JSONObject> httpResponse = this.httpClient.post(commonUrl, queryParameters,
@@ -62,10 +64,11 @@ public class CartMicroservice extends BaseMicroservice {
                 changeCartResponseBody);
     }
 
-    public HttpResponse<ChangeCartResponseBody> removeItemFromCart(RemoveItemRequestBody deleteItemRequestBody)
+    public HttpResponse<ChangeCartResponseBody> removeItemFromCart(RemoveItemRequestBody removeItemRequestBody)
             throws JsonProcessingException, ParseException {
+        Objects.requireNonNull(removeItemRequestBody, "Remove item response body cannot be null");
         queryParameters.put("route", "api/cart/remove");
-        JSONObject requestBody = convertObjectToJson(deleteItemRequestBody);
+        JSONObject requestBody = convertObjectToJson(removeItemRequestBody);
         HttpResponse<JSONObject> httpResponse = this.httpClient.post(commonUrl,
                 queryParameters, requestBody);
         ChangeCartResponseBody changeCartResponseBody = mapper.convertValue(httpResponse.getBody(),

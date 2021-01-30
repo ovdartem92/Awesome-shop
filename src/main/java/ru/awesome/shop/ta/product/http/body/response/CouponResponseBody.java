@@ -4,6 +4,8 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import ru.awesome.shop.ta.utils.JsonRepresentation;
 
+import java.util.Objects;
+
 public class CouponResponseBody {
     private String error;
 
@@ -11,6 +13,7 @@ public class CouponResponseBody {
     }
 
     public CouponResponseBody(String error) {
+        Objects.requireNonNull(error, "Error message cannot be null");
         this.error = error;
     }
 

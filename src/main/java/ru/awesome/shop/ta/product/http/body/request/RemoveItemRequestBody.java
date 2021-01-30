@@ -4,10 +4,13 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import ru.awesome.shop.ta.utils.JsonRepresentation;
 
+import java.util.Objects;
+
 public class RemoveItemRequestBody {
     private int key;
 
     public RemoveItemRequestBody(int key) {
+        Objects.requireNonNull(key, "Key cannot be null");
         this.key = key;
     }
 

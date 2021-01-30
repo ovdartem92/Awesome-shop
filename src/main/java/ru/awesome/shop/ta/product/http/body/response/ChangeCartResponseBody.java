@@ -4,6 +4,8 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import ru.awesome.shop.ta.utils.JsonRepresentation;
 
+import java.util.Objects;
+
 public class ChangeCartResponseBody {
     private String success;
 
@@ -11,6 +13,7 @@ public class ChangeCartResponseBody {
     }
 
     public ChangeCartResponseBody(String success) {
+        Objects.requireNonNull(success, "Success message cannot be null");
         this.success = success;
     }
 

@@ -4,10 +4,13 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import ru.awesome.shop.ta.utils.JsonRepresentation;
 
+import java.util.Objects;
+
 public class CouponRequestBody {
     private int coupon;
 
     public CouponRequestBody(int coupon) {
+        Objects.requireNonNull(coupon, "Coupon cannot be null");
         this.coupon = coupon;
     }
 
