@@ -9,17 +9,23 @@ import ru.awesome.shop.ta.framework.client.HttpClient;
 import ru.awesome.shop.ta.framework.client.Routes;
 import ru.awesome.shop.ta.product.http.HttpResponse;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class CouponMicroservice extends BaseMicroservice {
 
     public CouponMicroservice(HttpClient httpClient) {
         super(httpClient);
     }
 
-    public HttpResponse<CouponResponseBody> useCoupon(CouponRequestBody couponRequestBody, String token) throws JsonProcessingException, ParseException {
+    public HttpResponse<CouponResponseBody> useCoupon(CouponRequestBody couponRequestBody, String token)
+            throws JsonProcessingException, ParseException {
+        Map<String, String> queryParameters = new HashMap<>();
+        queryParameters.put("token", token);
         JSONObject requestBody = convertObjectToJson(couponRequestBody);
-        HttpResponse httpResponse = this.httpClient.post(Routes.useCoupon(), requestBody, token);
+        HttpResponse httpResponse = this.httpClient.post(Routes.useCoupon(), queryParameters, requestBody);
         CouponResponseBody couponResponseBody = mapper.convertValue(httpResponse.getBody(), CouponResponseBody.class);
-        httpResponse.setBody(couponResponseBody);
-        return httpResponse;
+        return new HttpResponse<CouponResponseBody>(httpResponse.getStatusCode(), httpResponse.getHeaders(),
+                couponResponseBody);
     }
 }

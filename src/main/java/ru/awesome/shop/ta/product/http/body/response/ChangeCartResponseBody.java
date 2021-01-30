@@ -7,7 +7,6 @@ public class ChangeCartResponseBody {
     }
 
     public ChangeCartResponseBody(String success) {
-        super();
         this.success = success;
     }
 

@@ -7,7 +7,6 @@ public class CouponResponseBody {
     }
 
     public CouponResponseBody(String error) {
-        super();
         this.error = error;
     }
 

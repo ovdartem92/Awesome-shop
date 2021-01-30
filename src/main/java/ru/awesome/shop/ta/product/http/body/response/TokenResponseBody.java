@@ -9,7 +9,6 @@ public class TokenResponseBody {
     }
 
     public TokenResponseBody(String success, String token) {
-        super();
         this.success = success;
         this.token = token;
     }

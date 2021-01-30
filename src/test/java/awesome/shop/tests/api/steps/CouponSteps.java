@@ -28,7 +28,7 @@ public class CouponSteps {
         HttpResponse<CouponResponseBody> response = couponMicroservice.useCoupon(couponRequestBody, textContextApi.getToken());
         CouponResponseBody couponResponseBody = response.getBody();
         actualErrorMessage = couponResponseBody.getError();
-        int codeResponse = response.getResponseStatusCode();
+        int codeResponse = response.getStatusCode();
         textContextApi.setActualCodeResponse(codeResponse);
     }
 

@@ -31,10 +31,11 @@ public class CartApiSteps {
     @When("^I add item to cart with item id (.*) and quantity (.*)$")
     public void addItemToCart(int itemId, int amount) throws JsonProcessingException, ParseException {
         AddItemRequestBody addItemRequestBody = new AddItemRequestBody(itemId, amount);
-        HttpResponse<ChangeCartResponseBody> response = cartMicroservice.addItem(addItemRequestBody, testContext.getToken());
+        HttpResponse<ChangeCartResponseBody> response = cartMicroservice.addItem(addItemRequestBody,
+                testContext.getToken());
         ChangeCartResponseBody responseBody = response.getBody();
         actualSuccessCartMessage = responseBody.getSuccess();
-        testContext.setActualCodeResponse(response.getResponseStatusCode());
+        testContext.setActualCodeResponse(response.getStatusCode());
     }
 
     @Then("^I see message success \"(.*)\"$")
@@ -59,7 +60,8 @@ public class CartApiSteps {
     @When("^I edit item quantity (.*) in cart$")
     public void editQuantityInCart(int quantity) throws JsonProcessingException, ParseException {
         EditCartRequestBody editCartRequestBody = new EditCartRequestBody(testContext.getCartId(), quantity);
-        HttpResponse<ChangeCartResponseBody> response = cartMicroservice.editCart(editCartRequestBody, testContext.getToken());
+        HttpResponse<ChangeCartResponseBody> response = cartMicroservice.editCart(editCartRequestBody,
+                testContext.getToken());
         ChangeCartResponseBody body = response.getBody();
         actualSuccessCartMessage = body.getSuccess();
     }
@@ -89,7 +91,7 @@ public class CartApiSteps {
                 testContext.getToken());
         ChangeCartResponseBody responseBody = response.getBody();
         actualSuccessCartMessage = responseBody.getSuccess();
-        int statusCode = response.getResponseStatusCode();
+        int statusCode = response.getStatusCode();
         testContext.setActualCodeResponse(statusCode);
     }
 

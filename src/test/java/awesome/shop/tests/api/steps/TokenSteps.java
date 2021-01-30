@@ -21,7 +21,7 @@ public class TokenSteps {
     public void getTokenForNewSession() throws JsonProcessingException, ParseException {
         TokenRequestBody tokenRequestBody = new TokenRequestBody();
         AuthorizationMicroservice authorizationMicroservice = new AuthorizationMicroservice(httpClient);
-        HttpResponse<TokenResponseBody> response = authorizationMicroservice.getToken(tokenRequestBody, "");
+        HttpResponse<TokenResponseBody> response = authorizationMicroservice.getToken(tokenRequestBody);
         TokenResponseBody body = response.getBody();
         String token = body.getToken();
         testContext.setToken(token);

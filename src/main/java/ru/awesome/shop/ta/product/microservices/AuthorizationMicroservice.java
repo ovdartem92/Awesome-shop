@@ -15,11 +15,12 @@ public class AuthorizationMicroservice extends BaseMicroservice {
         super(httpClient);
     }
 
-    public HttpResponse<TokenResponseBody> getToken(TokenRequestBody tokenRequestBody, String token) throws JsonProcessingException, ParseException {
+    public HttpResponse<TokenResponseBody> getToken(TokenRequestBody tokenRequestBody) throws JsonProcessingException,
+            ParseException {
         JSONObject requestBody = convertObjectToJson(tokenRequestBody);
-        HttpResponse httpResponse = this.httpClient.post(Routes.getToken(), requestBody, token);
+        HttpResponse httpResponse = this.httpClient.post(Routes.getToken(), requestBody);
         TokenResponseBody tokenResponseBody = mapper.convertValue(httpResponse.getBody(), TokenResponseBody.class);
-        httpResponse.setBody(tokenResponseBody);
-        return httpResponse;
+        return new HttpResponse<TokenResponseBody>(httpResponse.getStatusCode(),
+                httpResponse.getHeaders(), tokenResponseBody);
     }
 }

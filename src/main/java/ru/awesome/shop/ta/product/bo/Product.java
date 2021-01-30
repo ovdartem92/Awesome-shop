@@ -1,9 +1,12 @@
 package ru.awesome.shop.ta.product.bo;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import ru.awesome.shop.ta.utils.JsonRepresentation;
+
 import java.util.List;
 
 public class Product {
-
     private int cart_id;
     private int product_id;
     private String name;
@@ -61,19 +64,54 @@ public class Product {
     }
 
     @Override
+    public int hashCode() {
+        final int firstPrime = 11;
+        final int secondPrime = 53;
+        return new HashCodeBuilder(firstPrime, secondPrime)
+                .append(cart_id)
+                .append(product_id)
+                .append(name)
+                .append(model)
+                .append(option)
+                .append(quantity)
+                .append(stock)
+                .append(shipping)
+                .append(price)
+                .append(total)
+                .append(reward)
+                .toHashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (obj == this) {
+            return true;
+        }
+        if (obj.getClass() != this.getClass()) {
+            return false;
+        }
+        Product other = (Product) obj;
+        return new EqualsBuilder()
+                .appendSuper(super.equals(obj))
+                .append(cart_id, other.cart_id)
+                .append(product_id, other.product_id)
+                .append(name, other.name)
+                .append(model, other.model)
+                .append(option, other.option)
+                .append(quantity, other.quantity)
+                .append(stock, other.stock)
+                .append(shipping, other.shipping)
+                .append(price, other.price)
+                .append(total, other.total)
+                .append(reward, other.reward)
+                .isEquals();
+    }
+
+    @Override
     public String toString() {
-        return "Product{" +
-                "cart_id='" + cart_id + '\'' +
-                ", product_id='" + product_id + '\'' +
-                ", name='" + name + '\'' +
-                ", model='" + model + '\'' +
-                ", option=" + option +
-                ", quantity='" + quantity + '\'' +
-                ", stock=" + stock +
-                ", shipping='" + shipping + '\'' +
-                ", price='" + price + '\'' +
-                ", total='" + total + '\'' +
-                ", reward=" + reward +
-                '}';
+        return JsonRepresentation.convertToJson(this);
     }
 }

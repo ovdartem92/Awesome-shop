@@ -1,14 +1,13 @@
 package ru.awesome.shop.ta.product.http.body.response;
 
 import ru.awesome.shop.ta.product.bo.Product;
-import ru.awesome.shop.ta.product.bo.Total;
 
 import java.util.List;
 
 public class OpenCartResponseBody {
     private List<Product> products = null;
     private List<Object> vouchers = null;
-    private List<Total> totals = null;
+    private List<Object> totals = null;
 
     public List<Product> getProducts() {
         return products;
@@ -18,7 +17,7 @@ public class OpenCartResponseBody {
         return vouchers;
     }
 
-    public List<Total> getTotals() {
+    public List<Object> getTotals() {
         return totals;
     }
 

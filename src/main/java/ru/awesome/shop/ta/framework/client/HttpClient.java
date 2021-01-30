@@ -2,27 +2,28 @@ package ru.awesome.shop.ta.framework.client;
 
 import io.restassured.RestAssured;
 import io.restassured.http.Header;
+import io.restassured.http.Headers;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.json.simple.JSONObject;
 import ru.awesome.shop.ta.product.http.HttpResponse;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
 public class HttpClient {
     private final String baseUrl = "https://awesome-shop.01sh.ru";
     private final Map<String, String> defaultHeaders = new HashMap<>();
-    private Response response;
 
     public HttpClient() {
+        RestAssured.baseURI = baseUrl;
     }
 
     public HttpResponse<JSONObject> get(String relativeUrl, Map<String, String> requestHeaders) {
-        RestAssured.baseURI = baseUrl;
         RequestSpecification request = RestAssured.given();
         request.headers(requestHeaders);
-        response = request.get(relativeUrl);
+        Response response = request.get(relativeUrl);
         return prepareHttpResponse(response);
     }
 
@@ -30,26 +31,28 @@ public class HttpClient {
         return get(relativeUrl, defaultHeaders);
     }
 
-    public HttpResponse<JSONObject> post(String relativeUrl, Map<String, String> requestHeaders, JSONObject requestBody,
-                                         String token) {
-        RestAssured.baseURI = baseUrl;
+    public HttpResponse<JSONObject> post(String relativeUrl, Map<String, String> queryParameters, JSONObject requestBody) {
+        return post(relativeUrl, queryParameters, defaultHeaders, requestBody);
+    }
+
+    public HttpResponse<JSONObject> post(String relativeUrl, Map<String, String> queryParameters,
+                                         Map<String, String> requestHeaders, JSONObject requestBody) {
         RequestSpecification request = RestAssured.given();
-        request.queryParam("token", token);
+        request.queryParams(queryParameters);
         request.headers(requestHeaders);
         request.params(requestBody);
-        response = request.post(relativeUrl);
+        Response response = request.post(relativeUrl);
         return prepareHttpResponse(response);
     }
 
-    public HttpResponse<JSONObject> post(String relativeUrl, JSONObject requestBody, String token) {
-        return post(relativeUrl, defaultHeaders, requestBody, token);
+    public HttpResponse<JSONObject> post(String relativeUrl, JSONObject requestBody) {
+        return post(relativeUrl, Collections.<String, String>emptyMap(), defaultHeaders, requestBody);
     }
 
     public HttpResponse<JSONObject> put(String relativeUrl, Map<String, String> requestHeaders, JSONObject requestBody) {
-        RestAssured.baseURI = baseUrl;
         RequestSpecification request = RestAssured.given();
         request.headers(requestHeaders);
-        response = request.params(requestBody).put(relativeUrl);
+        Response response = request.params(requestBody).put(relativeUrl);
         return prepareHttpResponse(response);
     }
 
@@ -58,10 +61,9 @@ public class HttpClient {
     }
 
     public HttpResponse<JSONObject> delete(String relativeUrl, Map<String, String> requestHeaders) {
-        RestAssured.baseURI = baseUrl;
         RequestSpecification request = RestAssured.given();
         request.headers(requestHeaders);
-        response = request.delete(relativeUrl);
+        Response response = request.delete(relativeUrl);
         return prepareHttpResponse(response);
     }
 
@@ -72,10 +74,15 @@ public class HttpClient {
     private HttpResponse<JSONObject> prepareHttpResponse(Response response) {
         JSONObject body = response.body().as(JSONObject.class);
         int responseCode = response.getStatusCode();
-        Map<String, String> headers = new HashMap<>();
-        for (Header header : response.headers()) {
-            headers.put(header.getName(), header.getValue());
+        Map<String, String> headers = convertHeaders(response.headers());
+        return new HttpResponse<JSONObject>(responseCode, headers, body);
+    }
+
+    private Map<String, String> convertHeaders(Headers headers) {
+        Map<String, String> headersMap = new HashMap<>();
+        for (Header header : headers) {
+            headersMap.put(header.getName(), header.getValue());
         }
-        return new HttpResponse<>(responseCode, headers, body);
+        return headersMap;
     }
 }
