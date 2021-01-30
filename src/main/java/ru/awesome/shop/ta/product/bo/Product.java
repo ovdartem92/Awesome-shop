@@ -5,6 +5,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import ru.awesome.shop.ta.utils.JsonRepresentation;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Product {
     private int cart_id; //NOSONAR
@@ -24,6 +25,18 @@ public class Product {
 
     public Product(int cartId, int productId, String name, String model, List<Object> option, int quantity,
                    Boolean stock, String shipping, String price, String total, Integer reward) {
+        Objects.requireNonNull(cartId, "Card id cannot be null");
+        Objects.requireNonNull(productId, "Product id cannot be null");
+        Objects.requireNonNull(name, "Product name cannot be null");
+        Objects.requireNonNull(model, "Product model cannot be null");
+        Objects.requireNonNull(option, "Product option cannot be null");
+        Objects.requireNonNull(quantity, "Product quantity cannot be null");
+        Objects.requireNonNull(stock, "Stock cannot be null");
+        Objects.requireNonNull(shipping, "Shipping cannot be null");
+        Objects.requireNonNull(price, "Product price cannot be null");
+        Objects.requireNonNull(total, "Total cannot be null");
+        Objects.requireNonNull(reward, "Reward cannot be null");
+        
         this.cart_id = cartId;
         this.product_id = productId;
         this.name = name;
