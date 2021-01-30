@@ -29,11 +29,11 @@ public class CouponSteps {
         String actualErrorMessage = couponResponseBody.getError();
         this.apiTestContext.setActualErrorMessage(actualErrorMessage);
         int codeResponse = response.getStatusCode();
-        this.apiTestContext.setActualCodeResponse(codeResponse);
+        this.apiTestContext.setActualStatusCode(codeResponse);
     }
 
     @Then("^I should see message error \"(.*)\"$")
-    public void checkMessageError(String expectedMessage) {
+    public void checkErrorMessage(String expectedMessage) {
         Assert.assertEquals(this.apiTestContext.getActualErrorMessage(), expectedMessage, "Wrong error message");
     }
 }

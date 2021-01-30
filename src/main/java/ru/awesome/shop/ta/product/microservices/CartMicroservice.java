@@ -17,16 +17,19 @@ import java.util.Objects;
 
 public class CartMicroservice extends BaseMicroservice {
     private String token;
+    private Map<String, String> queryParameters;
 
     public CartMicroservice(HttpClient httpClient, String token) {
         super(httpClient);
         Objects.requireNonNull(token, "Token cannot be null");
         this.token = token;
+        queryParameters = new HashMap<>();
+        queryParameters.put("token", this.token);
     }
 
     public HttpResponse<ChangeCartResponseBody> addItem(AddItemRequestBody addItemRequestBody)
             throws JsonProcessingException, ParseException {
-        Map<String, String> queryParameters = createQueryParameters("api/cart/add");
+        queryParameters.put("route", "api/cart/add");
         JSONObject requestBody = convertObjectToJson(addItemRequestBody);
         HttpResponse<JSONObject> httpResponse = this.httpClient.post(commonUrl,
                 queryParameters, requestBody);
@@ -37,7 +40,7 @@ public class CartMicroservice extends BaseMicroservice {
     }
 
     public HttpResponse<OpenCartResponseBody> openCart() {
-        Map<String, String> queryParameters = createQueryParameters("api/cart/products");
+        queryParameters.put("route", "api/cart/products");
         JSONObject requestBody = new JSONObject();
         HttpResponse<JSONObject> httpResponse = this.httpClient.post(commonUrl,
                 queryParameters, requestBody);
@@ -49,7 +52,7 @@ public class CartMicroservice extends BaseMicroservice {
 
     public HttpResponse<ChangeCartResponseBody> editCart(EditCartRequestBody editCartRequestBody)
             throws JsonProcessingException, ParseException {
-        Map<String, String> queryParameters = createQueryParameters("api/cart/edit");
+        queryParameters.put("route", "api/cart/edit");
         JSONObject requestBody = convertObjectToJson(editCartRequestBody);
         HttpResponse<JSONObject> httpResponse = this.httpClient.post(commonUrl, queryParameters,
                 requestBody);
@@ -61,7 +64,7 @@ public class CartMicroservice extends BaseMicroservice {
 
     public HttpResponse<ChangeCartResponseBody> removeItemFromCart(RemoveItemRequestBody deleteItemRequestBody)
             throws JsonProcessingException, ParseException {
-        Map<String, String> queryParameters = createQueryParameters("api/cart/remove");
+        queryParameters.put("route", "api/cart/remove");
         JSONObject requestBody = convertObjectToJson(deleteItemRequestBody);
         HttpResponse<JSONObject> httpResponse = this.httpClient.post(commonUrl,
                 queryParameters, requestBody);
@@ -69,12 +72,5 @@ public class CartMicroservice extends BaseMicroservice {
                 ChangeCartResponseBody.class);
         return new HttpResponse<>(httpResponse.getStatusCode(), httpResponse.getHeaders(),
                 changeCartResponseBody);
-    }
-
-    private Map<String, String> createQueryParameters(String route) {
-        Map<String, String> queryParameters = new HashMap<>();
-        queryParameters.put("token", this.token);
-        queryParameters.put("route", route);
-        return queryParameters;
     }
 }

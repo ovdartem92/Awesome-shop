@@ -1,7 +1,6 @@
 package awesome.shop.tests.api.steps;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.testng.Assert;
@@ -36,7 +35,7 @@ public class CartSteps {
         String actualSuccessMessage = responseBody.getSuccess();
         int actualStatusCode = response.getStatusCode();
         this.apiTestContext.setActualSuccessMessage(actualSuccessMessage);
-        this.apiTestContext.setActualCodeResponse(actualStatusCode);
+        this.apiTestContext.setActualStatusCode(actualStatusCode);
     }
 
     @Then("^I should see message success \"(.*)\"$")
@@ -71,7 +70,7 @@ public class CartSteps {
         ChangeCartResponseBody body = response.getBody();
         String actualSuccessMessage = body.getSuccess();
         int actualStatusCode = response.getStatusCode();
-        this.apiTestContext.setActualCodeResponse(actualStatusCode);
+        this.apiTestContext.setActualStatusCode(actualStatusCode);
         this.apiTestContext.setActualSuccessMessage(actualSuccessMessage);
     }
 
@@ -101,7 +100,7 @@ public class CartSteps {
         String actualSuccessMessage = responseBody.getSuccess();
         this.apiTestContext.setActualSuccessMessage(actualSuccessMessage);
         int statusCode = response.getStatusCode();
-        this.apiTestContext.setActualCodeResponse(statusCode);
+        this.apiTestContext.setActualStatusCode(statusCode);
     }
 
     @Then("I should see that cart is empty")
@@ -111,7 +110,7 @@ public class CartSteps {
     }
 
     @Then("^I should see response status code (.*)")
-    public void iSeeResponseStatusCode(int expectedCode) {
-        Assert.assertEquals(this.apiTestContext.getActualCodeResponse(), expectedCode, "Wrong response status code");
+    public void checkStatusCode(int expectedCode) {
+        Assert.assertEquals(this.apiTestContext.getActualStatusCode(), expectedCode, "Wrong response status code");
     }
 }

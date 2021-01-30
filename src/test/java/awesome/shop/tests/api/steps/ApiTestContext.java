@@ -7,7 +7,7 @@ import java.util.List;
 public class ApiTestContext {
     private String token;
     private List<Product> products;
-    private int actualCodeResponse;
+    private int actualStatusCode;
     private String actualSuccessMessage;
     private String actualErrorMessage;
 
@@ -35,12 +35,12 @@ public class ApiTestContext {
         return token;
     }
 
-    public int getActualCodeResponse() {
-        return actualCodeResponse;
+    public int getActualStatusCode() {
+        return actualStatusCode;
     }
 
-    public void setActualCodeResponse(int actualCodeResponse) {
-        this.actualCodeResponse = actualCodeResponse;
+    public void setActualStatusCode(int actualStatusCode) {
+        this.actualStatusCode = actualStatusCode;
     }
 
     public List<Product> getProducts() {
