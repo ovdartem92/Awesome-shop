@@ -8,7 +8,7 @@ Feature: cart
     When I add item to cart with item id <item_id> and quantity <quantity>
     Then I see message success "Success: You have modified your shopping cart!"
     And I see response status code 200
-    Then I see this item in the cart with item id <item_id> and quantity <quantity>
+    And I see this item in the cart with item id <item_id> and quantity <quantity>
     Examples:
       | item_id | quantity |
       | 43      | 2        |

@@ -74,7 +74,7 @@ public class CartApiSteps {
         Assert.assertEquals(actualQuantity, expectedQuantity, "Wrong product quantity in the cart");
     }
 
-    @And("I have cart id")
+    @When("I have cart id")
     public void getCartId() {
         HttpResponse<OpenCartResponseBody> response = cartMicroservice.openCart();
         OpenCartResponseBody items = response.getBody();
@@ -83,7 +83,7 @@ public class CartApiSteps {
         apiTestContext.setCartId(cartId);
     }
 
-    @And("I remove item from cart")
+    @When("I remove item from cart")
     public void removeFromCart() throws JsonProcessingException, ParseException {
         RemoveItemRequestBody deleteItemRequestBody = new RemoveItemRequestBody(apiTestContext.getCartId());
         HttpResponse<ChangeCartResponseBody> response = cartMicroservice.removeItemFromCart(deleteItemRequestBody);
@@ -93,7 +93,7 @@ public class CartApiSteps {
         apiTestContext.setActualCodeResponse(statusCode);
     }
 
-    @And("I see that cart is empty")
+    @Then("I see that cart is empty")
     public void checkThatCartIsEmpty() {
         HttpResponse<OpenCartResponseBody> response = cartMicroservice.openCart();
         OpenCartResponseBody body = response.getBody();
@@ -101,7 +101,7 @@ public class CartApiSteps {
         Assert.assertTrue(products.isEmpty(), "Products wasn't removed from cart");
     }
 
-    @And("^I see response status code (.*)")
+    @Then("^I see response status code (.*)")
     public void iSeeResponseStatusCode(int expectedCode) {
         Assert.assertEquals(apiTestContext.getActualCodeResponse(), expectedCode, "Wrong response status code");
     }
