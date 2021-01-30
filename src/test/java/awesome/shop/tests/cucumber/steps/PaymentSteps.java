@@ -18,9 +18,9 @@ public class PaymentSteps {
     private HttpResponse<PaymentResponseBody> httpResponse;
     private HttpClient httpClient = new HttpClient();
     private PaymentMicroservice paymentMicroservice = new PaymentMicroservice(httpClient);
-    private TestContext testContext;
+    private TextContextApi testContext;
 
-    public PaymentSteps(TestContext testContext) {
+    public PaymentSteps(TextContextApi testContext) {
         this.testContext = testContext;
     }
 
@@ -31,11 +31,15 @@ public class PaymentSteps {
                 (form.get("First Name"), form.get("Last Name"), form.get("Address"),
                         form.get("City"), form.get("Country"), form.get("Zone_Id"));
         httpResponse = paymentMicroservice.addPaymentAddress(addressRequestBody);
+        testContext.setActualCodeResponse(httpResponse.getStatusCode());
+        testContext.setActualBodyMessage(httpResponse.getBody().getMessage());
     }
 
     @When("I perform request to get payment method")
     public void getPaymentMethod() throws IOException {
         httpResponse = paymentMicroservice.getPayments();
+        testContext.setActualCodeResponse(httpResponse.getStatusCode());
+        testContext.setActualBodyMessage(httpResponse.getBody().getMessage());
     }
 
     @When("I perform request to set payment method")
@@ -43,23 +47,19 @@ public class PaymentSteps {
         Map<String, String> form = dataTable.asMap(String.class, String.class);
         PaymentRequestBody paymentRequestBody = new PaymentRequestBody(form.get("Payment Method"));
         httpResponse = paymentMicroservice.setPayments(paymentRequestBody);
+        testContext.setActualCodeResponse(httpResponse.getStatusCode());
+        testContext.setActualBodyMessage(httpResponse.getBody().getMessage());
     }
 
     @Then("I get status cod {int}")
     public void getStatusCod(int statusCodeExpected) {
-        Assert.assertEquals(httpResponse.getStatusCode(), statusCodeExpected,
+        Assert.assertEquals(testContext.getActualCodeResponse(), statusCodeExpected,
                 statusCodeExpected + " does not match");
     }
 
-    @Then("I get success message: {string}")
+    @Then("I get message: {string}")
     public void getSuccessMessage(String expectedMessage) {
-        Assert.assertEquals(httpResponse.getBody().getSuccess(), expectedMessage,
-                expectedMessage + " not displayed");
-    }
-
-    @Then("I get error message: {string}")
-    public void getErrorMessage(String expectedMessage) {
-        Assert.assertEquals(httpResponse.getBody().getError(), expectedMessage,
+        Assert.assertEquals(testContext.getActualBodyMessage(), expectedMessage,
                 expectedMessage + " not displayed");
     }
 }
