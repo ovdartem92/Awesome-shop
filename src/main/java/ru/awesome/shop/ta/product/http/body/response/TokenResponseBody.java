@@ -57,5 +57,4 @@ public class TokenResponseBody {
     public String toString() {
         return JsonRepresentation.convertToJson(this);
     }
-
 }

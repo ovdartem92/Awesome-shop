@@ -86,5 +86,4 @@ public class AddressRequestBody {
     public String toString() {
         return JsonRepresentation.convertToJson(this);
     }
-
 }

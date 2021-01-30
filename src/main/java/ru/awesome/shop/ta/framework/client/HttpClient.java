@@ -12,8 +12,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class HttpClient {
-    private String baseUrl = "https://awesome-shop.01sh.ru";
     private final Map<String, String> defaultHeaders = new HashMap<>();
+    private String baseUrl = "https://awesome-shop.01sh.ru";
 
     public HttpClient() {
         RestAssured.baseURI = baseUrl;

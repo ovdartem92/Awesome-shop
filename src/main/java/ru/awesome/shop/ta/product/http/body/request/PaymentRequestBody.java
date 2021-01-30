@@ -46,5 +46,4 @@ public class PaymentRequestBody {
     public String toString() {
         return JsonRepresentation.convertToJson(this);
     }
-
 }
