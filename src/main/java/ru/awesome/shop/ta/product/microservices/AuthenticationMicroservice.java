@@ -11,9 +11,9 @@ import ru.awesome.shop.ta.product.http.body.response.TokenResponseBody;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AuthorizationMicroservice extends BaseMicroservice {
+public class AuthenticationMicroservice extends BaseMicroservice {
 
-    public AuthorizationMicroservice(HttpClient httpClient) {
+    public AuthenticationMicroservice(HttpClient httpClient) {
         super(httpClient);
     }
 

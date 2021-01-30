@@ -17,8 +17,8 @@ public class CouponSteps {
     private String actualErrorMessage;
     private CouponMicroservice couponMicroservice;
 
-    public CouponSteps(ApiTestContext textContextApi) {
-        this.apiTestContext = textContextApi;
+    public CouponSteps(ApiTestContext apiTestContext) {
+        this.apiTestContext = apiTestContext;
         this.couponMicroservice = new CouponMicroservice(this.httpClient, apiTestContext.getToken());
     }
 

@@ -24,8 +24,8 @@ public class CartSteps {
     private ApiTestContext apiTestContext;
     private CartMicroservice cartMicroservice;
 
-    public CartSteps(ApiTestContext textContextApi) {
-        this.apiTestContext = textContextApi;
+    public CartSteps(ApiTestContext apiTestContext) {
+        this.apiTestContext = apiTestContext;
         this.cartMicroservice = new CartMicroservice(httpClient, apiTestContext.getToken());
     }
 

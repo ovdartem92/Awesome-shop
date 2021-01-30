@@ -7,21 +7,21 @@ import ru.awesome.shop.ta.framework.client.HttpClient;
 import ru.awesome.shop.ta.product.http.HttpResponse;
 import ru.awesome.shop.ta.product.http.body.request.TokenRequestBody;
 import ru.awesome.shop.ta.product.http.body.response.TokenResponseBody;
-import ru.awesome.shop.ta.product.microservices.AuthorizationMicroservice;
+import ru.awesome.shop.ta.product.microservices.AuthenticationMicroservice;
 
 public class TokenSteps {
     private ApiTestContext apiTestContext;
     private HttpClient httpClient = new HttpClient();
 
-    public TokenSteps(ApiTestContext textContextApi) {
-        this.apiTestContext = textContextApi;
+    public TokenSteps(ApiTestContext apiTestContext) {
+        this.apiTestContext = apiTestContext;
     }
 
     @Given("^I have authenticated as user \"(.*)\" with key \"(.*)\"$")
     public void generateTokenForNewSession(String userName, String key) throws JsonProcessingException, ParseException {
         TokenRequestBody tokenRequestBody = new TokenRequestBody(userName, key);
-        AuthorizationMicroservice authorizationMicroservice = new AuthorizationMicroservice(httpClient);
-        HttpResponse<TokenResponseBody> response = authorizationMicroservice.generateToken(tokenRequestBody);
+        AuthenticationMicroservice authenticationMicroservice = new AuthenticationMicroservice(httpClient);
+        HttpResponse<TokenResponseBody> response = authenticationMicroservice.generateToken(tokenRequestBody);
         TokenResponseBody body = response.getBody();
         String token = body.getToken();
         apiTestContext.setToken(token);
