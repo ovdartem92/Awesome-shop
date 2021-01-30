@@ -42,7 +42,7 @@ public class HttpClient {
 
     public HttpResponse<JSONObject> post(String relativeUrl, Map<String, String> queryParameters,
                                          Map<String, String> requestHeaders, JSONObject requestBody) {
-        Objects.requireNonNull(relativeUrl, "Relative URL cannot be null.");
+        Objects.requireNonNull(relativeUrl, "Relative URL cannot be null.");           //NOSONAR
         Objects.requireNonNull(queryParameters, "Query parameters cannot be null.");
         Objects.requireNonNull(requestHeaders, "Request header URL cannot be null.");
         RequestSpecification request = RestAssured.given();
@@ -54,7 +54,7 @@ public class HttpClient {
     }
 
     public HttpResponse<JSONObject> put(String relativeUrl, Map<String, String> requestHeaders, JSONObject requestBody) {
-        Objects.requireNonNull(relativeUrl, "Relative URL cannot be null.");
+        Objects.requireNonNull(relativeUrl, "Relative URL cannot be null.");               //NOSONAR
         Objects.requireNonNull(requestHeaders, "Request header URL cannot be null.");
         RequestSpecification request = RestAssured.given();
         request.headers(requestHeaders);
@@ -67,7 +67,7 @@ public class HttpClient {
     }
 
     public HttpResponse<JSONObject> delete(String relativeUrl, Map<String, String> requestHeaders) {
-        Objects.requireNonNull(relativeUrl, "Relative URL cannot be null.");
+        Objects.requireNonNull(relativeUrl, "Relative URL cannot be null.");      //NOSONAR
         Objects.requireNonNull(requestHeaders, "Request header URL cannot be null.");
         RequestSpecification request = RestAssured.given();
         request.headers(requestHeaders);
