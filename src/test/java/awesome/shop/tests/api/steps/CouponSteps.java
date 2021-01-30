@@ -14,7 +14,6 @@ import ru.awesome.shop.ta.product.microservices.CouponMicroservice;
 public class CouponSteps {
     private HttpClient httpClient = new HttpClient();
     private ApiTestContext apiTestContext;
-    private String actualErrorMessage;
     private CouponMicroservice couponMicroservice;
 
     public CouponSteps(ApiTestContext apiTestContext) {
@@ -27,13 +26,14 @@ public class CouponSteps {
         CouponRequestBody couponRequestBody = new CouponRequestBody(couponNumber);
         HttpResponse<CouponResponseBody> response = couponMicroservice.useCoupon(couponRequestBody);
         CouponResponseBody couponResponseBody = response.getBody();
-        actualErrorMessage = couponResponseBody.getError();
+        String actualErrorMessage = couponResponseBody.getError();
+        this.apiTestContext.setActualErrorMessage(actualErrorMessage);
         int codeResponse = response.getStatusCode();
         this.apiTestContext.setActualCodeResponse(codeResponse);
     }
 
     @Then("^I should see message error \"(.*)\"$")
     public void checkMessageError(String expectedMessage) {
-        Assert.assertEquals(actualErrorMessage, expectedMessage, "Wrong error message");
+        Assert.assertEquals(this.apiTestContext.getActualErrorMessage(), expectedMessage, "Wrong error message");
     }
 }

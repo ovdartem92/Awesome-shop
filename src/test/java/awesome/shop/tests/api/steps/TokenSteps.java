@@ -24,6 +24,6 @@ public class TokenSteps {
         HttpResponse<TokenResponseBody> response = authenticationMicroservice.generateToken(tokenRequestBody);
         TokenResponseBody body = response.getBody();
         String token = body.getToken();
-        apiTestContext.setToken(token);
+        this.apiTestContext.setToken(token);
     }
 }

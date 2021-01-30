@@ -9,7 +9,8 @@ Feature: cart
     Then I should see response status code 200
     And I should see message success "Success: You have modified your shopping cart!"
     When I open cart
-    And I should see this item in the cart with item id <item_id> and quantity <quantity>
+    And I should see this item in the cart with item id <item_id>
+    Then I should see this item in the cart with quantity <quantity>
     Examples:
       | item_id | quantity |
       | 43      | 2        |
@@ -21,7 +22,8 @@ Feature: cart
     And I edit item quantity <quantity> in cart
     Then I should see response status code 200
     And I should see message success "Success: You have modified your shopping cart!"
-    And I should see this item in the cart with quantity <quantity>
+    When I open cart
+    Then I should see this item in the cart with quantity <quantity>
     Examples:
       | quantity |
       | 5        |
@@ -34,4 +36,5 @@ Feature: cart
     And I remove item from cart
     Then I should see response status code 200
     And I should see message success "Success: You have modified your shopping cart!"
-    And I should see that cart is empty
+    When I open cart
+    Then I should see that cart is empty
