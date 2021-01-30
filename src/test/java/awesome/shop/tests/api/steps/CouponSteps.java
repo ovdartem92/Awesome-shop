@@ -9,7 +9,6 @@ import ru.awesome.shop.ta.framework.client.HttpClient;
 import ru.awesome.shop.ta.product.http.HttpResponse;
 import ru.awesome.shop.ta.product.http.body.request.CouponRequestBody;
 import ru.awesome.shop.ta.product.http.body.response.CouponResponseBody;
-import ru.awesome.shop.ta.product.microservices.CartMicroservice;
 import ru.awesome.shop.ta.product.microservices.CouponMicroservice;
 
 public class CouponSteps {

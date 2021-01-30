@@ -8,7 +8,6 @@ import io.restassured.specification.RequestSpecification;
 import org.json.simple.JSONObject;
 import ru.awesome.shop.ta.product.http.HttpResponse;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 

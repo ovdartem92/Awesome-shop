@@ -8,7 +8,7 @@ public class AddItemRequestBody {
     private int product_id; //NOSONAR
     private int quantity;
 
-    public int getProduct_id() {
+    public int getProduct_id() { //NOSONAR
         return product_id;
     }
 
@@ -16,8 +16,8 @@ public class AddItemRequestBody {
         return quantity;
     }
 
-    public AddItemRequestBody(int product_id, int quantity) {
-        this.product_id = product_id;
+    public AddItemRequestBody(int productId, int quantity) {
+        this.product_id = productId;
         this.quantity = quantity;
     }
 

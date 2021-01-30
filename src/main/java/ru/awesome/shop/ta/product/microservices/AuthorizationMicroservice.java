@@ -24,7 +24,6 @@ public class AuthorizationMicroservice extends BaseMicroservice {
         queryParameters.put("route", "api/login");
         HttpResponse<JSONObject> httpResponse = this.httpClient.post(commonUrl, queryParameters, requestBody);
         TokenResponseBody tokenResponseBody = mapper.convertValue(httpResponse.getBody(), TokenResponseBody.class);
-        return new HttpResponse<>(httpResponse.getStatusCode(),
-                httpResponse.getHeaders(), tokenResponseBody);
+        return new HttpResponse<>(httpResponse.getStatusCode(), httpResponse.getHeaders(), tokenResponseBody);
     }
 }

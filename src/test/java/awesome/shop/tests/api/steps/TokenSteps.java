@@ -10,11 +10,11 @@ import ru.awesome.shop.ta.product.http.body.response.TokenResponseBody;
 import ru.awesome.shop.ta.product.microservices.AuthorizationMicroservice;
 
 public class TokenSteps {
-    private ApiTestContext testContext;
+    private ApiTestContext apiTestContext;
     private HttpClient httpClient = new HttpClient();
 
     public TokenSteps(ApiTestContext textContextApi) {
-        this.testContext = textContextApi;
+        this.apiTestContext = textContextApi;
     }
 
     @Given("^I have had a token$")
@@ -24,6 +24,6 @@ public class TokenSteps {
         HttpResponse<TokenResponseBody> response = authorizationMicroservice.generateToken(tokenRequestBody);
         TokenResponseBody body = response.getBody();
         String token = body.getToken();
-        testContext.setToken(token);
+        apiTestContext.setToken(token);
     }
 }
