@@ -7,18 +7,18 @@ import ru.awesome.shop.ta.utils.JsonRepresentation;
 public class AddressRequestBody {
     private String firstname;
     private String lastname;
-    private String address_1;
+    private String address_1;//NOSONAR
     private String city;
-    private String country_id;
-    private String zone_id;
+    private String country_id;//NOSONAR
+    private String zone_id;//NOSONAR
 
-    public AddressRequestBody(String firstname, String lastname, String address_1, String city, String country_id, String zone_id) {
+    public AddressRequestBody(String firstname, String lastname, String address, String city, String country, String zone) {
         this.firstname = firstname;
         this.lastname = lastname;
-        this.address_1 = address_1;
+        this.address_1 = address;//NOSONAR
         this.city = city;
-        this.country_id = country_id;
-        this.zone_id = zone_id;
+        this.country_id = country;//NOSONAR
+        this.zone_id = zone;//NOSONAR
     }
 
     public String getFirstname() {
@@ -29,7 +29,7 @@ public class AddressRequestBody {
         return lastname;
     }
 
-    public String getAddress_1() {
+    public String getAddress_1() {//NOSONAR
         return address_1;
     }
 
@@ -37,11 +37,11 @@ public class AddressRequestBody {
         return city;
     }
 
-    public String getCountry_id() {
+    public String getCountry_id() {//NOSONAR
         return country_id;
     }
 
-    public String getZone_id() {
+    public String getZone_id() {//NOSONAR
         return zone_id;
     }
 

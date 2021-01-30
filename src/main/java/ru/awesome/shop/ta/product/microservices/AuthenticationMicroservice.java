@@ -24,6 +24,6 @@ public class AuthenticationMicroservice {
         HttpResponse<JSONObject> tokenResponse = this.httpClient.post(relativeUrl, jsonBody);
         JSONObject body = tokenResponse.getBody();
         TokenResponseBody tokenResponseBody = mapper.readValue(body.toJSONString(), TokenResponseBody.class);
-        return new HttpResponse<TokenResponseBody>(tokenResponse.getStatusCode(), tokenResponse.getHeaders(), tokenResponseBody);
+        return new HttpResponse<>(tokenResponse.getStatusCode(), tokenResponse.getHeaders(), tokenResponseBody);
     }
 }

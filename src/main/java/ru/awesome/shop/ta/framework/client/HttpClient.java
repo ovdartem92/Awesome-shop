@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class HttpClient {
-    private final String baseUrl = "https://awesome-shop.01sh.ru";
+    private String baseUrl = "https://awesome-shop.01sh.ru";
     private final Map<String, String> defaultHeaders = new HashMap<>();
 
     public HttpClient() {
