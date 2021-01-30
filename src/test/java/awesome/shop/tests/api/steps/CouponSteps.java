@@ -32,7 +32,7 @@ public class CouponSteps {
         this.apiTestContext.setActualCodeResponse(codeResponse);
     }
 
-    @Then("^I see message error \"(.*)\"$")
+    @Then("^I should see message error \"(.*)\"$")
     public void checkMessageError(String expectedMessage) {
         Assert.assertEquals(actualErrorMessage, expectedMessage, "Wrong error message");
     }

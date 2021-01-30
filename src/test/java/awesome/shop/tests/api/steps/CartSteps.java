@@ -18,13 +18,13 @@ import org.json.simple.parser.ParseException;
 
 import java.util.List;
 
-public class CartApiSteps {
+public class CartSteps {
     private HttpClient httpClient = new HttpClient();
     private String actualSuccessCartMessage;
     private ApiTestContext apiTestContext;
     private CartMicroservice cartMicroservice;
 
-    public CartApiSteps(ApiTestContext textContextApi) {
+    public CartSteps(ApiTestContext textContextApi) {
         this.apiTestContext = textContextApi;
         this.cartMicroservice = new CartMicroservice(httpClient, apiTestContext.getToken());
     }
@@ -38,13 +38,13 @@ public class CartApiSteps {
         apiTestContext.setActualCodeResponse(response.getStatusCode());
     }
 
-    @Then("^I see message success \"(.*)\"$")
+    @Then("^I should see message success \"(.*)\"$")
     public void checkSuccessMessage(String message) {
         Assert.assertEquals(actualSuccessCartMessage, message,
                 "Wrong success message");
     }
 
-    @Then("^I see this item in the cart with item id (.*) and quantity (.*)$")
+    @Then("^I should see this item in the cart with item id (.*) and quantity (.*)$")
     public void checkItemInCart(int itemId, int quantity) {
         HttpResponse<OpenCartResponseBody> response = cartMicroservice.openCart();
         OpenCartResponseBody items = response.getBody();
@@ -65,7 +65,7 @@ public class CartApiSteps {
         actualSuccessCartMessage = body.getSuccess();
     }
 
-    @Then("^I see this item in the cart with quantity (.*)$")
+    @Then("^I should see this item in the cart with quantity (.*)$")
     public void checkQuantityItem(int expectedQuantity) {
         HttpResponse<OpenCartResponseBody> response = cartMicroservice.openCart();
         OpenCartResponseBody items = response.getBody();
@@ -74,7 +74,7 @@ public class CartApiSteps {
         Assert.assertEquals(actualQuantity, expectedQuantity, "Wrong product quantity in the cart");
     }
 
-    @When("I have cart id")
+    @When("I remember cart id")
     public void getCartId() {
         HttpResponse<OpenCartResponseBody> response = cartMicroservice.openCart();
         OpenCartResponseBody items = response.getBody();
@@ -93,7 +93,7 @@ public class CartApiSteps {
         apiTestContext.setActualCodeResponse(statusCode);
     }
 
-    @Then("I see that cart is empty")
+    @Then("I should see that cart is empty")
     public void checkThatCartIsEmpty() {
         HttpResponse<OpenCartResponseBody> response = cartMicroservice.openCart();
         OpenCartResponseBody body = response.getBody();
@@ -101,7 +101,7 @@ public class CartApiSteps {
         Assert.assertTrue(products.isEmpty(), "Products wasn't removed from cart");
     }
 
-    @Then("^I see response status code (.*)")
+    @Then("^I should see response status code (.*)")
     public void iSeeResponseStatusCode(int expectedCode) {
         Assert.assertEquals(apiTestContext.getActualCodeResponse(), expectedCode, "Wrong response status code");
     }

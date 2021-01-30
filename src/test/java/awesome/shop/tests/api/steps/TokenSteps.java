@@ -17,9 +17,9 @@ public class TokenSteps {
         this.apiTestContext = textContextApi;
     }
 
-    @Given("^I have had a token$")
-    public void generateTokenForNewSession() throws JsonProcessingException, ParseException {
-        TokenRequestBody tokenRequestBody = new TokenRequestBody();
+    @Given("^I have authenticated as user \"(.*)\" with key \"(.*)\"$")
+    public void generateTokenForNewSession(String userName, String key) throws JsonProcessingException, ParseException {
+        TokenRequestBody tokenRequestBody = new TokenRequestBody(userName, key);
         AuthorizationMicroservice authorizationMicroservice = new AuthorizationMicroservice(httpClient);
         HttpResponse<TokenResponseBody> response = authorizationMicroservice.generateToken(tokenRequestBody);
         TokenResponseBody body = response.getBody();
