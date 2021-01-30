@@ -47,16 +47,19 @@ public class PaymentSteps {
 
     @Then("I get status cod {int}")
     public void getStatusCod(int statusCodeExpected) {
-        Assert.assertEquals(httpResponse.getStatusCode(), statusCodeExpected);
+        Assert.assertEquals(httpResponse.getStatusCode(), statusCodeExpected,
+                statusCodeExpected + " does not match");
     }
 
     @Then("I get success message: {string}")
     public void getSuccessMessage(String expectedMessage) {
-        Assert.assertEquals(httpResponse.getBody().getSuccess(), expectedMessage);
+        Assert.assertEquals(httpResponse.getBody().getSuccess(), expectedMessage,
+                expectedMessage + " not displayed");
     }
 
     @Then("I get error message: {string}")
     public void getErrorMessage(String expectedMessage) {
-        Assert.assertEquals(httpResponse.getBody().getError(), expectedMessage);
+        Assert.assertEquals(httpResponse.getBody().getError(), expectedMessage,
+                expectedMessage + " not displayed");
     }
 }
