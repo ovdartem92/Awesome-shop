@@ -45,7 +45,7 @@ public class CartSteps {
     }
 
     @Then("^I should see this item in the cart with item id (.*)$")
-    public void checkItemInCart(int itemId) {
+    public void checkProductIdInCart(int itemId) {
         List<Product> products = this.apiTestContext.getProducts();
         Product product = products.get(0);
         int actualItemId = product.getProduct_id();
@@ -75,7 +75,7 @@ public class CartSteps {
     }
 
     @Then("^I should see this item in the cart with quantity (.*)$")
-    public void checkQuantityItem(int expectedQuantity) {
+    public void checkQuantityProductInCart(int expectedQuantity) {
         List<Product> products = this.apiTestContext.getProducts();
         Product product = products.get(0);
         int actualQuantity = product.getQuantity();
@@ -83,7 +83,7 @@ public class CartSteps {
     }
 
     @When("I remember cart id")
-    public void getCartId() {
+    public void saveCartId() {
         HttpResponse<OpenCartResponseBody> response = cartMicroservice.openCart();
         OpenCartResponseBody items = response.getBody();
         this.apiTestContext.setProducts(items.getProducts());
