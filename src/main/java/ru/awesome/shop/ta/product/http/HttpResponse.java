@@ -2,7 +2,6 @@ package ru.awesome.shop.ta.product.http;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
-import ru.awesome.shop.ta.product.http.body.request.RemoveItemRequestBody;
 import ru.awesome.shop.ta.utils.JsonRepresentation;
 
 import java.util.Map;
@@ -55,7 +54,7 @@ public class HttpResponse<T> {
         if (obj.getClass() != this.getClass()) {
             return false;
         }
-        HttpResponse other = (HttpResponse) obj;
+        HttpResponse<T> other = (HttpResponse<T>) obj;
         return new EqualsBuilder()
                 .appendSuper(super.equals(obj))
                 .append(statusCode, other.statusCode)
