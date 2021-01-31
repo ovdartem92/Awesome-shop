@@ -1,15 +1,12 @@
 package ru.awesome.shop.ta.product.microservices;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 import ru.awesome.shop.ta.framework.client.HttpClient;
 import ru.awesome.shop.ta.product.http.HttpResponse;
 import ru.awesome.shop.ta.product.http.body.request.CurrencyRequestBody;
-import ru.awesome.shop.ta.product.http.body.response.CouponResponseBody;
 import ru.awesome.shop.ta.product.http.body.response.CurrencyResponseBody;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
