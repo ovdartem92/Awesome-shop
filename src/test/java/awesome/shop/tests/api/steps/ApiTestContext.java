@@ -3,12 +3,14 @@ package awesome.shop.tests.api.steps;
 import ru.awesome.shop.ta.product.bo.Product;
 
 import java.util.List;
+import java.util.Map;
 
 public class ApiTestContext {
     private String token;
     private List<Product> products;
     private int actualStatusCode;
     private String actualSuccessMessage;
+    private Map<String, String> actualErrorMessages;
     private String actualErrorMessage;
 
     public String getActualErrorMessage() {
@@ -17,6 +19,14 @@ public class ApiTestContext {
 
     public void setActualErrorMessage(String actualErrorMessage) {
         this.actualErrorMessage = actualErrorMessage;
+    }
+
+    public Map<String, String> getActualErrorMessages() {
+        return this.actualErrorMessages;
+    }
+
+    public void setActualErrorMessages(Map<String, String> actualBodyMessages) {
+        this.actualErrorMessages = actualBodyMessages;
     }
 
     public String getActualSuccessMessage() {
