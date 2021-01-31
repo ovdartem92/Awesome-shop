@@ -7,7 +7,7 @@ import java.util.Objects;
 public class BaseMicroservice {
     protected static final String ROUTE = "route";
     protected HttpClient httpClient;
-    protected String commonUrl = "/index.php";
+    protected static final String COMMON_URL = "/index.php";
 
     public BaseMicroservice(HttpClient httpClient) {
         Objects.requireNonNull(httpClient, "Http client cannot be null");

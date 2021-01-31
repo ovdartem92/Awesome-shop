@@ -33,7 +33,7 @@ public class CartMicroservice extends BaseMicroservice {
         Objects.requireNonNull(addItemRequestBody, "Add item response body cannot be null");
         queryParameters.put(ROUTE, "api/cart/add");
         JSONObject requestBody = convertToJson(addItemRequestBody);
-        HttpResponse<JSONObject> httpResponse = this.httpClient.post(commonUrl,
+        HttpResponse<JSONObject> httpResponse = this.httpClient.post(COMMON_URL,
                 queryParameters, requestBody);
         ChangeCartResponseBody changeCartResponseBody = convertFromJson(httpResponse.getBody(),
                 ChangeCartResponseBody.class);
@@ -44,7 +44,7 @@ public class CartMicroservice extends BaseMicroservice {
     public HttpResponse<OpenCartResponseBody> openCart() {
         queryParameters.put(ROUTE, "api/cart/products");
         JSONObject requestBody = new JSONObject();
-        HttpResponse<JSONObject> httpResponse = this.httpClient.post(commonUrl,
+        HttpResponse<JSONObject> httpResponse = this.httpClient.post(COMMON_URL,
                 queryParameters, requestBody);
         OpenCartResponseBody openCartResponseBody = convertFromJson(httpResponse.getBody(),
                 OpenCartResponseBody.class);
@@ -57,7 +57,7 @@ public class CartMicroservice extends BaseMicroservice {
         Objects.requireNonNull(editCartRequestBody, "Edit cart response body cannot be null");
         queryParameters.put(ROUTE, "api/cart/edit");
         JSONObject requestBody = convertToJson(editCartRequestBody);
-        HttpResponse<JSONObject> httpResponse = this.httpClient.post(commonUrl, queryParameters,
+        HttpResponse<JSONObject> httpResponse = this.httpClient.post(COMMON_URL, queryParameters,
                 requestBody);
         ChangeCartResponseBody changeCartResponseBody = convertFromJson(httpResponse.getBody(),
                 ChangeCartResponseBody.class);
@@ -70,7 +70,7 @@ public class CartMicroservice extends BaseMicroservice {
         Objects.requireNonNull(removeItemRequestBody, "Remove item response body cannot be null");
         queryParameters.put(ROUTE, "api/cart/remove");
         JSONObject requestBody = convertToJson(removeItemRequestBody);
-        HttpResponse<JSONObject> httpResponse = this.httpClient.post(commonUrl,
+        HttpResponse<JSONObject> httpResponse = this.httpClient.post(COMMON_URL,
                 queryParameters, requestBody);
         ChangeCartResponseBody changeCartResponseBody = convertFromJson(httpResponse.getBody(),
                 ChangeCartResponseBody.class);

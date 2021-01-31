@@ -29,7 +29,7 @@ public class CouponMicroservice extends BaseMicroservice {
         queryParameters.put("token", this.token);
         queryParameters.put(ROUTE, "api/coupon");
         JSONObject requestBody = convertToJson(couponRequestBody);
-        HttpResponse<JSONObject> httpResponse = this.httpClient.post(commonUrl, queryParameters,
+        HttpResponse<JSONObject> httpResponse = this.httpClient.post(COMMON_URL, queryParameters,
                 requestBody);
         CouponResponseBody couponResponseBody = convertFromJson(httpResponse.getBody(), CouponResponseBody.class);
         return new HttpResponse<>(httpResponse.getStatusCode(), httpResponse.getHeaders(),

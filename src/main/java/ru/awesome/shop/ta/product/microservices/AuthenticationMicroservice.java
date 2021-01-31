@@ -25,7 +25,7 @@ public class AuthenticationMicroservice extends BaseMicroservice {
         JSONObject requestBody = convertToJson(tokenRequestBody);
         Map<String, String> queryParameters = new HashMap<>();
         queryParameters.put(ROUTE, "api/login");
-        HttpResponse<JSONObject> httpResponse = this.httpClient.post(commonUrl, queryParameters, requestBody);
+        HttpResponse<JSONObject> httpResponse = this.httpClient.post(COMMON_URL, queryParameters, requestBody);
         TokenResponseBody tokenResponseBody = convertFromJson(httpResponse.getBody(), TokenResponseBody.class);
         return new HttpResponse<>(httpResponse.getStatusCode(), httpResponse.getHeaders(), tokenResponseBody);
     }
