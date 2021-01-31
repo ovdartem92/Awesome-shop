@@ -14,6 +14,10 @@ import java.util.Objects;
 
 public class HttpClient {
     private static final String BASE_URL = "https://awesome-shop.01sh.ru";
+    private static final String NOT_NULL_URL_MESSAGE = "Relative URL cannot be null.";
+    private static final String NOT_NULL_QUERY_PARAMETERS_MESSAGE = "Query parameters cannot be null.";
+    private static final String NOT_NULL_HEADERS_MESSAGE = "Request headers cannot be null.";
+    private static final String NOT_NULL_REQUEST_BODY_MASSAGE = "Request body cannot be null";
     private final Map<String, String> defaultHeaders = new HashMap<>();
 
     public HttpClient() {
@@ -21,10 +25,10 @@ public class HttpClient {
     }
 
     public HttpResponse<JSONObject> get(String relativeUrl, Map<String, String> queryParameters,
-                                         Map<String, String> requestHeaders) {
-        Objects.requireNonNull(relativeUrl, "Relative URL cannot be null.");    //NOSONAR
-        Objects.requireNonNull(queryParameters, "Query parameters cannot be null."); //NOSONAR
-        Objects.requireNonNull(requestHeaders, "Request headers cannot be null.");  //NOSONAR
+                                        Map<String, String> requestHeaders) {
+        Objects.requireNonNull(relativeUrl, NOT_NULL_URL_MESSAGE);
+        Objects.requireNonNull(queryParameters, NOT_NULL_QUERY_PARAMETERS_MESSAGE);
+        Objects.requireNonNull(requestHeaders, NOT_NULL_HEADERS_MESSAGE);
         RequestSpecification request = RestAssured.given();
         request.queryParams(queryParameters);
         request.headers(requestHeaders);
@@ -33,24 +37,23 @@ public class HttpClient {
     }
 
     public HttpResponse<JSONObject> get(String relativeUrl, Map<String, String> queryParameters) {
-        Objects.requireNonNull(relativeUrl, "Relative URL cannot be null.");    //NOSONAR
-        Objects.requireNonNull(queryParameters, "Query parameters cannot be null."); //NOSONAR
+        Objects.requireNonNull(relativeUrl, NOT_NULL_URL_MESSAGE);
+        Objects.requireNonNull(queryParameters, NOT_NULL_QUERY_PARAMETERS_MESSAGE);
         return get(relativeUrl, queryParameters, defaultHeaders);
     }
 
     public HttpResponse<JSONObject> post(String relativeUrl, Map<String, String> queryParameters, JSONObject requestBody) {
-        Objects.requireNonNull(relativeUrl, "Relative URL cannot be null.");           //NOSONAR
-        Objects.requireNonNull(queryParameters, "Query parameters cannot be null.");   //NOSONAR
-        Objects.requireNonNull(requestBody, "Request body cannot be null");        //NOSONAR
+        Objects.requireNonNull(relativeUrl, NOT_NULL_URL_MESSAGE);
+        Objects.requireNonNull(queryParameters, NOT_NULL_QUERY_PARAMETERS_MESSAGE);
         return post(relativeUrl, queryParameters, defaultHeaders, requestBody);
     }
 
     public HttpResponse<JSONObject> post(String relativeUrl, Map<String, String> queryParameters,
-                                          Map<String, String> requestHeaders, JSONObject requestBody) {
-        Objects.requireNonNull(relativeUrl, "Relative URL cannot be null.");           //NOSONAR
-        Objects.requireNonNull(queryParameters, "Query parameters cannot be null.");  //NOSONAR
-        Objects.requireNonNull(requestBody, "Request body cannot be null");
-        Objects.requireNonNull(requestHeaders, "Request headers cannot be null.");
+                                         Map<String, String> requestHeaders, JSONObject requestBody) {
+        Objects.requireNonNull(relativeUrl, NOT_NULL_URL_MESSAGE);
+        Objects.requireNonNull(queryParameters, NOT_NULL_QUERY_PARAMETERS_MESSAGE);
+        Objects.requireNonNull(requestBody, NOT_NULL_REQUEST_BODY_MASSAGE);
+        Objects.requireNonNull(requestHeaders, NOT_NULL_HEADERS_MESSAGE);
         RequestSpecification request = RestAssured.given();
         request.queryParams(queryParameters);
         request.headers(requestHeaders);
@@ -60,9 +63,9 @@ public class HttpClient {
     }
 
     public HttpResponse<JSONObject> put(String relativeUrl, Map<String, String> requestHeaders, JSONObject requestBody) {
-        Objects.requireNonNull(relativeUrl, "Relative URL cannot be null.");           //NOSONAR
-        Objects.requireNonNull(requestHeaders, "Request headers cannot be null.");
-        Objects.requireNonNull(requestBody, "Request body cannot be null");
+        Objects.requireNonNull(relativeUrl, NOT_NULL_URL_MESSAGE);
+        Objects.requireNonNull(requestHeaders, NOT_NULL_HEADERS_MESSAGE);
+        Objects.requireNonNull(requestBody, NOT_NULL_REQUEST_BODY_MASSAGE);
         RequestSpecification request = RestAssured.given();
         request.headers(requestHeaders);
         Response response = request.params(requestBody).put(relativeUrl);
@@ -70,14 +73,14 @@ public class HttpClient {
     }
 
     public HttpResponse<JSONObject> put(String relativeUrl, JSONObject requestBody) {
-        Objects.requireNonNull(relativeUrl, "Relative URL cannot be null.");               //NOSONAR
-        Objects.requireNonNull(requestBody, "Request body cannot be null");
+        Objects.requireNonNull(relativeUrl, NOT_NULL_URL_MESSAGE);
+        Objects.requireNonNull(requestBody, NOT_NULL_REQUEST_BODY_MASSAGE);
         return put(relativeUrl, defaultHeaders, requestBody);
     }
 
     public HttpResponse<JSONObject> delete(String relativeUrl, Map<String, String> requestHeaders) {
-        Objects.requireNonNull(relativeUrl, "Relative URL cannot be null.");           //NOSONAR
-        Objects.requireNonNull(requestHeaders, "Request headers cannot be null.");
+        Objects.requireNonNull(relativeUrl, NOT_NULL_URL_MESSAGE);
+        Objects.requireNonNull(requestHeaders, NOT_NULL_HEADERS_MESSAGE);
         RequestSpecification request = RestAssured.given();
         request.headers(requestHeaders);
         Response response = request.delete(relativeUrl);
@@ -85,7 +88,7 @@ public class HttpClient {
     }
 
     public HttpResponse<JSONObject> delete(String relativeUrl) {
-        Objects.requireNonNull(relativeUrl, "Relative URL cannot be null.");      //NOSONAR
+        Objects.requireNonNull(relativeUrl, NOT_NULL_URL_MESSAGE);
         return delete(relativeUrl, defaultHeaders);
     }
 
