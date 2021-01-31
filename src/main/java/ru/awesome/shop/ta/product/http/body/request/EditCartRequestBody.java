@@ -4,15 +4,11 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import ru.awesome.shop.ta.utils.JsonRepresentation;
 
-import java.util.Objects;
-
 public class EditCartRequestBody {
     private int key;
     private int quantity;
 
     public EditCartRequestBody(int key, int quantity) {
-        Objects.requireNonNull(key, "Key cannot be null");
-        Objects.requireNonNull(quantity, "Quantity cannot be null");
         this.key = key;
         this.quantity = quantity;
     }
