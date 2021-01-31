@@ -31,7 +31,7 @@ public class CartMicroservice extends BaseMicroservice {
 
     public HttpResponse<ChangeCartResponseBody> addItem(AddItemRequestBody addItemRequestBody) throws ParseException {
         Objects.requireNonNull(addItemRequestBody, "Add item response body cannot be null");
-        queryParameters.put("route", "api/cart/add");  //NOSONAR
+        queryParameters.put(ROUTE, "api/cart/add");
         JSONObject requestBody = convertToJson(addItemRequestBody);
         HttpResponse<JSONObject> httpResponse = this.httpClient.post(commonUrl,
                 queryParameters, requestBody);
@@ -42,7 +42,7 @@ public class CartMicroservice extends BaseMicroservice {
     }
 
     public HttpResponse<OpenCartResponseBody> openCart() {
-        queryParameters.put("route", "api/cart/products"); //NOSONAR
+        queryParameters.put(ROUTE, "api/cart/products");
         JSONObject requestBody = new JSONObject();
         HttpResponse<JSONObject> httpResponse = this.httpClient.post(commonUrl,
                 queryParameters, requestBody);
@@ -55,7 +55,7 @@ public class CartMicroservice extends BaseMicroservice {
     public HttpResponse<ChangeCartResponseBody> editCart(EditCartRequestBody editCartRequestBody)
             throws ParseException {
         Objects.requireNonNull(editCartRequestBody, "Edit cart response body cannot be null");
-        queryParameters.put("route", "api/cart/edit"); //NOSONAR
+        queryParameters.put(ROUTE, "api/cart/edit");
         JSONObject requestBody = convertToJson(editCartRequestBody);
         HttpResponse<JSONObject> httpResponse = this.httpClient.post(commonUrl, queryParameters,
                 requestBody);
@@ -68,7 +68,7 @@ public class CartMicroservice extends BaseMicroservice {
     public HttpResponse<ChangeCartResponseBody> removeItemFromCart(RemoveItemRequestBody removeItemRequestBody)
             throws ParseException {
         Objects.requireNonNull(removeItemRequestBody, "Remove item response body cannot be null");
-        queryParameters.put("route", "api/cart/remove"); //NOSONAR
+        queryParameters.put(ROUTE, "api/cart/remove");
         JSONObject requestBody = convertToJson(removeItemRequestBody);
         HttpResponse<JSONObject> httpResponse = this.httpClient.post(commonUrl,
                 queryParameters, requestBody);

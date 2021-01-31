@@ -5,6 +5,7 @@ import ru.awesome.shop.ta.framework.client.HttpClient;
 import java.util.Objects;
 
 public class BaseMicroservice {
+    protected static final String ROUTE = "route";
     protected HttpClient httpClient;
     protected String commonUrl = "/index.php";
 

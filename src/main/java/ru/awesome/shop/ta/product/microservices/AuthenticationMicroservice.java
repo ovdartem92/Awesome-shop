@@ -24,7 +24,7 @@ public class AuthenticationMicroservice extends BaseMicroservice {
         Objects.requireNonNull(tokenRequestBody, "Token response body cannot be null");
         JSONObject requestBody = convertToJson(tokenRequestBody);
         Map<String, String> queryParameters = new HashMap<>();
-        queryParameters.put("route", "api/login");
+        queryParameters.put(ROUTE, "api/login");
         HttpResponse<JSONObject> httpResponse = this.httpClient.post(commonUrl, queryParameters, requestBody);
         TokenResponseBody tokenResponseBody = convertFromJson(httpResponse.getBody(), TokenResponseBody.class);
         return new HttpResponse<>(httpResponse.getStatusCode(), httpResponse.getHeaders(), tokenResponseBody);

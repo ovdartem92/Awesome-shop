@@ -27,7 +27,7 @@ public class CouponMicroservice extends BaseMicroservice {
         Objects.requireNonNull(couponRequestBody, "Coupon response body cannot be null");
         Map<String, String> queryParameters = new HashMap<>();
         queryParameters.put("token", this.token);
-        queryParameters.put("route", "api/coupon");
+        queryParameters.put(ROUTE, "api/coupon");
         JSONObject requestBody = convertToJson(couponRequestBody);
         HttpResponse<JSONObject> httpResponse = this.httpClient.post(commonUrl, queryParameters,
                 requestBody);
