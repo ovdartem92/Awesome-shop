@@ -46,7 +46,6 @@ public class PaymentSteps {
     public void getPaymentMethod() {
         HttpResponse<PaymentResponseBody> httpResponse = paymentMicroservice.getPayments();
         apiTestContext.setActualStatusCode(httpResponse.getStatusCode());
-        apiTestContext.setActualErrorMessage(httpResponse.getBody().getError());
     }
 
     @When("^I perform request to set payment method$")
