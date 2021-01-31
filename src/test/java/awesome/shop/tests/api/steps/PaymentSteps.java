@@ -29,9 +29,14 @@ public class PaymentSteps {
     public void addPaymentAddress(DataTable dataTable) throws ParseException {
         Objects.requireNonNull(dataTable, "DataTable cannot be null");
         Map<String, String> form = dataTable.asMap(String.class, String.class);
+        String firstName = form.get("First Name");
+        String lastName = form.get("Last Name");
+        String address = form.get("Address");
+        String city = form.get("City");
+        String country = form.get("Country");
+        String zoneId = form.get("Zone_Id");
         AddressRequestBody addressRequestBody = new AddressRequestBody
-                (form.get("First Name"), form.get("Last Name"), form.get("Address"),
-                        form.get("City"), form.get("Country"), form.get("Zone_Id"));
+                (firstName, lastName, address, city, country, zoneId);
         HttpResponse<PaymentResponseBody> httpResponse = paymentMicroservice.addPaymentAddress(addressRequestBody);
         apiTestContext.setActualStatusCode(httpResponse.getStatusCode());
         apiTestContext.setActualSuccessMessage(httpResponse.getBody().getSuccess());
