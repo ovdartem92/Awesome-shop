@@ -19,36 +19,36 @@ public class OrderMicroservice extends BaseMicroservice {
 
     public OrderMicroservice(HttpClient httpClient, String token) {
         super(httpClient);
-        Objects.requireNonNull(token, "Order cannot be null");
+        Objects.requireNonNull(token, "Token cannot be null");
         this.token = token;
     }
 
     public HttpResponse<OrderResponseBody> addOrder(OrderRequestBody requestBody) throws ParseException {
         String relativeUrl = "api/order/add";
-        return getOrderHttpResponse(relativeUrl, requestBody);
+        return performRequest(relativeUrl, requestBody);
     }
 
     public HttpResponse<OrderResponseBody> editOrder(OrderRequestBody requestBody) throws ParseException {
         String relativeUrl = "api/order/edit";
-        return getOrderHttpResponse(relativeUrl, requestBody);
+        return performRequest(relativeUrl, requestBody);
     }
 
     public HttpResponse<OrderResponseBody> deleteOrder(OrderRequestBody requestBody) throws ParseException {
         String relativeUrl = "api/order/delete";
-        return getOrderHttpResponse(relativeUrl, requestBody);
+        return performRequest(relativeUrl, requestBody);
     }
 
     public HttpResponse<OrderResponseBody> getOrderInfo(OrderRequestBody requestBody) throws ParseException {
         String relativeUrl = "api/order/info";
-        return getOrderHttpResponse(relativeUrl, requestBody);
+        return performRequest(relativeUrl, requestBody);
     }
 
     public HttpResponse<OrderResponseBody> getOrderHistory(OrderRequestBody requestBody) throws ParseException {
         String relativeUrl = "api/order/history";
-        return getOrderHttpResponse(relativeUrl, requestBody);
+        return performRequest(relativeUrl, requestBody);
     }
 
-    private HttpResponse<OrderResponseBody> getOrderHttpResponse(String relativeUrl, OrderRequestBody orderRequestBody)
+    private HttpResponse<OrderResponseBody> performRequest(String relativeUrl, OrderRequestBody orderRequestBody)
             throws ParseException {
         Objects.requireNonNull(orderRequestBody, "Customer request body cannot be null");
         Map<String, String> queryParameters = new HashMap<>();

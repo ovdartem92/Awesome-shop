@@ -12,7 +12,6 @@ import ru.awesome.shop.ta.product.http.body.request.CustomerRequestBody;
 import ru.awesome.shop.ta.product.http.body.response.CustomerResponseBody;
 import ru.awesome.shop.ta.product.microservices.CustomerMicroservice;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
@@ -26,21 +25,12 @@ public class CustomerSteps {
         this.customerMicroservice = new CustomerMicroservice(this.httpClient, apiTestContext.getToken());
     }
 
-    @When("^I modify the customer by passing all empty parameters$")
-    public void editCustomer() throws ParseException {
-        String firstname = "";
-        String lastname = "";
-        String email = "";
-        String telephone = "";
-        CustomerRequestBody customerRequestBody = new CustomerRequestBody(firstname, lastname, email, telephone);
-        HttpResponse<CustomerResponseBody> httpResponse = customerMicroservice.editCustomer(customerRequestBody);
-        CustomerResponseBody body = httpResponse.getBody();
-        apiTestContext.setActualErrorMessages(body.getError());
-        int codeResponse = httpResponse.getStatusCode();
-        this.apiTestContext.setActualStatusCode(codeResponse);
+    @DataTableType(replaceWithEmptyString = "[blank]")
+    public String listOfStringListsType(String cell) {
+        return cell;
     }
 
-    @When("^I modify the customer by passing valid parameters:$")
+    @When("^I modify the customer by passing parameters:$")
     public void editCustomer(DataTable dataTable) throws ParseException {
         Map<String, String> parameters = dataTable.asMap(String.class, String.class);
         String firstname = parameters.get("firstname");
@@ -50,29 +40,27 @@ public class CustomerSteps {
         CustomerRequestBody customerRequestBody = new CustomerRequestBody(firstname, lastname, email, telephone);
         HttpResponse<CustomerResponseBody> httpResponse = customerMicroservice.editCustomer(customerRequestBody);
         CustomerResponseBody body = httpResponse.getBody();
-        apiTestContext.setActualErrorMessage(body.getSuccess());
+        apiTestContext.setActualSuccessMessage(body.getSuccess());
+        apiTestContext.setActualErrorMessages(body.getError());
+        System.out.println("Success: " + body.getSuccess());
+        System.out.println("Error: " + body.getError());
         int codeResponse = httpResponse.getStatusCode();
         this.apiTestContext.setActualStatusCode(codeResponse);
     }
 
-    @And("I should see an error with a list of all invalid fields")
-    public void checkCustomerErrorMessage() {
-        Map<String, String> expectedErrorMessages = new HashMap();
-        expectedErrorMessages.put("firstname", "First Name must be between 1 and 32 characters!");
-        expectedErrorMessages.put("lastname", "Last Name must be between 1 and 32 characters!");
-        expectedErrorMessages.put("email", "E-Mail Address does not appear to be valid!");
-        expectedErrorMessages.put("telephone", "Telephone must be between 3 and 32 characters!");
-
+    @And("^I should see an error with a list of all invalid fields:$")
+    public void checkCustomerErrorMessage(DataTable dataTable) {
+        Map<String, String> expectedErrorMessages = dataTable.asMap(String.class, String.class);
         Map<String, String> actualErrorMessages = apiTestContext.getActualErrorMessages();
         Assert.assertEquals(actualErrorMessages, expectedErrorMessages,
                 "The expected errors do not match the actual ones");
     }
 
     @And("^I should see a message \"(.*)\"$")
-    public void checkOrderErrorMessage(String expectedMessage) {
+    public void checkOrderSuccessMessage(String expectedMessage) {
         Objects.requireNonNull(expectedMessage, "Expected message cannot be null.");
-        String actualMessage = apiTestContext.getActualErrorMessage();
-        Assert.assertEquals(actualMessage, expectedMessage,
+        String actualSuccessMessage = apiTestContext.getActualSuccessMessage();
+        Assert.assertEquals(actualSuccessMessage, expectedMessage,
                 "The expected error message does not match the actual one");
     }
 }

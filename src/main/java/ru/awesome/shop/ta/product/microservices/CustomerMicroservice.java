@@ -19,7 +19,7 @@ public class CustomerMicroservice extends BaseMicroservice {
 
     public CustomerMicroservice(HttpClient httpClient, String token) {
         super(httpClient);
-        Objects.requireNonNull(token, "Customer cannot be null");
+        Objects.requireNonNull(token, "Token cannot be null");
         this.token = token;
     }
 
