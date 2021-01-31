@@ -15,7 +15,7 @@ public class PaymentResponseBody {
 
     public PaymentResponseBody(String error, String success) {
         Objects.requireNonNull(error, "Error message cannot be null");
-        Objects.requireNonNull(success, "Success cannot be null");
+        Objects.requireNonNull(success, "Success message cannot be null");
         this.error = error;
         this.success = success;
     }
