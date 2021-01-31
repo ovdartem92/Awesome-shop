@@ -51,7 +51,6 @@ public class CartSteps {
         Assert.assertEquals(actualItemId, expectedItemId, "Wrong product id in the cart");
     }
 
-
     @When("^I open cart$")
     public void openCart() {
         HttpResponse<OpenCartResponseBody> response = cartMicroservice.openCart();
