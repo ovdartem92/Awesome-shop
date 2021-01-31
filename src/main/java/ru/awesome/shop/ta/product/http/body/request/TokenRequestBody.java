@@ -22,11 +22,11 @@ public class TokenRequestBody {
     }
 
     public String getUsername() {
-        return username;
+        return this.username;
     }
 
     public String getKey() {
-        return key;
+        return this.key;
     }
 
     @Override

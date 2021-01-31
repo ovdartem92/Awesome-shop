@@ -21,11 +21,11 @@ public class PaymentResponseBody {
     }
 
     public String getError() {
-        return error;
+        return this.error;
     }
 
     public String getSuccess() {
-        return success;
+        return this.success;
     }
 
     @Override

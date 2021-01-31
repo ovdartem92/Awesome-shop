@@ -17,14 +17,14 @@ public class HttpResponse<T> {
     }
 
     public int getStatusCode() {
-        return statusCode;
+        return this.statusCode;
     }
 
     public Map<String, String> getHeaders() {
-        return headers;
+        return this.headers;
     }
 
     public T getBody() {
-        return body;
+        return this.body;
     }
 }

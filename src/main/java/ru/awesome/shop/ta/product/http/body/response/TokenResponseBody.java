@@ -21,11 +21,11 @@ public class TokenResponseBody {
     }
 
     public String getSuccess() {
-        return success;
+        return this.success;
     }
 
     public String getToken() {
-        return token;
+        return this.token;
     }
 
     @Override

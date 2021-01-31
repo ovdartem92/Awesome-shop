@@ -15,7 +15,7 @@ public class PaymentRequestBody {
     }
 
     public String getPaymentMethod() {
-        return paymentMethod;
+        return this.paymentMethod;
     }
 
     @Override

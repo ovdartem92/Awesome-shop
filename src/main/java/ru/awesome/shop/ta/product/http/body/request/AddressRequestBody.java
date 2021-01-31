@@ -30,27 +30,27 @@ public class AddressRequestBody {
     }
 
     public String getFirstname() {
-        return firstname;
+        return this.firstname;
     }
 
     public String getLastname() {
-        return lastname;
+        return this.lastname;
     }
 
     public String getAddress_1() {//NOSONAR
-        return address_1;
+        return this.address_1;
     }
 
     public String getCity() {
-        return city;
+        return this.city;
     }
 
     public String getCountry_id() {//NOSONAR
-        return country_id;
+        return this.country_id;
     }
 
     public String getZone_id() {//NOSONAR
-        return zone_id;
+        return this.zone_id;
     }
 
     @Override
