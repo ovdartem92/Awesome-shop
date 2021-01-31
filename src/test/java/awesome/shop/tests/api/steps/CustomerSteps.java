@@ -42,8 +42,6 @@ public class CustomerSteps {
         CustomerResponseBody body = httpResponse.getBody();
         apiTestContext.setActualSuccessMessage(body.getSuccess());
         apiTestContext.setActualErrorMessages(body.getError());
-        System.out.println("Success: " + body.getSuccess());
-        System.out.println("Error: " + body.getError());
         int codeResponse = httpResponse.getStatusCode();
         this.apiTestContext.setActualStatusCode(codeResponse);
     }
