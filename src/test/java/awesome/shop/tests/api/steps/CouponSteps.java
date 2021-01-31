@@ -1,6 +1,5 @@
 package awesome.shop.tests.api.steps;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.json.simple.parser.ParseException;
@@ -22,7 +21,7 @@ public class CouponSteps {
     }
 
     @When("^I use wrong coupon (.*)$")
-    public void useCoupon(int couponNumber) throws JsonProcessingException, ParseException {
+    public void useCoupon(int couponNumber) throws ParseException {
         CouponRequestBody couponRequestBody = new CouponRequestBody(couponNumber);
         HttpResponse<CouponResponseBody> response = couponMicroservice.useCoupon(couponRequestBody);
         CouponResponseBody couponResponseBody = response.getBody();

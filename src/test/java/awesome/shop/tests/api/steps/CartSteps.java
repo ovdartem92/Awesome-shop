@@ -1,6 +1,5 @@
 package awesome.shop.tests.api.steps;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.testng.Assert;
@@ -28,7 +27,7 @@ public class CartSteps {
     }
 
     @When("^I add item to cart with item id (.*) and quantity (.*)$")
-    public void addItemToCart(int itemId, int quantity) throws JsonProcessingException, ParseException {
+    public void addItemToCart(int itemId, int quantity) throws ParseException {
         AddItemRequestBody addItemRequestBody = new AddItemRequestBody(itemId, quantity);
         HttpResponse<ChangeCartResponseBody> response = cartMicroservice.addItem(addItemRequestBody);
         ChangeCartResponseBody responseBody = response.getBody();
@@ -61,7 +60,7 @@ public class CartSteps {
     }
 
     @When("^I edit item quantity (.*) in cart$")
-    public void editQuantityInCart(int quantity) throws JsonProcessingException, ParseException {
+    public void editQuantityInCart(int quantity) throws ParseException {
         List<Product> products = apiTestContext.getProducts();
         Product product = products.get(0);
         int cartId = product.getCart_id();
@@ -90,7 +89,7 @@ public class CartSteps {
     }
 
     @When("I remove item from cart")
-    public void removeFromCart() throws JsonProcessingException, ParseException {
+    public void removeFromCart() throws ParseException {
         List<Product> products = this.apiTestContext.getProducts();
         Product product = products.get(0);
         int cartId = product.getCart_id();
