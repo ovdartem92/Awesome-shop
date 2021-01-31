@@ -22,7 +22,7 @@ public class PaymentMicroservice extends BaseMicroservice {
     }
 
     public HttpResponse<PaymentResponseBody> addPaymentAddress
-            (AddressRequestBody addressRequestBody) throws ParseException, org.json.simple.parser.ParseException {
+            (AddressRequestBody addressRequestBody) throws ParseException {
         Objects.requireNonNull(addressRequestBody, "AddressRequestBody cannot be null");
         JSONObject requestBody = convertToJson(addressRequestBody);
         Map<String, String> queryParameters = new HashMap<>();
