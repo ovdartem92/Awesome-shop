@@ -1,33 +1,26 @@
-package ru.awesome.shop.ta.product.bo.credentials;
+package ru.awesome.shop.ta.product.http.body.request;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import ru.awesome.shop.ta.utils.JsonRepresentation;
 
-public final class Credentials {
-    private final String email;
-    private final String password;
+public class RemoveItemRequestBody {
+    private int key;
 
-    public Credentials(String email, String password) {
-        this.email = email;
-        this.password = password;
+    public RemoveItemRequestBody(int key) {
+        this.key = key;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public String getPassword() {
-        return password;
+    public int getKey() {
+        return key;
     }
 
     @Override
     public int hashCode() {
-        final int firstPrime = 29;
-        final int secondPrime = 73;
+        final int firstPrime = 19;
+        final int secondPrime = 53;
         return new HashCodeBuilder(firstPrime, secondPrime)
-                .append(email)
-                .append(password)
+                .append(key)
                 .toHashCode();
     }
 
@@ -42,11 +35,10 @@ public final class Credentials {
         if (obj.getClass() != this.getClass()) {
             return false;
         }
-        Credentials other = (Credentials) obj;
+        RemoveItemRequestBody other = (RemoveItemRequestBody) obj;
         return new EqualsBuilder()
                 .appendSuper(super.equals(obj))
-                .append(email, other.email)
-                .append(password, other.password)
+                .append(key, other.key)
                 .isEquals();
     }
 

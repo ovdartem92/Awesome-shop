@@ -1,33 +1,33 @@
-package ru.awesome.shop.ta.product.bo.credentials;
+package ru.awesome.shop.ta.product.http.body.request;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import ru.awesome.shop.ta.utils.JsonRepresentation;
 
-public final class Credentials {
-    private final String email;
-    private final String password;
+public class AddItemRequestBody {
+    private int product_id; //NOSONAR
+    private int quantity;
 
-    public Credentials(String email, String password) {
-        this.email = email;
-        this.password = password;
+    public AddItemRequestBody(int productId, int quantity) {
+        this.product_id = productId;
+        this.quantity = quantity;
     }
 
-    public String getEmail() {
-        return email;
+    public int getProduct_id() { //NOSONAR
+        return product_id;
     }
 
-    public String getPassword() {
-        return password;
+    public int getQuantity() {
+        return quantity;
     }
 
     @Override
     public int hashCode() {
-        final int firstPrime = 29;
-        final int secondPrime = 73;
+        final int firstPrime = 11;
+        final int secondPrime = 53;
         return new HashCodeBuilder(firstPrime, secondPrime)
-                .append(email)
-                .append(password)
+                .append(product_id)
+                .append(quantity)
                 .toHashCode();
     }
 
@@ -42,11 +42,11 @@ public final class Credentials {
         if (obj.getClass() != this.getClass()) {
             return false;
         }
-        Credentials other = (Credentials) obj;
+        AddItemRequestBody other = (AddItemRequestBody) obj;
         return new EqualsBuilder()
                 .appendSuper(super.equals(obj))
-                .append(email, other.email)
-                .append(password, other.password)
+                .append(product_id, other.product_id)
+                .append(quantity, other.quantity)
                 .isEquals();
     }
 

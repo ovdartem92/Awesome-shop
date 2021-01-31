@@ -10,8 +10,7 @@ import ru.awesome.shop.ta.framework.listeners.SuiteListener;
         plugin = {"pretty",
                 "html:target/cucumber-reports/cucumber-pretty.html"},
         monochrome = true,
-        tags = "@all",
-        glue = "awesome.shop.tests.cucumber",
+        glue = "awesome.shop.tests",
         features = "src/test/resources/features")
 @Listeners({SuiteListener.class})
 public class CucumberTestRunner extends AbstractTestNGCucumberTests {

@@ -1,11 +1,10 @@
-package awesome.shop.tests.cucumber.hooks;
+package awesome.shop.tests.ui.cucumber.hooks;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import org.apache.commons.io.FileUtils;
 import ru.awesome.shop.ta.framework.browser.Browser;
-import ru.awesome.shop.ta.framework.configuration.PropertyManager;
 import ru.awesome.shop.ta.framework.logging.Log;
 import ru.awesome.shop.ta.utils.ReportPortalManager;
 
@@ -15,12 +14,12 @@ import java.io.IOException;
 public class BrowserHooks {
     protected Browser browser;
 
-    @Before
+    @Before("@ui")
     public void setUp() {
         browser = Browser.getInstance();
     }
 
-    @After
+    @After("@ui")
     public void tearDown(Scenario scenario) throws IOException {
         if (scenario.isFailed()) {
             Log.info(String.format("SCENARIO named: %s is FAILED!", scenario.getName()));

@@ -36,6 +36,11 @@ To run **Cucumber** tests in parallel from command line:
 mvn -Dsurefire.suiteXmlFiles=cucumber.xml -Dcucumber.filter.tags=@${cucumber.filter.tags} -Ddataproviderthreadcount=${threadcount} clean test
 ```
 
+**Api** tests should run in one thread:
+```
+mvn -Dsurefire.suiteXmlFiles=cucumber.xml -Dcucumber.filter.tags="@api and ${cucumber.filter.tags}" -Ddataproviderthreadcount=1 clean test
+```
+
 ## Default values:
 
 Command line pattern:

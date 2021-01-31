@@ -1,33 +1,32 @@
-package ru.awesome.shop.ta.product.bo.credentials;
+package ru.awesome.shop.ta.product.http.body.response;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import ru.awesome.shop.ta.utils.JsonRepresentation;
 
-public final class Credentials {
-    private final String email;
-    private final String password;
+import java.util.Objects;
 
-    public Credentials(String email, String password) {
-        this.email = email;
-        this.password = password;
+public class CouponResponseBody {
+    private String error;
+
+    public CouponResponseBody() {
     }
 
-    public String getEmail() {
-        return email;
+    public CouponResponseBody(String error) {
+        Objects.requireNonNull(error, "Error message cannot be null");
+        this.error = error;
     }
 
-    public String getPassword() {
-        return password;
+    public String getError() {
+        return error;
     }
 
     @Override
     public int hashCode() {
-        final int firstPrime = 29;
-        final int secondPrime = 73;
+        final int firstPrime = 31;
+        final int secondPrime = 11;
         return new HashCodeBuilder(firstPrime, secondPrime)
-                .append(email)
-                .append(password)
+                .append(error)
                 .toHashCode();
     }
 
@@ -42,11 +41,10 @@ public final class Credentials {
         if (obj.getClass() != this.getClass()) {
             return false;
         }
-        Credentials other = (Credentials) obj;
+        CouponResponseBody other = (CouponResponseBody) obj;
         return new EqualsBuilder()
                 .appendSuper(super.equals(obj))
-                .append(email, other.email)
-                .append(password, other.password)
+                .append(error, other.error)
                 .isEquals();
     }
 

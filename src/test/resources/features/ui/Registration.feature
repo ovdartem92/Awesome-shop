@@ -6,14 +6,14 @@ Feature: Registration Functionality Feature
   Background: open registration page
     Given I have opened the registration page
 
-  @registration @positive @all
+  @ui @registration @positive @all
   Scenario: Registration with empty user parameters
     When I register with data:
       | Email    | [blank] |
       | Password | [blank] |
     Then I should see registration error message "Registration failed"
 
-  @registration @negative @all
+  @ui @registration @negative @all
   Scenario Outline: Registration with one invalid user parameter
     When I register with data:
       | First Name | <first_name> |
@@ -29,24 +29,24 @@ Feature: Registration Functionality Feature
       | Joe        | Dow       | L@ondon | +1234567890  |
       | Joe        | Dow       | London  | +"1234567890 |
 
-  @registration @positive @all @smoke
+  @ui @registration @positive @all @smoke
   Scenario: Registration as a valid user
     When I am registering as a user with the consent to the license agreement is "true"
     Then I should see a title with successful registration
 
-  @registration @positive @all
+  @ui @registration @positive @all
   Scenario: Registration with an already registered email
     When I register with data:
       | Email    | alexandr_ladygin@mail.ru |
       | Password | qwerty12345              |
     Then I should see registration error message "Registration failed"
 
-  @registration @positive @all
+  @ui @registration @positive @all
   Scenario: Registration without consent to the license agreement
     When I am registering as a user with the consent to the license agreement is "false"
     Then I should see registration error message "You must agree to the Privacy Policy!"
 
-  @registration @positive @all
+  @ui @registration @positive @all
   Scenario: Open the license agreement window with the corresponding title
     When I click privacy policy link
     Then I should see "Privacy Policy" pop up window
