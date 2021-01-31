@@ -12,6 +12,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+import static ru.awesome.shop.ta.utils.JsonRepresentation.convertFromJson;
+import static ru.awesome.shop.ta.utils.JsonRepresentation.convertToJson;
+
 public class AuthenticationMicroservice extends BaseMicroservice {
 
     public AuthenticationMicroservice(HttpClient httpClient) {
@@ -21,11 +24,11 @@ public class AuthenticationMicroservice extends BaseMicroservice {
     public HttpResponse<TokenResponseBody> generateToken(TokenRequestBody tokenRequestBody)
             throws JsonProcessingException, ParseException {
         Objects.requireNonNull(tokenRequestBody, "Token response body cannot be null");
-        JSONObject requestBody = convertObjectToJson(tokenRequestBody);
+        JSONObject requestBody = convertToJson(tokenRequestBody);
         Map<String, String> queryParameters = new HashMap<>();
         queryParameters.put("route", "api/login");
         HttpResponse<JSONObject> httpResponse = this.httpClient.post(commonUrl, queryParameters, requestBody);
-        TokenResponseBody tokenResponseBody = mapper.convertValue(httpResponse.getBody(), TokenResponseBody.class);
+        TokenResponseBody tokenResponseBody = convertFromJson(httpResponse.getBody(), TokenResponseBody.class);
         return new HttpResponse<>(httpResponse.getStatusCode(), httpResponse.getHeaders(), tokenResponseBody);
     }
 }

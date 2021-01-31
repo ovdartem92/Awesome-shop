@@ -12,6 +12,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+import static ru.awesome.shop.ta.utils.JsonRepresentation.convertFromJson;
+import static ru.awesome.shop.ta.utils.JsonRepresentation.convertToJson;
+
 public class CouponMicroservice extends BaseMicroservice {
     private String token;
 
@@ -26,10 +29,10 @@ public class CouponMicroservice extends BaseMicroservice {
         Map<String, String> queryParameters = new HashMap<>();
         queryParameters.put("token", this.token);
         queryParameters.put("route", "api/coupon");
-        JSONObject requestBody = convertObjectToJson(couponRequestBody);
+        JSONObject requestBody = convertToJson(couponRequestBody);
         HttpResponse<JSONObject> httpResponse = this.httpClient.post(commonUrl, queryParameters,
                 requestBody);
-        CouponResponseBody couponResponseBody = mapper.convertValue(httpResponse.getBody(), CouponResponseBody.class);
+        CouponResponseBody couponResponseBody = convertFromJson(httpResponse.getBody(), CouponResponseBody.class);
         return new HttpResponse<>(httpResponse.getStatusCode(), httpResponse.getHeaders(),
                 couponResponseBody);
     }

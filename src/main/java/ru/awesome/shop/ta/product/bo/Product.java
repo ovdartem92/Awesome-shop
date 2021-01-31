@@ -137,6 +137,6 @@ public class Product {
 
     @Override
     public String toString() {
-        return JsonRepresentation.convertToJson(this);
+        return JsonRepresentation.convertToJsonString(this);
     }
 }

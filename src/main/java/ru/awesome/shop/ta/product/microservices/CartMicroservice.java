@@ -15,6 +15,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+import static ru.awesome.shop.ta.utils.JsonRepresentation.convertFromJson;
+import static ru.awesome.shop.ta.utils.JsonRepresentation.convertToJson;
+
 public class CartMicroservice extends BaseMicroservice {
     private String token;
     private Map<String, String> queryParameters;
@@ -31,10 +34,10 @@ public class CartMicroservice extends BaseMicroservice {
             throws JsonProcessingException, ParseException {
         Objects.requireNonNull(addItemRequestBody, "Add item response body cannot be null");
         queryParameters.put("route", "api/cart/add");  //NOSONAR
-        JSONObject requestBody = convertObjectToJson(addItemRequestBody);
+        JSONObject requestBody = convertToJson(addItemRequestBody);
         HttpResponse<JSONObject> httpResponse = this.httpClient.post(commonUrl,
                 queryParameters, requestBody);
-        ChangeCartResponseBody changeCartResponseBody = mapper.convertValue(httpResponse.getBody(),
+        ChangeCartResponseBody changeCartResponseBody = convertFromJson(httpResponse.getBody(),
                 ChangeCartResponseBody.class);
         return new HttpResponse<>(httpResponse.getStatusCode(), httpResponse.getHeaders(),
                 changeCartResponseBody);
@@ -45,7 +48,7 @@ public class CartMicroservice extends BaseMicroservice {
         JSONObject requestBody = new JSONObject();
         HttpResponse<JSONObject> httpResponse = this.httpClient.post(commonUrl,
                 queryParameters, requestBody);
-        OpenCartResponseBody openCartResponseBody = mapper.convertValue(httpResponse.getBody(),
+        OpenCartResponseBody openCartResponseBody = convertFromJson(httpResponse.getBody(),
                 OpenCartResponseBody.class);
         return new HttpResponse<>(httpResponse.getStatusCode(), httpResponse.getHeaders(),
                 openCartResponseBody);
@@ -55,10 +58,10 @@ public class CartMicroservice extends BaseMicroservice {
             throws JsonProcessingException, ParseException {
         Objects.requireNonNull(editCartRequestBody, "Edit cart response body cannot be null");
         queryParameters.put("route", "api/cart/edit"); //NOSONAR
-        JSONObject requestBody = convertObjectToJson(editCartRequestBody);
+        JSONObject requestBody = convertToJson(editCartRequestBody);
         HttpResponse<JSONObject> httpResponse = this.httpClient.post(commonUrl, queryParameters,
                 requestBody);
-        ChangeCartResponseBody changeCartResponseBody = mapper.convertValue(httpResponse.getBody(),
+        ChangeCartResponseBody changeCartResponseBody = convertFromJson(httpResponse.getBody(),
                 ChangeCartResponseBody.class);
         return new HttpResponse<>(httpResponse.getStatusCode(), httpResponse.getHeaders(),
                 changeCartResponseBody);
@@ -68,10 +71,10 @@ public class CartMicroservice extends BaseMicroservice {
             throws JsonProcessingException, ParseException {
         Objects.requireNonNull(removeItemRequestBody, "Remove item response body cannot be null");
         queryParameters.put("route", "api/cart/remove"); //NOSONAR
-        JSONObject requestBody = convertObjectToJson(removeItemRequestBody);
+        JSONObject requestBody = convertToJson(removeItemRequestBody);
         HttpResponse<JSONObject> httpResponse = this.httpClient.post(commonUrl,
                 queryParameters, requestBody);
-        ChangeCartResponseBody changeCartResponseBody = mapper.convertValue(httpResponse.getBody(),
+        ChangeCartResponseBody changeCartResponseBody = convertFromJson(httpResponse.getBody(),
                 ChangeCartResponseBody.class);
         return new HttpResponse<>(httpResponse.getStatusCode(), httpResponse.getHeaders(),
                 changeCartResponseBody);
