@@ -9,8 +9,8 @@ Feature: Currency
     Then I should get status code 200
     And I should get currency success message "Success: Your currency has been changed!"
 
-  @api @currency @positive @all
+  @api @currency @negative @all
   Scenario: change currency
     When I send invalid request for changing currency "BLR"
-    Then I should get status code 200
+    Then I should get status code 400
     And I should get currency error message "Warning: Currency code is invalid!"
