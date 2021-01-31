@@ -50,6 +50,7 @@ public class HttpClient {
         Objects.requireNonNull(relativeUrl, "Relative URL cannot be null.");           //NOSONAR
         Objects.requireNonNull(queryParameters, "Query parameters cannot be null.");  //NOSONAR
         Objects.requireNonNull(requestBody, "Request body cannot be null");
+        Objects.requireNonNull(requestHeaders, "Request headers cannot be null.");
         RequestSpecification request = RestAssured.given();
         request.queryParams(queryParameters);
         request.headers(requestHeaders);
