@@ -26,11 +26,6 @@ public class CustomerSteps {
         this.customerMicroservice = new CustomerMicroservice(this.httpClient, apiTestContext.getToken());
     }
 
-    @DataTableType(replaceWithEmptyString = "[blank]")
-    public String listOfStringListsType(String cell) {
-        return cell;
-    }
-
     @When("^I modify the customer by passing all empty parameters$")
     public void editCustomer() throws ParseException {
         String firstname = "";

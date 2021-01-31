@@ -9,7 +9,7 @@ Feature: Customer Functionality Feature
   @api @customer @positive @all
   Scenario: Edit the customer by passing empty parameters
     When I modify the customer by passing all empty parameters
-    Then I should see response status code 200
+    Then I should get status code 200
     And I should see an error with a list of all invalid fields
 
   @api @customer @positive @all
@@ -19,5 +19,5 @@ Feature: Customer Functionality Feature
       | lastname  | Customer             |
       | email     | customer@example.com |
       | telephone | +1 879 2548022       |
-    Then I should see response status code 200
+    Then I should get status code 200
     And I should see a message "You have successfully modified customers"
