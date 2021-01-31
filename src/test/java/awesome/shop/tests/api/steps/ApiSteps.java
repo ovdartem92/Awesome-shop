@@ -3,10 +3,10 @@ package awesome.shop.tests.api.steps;
 import io.cucumber.java.en.Then;
 import org.testng.Assert;
 
-public class StatusCodeSteps {
+public class ApiSteps {
     private ApiTestContext apiTestContext;
 
-    public StatusCodeSteps(ApiTestContext apiTestContext) {
+    public ApiSteps(ApiTestContext apiTestContext) {
         this.apiTestContext = apiTestContext;
     }
 
