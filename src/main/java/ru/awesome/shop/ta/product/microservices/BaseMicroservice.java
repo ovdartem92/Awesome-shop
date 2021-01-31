@@ -12,11 +12,4 @@ public class BaseMicroservice {
         Objects.requireNonNull(httpClient, "Http client cannot be null");
         this.httpClient = httpClient;
     }
-
-//    protected JSONObject convertObjectToJson(Object object) throws ParseException, JsonProcessingException {
-//        ObjectMapper mapper = new ObjectMapper();
-//        String jsonString = mapper.writeValueAsString(object);
-//        JSONParser parser = new JSONParser();
-//        return (JSONObject) parser.parse(jsonString);
-//    }
 }

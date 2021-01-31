@@ -8,17 +8,17 @@ public class AddItemRequestBody {
     private int product_id; //NOSONAR
     private int quantity;
 
+    public AddItemRequestBody(int productId, int quantity) {
+        this.product_id = productId;
+        this.quantity = quantity;
+    }
+
     public int getProduct_id() { //NOSONAR
         return product_id;
     }
 
     public int getQuantity() {
         return quantity;
-    }
-
-    public AddItemRequestBody(int productId, int quantity) {
-        this.product_id = productId;
-        this.quantity = quantity;
     }
 
     @Override

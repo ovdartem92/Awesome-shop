@@ -1,6 +1,5 @@
 package ru.awesome.shop.ta.product.microservices;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 import ru.awesome.shop.ta.framework.client.HttpClient;
@@ -21,8 +20,7 @@ public class AuthenticationMicroservice extends BaseMicroservice {
         super(httpClient);
     }
 
-    public HttpResponse<TokenResponseBody> generateToken(TokenRequestBody tokenRequestBody)
-            throws JsonProcessingException, ParseException {
+    public HttpResponse<TokenResponseBody> generateToken(TokenRequestBody tokenRequestBody) throws ParseException {
         Objects.requireNonNull(tokenRequestBody, "Token response body cannot be null");
         JSONObject requestBody = convertToJson(tokenRequestBody);
         Map<String, String> queryParameters = new HashMap<>();

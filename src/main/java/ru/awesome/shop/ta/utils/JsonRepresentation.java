@@ -23,13 +23,12 @@ public final class JsonRepresentation {
     }
 
     public static <T> T convertFromJson(JSONObject jsonObject, Class<T> clazz) {
-        ObjectMapper mapper = new ObjectMapper();
-        return mapper.convertValue(jsonObject, clazz);
+        String jsonString = convertToJsonString(jsonObject);
+        return gson.fromJson(jsonString, clazz);
     }
 
-    public static JSONObject convertToJson(Object object) throws JsonProcessingException, ParseException {
-        ObjectMapper mapper = new ObjectMapper();
-        String jsonString = mapper.writeValueAsString(object);
+    public static JSONObject convertToJson(Object object) throws ParseException {
+        String jsonString = convertToJsonString(object);
         JSONParser parser = new JSONParser();
         return (JSONObject) parser.parse(jsonString);
     }

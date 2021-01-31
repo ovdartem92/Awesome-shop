@@ -1,6 +1,5 @@
 package ru.awesome.shop.ta.product.microservices;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 import ru.awesome.shop.ta.product.http.body.request.CouponRequestBody;
@@ -20,11 +19,11 @@ public class CouponMicroservice extends BaseMicroservice {
 
     public CouponMicroservice(HttpClient httpClient, String token) {
         super(httpClient);
+        Objects.requireNonNull(token, "Token cannot be null");
         this.token = token;
     }
 
-    public HttpResponse<CouponResponseBody> useCoupon(CouponRequestBody couponRequestBody)
-            throws JsonProcessingException, ParseException {
+    public HttpResponse<CouponResponseBody> useCoupon(CouponRequestBody couponRequestBody) throws ParseException {
         Objects.requireNonNull(couponRequestBody, "Coupon response body cannot be null");
         Map<String, String> queryParameters = new HashMap<>();
         queryParameters.put("token", this.token);

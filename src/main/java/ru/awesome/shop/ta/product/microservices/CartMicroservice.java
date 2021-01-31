@@ -1,6 +1,5 @@
 package ru.awesome.shop.ta.product.microservices;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 import ru.awesome.shop.ta.framework.client.HttpClient;
@@ -30,8 +29,7 @@ public class CartMicroservice extends BaseMicroservice {
         queryParameters.put("token", this.token);
     }
 
-    public HttpResponse<ChangeCartResponseBody> addItem(AddItemRequestBody addItemRequestBody)
-            throws JsonProcessingException, ParseException {
+    public HttpResponse<ChangeCartResponseBody> addItem(AddItemRequestBody addItemRequestBody) throws ParseException {
         Objects.requireNonNull(addItemRequestBody, "Add item response body cannot be null");
         queryParameters.put("route", "api/cart/add");  //NOSONAR
         JSONObject requestBody = convertToJson(addItemRequestBody);
@@ -55,7 +53,7 @@ public class CartMicroservice extends BaseMicroservice {
     }
 
     public HttpResponse<ChangeCartResponseBody> editCart(EditCartRequestBody editCartRequestBody)
-            throws JsonProcessingException, ParseException {
+            throws ParseException {
         Objects.requireNonNull(editCartRequestBody, "Edit cart response body cannot be null");
         queryParameters.put("route", "api/cart/edit"); //NOSONAR
         JSONObject requestBody = convertToJson(editCartRequestBody);
@@ -68,7 +66,7 @@ public class CartMicroservice extends BaseMicroservice {
     }
 
     public HttpResponse<ChangeCartResponseBody> removeItemFromCart(RemoveItemRequestBody removeItemRequestBody)
-            throws JsonProcessingException, ParseException {
+            throws ParseException {
         Objects.requireNonNull(removeItemRequestBody, "Remove item response body cannot be null");
         queryParameters.put("route", "api/cart/remove"); //NOSONAR
         JSONObject requestBody = convertToJson(removeItemRequestBody);

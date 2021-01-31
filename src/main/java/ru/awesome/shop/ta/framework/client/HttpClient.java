@@ -29,7 +29,7 @@ public class HttpClient {
         request.queryParams(queryParameters);
         request.headers(requestHeaders);
         Response response = request.get(relativeUrl);
-        return prepareHttpResponse(response);
+        return convertHttpResponse(response);
     }
 
     public HttpResponse<JSONObject> get(String relativeUrl, Map<String, String> queryParameters) {
@@ -56,7 +56,7 @@ public class HttpClient {
         request.headers(requestHeaders);
         request.params(requestBody);
         Response response = request.post(relativeUrl);
-        return prepareHttpResponse(response);
+        return convertHttpResponse(response);
     }
 
     public HttpResponse<JSONObject> put(String relativeUrl, Map<String, String> requestHeaders, JSONObject requestBody) {
@@ -66,7 +66,7 @@ public class HttpClient {
         RequestSpecification request = RestAssured.given();
         request.headers(requestHeaders);
         Response response = request.params(requestBody).put(relativeUrl);
-        return prepareHttpResponse(response);
+        return convertHttpResponse(response);
     }
 
     public HttpResponse<JSONObject> put(String relativeUrl, JSONObject requestBody) {
@@ -81,7 +81,7 @@ public class HttpClient {
         RequestSpecification request = RestAssured.given();
         request.headers(requestHeaders);
         Response response = request.delete(relativeUrl);
-        return prepareHttpResponse(response);
+        return convertHttpResponse(response);
     }
 
     public HttpResponse<JSONObject> delete(String relativeUrl) {
@@ -89,7 +89,7 @@ public class HttpClient {
         return delete(relativeUrl, defaultHeaders);
     }
 
-    private HttpResponse<JSONObject> prepareHttpResponse(Response response) {
+    private HttpResponse<JSONObject> convertHttpResponse(Response response) {
         JSONObject body = response.body().as(JSONObject.class);
         int responseCode = response.getStatusCode();
         Map<String, String> headers = convertHeaders(response.headers());

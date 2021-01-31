@@ -1,5 +1,10 @@
 package ru.awesome.shop.ta.product.http;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import ru.awesome.shop.ta.product.http.body.request.RemoveItemRequestBody;
+import ru.awesome.shop.ta.utils.JsonRepresentation;
+
 import java.util.Map;
 import java.util.Objects;
 
@@ -26,5 +31,41 @@ public class HttpResponse<T> {
 
     public T getBody() {
         return body;
+    }
+
+    @Override
+    public int hashCode() {
+        final int firstPrime = 13;
+        final int secondPrime = 53;
+        return new HashCodeBuilder(firstPrime, secondPrime)
+                .append(statusCode)
+                .append(headers)
+                .append(body)
+                .toHashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (obj == this) {
+            return true;
+        }
+        if (obj.getClass() != this.getClass()) {
+            return false;
+        }
+        HttpResponse other = (HttpResponse) obj;
+        return new EqualsBuilder()
+                .appendSuper(super.equals(obj))
+                .append(statusCode, other.statusCode)
+                .append(headers, other.headers)
+                .append(body, other.body)
+                .isEquals();
+    }
+
+    @Override
+    public String toString() {
+        return JsonRepresentation.convertToJsonString(this);
     }
 }
