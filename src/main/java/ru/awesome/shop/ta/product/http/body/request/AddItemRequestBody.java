@@ -4,37 +4,30 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import ru.awesome.shop.ta.utils.JsonRepresentation;
 
-import java.util.Objects;
+public class AddItemRequestBody {
+    private int product_id; //NOSONAR
+    private int quantity;
 
-public class TokenRequestBody {
-    private String username;
-    private String key;
-
-    public TokenRequestBody() {
+    public AddItemRequestBody(int productId, int quantity) {
+        this.product_id = productId;
+        this.quantity = quantity;
     }
 
-    public TokenRequestBody(String username, String key) {
-        Objects.requireNonNull(key, "Key cannot be null");
-        Objects.requireNonNull(username, "User name cannot be null");
-        this.key = key;
-        this.username = username;
+    public int getProduct_id() { //NOSONAR
+        return product_id;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public String getKey() {
-        return key;
+    public int getQuantity() {
+        return quantity;
     }
 
     @Override
     public int hashCode() {
-        final int firstPrime = 17;
-        final int secondPrime = 37;
+        final int firstPrime = 11;
+        final int secondPrime = 53;
         return new HashCodeBuilder(firstPrime, secondPrime)
-                .append(key)
-                .append(username)
+                .append(product_id)
+                .append(quantity)
                 .toHashCode();
     }
 
@@ -49,11 +42,11 @@ public class TokenRequestBody {
         if (obj.getClass() != this.getClass()) {
             return false;
         }
-        TokenRequestBody other = (TokenRequestBody) obj;
+        AddItemRequestBody other = (AddItemRequestBody) obj;
         return new EqualsBuilder()
                 .appendSuper(super.equals(obj))
-                .append(key, other.key)
-                .append(username, other.username)
+                .append(product_id, other.product_id)
+                .append(quantity, other.quantity)
                 .isEquals();
     }
 

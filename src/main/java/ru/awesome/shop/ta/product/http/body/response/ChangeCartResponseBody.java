@@ -1,4 +1,4 @@
-package ru.awesome.shop.ta.product.http.body.request;
+package ru.awesome.shop.ta.product.http.body.response;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -6,35 +6,27 @@ import ru.awesome.shop.ta.utils.JsonRepresentation;
 
 import java.util.Objects;
 
-public class TokenRequestBody {
-    private String username;
-    private String key;
+public class ChangeCartResponseBody {
+    private String success;
 
-    public TokenRequestBody() {
+    public ChangeCartResponseBody() {
     }
 
-    public TokenRequestBody(String username, String key) {
-        Objects.requireNonNull(key, "Key cannot be null");
-        Objects.requireNonNull(username, "User name cannot be null");
-        this.key = key;
-        this.username = username;
+    public ChangeCartResponseBody(String success) {
+        Objects.requireNonNull(success, "Success message cannot be null");
+        this.success = success;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public String getKey() {
-        return key;
+    public String getSuccess() {
+        return success;
     }
 
     @Override
     public int hashCode() {
-        final int firstPrime = 17;
-        final int secondPrime = 37;
+        final int firstPrime = 61;
+        final int secondPrime = 89;
         return new HashCodeBuilder(firstPrime, secondPrime)
-                .append(key)
-                .append(username)
+                .append(success)
                 .toHashCode();
     }
 
@@ -49,11 +41,10 @@ public class TokenRequestBody {
         if (obj.getClass() != this.getClass()) {
             return false;
         }
-        TokenRequestBody other = (TokenRequestBody) obj;
+        ChangeCartResponseBody other = (ChangeCartResponseBody) obj;
         return new EqualsBuilder()
                 .appendSuper(super.equals(obj))
-                .append(key, other.key)
-                .append(username, other.username)
+                .append(success, other.success)
                 .isEquals();
     }
 

@@ -4,37 +4,23 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import ru.awesome.shop.ta.utils.JsonRepresentation;
 
-import java.util.Objects;
+public class CouponRequestBody {
+    private int coupon;
 
-public class TokenRequestBody {
-    private String username;
-    private String key;
-
-    public TokenRequestBody() {
+    public CouponRequestBody(int coupon) {
+        this.coupon = coupon;
     }
 
-    public TokenRequestBody(String username, String key) {
-        Objects.requireNonNull(key, "Key cannot be null");
-        Objects.requireNonNull(username, "User name cannot be null");
-        this.key = key;
-        this.username = username;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public String getKey() {
-        return key;
+    public int getCoupon() {
+        return coupon;
     }
 
     @Override
     public int hashCode() {
-        final int firstPrime = 17;
-        final int secondPrime = 37;
+        final int firstPrime = 79;
+        final int secondPrime = 29;
         return new HashCodeBuilder(firstPrime, secondPrime)
-                .append(key)
-                .append(username)
+                .append(coupon)
                 .toHashCode();
     }
 
@@ -49,11 +35,10 @@ public class TokenRequestBody {
         if (obj.getClass() != this.getClass()) {
             return false;
         }
-        TokenRequestBody other = (TokenRequestBody) obj;
+        CouponRequestBody other = (CouponRequestBody) obj;
         return new EqualsBuilder()
                 .appendSuper(super.equals(obj))
-                .append(key, other.key)
-                .append(username, other.username)
+                .append(coupon, other.coupon)
                 .isEquals();
     }
 

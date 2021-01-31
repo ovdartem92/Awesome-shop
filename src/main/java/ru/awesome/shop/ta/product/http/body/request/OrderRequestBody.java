@@ -6,22 +6,12 @@ import ru.awesome.shop.ta.utils.JsonRepresentation;
 
 import java.util.Objects;
 
-public class TokenRequestBody {
-    private String username;
+public class OrderRequestBody {
     private String key;
 
-    public TokenRequestBody() {
-    }
-
-    public TokenRequestBody(String username, String key) {
-        Objects.requireNonNull(key, "Key cannot be null");
-        Objects.requireNonNull(username, "User name cannot be null");
+    public OrderRequestBody(String key) {
+        Objects.requireNonNull(key, "Key cannot be null.");
         this.key = key;
-        this.username = username;
-    }
-
-    public String getUsername() {
-        return username;
     }
 
     public String getKey() {
@@ -30,11 +20,10 @@ public class TokenRequestBody {
 
     @Override
     public int hashCode() {
-        final int firstPrime = 17;
-        final int secondPrime = 37;
+        final int firstPrime = 59;
+        final int secondPrime = 11;
         return new HashCodeBuilder(firstPrime, secondPrime)
                 .append(key)
-                .append(username)
                 .toHashCode();
     }
 
@@ -49,11 +38,10 @@ public class TokenRequestBody {
         if (obj.getClass() != this.getClass()) {
             return false;
         }
-        TokenRequestBody other = (TokenRequestBody) obj;
+        OrderRequestBody other = (OrderRequestBody) obj;
         return new EqualsBuilder()
                 .appendSuper(super.equals(obj))
                 .append(key, other.key)
-                .append(username, other.username)
                 .isEquals();
     }
 

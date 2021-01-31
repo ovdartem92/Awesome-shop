@@ -6,35 +6,24 @@ import ru.awesome.shop.ta.utils.JsonRepresentation;
 
 import java.util.Objects;
 
-public class TokenRequestBody {
-    private String username;
-    private String key;
+public class ApplyVoucherRequestBody {
+    private String voucher;
 
-    public TokenRequestBody() {
+    public ApplyVoucherRequestBody(String voucher) {
+        Objects.requireNonNull(voucher, "Voucher cannot be null.");
+        this.voucher = voucher;
     }
 
-    public TokenRequestBody(String username, String key) {
-        Objects.requireNonNull(key, "Key cannot be null");
-        Objects.requireNonNull(username, "User name cannot be null");
-        this.key = key;
-        this.username = username;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public String getKey() {
-        return key;
+    public String getVoucher() {
+        return this.voucher;
     }
 
     @Override
     public int hashCode() {
-        final int firstPrime = 17;
-        final int secondPrime = 37;
+        final int firstPrime = 89;
+        final int secondPrime = 41;
         return new HashCodeBuilder(firstPrime, secondPrime)
-                .append(key)
-                .append(username)
+                .append(voucher)
                 .toHashCode();
     }
 
@@ -49,11 +38,10 @@ public class TokenRequestBody {
         if (obj.getClass() != this.getClass()) {
             return false;
         }
-        TokenRequestBody other = (TokenRequestBody) obj;
+        ApplyVoucherRequestBody other = (ApplyVoucherRequestBody) obj;
         return new EqualsBuilder()
                 .appendSuper(super.equals(obj))
-                .append(key, other.key)
-                .append(username, other.username)
+                .append(voucher, other.voucher)
                 .isEquals();
     }
 
@@ -62,3 +50,4 @@ public class TokenRequestBody {
         return JsonRepresentation.convertToJsonString(this);
     }
 }
+

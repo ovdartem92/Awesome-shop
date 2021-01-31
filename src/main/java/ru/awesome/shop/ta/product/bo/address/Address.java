@@ -77,6 +77,6 @@ public final class Address {
 
     @Override
     public String toString() {
-        return JsonRepresentation.convertToJson(this);
+        return JsonRepresentation.convertToJsonString(this);
     }
 }

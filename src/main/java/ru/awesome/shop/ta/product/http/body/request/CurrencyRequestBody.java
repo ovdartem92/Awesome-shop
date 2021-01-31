@@ -6,35 +6,24 @@ import ru.awesome.shop.ta.utils.JsonRepresentation;
 
 import java.util.Objects;
 
-public class TokenRequestBody {
-    private String username;
-    private String key;
+public class CurrencyRequestBody {
+    private String currency;
 
-    public TokenRequestBody() {
+    public CurrencyRequestBody(String currency) {
+        Objects.requireNonNull(currency, "Currency cannot be null.");
+        this.currency = currency;
     }
 
-    public TokenRequestBody(String username, String key) {
-        Objects.requireNonNull(key, "Key cannot be null");
-        Objects.requireNonNull(username, "User name cannot be null");
-        this.key = key;
-        this.username = username;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public String getKey() {
-        return key;
+    public String getCurrency() {
+        return this.currency;
     }
 
     @Override
     public int hashCode() {
-        final int firstPrime = 17;
-        final int secondPrime = 37;
+        final int firstPrime = 71;
+        final int secondPrime = 79;
         return new HashCodeBuilder(firstPrime, secondPrime)
-                .append(key)
-                .append(username)
+                .append(currency)
                 .toHashCode();
     }
 
@@ -49,11 +38,10 @@ public class TokenRequestBody {
         if (obj.getClass() != this.getClass()) {
             return false;
         }
-        TokenRequestBody other = (TokenRequestBody) obj;
+        CurrencyRequestBody other = (CurrencyRequestBody) obj;
         return new EqualsBuilder()
                 .appendSuper(super.equals(obj))
-                .append(key, other.key)
-                .append(username, other.username)
+                .append(currency, other.currency)
                 .isEquals();
     }
 
@@ -62,3 +50,4 @@ public class TokenRequestBody {
         return JsonRepresentation.convertToJsonString(this);
     }
 }
+

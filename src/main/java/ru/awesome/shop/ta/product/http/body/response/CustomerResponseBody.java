@@ -4,37 +4,38 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import ru.awesome.shop.ta.utils.JsonRepresentation;
 
+import java.util.Map;
 import java.util.Objects;
 
-public class TokenResponseBody {
+public class CustomerResponseBody {
     private String success;
-    private String token;
+    private Map<String, String> error;
 
-    public TokenResponseBody() {
+    public CustomerResponseBody() {
     }
 
-    public TokenResponseBody(String success, String token) {
+    public CustomerResponseBody(String success, Map<String, String> error) {
         Objects.requireNonNull(success, "Success message cannot be null");
-        Objects.requireNonNull(token, "Token cannot be null");
+        Objects.requireNonNull(error, "Error messages cannot be null");
         this.success = success;
-        this.token = token;
+        this.error = error;
     }
 
     public String getSuccess() {
         return success;
     }
 
-    public String getToken() {
-        return token;
+    public Map<String, String> getError() {
+        return error;
     }
 
     @Override
     public int hashCode() {
         final int firstPrime = 47;
-        final int secondPrime = 13;
+        final int secondPrime = 67;
         return new HashCodeBuilder(firstPrime, secondPrime)
                 .append(success)
-                .append(token)
+                .append(error)
                 .toHashCode();
     }
 
@@ -49,11 +50,11 @@ public class TokenResponseBody {
         if (obj.getClass() != this.getClass()) {
             return false;
         }
-        TokenResponseBody other = (TokenResponseBody) obj;
+        CustomerResponseBody other = (CustomerResponseBody) obj;
         return new EqualsBuilder()
                 .appendSuper(super.equals(obj))
                 .append(success, other.success)
-                .append(token, other.token)
+                .append(error, other.error)
                 .isEquals();
     }
 

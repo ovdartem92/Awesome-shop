@@ -4,37 +4,30 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import ru.awesome.shop.ta.utils.JsonRepresentation;
 
-import java.util.Objects;
+public class EditCartRequestBody {
+    private int key;
+    private int quantity;
 
-public class TokenRequestBody {
-    private String username;
-    private String key;
-
-    public TokenRequestBody() {
-    }
-
-    public TokenRequestBody(String username, String key) {
-        Objects.requireNonNull(key, "Key cannot be null");
-        Objects.requireNonNull(username, "User name cannot be null");
+    public EditCartRequestBody(int key, int quantity) {
         this.key = key;
-        this.username = username;
+        this.quantity = quantity;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public String getKey() {
+    public int getKey() {
         return key;
+    }
+
+    public int getQuantity() {
+        return quantity;
     }
 
     @Override
     public int hashCode() {
-        final int firstPrime = 17;
-        final int secondPrime = 37;
+        final int firstPrime = 61;
+        final int secondPrime = 17;
         return new HashCodeBuilder(firstPrime, secondPrime)
                 .append(key)
-                .append(username)
+                .append(quantity)
                 .toHashCode();
     }
 
@@ -49,11 +42,11 @@ public class TokenRequestBody {
         if (obj.getClass() != this.getClass()) {
             return false;
         }
-        TokenRequestBody other = (TokenRequestBody) obj;
+        EditCartRequestBody other = (EditCartRequestBody) obj;
         return new EqualsBuilder()
                 .appendSuper(super.equals(obj))
                 .append(key, other.key)
-                .append(username, other.username)
+                .append(quantity, other.quantity)
                 .isEquals();
     }
 

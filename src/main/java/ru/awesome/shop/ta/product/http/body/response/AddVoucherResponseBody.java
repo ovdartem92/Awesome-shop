@@ -4,37 +4,22 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import ru.awesome.shop.ta.utils.JsonRepresentation;
 
-import java.util.Objects;
-
-public class TokenResponseBody {
+public class AddVoucherResponseBody {
     private String success;
-    private String token;
 
-    public TokenResponseBody() {
-    }
-
-    public TokenResponseBody(String success, String token) {
-        Objects.requireNonNull(success, "Success message cannot be null");
-        Objects.requireNonNull(token, "Token cannot be null");
-        this.success = success;
-        this.token = token;
+    public AddVoucherResponseBody() {
     }
 
     public String getSuccess() {
-        return success;
-    }
-
-    public String getToken() {
-        return token;
+        return this.success;
     }
 
     @Override
     public int hashCode() {
-        final int firstPrime = 47;
+        final int firstPrime = 29;
         final int secondPrime = 13;
         return new HashCodeBuilder(firstPrime, secondPrime)
                 .append(success)
-                .append(token)
                 .toHashCode();
     }
 
@@ -49,11 +34,10 @@ public class TokenResponseBody {
         if (obj.getClass() != this.getClass()) {
             return false;
         }
-        TokenResponseBody other = (TokenResponseBody) obj;
+        AddVoucherResponseBody other = (AddVoucherResponseBody) obj;
         return new EqualsBuilder()
                 .appendSuper(super.equals(obj))
                 .append(success, other.success)
-                .append(token, other.token)
                 .isEquals();
     }
 
