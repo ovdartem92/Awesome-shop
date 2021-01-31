@@ -16,7 +16,6 @@ import ru.awesome.shop.ta.product.microservices.CartMicroservice;
 import org.json.simple.parser.ParseException;
 
 import java.util.List;
-import java.util.Objects;
 
 public class CartSteps {
     private HttpClient httpClient = new HttpClient();
@@ -25,7 +24,7 @@ public class CartSteps {
 
     public CartSteps(ApiTestContext apiTestContext) {
         this.apiTestContext = apiTestContext;
-        this.cartMicroservice = new CartMicroservice(httpClient, apiTestContext.getToken());
+        this.cartMicroservice = new CartMicroservice(this.httpClient, apiTestContext.getToken());
     }
 
     @When("^I add item to cart with item id (.*) and quantity (.*)$")

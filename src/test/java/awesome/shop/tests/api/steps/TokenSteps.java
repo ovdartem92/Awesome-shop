@@ -12,15 +12,16 @@ import ru.awesome.shop.ta.product.microservices.AuthenticationMicroservice;
 public class TokenSteps {
     private ApiTestContext apiTestContext;
     private HttpClient httpClient = new HttpClient();
+    private AuthenticationMicroservice authenticationMicroservice;
 
     public TokenSteps(ApiTestContext apiTestContext) {
         this.apiTestContext = apiTestContext;
+        this.authenticationMicroservice = new AuthenticationMicroservice(this.httpClient);
     }
 
     @Given("^I have authenticated as user \"(.*)\" with key \"(.*)\"$")
     public void generateTokenForNewSession(String userName, String key) throws JsonProcessingException, ParseException {
         TokenRequestBody tokenRequestBody = new TokenRequestBody(userName, key);
-        AuthenticationMicroservice authenticationMicroservice = new AuthenticationMicroservice(httpClient);
         HttpResponse<TokenResponseBody> response = authenticationMicroservice.generateToken(tokenRequestBody);
         TokenResponseBody body = response.getBody();
         String token = body.getToken();
