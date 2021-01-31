@@ -54,11 +54,6 @@ public class VoucherSteps {
         apiTestContext.setActualSuccessMessage(actualSuccessMessage);
     }
 
-    @Then("^I should get voucher status code (.*)$")
-    public void getAddVoucherStatusCode(int expectedStatusCode) {
-        Assert.assertEquals(apiTestContext.getActualStatusCode(), expectedStatusCode, "Status Code isn't expected!");
-    }
-
     @And("^I should get add voucher success message \"(.*)\"$")
     public void getAddVoucherSuccessMessage(String expectedMessage) {
         Assert.assertEquals(apiTestContext.getActualSuccessMessage(), expectedMessage, "Message is not expected!");

@@ -6,7 +6,7 @@ Feature: Voucher
   @api @voucher @positive @all
   Scenario: apply existing voucher
     When I send request for applying existing voucher "VOU-1000"
-    Then I should get voucher status code 200
+    Then I should get status code 200
     And I should get applying voucher error message "Warning: Gift Voucher is either invalid or the balance has been used up!"
 
   @api @voucher @positive @all
@@ -18,5 +18,5 @@ Feature: Voucher
       | to_email   | customer@example.com |
       | amount     | 1000                 |
       | code       | VOU-7177             |
-    Then I should get voucher status code 200
+    Then I should get status code 200
     And I should get add voucher success message "Success: You have modified your shopping cart!"

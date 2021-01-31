@@ -6,11 +6,11 @@ Feature: Currency
   @api @currency @positive @all
   Scenario: change currency
     When I send valid request for changing currency "EUR"
-    Then I should get currency status code 200
+    Then I should get status code 200
     And I should get currency success message "Success: Your currency has been changed!"
 
   @api @currency @positive @all
   Scenario: change currency
     When I send invalid request for changing currency "BLR"
-    Then I should get currency status code 200
+    Then I should get status code 200
     And I should get currency error message "Warning: Currency code is invalid!"

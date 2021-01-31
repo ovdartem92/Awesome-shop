@@ -43,12 +43,6 @@ public class CurrencySteps {
         apiTestContext.setActualSuccessMessage(actualSuccessMessage);
     }
 
-    @Then("^I should get currency status code (.*)$")
-    public void getCurrencyStatusCode(int expectedStatusCode) {
-        Assert.assertEquals(apiTestContext.getActualStatusCode(), expectedStatusCode,
-                "Status Code isn't expected!");
-    }
-
     @And("^I should get currency error message \"(.*)\"$")
     public void getErrorCurrencyMessage(String expectedMessage) {
         Assert.assertEquals(apiTestContext.getActualErrorMessage(), expectedMessage, "Message is not expected!");
