@@ -1,7 +1,5 @@
 package ru.awesome.shop.ta.utils;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.json.simple.JSONObject;
@@ -23,11 +21,14 @@ public final class JsonRepresentation {
     }
 
     public static <T> T convertFromJson(JSONObject jsonObject, Class<T> clazz) {
+        Objects.requireNonNull(jsonObject, "Json object cannot be null.");
+        Objects.requireNonNull(clazz, "Class cannot be null.");
         String jsonString = convertToJsonString(jsonObject);
         return gson.fromJson(jsonString, clazz);
     }
 
     public static JSONObject convertToJson(Object object) throws ParseException {
+        Objects.requireNonNull(object, "Object cannot be null.");
         String jsonString = convertToJsonString(object);
         JSONParser parser = new JSONParser();
         return (JSONObject) parser.parse(jsonString);

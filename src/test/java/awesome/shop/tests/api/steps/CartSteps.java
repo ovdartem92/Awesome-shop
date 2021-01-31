@@ -82,7 +82,7 @@ public class CartSteps {
         Assert.assertEquals(actualQuantity, expectedQuantity, "Wrong product quantity in the cart");
     }
 
-    @When("I remember cart id")
+    @When("^I remember products in cart$")
     public void saveCartId() {
         HttpResponse<OpenCartResponseBody> response = cartMicroservice.openCart();
         OpenCartResponseBody items = response.getBody();

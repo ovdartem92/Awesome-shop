@@ -9,12 +9,12 @@ import ru.awesome.shop.ta.product.http.body.request.TokenRequestBody;
 import ru.awesome.shop.ta.product.http.body.response.TokenResponseBody;
 import ru.awesome.shop.ta.product.microservices.AuthenticationMicroservice;
 
-public class TokenSteps {
+public class AuthenticationSteps {
     private ApiTestContext apiTestContext;
     private HttpClient httpClient = new HttpClient();
     private AuthenticationMicroservice authenticationMicroservice;
 
-    public TokenSteps(ApiTestContext apiTestContext) {
+    public AuthenticationSteps(ApiTestContext apiTestContext) {
         this.apiTestContext = apiTestContext;
         this.authenticationMicroservice = new AuthenticationMicroservice(this.httpClient);
     }
