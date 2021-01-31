@@ -106,10 +106,4 @@ public class CartSteps {
         List<Product> products = this.apiTestContext.getProducts();
         Assert.assertTrue(products.isEmpty(), "Products wasn't removed from cart");
     }
-
-    @Then("^I should see response status code (.*)")
-    public void checkStatusCode(int expectedStatusCode) {
-        Assert.assertEquals(this.apiTestContext.getActualStatusCode(), expectedStatusCode,
-                "Wrong status code");
-    }
 }

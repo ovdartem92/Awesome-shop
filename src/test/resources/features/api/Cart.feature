@@ -6,7 +6,7 @@ Feature: cart
   @api @cart @positive @all
   Scenario: add item to cart
     When I add item to cart with item id 43 and quantity 2
-    Then I should see response status code 200
+    Then I should get status code 200
     And I should see message success "Success: You have modified your shopping cart!"
     When I open cart
     Then I should see this item in the cart with item id 43
@@ -17,7 +17,7 @@ Feature: cart
     When I add item to cart with item id 43 and quantity 2
     And I remember products in cart
     And I edit item quantity <quantity> in cart
-    Then I should see response status code 200
+    Then I should get status code 200
     And I should see message success "Success: You have modified your shopping cart!"
     When I open cart
     Then I should see this item in the cart with quantity <quantity>
@@ -31,7 +31,7 @@ Feature: cart
     When I add item to cart with item id 43 and quantity 2
     And I remember products in cart
     And I remove item from cart
-    Then I should see response status code 200
+    Then I should get status code 200
     And I should see message success "Success: You have modified your shopping cart!"
     When I open cart
     Then I should see that cart is empty
