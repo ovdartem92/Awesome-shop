@@ -12,31 +12,25 @@ public class Product {
     private int product_id; //NOSONAR
     private String name;
     private String model;
-    private List<Object> option = null;
+    private List<Object> option;
     private int quantity;
-    private Boolean stock;
+    private boolean stock;
     private String shipping;
     private String price;
     private String total;
-    private Integer reward;
+    private int reward;
 
     public Product() {
     }
 
     public Product(int cartId, int productId, String name, String model, List<Object> option, int quantity,
-                   Boolean stock, String shipping, String price, String total, Integer reward) {
-        Objects.requireNonNull(cartId, "Card id cannot be null");
-        Objects.requireNonNull(productId, "Product id cannot be null");
+                   boolean stock, String shipping, String price, String total, int reward) {
         Objects.requireNonNull(name, "Product name cannot be null");
         Objects.requireNonNull(model, "Product model cannot be null");
         Objects.requireNonNull(option, "Product option cannot be null");
-        Objects.requireNonNull(quantity, "Product quantity cannot be null");
-        Objects.requireNonNull(stock, "Stock cannot be null");
         Objects.requireNonNull(shipping, "Shipping cannot be null");
         Objects.requireNonNull(price, "Product price cannot be null");
         Objects.requireNonNull(total, "Total cannot be null");
-        Objects.requireNonNull(reward, "Reward cannot be null");
-        
         this.cart_id = cartId;
         this.product_id = productId;
         this.name = name;
@@ -74,7 +68,7 @@ public class Product {
         return quantity;
     }
 
-    public Boolean getStock() {
+    public boolean getStock() {
         return stock;
     }
 
@@ -90,7 +84,7 @@ public class Product {
         return total;
     }
 
-    public Integer getReward() {
+    public int getReward() {
         return reward;
     }
 
