@@ -16,6 +16,7 @@ import ru.awesome.shop.ta.product.microservices.CartMicroservice;
 import org.json.simple.parser.ParseException;
 
 import java.util.List;
+import java.util.Objects;
 
 public class CartSteps {
     private HttpClient httpClient = new HttpClient();
@@ -28,8 +29,8 @@ public class CartSteps {
     }
 
     @When("^I add item to cart with item id (.*) and quantity (.*)$")
-    public void addItemToCart(int itemId, int amount) throws JsonProcessingException, ParseException {
-        AddItemRequestBody addItemRequestBody = new AddItemRequestBody(itemId, amount);
+    public void addItemToCart(int itemId, int quantity) throws JsonProcessingException, ParseException {
+        AddItemRequestBody addItemRequestBody = new AddItemRequestBody(itemId, quantity);
         HttpResponse<ChangeCartResponseBody> response = cartMicroservice.addItem(addItemRequestBody);
         ChangeCartResponseBody responseBody = response.getBody();
         String actualSuccessMessage = responseBody.getSuccess();
@@ -39,17 +40,17 @@ public class CartSteps {
     }
 
     @Then("^I should see message success \"(.*)\"$")
-    public void checkSuccessMessage(String message) {
-        Assert.assertEquals(this.apiTestContext.getActualSuccessMessage(), message,
+    public void checkSuccessMessage(String expectedMessage) {
+        Assert.assertEquals(this.apiTestContext.getActualSuccessMessage(), expectedMessage,
                 "Wrong success message");
     }
 
     @Then("^I should see this item in the cart with item id (.*)$")
-    public void checkProductIdInCart(int itemId) {
+    public void checkProductIdInCart(int expectedItemId) {
         List<Product> products = this.apiTestContext.getProducts();
         Product product = products.get(0);
         int actualItemId = product.getProduct_id();
-        Assert.assertEquals(actualItemId, itemId, "Wrong product id in the cart");
+        Assert.assertEquals(actualItemId, expectedItemId, "Wrong product id in the cart");
     }
 
 
@@ -110,7 +111,8 @@ public class CartSteps {
     }
 
     @Then("^I should see response status code (.*)")
-    public void checkStatusCode(int expectedCode) {
-        Assert.assertEquals(this.apiTestContext.getActualStatusCode(), expectedCode, "Wrong response status code");
+    public void checkStatusCode(int expectedStatusCode) {
+        Assert.assertEquals(this.apiTestContext.getActualStatusCode(), expectedStatusCode,
+                "Wrong status code");
     }
 }
