@@ -58,8 +58,14 @@ public class PaymentSteps {
     }
 
     @And("^I should get error message \"(.*)\"$")
-    public void getErrorCurrencyMessage(String expectedMessage) {
+    public void getErrorMessage(String expectedMessage) {
         Assert.assertEquals(apiTestContext.getActualErrorMessage(), expectedMessage, "Message is not expected!");
+    }
+
+    @And("^I should get message \"(.*)\"$")
+    public void getMessageFreeCheckout(String expectedMessage) {
+        Assert.assertTrue(apiTestContext.getActualSuccessMessage().contains(expectedMessage),
+                "Message is not expected!");
     }
 
     @And("^I should get success message \"(.*)\"$")

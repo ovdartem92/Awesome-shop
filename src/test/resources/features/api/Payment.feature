@@ -29,4 +29,4 @@ Feature: Payment
   Scenario: get payments methods
     When I perform request to get payment method
     Then I should get status code 200
-    And I should get error message "Warning: Payment address required!"
+    And I should get message "free_checkout"
