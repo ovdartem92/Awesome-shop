@@ -52,7 +52,6 @@ public class VoucherSteps {
         String actualSuccessMessage = httpResponse.getBody().getSuccess();
         apiTestContext.setActualStatusCode(actualStatusCode);
         apiTestContext.setActualSuccessMessage(actualSuccessMessage);
-
     }
 
     @Then("^I should get voucher status code (.*)$")
