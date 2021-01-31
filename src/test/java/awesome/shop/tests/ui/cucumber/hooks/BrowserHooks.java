@@ -14,12 +14,12 @@ import java.io.IOException;
 public class BrowserHooks {
     protected Browser browser;
 
-    @Before
+    @Before("@ui")
     public void setUp() {
         browser = Browser.getInstance();
     }
 
-    @After
+    @After("@ui")
     public void tearDown(Scenario scenario) throws IOException {
         if (scenario.isFailed()) {
             Log.info(String.format("SCENARIO named: %s is FAILED!", scenario.getName()));
