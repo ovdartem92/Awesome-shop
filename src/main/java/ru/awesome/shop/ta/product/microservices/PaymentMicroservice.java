@@ -11,6 +11,7 @@ import ru.awesome.shop.ta.product.http.body.response.PaymentResponseBody;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class PaymentMicroservice extends BaseMicroservice {
 
@@ -18,8 +19,10 @@ public class PaymentMicroservice extends BaseMicroservice {
         super(httpClient);
     }
 
-    public HttpResponse<PaymentResponseBody> addPaymentAddress(AddressRequestBody paymentCreationRequestBody) throws IOException, ParseException {
-        JSONObject requestBody = convertObjectToJson(paymentCreationRequestBody);
+    public HttpResponse<PaymentResponseBody> addPaymentAddress
+            (AddressRequestBody addressRequestBody) throws IOException, ParseException {
+        Objects.requireNonNull(addressRequestBody, "AddressRequestBody cannot be null");
+        JSONObject requestBody = convertObjectToJson(addressRequestBody);
         Map<String, String> queryParameters = new HashMap<>();
         queryParameters.put("route", "api/payment/address");//NOSONAR
         HttpResponse<JSONObject> httpResponse = this.httpClient.post(commonUrl, queryParameters, requestBody);
@@ -27,7 +30,9 @@ public class PaymentMicroservice extends BaseMicroservice {
         return new HttpResponse<>(httpResponse.getStatusCode(), httpResponse.getHeaders(), paymentResponseBody);
     }
 
-    public HttpResponse<PaymentResponseBody> setPayments(PaymentRequestBody paymentCreationRequestBody) throws IOException, ParseException {
+    public HttpResponse<PaymentResponseBody> setPayments
+            (PaymentRequestBody paymentCreationRequestBody) throws IOException, ParseException {
+        Objects.requireNonNull(paymentCreationRequestBody, "PaymentRequestBody cannot be null");
         JSONObject requestBody = convertObjectToJson(paymentCreationRequestBody);
         Map<String, String> queryParameters = new HashMap<>();
         queryParameters.put("route", "api/payment/method");

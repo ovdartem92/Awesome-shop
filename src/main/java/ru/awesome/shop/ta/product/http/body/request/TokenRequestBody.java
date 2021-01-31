@@ -4,19 +4,39 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import ru.awesome.shop.ta.utils.JsonRepresentation;
 
+import java.util.Objects;
+
 public class TokenRequestBody {
+    private String username;
     private String key;
 
     public TokenRequestBody() {
-        this.key = "6faAsXOzZ8ENbDJnFwnPqMooM0JcTRXUdJ7FicMVjE7FcxZwMtZVbrsi63ZPrFKV7FzuaETay3GfsCCpwUMMqo1fyIHg8F42uMPbFFs8K4sDwIOaoQJZDYNBOzu83YLOFfzIOKuRoPJy8UZbYmCYnavSjT8DvSLSMxzLingdiPPMFTwFrao2pMBR1Vsv53VMe3hNUgAknBxFIv5QWt86LoXvnzIx2xZqOLQrrK4ZADKWYn5hEDqtN8IHEGYgmmsM";
     }
 
-    public TokenRequestBody(String key) {
+    public TokenRequestBody(String username, String key) {
+        Objects.requireNonNull(key, "Key cannot be null");
+        Objects.requireNonNull(username, "User name cannot be null");
+        this.username = username;
         this.key = key;
+
+    }
+
+    public String getUsername() {
+        return username;
     }
 
     public String getKey() {
         return key;
+    }
+
+    @Override
+    public int hashCode() {
+        final int firstPrime = 17;
+        final int secondPrime = 37;
+        return new HashCodeBuilder(firstPrime, secondPrime)
+                .append(key)
+                .append(username)
+                .toHashCode();
     }
 
     @Override
@@ -34,20 +54,13 @@ public class TokenRequestBody {
         return new EqualsBuilder()
                 .appendSuper(super.equals(obj))
                 .append(key, other.key)
+                .append(username, other.username)
                 .isEquals();
-    }
-
-    @Override
-    public int hashCode() {
-        final int firstPrime = 97;
-        final int secondPrime = 5;
-        return new HashCodeBuilder(firstPrime, secondPrime)
-                .append(key)
-                .toHashCode();
     }
 
     @Override
     public String toString() {
         return JsonRepresentation.convertToJson(this);
     }
+
 }

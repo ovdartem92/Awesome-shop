@@ -4,7 +4,7 @@ Feature: Payment
   I want to run the cucumber test to verify it is working
 
   Background:
-    Given I have had a token
+    Given I have authenticated as user "Autotest" with key "oTAw3as6gT2Ui7neUT6Ryggb8tttNXg3mG7MPWf3ehVHndYXicoXQxBRcJQYhwuggQvbI8HJs4rMJxdfLL1fgwp6MDRnlaGU5ivIlBopBf0vuFo4gHVnv7EYUfECArc845rMTJ0LzMlMGFAyo4AwnLFKO2nQJ8fSuiv3hF8OYzCFUdE3mpAD4KRVMhtC8aDzSs0N5yrbKRAD17FiJ2DWTxDLgHuOTKntQZYhEGIN4yF0xoakuJYdq1mI7n0SOdv4"
 
   @payment @positive @api
   Scenario: add payment address
@@ -15,18 +15,18 @@ Feature: Payment
       | City       | Gomel    |
       | Country    | Bel      |
       | Zone_Id    | EU       |
-    Then I get status code 200
-    Then I get message: "Success: Payment address has been set!"
+    Then I should get status code 200
+    Then I should get message: "Success: Payment address has been set!"
 
   @payment @positive @api
   Scenario: set payment method
     When I perform request to set payment method
-      | Payment Method | <free_checkout> |
-    Then I get status code 200
-    Then I get message: "Success: Payment method has been set"
+      | Payment Method | free_checkout |
+    Then I should get status code 200
+    Then I should get message: "Success: Payment method has been set"
 
   @payment @positive @api
   Scenario: get payments methods
     When I perform request to get payment method
-    Then I get status code 200
-    Then I get message: "Warning: Payment address required!"
+    Then I should get status code 200
+    Then I should get message: "Warning: Payment address required!"

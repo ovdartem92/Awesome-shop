@@ -4,6 +4,8 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import ru.awesome.shop.ta.utils.JsonRepresentation;
 
+import java.util.Objects;
+
 public class PaymentResponseBody {
     private String error;
     private String success;
@@ -12,6 +14,8 @@ public class PaymentResponseBody {
     }
 
     public PaymentResponseBody(String error, String success) {
+        Objects.requireNonNull(error, "Error message cannot be null");
+        Objects.requireNonNull(success, "Success cannot be null");
         this.error = error;
         this.success = success;
     }

@@ -4,10 +4,13 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import ru.awesome.shop.ta.utils.JsonRepresentation;
 
+import java.util.Objects;
+
 public class PaymentRequestBody {
     private String paymentMethod;
 
     public PaymentRequestBody(String paymentMethod) {
+        Objects.requireNonNull(paymentMethod, "Payment method cannot be null");
         this.paymentMethod = paymentMethod;
     }
 

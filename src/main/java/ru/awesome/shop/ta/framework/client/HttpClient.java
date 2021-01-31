@@ -11,6 +11,7 @@ import ru.awesome.shop.ta.product.http.body.HttpResponse;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class HttpClient {
     private static final String BASE_URL = "https://awesome-shop.01sh.ru";
@@ -22,6 +23,9 @@ public class HttpClient {
 
     public HttpResponse<JSONObject> get(String relativeUrl, Map<String,
             String> queryParameters, Map<String, String> requestHeaders) {
+        Objects.requireNonNull(relativeUrl, "Relative URL cannot be null.");    //NOSONAR
+        Objects.requireNonNull(queryParameters, "Query parameters cannot be null.");
+        Objects.requireNonNull(requestHeaders, "Request header URL cannot be null."); //NOSONAR
         RequestSpecification request = RestAssured.given();
         request.queryParams(queryParameters);
         request.headers(requestHeaders);
@@ -45,6 +49,10 @@ public class HttpClient {
 
     public HttpResponse<JSONObject> post(String relativeUrl, Map<String, String> queryParameters,
                                          Map<String, String> requestHeaders, JSONObject requestBody) {
+        Objects.requireNonNull(relativeUrl, "Relative URL cannot be null.");
+        Objects.requireNonNull(queryParameters, "Query parameters cannot be null.");
+        Objects.requireNonNull(requestHeaders, "Request header cannot be null."); //NOSONAR
+        Objects.requireNonNull(requestBody, "Request body cannot be null.");
         RequestSpecification request = RestAssured.given();
         request.queryParams(queryParameters);
         request.headers(requestHeaders);
@@ -59,6 +67,9 @@ public class HttpClient {
 
     public HttpResponse<JSONObject> put(String relativeUrl, Map<String,
             String> requestHeaders, JSONObject requestBody) {
+        Objects.requireNonNull(relativeUrl, "Relative URL cannot be null.");
+        Objects.requireNonNull(requestHeaders, "Request header cannot be null.");
+        Objects.requireNonNull(requestBody, "Request body cannot be null.");
         RequestSpecification request = RestAssured.given();
         request.headers(requestHeaders);
         Response response = request.params(requestBody).put(relativeUrl);
@@ -70,6 +81,8 @@ public class HttpClient {
     }
 
     public HttpResponse<JSONObject> delete(String relativeUrl, Map<String, String> requestHeaders) {
+        Objects.requireNonNull(relativeUrl, "Relative URL cannot be null.");
+        Objects.requireNonNull(requestHeaders, "Request header cannot be null.");
         RequestSpecification request = RestAssured.given();
         request.headers(requestHeaders);
         Response response = request.delete(relativeUrl);
@@ -81,6 +94,7 @@ public class HttpClient {
     }
 
     private HttpResponse<JSONObject> prepareHttpResponse(Response response) {
+        Objects.requireNonNull(response, "Response cannot be null.");
         JSONObject body = response.body().as(JSONObject.class);
         int responseCode = response.getStatusCode();
         Map<String, String> headers = convertHeaders(response.headers());
@@ -88,6 +102,7 @@ public class HttpClient {
     }
 
     private Map<String, String> convertHeaders(Headers headers) {
+        Objects.requireNonNull(headers, "Headers cannot be null.");
         Map<String, String> headersMap = new HashMap<>();
         for (Header header : headers) {
             headersMap.put(header.getName(), header.getValue());

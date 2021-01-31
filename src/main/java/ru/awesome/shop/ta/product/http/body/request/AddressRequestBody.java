@@ -4,6 +4,8 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import ru.awesome.shop.ta.utils.JsonRepresentation;
 
+import java.util.Objects;
+
 public class AddressRequestBody {
     private String firstname;
     private String lastname;
@@ -13,6 +15,12 @@ public class AddressRequestBody {
     private String zone_id;//NOSONAR
 
     public AddressRequestBody(String firstname, String lastname, String address, String city, String country, String zone) {
+        Objects.requireNonNull(firstname, "First name cannot be null");
+        Objects.requireNonNull(lastname, "Last name cannot be null");
+        Objects.requireNonNull(address, "Address cannot be null");
+        Objects.requireNonNull(city, "City cannot be null");
+        Objects.requireNonNull(country, "Country cannot be null");
+        Objects.requireNonNull(zone, "Zone cannot be null");
         this.firstname = firstname;
         this.lastname = lastname;
         this.address_1 = address;//NOSONAR
