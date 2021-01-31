@@ -15,7 +15,6 @@ public class CurrencySteps {
     private ApiTestContext apiTestContext;
     private CurrencyMicroservice currencyMicroservice;
 
-
     public CurrencySteps(ApiTestContext apiTestContext) {
         this.apiTestContext = apiTestContext;
         this.currencyMicroservice = new CurrencyMicroservice(this.httpClient, apiTestContext.getToken());
@@ -30,7 +29,6 @@ public class CurrencySteps {
         String actualErrorMessage = httpResponse.getBody().getError();
         apiTestContext.setActualStatusCode(actualStatusCode);
         apiTestContext.setActualErrorMessage(actualErrorMessage);
-
     }
 
     @When("^I send valid request for changing currency \"(.*)\"$")
@@ -42,7 +40,6 @@ public class CurrencySteps {
         String actualSuccessMessage = httpResponse.getBody().getSuccess();
         apiTestContext.setActualStatusCode(actualStatusCode);
         apiTestContext.setActualSuccessMessage(actualSuccessMessage);
-
     }
 
     @Then("^I should get currency status code (.*)$")

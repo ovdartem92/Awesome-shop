@@ -20,7 +20,6 @@ public class VoucherSteps {
     private ApiTestContext apiTestContext;
     private VoucherMicroservice voucherMicroservice;
 
-
     public VoucherSteps(ApiTestContext apiTestContext) {
         this.apiTestContext = apiTestContext;
         this.voucherMicroservice = new VoucherMicroservice(this.httpClient, apiTestContext.getToken());

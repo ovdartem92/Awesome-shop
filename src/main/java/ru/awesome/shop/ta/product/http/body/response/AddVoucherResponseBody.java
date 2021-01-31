@@ -10,7 +10,6 @@ public class AddVoucherResponseBody {
     public AddVoucherResponseBody() {
     }
 
-
     public String getSuccess() {
         return this.success;
     }
