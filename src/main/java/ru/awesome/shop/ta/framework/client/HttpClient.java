@@ -14,7 +14,7 @@ import java.util.Map;
 import java.util.Objects;
 
 public class HttpClient {
-    private static final String BASE_URL = "https://awesome-shop.01sh.ru";
+    private final String BASE_URL = "https://awesome-shop.01sh.ru";
     private final Map<String, String> defaultHeaders = new HashMap<>();
 
     public HttpClient() {
