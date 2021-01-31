@@ -59,6 +59,6 @@ public class PaymentResponseBody {
 
     @Override
     public String toString() {
-        return JsonRepresentation.convertToJson(this);
+        return JsonRepresentation.convertToJsonString(this);
     }
 }

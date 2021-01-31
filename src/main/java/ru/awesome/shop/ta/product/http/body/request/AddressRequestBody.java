@@ -92,6 +92,6 @@ public class AddressRequestBody {
 
     @Override
     public String toString() {
-        return JsonRepresentation.convertToJson(this);
+        return JsonRepresentation.convertToJsonString(this);
     }
 }

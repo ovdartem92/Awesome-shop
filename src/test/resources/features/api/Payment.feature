@@ -16,17 +16,17 @@ Feature: Payment
       | Country    | Bel      |
       | Zone_Id    | EU       |
     Then I should get status code 200
-    Then I should get message: "Success: Payment address has been set!"
+    And I should get success message "Success: Payment address has been set!"
 
   @payment @positive @api
   Scenario: set payment method
     When I perform request to set payment method
       | Payment Method | free_checkout |
     Then I should get status code 200
-    Then I should get message: "Success: Payment method has been set"
+    And I should get success message "Success: Payment method has been set"
 
   @payment @positive @api
   Scenario: get payments methods
     When I perform request to get payment method
     Then I should get status code 200
-    Then I should get message: "Warning: Payment address required!"
+    And I should get error message "Warning: Payment address required!"
