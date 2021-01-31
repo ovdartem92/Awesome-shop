@@ -37,14 +37,9 @@ public class VoucherSteps {
         apiTestContext.setActualErrorMessage(actualErrorMessage);
     }
 
-    @Then("^I should get applying voucher status code (.*)$")
-    public void getApplyingVoucherStatusCode(int expectedStatusCode) {
-        Assert.assertEquals(apiTestContext.getActualStatusCode(), expectedStatusCode, "Status Code isn't expected!");
-    }
-
     @Then("^I should get applying voucher error message \"(.*)\"$")
     public void getInvalidVoucherMessage(String expectedMessage) {
-        Assert.assertEquals(apiTestContext.getActualErrorMessage(), expectedMessage, "Message us not expected!");
+        Assert.assertEquals(apiTestContext.getActualErrorMessage(), expectedMessage, "Message is not expected!");
     }
 
     @When("^I send request for adding new voucher")
@@ -60,13 +55,13 @@ public class VoucherSteps {
 
     }
 
-    @Then("^I should get add voucher status code (.*)$")
+    @Then("^I should get voucher status code (.*)$")
     public void getAddVoucherStatusCode(int expectedStatusCode) {
         Assert.assertEquals(apiTestContext.getActualStatusCode(), expectedStatusCode, "Status Code isn't expected!");
     }
 
     @And("^I should get add voucher success message \"(.*)\"$")
     public void getAddVoucherSuccessMessage(String expectedMessage) {
-        Assert.assertEquals(apiTestContext.getActualSuccessMessage(), expectedMessage, "Message us not expected!");
+        Assert.assertEquals(apiTestContext.getActualSuccessMessage(), expectedMessage, "Message is not expected!");
     }
 }
