@@ -4,8 +4,6 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import ru.awesome.shop.ta.utils.JsonRepresentation;
 
-import java.util.Objects;
-
 public class AddItemRequestBody {
     private int product_id; //NOSONAR
     private int quantity;
@@ -19,8 +17,6 @@ public class AddItemRequestBody {
     }
 
     public AddItemRequestBody(int productId, int quantity) {
-        Objects.requireNonNull(productId, "Product id cannot be null");
-        Objects.requireNonNull(quantity, "Quantity id cannot be null");
         this.product_id = productId;
         this.quantity = quantity;
     }
