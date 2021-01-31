@@ -28,9 +28,8 @@ public class VoucherSteps {
 
     @When("^I send request for applying existing voucher \"(.*)\"$")
     public void applyingExistingVoucher(String voucher) throws ParseException {
-        HttpResponse<ApplyVoucherResponseBody> httpResponse;
         ApplyVoucherRequestBody applyVoucherRequestBody = new ApplyVoucherRequestBody(voucher);
-        httpResponse = voucherMicroservice.applyExistingVoucher(applyVoucherRequestBody);
+        HttpResponse<ApplyVoucherResponseBody> httpResponse = voucherMicroservice.applyExistingVoucher(applyVoucherRequestBody);
         int actualStatusCode = httpResponse.getStatusCode();
         String actualErrorMessage = httpResponse.getBody().getError();
         apiTestContext.setActualStatusCode(actualStatusCode);
@@ -44,10 +43,11 @@ public class VoucherSteps {
 
     @When("^I send request for adding new voucher")
     public void sendRequestForAddingNewVoucher(DataTable dataTable) throws ParseException {
-        Map<String, String> requestBody = dataTable.asMap(String.class, String.class);
-        HttpResponse<AddVoucherResponseBody> httpResponse;
-        AddVoucherRequestBody addVoucherRequestBody = new AddVoucherRequestBody(requestBody);
-        httpResponse = voucherMicroservice.addNewVoucher(addVoucherRequestBody);
+        Map<String, String> params = dataTable.asMap(String.class, String.class);
+        AddVoucherRequestBody addVoucherRequestBody = new AddVoucherRequestBody(params.get("from_name"),
+                params.get("from_email"), params.get("to_name"), params.get("to_email"), params.get("amount"),
+                params.get("code"));
+        HttpResponse<AddVoucherResponseBody> httpResponse = voucherMicroservice.addNewVoucher(addVoucherRequestBody);
         int actualStatusCode = httpResponse.getStatusCode();
         String actualSuccessMessage = httpResponse.getBody().getSuccess();
         apiTestContext.setActualStatusCode(actualStatusCode);

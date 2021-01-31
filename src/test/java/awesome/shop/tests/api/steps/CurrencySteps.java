@@ -1,7 +1,6 @@
 package awesome.shop.tests.api.steps;
 
 import io.cucumber.java.en.And;
-import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.json.simple.parser.ParseException;
 import org.testng.Assert;
@@ -23,9 +22,8 @@ public class CurrencySteps {
 
     @When("^I send invalid request for changing currency \"(.*)\"$")
     public void setInvalidCurrency(String currency) throws ParseException {
-        HttpResponse<CurrencyResponseBody> httpResponse;
         CurrencyRequestBody currencyRequestBody = new CurrencyRequestBody(currency);
-        httpResponse = currencyMicroservice.changeCurrency(currencyRequestBody);
+        HttpResponse<CurrencyResponseBody> httpResponse = currencyMicroservice.changeCurrency(currencyRequestBody);
         int actualStatusCode = httpResponse.getStatusCode();
         String actualErrorMessage = httpResponse.getBody().getError();
         apiTestContext.setActualStatusCode(actualStatusCode);
@@ -34,9 +32,8 @@ public class CurrencySteps {
 
     @When("^I send valid request for changing currency \"(.*)\"$")
     public void setValidCurrency(String currency) throws ParseException {
-        HttpResponse<CurrencyResponseBody> httpResponse;
         CurrencyRequestBody currencyRequestBody = new CurrencyRequestBody(currency);
-        httpResponse = currencyMicroservice.changeCurrency(currencyRequestBody);
+        HttpResponse<CurrencyResponseBody> httpResponse = currencyMicroservice.changeCurrency(currencyRequestBody);
         int actualStatusCode = httpResponse.getStatusCode();
         String actualSuccessMessage = httpResponse.getBody().getSuccess();
         apiTestContext.setActualStatusCode(actualStatusCode);

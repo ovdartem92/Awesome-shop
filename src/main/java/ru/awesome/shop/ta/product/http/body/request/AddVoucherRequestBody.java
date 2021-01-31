@@ -4,7 +4,6 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import ru.awesome.shop.ta.utils.JsonRepresentation;
 
-import java.util.Map;
 import java.util.Objects;
 
 public class AddVoucherRequestBody {
@@ -28,16 +27,6 @@ public class AddVoucherRequestBody {
         this.to_email = to_email;
         this.amount = amount;
         this.code = code;
-    }
-
-    public AddVoucherRequestBody(Map<String, String> parameters) {
-        Objects.requireNonNull(parameters, "Parameters cannot be null.");
-        this.from_name = parameters.get("from_name");
-        this.from_email = parameters.get("from_email");
-        this.to_name = parameters.get("to_name");
-        this.to_email = parameters.get("to_email");
-        this.amount = parameters.get("amount");
-        this.code = parameters.get("code");
     }
 
     public String getFrom_name() {
