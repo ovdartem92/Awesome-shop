@@ -6,7 +6,7 @@ Feature: coupon
   @api @coupon @negative @all
   Scenario Outline: use coupon
     When I use wrong coupon <couponNumber>
-    Then I should see response status code 200
+    Then I should get status code 200
     And I should see message error "Warning: Coupon is either invalid, expired or reached it's usage limit!"
     Examples:
       | couponNumber |
