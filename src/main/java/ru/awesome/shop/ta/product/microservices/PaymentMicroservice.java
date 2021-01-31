@@ -38,7 +38,7 @@ public class PaymentMicroservice extends BaseMicroservice {
         JSONObject requestBody = convertToJson(paymentCreationRequestBody);
         Map<String, String> queryParameters = new HashMap<>();
         queryParameters.put("route", "api/payment/method");
-        ru.awesome.shop.ta.product.http.HttpResponse<JSONObject> httpResponse = this.httpClient.post(COMMON_URL, queryParameters, requestBody);
+        HttpResponse<JSONObject> httpResponse = this.httpClient.post(COMMON_URL, queryParameters, requestBody);
         PaymentResponseBody paymentResponseBody = convertFromJson(httpResponse.getBody(), PaymentResponseBody.class);
         return new HttpResponse<>(httpResponse.getStatusCode(), httpResponse.getHeaders(), paymentResponseBody);
     }
