@@ -1,5 +1,6 @@
 package awesome.shop.tests.api.steps;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.json.simple.parser.ParseException;
@@ -48,12 +49,12 @@ public class CurrencySteps {
                 "Status Code isn't expected!");
     }
 
-    @Then("^I should get currency error message \"(.*)\"$")
+    @And("^I should get currency error message \"(.*)\"$")
     public void getErrorCurrencyMessage(String expectedMessage) {
         Assert.assertEquals(apiTestContext.getActualErrorMessage(), expectedMessage, "Message is not expected!");
     }
 
-    @Then("^I should get currency success message \"(.*)\"$")
+    @And("^I should get currency success message \"(.*)\"$")
     public void getSuccessCurrencyMessage(String expectedMessage) {
         Assert.assertEquals(apiTestContext.getActualSuccessMessage(), expectedMessage, "Message is not expected!");
     }

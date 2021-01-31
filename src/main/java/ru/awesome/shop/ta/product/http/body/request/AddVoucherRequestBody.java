@@ -8,10 +8,10 @@ import java.util.Map;
 import java.util.Objects;
 
 public class AddVoucherRequestBody {
-    private String from_name;
-    private String from_email;
-    private String to_name;
-    private String to_email;
+    private String from_name;//NOSONAR
+    private String from_email;//NOSONAR
+    private String to_name;//NOSONAR
+    private String to_email;//NOSONAR
     private String amount;
     private String code;
 

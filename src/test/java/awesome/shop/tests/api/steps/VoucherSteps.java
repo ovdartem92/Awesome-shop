@@ -1,6 +1,7 @@
 package awesome.shop.tests.api.steps;
 
 import io.cucumber.datatable.DataTable;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.json.simple.parser.ParseException;
@@ -64,7 +65,7 @@ public class VoucherSteps {
         Assert.assertEquals(apiTestContext.getActualStatusCode(), expectedStatusCode, "Status Code isn't expected!");
     }
 
-    @Then("^I should get add voucher success message \"(.*)\"$")
+    @And("^I should get add voucher success message \"(.*)\"$")
     public void getAddVoucherSuccessMessage(String expectedMessage) {
         Assert.assertEquals(apiTestContext.getActualSuccessMessage(), expectedMessage, "Message us not expected!");
     }
