@@ -2,6 +2,7 @@ package ru.awesome.shop.ta.product.pages;
 
 import org.openqa.selenium.By;
 import ru.awesome.shop.ta.framework.browser.Browser;
+import ru.awesome.shop.ta.framework.configuration.PropertyManager;
 import ru.awesome.shop.ta.framework.ui.components.Button;
 import ru.awesome.shop.ta.framework.ui.components.Link;
 import ru.awesome.shop.ta.framework.ui.components.TextField;
@@ -10,7 +11,7 @@ import ru.awesome.shop.ta.product.pages.popups.AccountPopUp;
 import ru.awesome.shop.ta.product.pages.popups.CartTotalPopup;
 
 public abstract class BasePage {
-    protected static final String BASE_URL = "https://awesome-shop.01sh.ru/";
+    protected static final String BASE_URL = PropertyManager.getUrl();
     private SearchFragment searchFragment = new SearchFragment();
 
     public SearchFragment getSearchFragment() {

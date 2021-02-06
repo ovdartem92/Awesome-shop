@@ -38,7 +38,7 @@ mvn -Dsurefire.suiteXmlFiles=cucumber.xml -Dcucumber.filter.tags=@${cucumber.fil
 
 **Api** tests should run in one thread:
 ```
-mvn -Dsurefire.suiteXmlFiles=cucumber.xml -Dcucumber.filter.tags="@api and ${cucumber.filter.tags}" -Ddataproviderthreadcount=1 clean test
+mvn -Dsurefire.suiteXmlFiles=cucumber.xml -Dcucumber.filter.tags="@api and @${cucumber.filter.tags}" -Ddataproviderthreadcount=1 clean test
 ```
 
 ## Default values:
