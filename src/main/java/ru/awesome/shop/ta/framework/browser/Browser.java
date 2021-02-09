@@ -3,10 +3,10 @@ package ru.awesome.shop.ta.framework.browser;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.Select;
+import ru.awesome.shop.ta.framework.configuration.PropertyManager;
 import ru.awesome.shop.ta.framework.logging.Log;
 import ru.awesome.shop.ta.framework.ui.elements.HighlightedWebElement;
 import ru.awesome.shop.ta.utils.DirectoryGenerator;
-import ru.awesome.shop.ta.utils.TestDataReader;
 
 import java.io.File;
 import java.io.IOException;
@@ -23,7 +23,7 @@ public final class Browser implements WrapsDriver {
 
     private Browser() {
         BrowserType browserType = BrowserType.valueOf(System.getProperty("browser",
-                TestDataReader.getStageData("browser")).toUpperCase());
+                PropertyManager.getBrowserType().toString()));
         String executionProperty = System.getProperty("grid", "false");
         boolean isSeleniumGridEnabled = executionProperty.equals("true");
         screenshotDirectoryPath = DirectoryGenerator.create("./target/screenshots");

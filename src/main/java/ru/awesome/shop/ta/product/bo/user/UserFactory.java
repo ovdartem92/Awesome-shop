@@ -66,26 +66,6 @@ public final class UserFactory {
                 .companyName(company).contactInfo(contactInfo).build();
     }
 
-    public static User generateUserWithInvalidPassword() {
-        Credentials credentialsWithInvalidPassword = CredentialsFactory.generateCredentialsWithInvalidPassword();
-        String firstName = RandomStringUtils.randomAlphabetic(NAME_START_INCLUSIVE, NAME_END_EXCLUSIVE);
-        String lastName = RandomStringUtils.randomAlphabetic(NAME_START_INCLUSIVE, NAME_END_EXCLUSIVE);
-        String company = RandomStringUtils.randomAlphabetic(NAME_START_INCLUSIVE, NAME_END_EXCLUSIVE);
-        ContactInfo contactInfo = ContactInfoFactory.generateValidContactInfo();
-        return new User.Builder(credentialsWithInvalidPassword).firstName(firstName).lastName(lastName)
-                .companyName(company).contactInfo(contactInfo).build();
-    }
-
-    public static User generateUserWithInvalidEmail() {
-        Credentials credentialsWithInvalidEmail = CredentialsFactory.generateCredentialsWithInvalidEmail();
-        String firstName = RandomStringUtils.randomAlphabetic(NAME_START_INCLUSIVE, NAME_END_EXCLUSIVE);
-        String lastName = RandomStringUtils.randomAlphabetic(NAME_START_INCLUSIVE, NAME_END_EXCLUSIVE);
-        String company = RandomStringUtils.randomAlphabetic(NAME_START_INCLUSIVE, NAME_END_EXCLUSIVE);
-        ContactInfo contactInfo = ContactInfoFactory.generateValidContactInfo();
-        return new User.Builder(credentialsWithInvalidEmail).firstName(firstName).lastName(lastName)
-                .companyName(company).contactInfo(contactInfo).build();
-    }
-
     public static User generateUserWithInvalidTelephone() {
         Credentials validCredentials = CredentialsFactory.generateValidCredentials();
         String firstName = RandomStringUtils.randomAlphabetic(NAME_START_INCLUSIVE, NAME_END_EXCLUSIVE);

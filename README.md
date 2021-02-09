@@ -19,7 +19,7 @@ mvn -Dsurefire.suiteXmlFiles=testng.xml -Dgrid=true clean test
 To run **Cucumber** tests using Selenium Grid from command line:
 
 ```
-mvn -Dsurefire.suiteXmlFiles=cucumber.xml -Dcucumber.filter.tags=@${cucumber.filter.tags} -Ddataproviderthreadcount=${threadcount} -Dgrid=true clean test
+mvn -Dsurefire.suiteXmlFiles=cucumber.xml -Dcucumber.filter.tags="@ui and @${cucumber.filter.tags}" -Ddataproviderthreadcount=${threadcount} -Dgrid=true clean test
 ```
 
 ### Launch auto tests in parallel (without Selenium Grid)
@@ -33,12 +33,12 @@ mvn -Dsurefire.suiteXmlFiles=testng.xml clean test
 To run **Cucumber** tests in parallel from command line:
 
 ```
-mvn -Dsurefire.suiteXmlFiles=cucumber.xml -Dcucumber.filter.tags=@${cucumber.filter.tags} -Ddataproviderthreadcount=${threadcount} clean test
+mvn -Dsurefire.suiteXmlFiles=cucumber.xml -Dcucumber.filter.tags="@ui and @${cucumber.filter.tags}" -Ddataproviderthreadcount=${threadcount} clean test
 ```
 
 **Api** tests should run in one thread:
 ```
-mvn -Dsurefire.suiteXmlFiles=cucumber.xml -Dcucumber.filter.tags="@api and ${cucumber.filter.tags}" -Ddataproviderthreadcount=1 clean test
+mvn -Dsurefire.suiteXmlFiles=cucumber.xml -Dcucumber.filter.tags="@api and @${cucumber.filter.tags}" -Ddataproviderthreadcount=1 clean test
 ```
 
 ## Default values:

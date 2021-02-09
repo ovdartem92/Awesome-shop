@@ -25,11 +25,6 @@ public class CustomerSteps {
         this.customerMicroservice = new CustomerMicroservice(this.httpClient, apiTestContext.getToken());
     }
 
-    @DataTableType(replaceWithEmptyString = "[blank]")
-    public String listOfStringListsType(String cell) {
-        return cell;
-    }
-
     @When("^I modify the customer by passing parameters:$")
     public void editCustomer(DataTable dataTable) throws ParseException {
         Map<String, String> parameters = dataTable.asMap(String.class, String.class);
